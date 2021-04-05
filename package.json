@@ -1,0 +1,33 @@
+{
+  "name": "confluence.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "out/index.js",
+  "types": "out/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build && npm run test && npm run lint",
+    "test": "",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "repository": "https://github.com/MrRefactoring/confluence.js.git",
+  "keywords": [],
+  "author": "Vladislav Tupikin <mrrefactoring@yandex.ru>",
+  "license": "MIT",
+  "homepage": "https://github.com/MrRefactoring/confluence.js#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
