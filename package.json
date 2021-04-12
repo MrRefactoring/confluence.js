@@ -50,6 +50,6 @@
     "atlassian-jwt": "^1.0.3",
     "axios": "^0.21.1",
     "oauth": "^0.9.15",
-    "telemetry.confluence.js": "*"
+    "telemetry.confluence.js": "1.0.0-beta.0"
   }
 }
