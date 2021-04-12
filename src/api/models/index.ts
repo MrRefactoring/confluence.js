@@ -53,6 +53,7 @@ export * from './copyPageHierarchyRequest';
 export * from './copyPageHierarchyTitleOptions';
 export * from './copyPageRequest';
 export * from './copyPageRequestDestination';
+export * from './deletedSpace';
 export * from './dynamicModulesErrorMessage';
 export * from './embeddable';
 export * from './embeddedContent';

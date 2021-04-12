@@ -165,7 +165,7 @@ export class Space {
      *
      * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
      * 'Admin' permission for the space. */
-  async deleteSpace<T = unknown>(parameters: Parameters.DeleteSpace, callback: Callback<T>): Promise<void>;
+  async deleteSpace<T = Models.DeletedSpace>(parameters: Parameters.DeleteSpace, callback: Callback<T>): Promise<void>;
   /**
      * Deletes a space. Note, the space will be deleted in a long running task.
      * Therefore, the space may not be deleted yet when this method has
@@ -174,8 +174,8 @@ export class Space {
      *
      * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
      * 'Admin' permission for the space. */
-  async deleteSpace<T = unknown>(parameters: Parameters.DeleteSpace, callback?: never): Promise<T>;
-  async deleteSpace<T = unknown>(parameters: Parameters.DeleteSpace, callback?: Callback<T>): Promise<void | T> {
+  async deleteSpace<T = Models.DeletedSpace>(parameters: Parameters.DeleteSpace, callback?: never): Promise<T>;
+  async deleteSpace<T = Models.DeletedSpace>(parameters: Parameters.DeleteSpace, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: `/api/space/${parameters.spaceKey}`,
       method: 'DELETE',

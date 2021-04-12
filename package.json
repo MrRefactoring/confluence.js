@@ -7,8 +7,9 @@
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build && npm run test && npm run lint",
-    "test": "npm run test:unit",
+    "test": "npm run test:unit npm run test:system",
     "test:unit": "jest tests/unit",
+    "test:system": "jest tests/system --setupFiles=./tests/setup.ts --runInBand",
     "doc": "typedoc --name Confluence.js --out docs ./src",
     "lint": "eslint src --ext .ts",
     "lint:fix": "npm run lint -- --fix"

@@ -4,3 +4,4 @@ out/
 docs/
 
 .DS_Store
+.env

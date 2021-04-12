@@ -76,7 +76,10 @@ export class Content {
       params: {
         status: parameters?.status,
       },
-      data: parameters?.body,
+      data: {
+        status: undefined,
+        ...parameters,
+      },
     } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'createContent' });

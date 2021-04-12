@@ -6,3 +6,5 @@ tests/
 .eslintrc
 tsconfig.tests.json
 .DS_Store
+.env
+.env.example
