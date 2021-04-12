@@ -2,7 +2,8 @@ import { ContentBodyCreate } from './contentBodyCreate';
 import { Label } from './label';
 
 /**
- * This object is used to update content templates. */
+ * This object is used to update content templates.
+ */
 export interface ContentTemplateUpdate {
   /** The ID of the template being updated. */
   templateId: string;

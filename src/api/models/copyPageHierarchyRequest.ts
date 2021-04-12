@@ -1,4 +1,3 @@
-import { ContentId } from './contentId';
 import { CopyPageHierarchyTitleOptions } from './copyPageHierarchyTitleOptions';
 
 export interface CopyPageHierarchyRequest {
@@ -12,6 +11,6 @@ export interface CopyPageHierarchyRequest {
   copyLabels?: boolean;
   /** If set to `true`, custom contents are copied to the destination page. */
   copyCustomContents?: boolean;
-  destinationPageId: ContentId;
+  destinationPageId: string;
   titleOptions?: CopyPageHierarchyTitleOptions;
 }

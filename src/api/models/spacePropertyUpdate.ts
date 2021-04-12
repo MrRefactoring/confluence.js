@@ -1,6 +1,6 @@
 export interface SpacePropertyUpdate {
   /** The value of the property. */
-  value: {};
+  value: Record<string, any>;
   /** The version number of the property. */
   version: {
     /** The new version for the updated space property. Set this to the

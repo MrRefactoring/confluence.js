@@ -1,6 +1,6 @@
 import { LabelCreateArray } from '../models';
 
-export interface AddLabelsToContent extends LabelCreateArray {
+export interface AddLabelsToContent {
   /** The ID of the content that will have labels added to it. */
   id: string;
   /** If true, return the new 400 error response on invalid requests. Otherwise return a server error response
@@ -11,4 +11,5 @@ export interface AddLabelsToContent extends LabelCreateArray {
     body. This parameter enables a smooth transition without a breaking change; eventually, we'll
     completely remove the 500 response and this parameter won't be needed. */
   'use-400-error-response'?: boolean;
+  body: LabelCreateArray;
 }

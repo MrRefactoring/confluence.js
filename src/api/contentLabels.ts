@@ -64,6 +64,7 @@ export class ContentLabels {
       params: {
         'use-400-error-response': parameters['use-400-error-response'],
       },
+      data: parameters.body,
     } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'addLabelsToContent' });

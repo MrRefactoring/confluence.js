@@ -1,2 +1,1 @@
-export interface Embeddable {
-}
+export type Embeddable = Record<string, any>;

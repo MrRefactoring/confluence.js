@@ -1,7 +1,6 @@
+import type { Telemetry } from 'telemetry.confluence.js';
 import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
-
-type Telemetry = any; // TODO
 
 export interface Client {
   sendRequest<T>(requestConfig: RequestConfig, callback?: never, telemetryData?: Partial<Telemetry>): Promise<T>;

@@ -1,8 +1,7 @@
-import {RequestConfig} from "./requestConfig";
-import {AxiosError} from "axios";
-import {UtilityTypes} from "./utilityTypes";
-
-type TelemetryConfig = any;
+import { AxiosError } from 'axios';
+import type { TelemetryConfig } from 'telemetry.confluence.js';
+import type { RequestConfig } from './requestConfig';
+import type { UtilityTypes } from './utilityTypes';
 
 export interface Config {
   host: string;
@@ -10,6 +9,10 @@ export interface Config {
   authentication?: Config.Authentication;
   middlewares?: Config.Middlewares;
   telemetry?: Config.Telemetry;
+  /**
+   * Adds `'X-Atlassian-Token': 'no-check'` to each request header
+   */
+  noCheckAtlassianToken?: boolean;
 }
 
 export namespace Config {

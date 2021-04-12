@@ -1,6 +1,6 @@
 import { ContentRestrictionUpdateArray } from '../models';
 
-export interface UpdateRestrictions extends ContentRestrictionUpdateArray {
+export interface UpdateRestrictions {
   /** The ID of the content to update restrictions for. */
   id: string;
   /** A multi-value parameter indicating which properties of the content
@@ -13,4 +13,5 @@ export interface UpdateRestrictions extends ContentRestrictionUpdateArray {
     - `content` returns the piece of content that the restrictions are
     applied to. */
   expand?: string[];
+  body: ContentRestrictionUpdateArray;
 }

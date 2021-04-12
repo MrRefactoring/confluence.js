@@ -1,4 +1,4 @@
 export interface Message {
   translation: string;
-  args: {}[];
+  args: Record<string, any>[];
 }

@@ -245,14 +245,14 @@ export class ContentChildrenAndDescendants {
      *  for example, search and replace can be used in conjunction to rewrite the copied page titles.
      *
      *  Response example:
-     *  <pre><code>
+     *  <pre>
      *  {
      *       "id" : "1180606",
      *       "links" : {
      *            "status" : "/rest/api/longtask/1180606"
      *       }
      *  }
-     *  </code></pre>
+     *  </pre>
      *  Use the /longtask/<taskId> REST API to get the copy task status. */
   async copyPageHierarchy<T = unknown>(parameters: Parameters.CopyPageHierarchy, callback: Callback<T>): Promise<void>;
   /**
@@ -262,14 +262,14 @@ export class ContentChildrenAndDescendants {
      *  for example, search and replace can be used in conjunction to rewrite the copied page titles.
      *
      *  Response example:
-     *  <pre><code>
+     *  <pre>
      *  {
      *       "id" : "1180606",
      *       "links" : {
      *            "status" : "/rest/api/longtask/1180606"
      *       }
      *  }
-     *  </code></pre>
+     *  </pre>
      *  Use the /longtask/<taskId> REST API to get the copy task status. */
   async copyPageHierarchy<T = unknown>(parameters: Parameters.CopyPageHierarchy, callback?: never): Promise<T>;
   async copyPageHierarchy<T = unknown>(parameters: Parameters.CopyPageHierarchy, callback?: Callback<T>): Promise<void | T> {

@@ -9,6 +9,10 @@ export interface SpaceCreate {
   key: string;
   /** The name of the new space. */
   name: string;
+  /**
+   * The description of the new/updated space. Note, only the 'plain' representation can be used for the description
+   * when creating or updating a space.
+   */
   description?: SpaceDescriptionCreate;
   /** The permissions for the new space. If no permissions are provided, the
     [Confluence default space permissions](https://confluence.atlassian.com/x/UAgzKw#CreateaSpace-Spacepermissions)

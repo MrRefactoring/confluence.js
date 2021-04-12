@@ -8,5 +8,4 @@
  *   "example3": 123
  * }
  * ``` */
-export interface PropertyValue {
-}
+export type PropertyValue = Record<string, any>;

@@ -1,2 +1,1 @@
-export interface GenericLinks {
-}
+export type GenericLinks = Record<string, any>;

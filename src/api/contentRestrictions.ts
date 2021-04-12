@@ -52,6 +52,7 @@ export class ContentRestrictions {
       params: {
         expand: parameters.expand,
       },
+      data: parameters.body,
     } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'addRestrictions' });
@@ -77,6 +78,7 @@ export class ContentRestrictions {
       params: {
         expand: parameters.expand,
       },
+      data: parameters.body,
     } as RequestConfig;
 
     return this.client.sendRequest(config, callback, { methodName: 'updateRestrictions' });

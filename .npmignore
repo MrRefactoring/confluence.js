@@ -1,0 +1,8 @@
+.idea
+node_modules/
+tests/
+
+.editorconfig
+.eslintrc
+tsconfig.tests.json
+.DS_Store

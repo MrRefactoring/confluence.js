@@ -1,2 +1,3 @@
-export interface ContentRestrictionUpdateArray {
-}
+import { ContentRestrictionUpdate } from './contentRestrictionUpdate';
+
+export type ContentRestrictionUpdateArray = ContentRestrictionUpdate[];

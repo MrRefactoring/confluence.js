@@ -6,6 +6,9 @@ import type { Config } from '../config';
 import { AuthenticationService } from '../services/authenticationService';
 import type { RequestConfig } from '../requestConfig';
 
+const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
+const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
+
 export class BaseClient implements Client {
   private instance: AxiosInstance;
   private telemetryClient: TelemetryClient;
@@ -16,6 +19,10 @@ export class BaseClient implements Client {
       paramsSerializer: this.paramSerializer.bind(this),
       ...config.baseRequestConfig,
       baseURL: `${config.host}/wiki/rest/`,
+      headers: this.removeUndefinedProperties({
+        [ATLASSIAN_TOKEN_CHECK_FLAG]: config.noCheckAtlassianToken ? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE : undefined,
+        ...config.baseRequestConfig?.headers,
+      }),
     });
   }
 
@@ -76,7 +83,7 @@ export class BaseClient implements Client {
       callbackUsed: !!callback,
       headersExists: !!requestConfig.headers,
       libVersion: '1.0.0',
-      libVersionHash: '', // TODO
+      libVersionHash: 'a2c18f37c29299af8db8230ec35e59cd',
       methodName: telemetryData?.methodName || 'sendRequest',
       onErrorMiddlewareUsed: !!this.config.middlewares?.onError,
       onResponseMiddlewareUsed: !!this.config.middlewares?.onResponse,
@@ -84,6 +91,7 @@ export class BaseClient implements Client {
       requestEndTime: new Date(),
       requestStartTime: startDateTime,
       requestStatusCode: 0,
+      noCheckAtlassianToken: !!this.config.noCheckAtlassianToken,
       ...telemetryData,
     };
 

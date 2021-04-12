@@ -43,13 +43,13 @@ export class Group {
      *
      * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
      * User must be a site admin. */
-  async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: never): Promise<T>;
-  async createGroup<T = Models.Group>(parameters?: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: never): Promise<T>;
+  async createGroup<T = Models.Group>(parameters: Parameters.CreateGroup, callback?: Callback<T>): Promise<void | T> {
     const config = {
       url: '/api/group',
       method: 'POST',
       data: {
-        name: parameters?.name,
+        name: parameters.name,
       },
     } as RequestConfig;
 

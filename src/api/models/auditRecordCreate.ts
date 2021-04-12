@@ -12,9 +12,9 @@ export interface AuditRecordCreate {
     displayName?: string;
     /** Always defaults to null. */
     operations?: {};
-    /** This property has been deprecated and will be removed soon. */
+    /** @deprecated This property has been deprecated and will be removed soon. */
     username?: string;
-    /** This property has been deprecated and will be removed soon. */
+    /** @deprecated This property has been deprecated and will be removed soon. */
     userKey?: string;
   };
   /** The IP address of the computer where the event was initiated from. */
