@@ -8,6 +8,7 @@ describe('Page creating', () => {
   let createdContentId: string;
   const client = new ConfluenceClient({
     host: HOST,
+    telemetry: false,
     authentication: {
       basic: {
         email: EMAIL,
