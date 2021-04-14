@@ -6,19 +6,20 @@ import { RequestConfig } from '../requestConfig';
 
 export class LabelInfo {
   constructor(private client: Client) { }
+
   /**
-     * Returns label information and a list of contents associated with the label.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * Permission to access the Confluence site ('Can use' global permission). Only contents
-     * that the user is permitted to view is returned. */
+   * Returns label information and a list of contents associated with the label.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * Permission to access the Confluence site ('Can use' global permission). Only contents
+   * that the user is permitted to view is returned. */
   async getAllLabelContent<T = Models.LabelDetails>(parameters: Parameters.GetAllLabelContent, callback: Callback<T>): Promise<void>;
   /**
-     * Returns label information and a list of contents associated with the label.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * Permission to access the Confluence site ('Can use' global permission). Only contents
-     * that the user is permitted to view is returned. */
+   * Returns label information and a list of contents associated with the label.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * Permission to access the Confluence site ('Can use' global permission). Only contents
+   * that the user is permitted to view is returned. */
   async getAllLabelContent<T = Models.LabelDetails>(parameters: Parameters.GetAllLabelContent, callback?: never): Promise<T>;
   async getAllLabelContent<T = Models.LabelDetails>(parameters: Parameters.GetAllLabelContent, callback?: Callback<T>): Promise<void | T> {
     const config = {

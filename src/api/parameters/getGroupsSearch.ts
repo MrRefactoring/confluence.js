@@ -4,6 +4,6 @@ export interface GetGroupsSearch {
   /** The starting index of the returned groups. */
   start?: number;
   /** The maximum number of groups to return per page.
-    Note, this is restricted to a maximum limit of 200 groups. */
+   Note, this is restricted to a maximum limit of 200 groups. */
   limit?: number;
 }

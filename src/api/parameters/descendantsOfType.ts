@@ -10,6 +10,6 @@ export interface DescendantsOfType {
   /** The starting index of the returned content. */
   start?: number;
   /** The maximum number of content to return per page. Note,
-    this may be restricted by fixed system limits. */
+   this may be restricted by fixed system limits. */
   limit?: number;
 }

@@ -4,6 +4,6 @@ export interface GetGroupMembersByGroupId {
   /** The starting index of the returned users. */
   start?: number;
   /** The maximum number of users to return per page.
-    Note, this may be restricted by fixed system limits. */
+   Note, this may be restricted by fixed system limits. */
   limit?: number;
 }

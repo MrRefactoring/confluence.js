@@ -14,8 +14,8 @@ export interface ContentTemplateCreate {
   /** Labels for the new template. */
   labels?: Label[];
   /** The key for the space of the new template. Only applies to space templates.
-    If the spaceKey is not specified, the template will be created as a global
-    template. */
+   If the spaceKey is not specified, the template will be created as a global
+   template. */
   space?: {
     key: string;
   };

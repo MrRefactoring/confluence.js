@@ -1,7 +1,7 @@
 export interface AttachmentUpdate {
   /** The attachment version. Set this to the current version number of the
-    attachment. Note, the version number only needs to be incremented when
-    updating the actual attachment, not its properties. */
+   attachment. Note, the version number only needs to be incremented when
+   updating the actual attachment, not its properties. */
   version: {
     /** The version number. */
     number: number;
@@ -23,7 +23,7 @@ export interface AttachmentUpdate {
     /** The `id` of the parent content. */
     id: string;
     /** The content type. You can only attach attachments to content
-        of type: `page`, `blogpost`. */
+     of type: `page`, `blogpost`. */
     type: string;
   };
 }

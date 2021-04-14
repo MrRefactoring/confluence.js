@@ -34,6 +34,6 @@ export interface SpacePermission {
   /** Grant anonymous users permission to use the operation. */
   anonymousAccess: boolean;
   /** Grants access to unlicensed users from JIRA Service Desk when used
-    with the 'read space' operation. */
+   with the 'read space' operation. */
   unlicensedAccess: boolean;
 }

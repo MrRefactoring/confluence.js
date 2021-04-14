@@ -4,6 +4,6 @@ export interface GetIndividualGroupRestrictionStatusByGroupId {
   /** The operation that the restriction applies to. */
   operationKey: string;
   /** The id of the group to be queried for whether the content restriction
-    applies to it. */
+   applies to it. */
   groupId: string;
 }

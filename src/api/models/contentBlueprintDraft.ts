@@ -5,7 +5,7 @@ export interface ContentBlueprintDraft {
     number: number;
   };
   /** The title of the content. If you don't want to change the title,
-    set this to the current title of the draft. */
+   set this to the current title of the draft. */
   title: string;
   /** The type of content. Set this to `page`. */
   type: string;
@@ -17,11 +17,11 @@ export interface ContentBlueprintDraft {
     key: string;
   };
   /** The new ancestor (i.e. parent page) for the content. If you have
-    specified an ancestor, you must also specify a `space` property
-    in the request body for the space that the ancestor is in.
+   specified an ancestor, you must also specify a `space` property
+   in the request body for the space that the ancestor is in.
 
-    Note, if you specify more than one ancestor, the last ID in the array
-    will be selected as the parent page for the content. */
+   Note, if you specify more than one ancestor, the last ID in the array
+   will be selected as the parent page for the content. */
   ancestors?: {
     /** The content ID of the ancestor. */
     id: string;

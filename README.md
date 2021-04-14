@@ -24,9 +24,8 @@ Usability, consistency, and performance are key focuses of confluence.js, and it
 - [Usage](#usage)
   - [Authentication](#authentication)
     - [Basic](#basic-authenticationhttpsdeveloperatlassiancomcloudconfluencebasic-auth-for-rest-apis)
-    - [OAuth](#oauth)
-    - [OAuth 2.0](#oauth-20)
-    - [JWT](#jwt)
+    - [OAuth 2.0](#oauth-20httpsdeveloperatlassiancomcloudconfluenceoauth-2-3lo-apps)
+    - [JWT](#jwthttpsdeveloperatlassiancomcloudconfluenceunderstanding-jwt)
   - [Your first request and using algorithm](#your-first-request-and-using-algorithm)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
 - [Take a look at our other products](#take-a-look-at-our-other-products)
@@ -318,11 +317,11 @@ If you use Webpack and need to reduce the size of the assembly, you can create y
 
 ```typescript
 import { BaseClient } from 'confluence.js';
-import { Content, Space } from 'confluence.js/out';
+import { Api } from 'confluence.js';
 
 export class CustomConfluenceClient extends BaseClient {
-  content = new Content(this);
-  space = new Space(this);
+  content = new Api.Content(this);
+  space = new Api.Space(this);
 }
 ```
 

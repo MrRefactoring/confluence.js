@@ -10,6 +10,6 @@ export interface GetContentForSpace {
   /** The starting index of the returned content. */
   start?: number;
   /** The maximum number of content objects to return per page. Note, this
-    may be restricted by fixed system limits. */
+   may be restricted by fixed system limits. */
   limit?: number;
 }

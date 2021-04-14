@@ -6,33 +6,34 @@ import { RequestConfig } from '../requestConfig';
 
 export class ContentBody {
   constructor(private client: Client) { }
+
   /**
-     * Converts a content body from one format to another format.
-     *
-     * Supported conversions:
-     *
-     * - storage: view, export_view, styled_view, editor
-     * - editor: storage
-     * - view: none
-     * - export_view: none
-     * - styled_view: none
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * If request specifies 'contentIdContext', 'View' permission for the space, and permission to view the content. */
+   * Converts a content body from one format to another format.
+   *
+   * Supported conversions:
+   *
+   * - storage: view, export_view, styled_view, editor
+   * - editor: storage
+   * - view: none
+   * - export_view: none
+   * - styled_view: none
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * If request specifies 'contentIdContext', 'View' permission for the space, and permission to view the content. */
   async convertContentBody<T = Models.ContentBody>(parameters: Parameters.ConvertContentBody, callback: Callback<T>): Promise<void>;
   /**
-     * Converts a content body from one format to another format.
-     *
-     * Supported conversions:
-     *
-     * - storage: view, export_view, styled_view, editor
-     * - editor: storage
-     * - view: none
-     * - export_view: none
-     * - styled_view: none
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * If request specifies 'contentIdContext', 'View' permission for the space, and permission to view the content. */
+   * Converts a content body from one format to another format.
+   *
+   * Supported conversions:
+   *
+   * - storage: view, export_view, styled_view, editor
+   * - editor: storage
+   * - view: none
+   * - export_view: none
+   * - styled_view: none
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * If request specifies 'contentIdContext', 'View' permission for the space, and permission to view the content. */
   async convertContentBody<T = Models.ContentBody>(parameters: Parameters.ConvertContentBody, callback?: never): Promise<T>;
   async convertContentBody<T = Models.ContentBody>(parameters: Parameters.ConvertContentBody, callback?: Callback<T>): Promise<void | T> {
     const config = {

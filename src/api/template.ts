@@ -6,19 +6,20 @@ import { RequestConfig } from '../requestConfig';
 
 export class Template {
   constructor(private client: Client) { }
+
   /**
-     * Creates a new content template. Note, blueprint templates cannot be created via the REST API.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * 'Admin' permission for the space to create a space template or 'Confluence Administrator'
-     * global permission to create a global template. */
+   * Creates a new content template. Note, blueprint templates cannot be created via the REST API.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * 'Admin' permission for the space to create a space template or 'Confluence Administrator'
+   * global permission to create a global template. */
   async createContentTemplate<T = Models.ContentTemplate>(parameters: Parameters.CreateContentTemplate | undefined, callback: Callback<T>): Promise<void>;
   /**
-     * Creates a new content template. Note, blueprint templates cannot be created via the REST API.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * 'Admin' permission for the space to create a space template or 'Confluence Administrator'
-     * global permission to create a global template. */
+   * Creates a new content template. Note, blueprint templates cannot be created via the REST API.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * 'Admin' permission for the space to create a space template or 'Confluence Administrator'
+   * global permission to create a global template. */
   async createContentTemplate<T = Models.ContentTemplate>(parameters?: Parameters.CreateContentTemplate, callback?: never): Promise<T>;
   async createContentTemplate<T = Models.ContentTemplate>(parameters?: Parameters.CreateContentTemplate, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -36,21 +37,22 @@ export class Template {
 
     return this.client.sendRequest(config, callback, { methodName: 'createContentTemplate' });
   }
+
   /**
-     * Updates a content template. Note, blueprint templates cannot be updated
-     * via the REST API.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * 'Admin' permission for the space to create a space template or 'Confluence Administrator'
-     * global permission to create a global template. */
+   * Updates a content template. Note, blueprint templates cannot be updated
+   * via the REST API.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * 'Admin' permission for the space to create a space template or 'Confluence Administrator'
+   * global permission to create a global template. */
   async updateContentTemplate<T = Models.ContentTemplate>(parameters: Parameters.UpdateContentTemplate | undefined, callback: Callback<T>): Promise<void>;
   /**
-     * Updates a content template. Note, blueprint templates cannot be updated
-     * via the REST API.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * 'Admin' permission for the space to create a space template or 'Confluence Administrator'
-     * global permission to create a global template. */
+   * Updates a content template. Note, blueprint templates cannot be updated
+   * via the REST API.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * 'Admin' permission for the space to create a space template or 'Confluence Administrator'
+   * global permission to create a global template. */
   async updateContentTemplate<T = Models.ContentTemplate>(parameters?: Parameters.UpdateContentTemplate, callback?: never): Promise<T>;
   async updateContentTemplate<T = Models.ContentTemplate>(parameters?: Parameters.UpdateContentTemplate, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -69,25 +71,26 @@ export class Template {
 
     return this.client.sendRequest(config, callback, { methodName: 'updateContentTemplate' });
   }
+
   /**
-     * Returns all templates provided by blueprints. Use this method to retrieve
-     * all global blueprint templates or all blueprint templates in a space.
-     *
-     * Note, all global blueprints are inherited by each space. Space blueprints
-     * can be customised without affecting the global blueprints.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * Permission to access the Confluence site ('Can use' global permission). */
+   * Returns all templates provided by blueprints. Use this method to retrieve
+   * all global blueprint templates or all blueprint templates in a space.
+   *
+   * Note, all global blueprints are inherited by each space. Space blueprints
+   * can be customised without affecting the global blueprints.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * Permission to access the Confluence site ('Can use' global permission). */
   async getBlueprintTemplates<T = Models.BlueprintTemplateArray>(parameters: Parameters.GetBlueprintTemplates | undefined, callback: Callback<T>): Promise<void>;
   /**
-     * Returns all templates provided by blueprints. Use this method to retrieve
-     * all global blueprint templates or all blueprint templates in a space.
-     *
-     * Note, all global blueprints are inherited by each space. Space blueprints
-     * can be customised without affecting the global blueprints.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * Permission to access the Confluence site ('Can use' global permission). */
+   * Returns all templates provided by blueprints. Use this method to retrieve
+   * all global blueprint templates or all blueprint templates in a space.
+   *
+   * Note, all global blueprints are inherited by each space. Space blueprints
+   * can be customised without affecting the global blueprints.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * Permission to access the Confluence site ('Can use' global permission). */
   async getBlueprintTemplates<T = Models.BlueprintTemplateArray>(parameters?: Parameters.GetBlueprintTemplates, callback?: never): Promise<T>;
   async getBlueprintTemplates<T = Models.BlueprintTemplateArray>(parameters?: Parameters.GetBlueprintTemplates, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -103,21 +106,22 @@ export class Template {
 
     return this.client.sendRequest(config, callback, { methodName: 'getBlueprintTemplates' });
   }
+
   /**
-     * Returns all content templates. Use this method to retrieve all global
-     * content templates or all content templates in a space.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * 'Admin' permission for the space to view space templates and 'Confluence
-     * Administrator' global permission to view global templates. */
+   * Returns all content templates. Use this method to retrieve all global
+   * content templates or all content templates in a space.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * 'Admin' permission for the space to view space templates and 'Confluence
+   * Administrator' global permission to view global templates. */
   async getContentTemplates<T = Models.ContentTemplateArray>(parameters: Parameters.GetContentTemplates | undefined, callback: Callback<T>): Promise<void>;
   /**
-     * Returns all content templates. Use this method to retrieve all global
-     * content templates or all content templates in a space.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * 'Admin' permission for the space to view space templates and 'Confluence
-     * Administrator' global permission to view global templates. */
+   * Returns all content templates. Use this method to retrieve all global
+   * content templates or all content templates in a space.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * 'Admin' permission for the space to view space templates and 'Confluence
+   * Administrator' global permission to view global templates. */
   async getContentTemplates<T = Models.ContentTemplateArray>(parameters?: Parameters.GetContentTemplates, callback?: never): Promise<T>;
   async getContentTemplates<T = Models.ContentTemplateArray>(parameters?: Parameters.GetContentTemplates, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -133,23 +137,24 @@ export class Template {
 
     return this.client.sendRequest(config, callback, { methodName: 'getContentTemplates' });
   }
+
   /**
-     * Returns a content template. This includes information about template,
-     * like the name, the space or blueprint that the template is in, the body
-     * of the template, and more.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * 'Admin' permission for the space to view space templates and 'Confluence
-     * Administrator' global permission to view global templates. */
+   * Returns a content template. This includes information about template,
+   * like the name, the space or blueprint that the template is in, the body
+   * of the template, and more.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * 'Admin' permission for the space to view space templates and 'Confluence
+   * Administrator' global permission to view global templates. */
   async getContentTemplate<T = Models.ContentTemplate>(parameters: Parameters.GetContentTemplate, callback: Callback<T>): Promise<void>;
   /**
-     * Returns a content template. This includes information about template,
-     * like the name, the space or blueprint that the template is in, the body
-     * of the template, and more.
-     *
-     * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
-     * 'Admin' permission for the space to view space templates and 'Confluence
-     * Administrator' global permission to view global templates. */
+   * Returns a content template. This includes information about template,
+   * like the name, the space or blueprint that the template is in, the body
+   * of the template, and more.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**:
+   * 'Admin' permission for the space to view space templates and 'Confluence
+   * Administrator' global permission to view global templates. */
   async getContentTemplate<T = Models.ContentTemplate>(parameters: Parameters.GetContentTemplate, callback?: never): Promise<T>;
   async getContentTemplate<T = Models.ContentTemplate>(parameters: Parameters.GetContentTemplate, callback?: Callback<T>): Promise<void | T> {
     const config = {
@@ -159,29 +164,30 @@ export class Template {
 
     return this.client.sendRequest(config, callback, { methodName: 'getContentTemplate' });
   }
+
   /**
-     * Deletes a template. This results in different actions depending on the
-     * type of template:
-     *
-     * - If the template is a content template, it is deleted.
-     * - If the template is a modified space-level blueprint template, it reverts
-     * to the template inherited from the global-level blueprint template.
-     * - If the template is a modified global-level blueprint template, it reverts
-     * to the default global-level blueprint template.
-     *
-     *  Note, unmodified blueprint templates cannot be deleted. */
+   * Deletes a template. This results in different actions depending on the
+   * type of template:
+   *
+   * - If the template is a content template, it is deleted.
+   * - If the template is a modified space-level blueprint template, it reverts
+   * to the template inherited from the global-level blueprint template.
+   * - If the template is a modified global-level blueprint template, it reverts
+   * to the default global-level blueprint template.
+   *
+   *  Note, unmodified blueprint templates cannot be deleted. */
   async removeTemplate<T = void>(parameters: Parameters.RemoveTemplate, callback: Callback<T>): Promise<void>;
   /**
-     * Deletes a template. This results in different actions depending on the
-     * type of template:
-     *
-     * - If the template is a content template, it is deleted.
-     * - If the template is a modified space-level blueprint template, it reverts
-     * to the template inherited from the global-level blueprint template.
-     * - If the template is a modified global-level blueprint template, it reverts
-     * to the default global-level blueprint template.
-     *
-     *  Note, unmodified blueprint templates cannot be deleted. */
+   * Deletes a template. This results in different actions depending on the
+   * type of template:
+   *
+   * - If the template is a content template, it is deleted.
+   * - If the template is a modified space-level blueprint template, it reverts
+   * to the template inherited from the global-level blueprint template.
+   * - If the template is a modified global-level blueprint template, it reverts
+   * to the default global-level blueprint template.
+   *
+   *  Note, unmodified blueprint templates cannot be deleted. */
   async removeTemplate<T = void>(parameters: Parameters.RemoveTemplate, callback?: never): Promise<T>;
   async removeTemplate<T = void>(parameters: Parameters.RemoveTemplate, callback?: Callback<T>): Promise<void | T> {
     const config = {

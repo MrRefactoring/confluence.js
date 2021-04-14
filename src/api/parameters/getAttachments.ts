@@ -8,7 +8,7 @@ export interface GetAttachments {
   /** The starting index of the returned attachments. */
   start?: number;
   /** The maximum number of attachments to return per page.
-    Note, this may be restricted by fixed system limits. */
+   Note, this may be restricted by fixed system limits. */
   limit?: number;
   /** Filter the results to attachments that match the filename. */
   filename?: string;
