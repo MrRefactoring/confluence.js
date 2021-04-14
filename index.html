@@ -1,0 +1,1410 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Confluence.js</title>
+	<meta name="description" content="Documentation for Confluence.js">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">Confluence.js</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>Confluence.js</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<div align="center">
+					<img alt="Confluence.js logo" src="https://svgshare.com/i/Vrj.svg"/>
+					<p><a href="https://www.npmjs.com/package/confluence.js"><img alt="NPM version" src="https://img.shields.io/npm/v/confluence.js.svg?maxAge=3600&style=flat-square" /></a>
+						<a href="https://www.npmjs.com/package/confluence.js"><img alt="NPM downloads per month" src="https://img.shields.io/npm/dm/confluence.js.svg?maxAge=3600&style=flat-square" /></a>
+						<a href="https://github.com/MrRefactoring/confluence.js"><img alt="build status" src="https://img.shields.io/github/workflow/status/mrrefactoring/confluence.js/CI?style=flat-square"></a>
+					<a href="https://github.com/mrrefactoring/confluence.js/blob/develop/LICENSE"><img alt="license" src="https://img.shields.io/github/license/mrrefactoring/confluence.js?color=green&style=flat-square"/></a></p>
+					<p><span>JavaScript / TypeScript library for Node.JS and browsers to easily interact with Atlassian Confluence API</span></p>
+				</div>
+				<a href="#about" id="about" style="color: inherit; text-decoration: none;">
+					<h2>About</h2>
+				</a>
+				<p>confluence.js is a powerful <a href="https://nodejs.org/">Node.JS</a> / Browser module that allows you to interact with the <a href="https://developer.atlassian.com/cloud/confluence/rest/intro/">Confluence API</a> very easily.</p>
+				<p>Usability, consistency, and performance are key focuses of confluence.js, and it also has nearly 100% coverage of the Confluence API. It receives new Confluence features shortly after they arrive in the API.</p>
+				<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
+					<h2>Table of contents</h2>
+				</a>
+				<ul>
+					<li><a href="#installation">Installation</a></li>
+					<li><a href="#telemetry-information-collection-agreement">Telemetry information collection agreement</a><ul>
+							<li><a href="#customizing-telemetry-collection-data-example">Customizing telemetry collection data example</a></li>
+							<li><a href="#disabling-telemetry-collection-example">Disabling telemetry collection example</a></li>
+						</ul>
+					</li>
+					<li><a href="#usage">Usage</a><ul>
+							<li><a href="#authentication">Authentication</a><ul>
+									<li><a href="#basic-authenticationhttpsdeveloperatlassiancomcloudconfluencebasic-auth-for-rest-apis">Basic</a></li>
+									<li><a href="#oauth-20httpsdeveloperatlassiancomcloudconfluenceoauth-2-3lo-apps">OAuth 2.0</a></li>
+									<li><a href="#jwthttpsdeveloperatlassiancomcloudconfluenceunderstanding-jwt">JWT</a></li>
+								</ul>
+							</li>
+							<li><a href="#your-first-request-and-using-algorithm">Your first request and using algorithm</a></li>
+						</ul>
+					</li>
+					<li><a href="#decreasing-webpack-bundle-size">Decreasing Webpack bundle size</a></li>
+					<li><a href="#take-a-look-at-our-other-products">Take a look at our other products</a></li>
+					<li><a href="#license">License</a></li>
+				</ul>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<p><strong>Node.js 10.0.0 or newer is required.</strong></p>
+				<p>Install with the npm:</p>
+				<pre><code class="language-bash"><span style="color: #000000">npm install confluence.js</span>
+</code></pre>
+				<p>Install with the yarn:</p>
+				<pre><code class="language-bash"><span style="color: #000000">yarn add confluence.js</span>
+</code></pre>
+				<a href="#telemetry-information-collection-agreement" id="telemetry-information-collection-agreement" style="color: inherit; text-decoration: none;">
+					<h2>Telemetry information collection agreement</h2>
+				</a>
+				<p>The use of this library may collect, record and transmit data
+					about the operation of the library and related data, as well
+					as potentially personal data, including ip address from which
+					the request is made, user agent from the device from which the
+					request is made, version of the library used, version of the
+					telemetry sending library, name of the invoked method, authorization
+					type information (can be configured), base configuration request
+					usage information, callback information, onResponse middleware usage
+					information, onError middleware usage information, queries usage
+					information, body usage information in request, headers usage
+					information in request, HTTP response code (can be configured),
+					request start date and time and response receipt date and time
+				(can be configured), No check atlassian token flag enabling information.</p>
+				<p>The type and amount of data may vary with the version of the libraries and can be changed at any time without notice.</p>
+				<p>Telemetry data collection is enabled by default.</p>
+				<p>The following tracking parameters can be configured:</p>
+				<ul>
+					<li>Authentication type</li>
+					<li>Request status code</li>
+					<li>Request timings</li>
+				</ul>
+				<a href="#customizing-telemetry-collection-data-example" id="customizing-telemetry-collection-data-example" style="color: inherit; text-decoration: none;">
+					<h4>Customizing telemetry collection data example</h4>
+				</a>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Config</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;confluence.js&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">config</span><span style="color: #000000">: </span><span style="color: #267F99">Config</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">host:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;https://your-domain.atlassian.net&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">telemetry:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">allowedToPassAuthenticationType:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,  </span><span style="color: #008000">// true by default</span>
+<span style="color: #000000">    </span><span style="color: #001080">allowedToPassRequestStatusCode:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,  </span><span style="color: #008000">// true by default</span>
+<span style="color: #000000">    </span><span style="color: #001080">allowedToPassRequestTimings:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,  </span><span style="color: #008000">// true by default</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">};</span>
+</code></pre>
+				<p>If you want to disable telemetry, set the <code>telemetry</code> field to <code>false</code>.</p>
+				<a href="#disabling-telemetry-collection-example" id="disabling-telemetry-collection-example" style="color: inherit; text-decoration: none;">
+					<h4>Disabling telemetry collection example</h4>
+				</a>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Config</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;confluence.js&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">config</span><span style="color: #000000">: </span><span style="color: #267F99">Config</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">host:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;https://your-domain.atlassian.net&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">telemetry:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #008000">// Telemetry will not be collected</span>
+<span style="color: #000000">};</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<a href="#authentication" id="authentication" style="color: inherit; text-decoration: none;">
+					<h4>Authentication</h4>
+				</a>
+				<p>There are several types of authentication to gain access to the Confluence API. Let&#39;s take a look at a few of them below</p>
+				<a href="#basic-authentication" id="basic-authentication" style="color: inherit; text-decoration: none;">
+					<h5><a href="https://developer.atlassian.com/cloud/confluence/basic-auth-for-rest-apis/">Basic authentication</a></h5>
+				</a>
+				<p>Basic authentication allows you to log in with credentials. You can use username and password, but this login method is not supported in the online version, and most standalone versions, so it&#39;s better to release API Token, read how to do it <a href="https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/">here</a>, and use it together with email.</p>
+				<p>Username and password example:</p>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">ConfluenceClient</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;confluence.js&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">ConfluenceClient</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">host:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;https://your-domain.atlassian.net&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">authentication:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">basic:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">username:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;YOUR_USERNAME&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">password:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;YOUR_PASSWORD&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<p>Email and API Token example:</p>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">ConfluenceClient</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;confluence.js&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">ConfluenceClient</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">host:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;https://your-domain.atlassian.net&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">authentication:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">basic:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">email:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;YOUR@EMAIL.ORG&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">apiToken:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;YOUR_API_TOKEN&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#oauth-20" id="oauth-20" style="color: inherit; text-decoration: none;">
+					<h5><a href="https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/">OAuth 2.0</a></h5>
+				</a>
+				<p>Only the authorization token is currently supported. To release it, you need to read the <a href="https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/">documentation</a> and write your own code to get the token.</p>
+				<p>Example of usage</p>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">ConfluenceClient</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;confluence.js&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">ConfluenceClient</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">host:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;https://your-domain.atlassian.net&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">authentication:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">oauth2:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">accessToken:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;YOUR_ACCESS_TOKEN&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#jwt" id="jwt" style="color: inherit; text-decoration: none;">
+					<h5><a href="https://developer.atlassian.com/cloud/confluence/understanding-jwt/">JWT</a></h5>
+				</a>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">ConfluenceClient</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;confluence.js&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">ConfluenceClient</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">host:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;https://your-domain.atlassian.net&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">authentication:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">jwt:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">issuer:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;ISSUER&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">secret:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;shhhh&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">expiryTimeSeconds:</span><span style="color: #000000"> </span><span style="color: #098658">180</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#your-first-request-and-using-algorithm" id="your-first-request-and-using-algorithm" style="color: inherit; text-decoration: none;">
+					<h4>Your first request and using algorithm</h4>
+				</a>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">ConfluenceClient</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;confluence.js&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">ConfluenceClient</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">host:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;https://your-domain.atlassian.net&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">authentication:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">basic:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">email:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;YOUR_EMAIL&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">apiToken:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;YOUR_API_TOKEN&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">main</span><span style="color: #000000">() {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">space</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #001080">space</span><span style="color: #000000">.</span><span style="color: #795E26">createSpace</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;My new space&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;SPACENAME&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  });</span>
+
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">space</span><span style="color: #000000">);</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #795E26">main</span><span style="color: #000000">();</span>
+
+<span style="color: #008000">// Expected output:</span>
+<span style="color: #008000">// {</span>
+<span style="color: #008000">//   id: 558714,</span>
+<span style="color: #008000">//   key: &#039;SPACENAME&#039;,</span>
+<span style="color: #008000">//   name: &#039;My new space&#039;,</span>
+<span style="color: #008000">//   description: {</span>
+<span style="color: #008000">//     plain: {</span>
+<span style="color: #008000">//       value: &#039;&#039;,</span>
+<span style="color: #008000">//       representation: &#039;plain&#039;,</span>
+<span style="color: #008000">//       embeddedContent: []</span>
+<span style="color: #008000">//     },</span>
+<span style="color: #008000">//     _expandable: {view: &#039;&#039;}</span>
+<span style="color: #008000">//   },</span>
+<span style="color: #008000">//   homepage: {</span>
+<span style="color: #008000">//     id: &#039;555312&#039;,</span>
+<span style="color: #008000">//     type: &#039;page&#039;,</span>
+<span style="color: #008000">//     status: &#039;current&#039;,</span>
+<span style="color: #008000">//     title: &#039;My new space Home&#039;,</span>
+<span style="color: #008000">//     macroRenderedOutput: {},</span>
+<span style="color: #008000">//     extensions: {position: 581},</span>
+<span style="color: #008000">//     _expandable: {</span>
+<span style="color: #008000">//       container: &#039;/rest/api/space/SPACENAME&#039;,</span>
+<span style="color: #008000">//       metadata: &#039;&#039;,</span>
+<span style="color: #008000">//       restrictions: &#039;/rest/api/content/555312/restriction/byOperation&#039;,</span>
+<span style="color: #008000">//       history: &#039;/rest/api/content/555312/history&#039;,</span>
+<span style="color: #008000">//       body: &#039;&#039;,</span>
+<span style="color: #008000">//       version: &#039;&#039;,</span>
+<span style="color: #008000">//       descendants: &#039;/rest/api/content/555312/descendant&#039;,</span>
+<span style="color: #008000">//       space: &#039;/rest/api/space/SPACENAME&#039;,</span>
+<span style="color: #008000">//       childTypes: &#039;&#039;,</span>
+<span style="color: #008000">//       operations: &#039;&#039;,</span>
+<span style="color: #008000">//       schedulePublishDate: &#039;&#039;,</span>
+<span style="color: #008000">//       children: &#039;/rest/api/content/555312/child&#039;,</span>
+<span style="color: #008000">//       ancestors: &#039;&#039;</span>
+<span style="color: #008000">//     },</span>
+<span style="color: #008000">//     _links: {</span>
+<span style="color: #008000">//       self: &#039;https://xxx.atlassian.net/wiki/rest/api/content/555312&#039;,</span>
+<span style="color: #008000">//       tinyui: &#039;/x/qIoI&#039;,</span>
+<span style="color: #008000">//       editui: &#039;/pages/resumedraft.action?draftId=555312&#039;,</span>
+<span style="color: #008000">//       webui: &#039;/spaces/SPACENAME/overview&#039;</span>
+<span style="color: #008000">//     }</span>
+<span style="color: #008000">//   },</span>
+<span style="color: #008000">//   type: &#039;global&#039;,</span>
+<span style="color: #008000">//   permissions: [...],</span>
+<span style="color: #008000">//   status: &#039;current&#039;,</span>
+<span style="color: #008000">//   _expandable: {</span>
+<span style="color: #008000">//     settings: &#039;/rest/api/space/SPACENAME/settings&#039;,</span>
+<span style="color: #008000">//     metadata: &#039;&#039;,</span>
+<span style="color: #008000">//     operations: &#039;&#039;,</span>
+<span style="color: #008000">//     lookAndFeel: &#039;/rest/api/settings/lookandfeel?spaceKey=SPACENAME&#039;,</span>
+<span style="color: #008000">//     identifiers: &#039;&#039;,</span>
+<span style="color: #008000">//     icon: &#039;&#039;,</span>
+<span style="color: #008000">//     theme: &#039;/rest/api/space/SPACENAME/theme&#039;,</span>
+<span style="color: #008000">//     history: &#039;&#039;</span>
+<span style="color: #008000">//   },</span>
+<span style="color: #008000">//   _links: {</span>
+<span style="color: #008000">//     context: &#039;/wiki&#039;,</span>
+<span style="color: #008000">//     self: &#039;https://xxx.atlassian.net/wiki/rest/api/space/SPACENAME&#039;,</span>
+<span style="color: #008000">//     collection: &#039;/rest/api/space&#039;,</span>
+<span style="color: #008000">//     webui: &#039;/spaces/SPACENAME&#039;,</span>
+<span style="color: #008000">//     base: &#039;https://xxx.atlassian.net/wiki&#039;</span>
+<span style="color: #008000">//   }</span>
+<span style="color: #008000">// }</span>
+</code></pre>
+				<p>The algorithm for using the library:</p>
+				<pre><code class="language-typescript"><span style="color: #001080">client</span><span style="color: #000000">.&lt;</span><span style="color: #001080">group</span><span style="color: #000000">&gt;.&lt;</span><span style="color: #001080">methodName</span><span style="color: #000000">&gt;(</span><span style="color: #001080">parametersObject</span><span style="color: #000000">);</span>
+</code></pre>
+				<p>Available groups:</p>
+				<ul>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-audit">audit</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content/">content</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-group-content---attachments">contentAttachments</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content-body/#api-group-content-body">contentBody</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content---children-and-descendants/#api-group-content---children-and-descendants">contentChildrenAndDescendants</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content-comments/#api-group-content-comments">contentComments</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content-labels/#api-group-content-labels">contentLabels</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content---macro-body/#api-group-content---macro-body">contentMacroBody</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content-permissions/#api-group-content-permissions">contentPermissions</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content-properties/#api-group-content-properties">contentProperties</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content-restrictions/#api-group-content-restrictions">contentRestrictions</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content-versions/#api-group-content-versions">contentVersions</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-content-watches/#api-group-content-watches">contentWatches</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-dynamic-modules/#api-group-dynamic-modules">dynamicModules</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-group/#api-group-group">group</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-inline-tasks/#api-group-inline-tasks">inlineTasks</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-label-info/#api-group-label-info">labelInfo</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-long-running-task/#api-group-long-running-task">longRunningTask</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-relation/#api-group-relation">relation</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-search/#api-group-search">search</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-settings/#api-group-settings">settings</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-space/#api-group-space">space</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-space-permissions/#api-group-space-permissions">spacePermissions</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-space-properties/#api-group-space-properties">spaceProperties</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-space-settings/#api-group-space-settings">spaceSettings</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-template/#api-group-template">template</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-themes/#api-group-themes">themes</a></li>
+					<li><a href="https://developer.atlassian.com/cloud/confluence/rest/api-group-users/#api-group-users">users</a></li>
+				</ul>
+				<p>The name of the methods is the name of the endpoint in the group without spaces and in <code>camelCase</code>.</p>
+				<p>The parameters depend on the specific endpoint. For more information, <a href="https://mrrefactoring.github.io/confluence.js/">see here</a>.</p>
+				<a href="#decreasing-webpack-bundle-size" id="decreasing-webpack-bundle-size" style="color: inherit; text-decoration: none;">
+					<h2>Decreasing Webpack bundle size</h2>
+				</a>
+				<p>If you use Webpack and need to reduce the size of the assembly, you can create your client with only the groups you use.</p>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">BaseClient</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;confluence.js&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Api</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;confluence.js&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">CustomConfluenceClient</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">BaseClient</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">content</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">Api</span><span style="color: #000000">.</span><span style="color: #795E26">Content</span><span style="color: #000000">(</span><span style="color: #0000FF">this</span><span style="color: #000000">);</span>
+<span style="color: #000000">  </span><span style="color: #001080">space</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">Api</span><span style="color: #000000">.</span><span style="color: #795E26">Space</span><span style="color: #000000">(</span><span style="color: #0000FF">this</span><span style="color: #000000">);</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#take-a-look-at-our-other-products" id="take-a-look-at-our-other-products" style="color: inherit; text-decoration: none;">
+					<h2>Take a look at our other products</h2>
+				</a>
+				<ul>
+					<li><a href="https://github.com/MrRefactoring/jira.js">Jira.js</a> - A JavaScript / TypeScript wrapper for the JIRA REST API</li>
+					<li><a href="https://github.com/MrRefactoring/trello.js">Trello.js</a> - JavaScript / TypeScript library for Node.JS and browsers to easily interact with Atlassian Trello API</li>
+				</ul>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
+				<p>Distributed under the MIT License. See <code>LICENSE</code> for more information.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api.html">api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_audit.html">api/audit</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_content.html">api/content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_contentattachments.html">api/content<wbr>Attachments</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_contentbody.html">api/content<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_contentchildrenanddescendants.html">api/content<wbr>Children<wbr>And<wbr>Descendants</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_contentcomments.html">api/content<wbr>Comments</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_contentlabels.html">api/content<wbr>Labels</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_contentmacrobody.html">api/content<wbr>Macro<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_contentpermissions.html">api/content<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_contentproperties.html">api/content<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_contentrestrictions.html">api/content<wbr>Restrictions</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_contentversions.html">api/content<wbr>Versions</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_contentwatches.html">api/content<wbr>Watches</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_dynamicmodules.html">api/dynamic<wbr>Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_group.html">api/group</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_inlinetasks.html">api/inline<wbr>Tasks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_labelinfo.html">api/label<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_longrunningtask.html">api/long<wbr>Running<wbr>Task</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models.html">api/models</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_accountid.html">api/models/account<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_accountidemailrecord.html">api/models/account<wbr>IdEmail<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_accountidemailrecordarray.html">api/models/account<wbr>IdEmail<wbr>Record<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_addcontentrestriction.html">api/models/add<wbr>Content<wbr>Restriction</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_addcontentrestrictionupdatearray.html">api/models/add<wbr>Content<wbr>Restriction<wbr>Update<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_affectedobject.html">api/models/affected<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_appdescriptor.html">api/models/app<wbr>Descriptor</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_attachmentupdate.html">api/models/attachment<wbr>Update</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_auditrecord.html">api/models/audit<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_auditrecordarray.html">api/models/audit<wbr>Record<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_auditrecordcreate.html">api/models/audit<wbr>Record<wbr>Create</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_blueprinttemplate.html">api/models/blueprint<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_blueprinttemplatearray.html">api/models/blueprint<wbr>Template<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_breadcrumb.html">api/models/breadcrumb</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_bulkuserlookup.html">api/models/bulk<wbr>User<wbr>Lookup</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_bulkuserlookuparray.html">api/models/bulk<wbr>User<wbr>Lookup<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_buttonlookandfeel.html">api/models/button<wbr>Look<wbr>And<wbr>Feel</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_cqlpersonaldataconvertedqueries.html">api/models/cQLPersonal<wbr>Data<wbr>Converted<wbr>Queries</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_cqlpersonaldatamigrationrequest.html">api/models/cQLPersonal<wbr>Data<wbr>Migration<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_changedvalue.html">api/models/changed<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_connectmodules.html">api/models/connect<wbr>Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_container.html">api/models/container</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_containerlookandfeel.html">api/models/container<wbr>Look<wbr>And<wbr>Feel</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_containersummary.html">api/models/container<wbr>Summary</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_content.html">api/models/content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentarray.html">api/models/content<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentblueprintdraft.html">api/models/content<wbr>Blueprint<wbr>Draft</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentbody.html">api/models/content<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentbodycreate.html">api/models/content<wbr>Body<wbr>Create</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentbodycreatestorage.html">api/models/content<wbr>Body<wbr>Create<wbr>Storage</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentchildtype.html">api/models/content<wbr>Child<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentchildren.html">api/models/content<wbr>Children</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentcreate.html">api/models/content<wbr>Create</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contenthistory.html">api/models/content<wbr>History</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentlookandfeel.html">api/models/content<wbr>Look<wbr>And<wbr>Feel</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentmetadata.html">api/models/content<wbr>Metadata</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentpermissionrequest.html">api/models/content<wbr>Permission<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentproperty.html">api/models/content<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentpropertyarray.html">api/models/content<wbr>Property<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentpropertycreate.html">api/models/content<wbr>Property<wbr>Create</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentpropertycreatenokey.html">api/models/content<wbr>Property<wbr>Create<wbr>NoKey</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentpropertyupdate.html">api/models/content<wbr>Property<wbr>Update</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentrestriction.html">api/models/content<wbr>Restriction</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentrestrictionarray.html">api/models/content<wbr>Restriction<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentrestrictionupdate.html">api/models/content<wbr>Restriction<wbr>Update</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentrestrictionupdatearray.html">api/models/content<wbr>Restriction<wbr>Update<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contenttemplate.html">api/models/content<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contenttemplatearray.html">api/models/content<wbr>Template<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contenttemplatebodycreate.html">api/models/content<wbr>Template<wbr>Body<wbr>Create</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contenttemplatecreate.html">api/models/content<wbr>Template<wbr>Create</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contenttemplateupdate.html">api/models/content<wbr>Template<wbr>Update</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_contentupdate.html">api/models/content<wbr>Update</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_copypagehierarchyrequest.html">api/models/copy<wbr>Page<wbr>Hierarchy<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_copypagehierarchytitleoptions.html">api/models/copy<wbr>Page<wbr>Hierarchy<wbr>Title<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_copypagerequest.html">api/models/copy<wbr>Page<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_copypagerequestdestination.html">api/models/copy<wbr>Page<wbr>Request<wbr>Destination</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_deletedspace.html">api/models/deleted<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_dynamicmoduleserrormessage.html">api/models/dynamic<wbr>Modules<wbr>Error<wbr>Message</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_embeddable.html">api/models/embeddable</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_embeddedcontent.html">api/models/embedded<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_genericlinks.html">api/models/generic<wbr>Links</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_getrestrictionsbyoperation.html">api/models/get<wbr>Restrictions<wbr>ByOperation</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_group.html">api/models/group</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_grouparray.html">api/models/group<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_grouparraywithlinks.html">api/models/group<wbr>Array<wbr>With<wbr>Links</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_groupname.html">api/models/group<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_headerlookandfeel.html">api/models/header<wbr>Look<wbr>And<wbr>Feel</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_icon.html">api/models/icon</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_label.html">api/models/label</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_labelarray.html">api/models/label<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_labelcreate.html">api/models/label<wbr>Create</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_labelcreatearray.html">api/models/label<wbr>Create<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_labeldetails.html">api/models/label<wbr>Details</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_labeledcontent.html">api/models/labeled<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_labeledcontentpageresponse.html">api/models/labeled<wbr>Content<wbr>Page<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_labeledcontenttype.html">api/models/labeled<wbr>Content<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_lifecycle.html">api/models/lifecycle</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_longtaskstatus.html">api/models/long<wbr>Task<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_longtaskstatusarray.html">api/models/long<wbr>Task<wbr>Status<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_longtaskstatuswithlinks.html">api/models/long<wbr>Task<wbr>Status<wbr>With<wbr>Links</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_lookandfeel.html">api/models/look<wbr>And<wbr>Feel</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_lookandfeelsettings.html">api/models/look<wbr>And<wbr>Feel<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_lookandfeelupdated.html">api/models/look<wbr>And<wbr>Feel<wbr>Updated</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_macroinstance.html">api/models/macro<wbr>Instance</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_menuslookandfeel.html">api/models/menus<wbr>Look<wbr>And<wbr>Feel</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_message.html">api/models/message</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_migrateduser.html">api/models/migrated<wbr>User</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_migrateduserarray.html">api/models/migrated<wbr>User<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_movepage.html">api/models/move<wbr>Page</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_navigationlookandfeel.html">api/models/navigation<wbr>Look<wbr>And<wbr>Feel</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_operationcheckresult.html">api/models/operation<wbr>Check<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_permissioncheckresponse.html">api/models/permission<wbr>Check<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_permissionsubject.html">api/models/permission<wbr>Subject</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_permissionsubjectwithgroupid.html">api/models/permission<wbr>Subject<wbr>With<wbr>Group<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_propertyvalue.html">api/models/property<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_relation.html">api/models/relation</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_relationarray.html">api/models/relation<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_relationdata.html">api/models/relation<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_retentionperiod.html">api/models/retention<wbr>Period</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_screenlookandfeel.html">api/models/screen<wbr>Look<wbr>And<wbr>Feel</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_searchfieldlookandfeel.html">api/models/search<wbr>Field<wbr>Look<wbr>And<wbr>Feel</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_searchpageresponsesearchresult.html">api/models/search<wbr>Page<wbr>Response<wbr>Search<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_searchresult.html">api/models/search<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_space.html">api/models/space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacearray.html">api/models/space<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacecreate.html">api/models/space<wbr>Create</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacedescription.html">api/models/space<wbr>Description</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacedescriptioncreate.html">api/models/space<wbr>Description<wbr>Create</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacepermission.html">api/models/space<wbr>Permission</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacepermissionv2.html">api/models/space<wbr>Permission<wbr>V2</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spaceprivatecreate.html">api/models/space<wbr>Private<wbr>Create</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spaceproperty.html">api/models/space<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacepropertyarray.html">api/models/space<wbr>Property<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacepropertycreate.html">api/models/space<wbr>Property<wbr>Create</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacepropertycreatenokey.html">api/models/space<wbr>Property<wbr>Create<wbr>NoKey</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacepropertyupdate.html">api/models/space<wbr>Property<wbr>Update</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacesettings.html">api/models/space<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacesettingsupdate.html">api/models/space<wbr>Settings<wbr>Update</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spaceupdate.html">api/models/space<wbr>Update</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacewatch.html">api/models/space<wbr>Watch</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacewatcharray.html">api/models/space<wbr>Watch<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_spacewatchuser.html">api/models/space<wbr>Watch<wbr>User</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_superbatchwebresources.html">api/models/super<wbr>Batch<wbr>Web<wbr>Resources</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_systeminfoentity.html">api/models/system<wbr>Info<wbr>Entity</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_task.html">api/models/task</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_taskpageresponse.html">api/models/task<wbr>Page<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_theme.html">api/models/theme</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_themearray.html">api/models/theme<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_themenolinks.html">api/models/theme<wbr>NoLinks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_themeupdate.html">api/models/theme<wbr>Update</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_user.html">api/models/user</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_useranonymous.html">api/models/user<wbr>Anonymous</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_userarray.html">api/models/user<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_userarraywithlinks.html">api/models/user<wbr>Array<wbr>With<wbr>Links</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_userdetails.html">api/models/user<wbr>Details</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_userwatch.html">api/models/user<wbr>Watch</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_usersuserkeys.html">api/models/users<wbr>User<wbr>Keys</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_version.html">api/models/version</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_versionarray.html">api/models/version<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_versionrestore.html">api/models/version<wbr>Restore</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_watch.html">api/models/watch</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_watcharray.html">api/models/watch<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_watchuser.html">api/models/watch<wbr>User</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_webresourcedependencies.html">api/models/web<wbr>Resource<wbr>Dependencies</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters.html">api/parameters</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_addcontentwatcher.html">api/parameters/add<wbr>Content<wbr>Watcher</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_addgrouptocontentrestriction.html">api/parameters/add<wbr>Group<wbr>ToContent<wbr>Restriction</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_addgrouptocontentrestrictionbygroupid.html">api/parameters/add<wbr>Group<wbr>ToContent<wbr>Restriction<wbr>ByGroup<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_addlabelwatcher.html">api/parameters/add<wbr>Label<wbr>Watcher</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_addlabelstocontent.html">api/parameters/add<wbr>Labels<wbr>ToContent</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_addpermission.html">api/parameters/add<wbr>Permission</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_addrestrictions.html">api/parameters/add<wbr>Restrictions</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_addspacewatcher.html">api/parameters/add<wbr>Space<wbr>Watcher</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_addusertocontentrestriction.html">api/parameters/add<wbr>User<wbr>ToContent<wbr>Restriction</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_addusertogroup.html">api/parameters/add<wbr>User<wbr>ToGroup</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_addusertogroupbygroupid.html">api/parameters/add<wbr>User<wbr>ToGroup<wbr>ByGroup<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_convertcontentbody.html">api/parameters/convert<wbr>Content<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_copypage.html">api/parameters/copy<wbr>Page</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_copypagehierarchy.html">api/parameters/copy<wbr>Page<wbr>Hierarchy</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createattachments.html">api/parameters/create<wbr>Attachments</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createauditrecord.html">api/parameters/create<wbr>Audit<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createcontent.html">api/parameters/create<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createcontentproperty.html">api/parameters/create<wbr>Content<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createcontentpropertyforkey.html">api/parameters/create<wbr>Content<wbr>Property<wbr>For<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createcontenttemplate.html">api/parameters/create<wbr>Content<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_creategroup.html">api/parameters/create<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createorupdateattachments.html">api/parameters/create<wbr>OrUpdate<wbr>Attachments</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createprivatespace.html">api/parameters/create<wbr>Private<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createrelationship.html">api/parameters/create<wbr>Relationship</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createspace.html">api/parameters/create<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createspaceproperty.html">api/parameters/create<wbr>Space<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_createspacepropertyforkey.html">api/parameters/create<wbr>Space<wbr>Property<wbr>For<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_delete.html">api/parameters/delete</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_deletecontent.html">api/parameters/delete<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_deletecontentproperty.html">api/parameters/delete<wbr>Content<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_deletecontentversion.html">api/parameters/delete<wbr>Content<wbr>Version</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_deleterestrictions.html">api/parameters/delete<wbr>Restrictions</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_deletespace.html">api/parameters/delete<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_deletespaceproperty.html">api/parameters/delete<wbr>Space<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_descendantsoftype.html">api/parameters/descendants<wbr>OfType</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_exportauditrecords.html">api/parameters/export<wbr>Audit<wbr>Records</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_findsourcesfortarget.html">api/parameters/find<wbr>Sources<wbr>For<wbr>Target</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_findtargetfromsource.html">api/parameters/find<wbr>Target<wbr>From<wbr>Source</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getalllabelcontent.html">api/parameters/get<wbr>All<wbr>Label<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getanonymoususer.html">api/parameters/get<wbr>Anonymous<wbr>User</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getattachments.html">api/parameters/get<wbr>Attachments</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getauditrecords.html">api/parameters/get<wbr>Audit<wbr>Records</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getauditrecordsfortimeperiod.html">api/parameters/get<wbr>Audit<wbr>Records<wbr>For<wbr>Time<wbr>Period</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getblueprinttemplates.html">api/parameters/get<wbr>Blueprint<wbr>Templates</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getbulkuserlookup.html">api/parameters/get<wbr>Bulk<wbr>User<wbr>Lookup</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getbulkusermigration.html">api/parameters/get<wbr>Bulk<wbr>User<wbr>Migration</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontent.html">api/parameters/get<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentbyid.html">api/parameters/get<wbr>Content<wbr>ById</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentbytypeforspace.html">api/parameters/get<wbr>Content<wbr>ByType<wbr>For<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentchildren.html">api/parameters/get<wbr>Content<wbr>Children</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentchildrenbytype.html">api/parameters/get<wbr>Content<wbr>Children<wbr>ByType</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentcomments.html">api/parameters/get<wbr>Content<wbr>Comments</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentdescendants.html">api/parameters/get<wbr>Content<wbr>Descendants</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentforspace.html">api/parameters/get<wbr>Content<wbr>For<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentproperties.html">api/parameters/get<wbr>Content<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentproperty.html">api/parameters/get<wbr>Content<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentrestrictionstatusforgroup.html">api/parameters/get<wbr>Content<wbr>Restriction<wbr>Status<wbr>For<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentrestrictionstatusforuser.html">api/parameters/get<wbr>Content<wbr>Restriction<wbr>Status<wbr>For<wbr>User</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontenttemplate.html">api/parameters/get<wbr>Content<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontenttemplates.html">api/parameters/get<wbr>Content<wbr>Templates</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentversion.html">api/parameters/get<wbr>Content<wbr>Version</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentversions.html">api/parameters/get<wbr>Content<wbr>Versions</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcontentwatchstatus.html">api/parameters/get<wbr>Content<wbr>Watch<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getcurrentuser.html">api/parameters/get<wbr>Current<wbr>User</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getgroup.html">api/parameters/get<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getgroupbygroupid.html">api/parameters/get<wbr>Group<wbr>ByGroup<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getgroupbyqueryparam.html">api/parameters/get<wbr>Group<wbr>ByQuery<wbr>Param</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getgroupmembers.html">api/parameters/get<wbr>Group<wbr>Members</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getgroupmembersbygroupid.html">api/parameters/get<wbr>Group<wbr>Members<wbr>ByGroup<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getgroupmembershipsforuser.html">api/parameters/get<wbr>Group<wbr>Memberships<wbr>For<wbr>User</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getgroups.html">api/parameters/get<wbr>Groups</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getgroupssearch.html">api/parameters/get<wbr>Groups<wbr>Search</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_gethistoryforcontent.html">api/parameters/get<wbr>History<wbr>For<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getindividualgrouprestrictionstatusbygroupid.html">api/parameters/get<wbr>Individual<wbr>Group<wbr>Restriction<wbr>Status<wbr>ByGroup<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getlabelsforcontent.html">api/parameters/get<wbr>Labels<wbr>For<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getlookandfeelsettings.html">api/parameters/get<wbr>Look<wbr>And<wbr>Feel<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getmacrobodybymacroid.html">api/parameters/get<wbr>Macro<wbr>Body<wbr>ByMacro<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getmembersbyqueryparam.html">api/parameters/get<wbr>Members<wbr>ByQuery<wbr>Param</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getprivacyunsafeuseremail.html">api/parameters/get<wbr>Privacy<wbr>Unsafe<wbr>User<wbr>Email</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getprivacyunsafeuseremailbulk.html">api/parameters/get<wbr>Privacy<wbr>Unsafe<wbr>User<wbr>Email<wbr>Bulk</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getrelationship.html">api/parameters/get<wbr>Relationship</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getrestrictions.html">api/parameters/get<wbr>Restrictions</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getrestrictionsbyoperation.html">api/parameters/get<wbr>Restrictions<wbr>ByOperation</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getrestrictionsforoperation.html">api/parameters/get<wbr>Restrictions<wbr>For<wbr>Operation</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getspace.html">api/parameters/get<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getspaceproperties.html">api/parameters/get<wbr>Space<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getspaceproperty.html">api/parameters/get<wbr>Space<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getspacesettings.html">api/parameters/get<wbr>Space<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getspacetheme.html">api/parameters/get<wbr>Space<wbr>Theme</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getspaces.html">api/parameters/get<wbr>Spaces</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_gettask.html">api/parameters/get<wbr>Task</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_gettasks.html">api/parameters/get<wbr>Tasks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_gettheme.html">api/parameters/get<wbr>Theme</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getthemes.html">api/parameters/get<wbr>Themes</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getuser.html">api/parameters/get<wbr>User</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getwatchersforspace.html">api/parameters/get<wbr>Watchers<wbr>For<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getwatchesforpage.html">api/parameters/get<wbr>Watches<wbr>For<wbr>Page</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_getwatchesforspace.html">api/parameters/get<wbr>Watches<wbr>For<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_iswatchinglabel.html">api/parameters/is<wbr>Watching<wbr>Label</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_iswatchingspace.html">api/parameters/is<wbr>Watching<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_movepage.html">api/parameters/move<wbr>Page</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_permissioncheck.html">api/parameters/permission<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_publishlegacydraft.html">api/parameters/publish<wbr>Legacy<wbr>Draft</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_publishshareddraft.html">api/parameters/publish<wbr>Shared<wbr>Draft</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_registermodules.html">api/parameters/register<wbr>Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removecontentwatcher.html">api/parameters/remove<wbr>Content<wbr>Watcher</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removegroup.html">api/parameters/remove<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removegroupbyid.html">api/parameters/remove<wbr>Group<wbr>ById</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removegroupbyname.html">api/parameters/remove<wbr>Group<wbr>ByName</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removelabelfromcontent.html">api/parameters/remove<wbr>Label<wbr>From<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removelabelfromcontentusingqueryparameter.html">api/parameters/remove<wbr>Label<wbr>From<wbr>Content<wbr>Using<wbr>Query<wbr>Parameter</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removelabelwatcher.html">api/parameters/remove<wbr>Label<wbr>Watcher</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removememberfromgroup.html">api/parameters/remove<wbr>Member<wbr>From<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removememberfromgroupbygroupid.html">api/parameters/remove<wbr>Member<wbr>From<wbr>Group<wbr>ByGroup<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removemodules.html">api/parameters/remove<wbr>Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removepermission.html">api/parameters/remove<wbr>Permission</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removespacewatch.html">api/parameters/remove<wbr>Space<wbr>Watch</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removetemplate.html">api/parameters/remove<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_removeuserfromcontentrestriction.html">api/parameters/remove<wbr>User<wbr>From<wbr>Content<wbr>Restriction</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_resetlookandfeelsettings.html">api/parameters/reset<wbr>Look<wbr>And<wbr>Feel<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_resetspacetheme.html">api/parameters/reset<wbr>Space<wbr>Theme</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_restorecontentversion.html">api/parameters/restore<wbr>Content<wbr>Version</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_search.html">api/parameters/search</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_searchcontentbycql.html">api/parameters/search<wbr>Content<wbr>ByCQL</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_searchtasks.html">api/parameters/search<wbr>Tasks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_setlookandfeelsettings.html">api/parameters/set<wbr>Look<wbr>And<wbr>Feel<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_setretentionperiod.html">api/parameters/set<wbr>Retention<wbr>Period</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_setspacetheme.html">api/parameters/set<wbr>Space<wbr>Theme</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_updateattachmentdata.html">api/parameters/update<wbr>Attachment<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_updateattachmentproperties.html">api/parameters/update<wbr>Attachment<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_updatecontent.html">api/parameters/update<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_updatecontentproperty.html">api/parameters/update<wbr>Content<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_updatecontenttemplate.html">api/parameters/update<wbr>Content<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_updatelookandfeelsettings.html">api/parameters/update<wbr>Look<wbr>And<wbr>Feel<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_updaterestrictions.html">api/parameters/update<wbr>Restrictions</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_updatespace.html">api/parameters/update<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_updatespaceproperty.html">api/parameters/update<wbr>Space<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_updatespacesettings.html">api/parameters/update<wbr>Space<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_parameters_usersearch.html">api/parameters/user<wbr>Search</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_relation.html">api/relation</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_search.html">api/search</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_settings.html">api/settings</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_space.html">api/space</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_spacepermissions.html">api/space<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_spaceproperties.html">api/space<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_spacesettings.html">api/space<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_template.html">api/template</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_themes.html">api/themes</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_users.html">api/users</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/callback.html">callback</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/clients.html">clients</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/clients_baseclient.html">clients/base<wbr>Client</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/clients_client.html">clients/client</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/clients_confluenceclient.html">clients/confluence<wbr>Client</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/config.html">config</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/index.html">index</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/requestconfig.html">request<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/services_authenticationservice.html">services/authentication<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/services_authenticationservice_authenticationservice.html">services/authentication<wbr>Service/authentication<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/services_authenticationservice_authentications.html">services/authentication<wbr>Service/authentications</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/services_authenticationservice_authentications_createbasicauthenticationtoken.html">services/authentication<wbr>Service/authentications/create<wbr>Basic<wbr>Authentication<wbr>Token</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/services_authenticationservice_authentications_createjwtauthentication.html">services/authentication<wbr>Service/authentications/createJWTAuthentication</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/services_authenticationservice_authentications_createoauth2authenticationtoken.html">services/authentication<wbr>Service/authentications/createOAuth2<wbr>Authentication<wbr>Token</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/services_authenticationservice_base64encoder.html">services/authentication<wbr>Service/base64<wbr>Encoder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utilitytypes.html">utility<wbr>Types</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
