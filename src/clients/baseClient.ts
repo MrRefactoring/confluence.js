@@ -151,10 +151,6 @@ export class BaseClient implements Client {
       return Authentication.Basic;
     }
 
-    if (authentication.oauth) {
-      return Authentication.OAuth;
-    }
-
     if (authentication.oauth2) {
       return Authentication.OAuth2;
     }

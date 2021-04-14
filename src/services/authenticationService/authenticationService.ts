@@ -3,7 +3,6 @@ import {
   createBasicAuthenticationToken,
   createJWTAuthentication,
   createOAuth2AuthenticationToken,
-  createOAuthAuthenticationToken,
 } from './authentications';
 
 export namespace AuthenticationService {
@@ -21,10 +20,6 @@ export namespace AuthenticationService {
 
     if (authentication.basic) {
       return createBasicAuthenticationToken(authentication.basic);
-    }
-
-    if (authentication.oauth) {
-      return createOAuthAuthenticationToken(authentication.oauth, requestData!);
     }
 
     if (authentication.oauth2) {
