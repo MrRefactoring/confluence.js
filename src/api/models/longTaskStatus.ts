@@ -22,7 +22,8 @@ import { Message } from './message';
  * - `WARN_IGNORE_VIEW_RESTRICTED` - Permission changed - view restricted
  * - `WARN_IGNORE_EDIT_RESTRICTED` - Permission changed - edit restricted
  * - `INITIALIZING_TASK` - Message when initializing task
- * - `UNKNOWN_STATUS` - Message when status is unknown */
+ * - `UNKNOWN_STATUS` - Message when status is unknown
+ */
 export interface LongTaskStatus {
   id: string;
   name: {

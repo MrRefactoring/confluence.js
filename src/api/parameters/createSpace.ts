@@ -1,4 +1,3 @@
 import { SpaceCreate } from '../models';
 
-export interface CreateSpace extends SpaceCreate {
-}
+export interface CreateSpace extends SpaceCreate {}

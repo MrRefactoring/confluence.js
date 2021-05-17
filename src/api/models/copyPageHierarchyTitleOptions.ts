@@ -1,5 +1,4 @@
-/**
- * Required for copying page in the same space. */
+/** Required for copying page in the same space. */
 export interface CopyPageHierarchyTitleOptions {
   prefix?: string;
   replace?: string;

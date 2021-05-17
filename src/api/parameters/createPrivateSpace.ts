@@ -1,4 +1,3 @@
 import { SpacePrivateCreate } from '../models';
 
-export interface CreatePrivateSpace extends SpacePrivateCreate {
-}
+export interface CreatePrivateSpace extends SpacePrivateCreate {}

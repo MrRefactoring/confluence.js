@@ -9,8 +9,7 @@ import { ContentBody } from './contentBody';
 import { ContentRestriction } from './contentRestriction';
 import { GenericLinks } from './genericLinks';
 
-/**
- * Base object for all content types. */
+/** Base object for all content types. */
 export interface Content {
   id: string;
   type: string;
@@ -22,9 +21,6 @@ export interface Content {
   ancestors?: Content[];
   operations?: OperationCheckResult[];
   children?: ContentChildren;
-  /**
-   * Shows whether a piece of content has attachments, comments, or child pages. Note, this doesn't actually contain the child objects.
-   */
   childTypes?: ContentChildType;
   descendants?: ContentChildren;
   container?: Container;

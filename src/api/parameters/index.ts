@@ -95,6 +95,7 @@ export * from './findSourcesForTarget';
 export * from './search';
 export * from './userSearch';
 export * from './getLookAndFeelSettings';
+export * from './updateLookAndFeel';
 export * from './updateLookAndFeelSettings';
 export * from './resetLookAndFeelSettings';
 export * from './setLookAndFeelSettings';

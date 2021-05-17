@@ -5,22 +5,33 @@ import { Callback } from '../callback';
 import { RequestConfig } from '../requestConfig';
 
 export class ContentComments {
-  constructor(private client: Client) { }
+  constructor(private client: Client) {}
 
   /**
    * Returns the comments on a piece of content.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space,
-   * and permission to view the content if it is a page. */
-  async getContentComments<T = Models.ContentArray>(parameters: Parameters.GetContentComments, callback: Callback<T>): Promise<void>;
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
+   * permission to view the content if it is a page.
+   */
+  async getContentComments<T = Models.ContentArray>(
+    parameters: Parameters.GetContentComments,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Returns the comments on a piece of content.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space,
-   * and permission to view the content if it is a page. */
-  async getContentComments<T = Models.ContentArray>(parameters: Parameters.GetContentComments, callback?: never): Promise<T>;
-  async getContentComments<T = Models.ContentArray>(parameters: Parameters.GetContentComments, callback?: Callback<T>): Promise<void | T> {
-    const config = {
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
+   * permission to view the content if it is a page.
+   */
+  async getContentComments<T = Models.ContentArray>(
+    parameters: Parameters.GetContentComments,
+    callback?: never
+  ): Promise<T>;
+  async getContentComments<T = Models.ContentArray>(
+    parameters: Parameters.GetContentComments,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
       url: `/api/content/${parameters.id}/child/comment`,
       method: 'GET',
       params: {
@@ -30,7 +41,7 @@ export class ContentComments {
         location: parameters.location,
         depth: parameters.depth,
       },
-    } as RequestConfig;
+    };
 
     return this.client.sendRequest(config, callback, { methodName: 'getContentComments' });
   }

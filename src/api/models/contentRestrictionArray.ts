@@ -6,8 +6,7 @@ export interface ContentRestrictionArray {
   start: number;
   limit: number;
   size: number;
-  /** This property is used by the UI to figure out whether a set of restrictions
-   has changed. */
+  /** This property is used by the UI to figure out whether a set of restrictions has changed. */
   restrictionsHash: string;
   _links: GenericLinks;
 }

@@ -72,8 +72,16 @@ export class BaseClient implements Client {
   }
 
   async sendRequest<T>(requestConfig: RequestConfig, callback: never, telemetryData?: Partial<Telemetry>): Promise<T>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>, telemetryData?: Partial<Telemetry>): Promise<void>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T> | never, telemetryData?: Partial<Telemetry>): Promise<void | T> {
+  async sendRequest<T>(
+    requestConfig: RequestConfig,
+    callback: Callback<T>,
+    telemetryData?: Partial<Telemetry>
+  ): Promise<void>;
+  async sendRequest<T>(
+    requestConfig: RequestConfig,
+    callback: Callback<T> | never,
+    telemetryData?: Partial<Telemetry>,
+  ): Promise<void | T> {
     const startDateTime = new Date();
 
     const telemetry: Telemetry = {
