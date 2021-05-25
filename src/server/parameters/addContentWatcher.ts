@@ -1,0 +1,6 @@
+export interface AddContentWatcher {
+  /** Userkey of the user to create the new watcher for */
+  key?: string;
+  /** Username of the user to create the new watcher for */
+  username?: string;
+}
