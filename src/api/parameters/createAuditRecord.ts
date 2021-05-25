@@ -1,4 +1,3 @@
 import { AuditRecordCreate } from '../models';
 
-export interface CreateAuditRecord extends AuditRecordCreate {
-}
+export interface CreateAuditRecord extends AuditRecordCreate {}

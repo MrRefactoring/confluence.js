@@ -11,7 +11,8 @@ import { Message } from './message';
  * - User does not have permission to the content
  * - Anonymous users are not allowed to use Confluence
  * - Anonymous user does not have permission to the space
- * - Anonymous user does not have permission to the content */
+ * - Anonymous user does not have permission to the content
+ */
 export interface PermissionCheckResponse {
   hasPermission: boolean;
   errors?: Message[];

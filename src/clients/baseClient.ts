@@ -72,8 +72,16 @@ export class BaseClient implements Client {
   }
 
   async sendRequest<T>(requestConfig: RequestConfig, callback: never, telemetryData?: Partial<Telemetry>): Promise<T>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>, telemetryData?: Partial<Telemetry>): Promise<void>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T> | never, telemetryData?: Partial<Telemetry>): Promise<void | T> {
+  async sendRequest<T>(
+    requestConfig: RequestConfig,
+    callback: Callback<T>,
+    telemetryData?: Partial<Telemetry>
+  ): Promise<void>;
+  async sendRequest<T>(
+    requestConfig: RequestConfig,
+    callback: Callback<T> | never,
+    telemetryData?: Partial<Telemetry>,
+  ): Promise<void | T> {
     const startDateTime = new Date();
 
     const telemetry: Telemetry = {
@@ -82,8 +90,8 @@ export class BaseClient implements Client {
       bodyExists: !!requestConfig.data,
       callbackUsed: !!callback,
       headersExists: !!requestConfig.headers,
-      libVersion: '1.0.0',
-      libVersionHash: 'a2c18f37c29299af8db8230ec35e59cd',
+      libVersion: '1.0.1',
+      libVersionHash: '152f5dc0f7ac734f8e8ee17d4a482462',
       methodName: telemetryData?.methodName || 'sendRequest',
       onErrorMiddlewareUsed: !!this.config.middlewares?.onError,
       onResponseMiddlewareUsed: !!this.config.middlewares?.onResponse,

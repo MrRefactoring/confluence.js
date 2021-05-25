@@ -6,13 +6,9 @@ export interface AuditRecord {
     type: string;
     displayName: string;
     operations: {};
-    /**
-     * @deprecated This property has been deprecated and will be removed soon.
-     */
+    /** @deprecated This property has been deprecated and will be removed soon. */
     username: string;
-    /**
-     * @deprecated This property has been deprecated and will be removed soon.
-     */
+    /** @deprecated This property has been deprecated and will be removed soon. */
     userKey: string;
   };
   remoteAddress: string;

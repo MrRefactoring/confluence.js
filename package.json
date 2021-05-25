@@ -1,6 +1,6 @@
 {
   "name": "confluence.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "confluence.js is a powerful Node.JS/Browser module that allows you to interact with the Confluence API very easily",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -10,6 +10,7 @@
     "test": "npm run test:unit && npm run test:system",
     "test:unit": "jest tests/unit",
     "test:system": "jest tests/system --setupFiles=./tests/setup.ts --runInBand",
+    "prettier": "prettier --write src/**/*.ts",
     "doc": "typedoc --name Confluence.js --out docs ./src",
     "lint": "eslint src --ext .ts",
     "lint:fix": "npm run lint -- --fix"
@@ -32,25 +33,27 @@
   "license": "MIT",
   "homepage": "https://github.com/MrRefactoring/confluence.js#readme",
   "devDependencies": {
-    "@types/express": "^4.17.11",
-    "@types/jest": "^26.0.22",
+    "@types/express": "^4.17.12",
+    "@types/jest": "^26.0.23",
     "@types/oauth": "^0.9.1",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
-    "dotenv": "^8.2.0",
-    "eslint": "^7.24.0",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.27.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-import-resolver-typescript": "^2.4.0",
-    "eslint-plugin-import": "^2.22.1",
-    "jest": "^26.6.3",
-    "ts-jest": "^26.5.4",
-    "typedoc": "^0.20.35",
+    "eslint-plugin-import": "^2.23.3",
+    "jest": "^26.0.23",
+    "prettier": "^2.3.0",
+    "prettier-plugin-jsdoc": "^0.3.22",
+    "ts-jest": "^26.5.6",
+    "typedoc": "^0.20.36",
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "atlassian-jwt": "^1.0.3",
+    "atlassian-jwt": "^2.0.0",
     "axios": "^0.21.1",
     "oauth": "^0.9.15",
-    "telemetry.confluence.js": "*"
+    "telemetry.confluence.js": "<2"
   }
 }

@@ -2,8 +2,7 @@ import { Version } from './version';
 import { GenericLinks } from './genericLinks';
 import { LabelArray } from './labelArray';
 
-/**
- * Metadata object for page, blogpost, comment content */
+/** Metadata object for page, blogpost, comment content */
 export interface ContentMetadata {
   currentuser?: {
     favourited?: {

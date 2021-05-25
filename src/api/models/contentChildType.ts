@@ -1,8 +1,9 @@
 import { GenericLinks } from './genericLinks';
 
 /**
- * Shows whether a piece of content has attachments, comments, or child pages.*
- * Note, this doesn't actually contain the child objects. */
+ * Shows whether a piece of content has attachments, comments, or child pages.* Note, this doesn't actually contain the
+ * child objects.
+ */
 export interface ContentChildType {
   attachment?: {
     value: boolean;
