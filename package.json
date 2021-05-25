@@ -1,6 +1,6 @@
 {
   "name": "confluence.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "confluence.js is a powerful Node.JS/Browser module that allows you to interact with the Confluence API very easily",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -43,7 +43,7 @@
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.23.3",
-    "jest": "^27.0.1",
+    "jest": "^26.0.23",
     "prettier": "^2.3.0",
     "prettier-plugin-jsdoc": "^0.3.22",
     "ts-jest": "^26.5.6",
