@@ -9,17 +9,17 @@ export class Space {
   /**
    * Returns information about a number of spaces.
    *
-   *                                  Example request URI(s):
+   * Example request URI(s):
    *
-   *                              http://example.com/rest/api/space?spaceKey=TST&spaceKey=ds
+   * - http://example.com/rest/api/space?spaceKey=TST&spaceKey=ds
    */
   async spaces<T = unknown>(parameters: Parameters.Spaces | undefined, callback: Callback<T>): Promise<void>;
   /**
    * Returns information about a number of spaces.
    *
-   *                                  Example request URI(s):
+   * Example request URI(s):
    *
-   *                              http://example.com/rest/api/space?spaceKey=TST&spaceKey=ds
+   * - http://example.com/rest/api/space?spaceKey=TST&spaceKey=ds
    */
   async spaces<T = unknown>(parameters?: Parameters.Spaces, callback?: never): Promise<T>;
   async spaces<T = unknown>(parameters?: Parameters.Spaces, callback?: Callback<T>): Promise<void | T> {

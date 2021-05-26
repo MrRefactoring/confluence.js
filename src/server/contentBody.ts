@@ -1,3 +1,4 @@
+import * as Models from './models';
 import * as Parameters from './parameters';
 import { Client } from '../clients';
 import { Callback } from '../callback';
@@ -10,41 +11,44 @@ export class ContentBody {
    * Converts between content body representations. Not all representations can be converted to/from other formats.
    * Supported conversions:
    *
-   *                                  Source RepresentationDestination Representation Supported
-   *
-   *
-   *              storageview,export_view,styled_view,editor
-   *              editorstorage
-   *              viewNone
-   *              export_viewNone
-   *              styled_viewNone
+   * - Storageview,export_view,styled_view,editor
+   * - Editorstorage
+   * - ViewNone
+   * - Export_viewNone
+   * - Styled_viewNone
    *
    * @example
    *   Example request URI(s):
    *
-   *   http://example.com/rest/api/contentbody/convert/view
+   *   - http://example.com/rest/api/contentbody/convert/view
    */
-  async convert<T = unknown>(parameters: Parameters.Convert, callback: Callback<T>): Promise<void>;
+  async convertContentBody<T = Models.ContentBody>(
+    parameters: Parameters.ConvertContentBody,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Converts between content body representations. Not all representations can be converted to/from other formats.
    * Supported conversions:
    *
-   *                                  Source RepresentationDestination Representation Supported
-   *
-   *
-   *              storageview,export_view,styled_view,editor
-   *              editorstorage
-   *              viewNone
-   *              export_viewNone
-   *              styled_viewNone
+   * - Storageview,export_view,styled_view,editor
+   * - Editorstorage
+   * - ViewNone
+   * - Export_viewNone
+   * - Styled_viewNone
    *
    * @example
    *   Example request URI(s):
    *
-   *   http://example.com/rest/api/contentbody/convert/view
+   *   - http://example.com/rest/api/contentbody/convert/view
    */
-  async convert<T = unknown>(parameters: Parameters.Convert, callback?: never): Promise<T>;
-  async convert<T = unknown>(parameters: Parameters.Convert, callback?: Callback<T>): Promise<void | T> {
+  async convertContentBody<T = Models.ContentBody>(
+    parameters: Parameters.ConvertContentBody,
+    callback?: never
+  ): Promise<T>;
+  async convertContentBody<T = Models.ContentBody>(
+    parameters: Parameters.ConvertContentBody,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/rest/contentbody/convert/${parameters.to}`,
       method: 'POST',
@@ -52,11 +56,20 @@ export class ContentBody {
         storage: parameters?.storage,
         editor: parameters?.editor,
         view: parameters?.view,
-        export_view: parameters?.export.view,
-        styled_view: parameters?.styled.view,
+        export_view: parameters?.exportView,
+        styled_view: parameters?.styledView,
+      },
+      data: {
+        ...parameters,
+        to: undefined,
+        storage: undefined,
+        editor: undefined,
+        view: undefined,
+        export_view: undefined,
+        styled_view: undefined,
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'convert' });
+    return this.client.sendRequest(config, callback, { methodName: 'server.convertContentBody' });
   }
 }

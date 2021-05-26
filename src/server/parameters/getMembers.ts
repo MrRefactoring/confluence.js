@@ -1,4 +1,5 @@
 export interface GetMembers {
+  groupName: string;
   expand?: string;
   /** The start point of the collection to return */
   start?: number;

@@ -32,7 +32,7 @@ export * from './getRestrictionsByOperation';
 export * from './getRestrictionsForOperation';
 export * from './publishLegacyDraft';
 export * from './publishSharedDraft';
-export * from './convert';
+export * from './convertContentBody';
 export * from './getGroups';
 export * from './getGroup';
 export * from './getMembers';
