@@ -1,4 +1,5 @@
-export interface FindAll {
+export interface GetContentProperties {
+  id: string | number;
   /** A comma separated list of properties to expand on the content properties. Default value: version. */
   expand?: string;
   /** The start point of the collection to return */

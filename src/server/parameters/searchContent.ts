@@ -1,4 +1,4 @@
-export interface Search {
+export interface SearchContent {
   /** The CQL query see advanced searching in confluence using CQL */
   cql?: string;
   /**

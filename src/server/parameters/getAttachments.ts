@@ -1,4 +1,5 @@
 export interface GetAttachments {
+  id: string | number;
   /** A comma separated list of properties to expand on the Attachments returned. Optional. */
   expand?: string;
   /** The index of the first item within the result set that should be returned. Optional. */

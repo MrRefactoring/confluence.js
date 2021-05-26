@@ -1,5 +1,6 @@
-export interface Labels {
-  /** The prefixes to filter the labels with {@see Label.Prefix} */
+export interface GetContentLabels {
+  id: string | number;
+  /** The prefixes to filter the labels with Label.Prefix */
   prefix?: string;
   /** The start point of the collection to return */
   start?: number;

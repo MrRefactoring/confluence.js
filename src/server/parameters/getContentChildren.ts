@@ -1,4 +1,5 @@
-export interface Children {
+export interface GetContentChildren {
+  id: string | number;
   /** A comma separated list of properties to expand on the children */
   expand?: string;
   /** An int representing the version of the content to retrieve children for */

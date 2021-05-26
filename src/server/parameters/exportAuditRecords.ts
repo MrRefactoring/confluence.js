@@ -1,4 +1,4 @@
-export interface Export {
+export interface ExportAuditRecords {
   startDate?: string;
   endDate?: string;
   searchString?: string;

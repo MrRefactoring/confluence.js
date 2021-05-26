@@ -1,4 +1,5 @@
 export interface GetContentById {
+  id: string | number;
   /** List of Content statuses to filter results on. Default value: [current] */
   status?: string;
   version?: number;

@@ -128,6 +128,11 @@ export class ContentAttachments {
       params: {
         status: parameters.status,
       },
+      data: {
+        ...parameters,
+        id: undefined,
+        status: undefined,
+      },
     };
 
     return this.client.sendRequest(config, callback, { methodName: 'createAttachments' });
@@ -216,6 +221,11 @@ export class ContentAttachments {
       method: 'PUT',
       params: {
         status: parameters.status,
+      },
+      data: {
+        ...parameters,
+        id: undefined,
+        status: undefined,
       },
     };
 
@@ -340,6 +350,11 @@ export class ContentAttachments {
     const config: RequestConfig = {
       url: `/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}/data`,
       method: 'POST',
+      data: {
+        ...parameters,
+        id: undefined,
+        attachmentId: undefined,
+      },
     };
 
     return this.client.sendRequest(config, callback, { methodName: 'updateAttachmentData' });

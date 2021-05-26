@@ -1,4 +1,5 @@
-export interface CommentsOfContent {
+export interface GetContentComments {
+  id: string | number;
   /**
    * A comma separated list of properties to expand on the children. We can also specify some extensions such as
    * extensions.inlineProperties (for getting inline comment-specific properties) or extensions.resolution for the
