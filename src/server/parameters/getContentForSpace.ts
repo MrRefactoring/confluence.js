@@ -1,4 +1,5 @@
-export interface Contents {
+export interface GetContentForSpace {
+  spaceKey: string;
   /**
    * A string indicating if all content, or just the root content of the space is returned. Default value: all. Valid
    * values: all, root.

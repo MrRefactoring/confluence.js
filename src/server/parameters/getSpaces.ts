@@ -1,4 +1,4 @@
-export interface Spaces {
+export interface GetSpaces {
   /** A list of space keys */
   spaceKey?: string;
   /** Filter the list of spaces returned by type (global, personal) */

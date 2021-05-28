@@ -1,6 +1,6 @@
 {
   "name": "confluence.js",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "confluence.js is a powerful Node.JS/Browser module that allows you to interact with the Confluence API very easily",
   "main": "out/index.js",
   "types": "out/index.d.ts",
@@ -46,7 +46,7 @@
     "jest": "^27.0.1",
     "prettier": "^2.3.0",
     "prettier-plugin-jsdoc": "^0.3.22",
-    "ts-jest": "^27.0.0",
+    "ts-jest": "^27.0.1",
     "typedoc": "^0.20.36",
     "typescript": "^4.3.2"
   },

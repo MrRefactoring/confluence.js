@@ -1,4 +1,6 @@
-export interface ContentsWithType {
+export interface GetContentByType {
+  spaceKey: string;
+  type: string;
   /**
    * A string indicating if all content, or just the root content of the space is returned. Default value: all. Valid
    * values: all, root.
