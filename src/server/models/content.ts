@@ -7,7 +7,6 @@ import { ContentChildType } from './contentChildType';
 import { Container } from './container';
 import { ContentBody } from './contentBody';
 import { ContentRestriction } from './contentRestriction';
-import { GenericLinks } from './genericLinks';
 
 /** Base object for all content types. */
 export interface Content {
@@ -44,7 +43,7 @@ export interface Content {
   restrictions?: {
     read?: ContentRestriction;
     update?: ContentRestriction;
-    _links: GenericLinks;
+    _links: Record<string, any>;
   };
   _expandable: {
     childTypes?: string;
@@ -60,5 +59,5 @@ export interface Content {
     descendants?: string;
     space?: string;
   };
-  _links?: GenericLinks;
+  _links?: Record<string, any>;
 }

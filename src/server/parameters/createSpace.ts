@@ -1,3 +1,5 @@
+import { SpaceDescriptionCreate, SpacePermission } from '../models';
+
 export interface CreateSpace {
   /** The key for the new space. Format: See [Space keys](https://confluence.atlassian.com/x/lqNMMQ). */
   key: string;

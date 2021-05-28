@@ -1,3 +1,7 @@
+import { Version } from './version';
+import { UsersUserKeys } from './usersUserKeys';
+import { User } from './user';
+
 export interface ContentHistory {
   latest: boolean;
   createdBy: User;

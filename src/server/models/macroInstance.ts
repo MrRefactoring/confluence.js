@@ -1,3 +1,1 @@
-export interface MacroInstance {
-
-}
+export interface MacroInstance {}

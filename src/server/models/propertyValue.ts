@@ -1,3 +1,1 @@
-export interface PropertyValue {
-
-}
+export interface PropertyValue {}

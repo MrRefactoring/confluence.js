@@ -1,3 +1,6 @@
+import { EmbeddedContent } from './embeddedContent';
+import { WebResourceDependencies } from './webResourceDependencies';
+
 export interface ContentBody {
   value: string;
   representation: string;

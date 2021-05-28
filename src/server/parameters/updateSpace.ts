@@ -1,3 +1,5 @@
+import { SpaceDescriptionCreate } from '../models';
+
 export interface UpdateSpace {
   /** The key of the space to update. */
   spaceKey: string;
