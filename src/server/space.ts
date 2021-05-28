@@ -131,7 +131,7 @@ export class Space {
       url: `/rest/space/${parameters.spaceKey}`,
       method: 'GET',
       params: {
-        expand: parameters?.expand,
+        expand: parameters.expand,
       },
     };
 
@@ -256,10 +256,10 @@ export class Space {
       url: `/rest/space/${parameters.spaceKey}/content/${parameters.type}`,
       method: 'GET',
       params: {
-        depth: parameters?.depth,
-        expand: parameters?.expand,
-        start: parameters?.start,
-        limit: parameters?.limit,
+        depth: parameters.depth,
+        expand: parameters.expand,
+        start: parameters.start,
+        limit: parameters.limit,
       },
     };
 
@@ -365,7 +365,7 @@ export class Space {
       url: `/rest/space/${parameters.spaceKey}/property/${parameters.key}`,
       method: 'GET',
       params: {
-        expand: parameters?.expand,
+        expand: parameters.expand,
       },
     };
 

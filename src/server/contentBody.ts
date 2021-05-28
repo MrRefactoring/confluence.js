@@ -53,11 +53,11 @@ export class ContentBody {
       url: `/rest/contentbody/convert/${parameters.to}`,
       method: 'POST',
       params: {
-        storage: parameters?.storage,
-        editor: parameters?.editor,
-        view: parameters?.view,
-        export_view: parameters?.exportView,
-        styled_view: parameters?.styledView,
+        storage: parameters.storage,
+        editor: parameters.editor,
+        view: parameters.view,
+        export_view: parameters.exportView,
+        styled_view: parameters.styledView,
       },
       data: {
         ...parameters,

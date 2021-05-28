@@ -1,3 +1,6 @@
+import { AffectedObject } from './affectedObject';
+import { ChangedValue } from './changedValue';
+
 export interface AuditRecord {
   author: {
     type: string;
@@ -13,8 +16,7 @@ export interface AuditRecord {
   description: string;
   category: string;
   sysAdmin: boolean;
-  // TODO
-  // affectedObject: AffectedObject;
-  // changedValues: ChangedValue[];
-  // associatedObjects: AffectedObject[];
+  affectedObject: AffectedObject;
+  changedValues: ChangedValue[];
+  associatedObjects: AffectedObject[];
 }

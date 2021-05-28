@@ -376,7 +376,7 @@ export class Content {
    *   - http://example.com/rest/api/content/1234/child?expand=page.body.VIEW
    *   - http://example.com/rest/api/content/1234/child?expand=page&start=20&limit=10
    */
-  async getContentChildren<T = unknown>(
+  async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
     callback: Callback<T>
   ): Promise<void>;
@@ -397,8 +397,8 @@ export class Content {
    *   - http://example.com/rest/api/content/1234/child?expand=page.body.VIEW
    *   - http://example.com/rest/api/content/1234/child?expand=page&start=20&limit=10
    */
-  async getContentChildren<T = unknown>(parameters: Parameters.GetContentChildren, callback?: never): Promise<T>;
-  async getContentChildren<T = unknown>(
+  async getContentChildren<T = Models.ContentChildren>(parameters: Parameters.GetContentChildren, callback?: never): Promise<T>;
+  async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -929,9 +929,9 @@ export class Content {
       url: `/rest/content/${parameters.id}/label`,
       method: 'GET',
       params: {
-        prefix: parameters?.prefix,
-        start: parameters?.start,
-        limit: parameters?.limit,
+        prefix: parameters.prefix,
+        start: parameters.start,
+        limit: parameters.limit,
       },
     };
 
@@ -1213,7 +1213,7 @@ export class Content {
       url: `/rest/content/${parameters.id}/restriction/byOperation`,
       method: 'GET',
       params: {
-        expand: parameters?.expand,
+        expand: parameters.expand,
       },
     };
 
@@ -1238,9 +1238,9 @@ export class Content {
       url: `/rest/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}`,
       method: 'GET',
       params: {
-        expand: parameters?.expand,
-        start: parameters?.start,
-        limit: parameters?.limit,
+        expand: parameters.expand,
+        start: parameters.start,
+        limit: parameters.limit,
       },
     };
 
