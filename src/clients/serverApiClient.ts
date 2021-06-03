@@ -11,6 +11,8 @@ import {
 } from '../server';
 
 export class ServerApiClient extends BaseClient {
+  urlSuffix = '/';
+
   audit = new Audit(this);
   content = new Content(this);
   contentBody = new ContentBody(this);
