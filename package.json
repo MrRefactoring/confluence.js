@@ -1,6 +1,6 @@
 {
   "name": "confluence.js",
-  "version": "1.1.0-beta.0",
+  "version": "1.1.0-beta.1",
   "description": "confluence.js is a powerful Node.JS/Browser module that allows you to interact with the Confluence API very easily",
   "main": "out/index.js",
   "types": "out/index.d.ts",

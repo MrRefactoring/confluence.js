@@ -15,6 +15,6 @@ describe('ServerApiClient', () => {
 
     // @ts-ignore
     expect(serverClient.instance.defaults.baseURL).toBe('https://localhost/');
-    expect(callArgument.url).toBe('/rest/audit');
+    expect(callArgument.url).toBe('/rest/api/audit');
   });
 });
