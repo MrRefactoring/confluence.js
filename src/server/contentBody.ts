@@ -50,7 +50,7 @@ export class ContentBody {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/contentbody/convert/${parameters.to}`,
+      url: `/rest/api/contentbody/convert/${parameters.to}`,
       method: 'POST',
       params: {
         storage: parameters.storage,

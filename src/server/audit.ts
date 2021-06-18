@@ -23,7 +23,7 @@ export class Audit {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/audit',
+      url: '/rest/api/audit',
       method: 'GET',
       params: {
         startDate: parameters?.startDate,
@@ -52,7 +52,7 @@ export class Audit {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/audit',
+      url: '/rest/api/audit',
       method: 'POST',
       data: {
         author: parameters.author,
@@ -83,7 +83,7 @@ export class Audit {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/audit/export',
+      url: '/rest/api/audit/export',
       method: 'GET',
       params: {
         startDate: parameters?.startDate,
@@ -102,7 +102,7 @@ export class Audit {
   async getRetentionPeriod<T = Models.RetentionPeriod>(callback?: never): Promise<T>;
   async getRetentionPeriod<T = Models.RetentionPeriod>(callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/audit/retention',
+      url: '/rest/api/audit/retention',
       method: 'GET',
     };
 
@@ -124,7 +124,7 @@ export class Audit {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/audit/retention',
+      url: '/rest/api/audit/retention',
       method: 'PUT',
       data: {
         number: parameters.number,
@@ -150,7 +150,7 @@ export class Audit {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/audit/since',
+      url: '/rest/api/audit/since',
       method: 'GET',
       params: {
         number: parameters?.number,

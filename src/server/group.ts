@@ -20,7 +20,7 @@ export class Group {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/group',
+      url: '/rest/api/group',
       method: 'GET',
       params: {
         expand: parameters?.expand,
@@ -38,7 +38,7 @@ export class Group {
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: never): Promise<T>;
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/group/${parameters.groupName}`,
+      url: `/rest/api/group/${parameters.groupName}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -60,7 +60,7 @@ export class Group {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/group/${parameters.groupName}/member`,
+      url: `/rest/api/group/${parameters.groupName}/member`,
       method: 'GET',
       params: {
         expand: parameters.expand,

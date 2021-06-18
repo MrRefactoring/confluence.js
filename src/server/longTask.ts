@@ -20,7 +20,7 @@ export class LongTask {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/longtask',
+      url: '/rest/api/longtask',
       method: 'GET',
       params: {
         expand: parameters?.expand,
@@ -38,7 +38,7 @@ export class LongTask {
   async getTask<T = Models.LongTaskStatus>(parameters: Parameters.GetTask, callback?: never): Promise<T>;
   async getTask<T = Models.LongTaskStatus>(parameters: Parameters.GetTask, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/longtask/${parameters.id}`,
+      url: `/rest/api/longtask/${parameters.id}`,
       method: 'GET',
       params: {
         expand: parameters.expand,

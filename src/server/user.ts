@@ -30,7 +30,7 @@ export class User {
   async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: never): Promise<T>;
   async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/user',
+      url: '/rest/api/user',
       method: 'GET',
       params: {
         key: parameters?.key,
@@ -62,7 +62,7 @@ export class User {
   async getAnonymousUser<T = Models.UserAnonymous>(callback?: never): Promise<T>;
   async getAnonymousUser<T = Models.UserAnonymous>(callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/user/anonymous',
+      url: '/rest/api/user/anonymous',
       method: 'GET',
     };
 
@@ -95,7 +95,7 @@ export class User {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/user/current',
+      url: '/rest/api/user/current',
       method: 'GET',
       params: {
         expand: parameters?.expand,
@@ -136,7 +136,7 @@ export class User {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/user/memberof',
+      url: '/rest/api/user/memberof',
       method: 'GET',
       params: {
         key: parameters?.key,
@@ -191,7 +191,7 @@ export class User {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/user/watch/content/${parameters.contentId}`,
+      url: `/rest/api/user/watch/content/${parameters.contentId}`,
       method: 'GET',
       params: {
         key: parameters.key,
@@ -237,7 +237,7 @@ export class User {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/user/watch/content/${parameters.contentId}`,
+      url: `/rest/api/user/watch/content/${parameters.contentId}`,
       method: 'POST',
       params: {
         key: parameters.key,
@@ -286,7 +286,7 @@ export class User {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/user/watch/content/${parameters.contentId}`,
+      url: `/rest/api/user/watch/content/${parameters.contentId}`,
       method: 'DELETE',
       params: {
         key: parameters.key,
@@ -335,7 +335,7 @@ export class User {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/user/watch/space/${parameters.spaceKey}`,
+      url: `/rest/api/user/watch/space/${parameters.spaceKey}`,
       method: 'GET',
       params: {
         key: parameters.key,
@@ -378,7 +378,7 @@ export class User {
   async addSpaceWatch<T = void>(parameters: Parameters.AddSpaceWatch, callback?: never): Promise<T>;
   async addSpaceWatch<T = void>(parameters: Parameters.AddSpaceWatch, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/user/watch/space/${parameters.spaceKey}`,
+      url: `/rest/api/user/watch/space/${parameters.spaceKey}`,
       method: 'POST',
       params: {
         key: parameters.key,
@@ -421,7 +421,7 @@ export class User {
   async removeSpaceWatch<T = void>(parameters: Parameters.RemoveSpaceWatch, callback?: never): Promise<T>;
   async removeSpaceWatch<T = void>(parameters: Parameters.RemoveSpaceWatch, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/user/watch/space/${parameters.spaceKey}`,
+      url: `/rest/api/user/watch/space/${parameters.spaceKey}`,
       method: 'DELETE',
       params: {
         key: parameters.key,

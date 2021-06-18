@@ -36,7 +36,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/content',
+      url: '/rest/api/content',
       method: 'GET',
       params: {
         type: parameters?.type,
@@ -71,7 +71,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/content',
+      url: '/rest/api/content',
       method: 'POST',
       params: {
         status: parameters?.status,
@@ -104,7 +104,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}`,
+      url: `/rest/api/content/${parameters.id}`,
       method: 'PUT',
       params: {
         status: parameters.status,
@@ -145,7 +145,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}`,
+      url: `/rest/api/content/${parameters.id}`,
       method: 'GET',
       params: {
         status: parameters.status,
@@ -177,7 +177,7 @@ export class Content {
   async deleteContent<T = void>(parameters: Parameters.DeleteContent, callback?: never): Promise<T>;
   async deleteContent<T = void>(parameters: Parameters.DeleteContent, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}`,
+      url: `/rest/api/content/${parameters.id}`,
       method: 'DELETE',
       params: {
         status: parameters.status,
@@ -210,7 +210,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/history`,
+      url: `/rest/api/content/${parameters.id}/history`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -261,7 +261,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/history/${parameters.version}/macro/hash/${parameters.hash}`,
+      url: `/rest/api/content/${parameters.id}/history/${parameters.version}/macro/hash/${parameters.hash}`,
       method: 'GET',
     };
 
@@ -303,7 +303,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/history/${parameters.version}/macro/id/${parameters.macroId}`,
+      url: `/rest/api/content/${parameters.id}/history/${parameters.version}/macro/id/${parameters.macroId}`,
       method: 'GET',
     };
 
@@ -345,7 +345,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/content/search',
+      url: '/rest/api/content/search',
       method: 'GET',
       params: {
         cql: parameters?.cql,
@@ -403,7 +403,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/child`,
+      url: `/rest/api/content/${parameters.id}/child`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -455,7 +455,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/child/${parameters.type}`,
+      url: `/rest/api/content/${parameters.id}/child/${parameters.type}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -505,7 +505,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/child/comment`,
+      url: `/rest/api/content/${parameters.id}/child/comment`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -551,7 +551,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/child/attachment`,
+      url: `/rest/api/content/${parameters.id}/child/attachment`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -636,7 +636,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/child/attachment`,
+      url: `/rest/api/content/${parameters.id}/child/attachment`,
       method: 'POST',
       params: {
         status: parameters.status,
@@ -684,7 +684,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/child/attachment/${parameters.attachmentId}`,
+      url: `/rest/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}`,
       method: 'PUT',
       data: {
         ...parameters,
@@ -769,7 +769,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/child/attachment/${parameters.attachmentId}/data`,
+      url: `/rest/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}/data`,
       method: 'POST',
       data: {
         ...parameters,
@@ -832,7 +832,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/descendant`,
+      url: `/rest/api/content/${parameters.id}/descendant`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -883,7 +883,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/descendant/${parameters.type}`,
+      url: `/rest/api/content/${parameters.id}/descendant/${parameters.type}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -926,7 +926,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/label`,
+      url: `/rest/api/content/${parameters.id}/label`,
       method: 'GET',
       params: {
         prefix: parameters.prefix,
@@ -953,7 +953,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/label`,
+      url: `/rest/api/content/${parameters.id}/label`,
       method: 'POST',
       data: parameters.labels,
     };
@@ -976,7 +976,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/label`,
+      url: `/rest/api/content/${parameters.id}/label`,
       method: 'DELETE',
       params: {
         name: parameters.name,
@@ -1000,7 +1000,7 @@ export class Content {
   async deleteLabel<T = void>(parameters: Parameters.DeleteLabel, callback?: never): Promise<T>;
   async deleteLabel<T = void>(parameters: Parameters.DeleteLabel, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/label/${parameters.labelId}`,
+      url: `/rest/api/content/${parameters.id}/label/${parameters.labelId}`,
       method: 'DELETE',
     };
 
@@ -1036,7 +1036,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/property`,
+      url: `/rest/api/content/${parameters.id}/property`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -1063,7 +1063,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/property`,
+      url: `/rest/api/content/${parameters.id}/property`,
       method: 'POST',
       data: {
         key: parameters.key,
@@ -1103,7 +1103,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/property/${parameters.key}`,
+      url: `/rest/api/content/${parameters.id}/property/${parameters.key}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -1128,7 +1128,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/property/${parameters.key}`,
+      url: `/rest/api/content/${parameters.id}/property/${parameters.key}`,
       method: 'POST',
       data: {
         value: parameters.value,
@@ -1165,7 +1165,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/property/${parameters.key}`,
+      url: `/rest/api/content/${parameters.id}/property/${parameters.key}`,
       method: 'PUT',
       data: {
         value: parameters.value,
@@ -1188,7 +1188,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/property/${parameters.key}`,
+      url: `/rest/api/content/${parameters.id}/property/${parameters.key}`,
       method: 'DELETE',
     };
 
@@ -1210,7 +1210,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/restriction/byOperation`,
+      url: `/rest/api/content/${parameters.id}/restriction/byOperation`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -1235,7 +1235,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}`,
+      url: `/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -1259,7 +1259,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/blueprint/instance/${parameters.draftId}`,
+      url: `/rest/api/content/blueprint/instance/${parameters.draftId}`,
       method: 'POST',
       params: {
         status: parameters.status,
@@ -1282,7 +1282,7 @@ export class Content {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/content/blueprint/instance/${parameters.draftId}`,
+      url: `/rest/api/content/blueprint/instance/${parameters.draftId}`,
       method: 'PUT',
       params: {
         status: parameters.status,

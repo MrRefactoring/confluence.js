@@ -32,7 +32,7 @@ export class Space {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/space',
+      url: '/rest/api/space',
       method: 'GET',
       params: {
         spaceKey: parameters?.spaceKey,
@@ -63,7 +63,7 @@ export class Space {
   async createSpace<T = Models.Space>(parameters: Parameters.CreateSpace, callback?: never): Promise<T>;
   async createSpace<T = Models.Space>(parameters: Parameters.CreateSpace, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/space',
+      url: '/rest/api/space',
       method: 'POST',
       data: {
         key: parameters.key,
@@ -96,7 +96,7 @@ export class Space {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/space/_private',
+      url: '/rest/api/space/_private',
       method: 'POST',
       data: {
         key: parameters.key,
@@ -128,7 +128,7 @@ export class Space {
   async getSpace<T = Models.Space>(parameters: Parameters.GetSpace, callback?: never): Promise<T>;
   async getSpace<T = Models.Space>(parameters: Parameters.GetSpace, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/space/${parameters.spaceKey}`,
+      url: `/rest/api/space/${parameters.spaceKey}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -144,7 +144,7 @@ export class Space {
   async updateSpace<T = Models.Space>(parameters: Parameters.UpdateSpace, callback?: never): Promise<T>;
   async updateSpace<T = Models.Space>(parameters: Parameters.UpdateSpace, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/space/${parameters.spaceKey}`,
+      url: `/rest/api/space/${parameters.spaceKey}`,
       method: 'PUT',
       data: {
         name: parameters.name,
@@ -175,7 +175,7 @@ export class Space {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/space/${parameters.spaceKey}`,
+      url: `/rest/api/space/${parameters.spaceKey}`,
       method: 'DELETE',
     };
 
@@ -211,7 +211,7 @@ export class Space {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/space/${parameters.spaceKey}/content`,
+      url: `/rest/api/space/${parameters.spaceKey}/content`,
       method: 'GET',
       params: {
         depth: parameters.depth,
@@ -253,7 +253,7 @@ export class Space {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/space/${parameters.spaceKey}/content/${parameters.type}`,
+      url: `/rest/api/space/${parameters.spaceKey}/content/${parameters.type}`,
       method: 'GET',
       params: {
         depth: parameters.depth,
@@ -295,7 +295,7 @@ export class Space {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/space/${parameters.spaceKey}/property`,
+      url: `/rest/api/space/${parameters.spaceKey}/property`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -322,7 +322,7 @@ export class Space {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/space/${parameters.spaceKey}/property`,
+      url: `/rest/api/space/${parameters.spaceKey}/property`,
       method: 'POST',
       data: {
         key: parameters.key,
@@ -362,7 +362,7 @@ export class Space {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/space/${parameters.spaceKey}/property/${parameters.key}`,
+      url: `/rest/api/space/${parameters.spaceKey}/property/${parameters.key}`,
       method: 'GET',
       params: {
         expand: parameters.expand,
@@ -387,7 +387,7 @@ export class Space {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/space/${parameters.spaceKey}/property/${parameters.key}`,
+      url: `/rest/api/space/${parameters.spaceKey}/property/${parameters.key}`,
       method: 'POST',
       data: {
         value: parameters.value,
@@ -420,7 +420,7 @@ export class Space {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/space/${parameters.spaceKey}/property/${parameters.key}`,
+      url: `/rest/api/space/${parameters.spaceKey}/property/${parameters.key}`,
       method: 'PUT',
     };
 
@@ -436,7 +436,7 @@ export class Space {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/rest/space/${parameters.spaceKey}/property/${parameters.key}`,
+      url: `/rest/api/space/${parameters.spaceKey}/property/${parameters.key}`,
       method: 'DELETE',
     };
 

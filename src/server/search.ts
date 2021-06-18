@@ -43,7 +43,7 @@ export class Search {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: '/rest/search',
+      url: '/rest/api/search',
       method: 'GET',
       params: {
         cql: parameters?.cql,
