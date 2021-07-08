@@ -10,7 +10,7 @@ import {
   User,
 } from '../server';
 
-export class ServerApiClient extends BaseClient {
+export class ServerClient extends BaseClient {
   urlSuffix = '/';
 
   audit = new Audit(this);

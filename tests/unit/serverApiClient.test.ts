@@ -1,9 +1,9 @@
 import * as sinon from 'sinon';
-import { ServerApiClient } from '../../src';
+import { ServerClient } from '../../src';
 
 describe('ServerApiClient', () => {
   it('should create correct url', () => {
-    const serverClient = new ServerApiClient({
+    const serverClient = new ServerClient({
       host: 'https://localhost',
     });
 

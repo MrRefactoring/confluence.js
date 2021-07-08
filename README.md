@@ -47,7 +47,7 @@ Install with the yarn:
 yarn add confluence.js
 ```
 
-## Telemetry information collection agreement
+## Telemetry information collecting agreement
 
 The use of this library may collect, record and transmit data
 about the operation of the library and related data, as well
@@ -73,7 +73,7 @@ The following tracking parameters can be configured:
 - Request status code
 - Request timings
 
-#### Customizing telemetry collection data example
+#### Customizing telemetry collecting data example
 
 ```typescript
 import { Config } from 'confluence.js';
@@ -182,7 +182,7 @@ const client = new ConfluenceClient({
 #### Your first request and using algorithm
 
 ```typescript
-import { ConfluenceClient } from 'confluence.js';
+import { ConfluenceClient } from 'confluence.js'; // Or import ServerClient if using standalone (Server) API
 
 const client = new ConfluenceClient({
   host: 'https://your-domain.atlassian.net',
