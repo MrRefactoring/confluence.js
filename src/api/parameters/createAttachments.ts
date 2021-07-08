@@ -3,4 +3,6 @@ export interface CreateAttachments {
   id: string;
   /** The status of the content that the attachment is being added to. */
   status?: string;
+
+  [key: string]: any;
 }

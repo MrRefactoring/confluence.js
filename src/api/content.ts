@@ -91,8 +91,8 @@ export class Content {
         status: parameters?.status,
       },
       data: {
-        status: undefined,
         ...parameters,
+        status: undefined,
       },
     };
 

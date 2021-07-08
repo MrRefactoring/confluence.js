@@ -10,20 +10,13 @@ const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
 const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
 
 export class BaseClient implements Client {
-  private instance: AxiosInstance;
+  #instance: AxiosInstance | undefined;
   private telemetryClient: TelemetryClient;
+
+  protected urlSuffix = '/wiki/rest/';
 
   constructor(protected readonly config: Config) {
     this.telemetryClient = new TelemetryClient(config.telemetry);
-    this.instance = axios.create({
-      paramsSerializer: this.paramSerializer.bind(this),
-      ...config.baseRequestConfig,
-      baseURL: `${config.host}/wiki/rest/`,
-      headers: this.removeUndefinedProperties({
-        [ATLASSIAN_TOKEN_CHECK_FLAG]: config.noCheckAtlassianToken ? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE : undefined,
-        ...config.baseRequestConfig?.headers,
-      }),
-    });
   }
 
   protected paramSerializer(parameters: Record<string, any>): string {
@@ -71,6 +64,24 @@ export class BaseClient implements Client {
       .reduce((accumulator, [key, value]) => ({ ...accumulator, [key]: value }), {});
   }
 
+  private get instance() {
+    if (this.#instance) {
+      return this.#instance;
+    }
+
+    this.#instance = axios.create({
+      paramsSerializer: this.paramSerializer.bind(this),
+      ...this.config.baseRequestConfig,
+      baseURL: `${this.config.host}${this.urlSuffix}`,
+      headers: this.removeUndefinedProperties({
+        [ATLASSIAN_TOKEN_CHECK_FLAG]: this.config.noCheckAtlassianToken ? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE : undefined,
+        ...this.config.baseRequestConfig?.headers,
+      }),
+    });
+
+    return this.#instance;
+  }
+
   async sendRequest<T>(requestConfig: RequestConfig, callback: never, telemetryData?: Partial<Telemetry>): Promise<T>;
   async sendRequest<T>(
     requestConfig: RequestConfig,
@@ -90,8 +101,8 @@ export class BaseClient implements Client {
       bodyExists: !!requestConfig.data,
       callbackUsed: !!callback,
       headersExists: !!requestConfig.headers,
-      libVersion: '1.0.1',
-      libVersionHash: '152f5dc0f7ac734f8e8ee17d4a482462',
+      libVersion: '1.1.0',
+      libVersionHash: '72812e30873455dcee2ce2d1ee26e4ab',
       methodName: telemetryData?.methodName || 'sendRequest',
       onErrorMiddlewareUsed: !!this.config.middlewares?.onError,
       onResponseMiddlewareUsed: !!this.config.middlewares?.onResponse,
