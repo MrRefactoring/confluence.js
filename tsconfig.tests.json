@@ -4,7 +4,8 @@
     "module": "CommonJS",
     "outDir": "out",
     "strict": true,
-    "declaration": true
+    "declaration": true,
+    "importHelpers": true
   },
   "exclude": [
     "node_modules",

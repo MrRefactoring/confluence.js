@@ -40,6 +40,7 @@ export class ContentAttachments {
         limit: parameters.limit,
         filename: parameters.filename,
         mediaType: parameters.mediaType,
+        expand: parameters.expand,
       },
     };
 

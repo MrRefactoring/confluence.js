@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.1.1
+
+- `expand` property added to `ContentAttachments.getAttachments`.
+
 ### 1.1.0
 
 - Server API added
