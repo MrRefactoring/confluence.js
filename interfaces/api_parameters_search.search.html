@@ -58,7 +58,7 @@
 					<a href="../modules/api_parameters_search.html">api/parameters/search</a>
 				</li>
 				<li>
-					<a href="api_parameters_search.search.html">Search</a>
+					<a href="api_parameters_search.Search.html">Search</a>
 				</li>
 			</ul>
 			<h1>Interface Search</h1>
@@ -83,12 +83,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.search.html#cql" class="tsd-kind-icon">cql</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.search.html#cqlcontext" class="tsd-kind-icon">cqlcontext</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.search.html#cursor" class="tsd-kind-icon">cursor</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.search.html#includearchivedspaces" class="tsd-kind-icon">include<wbr>Archived<wbr>Spaces</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.search.html#limit" class="tsd-kind-icon">limit</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.search.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.Search.html#cql" class="tsd-kind-icon">cql</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.Search.html#cqlcontext" class="tsd-kind-icon">cqlcontext</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.Search.html#cursor" class="tsd-kind-icon">cursor</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.Search.html#includeArchivedSpaces" class="tsd-kind-icon">include<wbr>Archived<wbr>Spaces</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.Search.html#limit" class="tsd-kind-icon">limit</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_search.Search.html#start" class="tsd-kind-icon">start</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,22 +102,22 @@
 					<div class="tsd-signature tsd-kind-icon">cql<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/search.ts#L18">api/parameters/search.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/search.ts#L19">api/parameters/search.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The CQL query to be used for the search. See
-								<a href="https://developer.atlassian.com/cloud/confluence/advanced-searching-using-cql/">Advanced Searching using CQL</a>
-							for instructions on how to build a CQL query.</p>
+							<p>The CQL query to be used for the search. See <a href="https://developer.atlassian.com/cloud/confluence/advanced-searching-using-cql/">Advanced Searching using
+								CQL</a> for instructions on how to
+							build a CQL query.</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>example</dt>
-							<dd><p>Example queries:</p>
-								<p>cql=type=user // will return all users
+							<dd><p>  Example queries:</p>
+								<p>  cql=type=user // will return all users
 								cql=user=&quot;1234&quot; // will return user with accountId “1234”</p>
-								<p>// You can also use IN, NOT IN, != operators</p>
-								<p>cql=user IN (&quot;12&quot;, &quot;34&quot;) // will return users with accountids “12” and “34”
+								<p>  // You can also use IN, NOT IN, != operators</p>
+								<p>  cql=user IN (&quot;12&quot;, &quot;34&quot;) // will return users with accountids “12” and “34”
 									cql=user.fullname~jo // will return users with nickname/full name starting with “jo”
 								cql=user.accountid=&quot;123&quot; // will return user with accountId “123”</p>
 							</dd>
@@ -130,22 +130,21 @@
 					<div class="tsd-signature tsd-kind-icon">cqlcontext<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/search.ts#L36">api/parameters/search.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/search.ts#L39">api/parameters/search.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The space, content, and content status to execute the search against.</p>
-							<ul>
-								<li>spaceKey Key of the space to search against. Optional.</li>
-								<li>contentId ID of the content to search against. Optional. Must be in the space specified by spaceKey.</li>
-								<li>contentStatuses Content statuses to search against. Optional.
-								Specify these values in an object.</li>
-							</ul>
 						</div>
+						<ul>
+							<li>SpaceKey Key of the space to search against. Optional.</li>
+							<li>ContentId ID of the content to search against. Optional. Must be in the space specified by spaceKey.</li>
+							<li>ContentStatuses Content statuses to search against. Optional. Specify these values in an object.</li>
+						</ul>
 						<dl class="tsd-comment-tags">
 							<dt>example</dt>
-							<dd><p>&#39;cqlcontext={%22spaceKey%22:%22TEST%22, %22contentId%22:%22123%22}&#39;</p>
+							<dd><p>  &quot;cqlcontext={%22spaceKey%22:%22TEST%22, %22contentId%22:%22123%22}&quot;;</p>
 							</dd>
 						</dl>
 					</div>
@@ -156,7 +155,7 @@
 					<div class="tsd-signature tsd-kind-icon">cursor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/search.ts#L40">api/parameters/search.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/search.ts#L41">api/parameters/search.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -166,12 +165,12 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="includearchivedspaces" class="tsd-anchor"></a>
+					<a name="includeArchivedSpaces" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> include<wbr>Archived<wbr>Spaces</h3>
 					<div class="tsd-signature tsd-kind-icon">include<wbr>Archived<wbr>Spaces<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/search.ts#L45">api/parameters/search.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/search.ts#L47">api/parameters/search.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -191,7 +190,7 @@
 					<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/search.ts#L26">api/parameters/search.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/search.ts#L28">api/parameters/search.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -214,7 +213,7 @@
 					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/search.ts#L20">api/parameters/search.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/search.ts#L21">api/parameters/search.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -229,7 +228,7 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/api_parameters_search.html">api/parameters/search</a>
@@ -241,25 +240,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="api_parameters_search.search.html" class="tsd-kind-icon">Search</a>
+						<a href="api_parameters_search.Search.html" class="tsd-kind-icon">Search</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_search.search.html#cql" class="tsd-kind-icon">cql</a>
+								<a href="api_parameters_search.Search.html#cql" class="tsd-kind-icon">cql</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_search.search.html#cqlcontext" class="tsd-kind-icon">cqlcontext</a>
+								<a href="api_parameters_search.Search.html#cqlcontext" class="tsd-kind-icon">cqlcontext</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_search.search.html#cursor" class="tsd-kind-icon">cursor</a>
+								<a href="api_parameters_search.Search.html#cursor" class="tsd-kind-icon">cursor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_search.search.html#includearchivedspaces" class="tsd-kind-icon">include<wbr>Archived<wbr>Spaces</a>
+								<a href="api_parameters_search.Search.html#includeArchivedSpaces" class="tsd-kind-icon">include<wbr>Archived<wbr>Spaces</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_search.search.html#limit" class="tsd-kind-icon">limit</a>
+								<a href="api_parameters_search.Search.html#limit" class="tsd-kind-icon">limit</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_search.search.html#start" class="tsd-kind-icon">start</a>
+								<a href="api_parameters_search.Search.html#start" class="tsd-kind-icon">start</a>
 							</li>
 						</ul>
 					</li>
@@ -282,6 +281,7 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">

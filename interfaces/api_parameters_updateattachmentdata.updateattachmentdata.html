@@ -55,10 +55,10 @@
 					<a href="../modules.html">Confluence.js</a>
 				</li>
 				<li>
-					<a href="../modules/api_parameters_updateattachmentdata.html">api/parameters/updateAttachmentData</a>
+					<a href="../modules/api_parameters_updateAttachmentData.html">api/parameters/updateAttachmentData</a>
 				</li>
 				<li>
-					<a href="api_parameters_updateattachmentdata.updateattachmentdata.html">UpdateAttachmentData</a>
+					<a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html">UpdateAttachmentData</a>
 				</li>
 			</ul>
 			<h1>Interface UpdateAttachmentData</h1>
@@ -72,7 +72,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">UpdateAttachmentData</span>
+						<a href="api_models_attachmentUpdate.AttachmentUpdate.html" class="tsd-signature-type" data-tsd-kind="Interface">AttachmentUpdate</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">UpdateAttachmentData</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -83,8 +88,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_updateattachmentdata.updateattachmentdata.html#attachmentid" class="tsd-kind-icon">attachment<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_updateattachmentdata.updateattachmentdata.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#attachmentId" class="tsd-kind-icon">attachment<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#container" class="tsd-kind-icon">container</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#id-1" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#metadata" class="tsd-kind-icon">metadata</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#title" class="tsd-kind-icon">title</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#type-1" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#version" class="tsd-kind-icon">version</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,12 +103,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="attachmentid" class="tsd-anchor"></a>
+					<a name="attachmentId" class="tsd-anchor"></a>
 					<h3>attachment<wbr>Id</h3>
 					<div class="tsd-signature tsd-kind-icon">attachment<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/updateAttachmentData.ts#L5">api/parameters/updateAttachmentData.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/updateAttachmentData.ts#L7">api/parameters/updateAttachmentData.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -107,13 +117,50 @@
 						</div>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="container" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> container</h3>
+					<div class="tsd-signature tsd-kind-icon">container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="api_models_attachmentUpdate.AttachmentUpdate.html">AttachmentUpdate</a>.<a href="api_models_attachmentUpdate.AttachmentUpdate.html#container">container</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/models/attachmentUpdate.ts#L21">api/models/attachmentUpdate.ts:21</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The new content to attach the attachment to.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The <code>id</code> of the parent content.</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The content type. You can only attach attachments to content of type: <code>page</code>, <code>blogpost</code>.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
+					<a name="id-1" class="tsd-anchor"></a>
 					<h3>id</h3>
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/updateAttachmentData.ts#L3">api/parameters/updateAttachmentData.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/updateAttachmentData.ts#L5">api/parameters/updateAttachmentData.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -122,16 +169,110 @@
 						</div>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="metadata" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> metadata</h3>
+					<div class="tsd-signature tsd-kind-icon">metadata<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>comment<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>mediaType<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="api_models_attachmentUpdate.AttachmentUpdate.html">AttachmentUpdate</a>.<a href="api_models_attachmentUpdate.AttachmentUpdate.html#metadata">metadata</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/models/attachmentUpdate.ts#L14">api/models/attachmentUpdate.ts:14</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> comment<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The comment for this update.</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> media<wbr>Type<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The media type of the attachment, e.g. &#39;img/jpg&#39;.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="title" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> title</h3>
+					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="api_models_attachmentUpdate.AttachmentUpdate.html">AttachmentUpdate</a>.<a href="api_models_attachmentUpdate.AttachmentUpdate.html#title">title</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/models/attachmentUpdate.ts#L13">api/models/attachmentUpdate.ts:13</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The updated name of the attachment.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="type-1" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="api_models_attachmentUpdate.AttachmentUpdate.html">AttachmentUpdate</a>.<a href="api_models_attachmentUpdate.AttachmentUpdate.html#type-1">type</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/models/attachmentUpdate.ts#L11">api/models/attachmentUpdate.ts:11</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Set this to <code>attachment</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="version" class="tsd-anchor"></a>
+					<h3>version</h3>
+					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>number<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="api_models_attachmentUpdate.AttachmentUpdate.html">AttachmentUpdate</a>.<a href="api_models_attachmentUpdate.AttachmentUpdate.html#version">version</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/models/attachmentUpdate.ts#L6">api/models/attachmentUpdate.ts:6</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The attachment version. Set this to the current version number of the attachment. Note, the version number only
+							needs to be incremented when updating the actual attachment, not its properties.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>number<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The version number.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/api_parameters_updateattachmentdata.html">api/parameters/update<wbr>Attachment<wbr>Data</a>
+						<a href="../modules/api_parameters_updateAttachmentData.html">api/parameters/update<wbr>Attachment<wbr>Data</a>
 					</li>
 				</ul>
 			</nav>
@@ -140,13 +281,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="api_parameters_updateattachmentdata.updateattachmentdata.html" class="tsd-kind-icon">Update<wbr>Attachment<wbr>Data</a>
+						<a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html" class="tsd-kind-icon">Update<wbr>Attachment<wbr>Data</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_updateattachmentdata.updateattachmentdata.html#attachmentid" class="tsd-kind-icon">attachment<wbr>Id</a>
+								<a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#attachmentId" class="tsd-kind-icon">attachment<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#container" class="tsd-kind-icon">container</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_updateattachmentdata.updateattachmentdata.html#id" class="tsd-kind-icon">id</a>
+								<a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#id-1" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#metadata" class="tsd-kind-icon">metadata</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#title" class="tsd-kind-icon">title</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#type-1" class="tsd-kind-icon">type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="api_parameters_updateAttachmentData.UpdateAttachmentData.html#version" class="tsd-kind-icon">version</a>
 							</li>
 						</ul>
 					</li>
@@ -169,6 +325,7 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">

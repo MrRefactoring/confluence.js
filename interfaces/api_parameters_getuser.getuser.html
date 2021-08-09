@@ -55,10 +55,10 @@
 					<a href="../modules.html">Confluence.js</a>
 				</li>
 				<li>
-					<a href="../modules/api_parameters_getuser.html">api/parameters/getUser</a>
+					<a href="../modules/api_parameters_getUser.html">api/parameters/getUser</a>
 				</li>
 				<li>
-					<a href="api_parameters_getuser.getuser.html">GetUser</a>
+					<a href="api_parameters_getUser.GetUser.html">GetUser</a>
 				</li>
 			</ul>
 			<h1>Interface GetUser</h1>
@@ -83,10 +83,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getuser.getuser.html#accountid" class="tsd-kind-icon">account<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getuser.getuser.html#expand" class="tsd-kind-icon">expand</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getuser.getuser.html#key" class="tsd-kind-icon">key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getuser.getuser.html#username" class="tsd-kind-icon">username</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getUser.GetUser.html#accountId" class="tsd-kind-icon">account<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getUser.GetUser.html#expand" class="tsd-kind-icon">expand</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getUser.GetUser.html#key" class="tsd-kind-icon">key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getUser.GetUser.html#username" class="tsd-kind-icon">username</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,18 +95,18 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="accountid" class="tsd-anchor"></a>
+					<a name="accountId" class="tsd-anchor"></a>
 					<h3>account<wbr>Id</h3>
 					<div class="tsd-signature tsd-kind-icon">account<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getUser.ts#L12">api/parameters/getUser.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getUser.ts#L16">api/parameters/getUser.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The account ID of the user, which uniquely identifies the user across all Atlassian products.
-							For example, <code>384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192</code>.</p>
+							<p>The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,
+							<code>384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192</code>.</p>
 						</div>
 					</div>
 				</section>
@@ -116,25 +116,22 @@
 					<div class="tsd-signature tsd-kind-icon">expand<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getUser.ts#L27">api/parameters/getUser.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getUser.ts#L30">api/parameters/getUser.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A multi-value parameter indicating which properties of the user to
-							expand.</p>
+							<p>A multi-value parameter indicating which properties of the user to expand.</p>
 						</div>
 						<ul>
 							<li><code>operations</code> returns the operations that the user is allowed to do.</li>
-							<li><code>details.personal</code> returns the &#39;Personal&#39; details in the user&#39;s profile, like the &#39;Email&#39; and &#39;Phone&#39;.
-								Note that these fields have been deprecated due to privacy changes. See the
-								<a href="https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">migration guide</a>
-							for details.</li>
-							<li><code>details.business</code> returns the &#39;Company&#39; details in the user&#39;s profile, like the &#39;Position&#39; and &#39;Department&#39;.
-								Note that these fields have been deprecated due to privacy changes. See the
-								<a href="https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">migration guide</a>
-							for details.</li>
-							<li>personalSpace returns the user&#39;s personal space, if it exists.</li>
+							<li><code>details.personal</code> returns the &#39;Personal&#39; details in the user&#39;s profile, like the &#39;Email&#39; and &#39;Phone&#39;. Note that
+								these fields have been deprecated due to privacy changes. See the <a href="https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">migration
+							guide</a> for details.</li>
+							<li><code>details.business</code> returns the &#39;Company&#39; details in the user&#39;s profile, like the &#39;Position&#39; and &#39;Department&#39;. Note
+								that these fields have been deprecated due to privacy changes. See the <a href="https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">migration
+							guide</a> for details.</li>
+							<li>PersonalSpace returns the user&#39;s personal space, if it exists.</li>
 							<li><code>isExternalCollaborator</code> returns whether the user is an external collaborator user</li>
 						</ul>
 					</div>
@@ -145,14 +142,13 @@
 					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getUser.ts#L5">api/parameters/getUser.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getUser.ts#L6">api/parameters/getUser.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>This parameter is no longer available and will be removed from the documentation soon.
-								Use <code>accountId</code> instead.
-							See the <a href="/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">deprecation notice</a> for details.</p>
+							<p>This parameter is no longer available and will be removed from the documentation soon. Use <code>accountId</code> instead. See
+							the <a href="/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">deprecation notice</a> for details.</p>
 						</div>
 					</div>
 				</section>
@@ -162,14 +158,13 @@
 					<div class="tsd-signature tsd-kind-icon">username<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getUser.ts#L9">api/parameters/getUser.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getUser.ts#L11">api/parameters/getUser.ts:11</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>This parameter is no longer available and will be removed from the documentation soon.
-								Use <code>accountId</code> instead.
-							See the <a href="/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">deprecation notice</a> for details.</p>
+							<p>This parameter is no longer available and will be removed from the documentation soon. Use <code>accountId</code> instead. See
+							the <a href="/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">deprecation notice</a> for details.</p>
 						</div>
 					</div>
 				</section>
@@ -179,10 +174,10 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/api_parameters_getuser.html">api/parameters/get<wbr>User</a>
+						<a href="../modules/api_parameters_getUser.html">api/parameters/get<wbr>User</a>
 					</li>
 				</ul>
 			</nav>
@@ -191,19 +186,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="api_parameters_getuser.getuser.html" class="tsd-kind-icon">Get<wbr>User</a>
+						<a href="api_parameters_getUser.GetUser.html" class="tsd-kind-icon">Get<wbr>User</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getuser.getuser.html#accountid" class="tsd-kind-icon">account<wbr>Id</a>
+								<a href="api_parameters_getUser.GetUser.html#accountId" class="tsd-kind-icon">account<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getuser.getuser.html#expand" class="tsd-kind-icon">expand</a>
+								<a href="api_parameters_getUser.GetUser.html#expand" class="tsd-kind-icon">expand</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getuser.getuser.html#key" class="tsd-kind-icon">key</a>
+								<a href="api_parameters_getUser.GetUser.html#key" class="tsd-kind-icon">key</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getuser.getuser.html#username" class="tsd-kind-icon">username</a>
+								<a href="api_parameters_getUser.GetUser.html#username" class="tsd-kind-icon">username</a>
 							</li>
 						</ul>
 					</li>
@@ -226,6 +221,7 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">

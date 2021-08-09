@@ -55,10 +55,10 @@
 					<a href="../modules.html">Confluence.js</a>
 				</li>
 				<li>
-					<a href="../modules/api_models_contentrestrictionupdate.html">api/models/contentRestrictionUpdate</a>
+					<a href="../modules/api_models_contentRestrictionUpdate.html">api/models/contentRestrictionUpdate</a>
 				</li>
 				<li>
-					<a href="api_models_contentrestrictionupdate.contentrestrictionupdate.html">ContentRestrictionUpdate</a>
+					<a href="api_models_contentRestrictionUpdate.ContentRestrictionUpdate.html">ContentRestrictionUpdate</a>
 				</li>
 			</ul>
 			<h1>Interface ContentRestrictionUpdate</h1>
@@ -83,8 +83,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_models_contentrestrictionupdate.contentrestrictionupdate.html#operation" class="tsd-kind-icon">operation</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_models_contentrestrictionupdate.contentrestrictionupdate.html#restrictions" class="tsd-kind-icon">restrictions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_models_contentRestrictionUpdate.ContentRestrictionUpdate.html#operation" class="tsd-kind-icon">operation</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_models_contentRestrictionUpdate.ContentRestrictionUpdate.html#restrictions" class="tsd-kind-icon">restrictions</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,7 +98,7 @@
 					<div class="tsd-signature tsd-kind-icon">operation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/models/contentRestrictionUpdate.ts#L3">api/models/contentRestrictionUpdate.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/models/contentRestrictionUpdate.ts#L3">api/models/contentRestrictionUpdate.ts:3</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -113,13 +113,13 @@
 					<div class="tsd-signature tsd-kind-icon">restrictions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>group<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>user<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>userKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>username<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/models/contentRestrictionUpdate.ts#L6">api/models/contentRestrictionUpdate.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/models/contentRestrictionUpdate.ts#L8">api/models/contentRestrictionUpdate.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The users/groups that the restrictions will be applied to. At least one of
-							<code>user</code> or <code>group</code> must be specified for this object.</p>
+							<p>The users/groups that the restrictions will be applied to. At least one of <code>user</code> or <code>group</code> must be specified for
+							this object.</p>
 						</div>
 					</div>
 					<div class="tsd-type-declaration">
@@ -129,8 +129,8 @@
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> group<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
-										<p>The groups that the restrictions will be applied to. This array must
-										have at least one item, otherwise it should be omitted.</p>
+										<p>The groups that the restrictions will be applied to. This array must have at least one item, otherwise it should
+										be omitted.</p>
 									</div>
 								</div>
 							</li>
@@ -138,8 +138,7 @@
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> user<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>accountId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>userKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>username<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
-										<p>The users that the restrictions will be applied to. This array must
-										have at least one item, otherwise it should be omitted.</p>
+										<p>The users that the restrictions will be applied to. This array must have at least one item, otherwise it should be omitted.</p>
 									</div>
 								</div>
 							</li>
@@ -152,10 +151,10 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/api_models_contentrestrictionupdate.html">api/models/content<wbr>Restriction<wbr>Update</a>
+						<a href="../modules/api_models_contentRestrictionUpdate.html">api/models/content<wbr>Restriction<wbr>Update</a>
 					</li>
 				</ul>
 			</nav>
@@ -164,13 +163,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="api_models_contentrestrictionupdate.contentrestrictionupdate.html" class="tsd-kind-icon">Content<wbr>Restriction<wbr>Update</a>
+						<a href="api_models_contentRestrictionUpdate.ContentRestrictionUpdate.html" class="tsd-kind-icon">Content<wbr>Restriction<wbr>Update</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_models_contentrestrictionupdate.contentrestrictionupdate.html#operation" class="tsd-kind-icon">operation</a>
+								<a href="api_models_contentRestrictionUpdate.ContentRestrictionUpdate.html#operation" class="tsd-kind-icon">operation</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_models_contentrestrictionupdate.contentrestrictionupdate.html#restrictions" class="tsd-kind-icon">restrictions</a>
+								<a href="api_models_contentRestrictionUpdate.ContentRestrictionUpdate.html#restrictions" class="tsd-kind-icon">restrictions</a>
 							</li>
 						</ul>
 					</li>
@@ -193,6 +192,7 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">

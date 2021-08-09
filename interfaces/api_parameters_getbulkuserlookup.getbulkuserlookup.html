@@ -55,10 +55,10 @@
 					<a href="../modules.html">Confluence.js</a>
 				</li>
 				<li>
-					<a href="../modules/api_parameters_getbulkuserlookup.html">api/parameters/getBulkUserLookup</a>
+					<a href="../modules/api_parameters_getBulkUserLookup.html">api/parameters/getBulkUserLookup</a>
 				</li>
 				<li>
-					<a href="api_parameters_getbulkuserlookup.getbulkuserlookup.html">GetBulkUserLookup</a>
+					<a href="api_parameters_getBulkUserLookup.GetBulkUserLookup.html">GetBulkUserLookup</a>
 				</li>
 			</ul>
 			<h1>Interface GetBulkUserLookup</h1>
@@ -83,9 +83,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getbulkuserlookup.getbulkuserlookup.html#accountid" class="tsd-kind-icon">account<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getbulkuserlookup.getbulkuserlookup.html#expand" class="tsd-kind-icon">expand</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getbulkuserlookup.getbulkuserlookup.html#limit" class="tsd-kind-icon">limit</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getBulkUserLookup.GetBulkUserLookup.html#accountId" class="tsd-kind-icon">account<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getBulkUserLookup.GetBulkUserLookup.html#expand" class="tsd-kind-icon">expand</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getBulkUserLookup.GetBulkUserLookup.html#limit" class="tsd-kind-icon">limit</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,12 +94,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="accountid" class="tsd-anchor"></a>
+					<a name="accountId" class="tsd-anchor"></a>
 					<h3>account<wbr>Id</h3>
 					<div class="tsd-signature tsd-kind-icon">account<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getBulkUserLookup.ts#L3">api/parameters/getBulkUserLookup.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getBulkUserLookup.ts#L3">api/parameters/getBulkUserLookup.ts:3</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -114,25 +114,22 @@
 					<div class="tsd-signature tsd-kind-icon">expand<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getBulkUserLookup.ts#L17">api/parameters/getBulkUserLookup.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getBulkUserLookup.ts#L16">api/parameters/getBulkUserLookup.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A multi-value parameter indicating which properties of the user to
-							expand.</p>
+							<p>A multi-value parameter indicating which properties of the user to expand.</p>
 						</div>
 						<ul>
 							<li><code>operations</code> returns the operations that the user is allowed to do.</li>
-							<li><code>details.personal</code> returns the &#39;Personal&#39; details in the user&#39;s profile, like the &#39;Email&#39; and &#39;Phone&#39;.
-								Note that these fields have been deprecated due to privacy changes. See the
-								<a href="https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">migration guide</a>
-							for details.</li>
-							<li><code>details.business</code> returns the &#39;Company&#39; details in the user&#39;s profile, like the &#39;Position&#39; and &#39;Department&#39;.
-								Note that these fields have been deprecated due to privacy changes. See the
-								<a href="https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">migration guide</a>
-							for details.</li>
-							<li>personalSpace returns the user&#39;s personal space, if it exists.</li>
+							<li><code>details.personal</code> returns the &#39;Personal&#39; details in the user&#39;s profile, like the &#39;Email&#39; and &#39;Phone&#39;. Note that
+								these fields have been deprecated due to privacy changes. See the <a href="https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">migration
+							guide</a> for details.</li>
+							<li><code>details.business</code> returns the &#39;Company&#39; details in the user&#39;s profile, like the &#39;Position&#39; and &#39;Department&#39;. Note
+								that these fields have been deprecated due to privacy changes. See the <a href="https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">migration
+							guide</a> for details.</li>
+							<li>PersonalSpace returns the user&#39;s personal space, if it exists.</li>
 						</ul>
 					</div>
 				</section>
@@ -142,14 +139,13 @@
 					<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getBulkUserLookup.ts#L21">api/parameters/getBulkUserLookup.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getBulkUserLookup.ts#L21">api/parameters/getBulkUserLookup.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The maximum number of results returned.
-								Currently API returns 200 results max.
-							If more that 200 ids are passed first 200 will be returned.</p>
+							<p>The maximum number of results returned. Currently API returns 200 results max. If more that 200 ids are passed
+							first 200 will be returned.</p>
 						</div>
 					</div>
 				</section>
@@ -159,10 +155,10 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/api_parameters_getbulkuserlookup.html">api/parameters/get<wbr>Bulk<wbr>User<wbr>Lookup</a>
+						<a href="../modules/api_parameters_getBulkUserLookup.html">api/parameters/get<wbr>Bulk<wbr>User<wbr>Lookup</a>
 					</li>
 				</ul>
 			</nav>
@@ -171,16 +167,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="api_parameters_getbulkuserlookup.getbulkuserlookup.html" class="tsd-kind-icon">Get<wbr>Bulk<wbr>User<wbr>Lookup</a>
+						<a href="api_parameters_getBulkUserLookup.GetBulkUserLookup.html" class="tsd-kind-icon">Get<wbr>Bulk<wbr>User<wbr>Lookup</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getbulkuserlookup.getbulkuserlookup.html#accountid" class="tsd-kind-icon">account<wbr>Id</a>
+								<a href="api_parameters_getBulkUserLookup.GetBulkUserLookup.html#accountId" class="tsd-kind-icon">account<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getbulkuserlookup.getbulkuserlookup.html#expand" class="tsd-kind-icon">expand</a>
+								<a href="api_parameters_getBulkUserLookup.GetBulkUserLookup.html#expand" class="tsd-kind-icon">expand</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getbulkuserlookup.getbulkuserlookup.html#limit" class="tsd-kind-icon">limit</a>
+								<a href="api_parameters_getBulkUserLookup.GetBulkUserLookup.html#limit" class="tsd-kind-icon">limit</a>
 							</li>
 						</ul>
 					</li>
@@ -203,6 +199,7 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">

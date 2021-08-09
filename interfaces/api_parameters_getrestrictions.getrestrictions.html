@@ -55,10 +55,10 @@
 					<a href="../modules.html">Confluence.js</a>
 				</li>
 				<li>
-					<a href="../modules/api_parameters_getrestrictions.html">api/parameters/getRestrictions</a>
+					<a href="../modules/api_parameters_getRestrictions.html">api/parameters/getRestrictions</a>
 				</li>
 				<li>
-					<a href="api_parameters_getrestrictions.getrestrictions.html">GetRestrictions</a>
+					<a href="api_parameters_getRestrictions.GetRestrictions.html">GetRestrictions</a>
 				</li>
 			</ul>
 			<h1>Interface GetRestrictions</h1>
@@ -83,10 +83,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getrestrictions.getrestrictions.html#expand" class="tsd-kind-icon">expand</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getrestrictions.getrestrictions.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getrestrictions.getrestrictions.html#limit" class="tsd-kind-icon">limit</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getrestrictions.getrestrictions.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getRestrictions.GetRestrictions.html#expand" class="tsd-kind-icon">expand</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getRestrictions.GetRestrictions.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getRestrictions.GetRestrictions.html#limit" class="tsd-kind-icon">limit</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getRestrictions.GetRestrictions.html#start" class="tsd-kind-icon">start</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,22 +100,18 @@
 					<div class="tsd-signature tsd-kind-icon">expand<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getRestrictions.ts#L14">api/parameters/getRestrictions.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getRestrictions.ts#L12">api/parameters/getRestrictions.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A multi-value parameter indicating which properties of the content
-								restrictions to expand. By default, the following objects are expanded:
-							<code>restrictions.user</code>, <code>restrictions.group</code>.</p>
+							<p>A multi-value parameter indicating which properties of the content restrictions to expand. By default, the
+							following objects are expanded: <code>restrictions.user</code>, <code>restrictions.group</code>.</p>
 						</div>
 						<ul>
-							<li><code>restrictions.user</code> returns the piece of content that the restrictions are
-							applied to.</li>
-							<li><code>restrictions.group</code> returns the piece of content that the restrictions are
-							applied to.</li>
-							<li><code>content</code> returns the piece of content that the restrictions are
-							applied to.</li>
+							<li><code>restrictions.user</code> returns the piece of content that the restrictions are applied to.</li>
+							<li><code>restrictions.group</code> returns the piece of content that the restrictions are applied to.</li>
+							<li><code>content</code> returns the piece of content that the restrictions are applied to.</li>
 						</ul>
 					</div>
 				</section>
@@ -125,7 +121,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getRestrictions.ts#L3">api/parameters/getRestrictions.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getRestrictions.ts#L3">api/parameters/getRestrictions.ts:3</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -140,14 +136,13 @@
 					<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getRestrictions.ts#L20">api/parameters/getRestrictions.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getRestrictions.ts#L19">api/parameters/getRestrictions.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The maximum number of users and the maximum number of groups, in the
-								returned restrictions, to return per page. Note, this may be restricted
-							by fixed system limits.</p>
+							<p>The maximum number of users and the maximum number of groups, in the returned restrictions, to return per page.
+							Note, this may be restricted by fixed system limits.</p>
 						</div>
 					</div>
 				</section>
@@ -157,7 +152,7 @@
 					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getRestrictions.ts#L16">api/parameters/getRestrictions.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getRestrictions.ts#L14">api/parameters/getRestrictions.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -172,10 +167,10 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/api_parameters_getrestrictions.html">api/parameters/get<wbr>Restrictions</a>
+						<a href="../modules/api_parameters_getRestrictions.html">api/parameters/get<wbr>Restrictions</a>
 					</li>
 				</ul>
 			</nav>
@@ -184,19 +179,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="api_parameters_getrestrictions.getrestrictions.html" class="tsd-kind-icon">Get<wbr>Restrictions</a>
+						<a href="api_parameters_getRestrictions.GetRestrictions.html" class="tsd-kind-icon">Get<wbr>Restrictions</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getrestrictions.getrestrictions.html#expand" class="tsd-kind-icon">expand</a>
+								<a href="api_parameters_getRestrictions.GetRestrictions.html#expand" class="tsd-kind-icon">expand</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getrestrictions.getrestrictions.html#id" class="tsd-kind-icon">id</a>
+								<a href="api_parameters_getRestrictions.GetRestrictions.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getrestrictions.getrestrictions.html#limit" class="tsd-kind-icon">limit</a>
+								<a href="api_parameters_getRestrictions.GetRestrictions.html#limit" class="tsd-kind-icon">limit</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getrestrictions.getrestrictions.html#start" class="tsd-kind-icon">start</a>
+								<a href="api_parameters_getRestrictions.GetRestrictions.html#start" class="tsd-kind-icon">start</a>
 							</li>
 						</ul>
 					</li>
@@ -219,6 +214,7 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">

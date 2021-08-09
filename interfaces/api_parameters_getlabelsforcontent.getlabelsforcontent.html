@@ -55,10 +55,10 @@
 					<a href="../modules.html">Confluence.js</a>
 				</li>
 				<li>
-					<a href="../modules/api_parameters_getlabelsforcontent.html">api/parameters/getLabelsForContent</a>
+					<a href="../modules/api_parameters_getLabelsForContent.html">api/parameters/getLabelsForContent</a>
 				</li>
 				<li>
-					<a href="api_parameters_getlabelsforcontent.getlabelsforcontent.html">GetLabelsForContent</a>
+					<a href="api_parameters_getLabelsForContent.GetLabelsForContent.html">GetLabelsForContent</a>
 				</li>
 			</ul>
 			<h1>Interface GetLabelsForContent</h1>
@@ -83,10 +83,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getlabelsforcontent.getlabelsforcontent.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getlabelsforcontent.getlabelsforcontent.html#limit" class="tsd-kind-icon">limit</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getlabelsforcontent.getlabelsforcontent.html#prefix" class="tsd-kind-icon">prefix</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getlabelsforcontent.getlabelsforcontent.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getLabelsForContent.GetLabelsForContent.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getLabelsForContent.GetLabelsForContent.html#limit" class="tsd-kind-icon">limit</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getLabelsForContent.GetLabelsForContent.html#prefix" class="tsd-kind-icon">prefix</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_getLabelsForContent.GetLabelsForContent.html#start" class="tsd-kind-icon">start</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,7 +100,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getLabelsForContent.ts#L3">api/parameters/getLabelsForContent.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getLabelsForContent.ts#L3">api/parameters/getLabelsForContent.ts:3</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -115,13 +115,12 @@
 					<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getLabelsForContent.ts#L19">api/parameters/getLabelsForContent.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getLabelsForContent.ts#L17">api/parameters/getLabelsForContent.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The maximum number of labels to return per page. Note,
-							this may be restricted by fixed system limits.</p>
+							<p>The maximum number of labels to return per page. Note, this may be restricted by fixed system limits.</p>
 						</div>
 					</div>
 				</section>
@@ -131,22 +130,19 @@
 					<div class="tsd-signature tsd-kind-icon">prefix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getLabelsForContent.ts#L14">api/parameters/getLabelsForContent.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getLabelsForContent.ts#L13">api/parameters/getLabelsForContent.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Filters the results to labels with the specified prefix. If this parameter
-							is not specified, then labels with any prefix will be returned.</p>
+							<p>Filters the results to labels with the specified prefix. If this parameter is not specified, then labels with any
+							prefix will be returned.</p>
 						</div>
 						<ul>
-							<li><code>global</code> prefix is used by default when a user adds a label
-							via the UI.</li>
-							<li><code>my</code> prefix can be explicitly added by a user when adding a label
-								via the UI, e.g. &#39;my:example-label&#39;. Also, when a page is selected as
-							a favourite, the &#39;my:favourite&#39; label is automatically added.</li>
-							<li><code>team</code> can used when adding labels via <a href="#api-content-id-label-post">Add labels to content</a>
-							but is not used in the UI.</li>
+							<li><code>global</code> prefix is used by default when a user adds a label via the UI.</li>
+							<li><code>my</code> prefix can be explicitly added by a user when adding a label via the UI, e.g. &#39;my:example-label&#39;. Also, when a
+							page is selected as a favourite, the &#39;my:favourite&#39; label is automatically added.</li>
+							<li><code>team</code> can used when adding labels via <a href="#api-content-id-label-post">Add labels to content</a> but is not used in the UI.</li>
 						</ul>
 					</div>
 				</section>
@@ -156,7 +152,7 @@
 					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/getLabelsForContent.ts#L16">api/parameters/getLabelsForContent.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/getLabelsForContent.ts#L15">api/parameters/getLabelsForContent.ts:15</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -171,10 +167,10 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/api_parameters_getlabelsforcontent.html">api/parameters/get<wbr>Labels<wbr>For<wbr>Content</a>
+						<a href="../modules/api_parameters_getLabelsForContent.html">api/parameters/get<wbr>Labels<wbr>For<wbr>Content</a>
 					</li>
 				</ul>
 			</nav>
@@ -183,19 +179,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="api_parameters_getlabelsforcontent.getlabelsforcontent.html" class="tsd-kind-icon">Get<wbr>Labels<wbr>For<wbr>Content</a>
+						<a href="api_parameters_getLabelsForContent.GetLabelsForContent.html" class="tsd-kind-icon">Get<wbr>Labels<wbr>For<wbr>Content</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getlabelsforcontent.getlabelsforcontent.html#id" class="tsd-kind-icon">id</a>
+								<a href="api_parameters_getLabelsForContent.GetLabelsForContent.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getlabelsforcontent.getlabelsforcontent.html#limit" class="tsd-kind-icon">limit</a>
+								<a href="api_parameters_getLabelsForContent.GetLabelsForContent.html#limit" class="tsd-kind-icon">limit</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getlabelsforcontent.getlabelsforcontent.html#prefix" class="tsd-kind-icon">prefix</a>
+								<a href="api_parameters_getLabelsForContent.GetLabelsForContent.html#prefix" class="tsd-kind-icon">prefix</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_getlabelsforcontent.getlabelsforcontent.html#start" class="tsd-kind-icon">start</a>
+								<a href="api_parameters_getLabelsForContent.GetLabelsForContent.html#start" class="tsd-kind-icon">start</a>
 							</li>
 						</ul>
 					</li>
@@ -218,6 +214,7 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">

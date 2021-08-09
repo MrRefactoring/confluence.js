@@ -55,10 +55,10 @@
 					<a href="../modules.html">Confluence.js</a>
 				</li>
 				<li>
-					<a href="../modules/api_parameters_descendantsoftype.html">api/parameters/descendantsOfType</a>
+					<a href="../modules/api_parameters_descendantsOfType.html">api/parameters/descendantsOfType</a>
 				</li>
 				<li>
-					<a href="api_parameters_descendantsoftype.descendantsoftype.html">DescendantsOfType</a>
+					<a href="api_parameters_descendantsOfType.DescendantsOfType.html">DescendantsOfType</a>
 				</li>
 			</ul>
 			<h1>Interface DescendantsOfType</h1>
@@ -83,11 +83,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_descendantsoftype.descendantsoftype.html#expand" class="tsd-kind-icon">expand</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_descendantsoftype.descendantsoftype.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_descendantsoftype.descendantsoftype.html#limit" class="tsd-kind-icon">limit</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_descendantsoftype.descendantsoftype.html#start" class="tsd-kind-icon">start</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_descendantsoftype.descendantsoftype.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_descendantsOfType.DescendantsOfType.html#depth" class="tsd-kind-icon">depth</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_descendantsOfType.DescendantsOfType.html#expand" class="tsd-kind-icon">expand</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_descendantsOfType.DescendantsOfType.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_descendantsOfType.DescendantsOfType.html#limit" class="tsd-kind-icon">limit</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_descendantsOfType.DescendantsOfType.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_descendantsOfType.DescendantsOfType.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,12 +97,29 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="depth" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> depth</h3>
+					<div class="tsd-signature tsd-kind-icon">depth<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/descendantsOfType.ts#L13">api/parameters/descendantsOfType.ts:13</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Filter the results to descendants upto a desired level of the content. Note, the maximum value supported is 100.
+								root level of the content means immediate (level 1) descendants of the type requested. all represents returning all
+							descendants of the type requested.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="expand" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> expand</h3>
 					<div class="tsd-signature tsd-kind-icon">expand<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/descendantsOfType.ts#L9">api/parameters/descendantsOfType.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/descendantsOfType.ts#L7">api/parameters/descendantsOfType.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -116,7 +134,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/descendantsOfType.ts#L3">api/parameters/descendantsOfType.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/descendantsOfType.ts#L3">api/parameters/descendantsOfType.ts:3</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -131,13 +149,12 @@
 					<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/descendantsOfType.ts#L14">api/parameters/descendantsOfType.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/descendantsOfType.ts#L17">api/parameters/descendantsOfType.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The maximum number of content to return per page. Note,
-							this may be restricted by fixed system limits.</p>
+							<p>The maximum number of content to return per page. Note, this may be restricted by fixed system limits.</p>
 						</div>
 					</div>
 				</section>
@@ -147,7 +164,7 @@
 					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/descendantsOfType.ts#L11">api/parameters/descendantsOfType.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/descendantsOfType.ts#L15">api/parameters/descendantsOfType.ts:15</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -162,7 +179,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/descendantsOfType.ts#L5">api/parameters/descendantsOfType.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/descendantsOfType.ts#L5">api/parameters/descendantsOfType.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -177,10 +194,10 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/api_parameters_descendantsoftype.html">api/parameters/descendants<wbr>OfType</a>
+						<a href="../modules/api_parameters_descendantsOfType.html">api/parameters/descendants<wbr>OfType</a>
 					</li>
 				</ul>
 			</nav>
@@ -189,22 +206,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="api_parameters_descendantsoftype.descendantsoftype.html" class="tsd-kind-icon">Descendants<wbr>OfType</a>
+						<a href="api_parameters_descendantsOfType.DescendantsOfType.html" class="tsd-kind-icon">Descendants<wbr>OfType</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_descendantsoftype.descendantsoftype.html#expand" class="tsd-kind-icon">expand</a>
+								<a href="api_parameters_descendantsOfType.DescendantsOfType.html#depth" class="tsd-kind-icon">depth</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_descendantsoftype.descendantsoftype.html#id" class="tsd-kind-icon">id</a>
+								<a href="api_parameters_descendantsOfType.DescendantsOfType.html#expand" class="tsd-kind-icon">expand</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_descendantsoftype.descendantsoftype.html#limit" class="tsd-kind-icon">limit</a>
+								<a href="api_parameters_descendantsOfType.DescendantsOfType.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_descendantsoftype.descendantsoftype.html#start" class="tsd-kind-icon">start</a>
+								<a href="api_parameters_descendantsOfType.DescendantsOfType.html#limit" class="tsd-kind-icon">limit</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_descendantsoftype.descendantsoftype.html#type" class="tsd-kind-icon">type</a>
+								<a href="api_parameters_descendantsOfType.DescendantsOfType.html#start" class="tsd-kind-icon">start</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="api_parameters_descendantsOfType.DescendantsOfType.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>
@@ -227,6 +247,7 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">

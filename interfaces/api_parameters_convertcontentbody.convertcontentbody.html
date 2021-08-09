@@ -55,10 +55,10 @@
 					<a href="../modules.html">Confluence.js</a>
 				</li>
 				<li>
-					<a href="../modules/api_parameters_convertcontentbody.html">api/parameters/convertContentBody</a>
+					<a href="../modules/api_parameters_convertContentBody.html">api/parameters/convertContentBody</a>
 				</li>
 				<li>
-					<a href="api_parameters_convertcontentbody.convertcontentbody.html">ConvertContentBody</a>
+					<a href="api_parameters_convertContentBody.ConvertContentBody.html">ConvertContentBody</a>
 				</li>
 			</ul>
 			<h1>Interface ConvertContentBody</h1>
@@ -72,7 +72,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="api_models_contentbodycreate.contentbodycreate.html" class="tsd-signature-type" data-tsd-kind="Interface">ContentBodyCreate</a>
+						<a href="api_models_contentBodyCreate.ContentBodyCreate.html" class="tsd-signature-type" data-tsd-kind="Interface">ContentBodyCreate</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">ConvertContentBody</span>
@@ -88,13 +88,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_convertcontentbody.convertcontentbody.html#contentidcontext" class="tsd-kind-icon">content<wbr>IdContext</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_convertcontentbody.convertcontentbody.html#embeddedcontentrender" class="tsd-kind-icon">embedded<wbr>Content<wbr>Render</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_convertcontentbody.convertcontentbody.html#expand" class="tsd-kind-icon">expand</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="api_parameters_convertcontentbody.convertcontentbody.html#representation" class="tsd-kind-icon">representation</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_convertcontentbody.convertcontentbody.html#spacekeycontext" class="tsd-kind-icon">space<wbr>Key<wbr>Context</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_convertcontentbody.convertcontentbody.html#to" class="tsd-kind-icon">to</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="api_parameters_convertcontentbody.convertcontentbody.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_convertContentBody.ConvertContentBody.html#contentIdContext" class="tsd-kind-icon">content<wbr>IdContext</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_convertContentBody.ConvertContentBody.html#embeddedContentRender" class="tsd-kind-icon">embedded<wbr>Content<wbr>Render</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_convertContentBody.ConvertContentBody.html#expand" class="tsd-kind-icon">expand</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="api_parameters_convertContentBody.ConvertContentBody.html#representation" class="tsd-kind-icon">representation</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_convertContentBody.ConvertContentBody.html#spaceKeyContext" class="tsd-kind-icon">space<wbr>Key<wbr>Context</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="api_parameters_convertContentBody.ConvertContentBody.html#to" class="tsd-kind-icon">to</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="api_parameters_convertContentBody.ConvertContentBody.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 					</div>
@@ -103,33 +103,30 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="contentidcontext" class="tsd-anchor"></a>
+					<a name="contentIdContext" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> content<wbr>IdContext</h3>
 					<div class="tsd-signature tsd-kind-icon">content<wbr>IdContext<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/convertContentBody.ts#L23">api/parameters/convertContentBody.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/convertContentBody.ts#L22">api/parameters/convertContentBody.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The content ID used to find the space for resolving embedded content
-								(page includes, files, and links) in the content body. For example,
-								if the source content contains the link <code>&lt;ac:link&gt;&lt;ri:page ri:content-title=&quot;Example page&quot; /&gt;&lt;ac:link&gt;</code>
-								and the <code>contentIdContext=123</code> parameter is provided, then the link
-								will be converted to a link to the &quot;Example page&quot; page in the same space
-								that has the content with ID=123. Note, <code>spaceKeyContext</code> will be ignored
-							if this parameter is provided.</p>
+							<p>The content ID used to find the space for resolving embedded content (page includes, files, and links) in the
+								content body. For example, if the source content contains the link <code>&lt;ac:link&gt;&lt;ri:page ri:content-title=&quot;Example page&quot; /&gt;&lt;ac:link&gt;</code> and the <code>contentIdContext=123</code> parameter is provided, then the link will be converted to a link
+								to the &quot;Example page&quot; page in the same space that has the content with ID=123. Note, <code>spaceKeyContext</code> will be
+							ignored if this parameter is provided.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="embeddedcontentrender" class="tsd-anchor"></a>
+					<a name="embeddedContentRender" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> embedded<wbr>Content<wbr>Render</h3>
 					<div class="tsd-signature tsd-kind-icon">embedded<wbr>Content<wbr>Render<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/convertContentBody.ts#L29">api/parameters/convertContentBody.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/convertContentBody.ts#L29">api/parameters/convertContentBody.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -138,8 +135,7 @@
 						</div>
 						<ul>
 							<li><code>current</code> renders the embedded content using the latest version.</li>
-							<li><code>version-at-save</code> renders the embedded content using the version at
-							the time of save.</li>
+							<li><code>version-at-save</code> renders the embedded content using the version at the time of save.</li>
 						</ul>
 					</div>
 				</section>
@@ -149,7 +145,7 @@
 					<div class="tsd-signature tsd-kind-icon">expand<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/convertContentBody.ts#L9">api/parameters/convertContentBody.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/convertContentBody.ts#L7">api/parameters/convertContentBody.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -163,34 +159,32 @@
 					<h3>representation</h3>
 					<div class="tsd-signature tsd-kind-icon">representation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="api_models_contentbodycreate.contentbodycreate.html">ContentBodyCreate</a>.<a href="api_models_contentbodycreate.contentbodycreate.html#representation">representation</a></p>
+						<p>Inherited from <a href="api_models_contentBodyCreate.ContentBodyCreate.html">ContentBodyCreate</a>.<a href="api_models_contentBodyCreate.ContentBodyCreate.html#representation">representation</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/models/contentBodyCreate.ts#L8">api/models/contentBodyCreate.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/models/contentBodyCreate.ts#L6">api/models/contentBodyCreate.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The content format type. Set the value of this property to
-							the name of the format being used, e.g. &#39;storage&#39;.</p>
+							<p>The content format type. Set the value of this property to the name of the format being used, e.g. &#39;storage&#39;.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="spacekeycontext" class="tsd-anchor"></a>
+					<a name="spaceKeyContext" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> space<wbr>Key<wbr>Context</h3>
 					<div class="tsd-signature tsd-kind-icon">space<wbr>Key<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/convertContentBody.ts#L15">api/parameters/convertContentBody.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/convertContentBody.ts#L14">api/parameters/convertContentBody.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The space key used for resolving embedded content (page includes,
-								files, and links) in the content body. For example, if the source content
-								contains the link <code>&lt;ac:link&gt;&lt;ri:page ri:content-title=&quot;Example page&quot; /&gt;&lt;ac:link&gt;</code>
-								and the <code>spaceKeyContext=TEST</code> parameter is provided, then the link
-							will be converted to a link to the &quot;Example page&quot; page in the &quot;TEST&quot; space.</p>
+							<p>The space key used for resolving embedded content (page includes, files, and links) in the content body. For
+								example, if the source content contains the link <code>&lt;ac:link&gt;&lt;ri:page ri:content-title=&quot;Example page&quot; /&gt;&lt;ac:link&gt;</code>
+								and the <code>spaceKeyContext=TEST</code> parameter is provided, then the link will be converted to a link to the &quot;Example
+							page&quot; page in the &quot;TEST&quot; space.</p>
 						</div>
 					</div>
 				</section>
@@ -200,7 +194,7 @@
 					<div class="tsd-signature tsd-kind-icon">to<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/parameters/convertContentBody.ts#L5">api/parameters/convertContentBody.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/parameters/convertContentBody.ts#L5">api/parameters/convertContentBody.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -214,9 +208,9 @@
 					<h3>value</h3>
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="api_models_contentbodycreate.contentbodycreate.html">ContentBodyCreate</a>.<a href="api_models_contentbodycreate.contentbodycreate.html#value">value</a></p>
+						<p>Inherited from <a href="api_models_contentBodyCreate.ContentBodyCreate.html">ContentBodyCreate</a>.<a href="api_models_contentBodyCreate.ContentBodyCreate.html#value">value</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/4ff39ad/src/api/models/contentBodyCreate.ts#L5">api/models/contentBodyCreate.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/75cd1d2/src/api/models/contentBodyCreate.ts#L4">api/models/contentBodyCreate.ts:4</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -231,10 +225,10 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/api_parameters_convertcontentbody.html">api/parameters/convert<wbr>Content<wbr>Body</a>
+						<a href="../modules/api_parameters_convertContentBody.html">api/parameters/convert<wbr>Content<wbr>Body</a>
 					</li>
 				</ul>
 			</nav>
@@ -243,28 +237,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="api_parameters_convertcontentbody.convertcontentbody.html" class="tsd-kind-icon">Convert<wbr>Content<wbr>Body</a>
+						<a href="api_parameters_convertContentBody.ConvertContentBody.html" class="tsd-kind-icon">Convert<wbr>Content<wbr>Body</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_convertcontentbody.convertcontentbody.html#contentidcontext" class="tsd-kind-icon">content<wbr>IdContext</a>
+								<a href="api_parameters_convertContentBody.ConvertContentBody.html#contentIdContext" class="tsd-kind-icon">content<wbr>IdContext</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_convertcontentbody.convertcontentbody.html#embeddedcontentrender" class="tsd-kind-icon">embedded<wbr>Content<wbr>Render</a>
+								<a href="api_parameters_convertContentBody.ConvertContentBody.html#embeddedContentRender" class="tsd-kind-icon">embedded<wbr>Content<wbr>Render</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_convertcontentbody.convertcontentbody.html#expand" class="tsd-kind-icon">expand</a>
+								<a href="api_parameters_convertContentBody.ConvertContentBody.html#expand" class="tsd-kind-icon">expand</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="api_parameters_convertcontentbody.convertcontentbody.html#representation" class="tsd-kind-icon">representation</a>
+								<a href="api_parameters_convertContentBody.ConvertContentBody.html#representation" class="tsd-kind-icon">representation</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_convertcontentbody.convertcontentbody.html#spacekeycontext" class="tsd-kind-icon">space<wbr>Key<wbr>Context</a>
+								<a href="api_parameters_convertContentBody.ConvertContentBody.html#spaceKeyContext" class="tsd-kind-icon">space<wbr>Key<wbr>Context</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="api_parameters_convertcontentbody.convertcontentbody.html#to" class="tsd-kind-icon">to</a>
+								<a href="api_parameters_convertContentBody.ConvertContentBody.html#to" class="tsd-kind-icon">to</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="api_parameters_convertcontentbody.convertcontentbody.html#value" class="tsd-kind-icon">value</a>
+								<a href="api_parameters_convertContentBody.ConvertContentBody.html#value" class="tsd-kind-icon">value</a>
 							</li>
 						</ul>
 					</li>
@@ -287,6 +281,7 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
