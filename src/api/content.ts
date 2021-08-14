@@ -45,6 +45,7 @@ export class Content {
         orderby: parameters?.orderby,
         start: parameters?.start,
         limit: parameters?.limit,
+        expand: parameters?.expand,
       },
     };
 
@@ -89,6 +90,7 @@ export class Content {
       method: 'POST',
       params: {
         status: parameters?.status,
+        expand: parameters?.expand,
       },
       data: {
         ...parameters,
@@ -346,7 +348,14 @@ export class Content {
         status: parameters.status,
         conflictPolicy: parameters.conflictPolicy,
       },
-      data: parameters.body,
+      data: {
+        version: parameters.version,
+        title: parameters.title,
+        type: parameters.type,
+        status: parameters.statusBody,
+        ancestors: parameters.ancestors,
+        body: parameters.body,
+      },
     };
 
     return this.client.sendRequest(config, callback, { methodName: 'updateContent' });

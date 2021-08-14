@@ -20,7 +20,7 @@ export interface ContentUpdate {
    * The updated status of the content. Note, if you change the status of a page from 'current' to 'draft' and it has an
    * existing draft, the existing draft will be deleted in favor of the updated page.
    */
-  status?: string;
+  status?: 'current' | 'trashed' | 'historical' | 'draft' | string;
   /** The new parent for the content. Only one parent content 'id' can be specified. */
   ancestors?: {
     /** The `id` of the parent content. */
