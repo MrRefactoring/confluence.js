@@ -95,6 +95,7 @@ export class Content {
       data: {
         ...parameters,
         status: undefined,
+        expand: undefined,
       },
     };
 

@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.1.3
+
+- Vulnerabilities fixed
+- Small params fixes in content creating
+
 ### 1.1.2
 
 - `expand` property added to `Content.getContent` request.

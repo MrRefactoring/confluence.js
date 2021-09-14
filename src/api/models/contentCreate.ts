@@ -5,7 +5,7 @@ export interface ContentCreate {
   id?: string;
   title: string;
   /** The type of the new content. Custom content types defined by apps are also supported. */
-  type: string;
+  type: string | 'page' | 'blogpost' | 'comment';
   /** The space that the content is being created in. */
   space: {
     /** The key of the space. */
@@ -40,7 +40,7 @@ export interface ContentCreate {
    * Note, `editor2` format is used by Atlassian only. `anonymous_export_view` is the same as 'export_view' format but
    * only content viewable by an anonymous user is included.
    */
-  body: {
+  body?: {
     view?: ContentBodyCreate;
     export_view?: ContentBodyCreate;
     styled_view?: ContentBodyCreate;
