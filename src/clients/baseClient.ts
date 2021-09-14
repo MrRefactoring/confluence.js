@@ -101,8 +101,8 @@ export class BaseClient implements Client {
       bodyExists: !!requestConfig.data,
       callbackUsed: !!callback,
       headersExists: !!requestConfig.headers,
-      libVersion: '1.1.2',
-      libVersionHash: '2e455536a862e32a055be89c906dd563',
+      libVersion: '1.1.3',
+      libVersionHash: '6d8c23a768aec9eefc52917e68aa3926',
       methodName: telemetryData?.methodName || 'sendRequest',
       onErrorMiddlewareUsed: !!this.config.middlewares?.onError,
       onResponseMiddlewareUsed: !!this.config.middlewares?.onResponse,
@@ -139,7 +139,7 @@ export class BaseClient implements Client {
       telemetry.requestStatusCode = response.status;
 
       return responseHandler(response.data);
-    } catch (e) {
+    } catch (e: any) {
       const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
       const defaultErrorHandler = (error: Error) => {
         throw error;
