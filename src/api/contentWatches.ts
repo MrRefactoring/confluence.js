@@ -68,7 +68,7 @@ export class ContentWatches {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
    */
-  async getWatchesForSpace<T = Models.WatchArray>(
+  async getWatchesForSpace<T = Models.SpaceWatchArray>(
     parameters: Parameters.GetWatchesForSpace,
     callback: Callback<T>
   ): Promise<void>;
@@ -85,11 +85,11 @@ export class ContentWatches {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
    */
-  async getWatchesForSpace<T = Models.WatchArray>(
+  async getWatchesForSpace<T = Models.SpaceWatchArray>(
     parameters: Parameters.GetWatchesForSpace,
     callback?: never
   ): Promise<T>;
-  async getWatchesForSpace<T = Models.WatchArray>(
+  async getWatchesForSpace<T = Models.SpaceWatchArray>(
     parameters: Parameters.GetWatchesForSpace,
     callback?: Callback<T>,
   ): Promise<void | T> {

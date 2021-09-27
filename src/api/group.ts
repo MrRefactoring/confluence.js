@@ -34,6 +34,7 @@ export class Group {
       params: {
         start: parameters?.start,
         limit: parameters?.limit,
+        accessType: parameters?.accessType,
       },
     };
 
@@ -159,14 +160,36 @@ export class Group {
   }
 
   /**
-   * Returns a user group for a given group name.
+   * Delete user group.
    *
-   * Use updated Get group API
-   *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
-   * ('Can use' global permission).
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: User must be a site admin.
    */
+  async removeGroupById<T = void>(parameters: Parameters.RemoveGroupById, callback: Callback<T>): Promise<void>;
+  /**
+   * Delete user group.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: User must be a site admin.
+   */
+  async removeGroupById<T = void>(parameters: Parameters.RemoveGroupById, callback?: never): Promise<T>;
+  async removeGroupById<T = void>(parameters: Parameters.RemoveGroupById, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/api/group/by-id',
+      method: 'DELETE',
+      params: {
+        id: parameters.id,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'removeGroupById' });
+  }
+
+  /** @deprecated Will be removed in the next major version. Use `getGroupByName` instead. */
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback: Callback<T>): Promise<void>;
+  /** @deprecated Will be removed in the next major version. Use `getGroupByName` instead. */
+  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: never): Promise<T>;
+  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: Callback<T>): Promise<void | T> {
+    return this.getGroupByName(parameters, callback!);
+  }
   /**
    * Returns a user group for a given group name.
    *
@@ -175,14 +198,26 @@ export class Group {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
    */
-  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: never): Promise<T>;
-  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: Callback<T>): Promise<void | T> {
+  async getGroupByName<T = Models.Group>(parameters: Parameters.GetGroupByName, callback: Callback<T>): Promise<void>;
+  /**
+   * Returns a user group for a given group name.
+   *
+   * Use updated Get group API
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
+   * ('Can use' global permission).
+   */
+  async getGroupByName<T = Models.Group>(parameters: Parameters.GetGroupByName, callback?: never): Promise<T>;
+  async getGroupByName<T = Models.Group>(
+    parameters: Parameters.GetGroupByName,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/api/group/${parameters.groupName}`,
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getGroup' });
+    return this.client.sendRequest(config, callback, { methodName: 'getGroupByName' });
   }
 
   /**
@@ -191,7 +226,7 @@ export class Group {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
    */
-  async getMembersByQueryParam<T = Models.UserArrayWithLinks>(
+  async getMembersByQueryParam<T = Models.UserArray>(
     parameters: Parameters.GetMembersByQueryParam,
     callback: Callback<T>
   ): Promise<void>;
@@ -201,11 +236,11 @@ export class Group {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
    */
-  async getMembersByQueryParam<T = Models.UserArrayWithLinks>(
+  async getMembersByQueryParam<T = Models.UserArray>(
     parameters: Parameters.GetMembersByQueryParam,
     callback?: never
   ): Promise<T>;
-  async getMembersByQueryParam<T = Models.UserArrayWithLinks>(
+  async getMembersByQueryParam<T = Models.UserArray>(
     parameters: Parameters.GetMembersByQueryParam,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -230,7 +265,7 @@ export class Group {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
    */
-  async getGroupMembers<T = Models.UserArrayWithLinks>(
+  async getGroupMembers<T = Models.UserArray>(
     parameters: Parameters.GetGroupMembers,
     callback: Callback<T>
   ): Promise<void>;
@@ -242,11 +277,8 @@ export class Group {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
    */
-  async getGroupMembers<T = Models.UserArrayWithLinks>(
-    parameters: Parameters.GetGroupMembers,
-    callback?: never
-  ): Promise<T>;
-  async getGroupMembers<T = Models.UserArrayWithLinks>(
+  async getGroupMembers<T = Models.UserArray>(parameters: Parameters.GetGroupMembers, callback?: never): Promise<T>;
+  async getGroupMembers<T = Models.UserArray>(
     parameters: Parameters.GetGroupMembers,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -262,18 +294,32 @@ export class Group {
     return this.client.sendRequest(config, callback, { methodName: 'getGroupMembers' });
   }
 
-  /** Get search results of groups by partial query provided. */
+  /** @deprecated Will be removed in the next major version. Use `searchGroups` instead. */
   async getGroupsSearch<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupsSearch,
     callback: Callback<T>
   ): Promise<void>;
-  /** Get search results of groups by partial query provided. */
+  /** @deprecated Will be removed in the next major version. Use `searchGroups` instead. */
   async getGroupsSearch<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupsSearch,
     callback?: never
   ): Promise<T>;
   async getGroupsSearch<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupsSearch,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    return this.searchGroups(parameters, callback!);
+  }
+
+  /** Get search results of groups by partial query provided. */
+  async searchGroups<T = Models.GroupArrayWithLinks>(
+    parameters: Parameters.SearchGroups,
+    callback: Callback<T>
+  ): Promise<void>;
+  /** Get search results of groups by partial query provided. */
+  async searchGroups<T = Models.GroupArrayWithLinks>(parameters: Parameters.SearchGroups, callback?: never): Promise<T>;
+  async searchGroups<T = Models.GroupArrayWithLinks>(
+    parameters: Parameters.SearchGroups,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
@@ -286,7 +332,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getGroupsSearch' });
+    return this.client.sendRequest(config, callback, { methodName: 'searchGroups' });
   }
 
   /**
@@ -316,6 +362,9 @@ export class Group {
       method: 'POST',
       params: {
         groupId: parameters.groupId,
+      },
+      data: {
+        accountId: parameters.accountId,
       },
     };
 
@@ -364,7 +413,7 @@ export class Group {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
    */
-  async getGroupMembersByGroupId<T = Models.UserArrayWithLinks>(
+  async getGroupMembersByGroupId<T = Models.UserArray>(
     parameters: Parameters.GetGroupMembersByGroupId,
     callback: Callback<T>
   ): Promise<void>;
@@ -376,11 +425,11 @@ export class Group {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
    */
-  async getGroupMembersByGroupId<T = Models.UserArrayWithLinks>(
+  async getGroupMembersByGroupId<T = Models.UserArray>(
     parameters: Parameters.GetGroupMembersByGroupId,
     callback?: never
   ): Promise<T>;
-  async getGroupMembersByGroupId<T = Models.UserArrayWithLinks>(
+  async getGroupMembersByGroupId<T = Models.UserArray>(
     parameters: Parameters.GetGroupMembersByGroupId,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -414,6 +463,9 @@ export class Group {
       method: 'POST',
       params: {
         name: parameters.name,
+      },
+      data: {
+        accountId: parameters.accountId,
       },
     };
 

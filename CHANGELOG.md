@@ -1,5 +1,36 @@
 # Changelog
 
+### 1.2.0
+
+- Cloud API
+  - `archivePages` method added to `Content`.
+  - `publishLegacyDraft` request fixed in `Content` class.
+  - `publishSharedDraft` request fixed in `Content` class.
+  - `downloadAttachment` method added to `ContentAttachments`.
+  - `descendantsOfType` renamed to `getDescendantsOfType` in `ContentChildrenAndDescendants`.
+  - `permissionCheck` renamed to `checkContentPermission` in `ContentPermissions`.
+  - `key` property added to `getContentProperties` request in `ContentProperties`.
+  - Added `Experemental` API.
+  - `accessType` property added to `getGroups` request in `Group`.
+  - `removeGroupById` method added to `Group`.
+  - `getGroup` renamed to `getGroupByName` in `Group`.
+  - `getGroupsSearch` renamed to `searchGroups` in `Group`.
+  - `accountId` property added to `addUserToGroupByGroupId` in `Group`.
+  - `accountId` property added to `addUserToGroup` in `Group`.
+  - `getTaskById` method added to `InlineTasks`.
+  - `updateTaskById` method added to `InlineTasks`.
+  - `GetRelationship` renamed to `getRelationship` in `Relation`.
+  - `delete` renamed to `deleteRelationship` in `Relation`.
+  - `search` renamed to `searchByCQL` in `Search`.
+  - `userSearch` renamed to `searchUser` in `Search`.
+  - `horizontalHeader`, `spaceReference`, `links` properties added to `updateLookAndFeelSettings` in `Settings`.
+  - `permissions` property added to `createPrivateSpace` in `Space`.
+  - `type` and `status` properties added to `updateSpace` in `Space`.
+  - `addPermission` renamed to `addPermissionToSpace` in `SpacePermissions`.
+  - `addCustomContentPermissions` method added to `SpacePermissions`.
+  - `space` property added to `createSpaceProperty` in `SpaceProperties`.
+  -
+
 ### 1.1.3
 
 - Vulnerabilities fixed

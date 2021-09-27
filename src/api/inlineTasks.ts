@@ -51,4 +51,56 @@ export class InlineTasks {
 
     return this.client.sendRequest(config, callback, { methodName: 'searchTasks' });
   }
+
+  /**
+   * Returns inline task based on the global ID.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content associated
+   * with the task.
+   */
+  async getTaskById<T = Models.Task>(parameters: Parameters.GetTaskById, callback: Callback<T>): Promise<void>;
+  /**
+   * Returns inline task based on the global ID.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content associated
+   * with the task.
+   */
+  async getTaskById<T = Models.Task>(parameters: Parameters.GetTaskById, callback?: never): Promise<T>;
+  async getTaskById<T = Models.Task>(parameters: Parameters.GetTaskById, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/api/inlinetasks/${parameters.inlineTaskId}`,
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'getTaskById' });
+  }
+
+  /**
+   * Updates an inline tasks status given its global ID
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content associated
+   * with the task.
+   */
+  async updateTaskById<T = Models.Task>(parameters: Parameters.UpdateTaskById, callback: Callback<T>): Promise<void>;
+  /**
+   * Updates an inline tasks status given its global ID
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content associated
+   * with the task.
+   */
+  async updateTaskById<T = Models.Task>(parameters: Parameters.UpdateTaskById, callback?: never): Promise<T>;
+  async updateTaskById<T = Models.Task>(
+    parameters: Parameters.UpdateTaskById,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/api/inlinetasks/${parameters.inlineTaskId}`,
+      method: 'PUT',
+      data: {
+        status: parameters.status,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'updateTaskById' });
+  }
 }

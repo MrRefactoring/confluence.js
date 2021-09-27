@@ -56,6 +56,20 @@ export class Relation {
     return this.client.sendRequest(config, callback, { methodName: 'findTargetFromSource' });
   }
 
+  /** @deprecated Will be removed in the next major version. Use `getRelationship` instead. */
+  async GetRelationship<T = Models.Relation>(
+    parameters: Parameters.GetRelationship,
+    callback: Callback<T>
+  ): Promise<void>;
+  /** @deprecated Will be removed in the next major version. Use `getRelationship` instead. */
+  async GetRelationship<T = Models.Relation>(parameters: Parameters.GetRelationship, callback?: never): Promise<T>;
+  async GetRelationship<T = Models.Relation>(
+    parameters: Parameters.GetRelationship,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    return this.getRelationship(parameters, callback!);
+  }
+
   /**
    * Find whether a particular type of relationship exists from a source entity to a target entity. Note, relationships
    * are one way.
@@ -67,7 +81,7 @@ export class Relation {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view both the target entity
    * and source entity.
    */
-  async GetRelationship<T = Models.Relation>(
+  async getRelationship<T = Models.Relation>(
     parameters: Parameters.GetRelationship,
     callback: Callback<T>
   ): Promise<void>;
@@ -82,8 +96,8 @@ export class Relation {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view both the target entity
    * and source entity.
    */
-  async GetRelationship<T = Models.Relation>(parameters: Parameters.GetRelationship, callback?: never): Promise<T>;
-  async GetRelationship<T = Models.Relation>(
+  async getRelationship<T = Models.Relation>(parameters: Parameters.GetRelationship, callback?: never): Promise<T>;
+  async getRelationship<T = Models.Relation>(
     parameters: Parameters.GetRelationship,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -99,7 +113,7 @@ export class Relation {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'GetRelationship' });
+    return this.client.sendRequest(config, callback, { methodName: 'getRelationship' });
   }
 
   /**
@@ -148,23 +162,34 @@ export class Relation {
     return this.client.sendRequest(config, callback, { methodName: 'createRelationship' });
   }
 
-  /**
-   * Deletes a relationship between two entities (user, space, content).
-   *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
-   * ('Can use' global permission). For favourite relationships, the current user can only delete their own favourite
-   * relationships. A space administrator can delete favourite relationships for any user.
-   */
+  /** @deprecated Will be removed in the next major version. Use `deleteRelationship` instead. */
   async delete<T = void>(parameters: Parameters.Delete, callback: Callback<T>): Promise<void>;
-  /**
-   * Deletes a relationship between two entities (user, space, content).
-   *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
-   * ('Can use' global permission). For favourite relationships, the current user can only delete their own favourite
-   * relationships. A space administrator can delete favourite relationships for any user.
-   */
+  /** @deprecated Will be removed in the next major version. Use `deleteRelationship` instead. */
   async delete<T = void>(parameters: Parameters.Delete, callback?: never): Promise<T>;
   async delete<T = void>(parameters: Parameters.Delete, callback?: Callback<T>): Promise<void | T> {
+    return this.deleteRelationship(parameters, callback!);
+  }
+
+  /**
+   * Deletes a relationship between two entities (user, space, content).
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
+   * ('Can use' global permission). For favourite relationships, the current user can only delete their own favourite
+   * relationships. A space administrator can delete favourite relationships for any user.
+   */
+  async deleteRelationship<T = void>(parameters: Parameters.DeleteRelationship, callback: Callback<T>): Promise<void>;
+  /**
+   * Deletes a relationship between two entities (user, space, content).
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
+   * ('Can use' global permission). For favourite relationships, the current user can only delete their own favourite
+   * relationships. A space administrator can delete favourite relationships for any user.
+   */
+  async deleteRelationship<T = void>(parameters: Parameters.DeleteRelationship, callback?: never): Promise<T>;
+  async deleteRelationship<T = void>(
+    parameters: Parameters.DeleteRelationship,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/api/relation/${parameters.relationName}/from/${parameters.sourceType}/${parameters.sourceKey}/to/${parameters.targetType}/${parameters.targetKey}`,
       method: 'DELETE',
@@ -176,7 +201,7 @@ export class Relation {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'delete' });
+    return this.client.sendRequest(config, callback, { methodName: 'deleteRelationship' });
   }
 
   /**

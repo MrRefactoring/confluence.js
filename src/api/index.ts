@@ -12,6 +12,7 @@ export * from './contentRestrictions';
 export * from './contentVersions';
 export * from './contentWatches';
 export * from './dynamicModules';
+export * from './experimental';
 export * from './group';
 export * from './inlineTasks';
 export * from './labelInfo';

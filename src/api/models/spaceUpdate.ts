@@ -9,4 +9,8 @@ export interface SpaceUpdate {
     /** The ID of the page. */
     id: string;
   };
+  /** The updated type for this space. */
+  type?: string;
+  /** The updated status for this space. */
+  status?: string;
 }

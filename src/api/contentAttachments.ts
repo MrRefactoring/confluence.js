@@ -56,7 +56,7 @@ export class ContentAttachments {
    *
    * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
    * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](http://hc.apache.org/httpcomponents-client-5.0.x/current/httpclient5/apidocs/) Java class
+   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
    * provided by Apache HTTP Components.
    *
    * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
@@ -92,7 +92,7 @@ export class ContentAttachments {
    *
    * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
    * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](http://hc.apache.org/httpcomponents-client-5.0.x/current/httpclient5/apidocs/) Java class
+   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
    * provided by Apache HTTP Components.
    *
    * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
@@ -148,7 +148,7 @@ export class ContentAttachments {
    *
    * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
    * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](http://hc.apache.org/httpcomponents-client-5.0.x/current/httpclient5/apidocs/) Java class
+   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
    * provided by Apache HTTP Components.
    *
    * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
@@ -185,7 +185,7 @@ export class ContentAttachments {
    *
    * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
    * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](http://hc.apache.org/httpcomponents-client-5.0.x/current/httpclient5/apidocs/) Java class
+   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
    * provided by Apache HTTP Components.
    *
    * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
@@ -277,7 +277,7 @@ export class ContentAttachments {
    *
    * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
    * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](http://hc.apache.org/httpcomponents-client-5.0.x/current/httpclient5/apidocs/) Java class
+   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
    * provided by Apache HTTP Components.
    *
    * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
@@ -316,7 +316,7 @@ export class ContentAttachments {
    *
    * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
    * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](http://hc.apache.org/httpcomponents-client-5.0.x/current/httpclient5/apidocs/) Java class
+   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
    * provided by Apache HTTP Components.
    *
    * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
@@ -359,5 +359,27 @@ export class ContentAttachments {
     };
 
     return this.client.sendRequest(config, callback, { methodName: 'updateAttachmentData' });
+  }
+
+  /** Redirects the client to a URL that serves an attachment's binary data. */
+  async downloadAttachment<T = unknown>(
+    parameters: Parameters.DownloadAttachment,
+    callback: Callback<T>
+  ): Promise<void>;
+  /** Redirects the client to a URL that serves an attachment's binary data. */
+  async downloadAttachment<T = unknown>(parameters: Parameters.DownloadAttachment, callback?: never): Promise<T>;
+  async downloadAttachment<T = unknown>(
+    parameters: Parameters.DownloadAttachment,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}/download`,
+      method: 'GET',
+      params: {
+        version: parameters.version,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'downloadAttachment' });
   }
 }

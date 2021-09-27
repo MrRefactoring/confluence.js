@@ -106,6 +106,7 @@ export class Space {
         key: parameters?.key,
         name: parameters?.name,
         description: parameters?.description,
+        permissions: parameters?.permissions,
       },
     };
 
@@ -159,6 +160,8 @@ export class Space {
         name: parameters.name,
         description: parameters.description,
         homepage: parameters.homepage,
+        type: parameters.type,
+        status: parameters.status,
       },
     };
 

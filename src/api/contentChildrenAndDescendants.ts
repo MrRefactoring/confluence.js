@@ -218,6 +218,23 @@ export class ContentChildrenAndDescendants {
     return this.client.sendRequest(config, callback, { methodName: 'getContentDescendants' });
   }
 
+  /** @deprecated This API will be removed in the next major version. Use `getDescendantsOfType` method instead. */
+  async descendantsOfType<T = Models.ContentArray>(
+    parameters: Parameters.DescendantsOfType,
+    callback: Callback<T>
+  ): Promise<void>;
+  /** @deprecated This API will be removed in the next major version. Use `getDescendantsOfType` method instead. */
+  async descendantsOfType<T = Models.ContentArray>(
+    parameters: Parameters.DescendantsOfType,
+    callback?: never
+  ): Promise<T>;
+  async descendantsOfType<T = Models.ContentArray>(
+    parameters: Parameters.DescendantsOfType,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    return this.getDescendantsOfType(parameters, callback!);
+  }
+
   /**
    * Returns all descendants of a given type, for a piece of content. This is similar to [Get content children by
    * type](#api-content-id-child-type-get), except that this method returns child pages at all levels, rather than just
@@ -235,8 +252,8 @@ export class ContentChildrenAndDescendants {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
    */
-  async descendantsOfType<T = Models.ContentArray>(
-    parameters: Parameters.DescendantsOfType,
+  async getDescendantsOfType<T = Models.ContentArray>(
+    parameters: Parameters.GetDescendantsOfType,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -256,12 +273,12 @@ export class ContentChildrenAndDescendants {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
    */
-  async descendantsOfType<T = Models.ContentArray>(
-    parameters: Parameters.DescendantsOfType,
+  async getDescendantsOfType<T = Models.ContentArray>(
+    parameters: Parameters.GetDescendantsOfType,
     callback?: never
   ): Promise<T>;
-  async descendantsOfType<T = Models.ContentArray>(
-    parameters: Parameters.DescendantsOfType,
+  async getDescendantsOfType<T = Models.ContentArray>(
+    parameters: Parameters.GetDescendantsOfType,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
@@ -271,6 +288,7 @@ export class ContentChildrenAndDescendants {
         depth: parameters.depth,
         start: parameters.start,
         limit: parameters.limit,
+        expand: parameters.expand,
       },
     };
 
@@ -283,17 +301,6 @@ export class ContentChildrenAndDescendants {
    * copied page is defined using the destinationPageId in the request body. The titleOptions object defines the rules
    * of renaming page titles during the copy; for example, search and replace can be used in conjunction to rewrite the
    * copied page titles.
-   *
-   *  Response example:
-   *  <pre>
-   *  {
-   *       "id" : "1180606",
-   *       "links" : {
-   *            "status" : "/rest/api/longtask/1180606"
-   *       }
-   *  }
-   *  </pre>
-   *  Use the /longtask/<taskId> REST API to get the copy task status.
    */
   async copyPageHierarchy<T = unknown>(parameters: Parameters.CopyPageHierarchy, callback: Callback<T>): Promise<void>;
   /**
@@ -302,17 +309,6 @@ export class ContentChildrenAndDescendants {
    * copied page is defined using the destinationPageId in the request body. The titleOptions object defines the rules
    * of renaming page titles during the copy; for example, search and replace can be used in conjunction to rewrite the
    * copied page titles.
-   *
-   *  Response example:
-   *  <pre>
-   *  {
-   *       "id" : "1180606",
-   *       "links" : {
-   *            "status" : "/rest/api/longtask/1180606"
-   *       }
-   *  }
-   *  </pre>
-   *  Use the /longtask/<taskId> REST API to get the copy task status.
    */
   async copyPageHierarchy<T = unknown>(parameters: Parameters.CopyPageHierarchy, callback?: never): Promise<T>;
   async copyPageHierarchy<T = unknown>(
