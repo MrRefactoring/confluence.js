@@ -29,7 +29,6 @@
   - `addPermission` renamed to `addPermissionToSpace` in `SpacePermissions`.
   - `addCustomContentPermissions` method added to `SpacePermissions`.
   - `space` property added to `createSpaceProperty` in `SpaceProperties`.
-  -
 
 ### 1.1.3
 
