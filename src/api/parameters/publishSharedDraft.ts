@@ -1,4 +1,6 @@
-export interface PublishSharedDraft {
+import { ContentBlueprintDraft } from '../models';
+
+export interface PublishSharedDraft extends ContentBlueprintDraft {
   /**
    * The ID of the draft page that was created from a blueprint. You can find the `draftId` in the Confluence
    * application by opening the draft page and checking the page URL.
@@ -11,4 +13,5 @@ export interface PublishSharedDraft {
   status?: string;
   /** A multi-value parameter indicating which properties of the content to expand. */
   expand?: string[];
+  bodyStatus?: string;
 }

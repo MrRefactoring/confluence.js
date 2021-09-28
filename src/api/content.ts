@@ -103,6 +103,45 @@ export class Content {
   }
 
   /**
+   * Archives a list of pages. The pages to be archived are specified as a list of content IDs. This API accepts the
+   * archival request and returns a task ID. The archival process happens asynchronously. Use the /longtask/<taskId>
+   * REST API to get the copy task status.
+   *
+   * Each content ID needs to resolve to page objects that are not already in an archived state. The content IDs need
+   * not belong to the same space.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Archive' permission for each of the pages
+   * in the corresponding space it belongs to.
+   */
+  async archivePages<T = unknown>(
+    parameters: Parameters.ArchivePages,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Archives a list of pages. The pages to be archived are specified as a list of content IDs. This API accepts the
+   * archival request and returns a task ID. The archival process happens asynchronously. Use the /longtask/<taskId>
+   * REST API to get the copy task status.
+   *
+   * Each content ID needs to resolve to page objects that are not already in an archived state. The content IDs need
+   * not belong to the same space.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Archive' permission for each of the pages
+   * in the corresponding space it belongs to.
+   */
+  async archivePages<T = unknown>(parameters: Parameters.ArchivePages, callback?: never): Promise<T>;
+  async archivePages<T = unknown>(parameters: Parameters.ArchivePages, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/api/content/archive',
+      method: 'POST',
+      data: {
+        pages: parameters.pages,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'archivePages' });
+  }
+
+  /**
    * Publishes a legacy draft of a page created from a blueprint. Legacy drafts will eventually be removed in favor of
    * shared drafts. For now, this method works the same as [Publish shared draft](#api-content-blueprint-instance-draftId-put).
    *
@@ -134,6 +173,15 @@ export class Content {
       method: 'POST',
       params: {
         status: parameters.status,
+      },
+      data: {
+        ...parameters,
+        version: parameters.version,
+        title: parameters.title,
+        type: parameters.type,
+        status: parameters.bodyStatus,
+        space: parameters.space,
+        ancestors: parameters.ancestors,
       },
     };
 
@@ -171,6 +219,15 @@ export class Content {
       params: {
         status: parameters.status,
       },
+      data: {
+        ...parameters,
+        version: parameters.version,
+        title: parameters.title,
+        type: parameters.type,
+        status: parameters.bodyStatus,
+        space: parameters.space,
+        ancestors: parameters.ancestors,
+      },
     };
 
     return this.client.sendRequest(config, callback, { methodName: 'publishSharedDraft' });
@@ -179,32 +236,6 @@ export class Content {
   /**
    * Returns the list of content that matches a Confluence Query Language (CQL) query. For information on CQL, see:
    * [Advanced searching using CQL](https://developer.atlassian.com/cloud/confluence/advanced-searching-using-cql/).
-   *
-   * Example initial call:
-   * ```
-   * https://your-domain.atlassian.net/wiki/rest/api/content/search?cql=type=page&limit=25
-   * ```
-   *
-   * Example response:
-   * ```
-   * {
-   *   "results": [
-   *     { ... },
-   *     { ... },
-   *     ...
-   *     { ... }
-   *   ],
-   *   "limit": 25,
-   *   "size": 25,
-   *   ...
-   *   "_links": {
-   *     "base": "<url>",
-   *     "context": "<url>",
-   *     "next": "/rest/api/content/search?cql=type=page&limit=25&cursor=raNDoMsTRiNg",
-   *     "self": "<url>"
-   *   }
-   * }
-   * ```
    *
    * When additional results are available, returns `next` and `prev` URLs to retrieve them in subsequent calls. The
    * URLs each contain a cursor that points to the appropriate set of results. Use `limit` to specify the number of
@@ -224,32 +255,6 @@ export class Content {
   /**
    * Returns the list of content that matches a Confluence Query Language (CQL) query. For information on CQL, see:
    * [Advanced searching using CQL](https://developer.atlassian.com/cloud/confluence/advanced-searching-using-cql/).
-   *
-   * Example initial call:
-   * ```
-   * https://your-domain.atlassian.net/wiki/rest/api/content/search?cql=type=page&limit=25
-   * ```
-   *
-   * Example response:
-   * ```
-   * {
-   *   "results": [
-   *     { ... },
-   *     { ... },
-   *     ...
-   *     { ... }
-   *   ],
-   *   "limit": 25,
-   *   "size": 25,
-   *   ...
-   *   "_links": {
-   *     "base": "<url>",
-   *     "context": "<url>",
-   *     "next": "/rest/api/content/search?cql=type=page&limit=25&cursor=raNDoMsTRiNg",
-   *     "self": "<url>"
-   *   }
-   * }
-   * ```
    *
    * When additional results are available, returns `next` and `prev` URLs to retrieve them in subsequent calls. The
    * URLs each contain a cursor that points to the appropriate set of results. Use `limit` to specify the number of

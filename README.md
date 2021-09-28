@@ -292,6 +292,7 @@ Available groups:
 - [contentVersions](https://developer.atlassian.com/cloud/confluence/rest/api-group-content-versions/#api-group-content-versions)
 - [contentWatches](https://developer.atlassian.com/cloud/confluence/rest/api-group-content-watches/#api-group-content-watches)
 - [dynamicModules](https://developer.atlassian.com/cloud/confluence/rest/api-group-dynamic-modules/#api-group-dynamic-modules)
+- [experimental](https://developer.atlassian.com/cloud/confluence/rest/api-group-experimental/#api-group-experimental)
 - [group](https://developer.atlassian.com/cloud/confluence/rest/api-group-group/#api-group-group)
 - [inlineTasks](https://developer.atlassian.com/cloud/confluence/rest/api-group-inline-tasks/#api-group-inline-tasks)
 - [labelInfo](https://developer.atlassian.com/cloud/confluence/rest/api-group-label-info/#api-group-label-info)

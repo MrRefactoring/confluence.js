@@ -7,6 +7,20 @@ import { RequestConfig } from '../requestConfig';
 export class SpacePermissions {
   constructor(private client: Client) {}
 
+  /** @deprecated Will be removed in the next major version. Use `addPermissionToSpace` instead. */
+  async addPermission<T = Models.SpacePermissionV2>(
+    parameters: Parameters.AddPermission,
+    callback: Callback<T>
+  ): Promise<void>;
+  /** @deprecated Will be removed in the next major version. Use `addPermissionToSpace` instead. */
+  async addPermission<T = Models.SpacePermissionV2>(parameters: Parameters.AddPermission, callback?: never): Promise<T>;
+  async addPermission<T = Models.SpacePermissionV2>(
+    parameters: Parameters.AddPermission,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    return this.addPermissionToSpace(parameters, callback!);
+  }
+
   /**
    * Adds new permission to space.
    *
@@ -16,8 +30,8 @@ export class SpacePermissions {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
    */
-  async addPermission<T = Models.SpacePermissionV2>(
-    parameters: Parameters.AddPermission,
+  async addPermissionToSpace<T = Models.SpacePermissionV2>(
+    parameters: Parameters.AddPermissionToSpace,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -29,23 +43,67 @@ export class SpacePermissions {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
    */
-  async addPermission<T = Models.SpacePermissionV2>(parameters: Parameters.AddPermission, callback?: never): Promise<T>;
-  async addPermission<T = Models.SpacePermissionV2>(
-    parameters: Parameters.AddPermission,
+  async addPermissionToSpace<T = Models.SpacePermissionV2>(
+    parameters: Parameters.AddPermissionToSpace,
+    callback?: never
+  ): Promise<T>;
+  async addPermissionToSpace<T = Models.SpacePermissionV2>(
+    parameters: Parameters.AddPermissionToSpace,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/api/space/${parameters.spaceKey}/permission`,
       method: 'POST',
       data: {
-        id: parameters.id,
         subject: parameters.subject,
         operation: parameters.operation,
-        _links: parameters._links,
+        _links: parameters.links,
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addPermission' });
+    return this.client.sendRequest(config, callback, { methodName: 'addPermissionToSpace' });
+  }
+
+  /**
+   * Adds new custom content permission to space.
+   *
+   * If the permission to be added is a group permission, the group can be identified by its group name or group id.
+   *
+   * Note: Only apps can access this REST resource and only make changes to the respective app permissions.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
+   */
+  async addCustomContentPermissions<T = unknown>(
+    parameters: Parameters.AddCustomContentPermissions,
+    callback: Callback<T>
+  ): Promise<void>;
+  /**
+   * Adds new custom content permission to space.
+   *
+   * If the permission to be added is a group permission, the group can be identified by its group name or group id.
+   *
+   * Note: Only apps can access this REST resource and only make changes to the respective app permissions.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
+   */
+  async addCustomContentPermissions<T = unknown>(
+    parameters: Parameters.AddCustomContentPermissions,
+    callback?: never
+  ): Promise<T>;
+  async addCustomContentPermissions<T = unknown>(
+    parameters: Parameters.AddCustomContentPermissions,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/api/space/${parameters.spaceKey}/permission/custom-content`,
+      method: 'POST',
+      data: {
+        subject: parameters.subject,
+        operations: parameters.operations,
+      },
+    };
+
+    return this.client.sendRequest(config, callback, { methodName: 'addCustomContentPermissions' });
   }
 
   /**

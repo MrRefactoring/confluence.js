@@ -14,6 +14,7 @@ import {
   ContentVersions,
   ContentWatches,
   DynamicModules,
+  Experimental,
   Group,
   InlineTasks,
   LabelInfo,
@@ -45,6 +46,7 @@ export class ConfluenceClient extends BaseClient {
   contentVersions = new ContentVersions(this);
   contentWatches = new ContentWatches(this);
   dynamicModules = new DynamicModules(this);
+  experimental = new Experimental(this);
   group = new Group(this);
   inlineTasks = new InlineTasks(this);
   labelInfo = new LabelInfo(this);

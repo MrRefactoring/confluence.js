@@ -93,7 +93,7 @@ export class Settings {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
    */
-  async updateLookAndFeelSettings<T = Models.LookAndFeelUpdated>(
+  async updateLookAndFeelSettings<T = Models.LookAndFeel>(
     parameters: Parameters.UpdateLookAndFeelSettings | undefined,
     callback: Callback<T>
   ): Promise<void>;
@@ -106,11 +106,11 @@ export class Settings {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
    */
-  async updateLookAndFeelSettings<T = Models.LookAndFeelUpdated>(
+  async updateLookAndFeelSettings<T = Models.LookAndFeel>(
     parameters?: Parameters.UpdateLookAndFeelSettings,
     callback?: never
   ): Promise<T>;
-  async updateLookAndFeelSettings<T = Models.LookAndFeelUpdated>(
+  async updateLookAndFeelSettings<T = Models.LookAndFeel>(
     parameters?: Parameters.UpdateLookAndFeelSettings,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -125,8 +125,11 @@ export class Settings {
         links: parameters?.links,
         menus: parameters?.menus,
         header: parameters?.header,
+        horizontalHeader: parameters?.horizontalHeader,
         content: parameters?.content,
         bordersAndDividers: parameters?.bordersAndDividers,
+        spaceReference: parameters?.spaceReference,
+        _links: parameters?.links,
       },
     };
 

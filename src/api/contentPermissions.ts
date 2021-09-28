@@ -7,6 +7,23 @@ import { RequestConfig } from '../requestConfig';
 export class ContentPermissions {
   constructor(private client: Client) {}
 
+  /** @deprecated Will be removed in the next major version. Use `checkContentPermission` method instead. */
+  async permissionCheck<T = Models.PermissionCheckResponse>(
+    parameters: Parameters.PermissionCheck,
+    callback: Callback<T>
+  ): Promise<void>;
+  /** @deprecated Will be removed in the next major version. Use `checkContentPermission` method instead. */
+  async permissionCheck<T = Models.PermissionCheckResponse>(
+    parameters: Parameters.PermissionCheck,
+    callback?: never
+  ): Promise<T>;
+  async permissionCheck<T = Models.PermissionCheckResponse>(
+    parameters: Parameters.PermissionCheck,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    return this.checkContentPermission(parameters, callback!);
+  }
+
   /**
    * Check if a user or a group can perform an operation to the specified content. The `operation` to check must be
    * provided. The user’s account ID or the ID of the group can be provided in the `subject` to check permissions
@@ -21,8 +38,8 @@ export class ContentPermissions {
    * ('Can use' global permission) if checking permission for self, otherwise 'Confluence Administrator' global
    * permission is required.
    */
-  async permissionCheck<T = Models.PermissionCheckResponse>(
-    parameters: Parameters.PermissionCheck,
+  async checkContentPermission<T = Models.PermissionCheckResponse>(
+    parameters: Parameters.CheckContentPermission,
     callback: Callback<T>
   ): Promise<void>;
   /**
@@ -39,12 +56,12 @@ export class ContentPermissions {
    * ('Can use' global permission) if checking permission for self, otherwise 'Confluence Administrator' global
    * permission is required.
    */
-  async permissionCheck<T = Models.PermissionCheckResponse>(
-    parameters: Parameters.PermissionCheck,
+  async checkContentPermission<T = Models.PermissionCheckResponse>(
+    parameters: Parameters.CheckContentPermission,
     callback?: never
   ): Promise<T>;
-  async permissionCheck<T = Models.PermissionCheckResponse>(
-    parameters: Parameters.PermissionCheck,
+  async checkContentPermission<T = Models.PermissionCheckResponse>(
+    parameters: Parameters.CheckContentPermission,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
@@ -56,6 +73,6 @@ export class ContentPermissions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'permissionCheck' });
+    return this.client.sendRequest(config, callback, { methodName: 'checkContentPermission' });
   }
 }

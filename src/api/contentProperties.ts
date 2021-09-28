@@ -37,6 +37,7 @@ export class ContentProperties {
       url: `/api/content/${parameters.id}/property`,
       method: 'GET',
       params: {
+        key: parameters.key,
         expand: parameters.expand,
         start: parameters.start,
         limit: parameters.limit,
