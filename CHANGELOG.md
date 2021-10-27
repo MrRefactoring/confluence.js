@@ -1,5 +1,12 @@
 # Changelog
 
+### 1.2.1
+
+- Vulnerabilities fixes.
+- Dependencies updated.
+- Docs updated
+- `expand` property added to `getContentById` method.
+
 ### 1.2.0
 
 - Cloud API

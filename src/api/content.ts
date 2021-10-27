@@ -319,6 +319,7 @@ export class Content {
         version: parameters.version,
         embeddedContentRender: parameters.embeddedContentRender,
         trigger: parameters.trigger,
+        expand: parameters.expand,
       },
     };
 
