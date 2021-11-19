@@ -126,6 +126,7 @@ export class ContentProperties {
       method: 'GET',
       params: {
         expand: parameters.expand,
+        status: parameters.status,
       },
     };
 

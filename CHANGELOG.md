@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.2.2
+
+- JSDOC improvements
+- New experimental endpoints
+- Small improvements
+
 ### 1.2.1
 
 - Vulnerabilities fixes.
