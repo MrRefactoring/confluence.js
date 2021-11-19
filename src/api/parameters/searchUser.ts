@@ -17,4 +17,11 @@ export interface SearchUser {
   start?: number;
   /** The maximum number of user objects to return per page. Note, this may be restricted by fixed system limits. */
   limit?: number;
+  /**
+   * A multi-value parameter indicating which properties of the user to expand.
+   *
+   * - `operations` returns the operations for the user, which are used when setting permissions.
+   * - `personalSpace` returns the personal space of the user.
+   */
+  expand?: string[];
 }

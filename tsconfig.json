@@ -5,7 +5,8 @@
     "outDir": "out",
     "strict": true,
     "declaration": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": [
     "node_modules",
