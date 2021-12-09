@@ -362,19 +362,20 @@ export class ContentAttachments {
   }
 
   /** Redirects the client to a URL that serves an attachment's binary data. */
-  async downloadAttachment<T = unknown>(
+  async downloadAttachment<T = ArrayBuffer>(
     parameters: Parameters.DownloadAttachment,
     callback: Callback<T>
   ): Promise<void>;
   /** Redirects the client to a URL that serves an attachment's binary data. */
-  async downloadAttachment<T = unknown>(parameters: Parameters.DownloadAttachment, callback?: never): Promise<T>;
-  async downloadAttachment<T = unknown>(
+  async downloadAttachment<T = ArrayBuffer>(parameters: Parameters.DownloadAttachment, callback?: never): Promise<T>;
+  async downloadAttachment<T = ArrayBuffer>(
     parameters: Parameters.DownloadAttachment,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}/download`,
       method: 'GET',
+      responseType: 'arraybuffer',
       params: {
         version: parameters.version,
       },

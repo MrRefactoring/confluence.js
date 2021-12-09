@@ -1,5 +1,4 @@
 import { AxiosError } from 'axios';
-import type { TelemetryConfig } from 'telemetry.confluence.js';
 import type { RequestConfig } from './requestConfig';
 import type { UtilityTypes } from './utilityTypes';
 
@@ -8,6 +7,7 @@ export interface Config {
   baseRequestConfig?: Config.BaseRequestConfig;
   authentication?: Config.Authentication;
   middlewares?: Config.Middlewares;
+  /** @deprecated Disabled. Will be removed in the next major version. */
   telemetry?: Config.Telemetry;
   /**
    * Adds `'X-Atlassian-Token': 'no-check'` to each request header
@@ -18,7 +18,8 @@ export interface Config {
 export namespace Config {
   export type BaseRequestConfig = RequestConfig;
   export type Error = AxiosError;
-  export type Telemetry = boolean | TelemetryConfig;
+  /** @deprecated Disabled. Will be removed in the next major version. */
+  export type Telemetry = boolean | any;
 
   export type Authentication = UtilityTypes.XOR<{
     jwt: Authentication.JWT;
