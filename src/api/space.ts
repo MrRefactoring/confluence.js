@@ -31,7 +31,7 @@ export class Space {
       url: '/api/space',
       method: 'GET',
       params: {
-        spaceKey: parameters?.spaceKey,
+        spaceKey: parameters?.spaceKey?.map((key, index) => index ? `&spaceKey=${key}` : key),
         spaceId: parameters?.spaceId,
         type: parameters?.type,
         status: parameters?.status,

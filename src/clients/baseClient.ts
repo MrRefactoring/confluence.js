@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from 'axios';
-import { Authentication, Telemetry, TelemetryClient } from 'telemetry.confluence.js';
 import type { Client } from './client';
 import type { Callback } from '../callback';
 import type { Config } from '../config';
@@ -11,13 +10,10 @@ const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
 
 export class BaseClient implements Client {
   #instance: AxiosInstance | undefined;
-  private telemetryClient: TelemetryClient;
 
   protected urlSuffix = '/wiki/rest/';
 
-  constructor(protected readonly config: Config) {
-    this.telemetryClient = new TelemetryClient(config.telemetry);
-  }
+  constructor(protected readonly config: Config) {}
 
   protected paramSerializer(parameters: Record<string, any>): string {
     const parts: string[] = [];
@@ -82,38 +78,16 @@ export class BaseClient implements Client {
     return this.#instance;
   }
 
-  async sendRequest<T>(requestConfig: RequestConfig, callback: never, telemetryData?: Partial<Telemetry>): Promise<T>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback: never, telemetryData?: any): Promise<T>;
   async sendRequest<T>(
     requestConfig: RequestConfig,
     callback: Callback<T>,
-    telemetryData?: Partial<Telemetry>
+    telemetryData?: any,
   ): Promise<void>;
   async sendRequest<T>(
     requestConfig: RequestConfig,
     callback: Callback<T> | never,
-    telemetryData?: Partial<Telemetry>,
   ): Promise<void | T> {
-    const startDateTime = new Date();
-
-    const telemetry: Telemetry = {
-      authentication: this.authenticationType,
-      baseRequestConfigUsed: !!this.config.baseRequestConfig,
-      bodyExists: !!requestConfig.data,
-      callbackUsed: !!callback,
-      headersExists: !!requestConfig.headers,
-      libVersion: '1.2.2',
-      libVersionHash: 'bda9643ac6601722a28f238714274da4',
-      methodName: telemetryData?.methodName || 'sendRequest',
-      onErrorMiddlewareUsed: !!this.config.middlewares?.onError,
-      onResponseMiddlewareUsed: !!this.config.middlewares?.onResponse,
-      queryExists: !!requestConfig.params,
-      requestEndTime: new Date(),
-      requestStartTime: startDateTime,
-      requestStatusCode: 0,
-      noCheckAtlassianToken: !!this.config.noCheckAtlassianToken,
-      ...telemetryData,
-    };
-
     try {
       const modifiedRequestConfig = {
         ...requestConfig,
@@ -136,8 +110,6 @@ export class BaseClient implements Client {
 
       this.config.middlewares?.onResponse?.(response.data);
 
-      telemetry.requestStatusCode = response.status;
-
       return responseHandler(response.data);
     } catch (e: any) {
       const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
@@ -149,35 +121,7 @@ export class BaseClient implements Client {
 
       this.config.middlewares?.onError?.(e);
 
-      telemetry.requestStatusCode = e.isAxiosError ? e.response?.status ?? 0 : 418;
-
       return errorHandler(e);
-    } finally {
-      telemetry.requestEndTime = new Date();
-
-      this.telemetryClient.sendTelemetry(telemetry);
     }
-  }
-
-  private get authenticationType(): Authentication {
-    const { authentication } = this.config;
-
-    if (!authentication) {
-      return Authentication.None;
-    }
-
-    if (authentication.basic) {
-      return Authentication.Basic;
-    }
-
-    if (authentication.oauth2) {
-      return Authentication.OAuth2;
-    }
-
-    if (authentication.jwt) {
-      return Authentication.JWT;
-    }
-
-    return Authentication.NA;
   }
 }

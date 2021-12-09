@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.3.0
+
+- Telemetry removed (deprecated)
+- Fixed bug with spaceKeys in `client.space.getSpaces` ([#14](https://github.com/MrRefactoring/confluence.js/issues/14) Thanks [David Sanchez](https://github.com/emulienfou) for catching)
+- Fixed bug with attachment download ([#15](https://github.com/MrRefactoring/confluence.js/issues/15) Thanks [Martin Reinhardt](https://github.com/hypery2k) for catching)
+
 ### 1.2.2
 
 - JSDOC improvements
