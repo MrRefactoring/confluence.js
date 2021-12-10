@@ -64,7 +64,7 @@ export class ContentChildrenAndDescendants {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentChildren' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -97,7 +97,7 @@ export class ContentChildrenAndDescendants {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'movePage' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -156,7 +156,7 @@ export class ContentChildrenAndDescendants {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentChildrenByType' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -215,7 +215,7 @@ export class ContentChildrenAndDescendants {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentDescendants' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** @deprecated This API will be removed in the next major version. Use `getDescendantsOfType` method instead. */
@@ -292,7 +292,7 @@ export class ContentChildrenAndDescendants {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'descendantsOfType' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -329,7 +329,7 @@ export class ContentChildrenAndDescendants {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'copyPageHierarchy' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -372,6 +372,6 @@ export class ContentChildrenAndDescendants {
       data: parameters.bodyParameters,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'copyPage' });
+    return this.client.sendRequest(config, callback);
   }
 }

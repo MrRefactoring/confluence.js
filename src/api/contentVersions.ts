@@ -41,7 +41,7 @@ export class ContentVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentVersions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -80,7 +80,7 @@ export class ContentVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'restoreContentVersion' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -112,7 +112,7 @@ export class ContentVersions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentVersion' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -141,6 +141,6 @@ export class ContentVersions {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteContentVersion' });
+    return this.client.sendRequest(config, callback);
   }
 }

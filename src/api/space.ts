@@ -31,7 +31,7 @@ export class Space {
       url: '/api/space',
       method: 'GET',
       params: {
-        spaceKey: parameters?.spaceKey?.map((key, index) => index ? `&spaceKey=${key}` : key),
+        spaceKey: () => parameters?.spaceKey?.map((key) => `spaceKey=${key}`).join('&'),
         spaceId: parameters?.spaceId,
         type: parameters?.type,
         status: parameters?.status,
@@ -43,7 +43,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSpaces' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -73,7 +73,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -110,7 +110,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createPrivateSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -131,7 +131,7 @@ export class Space {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -165,7 +165,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -193,7 +193,7 @@ export class Space {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -232,7 +232,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentForSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -269,6 +269,6 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentByTypeForSpace' });
+    return this.client.sendRequest(config, callback);
   }
 }

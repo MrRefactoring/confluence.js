@@ -45,7 +45,7 @@ export class Audit {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAuditRecords' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -87,7 +87,7 @@ export class Audit {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createAuditRecord' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -120,7 +120,7 @@ export class Audit {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'exportAuditRecords' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -143,7 +143,7 @@ export class Audit {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getRetentionPeriod' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -177,7 +177,7 @@ export class Audit {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setRetentionPeriod' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -224,6 +224,6 @@ export class Audit {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAuditRecordsForTimePeriod' });
+    return this.client.sendRequest(config, callback);
   }
 }

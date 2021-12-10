@@ -49,7 +49,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -99,7 +99,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createContent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -138,7 +138,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'archivePages' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -185,7 +185,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'publishLegacyDraft' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -230,7 +230,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'publishSharedDraft' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -286,7 +286,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'searchContentByCQL' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -323,7 +323,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentById' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -365,7 +365,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateContent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -401,7 +401,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteContent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -434,6 +434,6 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getHistoryForContent' });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -34,7 +34,7 @@ export class SpaceSettings {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSpaceSettings' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -67,6 +67,6 @@ export class SpaceSettings {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateSpaceSettings' });
+    return this.client.sendRequest(config, callback);
   }
 }

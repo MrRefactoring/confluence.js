@@ -41,7 +41,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getUser' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -76,7 +76,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAnonymousUser' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -110,7 +110,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getCurrentUser' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -149,7 +149,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getGroupMembershipsForUser' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -186,7 +186,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getBulkUserLookup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -223,7 +223,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getPrivacyUnsafeUserEmail' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -266,7 +266,7 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getPrivacyUnsafeUserEmailBulk' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -306,6 +306,6 @@ export class Users {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getBulkUserMigration' });
+    return this.client.sendRequest(config, callback);
   }
 }

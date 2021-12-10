@@ -53,7 +53,7 @@ export class Relation {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findTargetFromSource' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** @deprecated Will be removed in the next major version. Use `getRelationship` instead. */
@@ -113,7 +113,7 @@ export class Relation {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getRelationship' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -159,7 +159,7 @@ export class Relation {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createRelationship' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** @deprecated Will be removed in the next major version. Use `deleteRelationship` instead. */
@@ -201,7 +201,7 @@ export class Relation {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteRelationship' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -252,6 +252,6 @@ export class Relation {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'findSourcesForTarget' });
+    return this.client.sendRequest(config, callback);
   }
 }

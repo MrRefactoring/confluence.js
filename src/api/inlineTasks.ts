@@ -49,7 +49,7 @@ export class InlineTasks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'searchTasks' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -72,7 +72,7 @@ export class InlineTasks {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getTaskById' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -101,6 +101,6 @@ export class InlineTasks {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateTaskById' });
+    return this.client.sendRequest(config, callback);
   }
 }

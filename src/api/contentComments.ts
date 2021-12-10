@@ -43,6 +43,6 @@ export class ContentComments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentComments' });
+    return this.client.sendRequest(config, callback);
   }
 }

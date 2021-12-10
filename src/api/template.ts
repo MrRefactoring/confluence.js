@@ -44,7 +44,7 @@ export class Template {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createContentTemplate' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -85,7 +85,7 @@ export class Template {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateContentTemplate' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -133,7 +133,7 @@ export class Template {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getBlueprintTemplates' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -171,7 +171,7 @@ export class Template {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentTemplates' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -205,7 +205,7 @@ export class Template {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentTemplate' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -242,6 +242,6 @@ export class Template {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeTemplate' });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -43,7 +43,7 @@ export class Settings {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getLookAndFeelSettings' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -81,7 +81,7 @@ export class Settings {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateLookAndFeel' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -133,7 +133,7 @@ export class Settings {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateLookAndFeelSettings' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -170,7 +170,7 @@ export class Settings {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'resetLookAndFeelSettings' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -205,7 +205,7 @@ export class Settings {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setLookAndFeelSettings' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -228,6 +228,6 @@ export class Settings {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSystemInfo' });
+    return this.client.sendRequest(config, callback);
   }
 }

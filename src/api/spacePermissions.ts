@@ -61,7 +61,7 @@ export class SpacePermissions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addPermissionToSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -103,7 +103,7 @@ export class SpacePermissions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addCustomContentPermissions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -130,6 +130,6 @@ export class SpacePermissions {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removePermission' });
+    return this.client.sendRequest(config, callback);
   }
 }

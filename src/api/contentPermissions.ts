@@ -73,6 +73,6 @@ export class ContentPermissions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'checkContentPermission' });
+    return this.client.sendRequest(config, callback);
   }
 }

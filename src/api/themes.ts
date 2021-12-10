@@ -32,7 +32,7 @@ export class Themes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getThemes' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -53,7 +53,7 @@ export class Themes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getGlobalTheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -74,7 +74,7 @@ export class Themes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getTheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -100,7 +100,7 @@ export class Themes {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSpaceTheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -129,7 +129,7 @@ export class Themes {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'setSpaceTheme' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -150,6 +150,6 @@ export class Themes {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'resetSpaceTheme' });
+    return this.client.sendRequest(config, callback);
   }
 }

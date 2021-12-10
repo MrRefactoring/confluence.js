@@ -12,12 +12,20 @@ describe('Space', () => {
   });
 
   describe('getSpaces should generate correct URL', () => {
+    it('when spaceKey is not provided', () => {
+      space.getSpaces({});
+
+      const callArgument = sendRequestStub.lastCall.args[0];
+
+      expect(callArgument.params.spaceKey()).toBe(undefined);
+    });
+
     it('when spaceKey is empty array', () => {
       space.getSpaces({ spaceKey: [] });
 
       const callArgument = sendRequestStub.lastCall.args[0];
 
-      expect(callArgument.params.spaceKey).toEqual([]);
+      expect(callArgument.params.spaceKey()).toBe('');
     });
 
     it('when spaceKey has one key', () => {
@@ -25,7 +33,7 @@ describe('Space', () => {
 
       const callArgument = sendRequestStub.lastCall.args[0];
 
-      expect(callArgument.params.spaceKey).toEqual(['KEY1']);
+      expect(callArgument.params.spaceKey()).toBe('spaceKey=KEY1');
     });
 
     it('when spaceKey has multiple keys', () => {
@@ -33,7 +41,7 @@ describe('Space', () => {
 
       const callArgument = sendRequestStub.lastCall.args[0];
 
-      expect(callArgument.params.spaceKey).toEqual(['KEY1', '&spaceKey=KEY2']);
+      expect(callArgument.params.spaceKey()).toBe('spaceKey=KEY1&spaceKey=KEY2');
     });
   });
 });

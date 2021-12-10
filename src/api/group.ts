@@ -38,7 +38,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getGroups' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -65,7 +65,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createGroup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -89,7 +89,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeGroup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -124,7 +124,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getGroupByQueryParam' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -156,7 +156,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getGroupByGroupId' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -180,7 +180,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeGroupById' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** @deprecated Will be removed in the next major version. Use `getGroupByName` instead. */
@@ -190,6 +190,7 @@ export class Group {
   async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: Callback<T>): Promise<void | T> {
     return this.getGroupByName(parameters, callback!);
   }
+
   /**
    * Returns a user group for a given group name.
    *
@@ -217,7 +218,7 @@ export class Group {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getGroupByName' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -254,7 +255,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getMembersByQueryParam' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -291,7 +292,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getGroupMembers' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** @deprecated Will be removed in the next major version. Use `searchGroups` instead. */
@@ -332,7 +333,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'searchGroups' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -368,7 +369,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addUserToGroupByGroupId' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -402,7 +403,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeMemberFromGroupByGroupId' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -442,7 +443,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getGroupMembersByGroupId' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -469,7 +470,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addUserToGroup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -500,6 +501,6 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeMemberFromGroup' });
+    return this.client.sendRequest(config, callback);
   }
 }

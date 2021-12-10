@@ -41,7 +41,7 @@ export class ContentLabels {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getLabelsForContent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -87,7 +87,7 @@ export class ContentLabels {
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addLabelsToContent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -128,7 +128,7 @@ export class ContentLabels {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeLabelFromContentUsingQueryParameter' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -165,6 +165,6 @@ export class ContentLabels {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeLabelFromContent' });
+    return this.client.sendRequest(config, callback);
   }
 }
