@@ -39,7 +39,7 @@ export class ContentRestrictions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getRestrictions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -73,7 +73,7 @@ export class ContentRestrictions {
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addRestrictions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -109,7 +109,7 @@ export class ContentRestrictions {
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateRestrictions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -142,7 +142,7 @@ export class ContentRestrictions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteRestrictions' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -179,7 +179,7 @@ export class ContentRestrictions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getRestrictionsByOperation' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -214,7 +214,7 @@ export class ContentRestrictions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getRestrictionsForOperation' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -258,7 +258,7 @@ export class ContentRestrictions {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentRestrictionStatusForGroup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -288,7 +288,7 @@ export class ContentRestrictions {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addGroupToContentRestriction' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -312,7 +312,7 @@ export class ContentRestrictions {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeGroupByName' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -356,7 +356,7 @@ export class ContentRestrictions {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getIndividualGroupRestrictionStatusByGroupId' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -388,7 +388,7 @@ export class ContentRestrictions {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addGroupToContentRestrictionByGroupId' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -412,7 +412,7 @@ export class ContentRestrictions {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeGroupById' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -463,7 +463,7 @@ export class ContentRestrictions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentRestrictionStatusForUser' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -498,7 +498,7 @@ export class ContentRestrictions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addUserToContentRestriction' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -533,6 +533,6 @@ export class ContentRestrictions {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeUserFromContentRestriction' });
+    return this.client.sendRequest(config, callback);
   }
 }

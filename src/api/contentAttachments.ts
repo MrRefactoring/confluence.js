@@ -44,7 +44,7 @@ export class ContentAttachments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAttachments' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -136,7 +136,7 @@ export class ContentAttachments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createAttachments' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -230,7 +230,7 @@ export class ContentAttachments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createOrUpdateAttachments' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -263,7 +263,7 @@ export class ContentAttachments {
       data: parameters.body,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateAttachmentProperties' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -358,7 +358,7 @@ export class ContentAttachments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateAttachmentData' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Redirects the client to a URL that serves an attachment's binary data. */
@@ -381,6 +381,6 @@ export class ContentAttachments {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'downloadAttachment' });
+    return this.client.sendRequest(config, callback);
   }
 }

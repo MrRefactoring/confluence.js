@@ -42,6 +42,6 @@ export class LabelInfo {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getAllLabelContent' });
+    return this.client.sendRequest(config, callback);
   }
 }

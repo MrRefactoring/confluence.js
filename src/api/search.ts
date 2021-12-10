@@ -74,7 +74,7 @@ export class Search {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'searchByCQL' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** @deprecated Will be removed in the next major version. Use `searchUser` instead. */
@@ -93,12 +93,13 @@ export class Search {
   ): Promise<void | T> {
     return this.searchUser(parameters, callback!);
   }
+
   /**
    * Searches for users using user-specific queries from the [Confluence Query Language
    * (CQL)](https://developer.atlassian.com/cloud/confluence/advanced-searching-using-cql/).
    *
    * Note that some user fields may be set to null depending on the user's privacy settings. These are: email,
-   * profilePicture, and displayName.
+   * profilePicture, displayName, and timeZone.
    */
   async searchUser<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.SearchUser,
@@ -109,7 +110,7 @@ export class Search {
    * (CQL)](https://developer.atlassian.com/cloud/confluence/advanced-searching-using-cql/).
    *
    * Note that some user fields may be set to null depending on the user's privacy settings. These are: email,
-   * profilePicture, and displayName.
+   * profilePicture, displayName, and timeZone.
    */
   async searchUser<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.SearchUser,
@@ -126,9 +127,10 @@ export class Search {
         cql: parameters.cql,
         start: parameters.start,
         limit: parameters.limit,
+        expand: parameters.expand,
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'searchUser' });
+    return this.client.sendRequest(config, callback);
   }
 }

@@ -44,7 +44,7 @@ export class ContentProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentProperties' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -92,7 +92,7 @@ export class ContentProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createContentProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -130,7 +130,7 @@ export class ContentProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -177,7 +177,7 @@ export class ContentProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createContentPropertyForKey' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -215,7 +215,7 @@ export class ContentProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateContentProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -244,6 +244,6 @@ export class ContentProperties {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteContentProperty' });
+    return this.client.sendRequest(config, callback);
   }
 }

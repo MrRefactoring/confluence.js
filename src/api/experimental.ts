@@ -37,7 +37,7 @@ export class Experimental {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getLabelsForSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -76,7 +76,7 @@ export class Experimental {
       method: 'POST',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addLabelsToSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   async deleteLabelFromSpace<T = void>(
@@ -97,7 +97,7 @@ export class Experimental {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteLabelFromSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Get the total number of views a piece of content has. */
@@ -113,7 +113,7 @@ export class Experimental {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getViews' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Get the total number of distinct viewers a piece of content has. */
@@ -132,6 +132,6 @@ export class Experimental {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getViewers' });
+    return this.client.sendRequest(config, callback);
   }
 }

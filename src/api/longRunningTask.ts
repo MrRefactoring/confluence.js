@@ -39,7 +39,7 @@ export class LongRunningTask {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getTasks' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -70,6 +70,6 @@ export class LongRunningTask {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getTask' });
+    return this.client.sendRequest(config, callback);
   }
 }

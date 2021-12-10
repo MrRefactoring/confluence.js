@@ -52,7 +52,7 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getWatchesForPage' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -102,7 +102,7 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getWatchesForSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Returns a list of watchers of a space */
@@ -128,7 +128,7 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getWatchersForSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -171,7 +171,7 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getContentWatchStatus' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -212,7 +212,7 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addContentWatcher' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -255,7 +255,7 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeContentWatcher' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -295,7 +295,7 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'isWatchingLabel' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -336,7 +336,7 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addLabelWatcher' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -373,7 +373,7 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeLabelWatcher' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -413,7 +413,7 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'isWatchingSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -454,7 +454,7 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'addSpaceWatcher' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -488,6 +488,6 @@ export class ContentWatches {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'removeSpaceWatch' });
+    return this.client.sendRequest(config, callback);
   }
 }

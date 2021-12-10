@@ -39,7 +39,7 @@ export class SpaceProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSpaceProperties' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -74,7 +74,7 @@ export class SpaceProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createSpaceProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -107,7 +107,7 @@ export class SpaceProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getSpaceProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -142,7 +142,7 @@ export class SpaceProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'createSpacePropertyForKey' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -176,7 +176,7 @@ export class SpaceProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'updateSpaceProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -200,6 +200,6 @@ export class SpaceProperties {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'deleteSpaceProperty' });
+    return this.client.sendRequest(config, callback);
   }
 }

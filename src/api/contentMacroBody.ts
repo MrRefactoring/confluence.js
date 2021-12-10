@@ -54,6 +54,6 @@ export class ContentMacroBody {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'getMacroBodyByMacroId' });
+    return this.client.sendRequest(config, callback);
   }
 }

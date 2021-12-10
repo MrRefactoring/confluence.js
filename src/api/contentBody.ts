@@ -61,6 +61,6 @@ export class ContentBody {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'convertContentBody' });
+    return this.client.sendRequest(config, callback);
   }
 }
