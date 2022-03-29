@@ -1,5 +1,5 @@
-import { Relation } from './relation';
 import { GenericLinks } from './genericLinks';
+import { Relation } from './relation';
 
 export interface RelationArray {
   results: Relation[];

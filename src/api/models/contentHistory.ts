@@ -1,7 +1,7 @@
-import { User } from './user';
-import { Version } from './version';
-import { UsersUserKeys } from './usersUserKeys';
 import { GenericLinks } from './genericLinks';
+import { User } from './user';
+import { UsersUserKeys } from './usersUserKeys';
+import { Version } from './version';
 
 export interface ContentHistory {
   latest: boolean;

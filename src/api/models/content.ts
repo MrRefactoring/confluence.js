@@ -1,13 +1,13 @@
-import { Space } from './space';
-import { ContentHistory } from './contentHistory';
-import { Version } from './version';
-import { OperationCheckResult } from './operationCheckResult';
-import { ContentChildren } from './contentChildren';
-import { ContentChildType } from './contentChildType';
 import { Container } from './container';
 import { ContentBody } from './contentBody';
+import { ContentChildren } from './contentChildren';
+import { ContentChildType } from './contentChildType';
+import { ContentHistory } from './contentHistory';
 import { ContentRestriction } from './contentRestriction';
 import { GenericLinks } from './genericLinks';
+import { OperationCheckResult } from './operationCheckResult';
+import { Space } from './space';
+import { Version } from './version';
 
 /** Base object for all content types. */
 export interface Content {

@@ -1,56 +1,55 @@
+import test from 'ava';
 import {
-  Callback,
-  RequestConfig,
-  Config,
-  Client,
   BaseClient,
+  Callback,
+  Client,
+  Config,
   ConfluenceClient,
+  RequestConfig,
 } from '../../src';
 
-describe('Facade', () => {
-  it('Callback should be defined', () => {
-    const callback: Callback<string> = () => {};
+test('Callback should be defined', (t) => {
+  const callback: Callback<string> = () => {};
 
-    expect(callback).toBeDefined();
-  });
+  t.truthy(!!callback);
+});
 
-  it('RequestConfig should be defined', () => {
-    const requestConfig: RequestConfig = {};
+test('RequestConfig should be defined', (t) => {
+  const requestConfig: RequestConfig = {};
 
-    expect(requestConfig).toBeDefined();
-  });
+  t.truthy(!!requestConfig);
+});
 
-  it('Config should be defined', () => {
-    const config: Config = {
-      host: '',
-    };
+test('Config should be defined', (t) => {
+  const config: Config = {
+    host: '',
+  };
 
-    expect(config).toBeDefined();
-    expect(config.host).toBeDefined();
-    expect(typeof config.host).toBe('string');
-  });
+  t.truthy(!!config);
+  t.is(config.host, '');
+  t.is(typeof config.host, 'string');
+});
 
-  it('Client should be defined', async () => {
-    const client: Client = {
-      sendRequest(): Promise<undefined> {
-        return Promise.resolve(undefined);
-      },
-    };
+test('Client should be defined', async (t) => {
+  const client: Client = {
+    sendRequest(): Promise<undefined> {
+      return Promise.resolve(undefined);
+    },
+  };
 
-    expect(client).toBeDefined();
-    expect(client.sendRequest).toBeDefined();
-    expect(await client.sendRequest({})).toBeUndefined();
-  });
+  t.truthy(!!client);
+  t.truthy(!!client.sendRequest);
+  t.falsy(!!(await client.sendRequest({})));
+});
 
-  it('BaseClient should be defined', () => {
-    const baseClient = new BaseClient({ host: '' });
+test('BaseClient should be defined', (t) => {
+  const baseClient = new BaseClient({ host: '' });
 
-    expect(baseClient).toBeDefined();
-  });
+  t.truthy(!!baseClient);
+});
 
-  it('ConfluenceClient should be defined', () => {
-    const confluenceClient = new ConfluenceClient({ host: '' });
+test('ConfluenceClient should be defined', (t) => {
+  const confluenceClient = new ConfluenceClient({ host: '' });
 
-    expect(confluenceClient).toBeDefined();
-  });
+  t.truthy(!!confluenceClient);
 });

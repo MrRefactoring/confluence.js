@@ -1,5 +1,5 @@
-import { PermissionSubject } from './permissionSubject';
 import { GenericLinks } from './genericLinks';
+import { PermissionSubject } from './permissionSubject';
 
 /**
  * This object represents a single space permission. Permissions consist of* at least one operation object with an

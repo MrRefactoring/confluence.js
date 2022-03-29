@@ -1,5 +1,5 @@
-import { Version } from './version';
 import { GenericLinks } from './genericLinks';
+import { Version } from './version';
 
 export interface VersionArray {
   results: Version[];

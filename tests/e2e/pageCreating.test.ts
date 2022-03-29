@@ -1,68 +1,67 @@
 import { ConfluenceClient } from '../../src';
+import test from 'ava';
 
 const HOST = process.env.HOST!;
 const EMAIL = process.env.EMAIL!;
 const API_TOKEN = process.env.API_TOKEN!;
 
-describe('Page creating', () => {
-  let createdContentId: string;
-  const client = new ConfluenceClient({
-    host: HOST,
-    telemetry: false,
-    authentication: {
-      basic: {
-        email: EMAIL,
-        apiToken: API_TOKEN,
+let createdContentId: string;
+const client = new ConfluenceClient({
+  host: HOST,
+  telemetry: false,
+  authentication: {
+    basic: {
+      email: EMAIL,
+      apiToken: API_TOKEN,
+    },
+  },
+});
+
+test.serial('should create space', async (t) => {
+  const space = await client.space.createSpace({
+    name: 'Auto testing software',
+    key: 'AUTOMATED',
+  });
+
+  t.truthy(!!space);
+  t.is(space.key, 'AUTOMATED');
+  t.is(space.name, 'Auto testing software');
+});
+
+test.serial('should create content', async (t) => {
+  const content = await client.content.createContent({
+    title: 'Test page',
+    space: {
+      key: 'AUTOMATED',
+    },
+    type: 'page',
+    body: {
+      view: {
+        value: '<string>',
+        representation: 'view',
       },
     },
   });
 
-  it('should create space', async () => {
-    const space = await client.space.createSpace({
-      name: 'Auto testing software',
-      key: 'AUTOMATED',
-    });
+  createdContentId = content.id;
 
-    expect(space).toBeDefined();
-    expect(space.key).toBe('AUTOMATED');
-    expect(space.name).toBe('Auto testing software');
+  t.truthy(!!content);
+  t.is(content.type, 'page');
+  t.is(content.space?.key, 'AUTOMATED');
+});
+
+test.serial('should remove content', async (t) => {
+  await client.content.deleteContent({
+    id: createdContentId,
   });
 
-  it('should create content', async () => {
-    const content = await client.content.createContent({
-      title: 'Test page',
-      space: {
-        key: 'AUTOMATED',
-      },
-      type: 'page',
-      body: {
-        view: {
-          value: '<string>',
-          representation: 'view',
-        },
-      },
-    });
+  t.pass();
+});
 
-    createdContentId = content.id;
-
-    expect(content).toBeDefined();
-    expect(content.type).toBe('page');
-    expect(content.space?.key).toBe('AUTOMATED');
+test.serial('should remove space', async (t) => {
+  const removedSpace = await client.space.deleteSpace({
+    spaceKey: 'AUTOMATED',
   });
 
-  it('should remove content', async () => {
-    await client.content.deleteContent({
-      id: createdContentId,
-    });
-
-    expect(true).toBeTruthy();
-  });
-
-  it('should remove space', async () => {
-    const removedSpace = await client.space.deleteSpace({
-      spaceKey: 'AUTOMATED',
-    });
-
-    expect(removedSpace).toBeDefined();
-  });
+  t.truthy(!!removedSpace);
 });

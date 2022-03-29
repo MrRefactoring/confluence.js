@@ -6,7 +6,7 @@
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
-    "project": "./tsconfig.tests.json"
+    "project": "./tsconfig.lint.json"
   },
   "plugins": [
     "import"
@@ -24,6 +24,22 @@
     "import/no-cycle": "off",
     "no-underscore-dangle": "off",
     "lines-between-class-members": "off",
+    "eol-last": "error",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": [
+          "all",
+          "single",
+          "multiple",
+          "none"
+        ],
+        "allowSeparatedGroups": false
+      }
+    ],
     "padding-line-between-statements": [
       "error",
       {

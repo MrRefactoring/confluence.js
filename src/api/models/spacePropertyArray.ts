@@ -1,5 +1,5 @@
-import { SpaceProperty } from './spaceProperty';
 import { GenericLinks } from './genericLinks';
+import { SpaceProperty } from './spaceProperty';
 
 export interface SpacePropertyArray {
   results: SpaceProperty[];

@@ -1,6 +1,6 @@
-import { Content } from './content';
-import { ContainerSummary } from './containerSummary';
 import { Breadcrumb } from './breadcrumb';
+import { ContainerSummary } from './containerSummary';
+import { Content } from './content';
 
 export interface SearchResult {
   content: Content;

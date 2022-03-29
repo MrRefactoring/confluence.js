@@ -1,6 +1,6 @@
-import { Label } from './label';
 import { ContentBody } from './contentBody';
 import { GenericLinks } from './genericLinks';
+import { Label } from './label';
 
 export interface BlueprintTemplate {
   templateId: string;

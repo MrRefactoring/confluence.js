@@ -1,7 +1,8 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../clients';
 import { Callback } from '../callback';
+import { Client } from '../clients';
+import { paramSerializer } from '../paramSerializer';
 import { RequestConfig } from '../requestConfig';
 
 export class Space {
@@ -31,7 +32,7 @@ export class Space {
       url: '/api/space',
       method: 'GET',
       params: {
-        spaceKey: () => parameters?.spaceKey?.map((key) => `spaceKey=${key}`).join('&'),
+        spaceKey: paramSerializer('spaceKey', parameters?.spaceKey),
         spaceId: parameters?.spaceId,
         type: parameters?.type,
         status: parameters?.status,

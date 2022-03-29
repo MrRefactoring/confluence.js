@@ -1,6 +1,6 @@
-import { UserArray } from './userArray';
-import { GroupArray } from './groupArray';
 import { Content } from './content';
+import { GroupArray } from './groupArray';
+import { UserArray } from './userArray';
 
 export interface ContentRestriction {
   operation: string;

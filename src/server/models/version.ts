@@ -1,5 +1,5 @@
-import { User } from './user';
 import { Content } from './content';
+import { User } from './user';
 import { UsersUserKeys } from './usersUserKeys';
 
 export interface Version {

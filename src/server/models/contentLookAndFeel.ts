@@ -1,5 +1,5 @@
-import { ScreenLookAndFeel } from './screenLookAndFeel';
 import { ContainerLookAndFeel } from './containerLookAndFeel';
+import { ScreenLookAndFeel } from './screenLookAndFeel';
 
 export interface ContentLookAndFeel {
   screen: ScreenLookAndFeel;

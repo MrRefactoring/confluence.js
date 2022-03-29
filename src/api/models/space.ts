@@ -1,13 +1,13 @@
-import { Icon } from './icon';
-import { SpaceDescription } from './spaceDescription';
 import { Content } from './content';
+import { GenericLinks } from './genericLinks';
+import { Icon } from './icon';
 import { LabelArray } from './labelArray';
+import { LookAndFeel } from './lookAndFeel';
 import { OperationCheckResult } from './operationCheckResult';
+import { SpaceDescription } from './spaceDescription';
 import { SpacePermission } from './spacePermission';
 import { SpaceSettings } from './spaceSettings';
 import { Theme } from './theme';
-import { LookAndFeel } from './lookAndFeel';
-import { GenericLinks } from './genericLinks';
 
 export interface Space {
   id: number;
