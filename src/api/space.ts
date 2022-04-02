@@ -129,6 +129,9 @@ export class Space {
     const config: RequestConfig = {
       url: `/api/space/${parameters.spaceKey}`,
       method: 'GET',
+      params: {
+        expand: parameters.expand,
+      },
     };
 
     return this.client.sendRequest(config, callback);
