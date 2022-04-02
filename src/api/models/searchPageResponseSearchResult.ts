@@ -1,5 +1,5 @@
-import { SearchResult } from './searchResult';
 import { GenericLinks } from './genericLinks';
+import { SearchResult } from './searchResult';
 
 export interface SearchPageResponseSearchResult {
   results: SearchResult[];

@@ -1,5 +1,17 @@
 # Changelog
 
+- Analytics API added.
+- ContentContentState API added.
+- `deletePageTree` method added to `Experimental`.
+- `getUserProperties` method added to `Experimental`.
+- `getUserProperty` method added to `Experimental`.
+- `createUserProperty` method added to `Experimental`.
+- `updateUserProperty` method added to `Experimental`.
+- `deleteUserProperty` method added to `Experimental`.
+- `getContentStateSettings` method added to `Settings`.
+- Another small changes.
+- Personal Access token authentication added.
+
 ### 1.3.0
 
 - Telemetry removed (deprecated)

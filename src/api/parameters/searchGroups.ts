@@ -5,4 +5,9 @@ export interface SearchGroups {
   start?: number;
   /** The maximum number of groups to return per page. Note, this is restricted to a maximum limit of 200 groups. */
   limit?: number;
+  /**
+   * Whether to include total size parameter in the results. Note, fetching total size property is an expensive
+   * operation; use it if your use case needs this value.
+   */
+  shouldReturnTotalSize?: boolean;
 }

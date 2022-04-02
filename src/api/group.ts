@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../clients';
 import { Callback } from '../callback';
+import { Client } from '../clients';
 import { RequestConfig } from '../requestConfig';
 
 export class Group {
@@ -252,6 +252,7 @@ export class Group {
         name: parameters.name,
         start: parameters.start,
         limit: parameters.limit,
+        shouldReturnTotalSize: parameters.shouldReturnTotalSize,
       },
     };
 
@@ -330,6 +331,7 @@ export class Group {
         query: parameters.query,
         start: parameters.start,
         limit: parameters.limit,
+        shouldReturnTotalSize: parameters.shouldReturnTotalSize,
       },
     };
 
@@ -440,6 +442,7 @@ export class Group {
       params: {
         start: parameters.start,
         limit: parameters.limit,
+        shouldReturnTotalSize: parameters.shouldReturnTotalSize,
       },
     };
 

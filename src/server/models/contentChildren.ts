@@ -1,5 +1,5 @@
-import { Pagination } from '../../pagination';
 import { Content } from './content';
+import { Pagination } from '../../pagination';
 
 export interface ContentChildren {
   attachment?: Pagination<Content>;

@@ -1,5 +1,5 @@
-import { SpaceWatch } from './spaceWatch';
 import { GenericLinks } from './genericLinks';
+import { SpaceWatch } from './spaceWatch';
 
 export interface SpaceWatchArray {
   results: SpaceWatch[];

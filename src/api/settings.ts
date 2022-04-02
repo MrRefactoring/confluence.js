@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../clients';
 import { Callback } from '../callback';
+import { Client } from '../clients';
 import { RequestConfig } from '../requestConfig';
 
 export class Settings {
@@ -225,6 +225,28 @@ export class Settings {
   async getSystemInfo<T = Models.SystemInfoEntity>(callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/api/settings/systemInfo',
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /** Gets Content State settings for a space */
+  async getContentStateSettings<T = Models.ContentStateSettings>(
+    parameters: Parameters.GetContentStateSettings,
+    callback: Callback<T>
+  ): Promise<void>;
+  /** Gets Content State settings for a space */
+  async getContentStateSettings<T = Models.ContentStateSettings>(
+    parameters: Parameters.GetContentStateSettings,
+    callback?: never
+  ): Promise<T>;
+  async getContentStateSettings<T = Models.ContentStateSettings>(
+    parameters: Parameters.GetContentStateSettings,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/api/space/${parameters.spaceKey}/state/settings`,
       method: 'GET',
     };
 

@@ -23,6 +23,7 @@ Usability, consistency, and performance are key focuses of confluence.js, and it
     - [Basic](#basic-authenticationhttpsdeveloperatlassiancomcloudconfluencebasic-auth-for-rest-apis)
     - [OAuth 2.0](#oauth-20httpsdeveloperatlassiancomcloudconfluenceoauth-2-3lo-apps)
     - [JWT](#jwthttpsdeveloperatlassiancomcloudconfluenceunderstanding-jwt)
+    - [Personal access token](#personal-access-token)
   - [Your first request and using algorithm](#your-first-request-and-using-algorithm)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
 - [Take a look at our other products](#take-a-look-at-our-other-products)
@@ -118,6 +119,19 @@ const client = new ConfluenceClient({
       secret: 'shhhh',
       expiryTimeSeconds: 180,
     },
+  },
+});
+```
+
+##### [Personal access token](https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html)
+
+```typescript
+import { ConfluenceClient } from 'confluence.js';
+
+const client = new ConfluenceClient({
+  host: 'https://your-domain.atlassian.net',
+  authentication: {
+    personalAccessToken: 'secrectPAT',
   },
 });
 ```
@@ -221,6 +235,7 @@ client.<group>.<methodName>(parametersObject);
 
 Available groups:
 
+- [analytics](https://developer.atlassian.com/cloud/confluence/rest/api-group-analytics/)
 - [audit](https://developer.atlassian.com/cloud/confluence/rest/api-group-audit)
 - [content](https://developer.atlassian.com/cloud/confluence/rest/api-group-content/)
 - [contentAttachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-group-content---attachments)

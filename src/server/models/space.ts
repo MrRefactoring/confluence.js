@@ -1,12 +1,12 @@
-import { Icon } from './icon';
-import { SpaceDescription } from './spaceDescription';
 import { Content } from './content';
+import { Icon } from './icon';
 import { LabelArray } from './labelArray';
+import { LookAndFeel } from './lookAndFeel';
 import { OperationCheckResult } from './operationCheckResult';
+import { SpaceDescription } from './spaceDescription';
 import { SpacePermission } from './spacePermission';
 import { SpaceSettings } from './spaceSettings';
 import { Theme } from './theme';
-import { LookAndFeel } from './lookAndFeel';
 
 export interface Space {
   id: number;

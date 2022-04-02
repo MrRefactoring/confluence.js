@@ -1,7 +1,7 @@
 import { Icon } from './icon';
 import { OperationCheckResult } from './operationCheckResult';
-import { UserDetails } from './userDetails';
 import { Space } from './space';
+import { UserDetails } from './userDetails';
 
 export interface User {
   type: string;

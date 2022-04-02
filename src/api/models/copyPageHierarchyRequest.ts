@@ -11,6 +11,8 @@ export interface CopyPageHierarchyRequest {
   copyLabels?: boolean;
   /** If set to `true`, custom contents are copied to the destination page. */
   copyCustomContents?: boolean;
+  /** If set to `true`, descendants are copied to the destination page. */
+  copyDescendants?: boolean;
   destinationPageId: string;
   titleOptions?: CopyPageHierarchyTitleOptions;
 }

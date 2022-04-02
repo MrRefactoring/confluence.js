@@ -1,47 +1,49 @@
 import * as sinon from 'sinon';
-import { ConfluenceClient, Api } from '../../../src';
+import { ConfluenceClient } from '../../../src';
+import test from 'ava';
 
-describe('Space', () => {
-  const client = new ConfluenceClient({ host: '' });
+const config = { host: '' };
+
+test('when spaceKey is not provided', (t) => {
+  const client = new ConfluenceClient(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
-  let space = new Api.Space(client);
 
-  afterEach(() => {
-    sendRequestStub.reset();
-    space = new Api.Space(client);
-  });
+  client.space.getSpaces({});
 
-  describe('getSpaces should generate correct URL', () => {
-    it('when spaceKey is not provided', () => {
-      space.getSpaces({});
+  const callArgument = sendRequestStub.lastCall.args[0];
 
-      const callArgument = sendRequestStub.lastCall.args[0];
+  t.is(callArgument.params.spaceKey, undefined);
+});
 
-      expect(callArgument.params.spaceKey()).toBe(undefined);
-    });
+test('when spaceKey is empty array', (t) => {
+  const client = new ConfluenceClient(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-    it('when spaceKey is empty array', () => {
-      space.getSpaces({ spaceKey: [] });
+  client.space.getSpaces({ spaceKey: [] });
 
-      const callArgument = sendRequestStub.lastCall.args[0];
+  const callArgument = sendRequestStub.lastCall.args[0];
 
-      expect(callArgument.params.spaceKey()).toBe('');
-    });
+  t.is(callArgument.params.spaceKey, '');
+});
 
-    it('when spaceKey has one key', () => {
-      space.getSpaces({ spaceKey: ['KEY1'] });
+test('when spaceKey has one key', (t) => {
+  const client = new ConfluenceClient(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-      const callArgument = sendRequestStub.lastCall.args[0];
+  client.space.getSpaces({ spaceKey: ['KEY1'] });
 
-      expect(callArgument.params.spaceKey()).toBe('spaceKey=KEY1');
-    });
+  const callArgument = sendRequestStub.lastCall.args[0];
 
-    it('when spaceKey has multiple keys', () => {
-      space.getSpaces({ spaceKey: ['KEY1', 'KEY2'] });
+  t.is(callArgument.params.spaceKey(), 'spaceKey=KEY1');
+});
 
-      const callArgument = sendRequestStub.lastCall.args[0];
+test('when spaceKey has multiple keys', (t) => {
+  const client = new ConfluenceClient(config);
+  const sendRequestStub = sinon.stub(client, 'sendRequest');
 
-      expect(callArgument.params.spaceKey()).toBe('spaceKey=KEY1&spaceKey=KEY2');
-    });
-  });
+  client.space.getSpaces({ spaceKey: ['KEY1', 'KEY2'] });
+
+  const callArgument = sendRequestStub.lastCall.args[0];
+
+  t.is(callArgument.params.spaceKey(), 'spaceKey=KEY1&spaceKey=KEY2');
 });

@@ -8,4 +8,9 @@ export interface GetMembersByQueryParam {
    * say if the limit parameter exceeds 200, this API will return a maximum of 200 users per page.
    */
   limit?: number;
+  /**
+   * Whether to include total size parameter in the results. Note, fetching total size property is an expensive
+   * operation; use it if your use case needs this value.
+   */
+  shouldReturnTotalSize?: boolean;
 }

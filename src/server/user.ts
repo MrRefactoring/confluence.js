@@ -1,9 +1,9 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../clients';
 import { Callback } from '../callback';
-import { RequestConfig } from '../requestConfig';
+import { Client } from '../clients';
 import { Pagination } from '../pagination';
+import { RequestConfig } from '../requestConfig';
 
 export class User {
   constructor(private client: Client) {}

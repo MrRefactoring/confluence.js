@@ -1,5 +1,5 @@
-import { Label } from './label';
 import { GenericLinks } from './genericLinks';
+import { Label } from './label';
 
 export interface LabelArray {
   results: Label[];

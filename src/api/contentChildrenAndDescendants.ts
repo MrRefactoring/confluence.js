@@ -1,7 +1,7 @@
 import * as Models from './models';
 import * as Parameters from './parameters';
-import { Client } from '../clients';
 import { Callback } from '../callback';
+import { Client } from '../clients';
 import { RequestConfig } from '../requestConfig';
 
 export class ContentChildrenAndDescendants {
@@ -302,7 +302,10 @@ export class ContentChildrenAndDescendants {
    * of renaming page titles during the copy; for example, search and replace can be used in conjunction to rewrite the
    * copied page titles.
    */
-  async copyPageHierarchy<T = unknown>(parameters: Parameters.CopyPageHierarchy, callback: Callback<T>): Promise<void>;
+  async copyPageHierarchy<T = Models.LongTask>(
+    parameters: Parameters.CopyPageHierarchy,
+    callback: Callback<T>
+  ): Promise<void>;
   /**
    * Copy page hierarchy allows the copying of an entire hierarchy of pages and their associated properties, permissions
    * and attachments. The id path parameter refers to the content id of the page to copy, and the new parent of this
@@ -310,8 +313,8 @@ export class ContentChildrenAndDescendants {
    * of renaming page titles during the copy; for example, search and replace can be used in conjunction to rewrite the
    * copied page titles.
    */
-  async copyPageHierarchy<T = unknown>(parameters: Parameters.CopyPageHierarchy, callback?: never): Promise<T>;
-  async copyPageHierarchy<T = unknown>(
+  async copyPageHierarchy<T = Models.LongTask>(parameters: Parameters.CopyPageHierarchy, callback?: never): Promise<T>;
+  async copyPageHierarchy<T = Models.LongTask>(
     parameters: Parameters.CopyPageHierarchy,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -324,6 +327,7 @@ export class ContentChildrenAndDescendants {
         copyProperties: parameters.copyProperties,
         copyLabels: parameters.copyLabels,
         copyCustomContents: parameters.copyCustomContents,
+        copyDescendants: parameters.copyDescendants,
         destinationPageId: parameters.destinationPageId,
         titleOptions: parameters.titleOptions,
       },

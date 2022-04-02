@@ -3,6 +3,7 @@ import {
   createBasicAuthenticationToken,
   createJWTAuthentication,
   createOAuth2AuthenticationToken,
+  createPATAuthenticationToken,
 } from './authentications';
 
 export namespace AuthenticationService {
@@ -28,6 +29,10 @@ export namespace AuthenticationService {
 
     if (authentication.jwt) {
       return createJWTAuthentication(authentication.jwt, requestData!);
+    }
+
+    if (authentication.personalAccessToken) {
+      return createPATAuthenticationToken(authentication.personalAccessToken);
     }
 
     return undefined;

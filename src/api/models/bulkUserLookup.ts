@@ -1,8 +1,8 @@
+import { GenericLinks } from './genericLinks';
 import { Icon } from './icon';
 import { OperationCheckResult } from './operationCheckResult';
-import { UserDetails } from './userDetails';
 import { Space } from './space';
-import { GenericLinks } from './genericLinks';
+import { UserDetails } from './userDetails';
 
 export interface BulkUserLookup {
   type: string;

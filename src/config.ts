@@ -24,10 +24,12 @@ export namespace Config {
   export type Authentication = UtilityTypes.XOR<{
     jwt: Authentication.JWT;
   }, UtilityTypes.XOR<{
+    personalAccessToken: Authentication.PersonalAccessToken;
+  }, UtilityTypes.XOR<{
     basic: Authentication.Basic;
   }, {
     oauth2: Authentication.OAuth2;
-  }>>;
+  }>>>;
 
   export interface Middlewares {
     onError?: Config.Middlewares.OnErrorHandler;
@@ -40,10 +42,12 @@ export namespace Config {
   }
 
   export namespace Authentication {
+    export type PersonalAccessToken = string;
+
     export type JWT = {
       /** The key from the app descriptor. */
       issuer: string;
-      /** The sharedsecret key received during the app installation handshake */
+      /** The shared secret key received during the app installation handshake */
       secret: string;
       /** Token expiry time (default 3 minutes after issuing) */
       expiryTimeSeconds?: number;

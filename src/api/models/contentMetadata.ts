@@ -1,6 +1,6 @@
-import { Version } from './version';
 import { GenericLinks } from './genericLinks';
 import { LabelArray } from './labelArray';
+import { Version } from './version';
 
 /** Metadata object for page, blogpost, comment content */
 export interface ContentMetadata {

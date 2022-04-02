@@ -1,7 +1,7 @@
-import { MenusLookAndFeel } from './menusLookAndFeel';
-import { HeaderLookAndFeel } from './headerLookAndFeel';
 import { ContentLookAndFeel } from './contentLookAndFeel';
+import { HeaderLookAndFeel } from './headerLookAndFeel';
 import { HorizontalHeaderLookAndFeel } from './horizontalHeaderLookAndFeel';
+import { MenusLookAndFeel } from './menusLookAndFeel';
 
 export interface LookAndFeel {
   headings: {

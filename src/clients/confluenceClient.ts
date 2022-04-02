@@ -1,11 +1,13 @@
 import { BaseClient } from './baseClient';
 import {
+  Analytics,
   Audit,
   Content,
   ContentAttachments,
   ContentBody,
   ContentChildrenAndDescendants,
   ContentComments,
+  ContentContentState,
   ContentLabels,
   ContentMacroBody,
   ContentPermissions,
@@ -32,12 +34,14 @@ import {
 } from '../api';
 
 export class ConfluenceClient extends BaseClient {
+  analytics = new Analytics(this);
   audit = new Audit(this);
   content = new Content(this);
   contentAttachments = new ContentAttachments(this);
   contentBody = new ContentBody(this);
   contentChildrenAndDescendants = new ContentChildrenAndDescendants(this);
   contentComments = new ContentComments(this);
+  contentContentState = new ContentContentState(this);
   contentLabels = new ContentLabels(this);
   contentMacroBody = new ContentMacroBody(this);
   contentPermissions = new ContentPermissions(this);

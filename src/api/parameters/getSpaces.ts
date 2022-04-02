@@ -21,7 +21,37 @@ export interface GetSpaces {
    */
   favouriteUserKey?: string;
   /** A multi-value parameter indicating which properties of the content to expand. */
-  expand?: string[];
+  expand?:
+  | 'settings'
+  | 'metadata'
+  | 'metadata.labels'
+  | 'operations'
+  | 'lookAndFeel'
+  | 'permissions'
+  | 'icon'
+  | 'description'
+  | 'description.plain'
+  | 'description.view'
+  | 'theme'
+  | 'homepage'
+  | 'history'
+  | (
+    | 'settings'
+    | 'metadata'
+    | 'metadata.labels'
+    | 'operations'
+    | 'lookAndFeel'
+    | 'permissions'
+    | 'icon'
+    | 'description'
+    | 'description.plain'
+    | 'description.view'
+    | 'theme'
+    | 'homepage'
+    | 'history'
+  )[]
+  | string
+  | string[];
   /** The starting index of the returned spaces. */
   start?: number;
   /** The maximum number of spaces to return per page. Note, this may be restricted by fixed system limits. */

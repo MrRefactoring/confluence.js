@@ -1,7 +1,7 @@
 import { ButtonLookAndFeel } from './buttonLookAndFeel';
-import { TopNavigationLookAndFeel } from './topNavigationLookAndFeel';
 import { NavigationLookAndFeel } from './navigationLookAndFeel';
 import { SearchFieldLookAndFeel } from './searchFieldLookAndFeel';
+import { TopNavigationLookAndFeel } from './topNavigationLookAndFeel';
 
 export interface HorizontalHeaderLookAndFeel {
   backgroundColor: string;
