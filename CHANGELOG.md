@@ -1,5 +1,7 @@
 # Changelog
 
+### 1.4.0
+
 - Analytics API added.
 - ContentContentState API added.
 - `deletePageTree` method added to `Experimental`.
