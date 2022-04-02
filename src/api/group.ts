@@ -252,6 +252,7 @@ export class Group {
         name: parameters.name,
         start: parameters.start,
         limit: parameters.limit,
+        shouldReturnTotalSize: parameters.shouldReturnTotalSize,
       },
     };
 
@@ -330,6 +331,7 @@ export class Group {
         query: parameters.query,
         start: parameters.start,
         limit: parameters.limit,
+        shouldReturnTotalSize: parameters.shouldReturnTotalSize,
       },
     };
 
@@ -440,6 +442,7 @@ export class Group {
       params: {
         start: parameters.start,
         limit: parameters.limit,
+        shouldReturnTotalSize: parameters.shouldReturnTotalSize,
       },
     };
 

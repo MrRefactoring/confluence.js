@@ -235,6 +235,7 @@ client.<group>.<methodName>(parametersObject);
 
 Available groups:
 
+- [analytics](https://developer.atlassian.com/cloud/confluence/rest/api-group-analytics/)
 - [audit](https://developer.atlassian.com/cloud/confluence/rest/api-group-audit)
 - [content](https://developer.atlassian.com/cloud/confluence/rest/api-group-content/)
 - [contentAttachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-group-content---attachments)

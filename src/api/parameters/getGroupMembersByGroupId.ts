@@ -5,4 +5,9 @@ export interface GetGroupMembersByGroupId {
   start?: number;
   /** The maximum number of users to return per page. Note, this may be restricted by fixed system limits. */
   limit?: number;
+  /**
+   * Whether to include total size parameter in the results. Note, fetching total size property is an expensive
+   * operation; use it if your use case needs this value.
+   */
+  shouldReturnTotalSize?: boolean;
 }

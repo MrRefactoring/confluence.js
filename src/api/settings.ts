@@ -230,4 +230,26 @@ export class Settings {
 
     return this.client.sendRequest(config, callback);
   }
+
+  /** Gets Content State settings for a space */
+  async getContentStateSettings<T = Models.ContentStateSettings>(
+    parameters: Parameters.GetContentStateSettings,
+    callback: Callback<T>
+  ): Promise<void>;
+  /** Gets Content State settings for a space */
+  async getContentStateSettings<T = Models.ContentStateSettings>(
+    parameters: Parameters.GetContentStateSettings,
+    callback?: never
+  ): Promise<T>;
+  async getContentStateSettings<T = Models.ContentStateSettings>(
+    parameters: Parameters.GetContentStateSettings,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/api/space/${parameters.spaceKey}/state/settings`,
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
 }

@@ -119,7 +119,7 @@ export class Users {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
    */
-  async getGroupMembershipsForUser<T = Models.GroupArray>(
+  async getGroupMembershipsForUser<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupMembershipsForUser,
     callback: Callback<T>
   ): Promise<void>;
@@ -129,11 +129,11 @@ export class Users {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
    */
-  async getGroupMembershipsForUser<T = Models.GroupArray>(
+  async getGroupMembershipsForUser<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupMembershipsForUser,
     callback?: never
   ): Promise<T>;
-  async getGroupMembershipsForUser<T = Models.GroupArray>(
+  async getGroupMembershipsForUser<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupMembershipsForUser,
     callback?: Callback<T>,
   ): Promise<void | T> {
