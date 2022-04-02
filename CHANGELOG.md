@@ -10,6 +10,7 @@
 - `deleteUserProperty` method added to `Experimental`.
 - `getContentStateSettings` method added to `Settings`.
 - Another small changes.
+- Personal Access token authentication added.
 
 ### 1.3.0
 
