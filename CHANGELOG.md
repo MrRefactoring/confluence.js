@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.4.1
+
+- Dependencies updated.
+
+### 1.4.0
+
 - Analytics API added.
 - ContentContentState API added.
 - `deletePageTree` method added to `Experimental`.

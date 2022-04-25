@@ -5,7 +5,7 @@ tests/
 
 .editorconfig
 .eslintrc
-tsconfig.tests.json
+tsconfig.lint.json
 .DS_Store
 .env
 .env.example
