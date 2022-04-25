@@ -113,7 +113,7 @@ export class Content {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Archive' permission for each of the pages
    * in the corresponding space it belongs to.
    */
-  async archivePages<T = unknown>(
+  async archivePages<T = Models.LongTask>(
     parameters: Parameters.ArchivePages,
     callback: Callback<T>
   ): Promise<void>;
@@ -128,8 +128,8 @@ export class Content {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Archive' permission for each of the pages
    * in the corresponding space it belongs to.
    */
-  async archivePages<T = unknown>(parameters: Parameters.ArchivePages, callback?: never): Promise<T>;
-  async archivePages<T = unknown>(parameters: Parameters.ArchivePages, callback?: Callback<T>): Promise<void | T> {
+  async archivePages<T = Models.LongTask>(parameters: Parameters.ArchivePages, callback?: never): Promise<T>;
+  async archivePages<T = Models.LongTask>(parameters: Parameters.ArchivePages, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/api/content/archive',
       method: 'POST',
@@ -377,7 +377,7 @@ export class Content {
    * - If the content's type is `comment` or `attachment`, it will be deleted permanently without being trashed.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Delete' permission for the space that the
-   * content is in, and permission to edit the content.
+   * content is in.
    */
   async deleteContent<T = void>(parameters: Parameters.DeleteContent, callback: Callback<T>): Promise<void>;
   /**
@@ -389,7 +389,7 @@ export class Content {
    * - If the content's type is `comment` or `attachment`, it will be deleted permanently without being trashed.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Delete' permission for the space that the
-   * content is in, and permission to edit the content.
+   * content is in.
    */
   async deleteContent<T = void>(parameters: Parameters.DeleteContent, callback?: never): Promise<T>;
   async deleteContent<T = void>(parameters: Parameters.DeleteContent, callback?: Callback<T>): Promise<void | T> {

@@ -4,6 +4,7 @@
     "module": "CommonJS",
     "outDir": "out",
     "strict": true,
+    "sourceMap": true,
     "declaration": true,
     "importHelpers": true,
     "forceConsistentCasingInFileNames": true

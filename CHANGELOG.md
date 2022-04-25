@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.4.1
+
+- Dependencies updated.
+
 ### 1.4.0
 
 - Analytics API added.
