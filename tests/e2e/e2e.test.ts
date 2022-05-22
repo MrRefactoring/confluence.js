@@ -1,4 +1,4 @@
-import * as fs from 'fs/promises';
+import * as fs from 'fs';
 import { ConfluenceClient } from '../../src';
 import test from 'ava';
 
@@ -55,7 +55,7 @@ test.serial('should create content', async t => {
 });
 
 test.serial('should add attachment', async t => {
-  const file = await fs.readFile('./tests/unit/serverApiClient.test.ts');
+  const file = await fs.readFileSync('./tests/unit/serverApiClient.test.ts');
 
   const attachment = await client.contentAttachments.createAttachments({
     id: createdContentId,

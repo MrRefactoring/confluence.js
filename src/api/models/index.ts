@@ -4,6 +4,7 @@ export * from './accountIdEmailRecordArray';
 export * from './addContentRestriction';
 export * from './addContentRestrictionUpdateArray';
 export * from './affectedObject';
+export * from './attachmentContainer';
 export * from './attachmentUpdate';
 export * from './auditRecord';
 export * from './auditRecordArray';
