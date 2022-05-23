@@ -8,19 +8,19 @@ import {
   RequestConfig,
 } from '../../src';
 
-test('Callback should be defined', (t) => {
+test('Callback should be defined', t => {
   const callback: Callback<string> = () => {};
 
   t.truthy(!!callback);
 });
 
-test('RequestConfig should be defined', (t) => {
+test('RequestConfig should be defined', t => {
   const requestConfig: RequestConfig = {};
 
   t.truthy(!!requestConfig);
 });
 
-test('Config should be defined', (t) => {
+test('Config should be defined', t => {
   const config: Config = {
     host: '',
   };
@@ -30,7 +30,7 @@ test('Config should be defined', (t) => {
   t.is(typeof config.host, 'string');
 });
 
-test('Client should be defined', async (t) => {
+test('Client should be defined', async t => {
   const client: Client = {
     sendRequest(): Promise<undefined> {
       return Promise.resolve(undefined);
@@ -42,13 +42,13 @@ test('Client should be defined', async (t) => {
   t.falsy(!!(await client.sendRequest({})));
 });
 
-test('BaseClient should be defined', (t) => {
+test('BaseClient should be defined', t => {
   const baseClient = new BaseClient({ host: '' });
 
   t.truthy(!!baseClient);
 });
 
-test('ConfluenceClient should be defined', (t) => {
+test('ConfluenceClient should be defined', t => {
   const confluenceClient = new ConfluenceClient({ host: '' });
 
   t.truthy(!!confluenceClient);

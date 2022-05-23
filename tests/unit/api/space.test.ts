@@ -4,7 +4,7 @@ import test from 'ava';
 
 const config = { host: '' };
 
-test('when spaceKey is not provided', (t) => {
+test('when spaceKey is not provided', t => {
   const client = new ConfluenceClient(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -15,7 +15,7 @@ test('when spaceKey is not provided', (t) => {
   t.is(callArgument.params.spaceKey, undefined);
 });
 
-test('when spaceKey is empty array', (t) => {
+test('when spaceKey is empty array', t => {
   const client = new ConfluenceClient(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -26,7 +26,7 @@ test('when spaceKey is empty array', (t) => {
   t.is(callArgument.params.spaceKey, '');
 });
 
-test('when spaceKey has one key', (t) => {
+test('when spaceKey has one key', t => {
   const client = new ConfluenceClient(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 
@@ -37,7 +37,7 @@ test('when spaceKey has one key', (t) => {
   t.is(callArgument.params.spaceKey(), 'spaceKey=KEY1');
 });
 
-test('when spaceKey has multiple keys', (t) => {
+test('when spaceKey has multiple keys', t => {
   const client = new ConfluenceClient(config);
   const sendRequestStub = sinon.stub(client, 'sendRequest');
 

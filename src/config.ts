@@ -13,6 +13,8 @@ export interface Config {
    * Adds `'X-Atlassian-Token': 'no-check'` to each request header
    */
   noCheckAtlassianToken?: boolean;
+  /** Enable new API error handling. `false` by default. */
+  newErrorHandling?: boolean;
 }
 
 export namespace Config {

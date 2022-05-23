@@ -1,3 +1,4 @@
+/** @deprecated will be removed in second major version */
 export interface AttachmentUpdate {
   /**
    * The attachment version. Set this to the current version number of the attachment. Note, the version number only

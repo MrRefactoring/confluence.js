@@ -11,5 +11,5 @@ export function paramSerializer(key: string, values?: string | string[]) {
     return '';
   }
 
-  return () => values.map((value) => `${key}=${value}`).join('&');
+  return () => values.map(value => `${key}=${value}`).join('&');
 }

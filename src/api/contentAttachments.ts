@@ -1,3 +1,4 @@
+import * as FormData from 'form-data';
 import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
@@ -15,7 +16,7 @@ export class ContentAttachments {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content. If the
    * content is a blog post, 'View' permission for the space is required.
    */
-  async getAttachments<T = Models.ContentArray>(
+  async getAttachments<T = Models.ContentArray<Models.Attachment>>(
     parameters: Parameters.GetAttachments,
     callback: Callback<T>
   ): Promise<void>;
@@ -27,8 +28,8 @@ export class ContentAttachments {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content. If the
    * content is a blog post, 'View' permission for the space is required.
    */
-  async getAttachments<T = Models.ContentArray>(parameters: Parameters.GetAttachments, callback?: never): Promise<T>;
-  async getAttachments<T = Models.ContentArray>(
+  async getAttachments<T = Models.ContentArray<Models.Attachment>>(parameters: Parameters.GetAttachments, callback?: never): Promise<T>;
+  async getAttachments<T = Models.ContentArray<Models.Attachment>>(
     parameters: Parameters.GetAttachments,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -49,91 +50,55 @@ export class ContentAttachments {
 
   /**
    * Adds an attachment to a piece of content. This method only adds a new attachment. If you want to update an existing
-   * attachment, use [Create or update attachments](#api-content-id-child-attachment-put).
-   *
-   * Note, you must set a `X-Atlassian-Token: nocheck` header on the request for this method, otherwise it will be
-   * blocked. This protects against XSRF attacks, which is necessary as this method accepts multipart/form-data.
-   *
-   * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
-   * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
-   * provided by Apache HTTP Components.
-   *
-   * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
-   * text, the charset parameter for the "text/plain" Content-Type may be used to indicate the character encoding used
-   * in that part. In the case of this API endpoint, the `comment` body parameter should be sent with `type=text/plain`
-   * and `charset=utf-8` values. This will force the charset to be UTF-8.
-   *
-   * Example: This curl command attaches a file ('example.txt') to a container (id='123') with a comment and `minorEdits`=true.
-   *
-   * ```bash
-   * curl -D- \
-   *   -u admin:admin \
-   *   -X POST \
-   *   -H 'X-Atlassian-Token: nocheck' \
-   *   -F 'file=@"example.txt"' \
-   *   -F 'minorEdit="true"' \
-   *   -F 'comment="Example attachment comment"; type=text/plain; charset=utf-8' \
-   *   http://myhost/rest/api/content/123/child/attachment
-   * ```
+   * attachment, use [Create or update attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put).
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
-  async createAttachments<T = Models.ContentArray>(
+  async createAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateAttachments,
     callback: Callback<T>
   ): Promise<void>;
   /**
    * Adds an attachment to a piece of content. This method only adds a new attachment. If you want to update an existing
-   * attachment, use [Create or update attachments](#api-content-id-child-attachment-put).
-   *
-   * Note, you must set a `X-Atlassian-Token: nocheck` header on the request for this method, otherwise it will be
-   * blocked. This protects against XSRF attacks, which is necessary as this method accepts multipart/form-data.
-   *
-   * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
-   * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
-   * provided by Apache HTTP Components.
-   *
-   * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
-   * text, the charset parameter for the "text/plain" Content-Type may be used to indicate the character encoding used
-   * in that part. In the case of this API endpoint, the `comment` body parameter should be sent with `type=text/plain`
-   * and `charset=utf-8` values. This will force the charset to be UTF-8.
-   *
-   * Example: This curl command attaches a file ('example.txt') to a container (id='123') with a comment and `minorEdits`=true.
-   *
-   * ```bash
-   * curl -D- \
-   *   -u admin:admin \
-   *   -X POST \
-   *   -H 'X-Atlassian-Token: nocheck' \
-   *   -F 'file=@"example.txt"' \
-   *   -F 'minorEdit="true"' \
-   *   -F 'comment="Example attachment comment"; type=text/plain; charset=utf-8' \
-   *   http://myhost/rest/api/content/123/child/attachment
-   * ```
+   * attachment, use [Create or update attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put).
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
-  async createAttachments<T = Models.ContentArray>(
+  async createAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateAttachments,
     callback?: never
   ): Promise<T>;
-  async createAttachments<T = Models.ContentArray>(
+  async createAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateAttachments,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const formData = new FormData();
+    const attachments = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
+
+    attachments.forEach(attachment => {
+      formData.append('minorEdit', attachment.minorEdit.toString(), 'minorEdit');
+      formData.append('file', attachment.file, {
+        filename: attachment.filename,
+        contentType: attachment.contentType,
+      });
+
+      if (attachment.comment) {
+        formData.append('comment', attachment.comment, 'comment');
+      }
+    });
+
     const config: RequestConfig = {
       url: `/api/content/${parameters.id}/child/attachment`,
       method: 'POST',
+      headers: {
+        'X-Atlassian-Token': 'no-check',
+        'Content-Type': 'multipart/form-data',
+        ...formData.getHeaders?.(),
+      },
       params: {
         status: parameters.status,
       },
-      data: {
-        ...parameters,
-        id: undefined,
-        status: undefined,
-      },
+      data: formData,
     };
 
     return this.client.sendRequest(config, callback);
@@ -143,36 +108,9 @@ export class ContentAttachments {
    * Adds an attachment to a piece of content. If the attachment already exists for the content, then the attachment is
    * updated (i.e. a new version of the attachment is created).
    *
-   * Note, you must set a `X-Atlassian-Token: nocheck` header on the request for this method, otherwise it will be
-   * blocked. This protects against XSRF attacks, which is necessary as this method accepts multipart/form-data.
-   *
-   * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
-   * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
-   * provided by Apache HTTP Components.
-   *
-   * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
-   * text, the charset parameter for the "text/plain" Content-Type may be used to indicate the character encoding used
-   * in that part. In the case of this API endpoint, the `comment` body parameter should be sent with `type=text/plain`
-   * and `charset=utf-8` values. This will force the charset to be UTF-8.
-   *
-   * Example: This curl command attaches a file ('example.txt') to a piece of content (id='123') with a comment and
-   * `minorEdits`=true. If the 'example.txt' file already exists, it will update it with a new version of the attachment.
-   *
-   * ```bash
-   * curl -D- \
-   *   -u admin:admin \
-   *   -X PUT \
-   *   -H 'X-Atlassian-Token: nocheck' \
-   *   -F 'file=@"example.txt"' \
-   *   -F 'minorEdit="true"' \
-   *   -F 'comment="Example attachment comment"; type=text/plain; charset=utf-8' \
-   *   http://myhost/rest/api/content/123/child/attachment
-   * ```
-   *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
-  async createOrUpdateAttachments<T = Models.ContentArray>(
+  async createOrUpdateAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateOrUpdateAttachments,
     callback: Callback<T>
   ): Promise<void>;
@@ -180,54 +118,43 @@ export class ContentAttachments {
    * Adds an attachment to a piece of content. If the attachment already exists for the content, then the attachment is
    * updated (i.e. a new version of the attachment is created).
    *
-   * Note, you must set a `X-Atlassian-Token: nocheck` header on the request for this method, otherwise it will be
-   * blocked. This protects against XSRF attacks, which is necessary as this method accepts multipart/form-data.
-   *
-   * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
-   * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
-   * provided by Apache HTTP Components.
-   *
-   * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
-   * text, the charset parameter for the "text/plain" Content-Type may be used to indicate the character encoding used
-   * in that part. In the case of this API endpoint, the `comment` body parameter should be sent with `type=text/plain`
-   * and `charset=utf-8` values. This will force the charset to be UTF-8.
-   *
-   * Example: This curl command attaches a file ('example.txt') to a piece of content (id='123') with a comment and
-   * `minorEdits`=true. If the 'example.txt' file already exists, it will update it with a new version of the attachment.
-   *
-   * ```bash
-   * curl -D- \
-   *   -u admin:admin \
-   *   -X PUT \
-   *   -H 'X-Atlassian-Token: nocheck' \
-   *   -F 'file=@"example.txt"' \
-   *   -F 'minorEdit="true"' \
-   *   -F 'comment="Example attachment comment"; type=text/plain; charset=utf-8' \
-   *   http://myhost/rest/api/content/123/child/attachment
-   * ```
-   *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
-  async createOrUpdateAttachments<T = Models.ContentArray>(
+  async createOrUpdateAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateOrUpdateAttachments,
     callback?: never
   ): Promise<T>;
-  async createOrUpdateAttachments<T = Models.ContentArray>(
+  async createOrUpdateAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateOrUpdateAttachments,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const formData = new FormData();
+    const attachments = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
+
+    attachments.forEach(attachment => {
+      formData.append('minorEdit', attachment.minorEdit.toString(), 'minorEdit');
+      formData.append('file', attachment.file, {
+        filename: attachment.filename,
+        contentType: attachment.contentType,
+      });
+
+      if (attachment.comment) {
+        formData.append('comment', attachment.comment, 'comment');
+      }
+    });
+
     const config: RequestConfig = {
       url: `/api/content/${parameters.id}/child/attachment`,
       method: 'PUT',
+      headers: {
+        'X-Atlassian-Token': 'no-check',
+        'Content-Type': 'multipart/form-data',
+        ...formData.getHeaders?.(),
+      },
       params: {
         status: parameters.status,
       },
-      data: {
-        ...parameters,
-        id: undefined,
-        status: undefined,
-      },
+      data: formData,
     };
 
     return this.client.sendRequest(config, callback);
@@ -239,7 +166,7 @@ export class ContentAttachments {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
-  async updateAttachmentProperties<T = Models.Content>(
+  async updateAttachmentProperties<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentProperties,
     callback: Callback<T>
   ): Promise<void>;
@@ -249,18 +176,18 @@ export class ContentAttachments {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
-  async updateAttachmentProperties<T = Models.Content>(
+  async updateAttachmentProperties<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentProperties,
     callback?: never
   ): Promise<T>;
-  async updateAttachmentProperties<T = Models.Content>(
+  async updateAttachmentProperties<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentProperties,
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}`,
       method: 'PUT',
-      data: parameters.body,
+      data: parameters.update ?? parameters.body,
     };
 
     return this.client.sendRequest(config, callback);
@@ -269,106 +196,67 @@ export class ContentAttachments {
   /**
    * Updates the binary data of an attachment, given the attachment ID, and optionally the comment and the minor edit field.
    *
-   * This method is essentially the same as [Create or update attachments](#api-content-id-child-attachment-put), except
+   * This method is essentially the same as [Create or update attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put), except
    * that it matches the attachment ID rather than the name.
-   *
-   * Note, you must set a `X-Atlassian-Token: nocheck` header on the request for this method, otherwise it will be
-   * blocked. This protects against XSRF attacks, which is necessary as this method accepts multipart/form-data.
-   *
-   * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
-   * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
-   * provided by Apache HTTP Components.
-   *
-   * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
-   * text, the charset parameter for the "text/plain" Content-Type may be used to indicate the character encoding used
-   * in that part. In the case of this API endpoint, the `comment` body parameter should be sent with `type=text/plain`
-   * and `charset=utf-8` values. This will force the charset to be UTF-8.
-   *
-   * Example: This curl command updates an attachment (id='att456') that is attached to a piece of content (id='123')
-   * with a comment and `minorEdits`=true.
-   *
-   * ```bash
-   * curl -D- \
-   *   -u admin:admin \
-   *   -X POST \
-   *   -H 'X-Atlassian-Token: nocheck' \
-   *   -F 'file=@"example.txt"' \
-   *   -F 'minorEdit="true"' \
-   *   -F 'comment="Example attachment comment"; type=text/plain; charset=utf-8' \
-   *   http://myhost/rest/api/content/123/child/attachment/att456/data
-   * ```
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
-  async updateAttachmentData<T = Models.Content>(
+  async updateAttachmentData<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentData,
     callback: Callback<T>
   ): Promise<void>;
   /**
    * Updates the binary data of an attachment, given the attachment ID, and optionally the comment and the minor edit field.
    *
-   * This method is essentially the same as [Create or update attachments](#api-content-id-child-attachment-put), except
+   * This method is essentially the same as [Create or update attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put), except
    * that it matches the attachment ID rather than the name.
-   *
-   * Note, you must set a `X-Atlassian-Token: nocheck` header on the request for this method, otherwise it will be
-   * blocked. This protects against XSRF attacks, which is necessary as this method accepts multipart/form-data.
-   *
-   * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
-   * libraries have classes that make it easier to implement multipart posts, like the
-   * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
-   * provided by Apache HTTP Components.
-   *
-   * Note, according to [RFC 7578](https://tools.ietf.org/html/rfc7578#section-4.5), in the case where the form data is
-   * text, the charset parameter for the "text/plain" Content-Type may be used to indicate the character encoding used
-   * in that part. In the case of this API endpoint, the `comment` body parameter should be sent with `type=text/plain`
-   * and `charset=utf-8` values. This will force the charset to be UTF-8.
-   *
-   * Example: This curl command updates an attachment (id='att456') that is attached to a piece of content (id='123')
-   * with a comment and `minorEdits`=true.
-   *
-   * ```bash
-   * curl -D- \
-   *   -u admin:admin \
-   *   -X POST \
-   *   -H 'X-Atlassian-Token: nocheck' \
-   *   -F 'file=@"example.txt"' \
-   *   -F 'minorEdit="true"' \
-   *   -F 'comment="Example attachment comment"; type=text/plain; charset=utf-8' \
-   *   http://myhost/rest/api/content/123/child/attachment/att456/data
-   * ```
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
-  async updateAttachmentData<T = Models.Content>(
+  async updateAttachmentData<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentData,
     callback?: never
   ): Promise<T>;
-  async updateAttachmentData<T = Models.Content>(
+  async updateAttachmentData<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentData,
     callback?: Callback<T>,
   ): Promise<void | T> {
+    const { attachment } = parameters;
+
+    const formData = new FormData();
+
+    formData.append('minorEdit', attachment.minorEdit.toString(), 'minorEdit');
+    formData.append('file', attachment.file, {
+      filename: attachment.filename,
+      contentType: attachment.contentType,
+    });
+
+    if (attachment.comment) {
+      formData.append('comment', attachment.comment, 'comment');
+    }
+
     const config: RequestConfig = {
       url: `/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}/data`,
       method: 'POST',
-      data: {
-        ...parameters,
-        id: undefined,
-        attachmentId: undefined,
+      headers: {
+        'X-Atlassian-Token': 'no-check',
+        'Content-Type': 'multipart/form-data',
+        ...formData.getHeaders?.(),
       },
+      data: formData,
     };
 
     return this.client.sendRequest(config, callback);
   }
 
   /** Redirects the client to a URL that serves an attachment's binary data. */
-  async downloadAttachment<T = ArrayBuffer>(
+  async downloadAttachment<T = Buffer>(
     parameters: Parameters.DownloadAttachment,
     callback: Callback<T>
   ): Promise<void>;
   /** Redirects the client to a URL that serves an attachment's binary data. */
-  async downloadAttachment<T = ArrayBuffer>(parameters: Parameters.DownloadAttachment, callback?: never): Promise<T>;
-  async downloadAttachment<T = ArrayBuffer>(
+  async downloadAttachment<T = Buffer>(parameters: Parameters.DownloadAttachment, callback?: never): Promise<T>;
+  async downloadAttachment<T = Buffer>(
     parameters: Parameters.DownloadAttachment,
     callback?: Callback<T>,
   ): Promise<void | T> {
