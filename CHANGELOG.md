@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.5.1
+
+Dependencies updated
+
 ### 1.5.0
 
 `ContentAttachments` fixes for all attachments. ([#23](https://github.com/MrRefactoring/confluence.js/issues/23) Thanks [Anton](https://github.com/tester22) for catching)
