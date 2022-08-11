@@ -638,6 +638,10 @@ export class Content {
     const config: RequestConfig = {
       url: `/rest/api/content/${parameters.id}/child/attachment`,
       method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'X-Atlassian-Token': 'nocheck',
+      },
       params: {
         status: parameters.status,
       },
@@ -771,6 +775,10 @@ export class Content {
     const config: RequestConfig = {
       url: `/rest/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}/data`,
       method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'X-Atlassian-Token': 'nocheck',
+      },
       data: {
         ...parameters,
         id: undefined,
