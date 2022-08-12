@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.5.2
+
+`multipart/form-data` added to some required endpoints. Thank you, [Gonzalo Garcia](https://github.com/ggarcia24) for reporting issue and creating PR :)
+
 ### 1.5.1
 
 Dependencies updated
