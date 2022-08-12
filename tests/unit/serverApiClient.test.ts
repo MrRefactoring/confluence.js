@@ -3,8 +3,8 @@ import { ServerClient } from '../../src';
 import test from 'ava';
 
 const config = {
-    host: 'https://localhost',
-  };
+  host: 'https://localhost',
+};
 
 test('should create correct url', t => {
   const serverClient = new ServerClient(config);
@@ -30,11 +30,11 @@ test('should send the correct headers when creating attachments', t => {
     id: '1234567',
     comment: 'testing',
     file: buffer,
-  })
+  });
 
   const callArgument = stub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/content/1234567/child/attachment')
+  t.is(callArgument.url, '/rest/api/content/1234567/child/attachment');
   t.deepEqual(callArgument.headers, {
     'Content-Type': 'multipart/form-data',
     'X-Atlassian-Token': 'nocheck',
@@ -52,13 +52,13 @@ test('should send the correct headers when updating attachments', t => {
     attachmentId: '89101112',
     comment: 'testing',
     file: buffer,
-  })
+  });
 
   const callArgument = stub.getCall(0).args[0];
 
-  t.is(callArgument.url, '/rest/api/content/1234567/child/attachment/89101112/data')
+  t.is(callArgument.url, '/rest/api/content/1234567/child/attachment/89101112/data');
   t.deepEqual(callArgument.headers, {
     'Content-Type': 'multipart/form-data',
     'X-Atlassian-Token': 'nocheck',
   });
-})
+});
