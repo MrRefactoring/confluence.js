@@ -11,7 +11,8 @@ export class Settings {
    * Returns the look and feel settings for the site or a single space. This includes attributes such as the color
    * scheme, padding, and border radius.
    *
-   * The look and feel settings for a space can be inherited from the global look and feel settings or provided by a theme.
+   * The look and feel settings for a space can be inherited from the global look and feel settings or provided by a
+   * theme.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: None
    */
@@ -23,7 +24,8 @@ export class Settings {
    * Returns the look and feel settings for the site or a single space. This includes attributes such as the color
    * scheme, padding, and border radius.
    *
-   * The look and feel settings for a space can be inherited from the global look and feel settings or provided by a theme.
+   * The look and feel settings for a space can be inherited from the global look and feel settings or provided by a
+   * theme.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: None
    */

@@ -1,14 +1,5 @@
 import { BaseClient } from './baseClient';
-import {
-  Audit,
-  Content,
-  ContentBody,
-  Group,
-  LongTask,
-  Search,
-  Space,
-  User,
-} from '../server';
+import { Audit, Content, ContentBody, Group, LongTask, Search, Space, User } from '../server';
 
 export class ServerClient extends BaseClient {
   urlSuffix = '/';

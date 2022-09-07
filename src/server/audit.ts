@@ -34,7 +34,7 @@ export class Audit {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getAuditRecords' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Creates a record in the audit log. */
@@ -68,7 +68,7 @@ export class Audit {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.createAuditRecord' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Exports audit records as a CSV file or ZIP file. */
@@ -93,7 +93,7 @@ export class Audit {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.exportAuditRecords' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Fetches the current retention periodResponses */
@@ -106,7 +106,7 @@ export class Audit {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getRetentionPeriod' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Set the retention period to a new value. Can throw ServiceException if the retention period is too long */
@@ -132,7 +132,7 @@ export class Audit {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.setRetentionPeriod' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Fetch a paginated list of AuditRecord instances dating back to a certain time */
@@ -161,6 +161,6 @@ export class Audit {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getAuditRecordsForTimePeriod' });
+    return this.client.sendRequest(config, callback);
   }
 }

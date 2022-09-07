@@ -8,28 +8,12 @@ import { RequestConfig } from '../requestConfig';
 export class Content {
   constructor(private client: Client) {}
 
-  /**
-   * Returns a paginated list of Content.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content?spaceKey=TST&title=Cheese&expand=space,body.view,version,container
-   *   - http://example.com/rest/api/content?type=blogpost&spaceKey=TST&title=Bacon&postingDay=2014-02-13&expand=space,body.view,version,container
-   */
+  /** Returns a paginated list of Content. */
   async getContent<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContent | undefined,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns a paginated list of Content.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content?spaceKey=TST&title=Cheese&expand=space,body.view,version,container
-   *   - http://example.com/rest/api/content?type=blogpost&spaceKey=TST&title=Bacon&postingDay=2014-02-13&expand=space,body.view,version,container
-   */
+  /** Returns a paginated list of Content. */
   async getContent<T = Pagination<Models.Content>>(parameters?: Parameters.GetContent, callback?: never): Promise<T>;
   async getContent<T = Pagination<Models.Content>>(
     parameters?: Parameters.GetContent,
@@ -50,12 +34,13 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
    * Creates a new piece of Content or publishes the draft if the content id is present.For the case publishing draft, a
-   * new piece of content will be created and all metadata from the draft will be transferred into the newly created content.
+   * new piece of content will be created and all metadata from the draft will be transferred into the newly created
+   * content.
    */
   async createContent<T = Models.Content>(
     parameters: Parameters.CreateContent | undefined,
@@ -63,7 +48,8 @@ export class Content {
   ): Promise<void>;
   /**
    * Creates a new piece of Content or publishes the draft if the content id is present.For the case publishing draft, a
-   * new piece of content will be created and all metadata from the draft will be transferred into the newly created content.
+   * new piece of content will be created and all metadata from the draft will be transferred into the newly created
+   * content.
    */
   async createContent<T = Models.Content>(parameters?: Parameters.CreateContent, callback?: never): Promise<T>;
   async createContent<T = Models.Content>(
@@ -84,7 +70,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.createContent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -117,28 +103,12 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.updateContent' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns a piece of Content.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   http://example.com/rest/api/content/1234?expand=space,body.view,version,container
-   *   http://example.com/rest/api/content/1234?status=any
-   */
+  /** Returns a piece of Content. */
   async getContentById<T = Models.Content>(parameters: Parameters.GetContentById, callback: Callback<T>): Promise<void>;
-  /**
-   * Returns a piece of Content.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   http://example.com/rest/api/content/1234?expand=space,body.view,version,container
-   *   http://example.com/rest/api/content/1234?status=any
-   */
+  /** Returns a piece of Content. */
   async getContentById<T = Models.Content>(parameters: Parameters.GetContentById, callback?: never): Promise<T>;
   async getContentById<T = Models.Content>(
     parameters: Parameters.GetContentById,
@@ -154,7 +124,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentById' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -184,26 +154,12 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.deleteContent' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns the history of a particular piece of content
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   http://example.com/rest/api/content/1234/history
-   */
+  /** Returns the history of a particular piece of content */
   async getHistory<T = Models.ContentHistory>(parameters: Parameters.GetHistory, callback: Callback<T>): Promise<void>;
-  /**
-   * Returns the history of a particular piece of content
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   http://example.com/rest/api/content/1234/history
-   */
+  /** Returns the history of a particular piece of content */
   async getHistory<T = Models.ContentHistory>(parameters: Parameters.GetHistory, callback?: never): Promise<T>;
   async getHistory<T = Models.ContentHistory>(
     parameters: Parameters.GetHistory,
@@ -217,7 +173,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getHistory' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -229,7 +185,8 @@ export class Content {
    *
    * Collecting a macro by its hash should now be considered deprecated and will be replaced, transparently with
    * macroIds. This resource is currently only called from connect addons which will eventually all use the
-   * {@link #getContentById(com.atlassian.confluence.api.model.content.id.ContentId, java.util.List, Integer, String)} resource.
+   * {@link #getContentById(com.atlassian.confluence.api.model.content.id.ContentId, java.util.List, Integer, String)}
+   * resource.
    *
    * To make the migration as seamless as possible, this resource will match macros against a generated hash or a stored
    * macroId. This will allow add ons to work during the migration period.
@@ -247,7 +204,8 @@ export class Content {
    *
    * Collecting a macro by its hash should now be considered deprecated and will be replaced, transparently with
    * macroIds. This resource is currently only called from connect addons which will eventually all use the
-   * {@link #getContentById(com.atlassian.confluence.api.model.content.id.ContentId, java.util.List, Integer, String)} resource.
+   * {@link #getContentById(com.atlassian.confluence.api.model.content.id.ContentId, java.util.List, Integer, String)}
+   * resource.
    *
    * To make the migration as seamless as possible, this resource will match macros against a generated hash or a stored
    * macroId. This will allow add ons to work during the migration period.
@@ -265,7 +223,7 @@ export class Content {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getMacroBodyByHash' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -307,35 +265,15 @@ export class Content {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getMacroBodyByMacroId' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Fetch a list of content using the Confluence Query Language (CQL). See: Advanced searching using CQL
-   *
-   * @example
-   *   For example :
-   *
-   *   Example request URI(s):
-   *
-   *   - http://localhost:8080/confluence/rest/api/content/search?cql=creator=currentUser()&cqlcontext={%22spaceKey%22:%22TST%22,%22contentId%22:%2255%22}
-   *   - http://localhost:8080/confluence/rest/api/content/search?cql=space=DEV%20AND%20label=docs&expand=space,metadata.labels&limit=10
-   */
+  /** Fetch a list of content using the Confluence Query Language (CQL). See: Advanced searching using CQL */
   async searchContent<T = Pagination<Models.Content>>(
     parameters: Parameters.SearchContent | undefined,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Fetch a list of content using the Confluence Query Language (CQL). See: Advanced searching using CQL
-   *
-   * @example
-   *   For example :
-   *
-   *   Example request URI(s):
-   *
-   *   - http://localhost:8080/confluence/rest/api/content/search?cql=creator=currentUser()&cqlcontext={%22spaceKey%22:%22TST%22,%22contentId%22:%2255%22}
-   *   - http://localhost:8080/confluence/rest/api/content/search?cql=space=DEV%20AND%20label=docs&expand=space,metadata.labels&limit=10
-   */
+  /** Fetch a list of content using the Confluence Query Language (CQL). See: Advanced searching using CQL */
   async searchContent<T = Pagination<Models.Content>>(
     parameters?: Parameters.SearchContent,
     callback?: never
@@ -356,7 +294,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.searchContent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -368,13 +306,6 @@ export class Content {
    *
    * If no types are included in the expand parameter, the map returned will just list the child types that are
    * available to be expanded for the Content referenced by the "id" path parameter.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child
-   *   - http://example.com/rest/api/content/1234/child?expand=page.body.VIEW
-   *   - http://example.com/rest/api/content/1234/child?expand=page&start=20&limit=10
    */
   async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
@@ -389,15 +320,11 @@ export class Content {
    *
    * If no types are included in the expand parameter, the map returned will just list the child types that are
    * available to be expanded for the Content referenced by the "id" path parameter.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child
-   *   - http://example.com/rest/api/content/1234/child?expand=page.body.VIEW
-   *   - http://example.com/rest/api/content/1234/child?expand=page&start=20&limit=10
    */
-  async getContentChildren<T = Models.ContentChildren>(parameters: Parameters.GetContentChildren, callback?: never): Promise<T>;
+  async getContentChildren<T = Models.ContentChildren>(
+    parameters: Parameters.GetContentChildren,
+    callback?: never
+  ): Promise<T>;
   async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
     callback?: Callback<T>,
@@ -413,21 +340,13 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentChildren' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
    * Returns the direct children of a piece of Content, limited to a single child type.
    *
    * The ContentType(s) of the children returned is specified by the "type" path parameter in the request.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/page
-   *   - http://example.com/rest/api/content/1234/child/comment
-   *   - http://example.com/rest/api/content/1234/child/page?expand=body.view
-   *   - http://example.com/rest/api/content/1234/child/comment?start=20&limit=10
    */
   async getContentChildrenByType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentChildrenByType,
@@ -437,14 +356,6 @@ export class Content {
    * Returns the direct children of a piece of Content, limited to a single child type.
    *
    * The ContentType(s) of the children returned is specified by the "type" path parameter in the request.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/page
-   *   - http://example.com/rest/api/content/1234/child/comment
-   *   - http://example.com/rest/api/content/1234/child/page?expand=body.view
-   *   - http://example.com/rest/api/content/1234/child/comment?start=20&limit=10
    */
   async getContentChildrenByType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentChildrenByType,
@@ -465,37 +376,15 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentChildrenByType' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns the comments of a content
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/comment
-   *   - http://example.com/rest/api/content/1234/child/comment?expand=body.view
-   *   - http://example.com/rest/api/content/1234/child/comment?start=20&limit=10
-   *   - http://example.com/rest/api/content/1234/child/comment?location=footer&location=inline&location=resolved
-   *   - http://example.com/rest/api/content/1234/child/comment?expand=extensions.inlineProperties,extensions.resolution
-   */
+  /** Returns the comments of a content */
   async getContentComments<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentComments,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns the comments of a content
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/comment
-   *   - http://example.com/rest/api/content/1234/child/comment?expand=body.view
-   *   - http://example.com/rest/api/content/1234/child/comment?start=20&limit=10
-   *   - http://example.com/rest/api/content/1234/child/comment?location=footer&location=inline&location=resolved
-   *   - http://example.com/rest/api/content/1234/child/comment?expand=extensions.inlineProperties,extensions.resolution
-   */
+  /** Returns the comments of a content */
   async getContentComments<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentComments,
     callback?: never
@@ -517,31 +406,15 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentComments' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns a paginated list of attachment Content entities within a single container.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/attachment?start=0&limit=10
-   *   - http://example.com/rest/api/content/1234/child/attachment?filename=myfile.txt&expand=version,container
-   */
+  /** Returns a paginated list of attachment Content entities within a single container. */
   async getAttachments<T = Pagination<Models.Content>>(
     parameters: Parameters.GetAttachments,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns a paginated list of attachment Content entities within a single container.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/attachment?start=0&limit=10
-   *   - http://example.com/rest/api/content/1234/child/attachment?filename=myfile.txt&expand=version,container
-   */
+  /** Returns a paginated list of attachment Content entities within a single container. */
   async getAttachments<T = Pagination<Models.Content>>(
     parameters: Parameters.GetAttachments,
     callback?: never
@@ -562,7 +435,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getAttachments' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -576,7 +449,8 @@ export class Content {
    * Components library provides a MultiPartEntity that makes it simple to submit a multipart POST.
    *
    * In order to protect against XSRF attacks, because this method accepts multipart/form-data, it has XSRF protection
-   * on it. This means you must submit a header of X-Atlassian-Token: nocheck with the request, otherwise it will be blocked.
+   * on it. This means you must submit a header of X-Atlassian-Token: nocheck with the request, otherwise it will be
+   * blocked.
    *
    * The name of the multipart/form-data parameter that contains attachments must be "file"
    *
@@ -588,11 +462,6 @@ export class Content {
    * http://myhost/rest/api/content/123/child/attachment An example to attach the same file, with no comment: curl -D-
    * -u admin:admin -X POST -H "X-Atlassian-Token: nocheck" -F "file=@myfile.txt"
    * http://myhost/rest/api/content/123/child/attachment
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/attachment
    */
   async createAttachments<T = Pagination<Models.Content>>(
     parameters: Parameters.CreateAttachments,
@@ -609,7 +478,8 @@ export class Content {
    * Components library provides a MultiPartEntity that makes it simple to submit a multipart POST.
    *
    * In order to protect against XSRF attacks, because this method accepts multipart/form-data, it has XSRF protection
-   * on it. This means you must submit a header of X-Atlassian-Token: nocheck with the request, otherwise it will be blocked.
+   * on it. This means you must submit a header of X-Atlassian-Token: nocheck with the request, otherwise it will be
+   * blocked.
    *
    * The name of the multipart/form-data parameter that contains attachments must be "file"
    *
@@ -621,11 +491,6 @@ export class Content {
    * http://myhost/rest/api/content/123/child/attachment An example to attach the same file, with no comment: curl -D-
    * -u admin:admin -X POST -H "X-Atlassian-Token: nocheck" -F "file=@myfile.txt"
    * http://myhost/rest/api/content/123/child/attachment
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/attachment
    */
   async createAttachments<T = Pagination<Models.Content>>(
     parameters: Parameters.CreateAttachments,
@@ -652,18 +517,13 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.createAttachments' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
    * Update the non-binary data of an Attachment.
    *
    * This resource can be used to update an attachment's filename, media-type, comment, and parent container.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/attachment/5678
    */
   async updateAttachmentProperties<T = Models.Content>(
     parameters: Parameters.UpdateAttachmentProperties,
@@ -673,11 +533,6 @@ export class Content {
    * Update the non-binary data of an Attachment.
    *
    * This resource can be used to update an attachment's filename, media-type, comment, and parent container.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/attachment/5678
    */
   async updateAttachmentProperties<T = Models.Content>(
     parameters: Parameters.UpdateAttachmentProperties,
@@ -697,7 +552,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.updateAttachmentProperties' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -713,7 +568,8 @@ export class Content {
    * Components library provides a MultiPartEntity that makes it simple to submit a multipart POST.
    *
    * In order to protect against XSRF attacks, because this method accepts multipart/form-data, it has XSRF protection
-   * on it. This means you must submit a header of X-Atlassian-Token: nocheck with the request, otherwise it will be blocked.
+   * on it. This means you must submit a header of X-Atlassian-Token: nocheck with the request, otherwise it will be
+   * blocked.
    *
    * The name of the multipart/form-data parameter that contains attachments must be "file"
    *
@@ -724,11 +580,6 @@ export class Content {
    *
    * An example to upload the same file, with no comment: curl -D- -u admin:admin -X POST -H "X-Atlassian-Token:
    * nocheck" -F "file=@myfile.txt" http://myhost/rest/api/content/123/child/attachment/456/data
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/attachment/5678/data
    */
   async updateAttachmentData<T = Models.Content>(
     parameters: Parameters.UpdateAttachmentData,
@@ -747,7 +598,8 @@ export class Content {
    * Components library provides a MultiPartEntity that makes it simple to submit a multipart POST.
    *
    * In order to protect against XSRF attacks, because this method accepts multipart/form-data, it has XSRF protection
-   * on it. This means you must submit a header of X-Atlassian-Token: nocheck with the request, otherwise it will be blocked.
+   * on it. This means you must submit a header of X-Atlassian-Token: nocheck with the request, otherwise it will be
+   * blocked.
    *
    * The name of the multipart/form-data parameter that contains attachments must be "file"
    *
@@ -758,11 +610,6 @@ export class Content {
    *
    * An example to upload the same file, with no comment: curl -D- -u admin:admin -X POST -H "X-Atlassian-Token:
    * nocheck" -F "file=@myfile.txt" http://myhost/rest/api/content/123/child/attachment/456/data
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/child/attachment/5678/data
    */
   async updateAttachmentData<T = Models.Content>(
     parameters: Parameters.UpdateAttachmentData,
@@ -786,7 +633,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.updateAttachmentData' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -800,13 +647,6 @@ export class Content {
    * available to be expanded for the Content referenced by the "id" path parameter.
    *
    * Currently the only supported descendants are comment descendants of non-comment Content.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/descendant
-   *   - http://example.com/rest/api/content/1234/descendant?expand=comment.body.VIEW
-   *   - http://example.com/rest/api/content/1234/descendant?expand=comment
    */
   async getContentDescendants<T = Models.ContentChildren>(
     parameters: Parameters.GetContentDescendants,
@@ -823,13 +663,6 @@ export class Content {
    * available to be expanded for the Content referenced by the "id" path parameter.
    *
    * Currently the only supported descendants are comment descendants of non-comment Content.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/descendant
-   *   - http://example.com/rest/api/content/1234/descendant?expand=comment.body.VIEW
-   *   - http://example.com/rest/api/content/1234/descendant?expand=comment
    */
   async getContentDescendants<T = Models.ContentChildren>(
     parameters: Parameters.GetContentDescendants,
@@ -847,7 +680,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentDescendants' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -856,13 +689,6 @@ export class Content {
    * The ContentType(s) of the descendants returned is specified by the "type" path parameter in the request.
    *
    * Currently the only supported descendants are comment descendants of non-comment Content.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/descendant/comment
-   *   - http://example.com/rest/api/content/1234/descendant/comment?expand=body.VIEW
-   *   - http://example.com/rest/api/content/1234/descendant/comment?start=20&limit=10
    */
   async getContentDescendantsOfType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentDescendantsOfType,
@@ -874,13 +700,6 @@ export class Content {
    * The ContentType(s) of the descendants returned is specified by the "type" path parameter in the request.
    *
    * Currently the only supported descendants are comment descendants of non-comment Content.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/descendant/comment
-   *   - http://example.com/rest/api/content/1234/descendant/comment?expand=body.VIEW
-   *   - http://example.com/rest/api/content/1234/descendant/comment?start=20&limit=10
    */
   async getContentDescendantsOfType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentDescendantsOfType,
@@ -900,31 +719,15 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentDescendantsOfType' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns the list of labels on a piece of Content.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/label
-   *   - http://example.com/rest/api/content/1234/label?prefix=global&start=0&limit=200
-   */
+  /** Returns the list of labels on a piece of Content. */
   async getContentLabels<T = Pagination<Models.Label>>(
     parameters: Parameters.GetContentLabels,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns the list of labels on a piece of Content.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/content/1234/label
-   *   - http://example.com/rest/api/content/1234/label?prefix=global&start=0&limit=200
-   */
+  /** Returns the list of labels on a piece of Content. */
   async getContentLabels<T = Pagination<Models.Label>>(
     parameters: Parameters.GetContentLabels,
     callback?: never
@@ -943,7 +746,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentLabels' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Adds a list of labels to the specified content. The body is the json representation of the list. */
@@ -966,7 +769,7 @@ export class Content {
       data: parameters.labels,
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.addLabelsToContent' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Deletes a labels to the specified content. */
@@ -991,7 +794,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.deleteLabelWithQueryParam' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -1012,29 +815,15 @@ export class Content {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.deleteLabel' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns a paginated list of content properties.
-   *
-   * @example
-   *   Example request URI:
-   *
-   *   - http://example.com/rest/api/content/1234/property?expand=content,version
-   */
+  /** Returns a paginated list of content properties. */
   async getContentProperties<T = Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetContentProperties,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns a paginated list of content properties.
-   *
-   * @example
-   *   Example request URI:
-   *
-   *   - http://example.com/rest/api/content/1234/property?expand=content,version
-   */
+  /** Returns a paginated list of content properties. */
   async getContentProperties<T = Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetContentProperties,
     callback?: never
@@ -1053,7 +842,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentProperties' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Creates a new content property. */
@@ -1079,29 +868,15 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.createContentProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns a content property.
-   *
-   * @example
-   *   Example request URI:
-   *
-   *   - http://example.com/rest/api/content/1234/property/example-property-key?expand=content,version
-   */
+  /** Returns a content property. */
   async getContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.GetContentProperty,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns a content property.
-   *
-   * @example
-   *   Example request URI:
-   *
-   *   - http://example.com/rest/api/content/1234/property/example-property-key?expand=content,version
-   */
+  /** Returns a content property. */
   async getContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.GetContentProperty,
     callback?: never
@@ -1118,7 +893,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Creates a new content property. */
@@ -1143,7 +918,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.createContentPropertyForKey' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -1181,7 +956,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.updateContentProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Deletes a content property. */
@@ -1200,7 +975,7 @@ export class Content {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.deleteContentProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Returns info about all restrictions by operation */
@@ -1225,7 +1000,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getRestrictionsByOperation' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Returns info about all restrictions of given operation */
@@ -1252,7 +1027,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getRestrictionsForOperation' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Publishes a legacy draft of a Content created from a ContentBlueprint */
@@ -1275,7 +1050,7 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.publishLegacyDraft' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Publishes a shared draft of a Content created from a ContentBlueprint */
@@ -1298,6 +1073,6 @@ export class Content {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.publishSharedDraft' });
+    return this.client.sendRequest(config, callback);
   }
 }

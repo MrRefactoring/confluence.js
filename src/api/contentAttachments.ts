@@ -28,7 +28,10 @@ export class ContentAttachments {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content. If the
    * content is a blog post, 'View' permission for the space is required.
    */
-  async getAttachments<T = Models.ContentArray<Models.Attachment>>(parameters: Parameters.GetAttachments, callback?: never): Promise<T>;
+  async getAttachments<T = Models.ContentArray<Models.Attachment>>(
+    parameters: Parameters.GetAttachments,
+    callback?: never
+  ): Promise<T>;
   async getAttachments<T = Models.ContentArray<Models.Attachment>>(
     parameters: Parameters.GetAttachments,
     callback?: Callback<T>,
@@ -50,7 +53,8 @@ export class ContentAttachments {
 
   /**
    * Adds an attachment to a piece of content. This method only adds a new attachment. If you want to update an existing
-   * attachment, use [Create or update attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put).
+   * attachment, use [Create or update
+   * attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put).
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
@@ -60,7 +64,8 @@ export class ContentAttachments {
   ): Promise<void>;
   /**
    * Adds an attachment to a piece of content. This method only adds a new attachment. If you want to update an existing
-   * attachment, use [Create or update attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put).
+   * attachment, use [Create or update
+   * attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put).
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
@@ -194,10 +199,12 @@ export class ContentAttachments {
   }
 
   /**
-   * Updates the binary data of an attachment, given the attachment ID, and optionally the comment and the minor edit field.
+   * Updates the binary data of an attachment, given the attachment ID, and optionally the comment and the minor edit
+   * field.
    *
-   * This method is essentially the same as [Create or update attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put), except
-   * that it matches the attachment ID rather than the name.
+   * This method is essentially the same as [Create or update
+   * attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put),
+   * except that it matches the attachment ID rather than the name.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
@@ -206,10 +213,12 @@ export class ContentAttachments {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Updates the binary data of an attachment, given the attachment ID, and optionally the comment and the minor edit field.
+   * Updates the binary data of an attachment, given the attachment ID, and optionally the comment and the minor edit
+   * field.
    *
-   * This method is essentially the same as [Create or update attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put), except
-   * that it matches the attachment ID rather than the name.
+   * This method is essentially the same as [Create or update
+   * attachments](https://developer.atlassian.com/cloud/confluence/rest/api-group-content---attachments/#api-wiki-rest-api-content-id-child-attachment-put),
+   * except that it matches the attachment ID rather than the name.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
    */
@@ -250,10 +259,7 @@ export class ContentAttachments {
   }
 
   /** Redirects the client to a URL that serves an attachment's binary data. */
-  async downloadAttachment<T = Buffer>(
-    parameters: Parameters.DownloadAttachment,
-    callback: Callback<T>
-  ): Promise<void>;
+  async downloadAttachment<T = Buffer>(parameters: Parameters.DownloadAttachment, callback: Callback<T>): Promise<void>;
   /** Redirects the client to a URL that serves an attachment's binary data. */
   async downloadAttachment<T = Buffer>(parameters: Parameters.DownloadAttachment, callback?: never): Promise<T>;
   async downloadAttachment<T = Buffer>(

@@ -58,6 +58,7 @@ export class ContentBody {
       data: {
         value: parameters.value,
         representation: parameters.representation,
+        ...parameters.additionalProperties,
       },
     };
 

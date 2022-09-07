@@ -12,7 +12,8 @@ export class Audit {
    * like space exports, group membership changes, app installations, etc. For more information, see [Audit
    * log](https://confluence.atlassian.com/confcloud/audit-log-802164269.html) in the Confluence administrator's guide.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async getAuditRecords<T = Models.AuditRecordArray>(
     parameters: Parameters.GetAuditRecords | undefined,
@@ -23,7 +24,8 @@ export class Audit {
    * like space exports, group membership changes, app installations, etc. For more information, see [Audit
    * log](https://confluence.atlassian.com/confcloud/audit-log-802164269.html) in the Confluence administrator's guide.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async getAuditRecords<T = Models.AuditRecordArray>(
     parameters?: Parameters.GetAuditRecords,
@@ -51,7 +53,8 @@ export class Audit {
   /**
    * Creates a record in the audit log.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async createAuditRecord<T = Models.AuditRecord>(
     parameters: Parameters.CreateAuditRecord | undefined,
@@ -60,7 +63,8 @@ export class Audit {
   /**
    * Creates a record in the audit log.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async createAuditRecord<T = Models.AuditRecord>(
     parameters?: Parameters.CreateAuditRecord,
@@ -93,7 +97,8 @@ export class Audit {
   /**
    * Exports audit records as a CSV file or ZIP file.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async exportAuditRecords<T = unknown>(
     parameters: Parameters.ExportAuditRecords | undefined,
@@ -102,7 +107,8 @@ export class Audit {
   /**
    * Exports audit records as a CSV file or ZIP file.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async exportAuditRecords<T = unknown>(parameters?: Parameters.ExportAuditRecords, callback?: never): Promise<T>;
   async exportAuditRecords<T = unknown>(
@@ -127,14 +133,16 @@ export class Audit {
    * Returns the retention period for records in the audit log. The retention period is how long an audit record is kept
    * for, from creation date until it is deleted.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async getRetentionPeriod<T = Models.RetentionPeriod>(callback: Callback<T>): Promise<void>;
   /**
    * Returns the retention period for records in the audit log. The retention period is how long an audit record is kept
    * for, from creation date until it is deleted.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async getRetentionPeriod<T = Models.RetentionPeriod>(callback?: never): Promise<T>;
   async getRetentionPeriod<T = Models.RetentionPeriod>(callback?: Callback<T>): Promise<void | T> {
@@ -149,7 +157,8 @@ export class Audit {
   /**
    * Sets the retention period for records in the audit log. The retention period can be set to a maximum of 20 years.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async setRetentionPeriod<T = Models.RetentionPeriod>(
     parameters: Parameters.SetRetentionPeriod | undefined,
@@ -158,7 +167,8 @@ export class Audit {
   /**
    * Sets the retention period for records in the audit log. The retention period can be set to a maximum of 20 years.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async setRetentionPeriod<T = Models.RetentionPeriod>(
     parameters?: Parameters.SetRetentionPeriod,
@@ -188,7 +198,8 @@ export class Audit {
    * more information, see [Audit log](https://confluence.atlassian.com/confcloud/audit-log-802164269.html) in the
    * Confluence administrator's guide.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async getAuditRecordsForTimePeriod<T = Models.AuditRecordArray>(
     parameters: Parameters.GetAuditRecordsForTimePeriod | undefined,
@@ -202,7 +213,8 @@ export class Audit {
    * more information, see [Audit log](https://confluence.atlassian.com/confcloud/audit-log-802164269.html) in the
    * Confluence administrator's guide.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
+   * permission.
    */
   async getAuditRecordsForTimePeriod<T = Models.AuditRecordArray>(
     parameters?: Parameters.GetAuditRecordsForTimePeriod,

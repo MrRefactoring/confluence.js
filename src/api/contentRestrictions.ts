@@ -262,7 +262,8 @@ export class ContentRestrictions {
   }
 
   /**
-   * Adds a group to a content restriction. That is, grant read or update permission to the group for a piece of content.
+   * Adds a group to a content restriction. That is, grant read or update permission to the group for a piece of
+   * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
    */
@@ -271,7 +272,8 @@ export class ContentRestrictions {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Adds a group to a content restriction. That is, grant read or update permission to the group for a piece of content.
+   * Adds a group to a content restriction. That is, grant read or update permission to the group for a piece of
+   * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
    */
@@ -292,13 +294,15 @@ export class ContentRestrictions {
   }
 
   /**
-   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of content.
+   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of
+   * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
    */
   async removeGroupByName<T = unknown>(parameters: Parameters.RemoveGroupByName, callback: Callback<T>): Promise<void>;
   /**
-   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of content.
+   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of
+   * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
    */
@@ -392,13 +396,15 @@ export class ContentRestrictions {
   }
 
   /**
-   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of content.
+   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of
+   * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
    */
   async removeGroupById<T = unknown>(parameters: Parameters.RemoveGroupById, callback: Callback<T>): Promise<void>;
   /**
-   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of content.
+   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of
+   * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
    */
@@ -502,7 +508,8 @@ export class ContentRestrictions {
   }
 
   /**
-   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of content.
+   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of
+   * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
    */
@@ -511,7 +518,8 @@ export class ContentRestrictions {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of content.
+   * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of
+   * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
    */

@@ -8,7 +8,8 @@ export class ContentWatches {
   constructor(private client: Client) {}
 
   /**
-   * Returns the watches for a page. A user that watches a page will receive receive notifications when the page is updated.
+   * Returns the watches for a page. A user that watches a page will receive receive notifications when the page is
+   * updated.
    *
    * If you want to manage watches for a page, use the following `user` methods:
    *
@@ -24,7 +25,8 @@ export class ContentWatches {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns the watches for a page. A user that watches a page will receive receive notifications when the page is updated.
+   * Returns the watches for a page. A user that watches a page will receive receive notifications when the page is
+   * updated.
    *
    * If you want to manage watches for a page, use the following `user` methods:
    *
@@ -180,7 +182,8 @@ export class ContentWatches {
    * - Specify a user via a query parameter: Use the `accountId` to identify the user.
    * - Do not specify a user: The currently logged-in user will be used.
    *
-   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF protection.
+   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF
+   * protection.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
    * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).
@@ -192,7 +195,8 @@ export class ContentWatches {
    * - Specify a user via a query parameter: Use the `accountId` to identify the user.
    * - Do not specify a user: The currently logged-in user will be used.
    *
-   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF protection.
+   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF
+   * protection.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
    * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).
@@ -304,7 +308,8 @@ export class ContentWatches {
    * - Specify a user via a query parameter: Use the `accountId` to identify the user.
    * - Do not specify a user: The currently logged-in user will be used.
    *
-   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF protection.
+   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF
+   * protection.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
    * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).
@@ -316,7 +321,8 @@ export class ContentWatches {
    * - Specify a user via a query parameter: Use the `accountId` to identify the user.
    * - Do not specify a user: The currently logged-in user will be used.
    *
-   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF protection.
+   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF
+   * protection.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
    * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).
@@ -422,7 +428,8 @@ export class ContentWatches {
    * - Specify a user via a query parameter: Use the `accountId` to identify the user.
    * - Do not specify a user: The currently logged-in user will be used.
    *
-   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF protection.
+   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF
+   * protection.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
    * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).
@@ -434,7 +441,8 @@ export class ContentWatches {
    * - Specify a user via a query parameter: Use the `accountId` to identify the user.
    * - Do not specify a user: The currently logged-in user will be used.
    *
-   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF protection.
+   * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF
+   * protection.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
    * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).

@@ -20,7 +20,8 @@ export class ContentMacroBody {
    * macro ID is found. This check will eventually become redundant, as macro IDs are generated for pages and
    * transparently propagate out to all instances.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content that the macro is in.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content that the
+   * macro is in.
    */
   async getMacroBodyByMacroId<T = Models.MacroInstance>(
     parameters: Parameters.GetMacroBodyByMacroId,
@@ -39,7 +40,8 @@ export class ContentMacroBody {
    * macro ID is found. This check will eventually become redundant, as macro IDs are generated for pages and
    * transparently propagate out to all instances.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content that the macro is in.
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content that the
+   * macro is in.
    */
   async getMacroBodyByMacroId<T = Models.MacroInstance>(
     parameters: Parameters.GetMacroBodyByMacroId,

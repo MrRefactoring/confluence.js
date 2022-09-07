@@ -8,24 +8,12 @@ import { RequestConfig } from '../requestConfig';
 export class Space {
   constructor(private client: Client) {}
 
-  /**
-   * Returns information about a number of spaces.
-   *
-   * Example request URI(s):
-   *
-   * - http://example.com/rest/api/space?spaceKey=TST&spaceKey=ds
-   */
+  /** Returns information about a number of spaces. */
   async getSpaces<T = Pagination<Models.Space>>(
     parameters: Parameters.GetSpaces | undefined,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns information about a number of spaces.
-   *
-   * Example request URI(s):
-   *
-   * - http://example.com/rest/api/space?spaceKey=TST&spaceKey=ds
-   */
+  /** Returns information about a number of spaces. */
   async getSpaces<T = Pagination<Models.Space>>(parameters?: Parameters.GetSpaces, callback?: never): Promise<T>;
   async getSpaces<T = Pagination<Models.Space>>(
     parameters?: Parameters.GetSpaces,
@@ -46,7 +34,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getSpaces' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -73,7 +61,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.createSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -105,26 +93,12 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.createPrivateSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns information about a space.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/space/TST?expand=description
-   */
+  /** Returns information about a space. */
   async getSpace<T = Models.Space>(parameters: Parameters.GetSpace, callback: Callback<T>): Promise<void>;
-  /**
-   * Returns information about a space.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/space/TST?expand=description
-   */
+  /** Returns information about a space. */
   async getSpace<T = Models.Space>(parameters: Parameters.GetSpace, callback?: never): Promise<T>;
   async getSpace<T = Models.Space>(parameters: Parameters.GetSpace, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
@@ -135,7 +109,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Updates a Space. Currently only the Space name, description and homepage can be updated. */
@@ -153,7 +127,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.updateSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -179,29 +153,15 @@ export class Space {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.deleteSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns the content in this given space
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/space/TEST/content?expand=history
-   */
+  /** Returns the content in this given space */
   async getContentForSpace<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentForSpace,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns the content in this given space
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/space/TEST/content?expand=history
-   */
+  /** Returns the content in this given space */
   async getContentForSpace<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentForSpace,
     callback?: never
@@ -221,29 +181,15 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentForSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns the content in this given space with the given type
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/space/TEST/content/page?expand=history
-   */
+  /** Returns the content in this given space with the given type */
   async getContentByType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentByType,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns the content in this given space with the given type
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/space/TEST/content/page?expand=history
-   */
+  /** Returns the content in this given space with the given type */
   async getContentByType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentByType,
     callback?: never
@@ -263,29 +209,15 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentByType' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns a paginated list of space properties.
-   *
-   * @example
-   *   Example request URI:
-   *
-   *   - http://example.com/rest/experimental/space/TST/property?expand=space,version
-   */
+  /** Returns a paginated list of space properties. */
   async getSpaceProperties<T = Pagination<Models.SpaceProperty>>(
     parameters: Parameters.GetSpaceProperties,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns a paginated list of space properties.
-   *
-   * @example
-   *   Example request URI:
-   *
-   *   - http://example.com/rest/experimental/space/TST/property?expand=space,version
-   */
+  /** Returns a paginated list of space properties. */
   async getSpaceProperties<T = Pagination<Models.SpaceProperty>>(
     parameters: Parameters.GetSpaceProperties,
     callback?: never
@@ -304,7 +236,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getSpaceProperties' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Creates a new space property. */
@@ -330,29 +262,15 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.createSpaceProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Returns a paginated list of space properties.
-   *
-   * @example
-   *   Example request URI:
-   *
-   *   - http://example.com/rest/experimental/space/TST/property?expand=space,version
-   */
+  /** Returns a paginated list of space properties. */
   async getSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpaceProperty,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Returns a paginated list of space properties.
-   *
-   * @example
-   *   Example request URI:
-   *
-   *   - http://example.com/rest/experimental/space/TST/property?expand=space,version
-   */
+  /** Returns a paginated list of space properties. */
   async getSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpaceProperty,
     callback?: never
@@ -369,7 +287,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getSpaceProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Creates a new space property. */
@@ -394,7 +312,7 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.createSpacePropertyForKey' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -424,7 +342,7 @@ export class Space {
       method: 'PUT',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.updateSpaceProperty' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Deletes a space property. */
@@ -440,6 +358,6 @@ export class Space {
       method: 'DELETE',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.deleteSpaceProperty' });
+    return this.client.sendRequest(config, callback);
   }
 }

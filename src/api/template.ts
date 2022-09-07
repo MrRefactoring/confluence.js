@@ -137,20 +137,24 @@ export class Template {
   }
 
   /**
-   * Returns all content templates. Use this method to retrieve all global content templates or all content templates in a space.
+   * Returns all content templates. Use this method to retrieve all global content templates or all content templates in
+   * a space.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space to view
-   * space templates and permission to access the Confluence site ('Can use' global permission) to view global templates.
+   * space templates and permission to access the Confluence site ('Can use' global permission) to view global
+   * templates.
    */
   async getContentTemplates<T = Models.ContentTemplateArray>(
     parameters: Parameters.GetContentTemplates | undefined,
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns all content templates. Use this method to retrieve all global content templates or all content templates in a space.
+   * Returns all content templates. Use this method to retrieve all global content templates or all content templates in
+   * a space.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space to view
-   * space templates and permission to access the Confluence site ('Can use' global permission) to view global templates.
+   * space templates and permission to access the Confluence site ('Can use' global permission) to view global
+   * templates.
    */
   async getContentTemplates<T = Models.ContentTemplateArray>(
     parameters?: Parameters.GetContentTemplates,
@@ -179,7 +183,8 @@ export class Template {
    * the template is in, the body of the template, and more.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space to view
-   * space templates and permission to access the Confluence site ('Can use' global permission) to view global templates.
+   * space templates and permission to access the Confluence site ('Can use' global permission) to view global
+   * templates.
    */
   async getContentTemplate<T = Models.ContentTemplate>(
     parameters: Parameters.GetContentTemplate,
@@ -190,7 +195,8 @@ export class Template {
    * the template is in, the body of the template, and more.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space to view
-   * space templates and permission to access the Confluence site ('Can use' global permission) to view global templates.
+   * space templates and permission to access the Confluence site ('Can use' global permission) to view global
+   * templates.
    */
   async getContentTemplate<T = Models.ContentTemplate>(
     parameters: Parameters.GetContentTemplate,
@@ -214,7 +220,8 @@ export class Template {
    * - If the template is a content template, it is deleted.
    * - If the template is a modified space-level blueprint template, it reverts to the template inherited from the
    *   global-level blueprint template.
-   * - If the template is a modified global-level blueprint template, it reverts to the default global-level blueprint template.
+   * - If the template is a modified global-level blueprint template, it reverts to the default global-level blueprint
+   *   template.
    *
    * Note, unmodified blueprint templates cannot be deleted.
    *
@@ -228,7 +235,8 @@ export class Template {
    * - If the template is a content template, it is deleted.
    * - If the template is a modified space-level blueprint template, it reverts to the template inherited from the
    *   global-level blueprint template.
-   * - If the template is a modified global-level blueprint template, it reverts to the default global-level blueprint template.
+   * - If the template is a modified global-level blueprint template, it reverts to the default global-level blueprint
+   *   template.
    *
    * Note, unmodified blueprint templates cannot be deleted.
    *

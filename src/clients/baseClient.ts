@@ -74,7 +74,9 @@ export class BaseClient implements Client {
       ...this.config.baseRequestConfig,
       baseURL: `${this.config.host}${this.urlSuffix}`,
       headers: this.removeUndefinedProperties({
-        [ATLASSIAN_TOKEN_CHECK_FLAG]: this.config.noCheckAtlassianToken ? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE : undefined,
+        [ATLASSIAN_TOKEN_CHECK_FLAG]: this.config.noCheckAtlassianToken
+          ? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE
+          : undefined,
         ...this.config.baseRequestConfig?.headers,
       }),
     });
@@ -83,15 +85,8 @@ export class BaseClient implements Client {
   }
 
   async sendRequest<T>(requestConfig: RequestConfig, callback: never, telemetryData?: any): Promise<T>;
-  async sendRequest<T>(
-    requestConfig: RequestConfig,
-    callback: Callback<T>,
-    telemetryData?: any,
-  ): Promise<void>;
-  async sendRequest<T>(
-    requestConfig: RequestConfig,
-    callback: Callback<T> | never,
-  ): Promise<void | T> {
+  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>, telemetryData?: any): Promise<void>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T> | never): Promise<void | T> {
     try {
       const modifiedRequestConfig = {
         ...requestConfig,

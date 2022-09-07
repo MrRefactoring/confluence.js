@@ -113,10 +113,7 @@ export class Content {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Archive' permission for each of the pages
    * in the corresponding space it belongs to.
    */
-  async archivePages<T = Models.LongTask>(
-    parameters: Parameters.ArchivePages,
-    callback: Callback<T>
-  ): Promise<void>;
+  async archivePages<T = Models.LongTask>(parameters: Parameters.ArchivePages, callback: Callback<T>): Promise<void>;
   /**
    * Archives a list of pages. The pages to be archived are specified as a list of content IDs. This API accepts the
    * archival request and returns a task ID. The archival process happens asynchronously. Use the /longtask/<taskId>
@@ -129,7 +126,10 @@ export class Content {
    * in the corresponding space it belongs to.
    */
   async archivePages<T = Models.LongTask>(parameters: Parameters.ArchivePages, callback?: never): Promise<T>;
-  async archivePages<T = Models.LongTask>(parameters: Parameters.ArchivePages, callback?: Callback<T>): Promise<void | T> {
+  async archivePages<T = Models.LongTask>(
+    parameters: Parameters.ArchivePages,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/api/content/archive',
       method: 'POST',
@@ -143,7 +143,8 @@ export class Content {
 
   /**
    * Publishes a legacy draft of a page created from a blueprint. Legacy drafts will eventually be removed in favor of
-   * shared drafts. For now, this method works the same as [Publish shared draft](#api-content-blueprint-instance-draftId-put).
+   * shared drafts. For now, this method works the same as [Publish shared
+   * draft](#api-content-blueprint-instance-draftId-put).
    *
    * By default, the following objects are expanded: `body.storage`, `history`, `space`, `version`, `ancestors`.
    *
@@ -156,7 +157,8 @@ export class Content {
   ): Promise<void>;
   /**
    * Publishes a legacy draft of a page created from a blueprint. Legacy drafts will eventually be removed in favor of
-   * shared drafts. For now, this method works the same as [Publish shared draft](#api-content-blueprint-instance-draftId-put).
+   * shared drafts. For now, this method works the same as [Publish shared
+   * draft](#api-content-blueprint-instance-draftId-put).
    *
    * By default, the following objects are expanded: `body.storage`, `history`, `space`, `version`, `ancestors`.
    *
@@ -240,9 +242,9 @@ export class Content {
    * When additional results are available, returns `next` and `prev` URLs to retrieve them in subsequent calls. The
    * URLs each contain a cursor that points to the appropriate set of results. Use `limit` to specify the number of
    * results returned in each call. Example subsequent call (taken from example response):
-   * ```
-   * https://your-domain.atlassian.net/wiki/rest/api/content/search?cql=type=page&limit=25&cursor=raNDoMsTRiNg
-   * ```
+   *
+   *     https://your-domain.atlassian.net/wiki/rest/api/content/search?cql=type=page&limit=25&cursor=raNDoMsTRiNg
+   *
    * The response to this will have a `prev` URL similar to the `next` in the example response.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
@@ -259,9 +261,9 @@ export class Content {
    * When additional results are available, returns `next` and `prev` URLs to retrieve them in subsequent calls. The
    * URLs each contain a cursor that points to the appropriate set of results. Use `limit` to specify the number of
    * results returned in each call. Example subsequent call (taken from example response):
-   * ```
-   * https://your-domain.atlassian.net/wiki/rest/api/content/search?cql=type=page&limit=25&cursor=raNDoMsTRiNg
-   * ```
+   *
+   *     https://your-domain.atlassian.net/wiki/rest/api/content/search?cql=type=page&limit=25&cursor=raNDoMsTRiNg
+   *
    * The response to this will have a `prev` URL similar to the `next` in the example response.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
@@ -369,11 +371,13 @@ export class Content {
   }
 
   /**
-   * Moves a piece of content to the space's trash or purges it from the trash, depending on the content's type and status:
+   * Moves a piece of content to the space's trash or purges it from the trash, depending on the content's type and
+   * status:
    *
    * - If the content's type is `page` or `blogpost` and its status is `current`, it will be trashed.
    * - If the content's type is `page` or `blogpost` and its status is `trashed`, the content will be purged from the
-   *   trash and deleted permanently. Note, you must also set the `status` query parameter to `trashed` in your request.
+   *   trash and deleted permanently. Note, you must also set the `status` query parameter to `trashed` in your
+   *   request.
    * - If the content's type is `comment` or `attachment`, it will be deleted permanently without being trashed.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Delete' permission for the space that the
@@ -381,11 +385,13 @@ export class Content {
    */
   async deleteContent<T = void>(parameters: Parameters.DeleteContent, callback: Callback<T>): Promise<void>;
   /**
-   * Moves a piece of content to the space's trash or purges it from the trash, depending on the content's type and status:
+   * Moves a piece of content to the space's trash or purges it from the trash, depending on the content's type and
+   * status:
    *
    * - If the content's type is `page` or `blogpost` and its status is `current`, it will be trashed.
    * - If the content's type is `page` or `blogpost` and its status is `trashed`, the content will be purged from the
-   *   trash and deleted permanently. Note, you must also set the `status` query parameter to `trashed` in your request.
+   *   trash and deleted permanently. Note, you must also set the `status` query parameter to `trashed` in your
+   *   request.
    * - If the content's type is `comment` or `attachment`, it will be deleted permanently without being trashed.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Delete' permission for the space that the

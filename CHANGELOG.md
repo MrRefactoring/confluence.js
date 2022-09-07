@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.5.3
+
+`expand` property added to `convertContentBody` method to `ContentBody` API. Thanks to [Federico Gonzalez](https://github.com/FedeG) for report.
+
 ### 1.5.2
 
 `multipart/form-data` added to some required endpoints. Thank you, [Gonzalo Garcia](https://github.com/ggarcia24) for reporting issue and creating PR :)
@@ -10,7 +14,7 @@ Dependencies updated
 
 ### 1.5.0
 
-`ContentAttachments` fixes for all attachments. ([#23](https://github.com/MrRefactoring/confluence.js/issues/23) Thanks [Anton](https://github.com/tester22) for catching)
+`ContentAttachments` fixes for all attachments. ([#23](https://github.com/MrRefactoring/confluence.js/issues/23) Thanks to [Anton](https://github.com/tester22) for catching)
 
 ### 1.4.1
 
@@ -33,8 +37,8 @@ Dependencies updated
 ### 1.3.0
 
 - Telemetry removed (deprecated)
-- Fixed bug with spaceKeys in `client.space.getSpaces` ([#14](https://github.com/MrRefactoring/confluence.js/issues/14) Thanks [David Sanchez](https://github.com/emulienfou) for catching)
-- Fixed bug with attachment download ([#15](https://github.com/MrRefactoring/confluence.js/issues/15) Thanks [Martin Reinhardt](https://github.com/hypery2k) for catching)
+- Fixed bug with spaceKeys in `client.space.getSpaces` ([#14](https://github.com/MrRefactoring/confluence.js/issues/14) Thanks to [David Sanchez](https://github.com/emulienfou) for catching)
+- Fixed bug with attachment download ([#15](https://github.com/MrRefactoring/confluence.js/issues/15) Thanks to [Martin Reinhardt](https://github.com/hypery2k) for catching)
 
 ### 1.2.2
 

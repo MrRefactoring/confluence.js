@@ -29,7 +29,7 @@ export class LongTask {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getTasks' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Returns information about a long-running task. */
@@ -45,6 +45,6 @@ export class LongTask {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getTask' });
+    return this.client.sendRequest(config, callback);
   }
 }

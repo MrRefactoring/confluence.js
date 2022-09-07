@@ -8,32 +8,12 @@ import { RequestConfig } from '../requestConfig';
 export class Search {
   constructor(private client: Client) {}
 
-  /**
-   * Search for entities in Confluence using the Confluence Query Language (CQL)
-   *
-   * @example
-   *   For example :
-   *
-   *   Example request URI(s):
-   *
-   *   - http://localhost:8080/confluence/rest/api/search?cql=creator=currentUser()&type%20in%20(space,page,user)&cqlcontext={%22spaceKey%22:%22TST%22,%22contentId%22:%2255%22}
-   *   - http://localhost:8080/confluence/rest/api/search?cql=siteSearch~'example'%20AND%20label=docs&expand=content.space,space.homepage&limit=10
-   */
+  /** Search for entities in Confluence using the Confluence Query Language (CQL) */
   async search<T = Pagination<Models.SearchResult>>(
     parameters: Parameters.SearchContent | undefined,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Search for entities in Confluence using the Confluence Query Language (CQL)
-   *
-   * @example
-   *   For example :
-   *
-   *   Example request URI(s):
-   *
-   *   - http://localhost:8080/confluence/rest/api/search?cql=creator=currentUser()&type%20in%20(space,page,user)&cqlcontext={%22spaceKey%22:%22TST%22,%22contentId%22:%2255%22}
-   *   - http://localhost:8080/confluence/rest/api/search?cql=siteSearch~'example'%20AND%20label=docs&expand=content.space,space.homepage&limit=10
-   */
+  /** Search for entities in Confluence using the Confluence Query Language (CQL) */
   async search<T = Pagination<Models.SearchResult>>(
     parameters?: Parameters.SearchContent,
     callback?: never
@@ -56,6 +36,6 @@ export class Search {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.search' });
+    return this.client.sendRequest(config, callback);
   }
 }
