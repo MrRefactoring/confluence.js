@@ -8,25 +8,9 @@ import { RequestConfig } from '../requestConfig';
 export class User {
   constructor(private client: Client) {}
 
-  /**
-   * Get information about a user identified by either user key or username.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/user?username=jblogs
-   *   - http://example.com/rest/api/user?key=402880824ff933a4014ff9345d7c0002
-   */
+  /** Get information about a user identified by either user key or username. */
   async getUser<T = Models.User>(parameters: Parameters.GetUser | undefined, callback: Callback<T>): Promise<void>;
-  /**
-   * Get information about a user identified by either user key or username.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/user?username=jblogs
-   *   - http://example.com/rest/api/user?key=402880824ff933a4014ff9345d7c0002
-   */
+  /** Get information about a user identified by either user key or username. */
   async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: never): Promise<T>;
   async getUser<T = Models.User>(parameters?: Parameters.GetUser, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
@@ -39,26 +23,12 @@ export class User {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getUser' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Get information about the how anonymous is represented in confluence
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/user/anonymous
-   */
+  /** Get information about the how anonymous is represented in confluence */
   async getAnonymousUser<T = Models.UserAnonymous>(callback: Callback<T>): Promise<void>;
-  /**
-   * Get information about the how anonymous is represented in confluence
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/user/anonymous
-   */
+  /** Get information about the how anonymous is represented in confluence */
   async getAnonymousUser<T = Models.UserAnonymous>(callback?: never): Promise<T>;
   async getAnonymousUser<T = Models.UserAnonymous>(callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
@@ -66,29 +36,15 @@ export class User {
       method: 'GET',
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getAnonymousUser' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Get information about the current logged in user.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/user/current
-   */
+  /** Get information about the current logged-in user. */
   async getCurrentUser<T = Models.User>(
     parameters: Parameters.GetCurrentUser | undefined,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Get information about the current logged in user.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/user/current
-   */
+  /** Get information about the current logged-in user. */
   async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser, callback?: never): Promise<T>;
   async getCurrentUser<T = Models.User>(
     parameters?: Parameters.GetCurrentUser,
@@ -102,31 +58,15 @@ export class User {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getCurrentUser' });
+    return this.client.sendRequest(config, callback);
   }
 
-  /**
-   * Get a paginated collection of groups that the given user is a member of
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   http://example.com/rest/api/user/memberof?username=jblogs
-   *   http://example.com/rest/api/user/memberof?key=402880824ff933a4014ff9345d7c0002
-   */
+  /** Get a paginated collection of groups that the given user is a member of */
   async getGroupMembershipsForUser<T = Pagination<Models.Group>>(
     parameters: Parameters.GetGroups | undefined,
     callback: Callback<T>
   ): Promise<void>;
-  /**
-   * Get a paginated collection of groups that the given user is a member of
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   http://example.com/rest/api/user/memberof?username=jblogs
-   *   http://example.com/rest/api/user/memberof?key=402880824ff933a4014ff9345d7c0002
-   */
+  /** Get a paginated collection of groups that the given user is a member of */
   async getGroupMembershipsForUser<T = Pagination<Models.Group>>(
     parameters?: Parameters.GetGroups,
     callback?: never
@@ -147,7 +87,7 @@ export class User {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getGroupMembershipsForUser' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -156,13 +96,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/user/watch/content/131213
-   *   - http://example.com/rest/api/user/watch/content/131213?username=jblogs
-   *   - http://example.com/rest/api/user/watch/content/131213?key=ff8080815a58e24c015a58e263710000
    */
   async getContentWatchStatus<T = Models.UserWatch>(
     parameters: Parameters.GetContentWatchStatus,
@@ -174,13 +107,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/user/watch/content/131213
-   *   - http://example.com/rest/api/user/watch/content/131213?username=jblogs
-   *   - http://example.com/rest/api/user/watch/content/131213?key=ff8080815a58e24c015a58e263710000
    */
   async getContentWatchStatus<T = Models.UserWatch>(
     parameters: Parameters.GetContentWatchStatus,
@@ -199,7 +125,7 @@ export class User {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getContentWatchStatus' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -208,13 +134,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - POST http://example.com/rest/api/user/watch/content/131213
-   *   - POST http://example.com/rest/api/user/watch/content/131213?username=jblogs
-   *   - POST http://example.com/rest/api/user/watch/content/131213?key=ff8080815a58e24c015a58e263710000
    */
   async addContentWatcher<T = void>(parameters: Parameters.AddContentWatcher, callback: Callback<T>): Promise<void>;
   /**
@@ -223,13 +142,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - POST http://example.com/rest/api/user/watch/content/131213
-   *   - POST http://example.com/rest/api/user/watch/content/131213?username=jblogs
-   *   - POST http://example.com/rest/api/user/watch/content/131213?key=ff8080815a58e24c015a58e263710000
    */
   async addContentWatcher<T = void>(parameters: Parameters.AddContentWatcher, callback?: never): Promise<T>;
   async addContentWatcher<T = void>(
@@ -245,7 +157,7 @@ export class User {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.addContentWatcher' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -254,13 +166,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - DELETE http://example.com/rest/api/user/watch/content/131213
-   *   - DELETE http://example.com/rest/api/user/watch/content/131213?username=jblogs
-   *   - DELETE http://example.com/rest/api/user/watch/content/131213?key=ff8080815a58e24c015a58e263710000
    */
   async removeContentWatcher<T = void>(
     parameters: Parameters.RemoveContentWatcher,
@@ -272,13 +177,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - DELETE http://example.com/rest/api/user/watch/content/131213
-   *   - DELETE http://example.com/rest/api/user/watch/content/131213?username=jblogs
-   *   - DELETE http://example.com/rest/api/user/watch/content/131213?key=ff8080815a58e24c015a58e263710000
    */
   async removeContentWatcher<T = void>(parameters: Parameters.RemoveContentWatcher, callback?: never): Promise<T>;
   async removeContentWatcher<T = void>(
@@ -294,7 +192,7 @@ export class User {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.removeContentWatcher' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -303,13 +201,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/user/watch/space/SPACEKEY
-   *   - http://example.com/rest/api/user/watch/space/SPACEKEY?username=jblogs
-   *   - http://example.com/rest/api/user/watch/space/SPACEKEY?key=ff8080815a58e24c015a58e263710000
    */
   async isWatchingSpace<T = Models.UserWatch>(
     parameters: Parameters.IsWatchingSpace,
@@ -321,13 +212,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/user/watch/space/SPACEKEY
-   *   - http://example.com/rest/api/user/watch/space/SPACEKEY?username=jblogs
-   *   - http://example.com/rest/api/user/watch/space/SPACEKEY?key=ff8080815a58e24c015a58e263710000
    */
   async isWatchingSpace<T = Models.UserWatch>(parameters: Parameters.IsWatchingSpace, callback?: never): Promise<T>;
   async isWatchingSpace<T = Models.UserWatch>(
@@ -343,7 +227,7 @@ export class User {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.isWatchingSpace' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -352,13 +236,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - POST http://example.com/rest/api/user/watch/space/SPACEKEY
-   *   - POST http://example.com/rest/api/user/watch/space/SPACEKEY?username=jblogs
-   *   - POST http://example.com/rest/api/user/watch/space/SPACEKEY?key=ff8080815a58e24c015a58e263710000
    */
   async addSpaceWatch<T = void>(parameters: Parameters.AddSpaceWatch, callback: Callback<T>): Promise<void>;
   /**
@@ -367,13 +244,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - POST http://example.com/rest/api/user/watch/space/SPACEKEY
-   *   - POST http://example.com/rest/api/user/watch/space/SPACEKEY?username=jblogs
-   *   - POST http://example.com/rest/api/user/watch/space/SPACEKEY?key=ff8080815a58e24c015a58e263710000
    */
   async addSpaceWatch<T = void>(parameters: Parameters.AddSpaceWatch, callback?: never): Promise<T>;
   async addSpaceWatch<T = void>(parameters: Parameters.AddSpaceWatch, callback?: Callback<T>): Promise<void | T> {
@@ -386,7 +256,7 @@ export class User {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.addSpaceWatch' });
+    return this.client.sendRequest(config, callback);
   }
 
   /**
@@ -395,13 +265,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - DELETE http://example.com/rest/api/user/watch/space/SPACEKEY
-   *   - DELETE http://example.com/rest/api/user/watch/space/SPACEKEY?username=jblogs
-   *   - DELETE http://example.com/rest/api/user/watch/space/SPACEKEY?key=ff8080815a58e24c015a58e263710000
    */
   async removeSpaceWatch<T = void>(parameters: Parameters.RemoveSpaceWatch, callback: Callback<T>): Promise<void>;
   /**
@@ -410,13 +273,6 @@ export class User {
    * User is optional. If not specified, currently logged-in user will be used. Otherwise, it can be specified by either
    * user key or username. When a user is specified and is different from the logged-in user, the logged-in user needs
    * to be a Confluence administrator.
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - DELETE http://example.com/rest/api/user/watch/space/SPACEKEY
-   *   - DELETE http://example.com/rest/api/user/watch/space/SPACEKEY?username=jblogs
-   *   - DELETE http://example.com/rest/api/user/watch/space/SPACEKEY?key=ff8080815a58e24c015a58e263710000
    */
   async removeSpaceWatch<T = void>(parameters: Parameters.RemoveSpaceWatch, callback?: never): Promise<T>;
   async removeSpaceWatch<T = void>(parameters: Parameters.RemoveSpaceWatch, callback?: Callback<T>): Promise<void | T> {
@@ -429,6 +285,6 @@ export class User {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.removeSpaceWatch' });
+    return this.client.sendRequest(config, callback);
   }
 }

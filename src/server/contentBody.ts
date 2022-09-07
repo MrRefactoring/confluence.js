@@ -11,16 +11,11 @@ export class ContentBody {
    * Converts between content body representations. Not all representations can be converted to/from other formats.
    * Supported conversions:
    *
-   * - Storageview,export_view,styled_view,editor
+   * - Storageview, export_view, styled_view, editor
    * - Editorstorage
    * - ViewNone
    * - Export_viewNone
    * - Styled_viewNone
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/contentbody/convert/view
    */
   async convertContentBody<T = Models.ContentBody>(
     parameters: Parameters.ConvertContentBody,
@@ -30,16 +25,11 @@ export class ContentBody {
    * Converts between content body representations. Not all representations can be converted to/from other formats.
    * Supported conversions:
    *
-   * - Storageview,export_view,styled_view,editor
+   * - Storageview, export_view, styled_view, editor
    * - Editorstorage
    * - ViewNone
    * - Export_viewNone
    * - Styled_viewNone
-   *
-   * @example
-   *   Example request URI(s):
-   *
-   *   - http://example.com/rest/api/contentbody/convert/view
    */
   async convertContentBody<T = Models.ContentBody>(
     parameters: Parameters.ConvertContentBody,
@@ -58,6 +48,7 @@ export class ContentBody {
         view: parameters.view,
         export_view: parameters.exportView,
         styled_view: parameters.styledView,
+        expand: parameters.expand,
       },
       data: {
         ...parameters,
@@ -70,6 +61,6 @@ export class ContentBody {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.convertContentBody' });
+    return this.client.sendRequest(config, callback);
   }
 }

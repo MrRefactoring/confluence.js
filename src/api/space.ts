@@ -115,13 +115,15 @@ export class Space {
   }
 
   /**
-   * Returns a space. This includes information like the name, description, and permissions, but not the content in the space.
+   * Returns a space. This includes information like the name, description, and permissions, but not the content in the
+   * space.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space.
    */
   async getSpace<T = Models.Space>(parameters: Parameters.GetSpace, callback: Callback<T>): Promise<void>;
   /**
-   * Returns a space. This includes information like the name, description, and permissions, but not the content in the space.
+   * Returns a space. This includes information like the name, description, and permissions, but not the content in the
+   * space.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space.
    */

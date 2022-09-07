@@ -8,7 +8,8 @@ export class Relation {
   constructor(private client: Client) {}
 
   /**
-   * Returns all target entities that have a particular relationship to the source entity. Note, relationships are one way.
+   * Returns all target entities that have a particular relationship to the source entity. Note, relationships are one
+   * way.
    *
    * For example, the following method finds all content that the current user has an 'ignore' relationship with: `GET
    * https://your-domain.atlassian.net/wiki/rest/api/relation/ignore/from/user/current/to/content` Note, 'ignore' is an
@@ -22,7 +23,8 @@ export class Relation {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns all target entities that have a particular relationship to the source entity. Note, relationships are one way.
+   * Returns all target entities that have a particular relationship to the source entity. Note, relationships are one
+   * way.
    *
    * For example, the following method finds all content that the current user has an 'ignore' relationship with: `GET
    * https://your-domain.atlassian.net/wiki/rest/api/relation/ignore/from/user/current/to/content` Note, 'ignore' is an
@@ -205,7 +207,8 @@ export class Relation {
   }
 
   /**
-   * Returns all target entities that have a particular relationship to the source entity. Note, relationships are one way.
+   * Returns all target entities that have a particular relationship to the source entity. Note, relationships are one
+   * way.
    *
    * For example, the following method finds all users that have a 'collaborator' relationship to a piece of content
    * with an ID of '1234': `GET
@@ -220,7 +223,8 @@ export class Relation {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Returns all target entities that have a particular relationship to the source entity. Note, relationships are one way.
+   * Returns all target entities that have a particular relationship to the source entity. Note, relationships are one
+   * way.
    *
    * For example, the following method finds all users that have a 'collaborator' relationship to a piece of content
    * with an ID of '1234': `GET

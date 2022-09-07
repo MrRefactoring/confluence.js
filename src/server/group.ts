@@ -29,7 +29,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getGroups' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Get the user group with the group name */
@@ -45,7 +45,7 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getGroup' });
+    return this.client.sendRequest(config, callback);
   }
 
   /** Get a paginated collection of users in the given group */
@@ -69,6 +69,6 @@ export class Group {
       },
     };
 
-    return this.client.sendRequest(config, callback, { methodName: 'server.getMembers' });
+    return this.client.sendRequest(config, callback);
   }
 }
