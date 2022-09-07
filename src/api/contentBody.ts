@@ -54,6 +54,7 @@ export class ContentBody {
         spaceKeyContext: parameters.spaceKeyContext,
         contentIdContext: parameters.contentIdContext,
         embeddedContentRender: parameters.embeddedContentRender,
+        expand: parameters.expand,
       },
       data: {
         value: parameters.value,
