@@ -233,12 +233,12 @@ export class Settings {
     return this.client.sendRequest(config, callback);
   }
 
-  /** Gets Content State settings for a space */
+  /** @deprecated Gets Content State settings for a space */
   async getContentStateSettings<T = Models.ContentStateSettings>(
     parameters: Parameters.GetContentStateSettings,
     callback: Callback<T>
   ): Promise<void>;
-  /** Gets Content State settings for a space */
+  /** @deprecated Gets Content State settings for a space */
   async getContentStateSettings<T = Models.ContentStateSettings>(
     parameters: Parameters.GetContentStateSettings,
     callback?: never

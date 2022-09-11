@@ -181,7 +181,7 @@ export class Space {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
    */
-  async deleteSpace<T = Models.DeletedSpace>(parameters: Parameters.DeleteSpace, callback: Callback<T>): Promise<void>;
+  async deleteSpace<T = Models.LongTask>(parameters: Parameters.DeleteSpace, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a space. Note, the space will be deleted in a long running task. Therefore, the space may not be deleted
    * yet when this method has returned. Clients should poll the status link that is returned in the response until the
@@ -189,8 +189,8 @@ export class Space {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
    */
-  async deleteSpace<T = Models.DeletedSpace>(parameters: Parameters.DeleteSpace, callback?: never): Promise<T>;
-  async deleteSpace<T = Models.DeletedSpace>(
+  async deleteSpace<T = Models.LongTask>(parameters: Parameters.DeleteSpace, callback?: never): Promise<T>;
+  async deleteSpace<T = Models.LongTask>(
     parameters: Parameters.DeleteSpace,
     callback?: Callback<T>,
   ): Promise<void | T> {

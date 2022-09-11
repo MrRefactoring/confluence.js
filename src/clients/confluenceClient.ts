@@ -13,6 +13,7 @@ import {
   ContentPermissions,
   ContentProperties,
   ContentRestrictions,
+  ContentStates,
   ContentVersions,
   ContentWatches,
   DynamicModules,
@@ -47,6 +48,7 @@ export class ConfluenceClient extends BaseClient {
   contentPermissions = new ContentPermissions(this);
   contentProperties = new ContentProperties(this);
   contentRestrictions = new ContentRestrictions(this);
+  contentStates = new ContentStates(this);
   contentVersions = new ContentVersions(this);
   contentWatches = new ContentWatches(this);
   dynamicModules = new DynamicModules(this);

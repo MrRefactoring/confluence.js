@@ -1,5 +1,16 @@
 # Changelog
 
+### 1.6.0
+
+Cloud API:
+  - `asyncConvertContentBodyRequest` method added to `ContentBody` API.
+  - `asyncConvertContentBodyResponse` method added to `ContentBody` API.
+  - [`ContentContentState`](https://github.com/MrRefactoring/confluence.js/blob/master/src/api/contentContentState.ts) API are deprecated. Use [`ContentStates`](https://github.com/MrRefactoring/confluence.js/blob/master/src/api/contentStates.ts) instead.
+  - `getAndConvertMacroBodyByMacroId` method added to `ContentMacroBody` API.
+  - `getAndAsyncConvertMacroBodyByMacroId` method added to `ContentMacroBody` API.
+  - `registerModules` method fixed via adding body to the request. `DynamicModules` API.
+  - Other fixes and improvements. (like `expand` property adding).
+
 ### 1.5.3
 
 `expand` property added to `convertContentBody` method to `ContentBody` API. Thanks to [Federico Gonzalez](https://github.com/FedeG) for report.

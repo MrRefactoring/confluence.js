@@ -1,4 +1,9 @@
 export interface RemoveContentState {
   /** The Id of the content whose content state is to be set. */
-  contentId: string;
+  id?: string;
+  /** Status of content state from which to delete state. Can be draft or archived */
+  status?: string;
+
+  /** @deprecated The Id of the content whose content state is to be set. */
+  contentId?: string;
 }
