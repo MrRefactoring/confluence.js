@@ -111,8 +111,8 @@ export class SpaceProperties {
   }
 
   /**
-   * Creates a new space property. This is the same as `POST /api/space/{spaceKey}/property` but the key for
-   * the property is passed as a path parameter, rather than in the request body.
+   * Creates a new space property. This is the same as `POST /api/space/{spaceKey}/property` but the key for the
+   * property is passed as a path parameter, rather than in the request body.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘Admin’ permission for the space.
    */
@@ -121,8 +121,8 @@ export class SpaceProperties {
     callback: Callback<T>
   ): Promise<void>;
   /**
-   * Creates a new space property. This is the same as `POST /api/space/{spaceKey}/property` but the key for
-   * the property is passed as a path parameter, rather than in the request body.
+   * Creates a new space property. This is the same as `POST /api/space/{spaceKey}/property` but the key for the
+   * property is passed as a path parameter, rather than in the request body.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘Admin’ permission for the space.
    */
