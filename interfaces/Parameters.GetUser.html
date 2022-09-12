@@ -20,7 +20,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">GetUser</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/ac097f5/src/api/parameters/getUser.ts#L1">api/parameters/getUser.ts:1</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/a0a29aa/src/api/parameters/getUser.ts#L1">api/parameters/getUser.ts:1</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -42,25 +42,27 @@
 <code>384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192</code>.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/ac097f5/src/api/parameters/getUser.ts#L16">api/parameters/getUser.ts:16</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/a0a29aa/src/api/parameters/getUser.ts#L16">api/parameters/getUser.ts:16</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"><a id="expand" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>expand</span><a href="#expand" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
-<div class="tsd-signature">expand<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+<div class="tsd-signature">expand<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">&quot;operations&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;details.personal&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;details.business&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;personalSpace&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;isExternalCollaborator&quot;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
 <div class="tsd-comment tsd-typography"><p>A multi-value parameter indicating which properties of the user to expand.</p>
 <ul>
 <li><code>operations</code> returns the operations that the user is allowed to do.</li>
 <li><code>details.personal</code> returns the &#39;Personal&#39; details in the user&#39;s profile, like the &#39;Email&#39; and &#39;Phone&#39;. Note that
 these fields have been deprecated due to privacy changes. See the <a href="https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">migration
-guide</a> for details.</li>
+guide</a> for
+details.</li>
 <li><code>details.business</code> returns the &#39;Company&#39; details in the user&#39;s profile, like the &#39;Position&#39; and &#39;Department&#39;. Note
 that these fields have been deprecated due to privacy changes. See the <a href="https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">migration
-guide</a> for details.</li>
-<li>PersonalSpace returns the user&#39;s personal space, if it exists.</li>
+guide</a> for
+details.</li>
+<li><code>personalSpace</code> returns the user&#39;s personal space, if it exists.</li>
 <li><code>isExternalCollaborator</code> returns whether the user is an external collaborator user</li>
 </ul>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/ac097f5/src/api/parameters/getUser.ts#L30">api/parameters/getUser.ts:30</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/a0a29aa/src/api/parameters/getUser.ts#L32">api/parameters/getUser.ts:32</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"><a id="key" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>key</span><a href="#key" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">key<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -68,7 +70,7 @@ guide</a> for details.</li>
 the <a href="/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">deprecation notice</a> for details.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/ac097f5/src/api/parameters/getUser.ts#L6">api/parameters/getUser.ts:6</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/a0a29aa/src/api/parameters/getUser.ts#L6">api/parameters/getUser.ts:6</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"><a id="username" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>username</span><a href="#username" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">username<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
@@ -76,7 +78,7 @@ the <a href="/cloud/confluence/deprecation-notice-user-privacy-api-migration-gui
 the <a href="/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/">deprecation notice</a> for details.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/ac097f5/src/api/parameters/getUser.ts#L11">api/parameters/getUser.ts:11</a></li></ul></aside></section></section></div>
+<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/a0a29aa/src/api/parameters/getUser.ts#L11">api/parameters/getUser.ts:11</a></li></ul></aside></section></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -128,5 +130,5 @@ the <a href="/cloud/confluence/deprecation-notice-user-privacy-api-migration-gui
 <li class="tsd-kind-property tsd-parent-kind-interface"><a href="Parameters.GetUser.html#key" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>key?</a></li>
 <li class="tsd-kind-property tsd-parent-kind-interface"><a href="Parameters.GetUser.html#username" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>username?</a></li></ul></li></ul></nav></div></div>
 <div class="container tsd-generator">
-<p style="line-height: 28px;">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a> v0.23.14<br><span id="generation-date"></span><script>window.GENERATION_DATE=1662580811774;document.getElementById('generation-date').innerText=new Intl.DateTimeFormat(navigator.language, {dateStyle: 'medium',timeStyle: 'long'}).format(window.GENERATION_DATE)</script></p></div>
+<p style="line-height: 28px;">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a> v0.23.14<br><span id="generation-date"></span><script>window.GENERATION_DATE=1662967597358;document.getElementById('generation-date').innerText=new Intl.DateTimeFormat(navigator.language, {dateStyle: 'medium',timeStyle: 'long'}).format(window.GENERATION_DATE)</script></p></div>
 <div class="overlay"></div><script src="../assets/main.js"></script></body></html>
