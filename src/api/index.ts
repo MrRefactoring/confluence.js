@@ -11,6 +11,7 @@ export * from './contentMacroBody';
 export * from './contentPermissions';
 export * from './contentProperties';
 export * from './contentRestrictions';
+export * from './contentStates';
 export * from './contentVersions';
 export * from './contentWatches';
 export * from './dynamicModules';

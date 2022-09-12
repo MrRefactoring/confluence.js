@@ -4,4 +4,5 @@ export interface ContentBodyCreate {
   value: string;
   /** The content format type. Set the value of this property to the name of the format being used, e.g. 'storage'. */
   representation: string;
+  additionalProperties?: any;
 }

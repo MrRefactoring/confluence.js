@@ -92,8 +92,10 @@ export class ContentChildrenAndDescendants {
    */
   async movePage<T = Models.MovePage>(parameters: Parameters.MovePage, callback?: never): Promise<T>;
   async movePage<T = Models.MovePage>(parameters: Parameters.MovePage, callback?: Callback<T>): Promise<void | T> {
+    const pageId = parameters.pageId || parameters.id;
+
     const config: RequestConfig = {
-      url: `/api/content/${parameters.id}/move/${parameters.position}/${parameters.targetId}`,
+      url: `/api/content/${pageId}/move/${parameters.position}/${parameters.targetId}`,
       method: 'PUT',
     };
 

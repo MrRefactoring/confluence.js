@@ -1,5 +1,5 @@
 import * as sinon from 'sinon';
-import { ServerClient } from '../../src';
+import { ServerClient } from '../../../src';
 import test from 'ava';
 
 const config = {

@@ -247,6 +247,7 @@ Available groups:
 - [contentPermissions](https://developer.atlassian.com/cloud/confluence/rest/api-group-content-permissions/#api-group-content-permissions)
 - [contentProperties](https://developer.atlassian.com/cloud/confluence/rest/api-group-content-properties/#api-group-content-properties)
 - [contentRestrictions](https://developer.atlassian.com/cloud/confluence/rest/api-group-content-restrictions/#api-group-content-restrictions)
+- [contentStates](https://developer.atlassian.com/cloud/confluence/rest/api-group-content-states/#api-group-content-states)
 - [contentVersions](https://developer.atlassian.com/cloud/confluence/rest/api-group-content-versions/#api-group-content-versions)
 - [contentWatches](https://developer.atlassian.com/cloud/confluence/rest/api-group-content-watches/#api-group-content-watches)
 - [dynamicModules](https://developer.atlassian.com/cloud/confluence/rest/api-group-dynamic-modules/#api-group-dynamic-modules)

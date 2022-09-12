@@ -51,6 +51,7 @@ export class DynamicModules {
     const config: RequestConfig = {
       url: '/atlassian-connect/1/app/module/dynamic',
       method: 'POST',
+      data: parameters,
     };
 
     return this.client.sendRequest(config, callback);

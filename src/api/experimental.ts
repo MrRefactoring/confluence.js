@@ -319,9 +319,9 @@ export class Experimental {
     return this.client.sendRequest(config, callback);
   }
 
-  /** Get the total number of distinct viewers a piece of content has. */
+  /** @deprecated Get the total number of distinct viewers a piece of content has. */
   async getViewers<T = Models.GetViewers>(parameters: Parameters.GetViewers, callback: Callback<T>): Promise<void>;
-  /** Get the total number of distinct viewers a piece of content has. */
+  /** @deprecated Get the total number of distinct viewers a piece of content has. */
   async getViewers<T = Models.GetViewers>(parameters: Parameters.GetViewers, callback?: never): Promise<T>;
   async getViewers<T = Models.GetViewers>(
     parameters: Parameters.GetViewers,
