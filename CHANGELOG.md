@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.6.1
+
+`AuthenticationService` added to export facade. Thanks to [Andrew McClenaghan](https://github.com/andymac4182) for this improvement.
+
 ### 1.6.0
 
 Cloud API:
