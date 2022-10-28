@@ -4,7 +4,7 @@ export * from './requestConfig';
 export * from './callback';
 export * from './pagination';
 export * from './utilityTypes';
-export * from './services/authenticationService'
+export * from './services/authenticationService';
 
 export * as Api from './api';
 export * as Server from './server';
