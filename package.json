@@ -1,6 +1,6 @@
 {
   "name": "confluence.js",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "confluence.js is a powerful Node.JS/Browser module that allows you to interact with the Confluence API very easily",
   "author": "Vladislav Tupikin <mrrefactoring@yandex.ru>",
   "license": "MIT",
@@ -43,30 +43,30 @@
   ],
   "devDependencies": {
     "@swc-node/register": "^1.5.4",
-    "@types/express": "^4.17.14",
+    "@types/express": "^4.17.15",
     "@types/oauth": "^0.9.1",
     "@types/sinon": "^10.0.13",
-    "@typescript-eslint/eslint-plugin": "^5.41.0",
-    "@typescript-eslint/parser": "^5.41.0",
-    "ava": "^5.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "ava": "^5.1.0",
     "dotenv": "^16.0.3",
-    "eslint": "^8.26.0",
+    "eslint": "^8.31.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.26.0",
-    "prettier": "^2.7.1",
+    "prettier": "^2.8.1",
     "prettier-plugin-jsdoc": "^0.4.2",
-    "sinon": "^14.0.1",
-    "typedoc": "^0.23.19",
-    "typedoc-plugin-extras": "^2.3.0",
-    "typescript": "^4.8.4"
+    "sinon": "^15.0.1",
+    "typedoc": "^0.23.23",
+    "typedoc-plugin-extras": "^2.3.1",
+    "typescript": "^4.9.4"
   },
   "dependencies": {
     "atlassian-jwt": "^2.0.2",
     "axios": "^0.27.2",
     "form-data": "^4.0.0",
     "oauth": "^0.10.0",
-    "tslib": "^2.4.0"
+    "tslib": "^2.4.1"
   }
 }

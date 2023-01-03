@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.6.2
+
+- Badge fixed
+- Dependencies updated
+
 ### 1.6.1
 
 `AuthenticationService` added to export facade. Thanks to [Andrew McClenaghan](https://github.com/andymac4182) for this improvement.
