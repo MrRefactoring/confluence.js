@@ -41,6 +41,7 @@ export class Space {
         favouriteUserKey: parameters?.favouriteUserKey,
         start: parameters?.start,
         limit: parameters?.limit,
+        expand: parameters?.expand,
       },
     };
 
