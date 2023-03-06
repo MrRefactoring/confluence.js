@@ -14,7 +14,7 @@ export interface Attachment {
     comment: string;
     mediaTypeDescription: string;
     fileId: string;
-    collectionName: string;
+    collectionName?: string;
   };
   _expandable: {
     childTypes: string;
