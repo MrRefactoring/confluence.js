@@ -30,7 +30,7 @@ export class ContentProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/attachments/${parameters.attachment - id}/properties`,
+      url: `/attachments/${parameters.id}/properties`,
       method: 'GET',
       params: {
         key: parameters.key,
@@ -66,7 +66,7 @@ export class ContentProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/attachments/${parameters.attachment - id}/properties/${parameters.property - id}`,
+      url: `/attachments/${parameters.id}/properties/${parameters.propertyId}`,
       method: 'GET',
     };
 
@@ -96,7 +96,7 @@ export class ContentProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/blogposts/${parameters.blogpost - id}/properties`,
+      url: `/blogposts/${parameters.id}/properties`,
       method: 'GET',
       params: {
         key: parameters.key,
@@ -132,7 +132,7 @@ export class ContentProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/blogposts/${parameters.blogpost - id}/properties/${parameters.property - id}`,
+      url: `/blogposts/${parameters.id}/properties/${parameters.propertyId}`,
       method: 'GET',
     };
 
@@ -162,7 +162,7 @@ export class ContentProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/custom-content/${parameters.custom - content - id}/properties`,
+      url: `/custom-content/${parameters.id}/properties`,
       method: 'GET',
       params: {
         key: parameters.key,
@@ -198,7 +198,7 @@ export class ContentProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/custom-content/${parameters.custom - content - id}/properties/${parameters.property - id}`,
+      url: `/custom-content/${parameters.id}/properties/${parameters.propertyId}`,
       method: 'GET',
     };
 
@@ -228,7 +228,7 @@ export class ContentProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/pages/${parameters.page - id}/properties`,
+      url: `/pages/${parameters.id}/properties`,
       method: 'GET',
       params: {
         key: parameters.key,
@@ -264,7 +264,7 @@ export class ContentProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/pages/${parameters.page - id}/properties/${parameters.property - id}`,
+      url: `/pages/${parameters.id}/properties/${parameters.propertyId}`,
       method: 'GET',
     };
 
@@ -294,7 +294,7 @@ export class ContentProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/comments/${parameters.comment - id}/properties`,
+      url: `/comments/${parameters.id}/properties`,
       method: 'GET',
       params: {
         key: parameters.key,
@@ -330,7 +330,7 @@ export class ContentProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/comments/${parameters.comment - id}/properties/${parameters.property - id}`,
+      url: `/comments/${parameters.id}/properties/${parameters.propertyId}`,
       method: 'GET',
     };
 

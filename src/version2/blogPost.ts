@@ -42,6 +42,7 @@ export class BlogPost {
     return this.client.sendRequest(config, callback);
   }
 
+  // todo
   /**
    * Creates a new blog post in the space specified by the spaceId.
    *
@@ -127,6 +128,7 @@ export class BlogPost {
     const config: RequestConfig = {
       url: `/blogposts/${parameters.id}`,
       method: 'PUT',
+      // todo
     };
 
     return this.client.sendRequest(config, callback);

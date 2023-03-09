@@ -158,7 +158,7 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/blogposts/${parameters.id}/inline-comments`,
+      url: `/blogposts/${parameters.id}/inline -comments`,
       method: 'GET',
       params: {
         'body-format': parameters['body-format'],
@@ -236,7 +236,7 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/footer-comments/${parameters.comment - id}`,
+      url: `/footer-comments/${parameters.id}`,
       method: 'GET',
       params: {
         'body-format': parameters['body-format'],
@@ -272,7 +272,7 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/footer-comments/${parameters.comment - id}`,
+      url: `/footer-comments/${parameters.id}`,
       method: 'PUT',
       data: {
         version: parameters.version,
@@ -302,7 +302,7 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/footer-comments/${parameters.comment - id}`,
+      url: `/footer-comments/${parameters.id}`,
       method: 'DELETE',
     };
 
@@ -421,7 +421,7 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/inline-comments/${parameters.comment - id}`,
+      url: `/inline-comments/${parameters.id}`,
       method: 'GET',
       params: {
         'body-format': parameters['body-format'],
@@ -457,7 +457,7 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/inline-comments/${parameters.comment - id}`,
+      url: `/inline-comments/${parameters.id}`,
       method: 'PUT',
       data: {
         version: parameters.version,
@@ -488,7 +488,7 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/inline-comments/${parameters.comment - id}`,
+      url: `/inline-comments/${parameters.id}`,
       method: 'DELETE',
     };
 

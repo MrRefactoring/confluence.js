@@ -1,6 +1,6 @@
 export interface GetSpaceProperties {
   /** The ID of the space for which space properties should be returned. */
-  'space-id': number;
+  id: number;
   /**
    * The key of the space property to retrieve. This should be used when a user knows the key of their property, but
    * needs to retrieve the id for use in other methods.

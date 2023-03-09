@@ -1,6 +1,6 @@
 export interface GetAttachmentContentProperties {
   /** The ID of the attachment for which content properties should be returned. */
-  'attachment-id': string;
+  id: string;
   /** Filters the response to return a specific content property with matching key (case sensitive). */
   key?: string;
   /** Used to sort the result by a particular field. */

@@ -1,6 +1,6 @@
 export interface GetPageContentProperties {
   /** The ID of the page for which content properties should be returned. */
-  'page-id': number;
+  id: number;
   /** Filters the response to return a specific content property with matching key (case sensitive). */
   key?: string;
   /** Used to sort the result by a particular field. */

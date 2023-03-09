@@ -67,7 +67,7 @@ export class Version {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/attachments/${parameters.attachment - id}/versions/${parameters.version - number}`,
+      url: `/attachments/${parameters.id}/versions/${parameters.versionNumber}`,
       method: 'GET',
     };
 
@@ -134,7 +134,7 @@ export class Version {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/blogposts/${parameters.blogpost - id}/versions/${parameters.version - number}`,
+      url: `/blogposts/${parameters.id}/versions/${parameters.versionNumber}`,
       method: 'GET',
     };
 
@@ -201,7 +201,7 @@ export class Version {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/pages/${parameters.page - id}/versions/${parameters.version - number}`,
+      url: `/pages/${parameters.id}/versions/${parameters.versionNumber}`,
       method: 'GET',
     };
 
@@ -233,7 +233,7 @@ export class Version {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/custom-content/${parameters.custom - content - id}/versions`,
+      url: `/custom-content/${parameters.id}/versions`,
       method: 'GET',
       params: {
         cursor: parameters.cursor,
@@ -268,7 +268,7 @@ export class Version {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/custom-content/${parameters.custom - content - id}/versions/${parameters.version - number}`,
+      url: `/custom-content/${parameters.id}/versions/${parameters.versionNumber}`,
       method: 'GET',
     };
 
@@ -300,7 +300,7 @@ export class Version {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/footer-comments/${parameters.id}/versions/${parameters.version - number}`,
+      url: `/footer-comments/${parameters.id}/versions/${parameters.versionNumber}`,
       method: 'GET',
     };
 

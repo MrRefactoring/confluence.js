@@ -1,6 +1,6 @@
 export interface GetCustomContentContentProperties {
   /** The ID of the custom content for which content properties should be returned. */
-  'custom-content-id': number;
+  id: number;
   /** Filters the response to return a specific content property with matching key (case sensitive). */
   key?: string;
   /** Used to sort the result by a particular field. */

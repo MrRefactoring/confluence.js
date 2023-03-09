@@ -1,6 +1,6 @@
 export interface GetBlogpostContentProperties {
   /** The ID of the blog post for which content properties should be returned. */
-  'blogpost-id': number;
+  id: number;
   /** Filters the response to return a specific content property with matching key (case sensitive). */
   key?: string;
   /** Used to sort the result by a particular field. */

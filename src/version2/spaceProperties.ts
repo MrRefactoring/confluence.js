@@ -36,7 +36,7 @@ export class SpaceProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/spaces/${parameters.space - id}/properties`,
+      url: `/spaces/${parameters.id}/properties`,
       method: 'GET',
       params: {
         key: parameters.key,
@@ -73,7 +73,7 @@ export class SpaceProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/spaces/${parameters.space - id}/properties`,
+      url: `/spaces/${parameters.id}/properties`,
       method: 'POST',
       data: {
         key: parameters.key,
@@ -109,7 +109,7 @@ export class SpaceProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/spaces/${parameters.space - id}/properties/${parameters.property - id}`,
+      url: `/spaces/${parameters.id}/properties/${parameters.propertyId}`,
       method: 'GET',
     };
 
@@ -141,7 +141,7 @@ export class SpaceProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/spaces/${parameters.space - id}/properties/${parameters.property - id}`,
+      url: `/spaces/${parameters.id}/properties/${parameters.propertyId}`,
       method: 'PUT',
       data: {
         key: parameters.key,
@@ -175,7 +175,7 @@ export class SpaceProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/spaces/${parameters.space - id}/properties/${parameters.property - id}`,
+      url: `/spaces/${parameters.id}/properties/${parameters.propertyId}`,
       method: 'DELETE',
     };
 
