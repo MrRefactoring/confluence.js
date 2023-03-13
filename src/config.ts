@@ -15,6 +15,8 @@ export interface Config {
   noCheckAtlassianToken?: boolean;
   /** Enable new API error handling. `false` by default. */
   newErrorHandling?: boolean;
+  /** Allows to set custom urlSuffix. Defaults to "/wiki/rest" */
+  urlSuffix: string = '/wiki/rest/';
 }
 
 export namespace Config {
