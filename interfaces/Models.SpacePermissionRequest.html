@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>SpacePermissionRequest | Confluence.js - Cloud and Server API library</title><meta name="description" content="Documentation for Confluence.js - Cloud and Server API library"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script>	<link rel="icon" href="https://svgshare.com/i/bVi.svg" />
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>SpacePermissionRequest | Confluence.js - Cloud and Server API library</title><meta name="description" content="Documentation for Confluence.js - Cloud and Server API library"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script><link rel="icon" href="https://svgshare.com/i/bVi.svg" />
 </head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
 <div class="tsd-toolbar-contents container">
 <div class="table-cell" id="tsd-search" data-base="..">
@@ -21,13 +21,13 @@
 <div class="tsd-comment tsd-typography"><p>This object represents the request for the single space permission. Permissions consist of* at least one operation
 object with an accompanying subjects object.</p>
 <p>The following combinations of <code>operation.key</code> and <code>operation.target</code> values are valid for the <code>operation</code> object:</p>
-<pre><code class="language-bash"><span class="hl-3">&#39;create&#39;</span><span class="hl-0">: </span><span class="hl-3">&#39;page&#39;</span><span class="hl-0">, </span><span class="hl-3">&#39;blogpost&#39;</span><span class="hl-0">, </span><span class="hl-3">&#39;comment&#39;</span><span class="hl-0">, </span><span class="hl-3">&#39;attachment&#39;</span><br/><span class="hl-3">&#39;read&#39;</span><span class="hl-0">: </span><span class="hl-3">&#39;space&#39;</span><br/><span class="hl-3">&#39;delete&#39;</span><span class="hl-0">: </span><span class="hl-3">&#39;page&#39;</span><span class="hl-0">, </span><span class="hl-3">&#39;blogpost&#39;</span><span class="hl-0">, </span><span class="hl-3">&#39;comment&#39;</span><span class="hl-0">, </span><span class="hl-3">&#39;attachment&#39;</span><span class="hl-0">, </span><span class="hl-3">&#39;space&#39;</span><br/><span class="hl-3">&#39;export&#39;</span><span class="hl-0">: </span><span class="hl-3">&#39;space&#39;</span><br/><span class="hl-3">&#39;administer&#39;</span><span class="hl-0">: </span><span class="hl-3">&#39;space&#39;</span><br/><span class="hl-3">&#39;archive&#39;</span><span class="hl-0">: </span><span class="hl-3">&#39;page&#39;</span><br/><span class="hl-3">&#39;restrict_content&#39;</span><span class="hl-0">: </span><span class="hl-3">&#39;space&#39;</span>
+<pre><code class="language-bash"><span class="hl-1">&#39;create&#39;</span><span class="hl-0">: </span><span class="hl-1">&#39;page&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;blogpost&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;comment&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;attachment&#39;</span><br/><span class="hl-1">&#39;read&#39;</span><span class="hl-0">: </span><span class="hl-1">&#39;space&#39;</span><br/><span class="hl-1">&#39;delete&#39;</span><span class="hl-0">: </span><span class="hl-1">&#39;page&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;blogpost&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;comment&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;attachment&#39;</span><span class="hl-0">, </span><span class="hl-1">&#39;space&#39;</span><br/><span class="hl-1">&#39;export&#39;</span><span class="hl-0">: </span><span class="hl-1">&#39;space&#39;</span><br/><span class="hl-1">&#39;administer&#39;</span><span class="hl-0">: </span><span class="hl-1">&#39;space&#39;</span><br/><span class="hl-1">&#39;archive&#39;</span><span class="hl-0">: </span><span class="hl-1">&#39;page&#39;</span><br/><span class="hl-1">&#39;restrict_content&#39;</span><span class="hl-0">: </span><span class="hl-1">&#39;space&#39;</span>
 </code></pre>
 <p>For example, to enable Delete Own permission, set the <code>operation</code> object to the following:</p>
-<pre><code><span class="hl-3">&quot;operation&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">    </span><span class="hl-3">&quot;key&quot;</span><span class="hl-2">:</span><span class="hl-0"> </span><span class="hl-3">&quot;delete&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">&quot;target&quot;</span><span class="hl-2">:</span><span class="hl-0"> </span><span class="hl-3">&quot;space&quot;</span><br/><span class="hl-0">}</span>
+<pre><code><span class="hl-1">&quot;operation&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;key&quot;</span><span class="hl-3">:</span><span class="hl-0"> </span><span class="hl-1">&quot;delete&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;target&quot;</span><span class="hl-3">:</span><span class="hl-0"> </span><span class="hl-1">&quot;space&quot;</span><br/><span class="hl-0">}</span>
 </code></pre>
 <p>To enable Add/Delete Restrictions permissions, set the <code>operation</code> object to the following:</p>
-<pre><code><span class="hl-3">&quot;operation&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">    </span><span class="hl-3">&quot;key&quot;</span><span class="hl-2">:</span><span class="hl-0"> </span><span class="hl-3">&quot;restrict_content&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">&quot;target&quot;</span><span class="hl-2">:</span><span class="hl-0"> </span><span class="hl-3">&quot;space&quot;</span><br/><span class="hl-0">}</span>
+<pre><code><span class="hl-1">&quot;operation&quot;</span><span class="hl-0">: {</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;key&quot;</span><span class="hl-3">:</span><span class="hl-0"> </span><span class="hl-1">&quot;restrict_content&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-1">&quot;target&quot;</span><span class="hl-3">:</span><span class="hl-0"> </span><span class="hl-1">&quot;space&quot;</span><br/><span class="hl-0">}</span>
 </code></pre>
 </div></section>
 <section class="tsd-panel tsd-hierarchy">
@@ -37,7 +37,7 @@ object with an accompanying subjects object.</p>
 <ul class="tsd-hierarchy">
 <li><a href="Parameters.AddPermissionToSpace.html" class="tsd-signature-type" data-tsd-kind="Interface">AddPermissionToSpace</a></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/d7a0e5e/src/api/models/spacePermissionRequest.ts#L34">api/models/spacePermissionRequest.ts:34</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/efaafbf/src/api/models/spacePermissionRequest.ts#L34">api/models/spacePermissionRequest.ts:34</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -55,7 +55,7 @@ object with an accompanying subjects object.</p>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>links</span><a href="#links" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></h3>
 <div class="tsd-signature">links<span class="tsd-signature-symbol">?:</span> <a href="../types/Models.GenericLinks.html" class="tsd-signature-type" data-tsd-kind="Type alias">GenericLinks</a></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/d7a0e5e/src/api/models/spacePermissionRequest.ts#L41">api/models/spacePermissionRequest.ts:41</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/efaafbf/src/api/models/spacePermissionRequest.ts#L41">api/models/spacePermissionRequest.ts:41</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"><a id="operation" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>operation</span><a href="#operation" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">operation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
@@ -69,12 +69,12 @@ object with an accompanying subjects object.</p>
 <div class="tsd-comment tsd-typography"><p>The space or content type that the operation applies to.</p>
 </div></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/d7a0e5e/src/api/models/spacePermissionRequest.ts#L36">api/models/spacePermissionRequest.ts:36</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/efaafbf/src/api/models/spacePermissionRequest.ts#L36">api/models/spacePermissionRequest.ts:36</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"><a id="subject" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>subject</span><a href="#subject" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">subject<span class="tsd-signature-symbol">:</span> <a href="Models.PermissionSubject.html" class="tsd-signature-type" data-tsd-kind="Interface">PermissionSubject</a></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/d7a0e5e/src/api/models/spacePermissionRequest.ts#L35">api/models/spacePermissionRequest.ts:35</a></li></ul></aside></section></section></div>
+<li>Defined in <a href="https://github.com/MrRefactoring/confluence.js/blob/efaafbf/src/api/models/spacePermissionRequest.ts#L35">api/models/spacePermissionRequest.ts:35</a></li></ul></aside></section></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -126,10 +126,10 @@ object with an accompanying subjects object.</p>
 <li class="tsd-kind-property tsd-parent-kind-interface"><a href="Models.SpacePermissionRequest.html#operation" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>operation</a></li>
 <li class="tsd-kind-property tsd-parent-kind-interface"><a href="Models.SpacePermissionRequest.html#subject" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>subject</a></li></ul></li></ul></nav></div></div>
 <div class="container tsd-generator">
-<p style="line-height: 28px;">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a> v0.23.23<br>
+<p style="line-height: 28px;">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a> v0.23.28<br>
             <span id="generation-date"></span>
             <script>
-                window.GENERATION_DATE = 1672939820809;
+                window.GENERATION_DATE = 1679843652264;
 
                 (() => {
                     
