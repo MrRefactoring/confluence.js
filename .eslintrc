@@ -17,30 +17,18 @@
     "jest": true
   },
   "rules": {
-    "arrow-parens": ["error", "as-needed"],
     "@typescript-eslint/lines-between-class-members": "off",
-    "max-len": "off",
-    "class-methods-use-this": "off",
-    "import/prefer-default-export": "off",
-    "import/no-cycle": "off",
-    "no-underscore-dangle": "off",
-    "lines-between-class-members": "off",
-    "eol-last": "error",
-    "sort-imports": [
+    "arrow-parens": [
       "error",
-      {
-        "ignoreCase": true,
-        "ignoreDeclarationSort": false,
-        "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": [
-          "all",
-          "single",
-          "multiple",
-          "none"
-        ],
-        "allowSeparatedGroups": false
-      }
+      "as-needed"
     ],
+    "class-methods-use-this": "off",
+    "eol-last": "error",
+    "import/no-cycle": "off",
+    "import/prefer-default-export": "off",
+    "lines-between-class-members": "off",
+    "max-len": "off",
+    "no-underscore-dangle": "off",
     "padding-line-between-statements": [
       "error",
       {
@@ -112,6 +100,21 @@
         "next": [
           "export"
         ]
+      }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": [
+          "all",
+          "single",
+          "multiple",
+          "none"
+        ],
+        "allowSeparatedGroups": false
       }
     ]
   },
