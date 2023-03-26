@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.6.3
+
+- `atlas_doc_format` added to some models. Thanks to [Andrew McClenaghan](https://github.com/andymac4182) for pull request.
+
 ### 1.6.2
 
 - Badge fixed
