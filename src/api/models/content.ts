@@ -31,6 +31,7 @@ export interface Content {
     storage?: ContentBody;
     editor2?: ContentBody;
     anonymous_export_view?: ContentBody;
+    atlas_doc_format?: ContentBody;
     _expandable: {
       editor?: string;
       view?: string;
@@ -39,6 +40,7 @@ export interface Content {
       storage?: string;
       editor2?: string;
       anonymous_export_view?: string;
+      atlas_doc_format?: string;
     };
   };
   restrictions?: {

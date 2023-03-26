@@ -38,5 +38,6 @@ export interface ContentUpdate {
     storage?: ContentBodyCreateStorage;
     editor2?: ContentBodyCreate;
     anonymous_export_view?: ContentBodyCreate;
+    atlas_doc_format?: ContentBodyCreate;
   };
 }
