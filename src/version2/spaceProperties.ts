@@ -36,12 +36,13 @@ export class SpaceProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/spaces/${parameters.id}/properties`,
+      url: `/spaces/${parameters.spaceId}/properties`,
       method: 'GET',
       params: {
         key: parameters.key,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -73,8 +74,11 @@ export class SpaceProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/spaces/${parameters.id}/properties`,
+      url: `/spaces/${parameters.spaceId}/properties`,
       method: 'POST',
+      params: {
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+      },
       data: {
         key: parameters.key,
         value: parameters.value,
@@ -109,8 +113,11 @@ export class SpaceProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/spaces/${parameters.id}/properties/${parameters.propertyId}`,
+      url: `/spaces/${parameters.spaceId}/properties/${parameters.propertyId}`,
       method: 'GET',
+      params: {
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -141,8 +148,11 @@ export class SpaceProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/spaces/${parameters.id}/properties/${parameters.propertyId}`,
+      url: `/spaces/${parameters.spaceId}/properties/${parameters.propertyId}`,
       method: 'PUT',
+      params: {
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+      },
       data: {
         key: parameters.key,
         value: parameters.value,
@@ -175,7 +185,7 @@ export class SpaceProperties {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/spaces/${parameters.id}/properties/${parameters.propertyId}`,
+      url: `/spaces/${parameters.spaceId}/properties/${parameters.propertyId}`,
       method: 'DELETE',
     };
 

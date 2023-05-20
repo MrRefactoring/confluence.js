@@ -34,9 +34,11 @@ export class Page {
       url: `/labels/${parameters.id}/pages`,
       method: 'GET',
       params: {
+        'body-format': parameters['body-format'],
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -67,8 +69,12 @@ export class Page {
       url: '/pages',
       method: 'GET',
       params: {
+        id: parameters?.id,
+        status: parameters?.status,
+        'body-format': parameters?.['body-format'],
         cursor: parameters?.cursor,
         limit: parameters?.limit,
+        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
       },
     };
 
@@ -84,7 +90,10 @@ export class Page {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the corresponding space.
    * Permission to create a page in the space.
    */
-  async createPage<T = Models.Page>(parameters: Parameters.CreatePage, callback: Callback<T>): Promise<void>;
+  async createPage<T = Models.Page>(
+    parameters: Parameters.CreatePage | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
   /**
    * Creates a page in the space.
    *
@@ -94,15 +103,14 @@ export class Page {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the corresponding space.
    * Permission to create a page in the space.
    */
-  async createPage<T = Models.Page>(parameters: Parameters.CreatePage, callback?: never): Promise<T>;
-  async createPage<T = Models.Page>(parameters: Parameters.CreatePage, callback?: Callback<T>): Promise<void | T> {
+  async createPage<T = Models.Page>(parameters?: Parameters.CreatePage, callback?: never): Promise<T>;
+  async createPage<T = Models.Page>(parameters?: Parameters.CreatePage, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/pages',
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
       },
-      data: {},
     };
 
     return this.client.sendRequest(config, callback);
@@ -130,6 +138,7 @@ export class Page {
         'body-format': parameters['body-format'],
         'get-draft': parameters['get-draft'],
         version: parameters.version,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -154,6 +163,9 @@ export class Page {
     const config: RequestConfig = {
       url: `/pages/${parameters.id}`,
       method: 'PUT',
+      params: {
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -214,8 +226,11 @@ export class Page {
       url: `/spaces/${parameters.id}/pages`,
       method: 'GET',
       params: {
+        status: parameters.status,
+        'body-format': parameters['body-format'],
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 

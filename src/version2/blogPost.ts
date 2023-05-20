@@ -34,15 +34,18 @@ export class BlogPost {
       url: '/blogposts',
       method: 'GET',
       params: {
+        id: parameters?.id,
+        status: parameters?.status,
+        'body-format': parameters?.bodyFormat,
         cursor: parameters?.cursor,
         limit: parameters?.limit,
+        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
       },
     };
 
     return this.client.sendRequest(config, callback);
   }
 
-  // todo
   /**
    * Creates a new blog post in the space specified by the spaceId.
    *
@@ -51,7 +54,10 @@ export class BlogPost {
    *
    * Currently only supports the storage representation specified in the body.representation enums below
    */
-  async createBlogPost<T = Models.BlogPost>(callback: Callback<T>): Promise<void>;
+  async createBlogPost<T = Models.BlogPost>(
+    parameters: Parameters.CreateBlogPost | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
   /**
    * Creates a new blog post in the space specified by the spaceId.
    *
@@ -60,11 +66,17 @@ export class BlogPost {
    *
    * Currently only supports the storage representation specified in the body.representation enums below
    */
-  async createBlogPost<T = Models.BlogPost>(callback?: never): Promise<T>;
-  async createBlogPost<T = Models.BlogPost>(callback?: Callback<T>): Promise<void | T> {
+  async createBlogPost<T = Models.BlogPost>(parameters?: Parameters.CreateBlogPost, callback?: never): Promise<T>;
+  async createBlogPost<T = Models.BlogPost>(
+    parameters?: Parameters.CreateBlogPost,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/blogposts',
       method: 'POST',
+      params: {
+        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -98,6 +110,7 @@ export class BlogPost {
         'body-format': parameters['body-format'],
         'get-draft': parameters['get-draft'],
         version: parameters.version,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -128,7 +141,9 @@ export class BlogPost {
     const config: RequestConfig = {
       url: `/blogposts/${parameters.id}`,
       method: 'PUT',
-      // todo
+      params: {
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -187,9 +202,11 @@ export class BlogPost {
       url: `/labels/${parameters.id}/blogposts`,
       method: 'GET',
       params: {
+        'body-format': parameters.bodyFormat,
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -228,8 +245,11 @@ export class BlogPost {
       url: `/spaces/${parameters.id}/blogposts`,
       method: 'GET',
       params: {
+        status: parameters.status,
+        'body-format': parameters.bodyFormat,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 

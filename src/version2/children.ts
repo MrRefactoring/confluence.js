@@ -37,6 +37,7 @@ export class Children {
         cursor: parameters.cursor,
         limit: parameters.limit,
         sort: parameters.sort,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -78,6 +79,7 @@ export class Children {
         cursor: parameters.cursor,
         limit: parameters.limit,
         sort: parameters.sort,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 

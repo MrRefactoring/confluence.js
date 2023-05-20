@@ -43,6 +43,7 @@ export class CustomContent {
         cursor: parameters.cursor,
         limit: parameters.limit,
         'body-format': parameters['body-format'],
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -80,9 +81,11 @@ export class CustomContent {
       method: 'GET',
       params: {
         type: parameters.type,
+        id: parameters.id,
         cursor: parameters.cursor,
         limit: parameters.limit,
         'body-format': parameters['body-format'],
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -90,25 +93,37 @@ export class CustomContent {
   }
 
   /**
-   * Creates a new custom content in the given space, page, blogpost or other custom conent.
+   * Creates a new custom content in the given space, page, blogpost or other custom content.
    *
    * Only one of `spaceId`, `pageId`, `blogPostId`, or `customContentId` is required in the request body.
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * or blogpost and its corresponding space. Permission to create custom content in the space.
    */
-  async createCustomContent<T = Models.CustomContent>(callback: Callback<T>): Promise<void>;
+  async createCustomContent<T = Models.CustomContent>(
+    parameters: Parameters.CreateCustomContent | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
   /**
-   * Creates a new custom content in the given space, page, blogpost or other custom conent.
+   * Creates a new custom content in the given space, page, blogpost or other custom content.
    *
    * Only one of `spaceId`, `pageId`, `blogPostId`, or `customContentId` is required in the request body.
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * or blogpost and its corresponding space. Permission to create custom content in the space.
    */
-  async createCustomContent<T = Models.CustomContent>(callback?: never): Promise<T>;
-  async createCustomContent<T = Models.CustomContent>(callback?: Callback<T>): Promise<void | T> {
+  async createCustomContent<T = Models.CustomContent>(
+    parameters?: Parameters.CreateCustomContent,
+    callback?: never,
+  ): Promise<T>;
+  async createCustomContent<T = Models.CustomContent>(
+    parameters?: Parameters.CreateCustomContent,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/custom-content',
       method: 'POST',
+      params: {
+        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -144,6 +159,7 @@ export class CustomContent {
       params: {
         'body-format': parameters['body-format'],
         version: parameters.version,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -179,6 +195,9 @@ export class CustomContent {
     const config: RequestConfig = {
       url: `/custom-content/${parameters.id}`,
       method: 'PUT',
+      params: {
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -246,6 +265,7 @@ export class CustomContent {
         cursor: parameters.cursor,
         limit: parameters.limit,
         'body-format': parameters['body-format'],
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -288,6 +308,7 @@ export class CustomContent {
         cursor: parameters.cursor,
         limit: parameters.limit,
         'body-format': parameters['body-format'],
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 

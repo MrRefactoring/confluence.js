@@ -42,6 +42,7 @@ export class Space {
         'description-format': parameters?.['description-format'],
         cursor: parameters?.cursor,
         limit: parameters?.limit,
+        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
       },
     };
 

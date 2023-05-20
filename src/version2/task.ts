@@ -34,8 +34,9 @@ export class Task {
         'body-format': parameters?.['body-format'],
         'include-blank-tasks': parameters?.['include-blank-tasks'],
         status: parameters?.status,
-        'space-id': parameters?.['space-id'],
-        'page-id': parameters?.['page-id'],
+        'task-id': parameters?.taskId,
+        'space-id': parameters?.spaceId,
+        'page-id': parameters?.pageId,
         'blogpost-id': parameters?.['blogpost-id'],
         'created-by': parameters?.['created-by'],
         'assigned-to': parameters?.['assigned-to'],
@@ -48,6 +49,7 @@ export class Task {
         'completed-at-to': parameters?.['completed-at-to'],
         cursor: parameters?.cursor,
         limit: parameters?.limit,
+        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
       },
     };
 
@@ -74,6 +76,33 @@ export class Task {
       method: 'GET',
       params: {
         'body-format': parameters['body-format'],
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Update a task by id.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the containing page or
+   * blog post and view its corresponding space.
+   */
+  async updateTask<T = Models.Task>(parameters: Parameters.UpdateTask, callback: Callback<T>): Promise<void>;
+  /**
+   * Update a task by id.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the containing page or
+   * blog post and view its corresponding space.
+   */
+  async updateTask<T = Models.Task>(parameters: Parameters.UpdateTask, callback?: never): Promise<T>;
+  async updateTask<T = Models.Task>(parameters: Parameters.UpdateTask, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/tasks/${parameters.id}`,
+      method: 'PUT',
+      params: {
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 

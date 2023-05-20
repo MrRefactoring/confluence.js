@@ -41,6 +41,7 @@ export class Label {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -81,6 +82,7 @@ export class Label {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -123,6 +125,7 @@ export class Label {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -160,6 +163,7 @@ export class Label {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 

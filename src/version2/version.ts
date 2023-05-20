@@ -67,7 +67,7 @@ export class Version {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/attachments/${parameters.id}/versions/${parameters.versionNumber}`,
+      url: `/attachments/${parameters.attachmentId}/versions/${parameters.versionNumber}`,
       method: 'GET',
     };
 
@@ -102,6 +102,7 @@ export class Version {
       url: `/blogposts/${parameters.id}/versions`,
       method: 'GET',
       params: {
+        'body-format': parameters['body-format'],
         cursor: parameters.cursor,
         limit: parameters.limit,
         sort: parameters.sort,
@@ -134,7 +135,7 @@ export class Version {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/blogposts/${parameters.id}/versions/${parameters.versionNumber}`,
+      url: `/blogposts/${parameters.blogpostId}/versions/${parameters.versionNumber}`,
       method: 'GET',
     };
 
@@ -169,6 +170,7 @@ export class Version {
       url: `/pages/${parameters.id}/versions`,
       method: 'GET',
       params: {
+        'body-format': parameters['body-format'],
         cursor: parameters.cursor,
         limit: parameters.limit,
         sort: parameters.sort,
@@ -201,7 +203,7 @@ export class Version {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/pages/${parameters.id}/versions/${parameters.versionNumber}`,
+      url: `/pages/${parameters.pageId}/versions/${parameters.versionNumber}`,
       method: 'GET',
     };
 
@@ -233,9 +235,10 @@ export class Version {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/custom-content/${parameters.id}/versions`,
+      url: `/custom-content/${parameters.customContentId}/versions`,
       method: 'GET',
       params: {
+        'body-format': parameters['body-format'],
         cursor: parameters.cursor,
         limit: parameters.limit,
         sort: parameters.sort,
@@ -268,8 +271,46 @@ export class Version {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/custom-content/${parameters.id}/versions/${parameters.versionNumber}`,
+      url: `/custom-content/${parameters.customContentId}/versions/${parameters.versionNumber}`,
       method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Retrieves the versions of the specified footer comment.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
+   * or blog post and its corresponding space.
+   */
+  async getFooterCommentVersions<T = Models.GetFooterCommentVersions>(
+    parameters: Parameters.GetFooterCommentVersions,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Retrieves the versions of the specified footer comment.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
+   * or blog post and its corresponding space.
+   */
+  async getFooterCommentVersions<T = Models.GetFooterCommentVersions>(
+    parameters: Parameters.GetFooterCommentVersions,
+    callback?: never,
+  ): Promise<T>;
+  async getFooterCommentVersions<T = Models.GetFooterCommentVersions>(
+    parameters: Parameters.GetFooterCommentVersions,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/footer-comments/${parameters.id}/versions`,
+      method: 'GET',
+      params: {
+        'body-format': parameters['body-format'],
+        cursor: parameters.cursor,
+        limit: parameters.limit,
+        sort: parameters.sort,
+      },
     };
 
     return this.client.sendRequest(config, callback);
@@ -301,6 +342,76 @@ export class Version {
   ): Promise<void | T> {
     const config: RequestConfig = {
       url: `/footer-comments/${parameters.id}/versions/${parameters.versionNumber}`,
+      method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Retrieves the versions of the specified inline comment.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
+   * or blog post and its corresponding space.
+   */
+  async getInlineCommentVersions<T = Models.GetInlineCommentVersions>(
+    parameters: Parameters.GetInlineCommentVersions,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Retrieves the versions of the specified inline comment.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
+   * or blog post and its corresponding space.
+   */
+  async getInlineCommentVersions<T = Models.GetInlineCommentVersions>(
+    parameters: Parameters.GetInlineCommentVersions,
+    callback?: never,
+  ): Promise<T>;
+  async getInlineCommentVersions<T = Models.GetInlineCommentVersions>(
+    parameters: Parameters.GetInlineCommentVersions,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/inline-comments/${parameters.id}/versions`,
+      method: 'GET',
+      params: {
+        'body-format': parameters['body-format'],
+        cursor: parameters.cursor,
+        limit: parameters.limit,
+        sort: parameters.sort,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Retrieves version details for the specified inline comment version.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
+   * or blog post and its corresponding space.
+   */
+  async getInlineCommentVersionDetails<T = Models.DetailedVersion>(
+    parameters: Parameters.GetInlineCommentVersionDetails,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Retrieves version details for the specified inline comment version.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
+   * or blog post and its corresponding space.
+   */
+  async getInlineCommentVersionDetails<T = Models.DetailedVersion>(
+    parameters: Parameters.GetInlineCommentVersionDetails,
+    callback?: never,
+  ): Promise<T>;
+  async getInlineCommentVersionDetails<T = Models.DetailedVersion>(
+    parameters: Parameters.GetInlineCommentVersionDetails,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/inline-comments/${parameters.id}/versions/${parameters.versionNumber}`,
       method: 'GET',
     };
 

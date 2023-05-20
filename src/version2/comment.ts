@@ -41,6 +41,7 @@ export class Comment {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -81,6 +82,7 @@ export class Comment {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -123,6 +125,7 @@ export class Comment {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -158,13 +161,14 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/blogposts/${parameters.id}/inline -comments`,
+      url: `/blogposts/${parameters.id}/inline-comments`,
       method: 'GET',
       params: {
         'body-format': parameters['body-format'],
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -200,6 +204,9 @@ export class Comment {
     const config: RequestConfig = {
       url: '/footer-comments',
       method: 'POST',
+      params: {
+        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+      },
       data: {
         blogPostId: parameters?.blogPostId,
         pageId: parameters?.pageId,
@@ -236,11 +243,12 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/footer-comments/${parameters.id}`,
+      url: `/footer-comments/${parameters.commentId}`,
       method: 'GET',
       params: {
         'body-format': parameters['body-format'],
         version: parameters.version,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -272,8 +280,11 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/footer-comments/${parameters.id}`,
+      url: `/footer-comments/${parameters.commentId}`,
       method: 'PUT',
+      params: {
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+      },
       data: {
         version: parameters.version,
         body: parameters.body,
@@ -302,7 +313,7 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/footer-comments/${parameters.id}`,
+      url: `/footer-comments/${parameters.commentId}`,
       method: 'DELETE',
     };
 
@@ -345,6 +356,7 @@ export class Comment {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -384,6 +396,9 @@ export class Comment {
     const config: RequestConfig = {
       url: '/inline-comments',
       method: 'POST',
+      params: {
+        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+      },
       data: {
         blogPostId: parameters?.blogPostId,
         pageId: parameters?.pageId,
@@ -421,11 +436,12 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/inline-comments/${parameters.id}`,
+      url: `/inline-comments/${parameters.commentId}`,
       method: 'GET',
       params: {
         'body-format': parameters['body-format'],
         version: parameters.version,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -457,8 +473,11 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/inline-comments/${parameters.id}`,
+      url: `/inline-comments/${parameters.commentId}`,
       method: 'PUT',
+      params: {
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+      },
       data: {
         version: parameters.version,
         body: parameters.body,
@@ -488,7 +507,7 @@ export class Comment {
     callback?: Callback<T>,
   ): Promise<void | T> {
     const config: RequestConfig = {
-      url: `/inline-comments/${parameters.id}`,
+      url: `/inline-comments/${parameters.commentId}`,
       method: 'DELETE',
     };
 
@@ -527,6 +546,7 @@ export class Comment {
       url: `/inline-comments/${parameters.id}/children`,
       method: 'GET',
       params: {
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
         'body-format': parameters['body-format'],
         sort: parameters.sort,
         cursor: parameters.cursor,

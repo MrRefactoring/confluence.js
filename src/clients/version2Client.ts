@@ -4,6 +4,7 @@ import {
   BlogPost,
   Children,
   Comment,
+  Content,
   ContentProperties,
   CustomContent,
   Label,
@@ -11,6 +12,7 @@ import {
   Space,
   SpaceProperties,
   Task,
+  User,
   Version,
 } from '../version2';
 
@@ -19,6 +21,7 @@ export class Version2Client extends BaseClient {
   blogPost = new BlogPost(this);
   children = new Children(this);
   comment = new Comment(this);
+  content = new Content(this);
   contentProperties = new ContentProperties(this);
   customContent = new CustomContent(this);
   label = new Label(this);
@@ -26,5 +29,6 @@ export class Version2Client extends BaseClient {
   space = new Space(this);
   spaceProperties = new SpaceProperties(this);
   task = new Task(this);
+  user = new User(this);
   version = new Version(this);
 }

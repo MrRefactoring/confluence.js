@@ -36,6 +36,7 @@ export class Attachment {
       method: 'GET',
       params: {
         version: parameters.version,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -77,6 +78,7 @@ export class Attachment {
         mediaType: parameters.mediaType,
         filename: parameters.filename,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -118,6 +120,47 @@ export class Attachment {
         mediaType: parameters.mediaType,
         filename: parameters.filename,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns the attachments of specified label. The number of results is limited by the `limit` parameter and
+   * additional results (if available) will be available through the `next` URL present in the `Link` response header.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the attachment and its
+   * corresponding space.
+   */
+  async getLabelAttachments<T = Models.GetLabelAttachments>(
+    parameters: Parameters.GetLabelAttachments,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns the attachments of specified label. The number of results is limited by the `limit` parameter and
+   * additional results (if available) will be available through the `next` URL present in the `Link` response header.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the attachment and its
+   * corresponding space.
+   */
+  async getLabelAttachments<T = Models.GetLabelAttachments>(
+    parameters: Parameters.GetLabelAttachments,
+    callback?: never,
+  ): Promise<T>;
+  async getLabelAttachments<T = Models.GetLabelAttachments>(
+    parameters: Parameters.GetLabelAttachments,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/labels/${parameters.id}/attachments`,
+      method: 'GET',
+      params: {
+        sort: parameters.sort,
+        cursor: parameters.cursor,
+        limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
@@ -159,6 +202,7 @@ export class Attachment {
         mediaType: parameters.mediaType,
         filename: parameters.filename,
         limit: parameters.limit,
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
     };
 
