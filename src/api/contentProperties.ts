@@ -16,7 +16,7 @@ export class ContentProperties {
    */
   async getContentProperties<T = Models.ContentPropertyArray>(
     parameters: Parameters.GetContentProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the properties for a piece of content. For more information about content properties, see [Confluence
@@ -27,7 +27,7 @@ export class ContentProperties {
    */
   async getContentProperties<T = Models.ContentPropertyArray>(
     parameters: Parameters.GetContentProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentProperties<T = Models.ContentPropertyArray>(
     parameters: Parameters.GetContentProperties,
@@ -61,7 +61,7 @@ export class ContentProperties {
    */
   async createContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a property for an existing piece of content. For more information about content properties, see [Confluence
@@ -77,7 +77,7 @@ export class ContentProperties {
    */
   async createContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentProperty,
@@ -104,7 +104,7 @@ export class ContentProperties {
    */
   async getContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.GetContentProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a content property for a piece of content. For more information, see [Confluence entity
@@ -115,7 +115,7 @@ export class ContentProperties {
    */
   async getContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.GetContentProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.GetContentProperty,
@@ -147,7 +147,7 @@ export class ContentProperties {
    */
   async createContentPropertyForKey<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentPropertyForKey,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a property for an existing piece of content. For more information about content properties, see [Confluence
@@ -163,7 +163,7 @@ export class ContentProperties {
    */
   async createContentPropertyForKey<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentPropertyForKey,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createContentPropertyForKey<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentPropertyForKey,
@@ -189,7 +189,7 @@ export class ContentProperties {
    */
   async updateContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.UpdateContentProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates an existing content property. This method will also create a new property for a piece of content, if the
@@ -200,7 +200,7 @@ export class ContentProperties {
    */
   async updateContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.UpdateContentProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.UpdateContentProperty,
@@ -226,7 +226,7 @@ export class ContentProperties {
    */
   async deleteContentProperty<T = void>(
     parameters: Parameters.DeleteContentProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a content property. For more information about content properties, see [Confluence entity

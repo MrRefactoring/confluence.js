@@ -15,7 +15,7 @@ export class Group {
    */
   async getGroups<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroups | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all user groups. The returned groups are ordered alphabetically in ascending order by group name.
@@ -48,7 +48,7 @@ export class Group {
    */
   async createGroup<T = Models.Group>(
     parameters: Parameters.CreateGroup | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new user group.
@@ -100,7 +100,7 @@ export class Group {
    */
   async getGroupByQueryParam<T = Models.Group>(
     parameters: Parameters.GetGroupByQueryParam,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a user group for a given group name.
@@ -110,7 +110,7 @@ export class Group {
    */
   async getGroupByQueryParam<T = Models.Group>(
     parameters: Parameters.GetGroupByQueryParam,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getGroupByQueryParam<T = Models.Group>(
     parameters: Parameters.GetGroupByQueryParam,
@@ -135,7 +135,7 @@ export class Group {
    */
   async getGroupByGroupId<T = Models.Group>(
     parameters: Parameters.GetGroupByGroupId,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a user group for a given group id.
@@ -229,7 +229,7 @@ export class Group {
    */
   async getMembersByQueryParam<T = Models.UserArray>(
     parameters: Parameters.GetMembersByQueryParam,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the users that are members of a group.
@@ -239,7 +239,7 @@ export class Group {
    */
   async getMembersByQueryParam<T = Models.UserArray>(
     parameters: Parameters.GetMembersByQueryParam,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getMembersByQueryParam<T = Models.UserArray>(
     parameters: Parameters.GetMembersByQueryParam,
@@ -269,7 +269,7 @@ export class Group {
    */
   async getGroupMembers<T = Models.UserArray>(
     parameters: Parameters.GetGroupMembers,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the users that are members of a group.
@@ -299,12 +299,12 @@ export class Group {
   /** @deprecated Will be removed in the next major version. Use `searchGroups` instead. */
   async getGroupsSearch<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupsSearch,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** @deprecated Will be removed in the next major version. Use `searchGroups` instead. */
   async getGroupsSearch<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupsSearch,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getGroupsSearch<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupsSearch,
@@ -316,7 +316,7 @@ export class Group {
   /** Get search results of groups by partial query provided. */
   async searchGroups<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.SearchGroups,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Get search results of groups by partial query provided. */
   async searchGroups<T = Models.GroupArrayWithLinks>(parameters: Parameters.SearchGroups, callback?: never): Promise<T>;
@@ -345,7 +345,7 @@ export class Group {
    */
   async addUserToGroupByGroupId<T = unknown>(
     parameters: Parameters.AddUserToGroupByGroupId,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds a user as a member in a group represented by its groupId
@@ -354,7 +354,7 @@ export class Group {
    */
   async addUserToGroupByGroupId<T = unknown>(
     parameters: Parameters.AddUserToGroupByGroupId,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addUserToGroupByGroupId<T = unknown>(
     parameters: Parameters.AddUserToGroupByGroupId,
@@ -381,7 +381,7 @@ export class Group {
    */
   async removeMemberFromGroupByGroupId<T = void>(
     parameters: Parameters.RemoveMemberFromGroupByGroupId,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Remove user as a member from a group.
@@ -390,7 +390,7 @@ export class Group {
    */
   async removeMemberFromGroupByGroupId<T = void>(
     parameters: Parameters.RemoveMemberFromGroupByGroupId,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeMemberFromGroupByGroupId<T = void>(
     parameters: Parameters.RemoveMemberFromGroupByGroupId,
@@ -418,7 +418,7 @@ export class Group {
    */
   async getGroupMembersByGroupId<T = Models.UserArray>(
     parameters: Parameters.GetGroupMembersByGroupId,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the users that are members of a group.
@@ -430,7 +430,7 @@ export class Group {
    */
   async getGroupMembersByGroupId<T = Models.UserArray>(
     parameters: Parameters.GetGroupMembersByGroupId,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getGroupMembersByGroupId<T = Models.UserArray>(
     parameters: Parameters.GetGroupMembersByGroupId,
@@ -483,7 +483,7 @@ export class Group {
    */
   async removeMemberFromGroup<T = void>(
     parameters: Parameters.RemoveMemberFromGroup,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Remove user as a member from a group.

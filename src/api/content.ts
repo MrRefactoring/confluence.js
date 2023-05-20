@@ -17,7 +17,7 @@ export class Content {
    */
   async getContent<T = Models.ContentArray>(
     parameters: Parameters.GetContent | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all content in a Confluence instance.
@@ -66,7 +66,7 @@ export class Content {
    */
   async createContent<T = Models.Content>(
     parameters: Parameters.CreateContent | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new piece of content or publishes an existing draft.
@@ -153,7 +153,7 @@ export class Content {
    */
   async publishLegacyDraft<T = Models.Content>(
     parameters: Parameters.PublishLegacyDraft,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Publishes a legacy draft of a page created from a blueprint. Legacy drafts will eventually be removed in favor of
@@ -200,7 +200,7 @@ export class Content {
    */
   async publishSharedDraft<T = Models.Content>(
     parameters: Parameters.PublishSharedDraft,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Publishes a shared draft of a page created from a blueprint.
@@ -252,7 +252,7 @@ export class Content {
    */
   async searchContentByCQL<T = Models.ContentArray>(
     parameters: Parameters.SearchContentByCQL,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the list of content that matches a Confluence Query Language (CQL) query. For information on CQL, see:
@@ -271,7 +271,7 @@ export class Content {
    */
   async searchContentByCQL<T = Models.ContentArray>(
     parameters: Parameters.SearchContentByCQL,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async searchContentByCQL<T = Models.ContentArray>(
     parameters: Parameters.SearchContentByCQL,
@@ -417,7 +417,7 @@ export class Content {
    */
   async getHistoryForContent<T = Models.ContentHistory>(
     parameters: Parameters.GetHistoryForContent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the most recent update for a piece of content.
@@ -426,7 +426,7 @@ export class Content {
    */
   async getHistoryForContent<T = Models.ContentHistory>(
     parameters: Parameters.GetHistoryForContent,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getHistoryForContent<T = Models.ContentHistory>(
     parameters: Parameters.GetHistoryForContent,

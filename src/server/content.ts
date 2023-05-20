@@ -11,7 +11,7 @@ export class Content {
   /** Returns a paginated list of Content. */
   async getContent<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContent | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns a paginated list of Content. */
   async getContent<T = Pagination<Models.Content>>(parameters?: Parameters.GetContent, callback?: never): Promise<T>;
@@ -44,7 +44,7 @@ export class Content {
    */
   async createContent<T = Models.Content>(
     parameters: Parameters.CreateContent | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new piece of Content or publishes the draft if the content id is present.For the case publishing draft, a
@@ -193,7 +193,7 @@ export class Content {
    */
   async getMacroBodyByHash<T = Models.MacroInstance>(
     parameters: Parameters.GetMacroBodyByHash,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the body of a macro (in storage format) with the given hash. This resource is primarily used by connect
@@ -212,7 +212,7 @@ export class Content {
    */
   async getMacroBodyByHash<T = Models.MacroInstance>(
     parameters: Parameters.GetMacroBodyByHash,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getMacroBodyByHash<T = Models.MacroInstance>(
     parameters: Parameters.GetMacroBodyByHash,
@@ -239,7 +239,7 @@ export class Content {
    */
   async getMacroBodyByMacroId<T = Models.MacroInstance>(
     parameters: Parameters.GetMacroBodyByMacroId,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the body of a macro (in storage format) with the given id. This resource is primarily used by connect
@@ -254,7 +254,7 @@ export class Content {
    */
   async getMacroBodyByMacroId<T = Models.MacroInstance>(
     parameters: Parameters.GetMacroBodyByMacroId,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getMacroBodyByMacroId<T = Models.MacroInstance>(
     parameters: Parameters.GetMacroBodyByMacroId,
@@ -271,12 +271,12 @@ export class Content {
   /** Fetch a list of content using the Confluence Query Language (CQL). See: Advanced searching using CQL */
   async searchContent<T = Pagination<Models.Content>>(
     parameters: Parameters.SearchContent | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Fetch a list of content using the Confluence Query Language (CQL). See: Advanced searching using CQL */
   async searchContent<T = Pagination<Models.Content>>(
     parameters?: Parameters.SearchContent,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async searchContent<T = Pagination<Models.Content>>(
     parameters?: Parameters.SearchContent,
@@ -309,7 +309,7 @@ export class Content {
    */
   async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a map of the direct children of a piece of Content. Content can have multiple types of children - for
@@ -323,7 +323,7 @@ export class Content {
    */
   async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
@@ -350,7 +350,7 @@ export class Content {
    */
   async getContentChildrenByType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentChildrenByType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the direct children of a piece of Content, limited to a single child type.
@@ -359,7 +359,7 @@ export class Content {
    */
   async getContentChildrenByType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentChildrenByType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentChildrenByType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentChildrenByType,
@@ -382,12 +382,12 @@ export class Content {
   /** Returns the comments of a content */
   async getContentComments<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentComments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns the comments of a content */
   async getContentComments<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentComments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentComments<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentComments,
@@ -412,12 +412,12 @@ export class Content {
   /** Returns a paginated list of attachment Content entities within a single container. */
   async getAttachments<T = Pagination<Models.Content>>(
     parameters: Parameters.GetAttachments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns a paginated list of attachment Content entities within a single container. */
   async getAttachments<T = Pagination<Models.Content>>(
     parameters: Parameters.GetAttachments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachments<T = Pagination<Models.Content>>(
     parameters: Parameters.GetAttachments,
@@ -465,7 +465,7 @@ export class Content {
    */
   async createAttachments<T = Pagination<Models.Content>>(
     parameters: Parameters.CreateAttachments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Add one or more attachments to a Confluence Content entity, with optional comments.
@@ -494,7 +494,7 @@ export class Content {
    */
   async createAttachments<T = Pagination<Models.Content>>(
     parameters: Parameters.CreateAttachments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createAttachments<T = Pagination<Models.Content>>(
     parameters: Parameters.CreateAttachments,
@@ -527,7 +527,7 @@ export class Content {
    */
   async updateAttachmentProperties<T = Models.Content>(
     parameters: Parameters.UpdateAttachmentProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update the non-binary data of an Attachment.
@@ -536,7 +536,7 @@ export class Content {
    */
   async updateAttachmentProperties<T = Models.Content>(
     parameters: Parameters.UpdateAttachmentProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateAttachmentProperties<T = Models.Content>(
     parameters: Parameters.UpdateAttachmentProperties,
@@ -583,7 +583,7 @@ export class Content {
    */
   async updateAttachmentData<T = Models.Content>(
     parameters: Parameters.UpdateAttachmentData,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update the binary data of an Attachment, and optionally the comment and the minor edit field. This adds a new
@@ -613,7 +613,7 @@ export class Content {
    */
   async updateAttachmentData<T = Models.Content>(
     parameters: Parameters.UpdateAttachmentData,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateAttachmentData<T = Models.Content>(
     parameters: Parameters.UpdateAttachmentData,
@@ -650,7 +650,7 @@ export class Content {
    */
   async getContentDescendants<T = Models.ContentChildren>(
     parameters: Parameters.GetContentDescendants,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a map of the descendants of a piece of Content. Content can have multiple types of descendants - for
@@ -666,7 +666,7 @@ export class Content {
    */
   async getContentDescendants<T = Models.ContentChildren>(
     parameters: Parameters.GetContentDescendants,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentDescendants<T = Models.ContentChildren>(
     parameters: Parameters.GetContentDescendants,
@@ -692,7 +692,7 @@ export class Content {
    */
   async getContentDescendantsOfType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentDescendantsOfType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the direct descendants of a piece of Content, limited to a single descendant type.
@@ -703,7 +703,7 @@ export class Content {
    */
   async getContentDescendantsOfType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentDescendantsOfType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentDescendantsOfType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentDescendantsOfType,
@@ -725,12 +725,12 @@ export class Content {
   /** Returns the list of labels on a piece of Content. */
   async getContentLabels<T = Pagination<Models.Label>>(
     parameters: Parameters.GetContentLabels,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns the list of labels on a piece of Content. */
   async getContentLabels<T = Pagination<Models.Label>>(
     parameters: Parameters.GetContentLabels,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentLabels<T = Pagination<Models.Label>>(
     parameters: Parameters.GetContentLabels,
@@ -752,12 +752,12 @@ export class Content {
   /** Adds a list of labels to the specified content. The body is the json representation of the list. */
   async addLabelsToContent<T = Pagination<Models.Label>>(
     parameters: Parameters.AddLabelsToContent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Adds a list of labels to the specified content. The body is the json representation of the list. */
   async addLabelsToContent<T = Pagination<Models.Label>>(
     parameters: Parameters.AddLabelsToContent,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addLabelsToContent<T = Pagination<Models.Label>>(
     parameters: Parameters.AddLabelsToContent,
@@ -775,12 +775,12 @@ export class Content {
   /** Deletes a labels to the specified content. */
   async deleteLabelWithQueryParam<T = void>(
     parameters: Parameters.DeleteLabelWithQueryParam,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Deletes a labels to the specified content. */
   async deleteLabelWithQueryParam<T = void>(
     parameters: Parameters.DeleteLabelWithQueryParam,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteLabelWithQueryParam<T = void>(
     parameters: Parameters.DeleteLabelWithQueryParam,
@@ -821,12 +821,12 @@ export class Content {
   /** Returns a paginated list of content properties. */
   async getContentProperties<T = Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetContentProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns a paginated list of content properties. */
   async getContentProperties<T = Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetContentProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentProperties<T = Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetContentProperties,
@@ -848,12 +848,12 @@ export class Content {
   /** Creates a new content property. */
   async createContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Creates a new content property. */
   async createContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentProperty,
@@ -874,12 +874,12 @@ export class Content {
   /** Returns a content property. */
   async getContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.GetContentProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns a content property. */
   async getContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.GetContentProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.GetContentProperty,
@@ -899,12 +899,12 @@ export class Content {
   /** Creates a new content property. */
   async createContentPropertyForKey<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentPropertyForKey,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Creates a new content property. */
   async createContentPropertyForKey<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentPropertyForKey,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createContentPropertyForKey<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentPropertyForKey,
@@ -930,7 +930,7 @@ export class Content {
    */
   async updateContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.UpdateContentProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a content property. The body contains the representation of the content property. Must include the property
@@ -941,7 +941,7 @@ export class Content {
    */
   async updateContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.UpdateContentProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.UpdateContentProperty,
@@ -962,7 +962,7 @@ export class Content {
   /** Deletes a content property. */
   async deleteContentProperty<T = void>(
     parameters: Parameters.DeleteContentProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Deletes a content property. */
   async deleteContentProperty<T = void>(parameters: Parameters.DeleteContentProperty, callback?: never): Promise<T>;
@@ -981,12 +981,12 @@ export class Content {
   /** Returns info about all restrictions by operation */
   async getRestrictionsByOperation<T = Models.RestrictionsByOperation>(
     parameters: Parameters.GetRestrictionsByOperation,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns info about all restrictions by operation */
   async getRestrictionsByOperation<T = Models.RestrictionsByOperation>(
     parameters: Parameters.GetRestrictionsByOperation,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRestrictionsByOperation<T = Models.RestrictionsByOperation>(
     parameters: Parameters.GetRestrictionsByOperation,
@@ -1006,12 +1006,12 @@ export class Content {
   /** Returns info about all restrictions of given operation */
   async getRestrictionsForOperation<T = Models.ContentRestriction>(
     parameters: Parameters.GetRestrictionsForOperation,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns info about all restrictions of given operation */
   async getRestrictionsForOperation<T = Models.ContentRestriction>(
     parameters: Parameters.GetRestrictionsForOperation,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRestrictionsForOperation<T = Models.ContentRestriction>(
     parameters: Parameters.GetRestrictionsForOperation,
@@ -1033,7 +1033,7 @@ export class Content {
   /** Publishes a legacy draft of a Content created from a ContentBlueprint */
   async publishLegacyDraft<T = Models.Content>(
     parameters: Parameters.PublishLegacyDraft,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Publishes a legacy draft of a Content created from a ContentBlueprint */
   async publishLegacyDraft<T = Models.Content>(parameters: Parameters.PublishLegacyDraft, callback?: never): Promise<T>;
@@ -1056,7 +1056,7 @@ export class Content {
   /** Publishes a shared draft of a Content created from a ContentBlueprint */
   async publishSharedDraft<T = Models.Content>(
     parameters: Parameters.PublishSharedDraft,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Publishes a shared draft of a Content created from a ContentBlueprint */
   async publishSharedDraft<T = Models.Content>(parameters: Parameters.PublishSharedDraft, callback?: never): Promise<T>;

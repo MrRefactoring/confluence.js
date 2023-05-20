@@ -14,7 +14,7 @@ export class Themes {
    */
   async getThemes<T = Models.ThemeArray>(
     parameters: Parameters.GetThemes | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all themes, not including the default theme.

@@ -8,5 +8,5 @@ export interface UpdateAttachmentData {
   /** A comment to be added to the attachment */
   comment?: string;
   /** The actual file content to upload */
-  file: Buffer
+  file: Buffer;
 }

@@ -15,7 +15,7 @@ export class ContentVersions {
    */
   async getContentVersions<T = Models.VersionArray>(
     parameters: Parameters.GetContentVersions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the versions for a piece of content in descending order.
@@ -25,7 +25,7 @@ export class ContentVersions {
    */
   async getContentVersions<T = Models.VersionArray>(
     parameters: Parameters.GetContentVersions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentVersions<T = Models.VersionArray>(
     parameters: Parameters.GetContentVersions,
@@ -52,7 +52,7 @@ export class ContentVersions {
    */
   async restoreContentVersion<T = Models.Version>(
     parameters: Parameters.RestoreContentVersion,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Restores a historical version to be the latest version. That is, a new version is created with the content of the
@@ -62,7 +62,7 @@ export class ContentVersions {
    */
   async restoreContentVersion<T = Models.Version>(
     parameters: Parameters.RestoreContentVersion,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async restoreContentVersion<T = Models.Version>(
     parameters: Parameters.RestoreContentVersion,
@@ -91,7 +91,7 @@ export class ContentVersions {
    */
   async getContentVersion<T = Models.Version>(
     parameters: Parameters.GetContentVersion,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a version for a piece of content.
@@ -123,7 +123,7 @@ export class ContentVersions {
    */
   async deleteContentVersion<T = void>(
     parameters: Parameters.DeleteContentVersion,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Delete a historical version. This does not delete the changes made to the content in that version, rather the

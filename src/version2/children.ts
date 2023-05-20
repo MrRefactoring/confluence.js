@@ -16,7 +16,7 @@ export class Children {
    */
   async getChildPages<T = Models.GetChildPages>(
     parameters: Parameters.GetChildPages,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all child pages for given page id. The number of results is limited by the `limit` parameter and additional
@@ -53,7 +53,7 @@ export class Children {
    */
   async getChildCustomContent<T = Models.GetChildCustomContent>(
     parameters: Parameters.GetChildCustomContent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all child custom content for given custom content id. The number of results is limited by the `limit`
@@ -65,7 +65,7 @@ export class Children {
    */
   async getChildCustomContent<T = Models.GetChildCustomContent>(
     parameters: Parameters.GetChildCustomContent,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getChildCustomContent<T = Models.GetChildCustomContent>(
     parameters: Parameters.GetChildCustomContent,

@@ -16,7 +16,7 @@ export class BlogPost {
    */
   async getBlogPosts<T = Models.GetBlogPosts>(
     parameters: Parameters.GetBlogPosts | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all blog posts. The number of results is limited by the `limit` parameter and additional results (if
@@ -78,7 +78,7 @@ export class BlogPost {
    */
   async getBlogPostById<T = Models.BlogPost>(
     parameters: Parameters.GetBlogPostById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a specific blog post.
@@ -112,7 +112,7 @@ export class BlogPost {
    */
   async updateBlogPost<T = Models.BlogPost>(
     parameters: Parameters.UpdateBlogPost,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update a blog post by id.
@@ -166,7 +166,7 @@ export class BlogPost {
    */
   async getLabelBlogPosts<T = Models.GetLabelBlogPosts>(
     parameters: Parameters.GetLabelBlogPosts,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the blogposts of specified label. The number of results is limited by the `limit` parameter and additional
@@ -177,7 +177,7 @@ export class BlogPost {
    */
   async getLabelBlogPosts<T = Models.GetLabelBlogPosts>(
     parameters: Parameters.GetLabelBlogPosts,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getLabelBlogPosts<T = Models.GetLabelBlogPosts>(
     parameters: Parameters.GetLabelBlogPosts,
@@ -206,7 +206,7 @@ export class BlogPost {
    */
   async getBlogPostsInSpace<T = Models.GetBlogPostsInSpace>(
     parameters: Parameters.GetBlogPostsInSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all blog posts in a space. The number of results is limited by the `limit` parameter and additional results
@@ -218,7 +218,7 @@ export class BlogPost {
    */
   async getBlogPostsInSpace<T = Models.GetBlogPostsInSpace>(
     parameters: Parameters.GetBlogPostsInSpace,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBlogPostsInSpace<T = Models.GetBlogPostsInSpace>(
     parameters: Parameters.GetBlogPostsInSpace,

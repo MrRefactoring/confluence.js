@@ -16,7 +16,7 @@ export class Task {
    */
   async getTasks<T = Models.GetTasks>(
     parameters: Parameters.GetTasks | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all tasks. The number of results is limited by the `limit` parameter and additional results (if available)

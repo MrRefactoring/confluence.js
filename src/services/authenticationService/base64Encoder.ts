@@ -1,7 +1,5 @@
 /* eslint-disable */
-/**
- * @copyright The code was taken from the portal http://www.webtoolkit.info/javascript-base64.html
- */
+/** @copyright The code was taken from the portal http://www.webtoolkit.info/javascript-base64.html */
 
 export namespace Base64Encoder {
   const base64Sequence = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
@@ -16,7 +14,7 @@ export namespace Base64Encoder {
 
       if (c < 128) {
         utftext += String.fromCharCode(c);
-      } else if ((c > 127) && (c < 2048)) {
+      } else if (c > 127 && c < 2048) {
         utftext += String.fromCharCode((c >> 6) | 192);
 
         utftext += String.fromCharCode((c & 63) | 128);
@@ -61,7 +59,9 @@ export namespace Base64Encoder {
         enc4 = 64;
       }
 
-      output += `${base64Sequence.charAt(enc1)}${base64Sequence.charAt(enc2)}${base64Sequence.charAt(enc3)}${base64Sequence.charAt(enc4)}`;
+      output += `${base64Sequence.charAt(enc1)}${base64Sequence.charAt(enc2)}${base64Sequence.charAt(
+        enc3,
+      )}${base64Sequence.charAt(enc4)}`;
     }
 
     return output;

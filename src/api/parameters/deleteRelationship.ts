@@ -11,7 +11,10 @@ export interface DeleteRelationship {
    *   - If `sourceType` is 'space', then specify the space key.
    */
   sourceKey: string;
-  /** The target entity type of the relationship. This must be 'space' or 'content', if the `relationName` is 'favourite'. */
+  /**
+   * The target entity type of the relationship. This must be 'space' or 'content', if the `relationName` is
+   * 'favourite'.
+   */
   targetType: string;
   /**
    * - The identifier for the target entity:
@@ -26,13 +29,13 @@ export interface DeleteRelationship {
   /** The status of the target. This parameter is only used when the `targetType` is 'content'. */
   targetStatus?: string;
   /**
-   * The version of the source. This parameter is only used when the `sourceType` is 'content' and the `sourceStatus`
-   * is 'historical'.
+   * The version of the source. This parameter is only used when the `sourceType` is 'content' and the `sourceStatus` is
+   * 'historical'.
    */
   sourceVersion?: number;
   /**
-   * The version of the target. This parameter is only used when the `targetType` is 'content' and the `targetStatus`
-   * is 'historical'.
+   * The version of the target. This parameter is only used when the `targetType` is 'content' and the `targetStatus` is
+   * 'historical'.
    */
   targetVersion?: number;
 }

@@ -17,7 +17,7 @@ export class SpaceProperties {
    */
   async getSpaceProperties<T = Models.GetSpaceProperties>(
     parameters: Parameters.GetSpaceProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all properties for the given space. Space properties are a key-value storage associated with a space. The
@@ -29,7 +29,7 @@ export class SpaceProperties {
    */
   async getSpaceProperties<T = Models.GetSpaceProperties>(
     parameters: Parameters.GetSpaceProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSpaceProperties<T = Models.GetSpaceProperties>(
     parameters: Parameters.GetSpaceProperties,
@@ -56,7 +56,7 @@ export class SpaceProperties {
    */
   async createSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpaceProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new space property.
@@ -66,7 +66,7 @@ export class SpaceProperties {
    */
   async createSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpaceProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpaceProperty,
@@ -92,7 +92,7 @@ export class SpaceProperties {
    */
   async getSpacePropertyById<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpacePropertyById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieve a space property by its id.
@@ -102,7 +102,7 @@ export class SpaceProperties {
    */
   async getSpacePropertyById<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpacePropertyById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSpacePropertyById<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpacePropertyById,
@@ -124,7 +124,7 @@ export class SpaceProperties {
    */
   async updateSpacePropertyById<T = Models.SpaceProperty>(
     parameters: Parameters.UpdateSpacePropertyById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update a space property by its id.
@@ -134,7 +134,7 @@ export class SpaceProperties {
    */
   async updateSpacePropertyById<T = Models.SpaceProperty>(
     parameters: Parameters.UpdateSpacePropertyById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateSpacePropertyById<T = Models.SpaceProperty>(
     parameters: Parameters.UpdateSpacePropertyById,
@@ -161,7 +161,7 @@ export class SpaceProperties {
    */
   async deleteSpacePropertyById<T = void>(
     parameters: Parameters.DeleteSpacePropertyById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Deletes a space property by its id.

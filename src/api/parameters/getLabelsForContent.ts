@@ -8,7 +8,8 @@ export interface GetLabelsForContent {
    * - `global` prefix is used by default when a user adds a label via the UI.
    * - `my` prefix can be explicitly added by a user when adding a label via the UI, e.g. 'my:example-label'. Also, when a
    *   page is selected as a favourite, the 'my:favourite' label is automatically added.
-   * - `team` can used when adding labels via [Add labels to content](#api-content-id-label-post) but is not used in the UI.
+   * - `team` can used when adding labels via [Add labels to content](#api-content-id-label-post) but is not used in the
+   *   UI.
    */
   prefix?: string;
   /** The starting index of the returned labels. */

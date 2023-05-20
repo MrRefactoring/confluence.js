@@ -19,7 +19,8 @@ export interface ContentBlueprintDraft {
    * The new ancestor (i.e. parent page) for the content. If you have specified an ancestor, you must also specify a
    * `space` property in the request body for the space that the ancestor is in.
    *
-   * Note, if you specify more than one ancestor, the last ID in the array will be selected as the parent page for the content.
+   * Note, if you specify more than one ancestor, the last ID in the array will be selected as the parent page for the
+   * content.
    */
   ancestors?: {
     /** The content ID of the ancestor. */

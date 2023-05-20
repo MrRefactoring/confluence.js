@@ -15,7 +15,7 @@ export class LabelInfo {
    */
   async getAllLabelContent<T = Models.LabelDetails>(
     parameters: Parameters.GetAllLabelContent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns label information and a list of contents associated with the label.
@@ -25,7 +25,7 @@ export class LabelInfo {
    */
   async getAllLabelContent<T = Models.LabelDetails>(
     parameters: Parameters.GetAllLabelContent,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAllLabelContent<T = Models.LabelDetails>(
     parameters: Parameters.GetAllLabelContent,

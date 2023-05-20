@@ -10,12 +10,12 @@ export class ContentPermissions {
   /** @deprecated Will be removed in the next major version. Use `checkContentPermission` method instead. */
   async permissionCheck<T = Models.PermissionCheckResponse>(
     parameters: Parameters.PermissionCheck,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** @deprecated Will be removed in the next major version. Use `checkContentPermission` method instead. */
   async permissionCheck<T = Models.PermissionCheckResponse>(
     parameters: Parameters.PermissionCheck,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async permissionCheck<T = Models.PermissionCheckResponse>(
     parameters: Parameters.PermissionCheck,
@@ -40,7 +40,7 @@ export class ContentPermissions {
    */
   async checkContentPermission<T = Models.PermissionCheckResponse>(
     parameters: Parameters.CheckContentPermission,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Check if a user or a group can perform an operation to the specified content. The `operation` to check must be
@@ -58,7 +58,7 @@ export class ContentPermissions {
    */
   async checkContentPermission<T = Models.PermissionCheckResponse>(
     parameters: Parameters.CheckContentPermission,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async checkContentPermission<T = Models.PermissionCheckResponse>(
     parameters: Parameters.CheckContentPermission,

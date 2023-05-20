@@ -16,7 +16,7 @@ export class Page {
    */
   async getLabelPages<T = Models.GetLabelPages>(
     parameters: Parameters.GetLabelPages,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the pages of specified label. The number of results is limited by the `limit` parameter and additional
@@ -52,7 +52,7 @@ export class Page {
    */
   async getPages<T = Models.GetPages>(
     parameters: Parameters.GetPages | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all pages. The number of results is limited by the `limit` parameter and additional results (if available)
@@ -102,9 +102,7 @@ export class Page {
       params: {
         'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
       },
-      data: {
-
-      },
+      data: {},
     };
 
     return this.client.sendRequest(config, callback);
@@ -194,7 +192,7 @@ export class Page {
    */
   async getPagesInSpace<T = Models.GetPagesInSpace>(
     parameters: Parameters.GetPagesInSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all pages in a space. The number of results is limited by the `limit` parameter and additional results (if
@@ -206,7 +204,7 @@ export class Page {
    */
   async getPagesInSpace<T = Models.GetPagesInSpace>(
     parameters: Parameters.GetPagesInSpace,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPagesInSpace<T = Models.GetPagesInSpace>(
     parameters: Parameters.GetPagesInSpace,

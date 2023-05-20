@@ -9,9 +9,7 @@ export interface Config {
   middlewares?: Config.Middlewares;
   /** @deprecated Disabled. Will be removed in the next major version. */
   telemetry?: Config.Telemetry;
-  /**
-   * Adds `'X-Atlassian-Token': 'no-check'` to each request header
-   */
+  /** Adds `'X-Atlassian-Token': 'no-check'` to each request header */
   noCheckAtlassianToken?: boolean;
   /** Enable new API error handling. `false` by default. */
   newErrorHandling?: boolean;
@@ -23,15 +21,20 @@ export namespace Config {
   /** @deprecated Disabled. Will be removed in the next major version. */
   export type Telemetry = boolean | any;
 
-  export type Authentication = UtilityTypes.XOR<{
+  export type Authentication = UtilityTypes.XOR4<
+  {
     jwt: Authentication.JWT;
-  }, UtilityTypes.XOR<{
+  },
+  {
     personalAccessToken: Authentication.PersonalAccessToken;
-  }, UtilityTypes.XOR<{
+  },
+  {
     basic: Authentication.Basic;
-  }, {
+  },
+  {
     oauth2: Authentication.OAuth2;
-  }>>>;
+  }
+  >;
 
   export interface Middlewares {
     onError?: Config.Middlewares.OnErrorHandler;
@@ -55,13 +58,16 @@ export namespace Config {
       expiryTimeSeconds?: number;
     };
 
-    export type Basic = UtilityTypes.XOR<{
+    export type Basic = UtilityTypes.XOR<
+    {
       email: string;
       apiToken: string;
-    }, {
+    },
+    {
       username: string;
       password: string;
-    }>;
+    }
+    >;
 
     export type OAuth2 = {
       accessToken: string;

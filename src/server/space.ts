@@ -11,7 +11,7 @@ export class Space {
   /** Returns information about a number of spaces. */
   async getSpaces<T = Pagination<Models.Space>>(
     parameters: Parameters.GetSpaces | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns information about a number of spaces. */
   async getSpaces<T = Pagination<Models.Space>>(parameters?: Parameters.GetSpaces, callback?: never): Promise<T>;
@@ -71,7 +71,7 @@ export class Space {
    */
   async createPrivateSpace<T = Models.Space>(
     parameters: Parameters.CreatePrivateSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new private Space, viewable only by its creator.
@@ -159,12 +159,12 @@ export class Space {
   /** Returns the content in this given space */
   async getContentForSpace<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentForSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns the content in this given space */
   async getContentForSpace<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentForSpace,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentForSpace<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentForSpace,
@@ -187,12 +187,12 @@ export class Space {
   /** Returns the content in this given space with the given type */
   async getContentByType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentByType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns the content in this given space with the given type */
   async getContentByType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentByType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentByType<T = Pagination<Models.Content>>(
     parameters: Parameters.GetContentByType,
@@ -215,12 +215,12 @@ export class Space {
   /** Returns a paginated list of space properties. */
   async getSpaceProperties<T = Pagination<Models.SpaceProperty>>(
     parameters: Parameters.GetSpaceProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns a paginated list of space properties. */
   async getSpaceProperties<T = Pagination<Models.SpaceProperty>>(
     parameters: Parameters.GetSpaceProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSpaceProperties<T = Pagination<Models.SpaceProperty>>(
     parameters: Parameters.GetSpaceProperties,
@@ -242,12 +242,12 @@ export class Space {
   /** Creates a new space property. */
   async createSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpaceProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Creates a new space property. */
   async createSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpaceProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpaceProperty,
@@ -268,12 +268,12 @@ export class Space {
   /** Returns a paginated list of space properties. */
   async getSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpaceProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns a paginated list of space properties. */
   async getSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpaceProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpaceProperty,
@@ -293,12 +293,12 @@ export class Space {
   /** Creates a new space property. */
   async createSpacePropertyForKey<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpacePropertyForKey,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Creates a new space property. */
   async createSpacePropertyForKey<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpacePropertyForKey,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createSpacePropertyForKey<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpacePropertyForKey,
@@ -322,7 +322,7 @@ export class Space {
    */
   async updateSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.UpdateSpaceProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a space property. The body contains the representation of the space property. Must include new version
@@ -331,7 +331,7 @@ export class Space {
    */
   async updateSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.UpdateSpaceProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.UpdateSpaceProperty,

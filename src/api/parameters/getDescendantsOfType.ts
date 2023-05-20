@@ -69,7 +69,10 @@ export namespace GetDescendantsOfType {
     UpdateGroupRestriction = 'restrictions.update.restrictions.group',
     /** Returns the history of the content, including the date it was created. */
     History = 'history',
-    /** Returns information about the most recent update of the content, including who updated it and when it was updated. */
+    /**
+     * Returns information about the most recent update of the content, including who updated it and when it was
+     * updated.
+     */
     LastUpdated = 'history.lastUpdated',
     /** Returns information about the update prior to the current content update. */
     PreviousVersion = 'history.previousVersion',
@@ -79,9 +82,15 @@ export namespace GetDescendantsOfType {
     NextVersion = 'history.nextVersion',
     /** Returns the parent page, if the content is a page. */
     Ancestors = 'ancestors',
-    /** Returns the body of the content in different formats, including the editor format, view format, and export format. */
+    /**
+     * Returns the body of the content in different formats, including the editor format, view format, and export
+     * format.
+     */
     Body = 'body',
-    /** Returns information about the most recent update of the content, including who updated it and when it was updated. */
+    /**
+     * Returns information about the most recent update of the content, including who updated it and when it was
+     * updated.
+     */
     Version = 'version',
     /** Returns pages that are descendants at any level below the content. */
     PageDescendant = 'descendants.page',

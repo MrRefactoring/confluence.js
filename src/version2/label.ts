@@ -16,7 +16,7 @@ export class Label {
    */
   async getAttachmentLabels<T = Models.GetAttachmentLabels>(
     parameters: Parameters.GetAttachmentLabels,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the labels of specific attachment. The number of results is limited by the `limit` parameter and additional
@@ -27,7 +27,7 @@ export class Label {
    */
   async getAttachmentLabels<T = Models.GetAttachmentLabels>(
     parameters: Parameters.GetAttachmentLabels,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachmentLabels<T = Models.GetAttachmentLabels>(
     parameters: Parameters.GetAttachmentLabels,
@@ -56,7 +56,7 @@ export class Label {
    */
   async getBlogPostLabels<T = Models.GetBlogPostLabels>(
     parameters: Parameters.GetBlogPostLabels,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the labels of specific blog post. The number of results is limited by the `limit` parameter and additional
@@ -67,7 +67,7 @@ export class Label {
    */
   async getBlogPostLabels<T = Models.GetBlogPostLabels>(
     parameters: Parameters.GetBlogPostLabels,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBlogPostLabels<T = Models.GetBlogPostLabels>(
     parameters: Parameters.GetBlogPostLabels,
@@ -97,7 +97,7 @@ export class Label {
    */
   async getCustomContentLabels<T = Models.GetCustomContentLabels>(
     parameters: Parameters.GetCustomContentLabels,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the labels for a specific piece of custom content. The number of results is limited by the `limit`
@@ -109,7 +109,7 @@ export class Label {
    */
   async getCustomContentLabels<T = Models.GetCustomContentLabels>(
     parameters: Parameters.GetCustomContentLabels,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomContentLabels<T = Models.GetCustomContentLabels>(
     parameters: Parameters.GetCustomContentLabels,
@@ -138,7 +138,7 @@ export class Label {
    */
   async getPageLabels<T = Models.GetPageLabels>(
     parameters: Parameters.GetPageLabels,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the labels of specific page. The number of results is limited by the `limit` parameter and additional

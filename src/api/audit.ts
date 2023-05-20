@@ -17,7 +17,7 @@ export class Audit {
    */
   async getAuditRecords<T = Models.AuditRecordArray>(
     parameters: Parameters.GetAuditRecords | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all records in the audit log, optionally for a certain date range. This contains information about events
@@ -29,7 +29,7 @@ export class Audit {
    */
   async getAuditRecords<T = Models.AuditRecordArray>(
     parameters?: Parameters.GetAuditRecords,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAuditRecords<T = Models.AuditRecordArray>(
     parameters?: Parameters.GetAuditRecords,
@@ -58,7 +58,7 @@ export class Audit {
    */
   async createAuditRecord<T = Models.AuditRecord>(
     parameters: Parameters.CreateAuditRecord | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a record in the audit log.
@@ -68,7 +68,7 @@ export class Audit {
    */
   async createAuditRecord<T = Models.AuditRecord>(
     parameters?: Parameters.CreateAuditRecord,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createAuditRecord<T = Models.AuditRecord>(
     parameters?: Parameters.CreateAuditRecord,
@@ -102,7 +102,7 @@ export class Audit {
    */
   async exportAuditRecords<T = unknown>(
     parameters: Parameters.ExportAuditRecords | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Exports audit records as a CSV file or ZIP file.
@@ -162,7 +162,7 @@ export class Audit {
    */
   async setRetentionPeriod<T = Models.RetentionPeriod>(
     parameters: Parameters.SetRetentionPeriod | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the retention period for records in the audit log. The retention period can be set to a maximum of 20 years.
@@ -172,7 +172,7 @@ export class Audit {
    */
   async setRetentionPeriod<T = Models.RetentionPeriod>(
     parameters?: Parameters.SetRetentionPeriod,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setRetentionPeriod<T = Models.RetentionPeriod>(
     parameters?: Parameters.SetRetentionPeriod,
@@ -203,7 +203,7 @@ export class Audit {
    */
   async getAuditRecordsForTimePeriod<T = Models.AuditRecordArray>(
     parameters: Parameters.GetAuditRecordsForTimePeriod | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns records from the audit log, for a time period back from the current date. For example, you can use this
@@ -218,7 +218,7 @@ export class Audit {
    */
   async getAuditRecordsForTimePeriod<T = Models.AuditRecordArray>(
     parameters?: Parameters.GetAuditRecordsForTimePeriod,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAuditRecordsForTimePeriod<T = Models.AuditRecordArray>(
     parameters?: Parameters.GetAuditRecordsForTimePeriod,

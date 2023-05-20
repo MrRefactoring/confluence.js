@@ -17,7 +17,7 @@ export class Space {
    */
   async getSpaces<T = Models.GetSpaces>(
     parameters: Parameters.GetSpaces | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all spaces. The results will be sorted by id ascending. The number of results is limited by the `limit`

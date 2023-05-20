@@ -17,7 +17,7 @@ export class CustomContent {
    */
   async getCustomContentByTypeInBlogPost<T = Models.GetCustomContentByTypeInBlogPost>(
     parameters: Parameters.GetCustomContentByTypeInBlogPost,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all custom content for a given type within a given blogpost. The number of results is limited by the
@@ -29,7 +29,7 @@ export class CustomContent {
    */
   async getCustomContentByTypeInBlogPost<T = Models.GetCustomContentByTypeInBlogPost>(
     parameters: Parameters.GetCustomContentByTypeInBlogPost,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomContentByTypeInBlogPost<T = Models.GetCustomContentByTypeInBlogPost>(
     parameters: Parameters.GetCustomContentByTypeInBlogPost,
@@ -58,7 +58,7 @@ export class CustomContent {
    */
   async getCustomContentByType<T = Models.GetCustomContentByType>(
     parameters: Parameters.GetCustomContentByType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all custom content for a given type. The number of results is limited by the `limit` parameter and
@@ -69,7 +69,7 @@ export class CustomContent {
    */
   async getCustomContentByType<T = Models.GetCustomContentByType>(
     parameters: Parameters.GetCustomContentByType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomContentByType<T = Models.GetCustomContentByType>(
     parameters: Parameters.GetCustomContentByType,
@@ -122,7 +122,7 @@ export class CustomContent {
    */
   async getCustomContentById<T = Models.CustomContent>(
     parameters: Parameters.GetCustomContentById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a specific piece of custom content.
@@ -132,7 +132,7 @@ export class CustomContent {
    */
   async getCustomContentById<T = Models.CustomContent>(
     parameters: Parameters.GetCustomContentById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomContentById<T = Models.CustomContent>(
     parameters: Parameters.GetCustomContentById,
@@ -159,7 +159,7 @@ export class CustomContent {
    */
   async updateCustomContent<T = Models.CustomContent>(
     parameters: Parameters.UpdateCustomContent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update a custom content by id.
@@ -170,7 +170,7 @@ export class CustomContent {
    */
   async updateCustomContent<T = Models.CustomContent>(
     parameters: Parameters.UpdateCustomContent,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateCustomContent<T = Models.CustomContent>(
     parameters: Parameters.UpdateCustomContent,
@@ -220,7 +220,7 @@ export class CustomContent {
    */
   async getCustomContentByTypeInPage<T = Models.GetCustomContentByTypeInPage>(
     parameters: Parameters.GetCustomContentByTypeInPage,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all custom content for a given type within a given page. The number of results is limited by the `limit`
@@ -232,7 +232,7 @@ export class CustomContent {
    */
   async getCustomContentByTypeInPage<T = Models.GetCustomContentByTypeInPage>(
     parameters: Parameters.GetCustomContentByTypeInPage,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomContentByTypeInPage<T = Models.GetCustomContentByTypeInPage>(
     parameters: Parameters.GetCustomContentByTypeInPage,
@@ -262,7 +262,7 @@ export class CustomContent {
    */
   async getCustomContentByTypeInSpace<T = Models.GetCustomContentByTypeInSpace>(
     parameters: Parameters.GetCustomContentByTypeInSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all custom content for a given type within a given space. The number of results is limited by the `limit`
@@ -274,7 +274,7 @@ export class CustomContent {
    */
   async getCustomContentByTypeInSpace<T = Models.GetCustomContentByTypeInSpace>(
     parameters: Parameters.GetCustomContentByTypeInSpace,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomContentByTypeInSpace<T = Models.GetCustomContentByTypeInSpace>(
     parameters: Parameters.GetCustomContentByTypeInSpace,

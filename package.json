@@ -12,7 +12,7 @@
     "build": "tsc",
     "prepublishOnly": "npm run build && npm run test && npm run lint",
     "test": "npm run test:unit && npm run test:e2e",
-    "prettier": "prettier --write src/**/*.ts",
+    "prettier": "prettier --write src",
     "doc": "typedoc --name \"Confluence.js - Cloud and Server API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon https://svgshare.com/i/bVi.svg",
     "lint": "eslint src tests --ext .ts",
     "lint:fix": "npm run lint -- --fix",

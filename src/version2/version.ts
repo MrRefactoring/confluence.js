@@ -15,7 +15,7 @@ export class Version {
    */
   async getAttachmentVersions<T = Models.GetAttachmentVersions>(
     parameters: Parameters.GetAttachmentVersions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the versions of specific attachment.
@@ -25,7 +25,7 @@ export class Version {
    */
   async getAttachmentVersions<T = Models.GetAttachmentVersions>(
     parameters: Parameters.GetAttachmentVersions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachmentVersions<T = Models.GetAttachmentVersions>(
     parameters: Parameters.GetAttachmentVersions,
@@ -51,7 +51,7 @@ export class Version {
    */
   async getAttachmentVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetAttachmentVersionDetails,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves version details for the specified attachment and version number.
@@ -60,7 +60,7 @@ export class Version {
    */
   async getAttachmentVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetAttachmentVersionDetails,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachmentVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetAttachmentVersionDetails,
@@ -82,7 +82,7 @@ export class Version {
    */
   async getBlogPostVersions<T = Models.GetBlogPostVersions>(
     parameters: Parameters.GetBlogPostVersions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the versions of specific blog post.
@@ -92,7 +92,7 @@ export class Version {
    */
   async getBlogPostVersions<T = Models.GetBlogPostVersions>(
     parameters: Parameters.GetBlogPostVersions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBlogPostVersions<T = Models.GetBlogPostVersions>(
     parameters: Parameters.GetBlogPostVersions,
@@ -118,7 +118,7 @@ export class Version {
    */
   async getBlogPostVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetBlogPostVersionDetails,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves version details for the specified blog post and version number.
@@ -127,7 +127,7 @@ export class Version {
    */
   async getBlogPostVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetBlogPostVersionDetails,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBlogPostVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetBlogPostVersionDetails,
@@ -149,7 +149,7 @@ export class Version {
    */
   async getPageVersions<T = Models.GetPageVersions>(
     parameters: Parameters.GetPageVersions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the versions of specific page.
@@ -159,7 +159,7 @@ export class Version {
    */
   async getPageVersions<T = Models.GetPageVersions>(
     parameters: Parameters.GetPageVersions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPageVersions<T = Models.GetPageVersions>(
     parameters: Parameters.GetPageVersions,
@@ -185,7 +185,7 @@ export class Version {
    */
   async getPageVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetPageVersionDetails,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves version details for the specified page and version number.
@@ -194,7 +194,7 @@ export class Version {
    */
   async getPageVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetPageVersionDetails,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPageVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetPageVersionDetails,
@@ -216,7 +216,7 @@ export class Version {
    */
   async getCustomContentVersions<T = Models.GetCustomContentVersions>(
     parameters: Parameters.GetCustomContentVersions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the versions of specific custom content.
@@ -226,7 +226,7 @@ export class Version {
    */
   async getCustomContentVersions<T = Models.GetCustomContentVersions>(
     parameters: Parameters.GetCustomContentVersions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomContentVersions<T = Models.GetCustomContentVersions>(
     parameters: Parameters.GetCustomContentVersions,
@@ -252,7 +252,7 @@ export class Version {
    */
   async getCustomContentVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetCustomContentVersionDetails,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves version details for the specified custom content and version number.
@@ -261,7 +261,7 @@ export class Version {
    */
   async getCustomContentVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetCustomContentVersionDetails,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomContentVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetCustomContentVersionDetails,
@@ -283,7 +283,7 @@ export class Version {
    */
   async getFooterCommentVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetFooterCommentVersionDetails,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves version details for the specified footer comment version.
@@ -293,7 +293,7 @@ export class Version {
    */
   async getFooterCommentVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetFooterCommentVersionDetails,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFooterCommentVersionDetails<T = Models.DetailedVersion>(
     parameters: Parameters.GetFooterCommentVersionDetails,

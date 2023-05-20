@@ -16,7 +16,7 @@ export class Comment {
    */
   async getPageFooterComments<T = Models.GetPageFooterComments>(
     parameters: Parameters.GetPageFooterComments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the root footer comments of specific page. The number of results is limited by the `limit` parameter and
@@ -27,7 +27,7 @@ export class Comment {
    */
   async getPageFooterComments<T = Models.GetPageFooterComments>(
     parameters: Parameters.GetPageFooterComments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPageFooterComments<T = Models.GetPageFooterComments>(
     parameters: Parameters.GetPageFooterComments,
@@ -56,7 +56,7 @@ export class Comment {
    */
   async getPageInlineComments<T = Models.GetPageInlineComments>(
     parameters: Parameters.GetPageInlineComments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the root inline comments of specific page. The number of results is limited by the `limit` parameter and
@@ -67,7 +67,7 @@ export class Comment {
    */
   async getPageInlineComments<T = Models.GetPageInlineComments>(
     parameters: Parameters.GetPageInlineComments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPageInlineComments<T = Models.GetPageInlineComments>(
     parameters: Parameters.GetPageInlineComments,
@@ -97,7 +97,7 @@ export class Comment {
    */
   async getBlogPostFooterComments<T = Models.GetBlogPostFooterComments>(
     parameters: Parameters.GetBlogPostFooterComments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the root footer comments of specific blog post. The number of results is limited by the `limit` parameter
@@ -109,7 +109,7 @@ export class Comment {
    */
   async getBlogPostFooterComments<T = Models.GetBlogPostFooterComments>(
     parameters: Parameters.GetBlogPostFooterComments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBlogPostFooterComments<T = Models.GetBlogPostFooterComments>(
     parameters: Parameters.GetBlogPostFooterComments,
@@ -139,7 +139,7 @@ export class Comment {
    */
   async getBlogPostInlineComments<T = Models.GetBlogPostInlineComments>(
     parameters: Parameters.GetBlogPostInlineComments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the root inline comments of specific blog post. The number of results is limited by the `limit` parameter
@@ -151,7 +151,7 @@ export class Comment {
    */
   async getBlogPostInlineComments<T = Models.GetBlogPostInlineComments>(
     parameters: Parameters.GetBlogPostInlineComments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBlogPostInlineComments<T = Models.GetBlogPostInlineComments>(
     parameters: Parameters.GetBlogPostInlineComments,
@@ -180,7 +180,7 @@ export class Comment {
    */
   async createFooterComment<T = Models.FooterCommentModel>(
     parameters: Parameters.CreateFooterComment | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Create a footer comment. This can be at the top level (specifying pageId or blogPostId in the request body) or as a
@@ -191,7 +191,7 @@ export class Comment {
    */
   async createFooterComment<T = Models.FooterCommentModel>(
     parameters?: Parameters.CreateFooterComment,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createFooterComment<T = Models.FooterCommentModel>(
     parameters?: Parameters.CreateFooterComment,
@@ -219,7 +219,7 @@ export class Comment {
    */
   async getFooterCommentById<T = Models.FooterCommentModel>(
     parameters: Parameters.GetFooterCommentById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves a footer comment by id
@@ -229,7 +229,7 @@ export class Comment {
    */
   async getFooterCommentById<T = Models.FooterCommentModel>(
     parameters: Parameters.GetFooterCommentById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFooterCommentById<T = Models.FooterCommentModel>(
     parameters: Parameters.GetFooterCommentById,
@@ -255,7 +255,7 @@ export class Comment {
    */
   async updateFooterComment<T = Models.FooterCommentModel>(
     parameters: Parameters.UpdateFooterComment,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update a footer comment. This can be used to update the body text of a comment.
@@ -265,7 +265,7 @@ export class Comment {
    */
   async updateFooterComment<T = Models.FooterCommentModel>(
     parameters: Parameters.UpdateFooterComment,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateFooterComment<T = Models.FooterCommentModel>(
     parameters: Parameters.UpdateFooterComment,
@@ -319,7 +319,7 @@ export class Comment {
    */
   async getFooterCommentChildren<T = Models.GetFooterCommentChildren>(
     parameters: Parameters.GetFooterCommentChildren,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the children footer comments of specific comment. The number of results is limited by the `limit` parameter
@@ -331,7 +331,7 @@ export class Comment {
    */
   async getFooterCommentChildren<T = Models.GetFooterCommentChildren>(
     parameters: Parameters.GetFooterCommentChildren,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getFooterCommentChildren<T = Models.GetFooterCommentChildren>(
     parameters: Parameters.GetFooterCommentChildren,
@@ -362,7 +362,7 @@ export class Comment {
    */
   async createInlineComment<T = Models.InlineCommentModel>(
     parameters: Parameters.CreateInlineComment | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Create an inline comment. This can be at the top level (specifying pageId or blogPostId in the request body) or as
@@ -375,7 +375,7 @@ export class Comment {
    */
   async createInlineComment<T = Models.InlineCommentModel>(
     parameters?: Parameters.CreateInlineComment,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createInlineComment<T = Models.InlineCommentModel>(
     parameters?: Parameters.CreateInlineComment,
@@ -404,7 +404,7 @@ export class Comment {
    */
   async getInlineCommentById<T = Models.InlineCommentModel>(
     parameters: Parameters.GetInlineCommentById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves an inline comment by id
@@ -414,7 +414,7 @@ export class Comment {
    */
   async getInlineCommentById<T = Models.InlineCommentModel>(
     parameters: Parameters.GetInlineCommentById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getInlineCommentById<T = Models.InlineCommentModel>(
     parameters: Parameters.GetInlineCommentById,
@@ -440,7 +440,7 @@ export class Comment {
    */
   async updateInlineComment<T = Models.InlineCommentModel>(
     parameters: Parameters.UpdateInlineComment,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Update an inline comment. This can be used to update the body text of a comment and/or to resolve the comment
@@ -450,7 +450,7 @@ export class Comment {
    */
   async updateInlineComment<T = Models.InlineCommentModel>(
     parameters: Parameters.UpdateInlineComment,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateInlineComment<T = Models.InlineCommentModel>(
     parameters: Parameters.UpdateInlineComment,
@@ -505,7 +505,7 @@ export class Comment {
    */
   async getInlineCommentChildren<T = Models.GetInlineCommentChildren>(
     parameters: Parameters.GetInlineCommentChildren,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the children inline comments of specific comment. The number of results is limited by the `limit` parameter
@@ -517,7 +517,7 @@ export class Comment {
    */
   async getInlineCommentChildren<T = Models.GetInlineCommentChildren>(
     parameters: Parameters.GetInlineCommentChildren,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getInlineCommentChildren<T = Models.GetInlineCommentChildren>(
     parameters: Parameters.GetInlineCommentChildren,

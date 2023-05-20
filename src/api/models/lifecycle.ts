@@ -20,7 +20,10 @@ export interface Lifecycle {
    */
   clientKey?: string;
 
-  /** @deprecated This is the public key for this Atlassian product instance. This field is deprecated and should not be used. */
+  /**
+   * @deprecated This is the public key for this Atlassian product instance. This field is deprecated and should not be
+   *   used.
+   */
   publicKey?: string;
 
   /**
@@ -31,7 +34,8 @@ export interface Lifecycle {
 
   /**
    * Use this string to sign outgoing JWT tokens and validate incoming JWT tokens. Optional: and may not be present on
-   * non-JWT app installations, and is only sent on the `installed` event. All instances of your app use the same shared secret.
+   * non-JWT app installations, and is only sent on the `installed` event. All instances of your app use the same shared
+   * secret.
    */
   sharedSecret?: string;
 

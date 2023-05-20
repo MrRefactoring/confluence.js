@@ -52,7 +52,7 @@ export class Users {
    */
   async getAnonymousUser<T = Models.UserAnonymous>(
     parameters: Parameters.GetAnonymousUser | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns information about how anonymous users are represented, like the profile picture and display name.
@@ -62,7 +62,7 @@ export class Users {
    */
   async getAnonymousUser<T = Models.UserAnonymous>(
     parameters?: Parameters.GetAnonymousUser,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAnonymousUser<T = Models.UserAnonymous>(
     parameters?: Parameters.GetAnonymousUser,
@@ -88,7 +88,7 @@ export class Users {
    */
   async getCurrentUser<T = Models.User>(
     parameters: Parameters.GetCurrentUser | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the currently logged-in user. This includes information about the user, like the display name, userKey,
@@ -121,7 +121,7 @@ export class Users {
    */
   async getGroupMembershipsForUser<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupMembershipsForUser,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the groups that a user is a member of.
@@ -131,7 +131,7 @@ export class Users {
    */
   async getGroupMembershipsForUser<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupMembershipsForUser,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getGroupMembershipsForUser<T = Models.GroupArrayWithLinks>(
     parameters: Parameters.GetGroupMembershipsForUser,
@@ -160,7 +160,7 @@ export class Users {
    */
   async getBulkUserLookup<T = Models.BulkUserLookupArray>(
     parameters: Parameters.GetBulkUserLookup,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns user details for the ids provided in request.
@@ -170,7 +170,7 @@ export class Users {
    */
   async getBulkUserLookup<T = Models.BulkUserLookupArray>(
     parameters: Parameters.GetBulkUserLookup,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBulkUserLookup<T = Models.BulkUserLookupArray>(
     parameters: Parameters.GetBulkUserLookup,
@@ -198,7 +198,7 @@ export class Users {
    */
   async getPrivacyUnsafeUserEmail<T = Models.AccountIdEmailRecord>(
     parameters: Parameters.GetPrivacyUnsafeUserEmail,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
@@ -209,7 +209,7 @@ export class Users {
    */
   async getPrivacyUnsafeUserEmail<T = Models.AccountIdEmailRecord>(
     parameters: Parameters.GetPrivacyUnsafeUserEmail,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPrivacyUnsafeUserEmail<T = Models.AccountIdEmailRecord>(
     parameters: Parameters.GetPrivacyUnsafeUserEmail,
@@ -238,7 +238,7 @@ export class Users {
    */
   async getPrivacyUnsafeUserEmailBulk<T = Models.AccountIdEmailRecordArray>(
     parameters: Parameters.GetPrivacyUnsafeUserEmailBulk,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns user email addresses for a set of accountIds. This API is only available to apps approved by Atlassian,
@@ -252,7 +252,7 @@ export class Users {
    */
   async getPrivacyUnsafeUserEmailBulk<T = Models.AccountIdEmailRecordArray>(
     parameters: Parameters.GetPrivacyUnsafeUserEmailBulk,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPrivacyUnsafeUserEmailBulk<T = Models.AccountIdEmailRecordArray>(
     parameters: Parameters.GetPrivacyUnsafeUserEmailBulk,
@@ -278,7 +278,7 @@ export class Users {
    */
   async getBulkUserMigration<T = Models.MigratedUserArray>(
     parameters: Parameters.GetBulkUserMigration,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the accountIds for the users specified in the key or username parameters. Note that multiple key and
@@ -289,7 +289,7 @@ export class Users {
    */
   async getBulkUserMigration<T = Models.MigratedUserArray>(
     parameters: Parameters.GetBulkUserMigration,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBulkUserMigration<T = Models.MigratedUserArray>(
     parameters: Parameters.GetBulkUserMigration,

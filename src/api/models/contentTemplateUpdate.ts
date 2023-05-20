@@ -14,7 +14,10 @@ export interface ContentTemplateUpdate {
   description?: string;
   /** Labels for the template. */
   labels?: Label[];
-  /** The key for the space of the template. Required if the template is a space template. Set this to the current `space.key`. */
+  /**
+   * The key for the space of the template. Required if the template is a space template. Set this to the current
+   * `space.key`.
+   */
   space?: {
     key: string;
   };

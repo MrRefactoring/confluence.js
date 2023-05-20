@@ -14,7 +14,7 @@ export class ContentProperties {
    */
   async getAttachmentContentProperties<T = Models.GetAttachmentContentProperties>(
     parameters: Parameters.GetAttachmentContentProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves all Content Properties tied to a specified attachment.
@@ -23,7 +23,7 @@ export class ContentProperties {
    */
   async getAttachmentContentProperties<T = Models.GetAttachmentContentProperties>(
     parameters: Parameters.GetAttachmentContentProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachmentContentProperties<T = Models.GetAttachmentContentProperties>(
     parameters: Parameters.GetAttachmentContentProperties,
@@ -50,7 +50,7 @@ export class ContentProperties {
    */
   async getAttachmentContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetAttachmentContentPropertiesById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves a specific Content Property by ID that is attached to a specified attachment.
@@ -59,7 +59,7 @@ export class ContentProperties {
    */
   async getAttachmentContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetAttachmentContentPropertiesById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachmentContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetAttachmentContentPropertiesById,
@@ -80,7 +80,7 @@ export class ContentProperties {
    */
   async getBlogpostContentProperties<T = Models.GetBlogpostContentProperties>(
     parameters: Parameters.GetBlogpostContentProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves all Content Properties tied to a specified blog post.
@@ -89,7 +89,7 @@ export class ContentProperties {
    */
   async getBlogpostContentProperties<T = Models.GetBlogpostContentProperties>(
     parameters: Parameters.GetBlogpostContentProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBlogpostContentProperties<T = Models.GetBlogpostContentProperties>(
     parameters: Parameters.GetBlogpostContentProperties,
@@ -116,7 +116,7 @@ export class ContentProperties {
    */
   async getBlogpostContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetBlogpostContentPropertiesById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves a specific Content Property by ID that is attached to a specified blog post.
@@ -125,7 +125,7 @@ export class ContentProperties {
    */
   async getBlogpostContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetBlogpostContentPropertiesById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBlogpostContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetBlogpostContentPropertiesById,
@@ -146,7 +146,7 @@ export class ContentProperties {
    */
   async getCustomContentContentProperties<T = Models.GetCustomContentContentProperties>(
     parameters: Parameters.GetCustomContentContentProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves Content Properties tied to a specified custom content.
@@ -155,7 +155,7 @@ export class ContentProperties {
    */
   async getCustomContentContentProperties<T = Models.GetCustomContentContentProperties>(
     parameters: Parameters.GetCustomContentContentProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomContentContentProperties<T = Models.GetCustomContentContentProperties>(
     parameters: Parameters.GetCustomContentContentProperties,
@@ -182,7 +182,7 @@ export class ContentProperties {
    */
   async getCustomContentContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetCustomContentContentPropertiesById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves a specific Content Property by ID that is attached to a specified custom content.
@@ -191,7 +191,7 @@ export class ContentProperties {
    */
   async getCustomContentContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetCustomContentContentPropertiesById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomContentContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetCustomContentContentPropertiesById,
@@ -212,7 +212,7 @@ export class ContentProperties {
    */
   async getPageContentProperties<T = Models.GetPageContentProperties>(
     parameters: Parameters.GetPageContentProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves Content Properties tied to a specified page.
@@ -221,7 +221,7 @@ export class ContentProperties {
    */
   async getPageContentProperties<T = Models.GetPageContentProperties>(
     parameters: Parameters.GetPageContentProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPageContentProperties<T = Models.GetPageContentProperties>(
     parameters: Parameters.GetPageContentProperties,
@@ -248,7 +248,7 @@ export class ContentProperties {
    */
   async getPageContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetPageContentPropertiesById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves a specific Content Property by ID that is attached to a specified page.
@@ -257,7 +257,7 @@ export class ContentProperties {
    */
   async getPageContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetPageContentPropertiesById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPageContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetPageContentPropertiesById,
@@ -278,7 +278,7 @@ export class ContentProperties {
    */
   async getCommentContentProperties<T = Models.GetCommentContentProperties>(
     parameters: Parameters.GetCommentContentProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves Content Properties attached to a specified comment.
@@ -287,7 +287,7 @@ export class ContentProperties {
    */
   async getCommentContentProperties<T = Models.GetCommentContentProperties>(
     parameters: Parameters.GetCommentContentProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCommentContentProperties<T = Models.GetCommentContentProperties>(
     parameters: Parameters.GetCommentContentProperties,
@@ -314,7 +314,7 @@ export class ContentProperties {
    */
   async getCommentContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetCommentContentPropertiesById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Retrieves a specific Content Property by ID that is attached to a specified comment.
@@ -323,7 +323,7 @@ export class ContentProperties {
    */
   async getCommentContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetCommentContentPropertiesById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCommentContentPropertiesById<T = Models.ContentProperty>(
     parameters: Parameters.GetCommentContentPropertiesById,

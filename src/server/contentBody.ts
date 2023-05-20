@@ -19,7 +19,7 @@ export class ContentBody {
    */
   async convertContentBody<T = Models.ContentBody>(
     parameters: Parameters.ConvertContentBody,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Converts between content body representations. Not all representations can be converted to/from other formats.
@@ -33,7 +33,7 @@ export class ContentBody {
    */
   async convertContentBody<T = Models.ContentBody>(
     parameters: Parameters.ConvertContentBody,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async convertContentBody<T = Models.ContentBody>(
     parameters: Parameters.ConvertContentBody,

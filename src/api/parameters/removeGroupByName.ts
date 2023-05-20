@@ -5,8 +5,8 @@ export interface RemoveGroupByName {
    * The operation that the restriction applies to.
    *
    * @example
-   *   "read";
-   *   "update";
+   *   'read';
+   *   'update';
    */
   operationKey: string;
   /** The name of the group to remove from the content restriction. */

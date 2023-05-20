@@ -15,7 +15,7 @@ export class Attachment {
    */
   async getAttachmentById<T = Models.Attachment>(
     parameters: Parameters.GetAttachmentById,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a specific attachment.
@@ -25,7 +25,7 @@ export class Attachment {
    */
   async getAttachmentById<T = Models.Attachment>(
     parameters: Parameters.GetAttachmentById,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachmentById<T = Models.Attachment>(
     parameters: Parameters.GetAttachmentById,
@@ -51,7 +51,7 @@ export class Attachment {
    */
   async getBlogpostAttachments<T = Models.GetBlogpostAttachments>(
     parameters: Parameters.GetBlogpostAttachments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the attachments of specific blog post. The number of results is limited by the `limit` parameter and
@@ -62,7 +62,7 @@ export class Attachment {
    */
   async getBlogpostAttachments<T = Models.GetBlogpostAttachments>(
     parameters: Parameters.GetBlogpostAttachments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBlogpostAttachments<T = Models.GetBlogpostAttachments>(
     parameters: Parameters.GetBlogpostAttachments,
@@ -92,7 +92,7 @@ export class Attachment {
    */
   async getCustomContentAttachments<T = Models.GetCustomContentAttachments>(
     parameters: Parameters.GetCustomContentAttachments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the attachments of specific custom content. The number of results is limited by the `limit` parameter and
@@ -103,7 +103,7 @@ export class Attachment {
    */
   async getCustomContentAttachments<T = Models.GetCustomContentAttachments>(
     parameters: Parameters.GetCustomContentAttachments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getCustomContentAttachments<T = Models.GetCustomContentAttachments>(
     parameters: Parameters.GetCustomContentAttachments,
@@ -133,7 +133,7 @@ export class Attachment {
    */
   async getPageAttachments<T = Models.GetPageAttachments>(
     parameters: Parameters.GetPageAttachments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the attachments of specific page. The number of results is limited by the `limit` parameter and additional
@@ -144,7 +144,7 @@ export class Attachment {
    */
   async getPageAttachments<T = Models.GetPageAttachments>(
     parameters: Parameters.GetPageAttachments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getPageAttachments<T = Models.GetPageAttachments>(
     parameters: Parameters.GetPageAttachments,
