@@ -84,7 +84,7 @@ export class Page {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the corresponding space.
    * Permission to create a page in the space.
    */
-  async createPage<T = Models.Page>(callback: Callback<T>): Promise<void>;
+  async createPage<T = Models.Page>(parameters: Parameters.CreatePage, callback: Callback<T>): Promise<void>;
   /**
    * Creates a page in the space.
    *
@@ -94,11 +94,17 @@ export class Page {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the corresponding space.
    * Permission to create a page in the space.
    */
-  async createPage<T = Models.Page>(callback?: never): Promise<T>;
-  async createPage<T = Models.Page>(callback?: Callback<T>): Promise<void | T> {
+  async createPage<T = Models.Page>(parameters: Parameters.CreatePage, callback?: never): Promise<T>;
+  async createPage<T = Models.Page>(parameters: Parameters.CreatePage, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/pages',
       method: 'POST',
+      params: {
+        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+      },
+      data: {
+
+      },
     };
 
     return this.client.sendRequest(config, callback);
