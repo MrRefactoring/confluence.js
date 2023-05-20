@@ -1,16 +1,19 @@
 import { Body } from './body';
+import { ContentStatus } from './contentStatus';
+import { InlineCommentProperties } from './inlineCommentProperties';
+import { InlineCommentResolutionStatus } from './inlineCommentResolutionStatus';
 import { Version } from './version';
 
 export interface PageInlineCommentModel {
   /** ID of the comment. */
-  id: number;
-  /** The status of the content. */
-  status: 'current' | 'trashed' | 'historical' | 'deleted' | 'any' | 'draft' | 'archived' | string;
+  id?: {};
+  status?: ContentStatus;
   /** Title of the comment. */
-  title: string;
+  title?: string;
   /** ID of the page the comment is in. */
-  pageId: number;
-  version: Version;
-  /** Contains fields for each representation type requested. */
-  body: Body;
+  pageId?: {};
+  version?: Version;
+  body?: Body;
+  resolutionStatus?: InlineCommentResolutionStatus;
+  properties?: InlineCommentProperties;
 }

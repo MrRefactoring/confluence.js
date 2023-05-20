@@ -1,8 +1,8 @@
 export interface SpacePropertyUpdateRequest {
   /** Key of the space property */
-  key?: string;
+  key: string;
   /** Value of the space property. */
-  value?: {};
+  value: any;
   /** New version number and associated message */
   version?: {
     /** Version number of the new version. Should be 1 more than the current version number. */

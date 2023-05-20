@@ -2,15 +2,15 @@ import { Body } from './body';
 
 export interface Task {
   /** ID of the task. */
-  id?: number;
+  id?: {};
   /** Local ID of the task. This ID is local to the corresponding page or blog post. */
-  localId?: number;
+  localId?: {};
   /** ID of the space the task is in. */
-  spaceId?: number;
+  spaceId?: {};
   /** ID of the page the task is in. */
-  pageId?: number;
+  pageId?: {};
   /** ID of the blog post the task is in. */
-  blogPostId?: number;
+  blogPostId?: {};
   /** Status of the task. */
   status?: string;
   body?: Body;

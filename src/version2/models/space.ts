@@ -4,7 +4,7 @@ import { SpaceType } from './spaceType';
 
 export interface Space {
   /** ID of the space. */
-  id?: number;
+  id?: {};
   /** Key of the space. */
   key?: string;
   /** Name of the space. */
@@ -12,6 +12,6 @@ export interface Space {
   type?: SpaceType;
   status?: SpaceStatus;
   /** ID of the space's homepage. */
-  homepageId?: number;
+  homepageId?: {};
   description?: SpaceDescription;
 }

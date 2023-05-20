@@ -1,6 +1,6 @@
 export interface SpaceProperty {
   /** ID of the space property. */
-  id?: number;
+  id?: {};
   /** Key of the space property. */
   key?: string;
   /** Value of the space property. */
