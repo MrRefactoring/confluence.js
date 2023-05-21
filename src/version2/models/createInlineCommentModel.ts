@@ -3,18 +3,12 @@ export interface CreateInlineCommentModel {
    * ID of the containing blog post, if intending to create a top level footer comment. Do not provide if creating a
    * reply.
    */
-  blogPostId?: number;
+  blogPostId?: string;
   /** ID of the containing page, if intending to create a top level footer comment. Do not provide if creating a reply. */
-  pageId?: number;
+  pageId?: string;
   /** ID of the parent comment, if intending to create a reply. Do not provide if creating a top level comment. */
-  parentCommentId?: number;
-  /** Body of the comment */
-  body?: {
-    /** Body of the comment */
-    value?: string;
-    /** Format of the body's value. */
-    representation?: string;
-  };
+  parentCommentId?: string;
+  body?: {};
   /**
    * Object describing the text to highlight on the page/blog post. Only applicable for top level inline comments (not
    * replies) and required in that case.

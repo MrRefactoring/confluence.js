@@ -4,7 +4,7 @@ import { Version } from './version';
 
 export interface CustomContent {
   /** ID of the custom content. */
-  id?: number;
+  id?: {};
   /** The type of custom content. */
   type?: string;
   status?: ContentStatus;
@@ -15,25 +15,25 @@ export interface CustomContent {
    *
    * Note: This is always returned, regardless of if the custom content has a container that is a space.
    */
-  spaceId?: number;
+  spaceId?: {};
   /**
    * ID of the containing page.
    *
    * Note: This is only returned if the custom content has a container that is a page.
    */
-  pageId?: number;
+  pageId?: {};
   /**
    * ID of the containing blog post.
    *
    * Note: This is only returned if the custom content has a container that is a blog post.
    */
-  blogPostId?: number;
+  blogPostId?: {};
   /**
    * ID of the containing custom content.
    *
    * Note: This is only returned if the custom content has a container that is custom content.
    */
-  customContentId?: number;
+  customContentId?: {};
   /** The account ID of the user who created this custom content originally. */
   authorId?: string;
   /** Date and time when the custom content was created. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */

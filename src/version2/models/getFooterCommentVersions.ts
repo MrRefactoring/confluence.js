@@ -1,7 +1,7 @@
-import { PageCommentModel } from './pageCommentModel';
+import { CommentVersion } from './commentVersion';
 
-export interface GetPageFooterComments {
-  results: PageCommentModel[];
+export interface GetFooterCommentVersions {
+  results: CommentVersion[];
   _links: {
     /**
      * Used for pagination. Contains the relative URL for the next set of results, using a cursor query parameter. This

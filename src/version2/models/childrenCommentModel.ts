@@ -4,13 +4,12 @@ import { Version } from './version';
 
 export interface ChildrenCommentModel {
   /** ID of the comment. */
-  id?: number;
+  id?: {};
   status?: ContentStatus;
   /** Title of the comment. */
   title?: string;
   /** ID of the parent comment the child comment is in. */
-  parentCommentId?: number;
+  parentCommentId?: {};
   version?: Version;
-  /** Contains representations of the comment's body in different formats. */
   body?: Body;
 }

@@ -1,7 +1,7 @@
-import { PageCommentModel } from './pageCommentModel';
+import { Attachment } from './attachment';
 
-export interface GetPageFooterComments {
-  results: PageCommentModel[];
+export interface GetLabelAttachments {
+  results: Attachment[];
   _links: {
     /**
      * Used for pagination. Contains the relative URL for the next set of results, using a cursor query parameter. This

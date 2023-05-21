@@ -2,12 +2,12 @@ import { OnlyArchivedAndCurrentContentStatus } from './onlyArchivedAndCurrentCon
 
 export interface ChildPage {
   /** ID of the page. */
-  id?: number;
+  id?: {};
   status?: OnlyArchivedAndCurrentContentStatus;
   /** Title of the page. */
   title?: string;
   /** ID of the space the page is in. */
-  spaceId?: number;
+  spaceId?: {};
   /** Position of child page within the given parent page tree. */
   childPosition?: number;
 }
