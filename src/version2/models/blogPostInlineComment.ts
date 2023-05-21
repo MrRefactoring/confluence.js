@@ -4,7 +4,7 @@ import { InlineCommentProperties } from './inlineCommentProperties';
 import { InlineCommentResolutionStatus } from './inlineCommentResolutionStatus';
 import { Version } from './version';
 
-export interface BlogPostInlineCommentModel {
+export interface BlogPostInlineComment {
   /** ID of the comment. */
   id?: {};
   status?: ContentStatus;

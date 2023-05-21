@@ -15,7 +15,7 @@ export class Space {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only spaces that the user has permission to view will be returned.
    */
-  async getSpaces<T = Models.GetSpaces>(
+  async getSpaces<T = Models.Pagination<Models.Space>>(
     parameters: Parameters.GetSpaces | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -27,8 +27,8 @@ export class Space {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only spaces that the user has permission to view will be returned.
    */
-  async getSpaces<T = Models.GetSpaces>(parameters?: Parameters.GetSpaces, callback?: never): Promise<T>;
-  async getSpaces<T = Models.GetSpaces>(parameters?: Parameters.GetSpaces, callback?: Callback<T>): Promise<void | T> {
+  async getSpaces<T = Models.Pagination<Models.Space>>(parameters?: Parameters.GetSpaces, callback?: never): Promise<T>;
+  async getSpaces<T = Models.Pagination<Models.Space>>(parameters?: Parameters.GetSpaces, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/spaces',
       method: 'GET',

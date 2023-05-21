@@ -50,7 +50,7 @@ export class Attachment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the blog
    * post and its corresponding space.
    */
-  async getBlogpostAttachments<T = Models.GetBlogpostAttachments>(
+  async getBlogpostAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetBlogpostAttachments,
     callback: Callback<T>,
   ): Promise<void>;
@@ -61,11 +61,11 @@ export class Attachment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the blog
    * post and its corresponding space.
    */
-  async getBlogpostAttachments<T = Models.GetBlogpostAttachments>(
+  async getBlogpostAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetBlogpostAttachments,
     callback?: never,
   ): Promise<T>;
-  async getBlogpostAttachments<T = Models.GetBlogpostAttachments>(
+  async getBlogpostAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetBlogpostAttachments,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -92,7 +92,7 @@ export class Attachment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the custom
    * content and its corresponding space.
    */
-  async getCustomContentAttachments<T = Models.GetCustomContentAttachments>(
+  async getCustomContentAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetCustomContentAttachments,
     callback: Callback<T>,
   ): Promise<void>;
@@ -103,11 +103,11 @@ export class Attachment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the custom
    * content and its corresponding space.
    */
-  async getCustomContentAttachments<T = Models.GetCustomContentAttachments>(
+  async getCustomContentAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetCustomContentAttachments,
     callback?: never,
   ): Promise<T>;
-  async getCustomContentAttachments<T = Models.GetCustomContentAttachments>(
+  async getCustomContentAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetCustomContentAttachments,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -134,7 +134,7 @@ export class Attachment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the attachment and its
    * corresponding space.
    */
-  async getLabelAttachments<T = Models.GetLabelAttachments>(
+  async getLabelAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetLabelAttachments,
     callback: Callback<T>,
   ): Promise<void>;
@@ -145,11 +145,11 @@ export class Attachment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the attachment and its
    * corresponding space.
    */
-  async getLabelAttachments<T = Models.GetLabelAttachments>(
+  async getLabelAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetLabelAttachments,
     callback?: never,
   ): Promise<T>;
-  async getLabelAttachments<T = Models.GetLabelAttachments>(
+  async getLabelAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetLabelAttachments,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -174,7 +174,7 @@ export class Attachment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getPageAttachments<T = Models.GetPageAttachments>(
+  async getPageAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetPageAttachments,
     callback: Callback<T>,
   ): Promise<void>;
@@ -185,11 +185,11 @@ export class Attachment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getPageAttachments<T = Models.GetPageAttachments>(
+  async getPageAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetPageAttachments,
     callback?: never,
   ): Promise<T>;
-  async getPageAttachments<T = Models.GetPageAttachments>(
+  async getPageAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetPageAttachments,
     callback?: Callback<T>,
   ): Promise<void | T> {

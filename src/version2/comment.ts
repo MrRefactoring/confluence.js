@@ -14,7 +14,7 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getPageFooterComments<T = Models.GetPageFooterComments>(
+  async getPageFooterComments<T = Models.Pagination<Models.PageComment>>(
     parameters: Parameters.GetPageFooterComments,
     callback: Callback<T>,
   ): Promise<void>;
@@ -25,11 +25,11 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getPageFooterComments<T = Models.GetPageFooterComments>(
+  async getPageFooterComments<T = Models.Pagination<Models.PageComment>>(
     parameters: Parameters.GetPageFooterComments,
     callback?: never,
   ): Promise<T>;
-  async getPageFooterComments<T = Models.GetPageFooterComments>(
+  async getPageFooterComments<T = Models.Pagination<Models.PageComment>>(
     parameters: Parameters.GetPageFooterComments,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -55,7 +55,7 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getPageInlineComments<T = Models.GetPageInlineComments>(
+  async getPageInlineComments<T = Models.Pagination<Models.PageInlineComment>>(
     parameters: Parameters.GetPageInlineComments,
     callback: Callback<T>,
   ): Promise<void>;
@@ -66,11 +66,11 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getPageInlineComments<T = Models.GetPageInlineComments>(
+  async getPageInlineComments<T = Models.Pagination<Models.PageInlineComment>>(
     parameters: Parameters.GetPageInlineComments,
     callback?: never,
   ): Promise<T>;
-  async getPageInlineComments<T = Models.GetPageInlineComments>(
+  async getPageInlineComments<T = Models.Pagination<Models.PageInlineComment>>(
     parameters: Parameters.GetPageInlineComments,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -97,7 +97,7 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the blog
    * post and its corresponding space.
    */
-  async getBlogPostFooterComments<T = Models.GetBlogPostFooterComments>(
+  async getBlogPostFooterComments<T = Models.Pagination<Models.BlogPostComment>>(
     parameters: Parameters.GetBlogPostFooterComments,
     callback: Callback<T>,
   ): Promise<void>;
@@ -109,11 +109,11 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the blog
    * post and its corresponding space.
    */
-  async getBlogPostFooterComments<T = Models.GetBlogPostFooterComments>(
+  async getBlogPostFooterComments<T = Models.Pagination<Models.BlogPostComment>>(
     parameters: Parameters.GetBlogPostFooterComments,
     callback?: never,
   ): Promise<T>;
-  async getBlogPostFooterComments<T = Models.GetBlogPostFooterComments>(
+  async getBlogPostFooterComments<T = Models.Pagination<Models.BlogPostComment>>(
     parameters: Parameters.GetBlogPostFooterComments,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -140,7 +140,7 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the blog
    * post and its corresponding space.
    */
-  async getBlogPostInlineComments<T = Models.GetBlogPostInlineComments>(
+  async getBlogPostInlineComments<T = Models.Pagination<Models.BlogPostInlineComment>>(
     parameters: Parameters.GetBlogPostInlineComments,
     callback: Callback<T>,
   ): Promise<void>;
@@ -152,11 +152,11 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the blog
    * post and its corresponding space.
    */
-  async getBlogPostInlineComments<T = Models.GetBlogPostInlineComments>(
+  async getBlogPostInlineComments<T = Models.Pagination<Models.BlogPostInlineComment>>(
     parameters: Parameters.GetBlogPostInlineComments,
     callback?: never,
   ): Promise<T>;
-  async getBlogPostInlineComments<T = Models.GetBlogPostInlineComments>(
+  async getBlogPostInlineComments<T = Models.Pagination<Models.BlogPostInlineComment>>(
     parameters: Parameters.GetBlogPostInlineComments,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -328,7 +328,7 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getFooterCommentChildren<T = Models.GetFooterCommentChildren>(
+  async getFooterCommentChildren<T = Models.Pagination<Models.ChildrenComment>>(
     parameters: Parameters.GetFooterCommentChildren,
     callback: Callback<T>,
   ): Promise<void>;
@@ -340,11 +340,11 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getFooterCommentChildren<T = Models.GetFooterCommentChildren>(
+  async getFooterCommentChildren<T = Models.Pagination<Models.ChildrenComment>>(
     parameters: Parameters.GetFooterCommentChildren,
     callback?: never,
   ): Promise<T>;
-  async getFooterCommentChildren<T = Models.GetFooterCommentChildren>(
+  async getFooterCommentChildren<T = Models.Pagination<Models.ChildrenComment>>(
     parameters: Parameters.GetFooterCommentChildren,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -522,7 +522,7 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getInlineCommentChildren<T = Models.GetInlineCommentChildren>(
+  async getInlineCommentChildren<T = Models.Pagination<Models.InlineCommentChildren>>(
     parameters: Parameters.GetInlineCommentChildren,
     callback: Callback<T>,
   ): Promise<void>;
@@ -534,11 +534,11 @@ export class Comment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getInlineCommentChildren<T = Models.GetInlineCommentChildren>(
+  async getInlineCommentChildren<T = Models.Pagination<Models.InlineCommentChildren>>(
     parameters: Parameters.GetInlineCommentChildren,
     callback?: never,
   ): Promise<T>;
-  async getInlineCommentChildren<T = Models.GetInlineCommentChildren>(
+  async getInlineCommentChildren<T = Models.Pagination<Models.InlineCommentChildren>>(
     parameters: Parameters.GetInlineCommentChildren,
     callback?: Callback<T>,
   ): Promise<void | T> {

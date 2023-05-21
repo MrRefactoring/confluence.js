@@ -14,7 +14,7 @@ export class Label {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the parent content of the
    * attachment and its corresponding space.
    */
-  async getAttachmentLabels<T = Models.GetAttachmentLabels>(
+  async getAttachmentLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetAttachmentLabels,
     callback: Callback<T>,
   ): Promise<void>;
@@ -25,11 +25,11 @@ export class Label {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the parent content of the
    * attachment and its corresponding space.
    */
-  async getAttachmentLabels<T = Models.GetAttachmentLabels>(
+  async getAttachmentLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetAttachmentLabels,
     callback?: never,
   ): Promise<T>;
-  async getAttachmentLabels<T = Models.GetAttachmentLabels>(
+  async getAttachmentLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetAttachmentLabels,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -55,7 +55,7 @@ export class Label {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the blog
    * post and its corresponding space.
    */
-  async getBlogPostLabels<T = Models.GetBlogPostLabels>(
+  async getBlogPostLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetBlogPostLabels,
     callback: Callback<T>,
   ): Promise<void>;
@@ -66,11 +66,11 @@ export class Label {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the blog
    * post and its corresponding space.
    */
-  async getBlogPostLabels<T = Models.GetBlogPostLabels>(
+  async getBlogPostLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetBlogPostLabels,
     callback?: never,
   ): Promise<T>;
-  async getBlogPostLabels<T = Models.GetBlogPostLabels>(
+  async getBlogPostLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetBlogPostLabels,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -97,7 +97,7 @@ export class Label {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content and
    * its corresponding space.
    */
-  async getCustomContentLabels<T = Models.GetCustomContentLabels>(
+  async getCustomContentLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetCustomContentLabels,
     callback: Callback<T>,
   ): Promise<void>;
@@ -109,11 +109,11 @@ export class Label {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content and
    * its corresponding space.
    */
-  async getCustomContentLabels<T = Models.GetCustomContentLabels>(
+  async getCustomContentLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetCustomContentLabels,
     callback?: never,
   ): Promise<T>;
-  async getCustomContentLabels<T = Models.GetCustomContentLabels>(
+  async getCustomContentLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetCustomContentLabels,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -139,7 +139,7 @@ export class Label {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getPageLabels<T = Models.GetPageLabels>(
+  async getPageLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetPageLabels,
     callback: Callback<T>,
   ): Promise<void>;
@@ -150,8 +150,8 @@ export class Label {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getPageLabels<T = Models.GetPageLabels>(parameters: Parameters.GetPageLabels, callback?: never): Promise<T>;
-  async getPageLabels<T = Models.GetPageLabels>(
+  async getPageLabels<T = Models.Pagination<Models.Label>>(parameters: Parameters.GetPageLabels, callback?: never): Promise<T>;
+  async getPageLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetPageLabels,
     callback?: Callback<T>,
   ): Promise<void | T> {

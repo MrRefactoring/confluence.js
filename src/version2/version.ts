@@ -13,7 +13,7 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the attachment and its
    * corresponding space.
    */
-  async getAttachmentVersions<T = Models.GetAttachmentVersions>(
+  async getAttachmentVersions<T = Models.Pagination<Models.AttachmentVersion>>(
     parameters: Parameters.GetAttachmentVersions,
     callback: Callback<T>,
   ): Promise<void>;
@@ -23,11 +23,11 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the attachment and its
    * corresponding space.
    */
-  async getAttachmentVersions<T = Models.GetAttachmentVersions>(
+  async getAttachmentVersions<T = Models.Pagination<Models.AttachmentVersion>>(
     parameters: Parameters.GetAttachmentVersions,
     callback?: never,
   ): Promise<T>;
-  async getAttachmentVersions<T = Models.GetAttachmentVersions>(
+  async getAttachmentVersions<T = Models.Pagination<Models.AttachmentVersion>>(
     parameters: Parameters.GetAttachmentVersions,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -80,7 +80,7 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
    * corresponding space.
    */
-  async getBlogPostVersions<T = Models.GetBlogPostVersions>(
+  async getBlogPostVersions<T = Models.Pagination<Models.BlogPostVersion>>(
     parameters: Parameters.GetBlogPostVersions,
     callback: Callback<T>,
   ): Promise<void>;
@@ -90,11 +90,11 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
    * corresponding space.
    */
-  async getBlogPostVersions<T = Models.GetBlogPostVersions>(
+  async getBlogPostVersions<T = Models.Pagination<Models.BlogPostVersion>>(
     parameters: Parameters.GetBlogPostVersions,
     callback?: never,
   ): Promise<T>;
-  async getBlogPostVersions<T = Models.GetBlogPostVersions>(
+  async getBlogPostVersions<T = Models.Pagination<Models.BlogPostVersion>>(
     parameters: Parameters.GetBlogPostVersions,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -148,7 +148,7 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the page and its
    * corresponding space.
    */
-  async getPageVersions<T = Models.GetPageVersions>(
+  async getPageVersions<T = Models.Pagination<Models.PageVersion>>(
     parameters: Parameters.GetPageVersions,
     callback: Callback<T>,
   ): Promise<void>;
@@ -158,11 +158,11 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the page and its
    * corresponding space.
    */
-  async getPageVersions<T = Models.GetPageVersions>(
+  async getPageVersions<T = Models.Pagination<Models.PageVersion>>(
     parameters: Parameters.GetPageVersions,
     callback?: never,
   ): Promise<T>;
-  async getPageVersions<T = Models.GetPageVersions>(
+  async getPageVersions<T = Models.Pagination<Models.PageVersion>>(
     parameters: Parameters.GetPageVersions,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -216,7 +216,7 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content and
    * its corresponding page and space.
    */
-  async getCustomContentVersions<T = Models.GetCustomContentVersions>(
+  async getCustomContentVersions<T = Models.Pagination<Models.CustomContentVersion>>(
     parameters: Parameters.GetCustomContentVersions,
     callback: Callback<T>,
   ): Promise<void>;
@@ -226,11 +226,11 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content and
    * its corresponding page and space.
    */
-  async getCustomContentVersions<T = Models.GetCustomContentVersions>(
+  async getCustomContentVersions<T = Models.Pagination<Models.CustomContentVersion>>(
     parameters: Parameters.GetCustomContentVersions,
     callback?: never,
   ): Promise<T>;
-  async getCustomContentVersions<T = Models.GetCustomContentVersions>(
+  async getCustomContentVersions<T = Models.Pagination<Models.CustomContentVersion>>(
     parameters: Parameters.GetCustomContentVersions,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -284,7 +284,7 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * or blog post and its corresponding space.
    */
-  async getFooterCommentVersions<T = Models.GetFooterCommentVersions>(
+  async getFooterCommentVersions<T = Models.Pagination<Models.CommentVersion>>(
     parameters: Parameters.GetFooterCommentVersions,
     callback: Callback<T>,
   ): Promise<void>;
@@ -294,11 +294,11 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * or blog post and its corresponding space.
    */
-  async getFooterCommentVersions<T = Models.GetFooterCommentVersions>(
+  async getFooterCommentVersions<T = Models.Pagination<Models.CommentVersion>>(
     parameters: Parameters.GetFooterCommentVersions,
     callback?: never,
   ): Promise<T>;
-  async getFooterCommentVersions<T = Models.GetFooterCommentVersions>(
+  async getFooterCommentVersions<T = Models.Pagination<Models.CommentVersion>>(
     parameters: Parameters.GetFooterCommentVersions,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -354,7 +354,7 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * or blog post and its corresponding space.
    */
-  async getInlineCommentVersions<T = Models.GetInlineCommentVersions>(
+  async getInlineCommentVersions<T = Models.Pagination<Models.CommentVersion>>(
     parameters: Parameters.GetInlineCommentVersions,
     callback: Callback<T>,
   ): Promise<void>;
@@ -364,11 +364,11 @@ export class Version {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * or blog post and its corresponding space.
    */
-  async getInlineCommentVersions<T = Models.GetInlineCommentVersions>(
+  async getInlineCommentVersions<T = Models.Pagination<Models.CommentVersion>>(
     parameters: Parameters.GetInlineCommentVersions,
     callback?: never,
   ): Promise<T>;
-  async getInlineCommentVersions<T = Models.GetInlineCommentVersions>(
+  async getInlineCommentVersions<T = Models.Pagination<Models.CommentVersion>>(
     parameters: Parameters.GetInlineCommentVersions,
     callback?: Callback<T>,
   ): Promise<void | T> {
