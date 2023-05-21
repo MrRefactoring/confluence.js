@@ -2,7 +2,7 @@ import { Body } from './body';
 import { ContentStatus } from './contentStatus';
 import { Version } from './version';
 
-export interface ChildrenCommentModel {
+export interface ChildrenComment {
   /** ID of the comment. */
   id?: {};
   status?: ContentStatus;

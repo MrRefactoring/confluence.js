@@ -3,7 +3,7 @@ import { InlineCommentProperties } from './inlineCommentProperties';
 import { InlineCommentResolutionStatus } from './inlineCommentResolutionStatus';
 import { Version } from './version';
 
-export interface InlineCommentChildrenModel {
+export interface InlineCommentChildren {
   /** ID of the comment. */
   id?: {};
   status: 'current' | 'trashed' | 'historical' | 'deleted' | 'any' | 'draft' | 'archived' | string;

@@ -15,7 +15,7 @@ export class CustomContent {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content, the
    * container of the custom content (blog post), and the corresponding space.
    */
-  async getCustomContentByTypeInBlogPost<T = Models.GetCustomContentByTypeInBlogPost>(
+  async getCustomContentByTypeInBlogPost<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByTypeInBlogPost,
     callback: Callback<T>,
   ): Promise<void>;
@@ -27,11 +27,11 @@ export class CustomContent {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content, the
    * container of the custom content (blog post), and the corresponding space.
    */
-  async getCustomContentByTypeInBlogPost<T = Models.GetCustomContentByTypeInBlogPost>(
+  async getCustomContentByTypeInBlogPost<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByTypeInBlogPost,
     callback?: never,
   ): Promise<T>;
-  async getCustomContentByTypeInBlogPost<T = Models.GetCustomContentByTypeInBlogPost>(
+  async getCustomContentByTypeInBlogPost<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByTypeInBlogPost,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -57,7 +57,7 @@ export class CustomContent {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content, the
    * container of the custom content, and the corresponding space (if different from the container).
    */
-  async getCustomContentByType<T = Models.GetCustomContentByType>(
+  async getCustomContentByType<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByType,
     callback: Callback<T>,
   ): Promise<void>;
@@ -68,11 +68,11 @@ export class CustomContent {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content, the
    * container of the custom content, and the corresponding space (if different from the container).
    */
-  async getCustomContentByType<T = Models.GetCustomContentByType>(
+  async getCustomContentByType<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByType,
     callback?: never,
   ): Promise<T>;
-  async getCustomContentByType<T = Models.GetCustomContentByType>(
+  async getCustomContentByType<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByType,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -237,7 +237,7 @@ export class CustomContent {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content, the
    * container of the custom content (page), and the corresponding space.
    */
-  async getCustomContentByTypeInPage<T = Models.GetCustomContentByTypeInPage>(
+  async getCustomContentByTypeInPage<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByTypeInPage,
     callback: Callback<T>,
   ): Promise<void>;
@@ -249,11 +249,11 @@ export class CustomContent {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content, the
    * container of the custom content (page), and the corresponding space.
    */
-  async getCustomContentByTypeInPage<T = Models.GetCustomContentByTypeInPage>(
+  async getCustomContentByTypeInPage<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByTypeInPage,
     callback?: never,
   ): Promise<T>;
-  async getCustomContentByTypeInPage<T = Models.GetCustomContentByTypeInPage>(
+  async getCustomContentByTypeInPage<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByTypeInPage,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -280,7 +280,7 @@ export class CustomContent {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content and
    * the corresponding space.
    */
-  async getCustomContentByTypeInSpace<T = Models.GetCustomContentByTypeInSpace>(
+  async getCustomContentByTypeInSpace<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByTypeInSpace,
     callback: Callback<T>,
   ): Promise<void>;
@@ -292,11 +292,11 @@ export class CustomContent {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content and
    * the corresponding space.
    */
-  async getCustomContentByTypeInSpace<T = Models.GetCustomContentByTypeInSpace>(
+  async getCustomContentByTypeInSpace<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByTypeInSpace,
     callback?: never,
   ): Promise<T>;
-  async getCustomContentByTypeInSpace<T = Models.GetCustomContentByTypeInSpace>(
+  async getCustomContentByTypeInSpace<T = Models.Pagination<Models.CustomContent>>(
     parameters: Parameters.GetCustomContentByTypeInSpace,
     callback?: Callback<T>,
   ): Promise<void | T> {

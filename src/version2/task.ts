@@ -14,7 +14,7 @@ export class Task {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only tasks that the user has permission to view will be returned.
    */
-  async getTasks<T = Models.GetTasks>(
+  async getTasks<T = Models.Pagination<Models.Task>>(
     parameters: Parameters.GetTasks | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -25,8 +25,8 @@ export class Task {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only tasks that the user has permission to view will be returned.
    */
-  async getTasks<T = Models.GetTasks>(parameters?: Parameters.GetTasks, callback?: never): Promise<T>;
-  async getTasks<T = Models.GetTasks>(parameters?: Parameters.GetTasks, callback?: Callback<T>): Promise<void | T> {
+  async getTasks<T = Models.Pagination<Models.Task>>(parameters?: Parameters.GetTasks, callback?: never): Promise<T>;
+  async getTasks<T = Models.Pagination<Models.Task>>(parameters?: Parameters.GetTasks, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/tasks',
       method: 'GET',

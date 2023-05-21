@@ -14,7 +14,7 @@ export class BlogPost {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only blog posts that the user has permission to view will be returned.
    */
-  async getBlogPosts<T = Models.GetBlogPosts>(
+  async getBlogPosts<T = Models.Pagination<Models.BlogPost>>(
     parameters: Parameters.GetBlogPosts | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -25,8 +25,8 @@ export class BlogPost {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only blog posts that the user has permission to view will be returned.
    */
-  async getBlogPosts<T = Models.GetBlogPosts>(parameters?: Parameters.GetBlogPosts, callback?: never): Promise<T>;
-  async getBlogPosts<T = Models.GetBlogPosts>(
+  async getBlogPosts<T = Models.Pagination<Models.BlogPost>>(parameters?: Parameters.GetBlogPosts, callback?: never): Promise<T>;
+  async getBlogPosts<T = Models.Pagination<Models.BlogPost>>(
     parameters?: Parameters.GetBlogPosts,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -179,7 +179,7 @@ export class BlogPost {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getLabelBlogPosts<T = Models.GetLabelBlogPosts>(
+  async getLabelBlogPosts<T = Models.Pagination<Models.BlogPost>>(
     parameters: Parameters.GetLabelBlogPosts,
     callback: Callback<T>,
   ): Promise<void>;
@@ -190,11 +190,11 @@ export class BlogPost {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getLabelBlogPosts<T = Models.GetLabelBlogPosts>(
+  async getLabelBlogPosts<T = Models.Pagination<Models.BlogPost>>(
     parameters: Parameters.GetLabelBlogPosts,
     callback?: never,
   ): Promise<T>;
-  async getLabelBlogPosts<T = Models.GetLabelBlogPosts>(
+  async getLabelBlogPosts<T = Models.Pagination<Models.BlogPost>>(
     parameters: Parameters.GetLabelBlogPosts,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -221,7 +221,7 @@ export class BlogPost {
    * ('Can use' global permission) and view the space. Only blog posts that the user has permission to view will be
    * returned.
    */
-  async getBlogPostsInSpace<T = Models.GetBlogPostsInSpace>(
+  async getBlogPostsInSpace<T = Models.Pagination<Models.BlogPost>>(
     parameters: Parameters.GetBlogPostsInSpace,
     callback: Callback<T>,
   ): Promise<void>;
@@ -233,11 +233,11 @@ export class BlogPost {
    * ('Can use' global permission) and view the space. Only blog posts that the user has permission to view will be
    * returned.
    */
-  async getBlogPostsInSpace<T = Models.GetBlogPostsInSpace>(
+  async getBlogPostsInSpace<T = Models.Pagination<Models.BlogPost>>(
     parameters: Parameters.GetBlogPostsInSpace,
     callback?: never,
   ): Promise<T>;
-  async getBlogPostsInSpace<T = Models.GetBlogPostsInSpace>(
+  async getBlogPostsInSpace<T = Models.Pagination<Models.BlogPost>>(
     parameters: Parameters.GetBlogPostsInSpace,
     callback?: Callback<T>,
   ): Promise<void | T> {

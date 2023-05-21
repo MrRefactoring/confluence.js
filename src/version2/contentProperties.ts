@@ -12,7 +12,7 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the attachment.
    */
-  async getAttachmentContentProperties<T = Models.GetAttachmentContentProperties>(
+  async getAttachmentContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetAttachmentContentProperties,
     callback: Callback<T>,
   ): Promise<void>;
@@ -21,11 +21,11 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the attachment.
    */
-  async getAttachmentContentProperties<T = Models.GetAttachmentContentProperties>(
+  async getAttachmentContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetAttachmentContentProperties,
     callback?: never,
   ): Promise<T>;
-  async getAttachmentContentProperties<T = Models.GetAttachmentContentProperties>(
+  async getAttachmentContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetAttachmentContentProperties,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -187,7 +187,7 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post.
    */
-  async getBlogpostContentProperties<T = Models.GetBlogpostContentProperties>(
+  async getBlogpostContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetBlogpostContentProperties,
     callback: Callback<T>,
   ): Promise<void>;
@@ -196,11 +196,11 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post.
    */
-  async getBlogpostContentProperties<T = Models.GetBlogpostContentProperties>(
+  async getBlogpostContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetBlogpostContentProperties,
     callback?: never,
   ): Promise<T>;
-  async getBlogpostContentProperties<T = Models.GetBlogpostContentProperties>(
+  async getBlogpostContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetBlogpostContentProperties,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -362,7 +362,7 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content.
    */
-  async getCustomContentContentProperties<T = Models.GetCustomContentContentProperties>(
+  async getCustomContentContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetCustomContentContentProperties,
     callback: Callback<T>,
   ): Promise<void>;
@@ -371,11 +371,11 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content.
    */
-  async getCustomContentContentProperties<T = Models.GetCustomContentContentProperties>(
+  async getCustomContentContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetCustomContentContentProperties,
     callback?: never,
   ): Promise<T>;
-  async getCustomContentContentProperties<T = Models.GetCustomContentContentProperties>(
+  async getCustomContentContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetCustomContentContentProperties,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -537,7 +537,7 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the page.
    */
-  async getPageContentProperties<T = Models.GetPageContentProperties>(
+  async getPageContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetPageContentProperties,
     callback: Callback<T>,
   ): Promise<void>;
@@ -546,11 +546,11 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the page.
    */
-  async getPageContentProperties<T = Models.GetPageContentProperties>(
+  async getPageContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetPageContentProperties,
     callback?: never,
   ): Promise<T>;
-  async getPageContentProperties<T = Models.GetPageContentProperties>(
+  async getPageContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetPageContentProperties,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -709,7 +709,7 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the comment.
    */
-  async getCommentContentProperties<T = Models.GetCommentContentProperties>(
+  async getCommentContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetCommentContentProperties,
     callback: Callback<T>,
   ): Promise<void>;
@@ -718,11 +718,11 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the comment.
    */
-  async getCommentContentProperties<T = Models.GetCommentContentProperties>(
+  async getCommentContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetCommentContentProperties,
     callback?: never,
   ): Promise<T>;
-  async getCommentContentProperties<T = Models.GetCommentContentProperties>(
+  async getCommentContentProperties<T = Models.Pagination<Models.ContentProperty>>(
     parameters: Parameters.GetCommentContentProperties,
     callback?: Callback<T>,
   ): Promise<void | T> {

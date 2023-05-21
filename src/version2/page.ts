@@ -14,7 +14,7 @@ export class Page {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getLabelPages<T = Models.GetLabelPages>(
+  async getLabelPages<T = Models.Pagination<Models.Page>>(
     parameters: Parameters.GetLabelPages,
     callback: Callback<T>,
   ): Promise<void>;
@@ -25,8 +25,8 @@ export class Page {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getLabelPages<T = Models.GetLabelPages>(parameters: Parameters.GetLabelPages, callback?: never): Promise<T>;
-  async getLabelPages<T = Models.GetLabelPages>(
+  async getLabelPages<T = Models.Pagination<Models.Page>>(parameters: Parameters.GetLabelPages, callback?: never): Promise<T>;
+  async getLabelPages<T = Models.Pagination<Models.Page>>(
     parameters: Parameters.GetLabelPages,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -52,7 +52,7 @@ export class Page {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only pages that the user has permission to view will be returned.
    */
-  async getPages<T = Models.GetPages>(
+  async getPages<T = Models.Pagination<Models.Page>>(
     parameters: Parameters.GetPages | undefined,
     callback: Callback<T>,
   ): Promise<void>;
@@ -63,8 +63,8 @@ export class Page {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only pages that the user has permission to view will be returned.
    */
-  async getPages<T = Models.GetPages>(parameters?: Parameters.GetPages, callback?: never): Promise<T>;
-  async getPages<T = Models.GetPages>(parameters?: Parameters.GetPages, callback?: Callback<T>): Promise<void | T> {
+  async getPages<T = Models.Pagination<Models.Page>>(parameters?: Parameters.GetPages, callback?: never): Promise<T>;
+  async getPages<T = Models.Pagination<Models.Page>>(parameters?: Parameters.GetPages, callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/pages',
       method: 'GET',
@@ -202,7 +202,7 @@ export class Page {
    * ('Can use' global permission) and 'View' permission for the space. Only pages that the user has permission to view
    * will be returned.
    */
-  async getPagesInSpace<T = Models.GetPagesInSpace>(
+  async getPagesInSpace<T = Models.Pagination<Models.Page>>(
     parameters: Parameters.GetPagesInSpace,
     callback: Callback<T>,
   ): Promise<void>;
@@ -214,11 +214,11 @@ export class Page {
    * ('Can use' global permission) and 'View' permission for the space. Only pages that the user has permission to view
    * will be returned.
    */
-  async getPagesInSpace<T = Models.GetPagesInSpace>(
+  async getPagesInSpace<T = Models.Pagination<Models.Page>>(
     parameters: Parameters.GetPagesInSpace,
     callback?: never,
   ): Promise<T>;
-  async getPagesInSpace<T = Models.GetPagesInSpace>(
+  async getPagesInSpace<T = Models.Pagination<Models.Page>>(
     parameters: Parameters.GetPagesInSpace,
     callback?: Callback<T>,
   ): Promise<void | T> {

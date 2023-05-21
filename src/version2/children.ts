@@ -14,7 +14,7 @@ export class Children {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only pages that the user has permission to view will be returned.
    */
-  async getChildPages<T = Models.GetChildPages>(
+  async getChildPages<T = Models.Pagination<Models.ChildPage>>(
     parameters: Parameters.GetChildPages,
     callback: Callback<T>,
   ): Promise<void>;
@@ -25,8 +25,8 @@ export class Children {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only pages that the user has permission to view will be returned.
    */
-  async getChildPages<T = Models.GetChildPages>(parameters: Parameters.GetChildPages, callback?: never): Promise<T>;
-  async getChildPages<T = Models.GetChildPages>(
+  async getChildPages<T = Models.Pagination<Models.ChildPage>>(parameters: Parameters.GetChildPages, callback?: never): Promise<T>;
+  async getChildPages<T = Models.Pagination<Models.ChildPage>>(
     parameters: Parameters.GetChildPages,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -52,7 +52,7 @@ export class Children {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only custom content that the user has permission to view will be returned.
    */
-  async getChildCustomContent<T = Models.GetChildCustomContent>(
+  async getChildCustomContent<T = Models.Pagination<Models.ChildCustomContent>>(
     parameters: Parameters.GetChildCustomContent,
     callback: Callback<T>,
   ): Promise<void>;
@@ -64,11 +64,11 @@ export class Children {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only custom content that the user has permission to view will be returned.
    */
-  async getChildCustomContent<T = Models.GetChildCustomContent>(
+  async getChildCustomContent<T = Models.Pagination<Models.ChildCustomContent>>(
     parameters: Parameters.GetChildCustomContent,
     callback?: never,
   ): Promise<T>;
-  async getChildCustomContent<T = Models.GetChildCustomContent>(
+  async getChildCustomContent<T = Models.Pagination<Models.ChildCustomContent>>(
     parameters: Parameters.GetChildCustomContent,
     callback?: Callback<T>,
   ): Promise<void | T> {

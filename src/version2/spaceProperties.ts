@@ -15,7 +15,7 @@ export class SpaceProperties {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission) and 'View' permission for the space.
    */
-  async getSpaceProperties<T = Models.GetSpaceProperties>(
+  async getSpaceProperties<T = Models.Pagination<Models.SpaceProperty>>(
     parameters: Parameters.GetSpaceProperties,
     callback: Callback<T>,
   ): Promise<void>;
@@ -27,11 +27,11 @@ export class SpaceProperties {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission) and 'View' permission for the space.
    */
-  async getSpaceProperties<T = Models.GetSpaceProperties>(
+  async getSpaceProperties<T = Models.Pagination<Models.SpaceProperty>>(
     parameters: Parameters.GetSpaceProperties,
     callback?: never,
   ): Promise<T>;
-  async getSpaceProperties<T = Models.GetSpaceProperties>(
+  async getSpaceProperties<T = Models.Pagination<Models.SpaceProperty>>(
     parameters: Parameters.GetSpaceProperties,
     callback?: Callback<T>,
   ): Promise<void | T> {
