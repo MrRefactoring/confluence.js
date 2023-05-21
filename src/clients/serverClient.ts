@@ -1,8 +1,14 @@
 import { BaseClient } from './baseClient';
+import { Config } from '../config';
 import { Audit, Content, ContentBody, Group, LongTask, Search, Space, User } from '../server';
 
 export class ServerClient extends BaseClient {
-  urlSuffix = '/';
+  constructor(config: Config) {
+    super({
+      ...config,
+      apiPrefix: config.apiPrefix ?? '/',
+    });
+  }
 
   audit = new Audit(this);
   content = new Content(this);
