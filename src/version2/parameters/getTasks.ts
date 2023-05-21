@@ -8,16 +8,18 @@ export interface GetTasks {
   'include-blank-tasks'?: boolean;
   /** Filters on the status of the task. */
   status?: string;
+  /** Filters on task ID. Multiple IDs can be specified. */
+  taskId?: number[];
   /** Filters on the space ID of the task. Multiple IDs can be specified. */
-  'space-id'?: number[];
+  spaceId?: number[];
   /**
-   * Filters on the page ID of the task. Multiple IDs can be specified. Note - passing both page and blog post filters
-   * will result in an empty response.
+   * Filters on the page ID of the task. Multiple IDs can be specified. Note - page and blog post filters can be used in
+   * conjunction.
    */
-  'page-id'?: number[];
+  pageId?: number[];
   /**
-   * Filters on the blog post ID of the task. Multiple IDs can be specified. Note - passing both page and blog post
-   * filters will result in an empty response.
+   * Filters on the blog post ID of the task. Multiple IDs can be specified. Note - page and blog post filters can be
+   * used in conjunction.
    */
   'blogpost-id'?: number[];
   /** Filters on the Account ID of the user who created this task. Multiple IDs can be specified. */
@@ -57,4 +59,11 @@ export interface GetTasks {
    * URL that will return the next set of results.
    */
   limit?: number;
+  /**
+   * Due to JavaScript's max integer representation of 2^53-1, the type of any IDs returned in the response body for
+   * this endpoint will be changed from a numeric type to a string type at the end of the deprecation period. In the
+   * meantime, this query param can be passed to this endpoint to opt-in to this change now. See this
+   * [changelog](https://developer.atlassian.com/cloud/confluence/changelog/#CHANGE-905) for more detail.
+   */
+  serializeIdsAsStrings?: boolean;
 }
