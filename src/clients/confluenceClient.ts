@@ -1,4 +1,5 @@
 import { BaseClient } from './baseClient';
+import { Config } from '../config';
 import {
   Analytics,
   Audit,
@@ -35,6 +36,13 @@ import {
 } from '../api';
 
 export class ConfluenceClient extends BaseClient {
+  constructor(config: Config) {
+    super({
+      ...config,
+      apiPrefix: config.apiPrefix ?? '/wiki/rest',
+    });
+  }
+
   analytics = new Analytics(this);
   audit = new Audit(this);
   content = new Content(this);
