@@ -42,7 +42,7 @@ export class SpaceProperties {
         key: parameters.key,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -77,7 +77,7 @@ export class SpaceProperties {
       url: `/spaces/${parameters.spaceId}/properties`,
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,
@@ -116,7 +116,7 @@ export class SpaceProperties {
       url: `/spaces/${parameters.spaceId}/properties/${parameters.propertyId}`,
       method: 'GET',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -151,7 +151,7 @@ export class SpaceProperties {
       url: `/spaces/${parameters.spaceId}/properties/${parameters.propertyId}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,

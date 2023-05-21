@@ -41,7 +41,7 @@ export class Label {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -82,7 +82,7 @@ export class Label {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -125,7 +125,7 @@ export class Label {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -150,7 +150,10 @@ export class Label {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getPageLabels<T = Models.Pagination<Models.Label>>(parameters: Parameters.GetPageLabels, callback?: never): Promise<T>;
+  async getPageLabels<T = Models.Pagination<Models.Label>>(
+    parameters: Parameters.GetPageLabels,
+    callback?: never,
+  ): Promise<T>;
   async getPageLabels<T = Models.Pagination<Models.Label>>(
     parameters: Parameters.GetPageLabels,
     callback?: Callback<T>,
@@ -163,7 +166,7 @@ export class Label {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 

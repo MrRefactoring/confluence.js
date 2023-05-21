@@ -37,7 +37,7 @@ export class ContentProperties {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -70,7 +70,7 @@ export class ContentProperties {
       url: `/attachments/${parameters.attachmentId}/properties`,
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,
@@ -107,7 +107,7 @@ export class ContentProperties {
       url: `/attachments/${parameters.attachmentId}/properties/${parameters.propertyId}`,
       method: 'GET',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -140,7 +140,7 @@ export class ContentProperties {
       url: `/attachments/${parameters.attachmentId}/properties/${parameters.propertyId}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,
@@ -212,7 +212,7 @@ export class ContentProperties {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -245,7 +245,7 @@ export class ContentProperties {
       url: `/blogposts/${parameters.blogpostId}/properties`,
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,
@@ -282,7 +282,7 @@ export class ContentProperties {
       url: `/blogposts/${parameters.blogpostId}/properties/${parameters.propertyId}`,
       method: 'GET',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -315,7 +315,7 @@ export class ContentProperties {
       url: `/blogposts/${parameters.blogpostId}/properties/${parameters.propertyId}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,
@@ -387,7 +387,7 @@ export class ContentProperties {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -420,7 +420,7 @@ export class ContentProperties {
       url: `/custom-content/${parameters.customContentId}/properties`,
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,
@@ -457,7 +457,7 @@ export class ContentProperties {
       url: `/custom-content/${parameters.customContentId}/properties/${parameters.propertyId}`,
       method: 'GET',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -490,7 +490,7 @@ export class ContentProperties {
       url: `/custom-content/${parameters.customContentId}/properties/${parameters.propertyId}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,
@@ -562,7 +562,7 @@ export class ContentProperties {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -595,7 +595,7 @@ export class ContentProperties {
       url: `/pages/${parameters.pageId}/properties`,
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,
@@ -632,7 +632,7 @@ export class ContentProperties {
       url: `/pages/${parameters.pageId}/properties/${parameters.propertyId}`,
       method: 'GET',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -665,7 +665,7 @@ export class ContentProperties {
       url: `/pages/${parameters.pageId}/properties/${parameters.propertyId}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,
@@ -734,7 +734,7 @@ export class ContentProperties {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -767,7 +767,7 @@ export class ContentProperties {
       url: `/comments/${parameters.commentId}/properties`,
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,
@@ -804,7 +804,7 @@ export class ContentProperties {
       url: `/comments/${parameters.commentId}/properties/${parameters.propertyId}`,
       method: 'GET',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -837,7 +837,7 @@ export class ContentProperties {
       url: `/comments/${parameters.commentId}/properties/${parameters.propertyId}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         key: parameters.key,

@@ -26,7 +26,10 @@ export class Task {
    * ('Can use' global permission). Only tasks that the user has permission to view will be returned.
    */
   async getTasks<T = Models.Pagination<Models.Task>>(parameters?: Parameters.GetTasks, callback?: never): Promise<T>;
-  async getTasks<T = Models.Pagination<Models.Task>>(parameters?: Parameters.GetTasks, callback?: Callback<T>): Promise<void | T> {
+  async getTasks<T = Models.Pagination<Models.Task>>(
+    parameters?: Parameters.GetTasks,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/tasks',
       method: 'GET',
@@ -49,7 +52,7 @@ export class Task {
         'completed-at-to': parameters?.['completed-at-to'],
         cursor: parameters?.cursor,
         limit: parameters?.limit,
-        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -76,7 +79,7 @@ export class Task {
       method: 'GET',
       params: {
         'body-format': parameters['body-format'],
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -102,7 +105,7 @@ export class Task {
       url: `/tasks/${parameters.id}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
