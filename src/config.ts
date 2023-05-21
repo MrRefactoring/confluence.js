@@ -11,8 +11,19 @@ export interface Config {
   telemetry?: Config.Telemetry;
   /** Adds `'X-Atlassian-Token': 'no-check'` to each request header */
   noCheckAtlassianToken?: boolean;
-  /** Enable new API error handling. `false` by default. */
+  /**
+   * Enable new API error handling. For "ConfluenceClient" `false` by default.
+   *
+   * For "Version2Client" enabled by default.
+   */
   newErrorHandling?: boolean;
+  /**
+   * Prefix for all API routes.
+   *
+   * - For "ConfluenceCloud" by default it is "/wiki/rest"
+   * - For "Version2Client" by default it is "/wiki/api/v2"
+   */
+  apiPrefix?: string;
 }
 
 export namespace Config {

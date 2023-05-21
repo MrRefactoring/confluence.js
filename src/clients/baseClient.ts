@@ -3,6 +3,7 @@ import type { Callback } from '../callback';
 import type { Client } from './client';
 import type { Config } from '../config';
 import type { RequestConfig } from '../requestConfig';
+import { UtilityTypes } from '../utilityTypes';
 import axios, { AxiosInstance } from 'axios';
 
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
@@ -11,9 +12,7 @@ const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
 export class BaseClient implements Client {
   #instance: AxiosInstance | undefined;
 
-  protected urlSuffix = '/wiki/rest/';
-
-  constructor(protected readonly config: Config) {}
+  constructor(protected readonly config: UtilityTypes.MarkRequired<Config, 'apiPrefix'>) {}
 
   protected paramSerializer(parameters: Record<string, any>): string {
     const parts: string[] = [];
@@ -72,7 +71,7 @@ export class BaseClient implements Client {
     this.#instance = axios.create({
       paramsSerializer: this.paramSerializer.bind(this),
       ...this.config.baseRequestConfig,
-      baseURL: `${this.config.host}${this.urlSuffix}`,
+      baseURL: `${this.config.host}${this.config.apiPrefix}`,
       headers: this.removeUndefinedProperties({
         [ATLASSIAN_TOKEN_CHECK_FLAG]: this.config.noCheckAtlassianToken
           ? ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE

@@ -11,13 +11,13 @@
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build && npm run test && npm run lint",
-    "test": "npm run test:unit && npm run test:e2e",
     "prettier": "prettier --write src",
     "doc": "typedoc --name \"Confluence.js - Cloud and Server API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon https://svgshare.com/i/bVi.svg",
     "lint": "eslint src tests --ext .ts",
     "lint:fix": "npm run lint -- --fix",
+    "test": "npm run test:unit && npm run test:integration",
     "test:unit": "ava tests/unit",
-    "test:e2e": "ava --timeout=2m --fail-fast --no-worker-threads -c 1 -s tests/e2e/**/*.test.ts"
+    "test:integration": "ava --timeout=2m --fail-fast --no-worker-threads -c 1 -s tests/integration"
   },
   "ava": {
     "extensions": [

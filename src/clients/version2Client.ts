@@ -1,4 +1,5 @@
 import { BaseClient } from './baseClient';
+import { Config } from '../config';
 import {
   Attachment,
   BlogPost,
@@ -17,6 +18,14 @@ import {
 } from '../version2';
 
 export class Version2Client extends BaseClient {
+  constructor(config: Config) {
+    super({
+      ...config,
+      newErrorHandling: true,
+      apiPrefix: config.apiPrefix ?? '/wiki/api/v2',
+    });
+  }
+
   attachment = new Attachment(this);
   blogPost = new BlogPost(this);
   children = new Children(this);
