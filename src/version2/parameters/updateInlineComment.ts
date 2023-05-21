@@ -1,13 +1,17 @@
-import { UpdateInlineCommentModel } from '../models';
-
-export interface UpdateInlineComment extends UpdateInlineCommentModel {
+export interface UpdateInlineComment {
   /** The ID of the comment to be retrieved. */
   commentId: number;
+  version?: {
+    /** Number of new version. Should be 1 higher than current version of the comment. */
+    number?: number;
+    /** Optional message store for the new version. */
+    message?: string;
+  };
+  body?: {};
   /**
-   * Due to JavaScript's max integer representation of 2^53-1, the type of any IDs returned in the response body for
-   * this endpoint will be changed from a numeric type to a string type at the end of the deprecation period. In the
-   * meantime, this query param can be passed to this endpoint to opt-in to this change now. See this
-   * [changelog](https://developer.atlassian.com/cloud/confluence/changelog/#CHANGE-905) for more detail.
+   * Resolved state of the comment. Set to true to resolve the comment, set to false to reopen it. If matching the
+   * existing state (i.e. true -> resolved or false -> open/reopened) , no change will occur. A dangling comment cannot
+   * be updated.
    */
-  serializeIdsAsStrings?: boolean;
+  resolved?: boolean;
 }

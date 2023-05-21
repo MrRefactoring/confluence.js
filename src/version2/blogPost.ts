@@ -25,7 +25,10 @@ export class BlogPost {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only blog posts that the user has permission to view will be returned.
    */
-  async getBlogPosts<T = Models.Pagination<Models.BlogPost>>(parameters?: Parameters.GetBlogPosts, callback?: never): Promise<T>;
+  async getBlogPosts<T = Models.Pagination<Models.BlogPost>>(
+    parameters?: Parameters.GetBlogPosts,
+    callback?: never,
+  ): Promise<T>;
   async getBlogPosts<T = Models.Pagination<Models.BlogPost>>(
     parameters?: Parameters.GetBlogPosts,
     callback?: Callback<T>,
@@ -39,7 +42,7 @@ export class BlogPost {
         'body-format': parameters?.bodyFormat,
         cursor: parameters?.cursor,
         limit: parameters?.limit,
-        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -75,7 +78,7 @@ export class BlogPost {
       url: '/blogposts',
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -110,7 +113,7 @@ export class BlogPost {
         'body-format': parameters['body-format'],
         'get-draft': parameters['get-draft'],
         version: parameters.version,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -142,7 +145,7 @@ export class BlogPost {
       url: `/blogposts/${parameters.id}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -206,7 +209,7 @@ export class BlogPost {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -249,7 +252,7 @@ export class BlogPost {
         'body-format': parameters.bodyFormat,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 

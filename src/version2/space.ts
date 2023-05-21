@@ -28,7 +28,10 @@ export class Space {
    * ('Can use' global permission). Only spaces that the user has permission to view will be returned.
    */
   async getSpaces<T = Models.Pagination<Models.Space>>(parameters?: Parameters.GetSpaces, callback?: never): Promise<T>;
-  async getSpaces<T = Models.Pagination<Models.Space>>(parameters?: Parameters.GetSpaces, callback?: Callback<T>): Promise<void | T> {
+  async getSpaces<T = Models.Pagination<Models.Space>>(
+    parameters?: Parameters.GetSpaces,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/spaces',
       method: 'GET',
@@ -42,7 +45,7 @@ export class Space {
         'description-format': parameters?.['description-format'],
         cursor: parameters?.cursor,
         limit: parameters?.limit,
-        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 

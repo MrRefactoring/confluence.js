@@ -41,7 +41,7 @@ export class Comment {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -82,7 +82,7 @@ export class Comment {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -125,7 +125,7 @@ export class Comment {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -168,7 +168,7 @@ export class Comment {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -205,7 +205,7 @@ export class Comment {
       url: '/footer-comments',
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         blogPostId: parameters?.blogPostId,
@@ -248,7 +248,7 @@ export class Comment {
       params: {
         'body-format': parameters['body-format'],
         version: parameters.version,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -283,7 +283,7 @@ export class Comment {
       url: `/footer-comments/${parameters.commentId}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         version: parameters.version,
@@ -356,7 +356,7 @@ export class Comment {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -397,7 +397,7 @@ export class Comment {
       url: '/inline-comments',
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         blogPostId: parameters?.blogPostId,
@@ -441,7 +441,7 @@ export class Comment {
       params: {
         'body-format': parameters['body-format'],
         version: parameters.version,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -476,7 +476,7 @@ export class Comment {
       url: `/inline-comments/${parameters.commentId}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
       data: {
         version: parameters.version,
@@ -546,7 +546,7 @@ export class Comment {
       url: `/inline-comments/${parameters.id}/children`,
       method: 'GET',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
         'body-format': parameters['body-format'],
         sort: parameters.sort,
         cursor: parameters.cursor,

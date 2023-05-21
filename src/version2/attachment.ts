@@ -36,7 +36,7 @@ export class Attachment {
       method: 'GET',
       params: {
         version: parameters.version,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -78,7 +78,7 @@ export class Attachment {
         mediaType: parameters.mediaType,
         filename: parameters.filename,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -120,7 +120,7 @@ export class Attachment {
         mediaType: parameters.mediaType,
         filename: parameters.filename,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -160,7 +160,7 @@ export class Attachment {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -202,7 +202,7 @@ export class Attachment {
         mediaType: parameters.mediaType,
         filename: parameters.filename,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 

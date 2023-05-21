@@ -43,7 +43,7 @@ export class CustomContent {
         cursor: parameters.cursor,
         limit: parameters.limit,
         'body-format': parameters['body-format'],
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -85,7 +85,7 @@ export class CustomContent {
         cursor: parameters.cursor,
         limit: parameters.limit,
         'body-format': parameters['body-format'],
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -122,7 +122,7 @@ export class CustomContent {
       url: '/custom-content',
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -159,7 +159,7 @@ export class CustomContent {
       params: {
         'body-format': parameters['body-format'],
         version: parameters.version,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -196,7 +196,7 @@ export class CustomContent {
       url: `/custom-content/${parameters.id}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -265,7 +265,7 @@ export class CustomContent {
         cursor: parameters.cursor,
         limit: parameters.limit,
         'body-format': parameters['body-format'],
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -308,7 +308,7 @@ export class CustomContent {
         cursor: parameters.cursor,
         limit: parameters.limit,
         'body-format': parameters['body-format'],
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 

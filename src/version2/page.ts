@@ -25,7 +25,10 @@ export class Page {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
    * and its corresponding space.
    */
-  async getLabelPages<T = Models.Pagination<Models.Page>>(parameters: Parameters.GetLabelPages, callback?: never): Promise<T>;
+  async getLabelPages<T = Models.Pagination<Models.Page>>(
+    parameters: Parameters.GetLabelPages,
+    callback?: never,
+  ): Promise<T>;
   async getLabelPages<T = Models.Pagination<Models.Page>>(
     parameters: Parameters.GetLabelPages,
     callback?: Callback<T>,
@@ -38,7 +41,7 @@ export class Page {
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -64,7 +67,10 @@ export class Page {
    * ('Can use' global permission). Only pages that the user has permission to view will be returned.
    */
   async getPages<T = Models.Pagination<Models.Page>>(parameters?: Parameters.GetPages, callback?: never): Promise<T>;
-  async getPages<T = Models.Pagination<Models.Page>>(parameters?: Parameters.GetPages, callback?: Callback<T>): Promise<void | T> {
+  async getPages<T = Models.Pagination<Models.Page>>(
+    parameters?: Parameters.GetPages,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
     const config: RequestConfig = {
       url: '/pages',
       method: 'GET',
@@ -74,7 +80,7 @@ export class Page {
         'body-format': parameters?.['body-format'],
         cursor: parameters?.cursor,
         limit: parameters?.limit,
-        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -109,7 +115,7 @@ export class Page {
       url: '/pages',
       method: 'POST',
       params: {
-        'serialize-ids-as-strings': parameters?.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -138,7 +144,7 @@ export class Page {
         'body-format': parameters['body-format'],
         'get-draft': parameters['get-draft'],
         version: parameters.version,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -164,7 +170,7 @@ export class Page {
       url: `/pages/${parameters.id}`,
       method: 'PUT',
       params: {
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
@@ -230,7 +236,7 @@ export class Page {
         'body-format': parameters['body-format'],
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'serialize-ids-as-strings': parameters.serializeIdsAsStrings,
+        'serialize-ids-as-strings': true,
       },
     };
 
