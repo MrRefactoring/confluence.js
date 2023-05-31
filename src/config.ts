@@ -15,6 +15,8 @@ export interface Config {
   noCheckAtlassianToken?: boolean;
   /** Enable new API error handling. `false` by default. */
   newErrorHandling?: boolean;
+  // url suffix
+  urlSuffix: string;
 }
 
 export namespace Config {

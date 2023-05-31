@@ -13,7 +13,11 @@ export class BaseClient implements Client {
 
   protected urlSuffix = '/wiki/rest/';
 
-  constructor(protected readonly config: Config) {}
+  constructor(protected readonly config: Config) {
+    if (config?.urlSuffix){
+      this.urlSuffix = config.urlSuffix;
+    }    
+  }  
 
   protected paramSerializer(parameters: Record<string, any>): string {
     const parts: string[] = [];
