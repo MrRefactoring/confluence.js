@@ -15,7 +15,7 @@ export class Template {
    */
   async createContentTemplate<T = Models.ContentTemplate>(
     parameters: Parameters.CreateContentTemplate | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new content template. Note, blueprint templates cannot be created via the REST API.
@@ -25,7 +25,7 @@ export class Template {
    */
   async createContentTemplate<T = Models.ContentTemplate>(
     parameters?: Parameters.CreateContentTemplate,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createContentTemplate<T = Models.ContentTemplate>(
     parameters?: Parameters.CreateContentTemplate,
@@ -55,7 +55,7 @@ export class Template {
    */
   async updateContentTemplate<T = Models.ContentTemplate>(
     parameters: Parameters.UpdateContentTemplate | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a content template. Note, blueprint templates cannot be updated via the REST API.
@@ -65,7 +65,7 @@ export class Template {
    */
   async updateContentTemplate<T = Models.ContentTemplate>(
     parameters?: Parameters.UpdateContentTemplate,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateContentTemplate<T = Models.ContentTemplate>(
     parameters?: Parameters.UpdateContentTemplate,
@@ -101,7 +101,7 @@ export class Template {
    */
   async getBlueprintTemplates<T = Models.BlueprintTemplateArray>(
     parameters: Parameters.GetBlueprintTemplates | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all templates provided by blueprints. Use this method to retrieve all global blueprint templates or all
@@ -116,7 +116,7 @@ export class Template {
    */
   async getBlueprintTemplates<T = Models.BlueprintTemplateArray>(
     parameters?: Parameters.GetBlueprintTemplates,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getBlueprintTemplates<T = Models.BlueprintTemplateArray>(
     parameters?: Parameters.GetBlueprintTemplates,
@@ -146,7 +146,7 @@ export class Template {
    */
   async getContentTemplates<T = Models.ContentTemplateArray>(
     parameters: Parameters.GetContentTemplates | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all content templates. Use this method to retrieve all global content templates or all content templates in
@@ -158,7 +158,7 @@ export class Template {
    */
   async getContentTemplates<T = Models.ContentTemplateArray>(
     parameters?: Parameters.GetContentTemplates,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentTemplates<T = Models.ContentTemplateArray>(
     parameters?: Parameters.GetContentTemplates,
@@ -188,7 +188,7 @@ export class Template {
    */
   async getContentTemplate<T = Models.ContentTemplate>(
     parameters: Parameters.GetContentTemplate,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a content template. This includes information about template, like the name, the space or blueprint that
@@ -200,7 +200,7 @@ export class Template {
    */
   async getContentTemplate<T = Models.ContentTemplate>(
     parameters: Parameters.GetContentTemplate,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentTemplate<T = Models.ContentTemplate>(
     parameters: Parameters.GetContentTemplate,

@@ -25,7 +25,7 @@ export class ContentMacroBody {
    */
   async getMacroBodyByMacroId<T = Models.MacroInstance>(
     parameters: Parameters.GetMacroBodyByMacroId,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the body of a macro in storage format, for the given macro ID. This includes information like the name of
@@ -45,7 +45,7 @@ export class ContentMacroBody {
    */
   async getMacroBodyByMacroId<T = Models.MacroInstance>(
     parameters: Parameters.GetMacroBodyByMacroId,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getMacroBodyByMacroId<T = Models.MacroInstance>(
     parameters: Parameters.GetMacroBodyByMacroId,
@@ -77,7 +77,7 @@ export class ContentMacroBody {
    */
   async getAndConvertMacroBodyByMacroId<T = Models.ContentBody>(
     parameters: Parameters.GetAndConvertMacroBodyByMacroId,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the body of a macro in format specified in path, for the given macro ID. This includes information like the
@@ -97,7 +97,7 @@ export class ContentMacroBody {
    */
   async getAndConvertMacroBodyByMacroId<T = Models.ContentBody>(
     parameters: Parameters.GetAndConvertMacroBodyByMacroId,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAndConvertMacroBodyByMacroId<T = Models.ContentBody>(
     parameters: Parameters.GetAndConvertMacroBodyByMacroId,
@@ -134,7 +134,7 @@ export class ContentMacroBody {
    */
   async getAndAsyncConvertMacroBodyByMacroId<T = Models.AsyncId>(
     parameters: Parameters.GetAndAsyncConvertMacroBodyByMacroId,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns Async Id of the conversion task which will convert the macro into a content body of the desired format. The
@@ -154,7 +154,7 @@ export class ContentMacroBody {
    */
   async getAndAsyncConvertMacroBodyByMacroId<T = Models.AsyncId>(
     parameters: Parameters.GetAndAsyncConvertMacroBodyByMacroId,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAndAsyncConvertMacroBodyByMacroId<T = Models.AsyncId>(
     parameters: Parameters.GetAndAsyncConvertMacroBodyByMacroId,

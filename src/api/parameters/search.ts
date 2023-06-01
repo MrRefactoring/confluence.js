@@ -34,10 +34,10 @@ export interface Search {
    * - ContentStatuses Content statuses to search against. Optional. Specify these values in an object.
    *
    * @example
-   *   "cqlcontext={%22spaceKey%22:%22TEST%22, %22contentId%22:%22123%22}";
+   *   'cqlcontext={%22spaceKey%22:%22TEST%22, %22contentId%22:%22123%22}';
    */
   cqlcontext?: string;
-  /** Pointer to a set of search results, returned as part of the *next* or *prev* URL from the previous search call. */
+  /** Pointer to a set of search results, returned as part of the _next_ or _prev_ URL from the previous search call. */
   cursor?: string;
   /**
    * Include content from archived spaces in the results.

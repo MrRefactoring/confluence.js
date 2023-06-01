@@ -15,7 +15,8 @@ export interface FindSourcesForTarget {
    * - If `targetType` is `user`, then specify either `current` (logged-in user), the user key of the user, or the account
    *   ID of the user. Note that the user key has been deprecated in favor of the account ID for this parameter. See the
    *   [migration
-   *   guide](https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for details.
+   *   guide](https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for
+   *   details.
    * - If `targetType` is 'content', then specify the content ID.
    * - If `targetType` is 'space', then specify the space key.
    */

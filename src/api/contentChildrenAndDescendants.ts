@@ -27,7 +27,7 @@ export class ContentChildrenAndDescendants {
    */
   async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a map of the direct children of a piece of content. A piece of content has different types of child
@@ -49,7 +49,7 @@ export class ContentChildrenAndDescendants {
    */
   async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
@@ -121,7 +121,7 @@ export class ContentChildrenAndDescendants {
    */
   async getContentChildrenByType<T = Models.ContentArray>(
     parameters: Parameters.GetContentChildrenByType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all children of a given type, for a piece of content. A piece of content has different types of child
@@ -142,7 +142,7 @@ export class ContentChildrenAndDescendants {
    */
   async getContentChildrenByType<T = Models.ContentArray>(
     parameters: Parameters.GetContentChildrenByType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentChildrenByType<T = Models.ContentArray>(
     parameters: Parameters.GetContentChildrenByType,
@@ -181,7 +181,7 @@ export class ContentChildrenAndDescendants {
    */
   async getContentDescendants<T = Models.ContentChildren>(
     parameters: Parameters.GetContentDescendants,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a map of the descendants of a piece of content. This is similar to [Get content
@@ -203,7 +203,7 @@ export class ContentChildrenAndDescendants {
    */
   async getContentDescendants<T = Models.ContentChildren>(
     parameters: Parameters.GetContentDescendants,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentDescendants<T = Models.ContentChildren>(
     parameters: Parameters.GetContentDescendants,
@@ -223,12 +223,12 @@ export class ContentChildrenAndDescendants {
   /** @deprecated This API will be removed in the next major version. Use `getDescendantsOfType` method instead. */
   async descendantsOfType<T = Models.ContentArray>(
     parameters: Parameters.DescendantsOfType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** @deprecated This API will be removed in the next major version. Use `getDescendantsOfType` method instead. */
   async descendantsOfType<T = Models.ContentArray>(
     parameters: Parameters.DescendantsOfType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async descendantsOfType<T = Models.ContentArray>(
     parameters: Parameters.DescendantsOfType,
@@ -256,7 +256,7 @@ export class ContentChildrenAndDescendants {
    */
   async getDescendantsOfType<T = Models.ContentArray>(
     parameters: Parameters.GetDescendantsOfType,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all descendants of a given type, for a piece of content. This is similar to [Get content children by
@@ -277,7 +277,7 @@ export class ContentChildrenAndDescendants {
    */
   async getDescendantsOfType<T = Models.ContentArray>(
     parameters: Parameters.GetDescendantsOfType,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getDescendantsOfType<T = Models.ContentArray>(
     parameters: Parameters.GetDescendantsOfType,
@@ -306,7 +306,7 @@ export class ContentChildrenAndDescendants {
    */
   async copyPageHierarchy<T = Models.LongTask>(
     parameters: Parameters.CopyPageHierarchy,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Copy page hierarchy allows the copying of an entire hierarchy of pages and their associated properties, permissions

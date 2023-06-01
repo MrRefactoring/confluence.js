@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.7.0
+
+- `apiPrefix` added to code for allowing to use custom API prefix for all clients. Thanks to [Petr Plenkov](https://github.com/ThePlenkov) for pull request.
+
 ### 1.6.3
 
 - `atlas_doc_format` added to some models. Thanks to [Andrew McClenaghan](https://github.com/andymac4182) for pull request.

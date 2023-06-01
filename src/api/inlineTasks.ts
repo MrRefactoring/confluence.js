@@ -15,7 +15,7 @@ export class InlineTasks {
    */
   async searchTasks<T = Models.TaskPageResponse>(
     parameters: Parameters.SearchTasks | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns inline tasks based on the search query.

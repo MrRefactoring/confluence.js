@@ -15,7 +15,7 @@ export class ContentLabels {
    */
   async getLabelsForContent<T = Models.LabelArray>(
     parameters: Parameters.GetLabelsForContent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the labels on a piece of content.
@@ -25,7 +25,7 @@ export class ContentLabels {
    */
   async getLabelsForContent<T = Models.LabelArray>(
     parameters: Parameters.GetLabelsForContent,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getLabelsForContent<T = Models.LabelArray>(
     parameters: Parameters.GetLabelsForContent,
@@ -57,7 +57,7 @@ export class ContentLabels {
    */
   async addLabelsToContent<T = Models.LabelArray>(
     parameters: Parameters.AddLabelsToContent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds labels to a piece of content. Does not modify the existing labels.
@@ -72,7 +72,7 @@ export class ContentLabels {
    */
   async addLabelsToContent<T = Models.LabelArray>(
     parameters: Parameters.AddLabelsToContent,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addLabelsToContent<T = Models.LabelArray>(
     parameters: Parameters.AddLabelsToContent,
@@ -101,7 +101,7 @@ export class ContentLabels {
    */
   async removeLabelFromContentUsingQueryParameter<T = void>(
     parameters: Parameters.RemoveLabelFromContentUsingQueryParameter,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes a label from a piece of content. This is similar to [Remove label from
@@ -114,7 +114,7 @@ export class ContentLabels {
    */
   async removeLabelFromContentUsingQueryParameter<T = void>(
     parameters: Parameters.RemoveLabelFromContentUsingQueryParameter,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeLabelFromContentUsingQueryParameter<T = void>(
     parameters: Parameters.RemoveLabelFromContentUsingQueryParameter,
@@ -143,7 +143,7 @@ export class ContentLabels {
    */
   async removeLabelFromContent<T = void>(
     parameters: Parameters.RemoveLabelFromContent,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes a label from a piece of content. This is similar to [Remove label from content using query

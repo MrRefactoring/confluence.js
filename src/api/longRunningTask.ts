@@ -16,7 +16,7 @@ export class LongRunningTask {
    */
   async getTasks<T = Models.LongTaskStatusArray>(
     parameters: Parameters.GetTasks | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns information about all active long-running tasks (e.g. space export), such as how long each task has been
@@ -51,7 +51,7 @@ export class LongRunningTask {
    */
   async getTask<T = Models.LongTaskStatusWithLinks>(
     parameters: Parameters.GetTask,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns information about an active long-running task (e.g. space export), such as how long it has been running and

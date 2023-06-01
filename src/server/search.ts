@@ -11,12 +11,12 @@ export class Search {
   /** Search for entities in Confluence using the Confluence Query Language (CQL) */
   async search<T = Pagination<Models.SearchResult>>(
     parameters: Parameters.SearchContent | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Search for entities in Confluence using the Confluence Query Language (CQL) */
   async search<T = Pagination<Models.SearchResult>>(
     parameters?: Parameters.SearchContent,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async search<T = Pagination<Models.SearchResult>>(
     parameters?: Parameters.SearchContent,

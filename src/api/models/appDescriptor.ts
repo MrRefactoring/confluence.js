@@ -10,7 +10,8 @@ export interface AppDescriptor {
   /**
    * The base url of the remote app, which is used for all communications back to the app instance.
    *
-   * The baseUrl must start with `https://` to ensure that all data is sent securely between our cloud instances and your app.
+   * The baseUrl must start with `https://` to ensure that all data is sent securely between our cloud instances and
+   * your app.
    *
    * Note: each app must have a unique baseUrl. If you would like to serve multiple apps from the same host, consider
    * adding a path prefix into the baseUrl.
@@ -27,7 +28,8 @@ export interface AppDescriptor {
    * app as a private version, and have a seamless transition for those beta customers (and existing customers) once the
    * major revision is launched.
    *
-   * Vendors can accomplish this by listing a new private version of their app, with a new descriptor hosted at a new URL.
+   * Vendors can accomplish this by listing a new private version of their app, with a new descriptor hosted at a new
+   * URL.
    *
    * They use the Atlassian Marketplace's access token facilities to share this version with customers (or for internal
    * use). When this version is ready to be taken live, it can be transitioned from private to public, and all customers
@@ -35,7 +37,8 @@ export interface AppDescriptor {
    *
    * It's important to note that this approach allows vendors to create new versions manually, despite the fact that in
    * the common case, the versions are automatically created. This has a few benefits-- for example, it gives vendors
-   * the ability to change their descriptor URL if they need to (the descriptor URL will be immutable for existing versions).
+   * the ability to change their descriptor URL if they need to (the descriptor URL will be immutable for existing
+   * versions).
    */
   apiVersion?: number;
 

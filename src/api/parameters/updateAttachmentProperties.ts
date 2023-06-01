@@ -46,21 +46,21 @@ export namespace UpdateAttachmentProperties {
     macroRenderedOutput?: any;
     extensions?: any;
     _expandable?: {
-      'childTypes': string;
-      'container': string;
-      'metadata': string;
-      'operations': string;
-      'children': string;
-      'restrictions': string;
-      'history': string;
-      'ancestors': string;
-      'body': string;
-      'version': string;
-      'descendants': string;
-      'space': string;
-      'extensions': string;
-      'schedulePublishDate': string;
-      'macroRenderedOutput': string
+      childTypes: string;
+      container: string;
+      metadata: string;
+      operations: string;
+      children: string;
+      restrictions: string;
+      history: string;
+      ancestors: string;
+      body: string;
+      version: string;
+      descendants: string;
+      space: string;
+      extensions: string;
+      schedulePublishDate: string;
+      macroRenderedOutput: string;
     };
     _links?: GenericLinks;
   }

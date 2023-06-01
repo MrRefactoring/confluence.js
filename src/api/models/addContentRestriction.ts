@@ -6,18 +6,23 @@ export interface AddContentRestriction {
    * this object.
    */
   restrictions: {
-    /** The users that the restrictions will be applied to. This array must have at least one item, otherwise it should be omitted. */
+    /**
+     * The users that the restrictions will be applied to. This array must have at least one item, otherwise it should
+     * be omitted.
+     */
     user?: {
       /** Set to 'known'. */
       type: string;
       /**
        * This property is no longer available and will be removed from the documentation soon. Use `accountId` instead.
-       * See the [deprecation notice](/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for details.
+       * See the [deprecation notice](/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for
+       * details.
        */
       username?: string;
       /**
        * This property is no longer available and will be removed from the documentation soon. Use `accountId` instead.
-       * See the [deprecation notice](/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for details.
+       * See the [deprecation notice](/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for
+       * details.
        */
       userKey?: string;
       /**

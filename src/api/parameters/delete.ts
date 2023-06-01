@@ -11,7 +11,10 @@ export interface Delete {
    *   - If `sourceType` is 'space', then specify the space key.
    */
   sourceKey: string;
-  /** The target entity type of the relationship. This must be 'space' or 'content', if the `relationName` is 'favourite'. */
+  /**
+   * The target entity type of the relationship. This must be 'space' or 'content', if the `relationName` is
+   * 'favourite'.
+   */
   targetType: string;
   /**
    * - The identifier for the target entity:

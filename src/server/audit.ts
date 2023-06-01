@@ -11,12 +11,12 @@ export class Audit {
   /** Fetch a paginated list of AuditRecord instances dating back to a certain time */
   async getAuditRecords<T = Pagination<Models.AuditRecord>>(
     parameters: Parameters.GetAuditRecords | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Fetch a paginated list of AuditRecord instances dating back to a certain time */
   async getAuditRecords<T = Pagination<Models.AuditRecord>>(
     parameters?: Parameters.GetAuditRecords,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAuditRecords<T = Pagination<Models.AuditRecord>>(
     parameters?: Parameters.GetAuditRecords,
@@ -40,12 +40,12 @@ export class Audit {
   /** Creates a record in the audit log. */
   async createAuditRecord<T = Models.AuditRecord>(
     parameters: Parameters.CreateAuditRecord,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Creates a record in the audit log. */
   async createAuditRecord<T = Models.AuditRecord>(
     parameters: Parameters.CreateAuditRecord,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createAuditRecord<T = Models.AuditRecord>(
     parameters: Parameters.CreateAuditRecord,
@@ -74,7 +74,7 @@ export class Audit {
   /** Exports audit records as a CSV file or ZIP file. */
   async exportAuditRecords<T = ArrayBuffer>(
     parameters: Parameters.ExportAuditRecords | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Exports audit records as a CSV file or ZIP file. */
   async exportAuditRecords<T = ArrayBuffer>(parameters?: Parameters.ExportAuditRecords, callback?: never): Promise<T>;
@@ -112,12 +112,12 @@ export class Audit {
   /** Set the retention period to a new value. Can throw ServiceException if the retention period is too long */
   async setRetentionPeriod<T = Models.RetentionPeriod>(
     parameters: Models.RetentionPeriod,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Set the retention period to a new value. Can throw ServiceException if the retention period is too long */
   async setRetentionPeriod<T = Models.RetentionPeriod>(
     parameters: Models.RetentionPeriod,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setRetentionPeriod<T = Models.RetentionPeriod>(
     parameters: Models.RetentionPeriod,
@@ -138,12 +138,12 @@ export class Audit {
   /** Fetch a paginated list of AuditRecord instances dating back to a certain time */
   async getAuditRecordsForTimePeriod<T = Pagination<Models.AuditRecord>>(
     parameters: Parameters.GetAuditRecordsSince | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Fetch a paginated list of AuditRecord instances dating back to a certain time */
   async getAuditRecordsForTimePeriod<T = Pagination<Models.AuditRecord>>(
     parameters?: Parameters.GetAuditRecordsSince,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAuditRecordsForTimePeriod<T = Pagination<Models.AuditRecord>>(
     parameters?: Parameters.GetAuditRecordsSince,

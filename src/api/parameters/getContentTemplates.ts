@@ -1,5 +1,8 @@
 export interface GetContentTemplates {
-  /** The key of the space to be queried for templates. If the `spaceKey` is not specified, global templates will be returned. */
+  /**
+   * The key of the space to be queried for templates. If the `spaceKey` is not specified, global templates will be
+   * returned.
+   */
   spaceKey?: string;
   /** The starting index of the returned templates. */
   start?: number;

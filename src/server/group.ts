@@ -11,7 +11,7 @@ export class Group {
   /** Get a paginated collection of user groups */
   async getGroups<T = Pagination<Models.Group>>(
     parameters: Parameters.GetGroups | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Get a paginated collection of user groups */
   async getGroups<T = Pagination<Models.Group>>(parameters?: Parameters.GetGroups, callback?: never): Promise<T>;
@@ -51,7 +51,7 @@ export class Group {
   /** Get a paginated collection of users in the given group */
   async getMembers<T = Pagination<Models.User>>(
     parameters: Parameters.GetMembers,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Get a paginated collection of users in the given group */
   async getMembers<T = Pagination<Models.User>>(parameters: Parameters.GetMembers, callback?: never): Promise<T>;

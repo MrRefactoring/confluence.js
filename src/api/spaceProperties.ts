@@ -14,7 +14,7 @@ export class SpaceProperties {
    */
   async getSpaceProperties<T = Models.SpacePropertyArray>(
     parameters: Parameters.GetSpaceProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all properties for the given space. Space properties are a key-value storage associated with a space.
@@ -23,7 +23,7 @@ export class SpaceProperties {
    */
   async getSpaceProperties<T = Models.SpacePropertyArray>(
     parameters: Parameters.GetSpaceProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSpaceProperties<T = Models.SpacePropertyArray>(
     parameters: Parameters.GetSpaceProperties,
@@ -49,7 +49,7 @@ export class SpaceProperties {
    */
   async createSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpaceProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new space property.
@@ -58,7 +58,7 @@ export class SpaceProperties {
    */
   async createSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpaceProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpaceProperty,
@@ -84,7 +84,7 @@ export class SpaceProperties {
    */
   async getSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpaceProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a space property.
@@ -93,7 +93,7 @@ export class SpaceProperties {
    */
   async getSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpaceProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpaceProperty,
@@ -118,7 +118,7 @@ export class SpaceProperties {
    */
   async createSpacePropertyForKey<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpacePropertyForKey,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new space property. This is the same as `POST /api/space/{spaceKey}/property` but the key for the
@@ -128,7 +128,7 @@ export class SpaceProperties {
    */
   async createSpacePropertyForKey<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpacePropertyForKey,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createSpacePropertyForKey<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpacePropertyForKey,
@@ -152,7 +152,7 @@ export class SpaceProperties {
    */
   async updateSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.UpdateSpaceProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates a space property. Note, you cannot update the key of a space property, only the value.
@@ -161,7 +161,7 @@ export class SpaceProperties {
    */
   async updateSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.UpdateSpaceProperty,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.UpdateSpaceProperty,

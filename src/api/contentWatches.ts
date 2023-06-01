@@ -22,7 +22,7 @@ export class ContentWatches {
    */
   async getWatchesForPage<T = Models.WatchArray>(
     parameters: Parameters.GetWatchesForPage,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the watches for a page. A user that watches a page will receive receive notifications when the page is
@@ -39,7 +39,7 @@ export class ContentWatches {
    */
   async getWatchesForPage<T = Models.WatchArray>(
     parameters: Parameters.GetWatchesForPage,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWatchesForPage<T = Models.WatchArray>(
     parameters: Parameters.GetWatchesForPage,
@@ -72,7 +72,7 @@ export class ContentWatches {
    */
   async getWatchesForSpace<T = Models.SpaceWatchArray>(
     parameters: Parameters.GetWatchesForSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all space watches for the space that the content is in. A user that watches a space will receive receive
@@ -89,7 +89,7 @@ export class ContentWatches {
    */
   async getWatchesForSpace<T = Models.SpaceWatchArray>(
     parameters: Parameters.GetWatchesForSpace,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWatchesForSpace<T = Models.SpaceWatchArray>(
     parameters: Parameters.GetWatchesForSpace,
@@ -110,12 +110,12 @@ export class ContentWatches {
   /** Returns a list of watchers of a space */
   async getWatchersForSpace<T = Models.SpaceWatchArray>(
     parameters: Parameters.GetWatchersForSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns a list of watchers of a space */
   async getWatchersForSpace<T = Models.SpaceWatchArray>(
     parameters: Parameters.GetWatchersForSpace,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getWatchersForSpace<T = Models.SpaceWatchArray>(
     parameters: Parameters.GetWatchersForSpace,
@@ -144,7 +144,7 @@ export class ContentWatches {
    */
   async getContentWatchStatus<T = Models.UserWatch>(
     parameters: Parameters.GetContentWatchStatus,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns whether a user is watching a piece of content. Choose the user by doing one of the following:
@@ -157,7 +157,7 @@ export class ContentWatches {
    */
   async getContentWatchStatus<T = Models.UserWatch>(
     parameters: Parameters.GetContentWatchStatus,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentWatchStatus<T = Models.UserWatch>(
     parameters: Parameters.GetContentWatchStatus,
@@ -230,7 +230,7 @@ export class ContentWatches {
    */
   async removeContentWatcher<T = void>(
     parameters: Parameters.RemoveContentWatcher,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes a user as a watcher from a piece of content. Choose the user by doing one of the following:
@@ -273,7 +273,7 @@ export class ContentWatches {
    */
   async isWatchingLabel<T = Models.UserWatch>(
     parameters: Parameters.IsWatchingLabel,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns whether a user is watching a label. Choose the user by doing one of the following:
@@ -393,7 +393,7 @@ export class ContentWatches {
    */
   async isWatchingSpace<T = Models.UserWatch>(
     parameters: Parameters.IsWatchingSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns whether a user is watching a space. Choose the user by doing one of the following:

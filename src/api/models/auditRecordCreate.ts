@@ -22,12 +22,16 @@ export interface AuditRecordCreate {
   remoteAddress: string;
   /**
    * The creation date-time of the audit record, as a timestamp. This is converted to a date-time display in the
-   * Confluence UI. If the `creationDate` is not specified, then it will be set to the timestamp for the current date-time.
+   * Confluence UI. If the `creationDate` is not specified, then it will be set to the timestamp for the current
+   * date-time.
    */
   creationDate?: number;
   /** The summary of the event, which is displayed in the 'Change' column on the audit log in the Confluence UI. */
   summary?: string;
-  /** A long description of the event, which is displayed in the 'Description' field on the audit log in the Confluence UI. */
+  /**
+   * A long description of the event, which is displayed in the 'Description' field on the audit log in the Confluence
+   * UI.
+   */
   description?: string;
   /** The category of the event, which is displayed in the 'Event type' column on the audit log in the Confluence UI. */
   category?: string;

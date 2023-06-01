@@ -10,7 +10,7 @@ export class Search {
   /** @deprecated Will be removed in the next major version. Use `searchByCQL` instead. */
   async search<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.Search,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** @deprecated Will be removed in the next major version. Use `searchByCQL` instead. */
   async search<T = Models.SearchPageResponseSearchResult>(parameters: Parameters.Search, callback?: never): Promise<T>;
@@ -34,7 +34,7 @@ export class Search {
    */
   async searchByCQL<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.SearchByCQL,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Searches for content using the [Confluence Query Language
@@ -49,7 +49,7 @@ export class Search {
    */
   async searchByCQL<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.SearchByCQL,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async searchByCQL<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.SearchByCQL,
@@ -80,12 +80,12 @@ export class Search {
   /** @deprecated Will be removed in the next major version. Use `searchUser` instead. */
   async userSearch<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.UserSearch,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** @deprecated Will be removed in the next major version. Use `searchUser` instead. */
   async userSearch<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.UserSearch,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async userSearch<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.UserSearch,
@@ -103,7 +103,7 @@ export class Search {
    */
   async searchUser<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.SearchUser,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Searches for users using user-specific queries from the [Confluence Query Language
@@ -114,7 +114,7 @@ export class Search {
    */
   async searchUser<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.SearchUser,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async searchUser<T = Models.SearchPageResponseSearchResult>(
     parameters: Parameters.SearchUser,

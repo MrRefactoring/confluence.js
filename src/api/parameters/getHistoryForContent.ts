@@ -2,7 +2,8 @@ export interface GetHistoryForContent {
   /** The ID of the content to be queried for its history. */
   id: string;
   /**
-   * A multi-value parameter indicating which properties of the content history to expand. Maximum sub-expansions allowed is `8`.
+   * A multi-value parameter indicating which properties of the content history to expand. Maximum sub-expansions
+   * allowed is `8`.
    *
    * - `lastUpdated` returns information about the most recent update of the content, including who updated it and when it
    *   was updated.
