@@ -18,7 +18,7 @@ export class Settings {
    */
   async getLookAndFeelSettings<T = Models.LookAndFeelSettings>(
     parameters: Parameters.GetLookAndFeelSettings | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the look and feel settings for the site or a single space. This includes attributes such as the color
@@ -31,7 +31,7 @@ export class Settings {
    */
   async getLookAndFeelSettings<T = Models.LookAndFeelSettings>(
     parameters?: Parameters.GetLookAndFeelSettings,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getLookAndFeelSettings<T = Models.LookAndFeelSettings>(
     parameters?: Parameters.GetLookAndFeelSettings,
@@ -57,7 +57,7 @@ export class Settings {
    */
   async updateLookAndFeel<T = Models.LookAndFeelSelection>(
     parameters: Parameters.UpdateLookAndFeel | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the look and feel settings to the default (global) settings, the custom settings, or the current theme's
@@ -68,7 +68,7 @@ export class Settings {
    */
   async updateLookAndFeel<T = Models.LookAndFeelSelection>(
     parameters?: Parameters.UpdateLookAndFeel,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateLookAndFeel<T = Models.LookAndFeelSelection>(
     parameters?: Parameters.UpdateLookAndFeel,
@@ -97,7 +97,7 @@ export class Settings {
    */
   async updateLookAndFeelSettings<T = Models.LookAndFeel>(
     parameters: Parameters.UpdateLookAndFeelSettings | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the look and feel settings for the site or for a single space. If custom settings exist, they are updated.
@@ -110,7 +110,7 @@ export class Settings {
    */
   async updateLookAndFeelSettings<T = Models.LookAndFeel>(
     parameters?: Parameters.UpdateLookAndFeelSettings,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateLookAndFeelSettings<T = Models.LookAndFeel>(
     parameters?: Parameters.UpdateLookAndFeelSettings,
@@ -147,7 +147,7 @@ export class Settings {
    */
   async resetLookAndFeelSettings<T = void>(
     parameters: Parameters.ResetLookAndFeelSettings | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Resets the custom look and feel settings for the site or a single space. This changes the values of the custom
@@ -158,7 +158,7 @@ export class Settings {
    */
   async resetLookAndFeelSettings<T = void>(
     parameters?: Parameters.ResetLookAndFeelSettings,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async resetLookAndFeelSettings<T = void>(
     parameters?: Parameters.ResetLookAndFeelSettings,
@@ -183,7 +183,7 @@ export class Settings {
    */
   async setLookAndFeelSettings<T = unknown>(
     parameters: Parameters.SetLookAndFeelSettings | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the look and feel settings to either the default settings or the custom settings, for the site or a single
@@ -193,7 +193,7 @@ export class Settings {
    */
   async setLookAndFeelSettings<T = unknown>(
     parameters?: Parameters.SetLookAndFeelSettings,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setLookAndFeelSettings<T = unknown>(
     parameters?: Parameters.SetLookAndFeelSettings,
@@ -236,12 +236,12 @@ export class Settings {
   /** @deprecated Gets Content State settings for a space */
   async getContentStateSettings<T = Models.ContentStateSettings>(
     parameters: Parameters.GetContentStateSettings,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** @deprecated Gets Content State settings for a space */
   async getContentStateSettings<T = Models.ContentStateSettings>(
     parameters: Parameters.GetContentStateSettings,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentStateSettings<T = Models.ContentStateSettings>(
     parameters: Parameters.GetContentStateSettings,

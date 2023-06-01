@@ -14,7 +14,7 @@ export class SpaceSettings {
    */
   async getSpaceSettings<T = Models.SpaceSettings>(
     parameters: Parameters.GetSpaceSettings,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the settings of a space. Currently only the `routeOverrideEnabled` setting can be returned.
@@ -23,7 +23,7 @@ export class SpaceSettings {
    */
   async getSpaceSettings<T = Models.SpaceSettings>(
     parameters: Parameters.GetSpaceSettings,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSpaceSettings<T = Models.SpaceSettings>(
     parameters: Parameters.GetSpaceSettings,
@@ -44,7 +44,7 @@ export class SpaceSettings {
    */
   async updateSpaceSettings<T = Models.SpaceSettings>(
     parameters: Parameters.UpdateSpaceSettings,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the settings for a space. Currently only the `routeOverrideEnabled` setting can be updated.
@@ -53,7 +53,7 @@ export class SpaceSettings {
    */
   async updateSpaceSettings<T = Models.SpaceSettings>(
     parameters: Parameters.UpdateSpaceSettings,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateSpaceSettings<T = Models.SpaceSettings>(
     parameters: Parameters.UpdateSpaceSettings,

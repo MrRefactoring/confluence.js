@@ -18,7 +18,7 @@ export class ContentAttachments {
    */
   async getAttachments<T = Models.ContentArray<Models.Attachment>>(
     parameters: Parameters.GetAttachments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the attachments for a piece of content.
@@ -30,7 +30,7 @@ export class ContentAttachments {
    */
   async getAttachments<T = Models.ContentArray<Models.Attachment>>(
     parameters: Parameters.GetAttachments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAttachments<T = Models.ContentArray<Models.Attachment>>(
     parameters: Parameters.GetAttachments,
@@ -60,7 +60,7 @@ export class ContentAttachments {
    */
   async createAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateAttachments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds an attachment to a piece of content. This method only adds a new attachment. If you want to update an existing
@@ -71,7 +71,7 @@ export class ContentAttachments {
    */
   async createAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateAttachments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateAttachments,
@@ -117,7 +117,7 @@ export class ContentAttachments {
    */
   async createOrUpdateAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateOrUpdateAttachments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds an attachment to a piece of content. If the attachment already exists for the content, then the attachment is
@@ -127,7 +127,7 @@ export class ContentAttachments {
    */
   async createOrUpdateAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateOrUpdateAttachments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createOrUpdateAttachments<T = Models.ContentArray<Models.CreatedAttachment>>(
     parameters: Parameters.CreateOrUpdateAttachments,
@@ -173,7 +173,7 @@ export class ContentAttachments {
    */
   async updateAttachmentProperties<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the attachment properties, i.e. the non-binary data of an attachment like the filename, media-type,
@@ -183,7 +183,7 @@ export class ContentAttachments {
    */
   async updateAttachmentProperties<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateAttachmentProperties<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentProperties,
@@ -210,7 +210,7 @@ export class ContentAttachments {
    */
   async updateAttachmentData<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentData,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates the binary data of an attachment, given the attachment ID, and optionally the comment and the minor edit
@@ -224,7 +224,7 @@ export class ContentAttachments {
    */
   async updateAttachmentData<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentData,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateAttachmentData<T = Models.CreatedAttachment>(
     parameters: Parameters.UpdateAttachmentData,

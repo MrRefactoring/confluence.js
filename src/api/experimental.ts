@@ -22,7 +22,7 @@ export class Experimental {
    */
   async deletePageTree<T = Models.LongTask>(
     parameters: Parameters.DeletePageTree,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Moves a pagetree rooted at a page to the space's trash:
@@ -56,7 +56,7 @@ export class Experimental {
    */
   async getLabelsForSpace<T = Models.LabelArray>(
     parameters: Parameters.GetLabelsForSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns a list of labels associated with a space. Can provide a prefix as well as other filters to select different
@@ -64,7 +64,7 @@ export class Experimental {
    */
   async getLabelsForSpace<T = Models.LabelArray>(
     parameters: Parameters.GetLabelsForSpace,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getLabelsForSpace<T = Models.LabelArray>(
     parameters: Parameters.GetLabelsForSpace,
@@ -96,7 +96,7 @@ export class Experimental {
    */
   async addLabelsToSpace<T = Models.LabelArray>(
     parameters: Parameters.AddLabelsToSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds labels to a piece of content. Does not modify the existing labels.
@@ -124,7 +124,7 @@ export class Experimental {
 
   async deleteLabelFromSpace<T = void>(
     parameters: Parameters.DeleteLabelFromSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   async deleteLabelFromSpace<T = void>(parameters: Parameters.DeleteLabelFromSpace, callback?: never): Promise<T>;
   async deleteLabelFromSpace<T = void>(
@@ -153,7 +153,7 @@ export class Experimental {
    */
   async getUserProperties<T = Models.UserPropertyKeyArray>(
     parameters: Parameters.GetUserProperties,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the properties for a user as list of property keys. For more information about user properties, see
@@ -165,7 +165,7 @@ export class Experimental {
    */
   async getUserProperties<T = Models.UserPropertyKeyArray>(
     parameters: Parameters.GetUserProperties,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getUserProperties<T = Models.UserPropertyKeyArray>(
     parameters: Parameters.GetUserProperties,
@@ -193,7 +193,7 @@ export class Experimental {
    */
   async getUserProperty<T = Models.UserProperty>(
     parameters: Parameters.GetUserProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the property corresponding to `key` for a user. For more information about user properties, see [Confluence
@@ -227,7 +227,7 @@ export class Experimental {
    */
   async createUserProperty<T = unknown>(
     parameters: Parameters.CreateUserProperty,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a property for a user. For more information about user properties, see [Confluence entity properties]

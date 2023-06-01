@@ -10,7 +10,7 @@ export class SpacePermissions {
   /** @deprecated Will be removed in the next major version. Use `addPermissionToSpace` instead. */
   async addPermission<T = Models.SpacePermissionV2>(
     parameters: Parameters.AddPermission,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** @deprecated Will be removed in the next major version. Use `addPermissionToSpace` instead. */
   async addPermission<T = Models.SpacePermissionV2>(parameters: Parameters.AddPermission, callback?: never): Promise<T>;
@@ -32,7 +32,7 @@ export class SpacePermissions {
    */
   async addPermissionToSpace<T = Models.SpacePermissionV2>(
     parameters: Parameters.AddPermissionToSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds new permission to space.
@@ -45,7 +45,7 @@ export class SpacePermissions {
    */
   async addPermissionToSpace<T = Models.SpacePermissionV2>(
     parameters: Parameters.AddPermissionToSpace,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addPermissionToSpace<T = Models.SpacePermissionV2>(
     parameters: Parameters.AddPermissionToSpace,
@@ -75,7 +75,7 @@ export class SpacePermissions {
    */
   async addCustomContentPermissions<T = unknown>(
     parameters: Parameters.AddCustomContentPermissions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds new custom content permission to space.
@@ -88,7 +88,7 @@ export class SpacePermissions {
    */
   async addCustomContentPermissions<T = unknown>(
     parameters: Parameters.AddCustomContentPermissions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addCustomContentPermissions<T = unknown>(
     parameters: Parameters.AddCustomContentPermissions,

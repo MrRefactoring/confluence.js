@@ -8,8 +8,8 @@ export interface AsyncContentBody {
   renderTaskId?: string;
   error?: string;
   /**
-   * Rerunning is reserved for when the job is working, but there is a previous run's value in the cache. You may
-   * choose to continue polling, or use the cached value.
+   * Rerunning is reserved for when the job is working, but there is a previous run's value in the cache. You may choose
+   * to continue polling, or use the cached value.
    */
   status?: string;
   embeddedContent?: EmbeddedContent[];

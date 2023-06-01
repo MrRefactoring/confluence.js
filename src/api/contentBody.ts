@@ -23,7 +23,7 @@ export class ContentBody {
    */
   async convertContentBody<T = Models.ContentBody>(
     parameters: Parameters.ConvertContentBody,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Converts a content body from one format to another format.
@@ -41,7 +41,7 @@ export class ContentBody {
    */
   async convertContentBody<T = Models.ContentBody>(
     parameters: Parameters.ConvertContentBody,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async convertContentBody<T = Models.ContentBody>(
     parameters: Parameters.ConvertContentBody,
@@ -82,7 +82,7 @@ export class ContentBody {
    */
   async asyncConvertContentBodyRequest<T = Models.AsyncId>(
     parameters: Parameters.AsyncConvertContentBodyRequest,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Converts a content body from one format to another format asynchronously. Returns the asyncId for the asynchronous
@@ -100,7 +100,7 @@ export class ContentBody {
    */
   async asyncConvertContentBodyRequest<T = Models.AsyncId>(
     parameters: Parameters.AsyncConvertContentBodyRequest,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async asyncConvertContentBodyRequest<T = Models.AsyncId>(
     parameters: Parameters.AsyncConvertContentBodyRequest,
@@ -138,7 +138,7 @@ export class ContentBody {
    */
   async asyncConvertContentBodyResponse<T = Models.AsyncContentBody>(
     parameters: Parameters.AsyncConvertContentBodyResponse,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the Asynchronous Content Body for the corresponding asyncId if the task is complete or returns the status
@@ -152,7 +152,7 @@ export class ContentBody {
    */
   async asyncConvertContentBodyResponse<T = Models.AsyncContentBody>(
     parameters: Parameters.AsyncConvertContentBodyResponse,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async asyncConvertContentBodyResponse<T = Models.AsyncContentBody>(
     parameters: Parameters.AsyncConvertContentBodyResponse,

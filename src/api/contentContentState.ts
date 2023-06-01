@@ -15,7 +15,7 @@ export class ContentContentState {
    */
   async getContentState<T = Models.ContentStateContainer>(
     parameters: Parameters.GetContentState,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Gets the current page status of the draft or published version of content. To specify the draft
@@ -23,7 +23,7 @@ export class ContentContentState {
    */
   async getContentState<T = Models.ContentStateContainer>(
     parameters: Parameters.GetContentState,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentState<T = Models.ContentStateContainer>(
     parameters: Parameters.GetContentState,
@@ -52,7 +52,7 @@ export class ContentContentState {
    */
   async setContentState<T = Models.ContentStateContainer>(
     parameters: Parameters.SetContentState,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Sets the content state of the content specified and creates a new version (publishes the content
@@ -66,7 +66,7 @@ export class ContentContentState {
    */
   async setContentState<T = Models.ContentStateContainer>(
     parameters: Parameters.SetContentState,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setContentState<T = Models.ContentStateContainer>(
     parameters: Parameters.SetContentState,
@@ -91,7 +91,7 @@ export class ContentContentState {
    */
   async removeContentState<T = Models.ContentStateContainer>(
     parameters: Parameters.RemoveContentState,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * @deprecated Removes the content state of the content specified and creates a new version (publishes the content
@@ -99,7 +99,7 @@ export class ContentContentState {
    */
   async removeContentState<T = Models.ContentStateContainer>(
     parameters: Parameters.RemoveContentState,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeContentState<T = Models.ContentStateContainer>(
     parameters: Parameters.RemoveContentState,
@@ -116,12 +116,12 @@ export class ContentContentState {
   /** @deprecated Gets a Global Timestamp of the last time the content state was updated */
   async getContentStateLastUpdated<T = unknown>(
     parameters: Parameters.GetContentStateLastUpdated,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** @deprecated Gets a Global Timestamp of the last time the content state was updated */
   async getContentStateLastUpdated<T = unknown>(
     parameters: Parameters.GetContentStateLastUpdated,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentStateLastUpdated<T = unknown>(
     parameters: Parameters.GetContentStateLastUpdated,
@@ -138,12 +138,12 @@ export class ContentContentState {
   /** @deprecated Gets content states that are available for the content to be set as. */
   async getAvailableContentStates<T = Models.AvailableContentStates>(
     parameters: Parameters.GetAvailableContentStates,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** @deprecated Gets content states that are available for the content to be set as. */
   async getAvailableContentStates<T = Models.AvailableContentStates>(
     parameters: Parameters.GetAvailableContentStates,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAvailableContentStates<T = Models.AvailableContentStates>(
     parameters: Parameters.GetAvailableContentStates,

@@ -14,7 +14,7 @@ export class ContentRestrictions {
    */
   async getRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.GetRestrictions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the restrictions on a piece of content.
@@ -23,7 +23,7 @@ export class ContentRestrictions {
    */
   async getRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.GetRestrictions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.GetRestrictions,
@@ -49,7 +49,7 @@ export class ContentRestrictions {
    */
   async addRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.AddRestrictions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds restrictions to a piece of content. Note, this does not change any existing restrictions on the content.
@@ -58,7 +58,7 @@ export class ContentRestrictions {
    */
   async addRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.AddRestrictions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.AddRestrictions,
@@ -84,7 +84,7 @@ export class ContentRestrictions {
    */
   async updateRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.UpdateRestrictions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Updates restrictions for a piece of content. This removes the existing restrictions and replaces them with the
@@ -94,7 +94,7 @@ export class ContentRestrictions {
    */
   async updateRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.UpdateRestrictions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async updateRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.UpdateRestrictions,
@@ -119,7 +119,7 @@ export class ContentRestrictions {
    */
   async deleteRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.DeleteRestrictions,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes all restrictions (read and update) on a piece of content.
@@ -128,7 +128,7 @@ export class ContentRestrictions {
    */
   async deleteRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.DeleteRestrictions,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async deleteRestrictions<T = Models.ContentRestrictionArray>(
     parameters: Parameters.DeleteRestrictions,
@@ -154,7 +154,7 @@ export class ContentRestrictions {
    */
   async getRestrictionsByOperation<T = Models.GetRestrictionsByOperation>(
     parameters: Parameters.GetRestrictionsByOperation,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns restrictions on a piece of content by operation. This method is similar to [Get
@@ -165,7 +165,7 @@ export class ContentRestrictions {
    */
   async getRestrictionsByOperation<T = Models.GetRestrictionsByOperation>(
     parameters: Parameters.GetRestrictionsByOperation,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRestrictionsByOperation<T = Models.GetRestrictionsByOperation>(
     parameters: Parameters.GetRestrictionsByOperation,
@@ -189,7 +189,7 @@ export class ContentRestrictions {
    */
   async getRestrictionsForOperation<T = Models.ContentRestriction>(
     parameters: Parameters.GetRestrictionsForOperation,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the restictions on a piece of content for a given operation (read or update).
@@ -198,7 +198,7 @@ export class ContentRestrictions {
    */
   async getRestrictionsForOperation<T = Models.ContentRestriction>(
     parameters: Parameters.GetRestrictionsForOperation,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getRestrictionsForOperation<T = Models.ContentRestriction>(
     parameters: Parameters.GetRestrictionsForOperation,
@@ -231,7 +231,7 @@ export class ContentRestrictions {
    */
   async getContentRestrictionStatusForGroup<T = unknown>(
     parameters: Parameters.GetContentRestrictionStatusForGroup,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns whether the specified content restriction applies to a group. For example, if a page with `id=123` has a
@@ -247,7 +247,7 @@ export class ContentRestrictions {
    */
   async getContentRestrictionStatusForGroup<T = unknown>(
     parameters: Parameters.GetContentRestrictionStatusForGroup,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentRestrictionStatusForGroup<T = unknown>(
     parameters: Parameters.GetContentRestrictionStatusForGroup,
@@ -269,7 +269,7 @@ export class ContentRestrictions {
    */
   async addGroupToContentRestriction<T = unknown>(
     parameters: Parameters.AddGroupToContentRestriction,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds a group to a content restriction. That is, grant read or update permission to the group for a piece of
@@ -279,7 +279,7 @@ export class ContentRestrictions {
    */
   async addGroupToContentRestriction<T = unknown>(
     parameters: Parameters.AddGroupToContentRestriction,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addGroupToContentRestriction<T = unknown>(
     parameters: Parameters.AddGroupToContentRestriction,
@@ -333,7 +333,7 @@ export class ContentRestrictions {
    */
   async getIndividualGroupRestrictionStatusByGroupId<T = unknown>(
     parameters: Parameters.GetIndividualGroupRestrictionStatusByGroupId,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns whether the specified content restriction applies to a group. For example, if a page with `id=123` has a
@@ -349,7 +349,7 @@ export class ContentRestrictions {
    */
   async getIndividualGroupRestrictionStatusByGroupId<T = unknown>(
     parameters: Parameters.GetIndividualGroupRestrictionStatusByGroupId,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getIndividualGroupRestrictionStatusByGroupId<T = unknown>(
     parameters: Parameters.GetIndividualGroupRestrictionStatusByGroupId,
@@ -371,7 +371,7 @@ export class ContentRestrictions {
    */
   async addGroupToContentRestrictionByGroupId<T = unknown>(
     parameters: Parameters.AddGroupToContentRestrictionByGroupId,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds a group to a content restriction by Group Id. That is, grant read or update permission to the group for a
@@ -381,7 +381,7 @@ export class ContentRestrictions {
    */
   async addGroupToContentRestrictionByGroupId<T = unknown>(
     parameters: Parameters.AddGroupToContentRestrictionByGroupId,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addGroupToContentRestrictionByGroupId<T = unknown>(
     parameters: Parameters.AddGroupToContentRestrictionByGroupId,
@@ -436,7 +436,7 @@ export class ContentRestrictions {
    */
   async getContentRestrictionStatusForUser<T = unknown>(
     parameters: Parameters.GetContentRestrictionStatusForUser,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns whether the specified content restriction applies to a user. For example, if a page with `id=123` has a
@@ -453,7 +453,7 @@ export class ContentRestrictions {
    */
   async getContentRestrictionStatusForUser<T = unknown>(
     parameters: Parameters.GetContentRestrictionStatusForUser,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentRestrictionStatusForUser<T = unknown>(
     parameters: Parameters.GetContentRestrictionStatusForUser,
@@ -479,7 +479,7 @@ export class ContentRestrictions {
    */
   async addUserToContentRestriction<T = unknown>(
     parameters: Parameters.AddUserToContentRestriction,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Adds a user to a content restriction. That is, grant read or update permission to the user for a piece of content.
@@ -488,7 +488,7 @@ export class ContentRestrictions {
    */
   async addUserToContentRestriction<T = unknown>(
     parameters: Parameters.AddUserToContentRestriction,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async addUserToContentRestriction<T = unknown>(
     parameters: Parameters.AddUserToContentRestriction,
@@ -515,7 +515,7 @@ export class ContentRestrictions {
    */
   async removeUserFromContentRestriction<T = unknown>(
     parameters: Parameters.RemoveUserFromContentRestriction,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes a group from a content restriction. That is, remove read or update permission for the group for a piece of
@@ -525,7 +525,7 @@ export class ContentRestrictions {
    */
   async removeUserFromContentRestriction<T = unknown>(
     parameters: Parameters.RemoveUserFromContentRestriction,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeUserFromContentRestriction<T = unknown>(
     parameters: Parameters.RemoveUserFromContentRestriction,

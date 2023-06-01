@@ -17,7 +17,7 @@ export class Space {
    */
   async getSpaces<T = Models.SpaceArray>(
     parameters: Parameters.GetSpaces | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all spaces. The returned spaces are ordered alphabetically in ascending order by space key.
@@ -55,7 +55,7 @@ export class Space {
    */
   async createSpace<T = Models.Space>(
     parameters: Parameters.CreateSpace | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new space. Note, currently you cannot set space labels when creating a space.
@@ -87,7 +87,7 @@ export class Space {
    */
   async createPrivateSpace<T = Models.Space>(
     parameters: Parameters.CreatePrivateSpace | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a new space that is only visible to the creator. This method is the same as the [Create
@@ -212,7 +212,7 @@ export class Space {
    */
   async getContentForSpace<T = Models.ContentArray>(
     parameters: Parameters.GetContentForSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all content in a space. The returned content is grouped by type (pages then blogposts), then ordered by
@@ -223,7 +223,7 @@ export class Space {
    */
   async getContentForSpace<T = Models.ContentArray>(
     parameters: Parameters.GetContentForSpace,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentForSpace<T = Models.ContentArray>(
     parameters: Parameters.GetContentForSpace,
@@ -250,7 +250,7 @@ export class Space {
    */
   async getContentByTypeForSpace<T = Models.ContentArray>(
     parameters: Parameters.GetContentByTypeForSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all content of a given type, in a space. The returned content is ordered by content ID in ascending order.
@@ -260,7 +260,7 @@ export class Space {
    */
   async getContentByTypeForSpace<T = Models.ContentArray>(
     parameters: Parameters.GetContentByTypeForSpace,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentByTypeForSpace<T = Models.ContentArray>(
     parameters: Parameters.GetContentByTypeForSpace,

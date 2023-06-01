@@ -5,8 +5,8 @@ export interface RemoveGroupById {
    * The operation that the restriction applies to.
    *
    * @example
-   *   "read";
-   *   "update";
+   *   'read';
+   *   'update';
    */
   operationKey: string;
   /** The id of the group to remove from the content restriction. */

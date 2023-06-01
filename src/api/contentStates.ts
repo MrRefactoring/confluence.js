@@ -15,7 +15,7 @@ export class ContentStates {
    */
   async getContentState<T = Models.ContentStateResponse>(
     parameters: Parameters.GetContentState,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Gets the current content state of the draft or current version of content. To specify the draft version, set the
@@ -25,7 +25,7 @@ export class ContentStates {
    */
   async getContentState<T = Models.ContentStateResponse>(
     parameters: Parameters.GetContentState,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentState<T = Models.ContentStateResponse>(
     parameters: Parameters.GetContentState,
@@ -58,7 +58,7 @@ export class ContentStates {
    */
   async setContentState<T = Models.ContentStateResponse>(
     parameters: Parameters.SetContentState,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Sets the content state of the content specified and creates a new version (publishes the content without changing
@@ -76,7 +76,7 @@ export class ContentStates {
    */
   async setContentState<T = Models.ContentStateResponse>(
     parameters: Parameters.SetContentState,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async setContentState<T = Models.ContentStateResponse>(
     parameters: Parameters.SetContentState,
@@ -106,7 +106,7 @@ export class ContentStates {
    */
   async removeContentState<T = Models.ContentStateResponse>(
     parameters: Parameters.RemoveContentState,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Removes the content state of the content specified and creates a new version (publishes the content without
@@ -116,7 +116,7 @@ export class ContentStates {
    */
   async removeContentState<T = Models.ContentStateResponse>(
     parameters: Parameters.RemoveContentState,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async removeContentState<T = Models.ContentStateResponse>(
     parameters: Parameters.RemoveContentState,
@@ -142,7 +142,7 @@ export class ContentStates {
    */
   async getAvailableContentStates<T = Models.AvailableContentStates>(
     parameters: Parameters.GetAvailableContentStates,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Gets content states that are available for the content to be set as. Will return all enabled Space Content States.
@@ -153,7 +153,7 @@ export class ContentStates {
    */
   async getAvailableContentStates<T = Models.AvailableContentStates>(
     parameters: Parameters.GetAvailableContentStates,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getAvailableContentStates<T = Models.AvailableContentStates>(
     parameters: Parameters.GetAvailableContentStates,
@@ -195,7 +195,7 @@ export class ContentStates {
    */
   async getSpaceContentStates<T = Models.ContentState[]>(
     parameters: Parameters.GetSpaceContentStates,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Get content states that are suggested in the space.
@@ -204,7 +204,7 @@ export class ContentStates {
    */
   async getSpaceContentStates<T = Models.ContentState[]>(
     parameters: Parameters.GetSpaceContentStates,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getSpaceContentStates<T = Models.ContentState[]>(
     parameters: Parameters.GetSpaceContentStates,
@@ -226,7 +226,7 @@ export class ContentStates {
    */
   async getContentStateSettings<T = Models.ContentStateSettings>(
     parameters: Parameters.GetContentStateSettings,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Get object describing whether content states are allowed at all, if custom content states or space content states
@@ -236,7 +236,7 @@ export class ContentStates {
    */
   async getContentStateSettings<T = Models.ContentStateSettings>(
     parameters: Parameters.GetContentStateSettings,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentStateSettings<T = Models.ContentStateSettings>(
     parameters: Parameters.GetContentStateSettings,

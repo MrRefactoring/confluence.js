@@ -11,7 +11,7 @@ export class LongTask {
   /** Returns information about all tracked long-running tasks. */
   async getTasks<T = Pagination<Models.LongTaskStatus>>(
     parameters: Parameters.GetTasks | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Returns information about all tracked long-running tasks. */
   async getTasks<T = Pagination<Models.LongTaskStatus>>(parameters?: Parameters.GetTasks, callback?: never): Promise<T>;

@@ -15,7 +15,7 @@ export class ContentComments {
    */
   async getContentComments<T = Models.ContentArray>(
     parameters: Parameters.GetContentComments,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns the comments on a piece of content.
@@ -25,7 +25,7 @@ export class ContentComments {
    */
   async getContentComments<T = Models.ContentArray>(
     parameters: Parameters.GetContentComments,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentComments<T = Models.ContentArray>(
     parameters: Parameters.GetContentComments,

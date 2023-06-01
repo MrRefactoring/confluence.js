@@ -42,7 +42,7 @@ export class User {
   /** Get information about the current logged-in user. */
   async getCurrentUser<T = Models.User>(
     parameters: Parameters.GetCurrentUser | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Get information about the current logged-in user. */
   async getCurrentUser<T = Models.User>(parameters?: Parameters.GetCurrentUser, callback?: never): Promise<T>;
@@ -64,12 +64,12 @@ export class User {
   /** Get a paginated collection of groups that the given user is a member of */
   async getGroupMembershipsForUser<T = Pagination<Models.Group>>(
     parameters: Parameters.GetGroups | undefined,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** Get a paginated collection of groups that the given user is a member of */
   async getGroupMembershipsForUser<T = Pagination<Models.Group>>(
     parameters?: Parameters.GetGroups,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getGroupMembershipsForUser<T = Pagination<Models.Group>>(
     parameters?: Parameters.GetGroups,
@@ -99,7 +99,7 @@ export class User {
    */
   async getContentWatchStatus<T = Models.UserWatch>(
     parameters: Parameters.GetContentWatchStatus,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Get information about whether a user is watching a specified content.
@@ -110,7 +110,7 @@ export class User {
    */
   async getContentWatchStatus<T = Models.UserWatch>(
     parameters: Parameters.GetContentWatchStatus,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async getContentWatchStatus<T = Models.UserWatch>(
     parameters: Parameters.GetContentWatchStatus,
@@ -169,7 +169,7 @@ export class User {
    */
   async removeContentWatcher<T = void>(
     parameters: Parameters.RemoveContentWatcher,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Delete an existing watcher for the given user and content id.
@@ -204,7 +204,7 @@ export class User {
    */
   async isWatchingSpace<T = Models.UserWatch>(
     parameters: Parameters.IsWatchingSpace,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Get information about whether a user is watching a specified space.

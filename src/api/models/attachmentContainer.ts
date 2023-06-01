@@ -13,7 +13,7 @@ export interface AttachmentContainer {
     container: string;
     metadata: string;
     restrictions: string;
-    history:string;
+    history: string;
     body: string;
     version: string;
     descendants: string;

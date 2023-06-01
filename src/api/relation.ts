@@ -20,7 +20,7 @@ export class Relation {
    */
   async findTargetFromSource<T = Models.RelationArray>(
     parameters: Parameters.FindTargetFromSource,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all target entities that have a particular relationship to the source entity. Note, relationships are one
@@ -35,7 +35,7 @@ export class Relation {
    */
   async findTargetFromSource<T = Models.RelationArray>(
     parameters: Parameters.FindTargetFromSource,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async findTargetFromSource<T = Models.RelationArray>(
     parameters: Parameters.FindTargetFromSource,
@@ -61,7 +61,7 @@ export class Relation {
   /** @deprecated Will be removed in the next major version. Use `getRelationship` instead. */
   async GetRelationship<T = Models.Relation>(
     parameters: Parameters.GetRelationship,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /** @deprecated Will be removed in the next major version. Use `getRelationship` instead. */
   async GetRelationship<T = Models.Relation>(parameters: Parameters.GetRelationship, callback?: never): Promise<T>;
@@ -85,7 +85,7 @@ export class Relation {
    */
   async getRelationship<T = Models.Relation>(
     parameters: Parameters.GetRelationship,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Find whether a particular type of relationship exists from a source entity to a target entity. Note, relationships
@@ -130,7 +130,7 @@ export class Relation {
    */
   async createRelationship<T = Models.Relation>(
     parameters: Parameters.CreateRelationship,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Creates a relationship between two entities (user, space, content). The 'favourite' relationship is supported by
@@ -144,7 +144,7 @@ export class Relation {
    */
   async createRelationship<T = Models.Relation>(
     parameters: Parameters.CreateRelationship,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async createRelationship<T = Models.Relation>(
     parameters: Parameters.CreateRelationship,
@@ -220,7 +220,7 @@ export class Relation {
    */
   async findSourcesForTarget<T = Models.RelationArray>(
     parameters: Parameters.FindSourcesForTarget,
-    callback: Callback<T>
+    callback: Callback<T>,
   ): Promise<void>;
   /**
    * Returns all target entities that have a particular relationship to the source entity. Note, relationships are one
@@ -236,7 +236,7 @@ export class Relation {
    */
   async findSourcesForTarget<T = Models.RelationArray>(
     parameters: Parameters.FindSourcesForTarget,
-    callback?: never
+    callback?: never,
   ): Promise<T>;
   async findSourcesForTarget<T = Models.RelationArray>(
     parameters: Parameters.FindSourcesForTarget,
