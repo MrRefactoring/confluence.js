@@ -25,7 +25,7 @@ Usability, consistency, and performance are key focuses of confluence.js, and it
     - [JWT](#jwt)
     - [Personal access token](#personal-access-token)
   - [Your first request and using algorithm](#your-first-request-and-using-algorithm)
-  - [apiPrefix](#apiprefix-config-parameter)
+  - [`apiPrefix` config parameter](#apiprefix-config-parameter)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
 - [Take a look at our other products](#take-a-look-at-our-other-products)
 - [License](#license)
