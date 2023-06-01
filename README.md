@@ -25,6 +25,7 @@ Usability, consistency, and performance are key focuses of confluence.js, and it
     - [JWT](#jwt)
     - [Personal access token](#personal-access-token)
   - [Your first request and using algorithm](#your-first-request-and-using-algorithm)
+  - [apiPrefix](#apiprefix-config-parameter)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
 - [Take a look at our other products](#take-a-look-at-our-other-products)
 - [License](#license)
@@ -270,6 +271,21 @@ Available groups:
 The name of the methods is the name of the endpoint in the group without spaces and in `camelCase`.
 
 The parameters depend on the specific endpoint. For more information, [see here](https://mrrefactoring.github.io/confluence.js/).
+
+#### `apiPrefix` config parameter
+
+The `apiPrefix` parameter is used to specify the prefix for the API. For example, if you use the custom domain `https://mydomain.atlassian.net/api` for API.
+
+Example of use:
+
+```typescript
+import { ConfluenceClient } from 'confluence.js';
+
+const client = new ConfluenceClient({
+  host: 'https://your-domain.atlassian.net',
+  apiPrefix: '/api',
+});
+```
 
 ## Decreasing Webpack bundle size
 
