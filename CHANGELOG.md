@@ -2,7 +2,7 @@
 
 ### 1.7.0
 
-- `apiPrefix` added to code for allowing to use custom API prefix for all clients. Thanks to [Petr Plenkov](https://github.com/ThePlenkov) for pull request.
+- `apiPrefix` was added to the code for allowing to use of custom API prefix for all clients. Thanks to [Petr Plenkov](https://github.com/ThePlenkov) for the pull request.
 
 ### 1.6.3
 
