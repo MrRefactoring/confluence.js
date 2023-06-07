@@ -10,6 +10,4 @@ export namespace UtilityTypes {
 
   /** Get the XOR type which could make 4 types exclude each other */
   export type XOR4<T, U, V, W> = XOR<T, XOR3<U, V, W>>;
-
-  export type MarkRequired<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>> & Required<Pick<T, K>>;
 }

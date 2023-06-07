@@ -3,7 +3,6 @@ import type { Callback } from '../callback';
 import type { Client } from './client';
 import type { Config } from '../config';
 import type { RequestConfig } from '../requestConfig';
-import { UtilityTypes } from '../utilityTypes';
 import axios, { AxiosInstance } from 'axios';
 
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
@@ -12,7 +11,9 @@ const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
 export class BaseClient implements Client {
   #instance: AxiosInstance | undefined;
 
-  constructor(protected readonly config: UtilityTypes.MarkRequired<Config, 'apiPrefix'>) {}
+  constructor(protected readonly config: Config) {
+    this.config.apiPrefix = this.config.apiPrefix || '/wiki/rest/';
+  }
 
   protected paramSerializer(parameters: Record<string, any>): string {
     const parts: string[] = [];
