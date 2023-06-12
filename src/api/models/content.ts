@@ -48,6 +48,7 @@ export interface Content {
     update?: ContentRestriction;
     _links: GenericLinks;
   };
+  metadata: Record<string, unknown>;
   _expandable: {
     childTypes?: string;
     container?: string;
