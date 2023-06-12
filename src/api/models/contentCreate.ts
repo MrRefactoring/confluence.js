@@ -49,4 +49,7 @@ export interface ContentCreate {
     anonymous_export_view?: ContentBodyCreate;
     atlas_doc_format?: ContentBodyCreate;
   };
+  /** Additional metadata */
+  metadata?: Record<string, unknown>;
+
 }
