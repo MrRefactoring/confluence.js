@@ -15,5 +15,5 @@ export interface GetAttachmentVersions {
    */
   limit?: number;
   /** Used to sort the result by a particular field. */
-  sort?: {};
+  sort?: 'modified-date' | '-modified-date';
 }
