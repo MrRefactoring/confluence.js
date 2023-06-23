@@ -10,7 +10,7 @@ export interface GetSpaces {
   /** Filter the results to spaces based on their labels. Multiple labels can be specified as a comma-separated list. */
   labels?: string[];
   /** Used to sort the result by a particular field. */
-  sort?: {};
+  sort?: 'id' | '-id' | 'key' | '-key' | 'name' | '-name';
   /**
    * The content format type to be returned in the `description` field of the response. If available, the representation
    * will be available under a response field of the same name under the `description` field.
