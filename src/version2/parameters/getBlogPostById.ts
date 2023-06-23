@@ -8,9 +8,9 @@ export interface GetBlogPostById {
    * The content format types to be returned in the `body` field of the response. If available, the representation will
    * be available under a response field of the same name under the `body` field.
    */
-  'body-format'?: {};
+  bodyFormat?: {};
   /** Retrieve the draft version of this blog post. */
-  'get-draft'?: boolean;
+  getDraft?: boolean;
   /**
    * Allows you to retrieve a previously published version. Specify the previous version's number to retrieve its
    * details.
