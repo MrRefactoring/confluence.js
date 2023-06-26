@@ -110,8 +110,8 @@ export class BlogPost {
       url: `/blogposts/${parameters.id}`,
       method: 'GET',
       params: {
-        'body-format': parameters['body-format'],
-        'get-draft': parameters['get-draft'],
+        'body-format': parameters.bodyFormat,
+        'get-draft': parameters.getDraft,
         version: parameters.version,
         'serialize-ids-as-strings': true,
       },
