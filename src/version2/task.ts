@@ -5,7 +5,7 @@ import { Client } from '../clients';
 import { RequestConfig } from '../requestConfig';
 
 export class Task {
-  constructor(private client: Client) {}
+  constructor(private client: Client) { }
 
   /**
    * Returns all tasks. The number of results is limited by the `limit` parameter and additional results (if available)
@@ -34,22 +34,22 @@ export class Task {
       url: '/tasks',
       method: 'GET',
       params: {
-        'body-format': parameters?.['body-format'],
-        'include-blank-tasks': parameters?.['include-blank-tasks'],
+        'body-format': parameters?.bodyFormat,
+        'include-blank-tasks': parameters?.includeBlankTasks,
         status: parameters?.status,
         'task-id': parameters?.taskId,
         'space-id': parameters?.spaceId,
         'page-id': parameters?.pageId,
-        'blogpost-id': parameters?.['blogpost-id'],
-        'created-by': parameters?.['created-by'],
-        'assigned-to': parameters?.['assigned-to'],
-        'completed-by': parameters?.['completed-by'],
-        'created-at-from': parameters?.['created-at-from'],
-        'created-at-to': parameters?.['created-at-to'],
-        'due-at-from': parameters?.['due-at-from'],
-        'due-at-to': parameters?.['due-at-to'],
-        'completed-at-from': parameters?.['completed-at-from'],
-        'completed-at-to': parameters?.['completed-at-to'],
+        'blogpost-id': parameters?.blogpostId,
+        'created-by': parameters?.createdBy,
+        'assigned-to': parameters?.assignedTo,
+        'completed-by': parameters?.completedBy,
+        'created-at-from': parameters?.createdAtFrom,
+        'created-at-to': parameters?.createdAtTo,
+        'due-at-from': parameters?.dueAtFrom,
+        'due-at-to': parameters?.dueAtTo,
+        'completed-at-from': parameters?.completedAtFrom,
+        'completed-at-to': parameters?.completedAtTo,
         cursor: parameters?.cursor,
         limit: parameters?.limit,
         'serialize-ids-as-strings': true,
