@@ -3,9 +3,9 @@ export interface GetTasks {
    * The content format types to be returned in the `body` field of the response. If available, the representation will
    * be available under a response field of the same name under the `body` field.
    */
-  'body-format'?: {};
+  bodyFormat?: {};
   /** Specifies whether to include blank tasks in the response. Defaults to `true`. */
-  'include-blank-tasks'?: boolean;
+  includeBlankTasks?: boolean;
   /** Filters on the status of the task. */
   status?: string;
   /** Filters on task ID. Multiple IDs can be specified. */
@@ -21,34 +21,34 @@ export interface GetTasks {
    * Filters on the blog post ID of the task. Multiple IDs can be specified. Note - page and blog post filters can be
    * used in conjunction.
    */
-  'blogpost-id'?: number[];
+  blogpostId?: number[];
   /** Filters on the Account ID of the user who created this task. Multiple IDs can be specified. */
-  'created-by'?: string[];
+  createdBy?: string[];
   /** Filters on the Account ID of the user to whom this task is assigned. Multiple IDs can be specified. */
-  'assigned-to'?: string[];
+  assignedTo?: string[];
   /** Filters on the Account ID of the user who completed this task. Multiple IDs can be specified. */
-  'completed-by'?: string[];
+  completedBy?: string[];
   /**
    * Filters on start of date-time range of task based on creation date (inclusive). Input is epoch time in
    * milliseconds.
    */
-  'created-at-from'?: number;
+  createdAtFrom?: number;
   /** Filters on end of date-time range of task based on creation date (inclusive). Input is epoch time in milliseconds. */
-  'created-at-to'?: number;
+  createdAtTo?: number;
   /** Filters on start of date-time range of task based on due date (inclusive). Input is epoch time in milliseconds. */
-  'due-at-from'?: number;
+  dueAtFrom?: number;
   /** Filters on end of date-time range of task based on due date (inclusive). Input is epoch time in milliseconds. */
-  'due-at-to'?: number;
+  dueAtTo?: number;
   /**
    * Filters on start of date-time range of task based on completion date (inclusive). Input is epoch time in
    * milliseconds.
    */
-  'completed-at-from'?: number;
+  completedAtFrom?: number;
   /**
    * Filters on end of date-time range of task based on completion date (inclusive). Input is epoch time in
    * milliseconds.
    */
-  'completed-at-to'?: number;
+  completedAtTo?: number;
   /**
    * Used for pagination, this opaque cursor will be returned in the `next` URL in the `Link` response header. Use the
    * relative URL in the `Link` header to retrieve the `next` set of results.
