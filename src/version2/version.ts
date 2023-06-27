@@ -376,7 +376,7 @@ export class Version {
       url: `/inline-comments/${parameters.id}/versions`,
       method: 'GET',
       params: {
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         cursor: parameters.cursor,
         limit: parameters.limit,
         sort: parameters.sort,
