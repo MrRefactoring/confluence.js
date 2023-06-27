@@ -78,7 +78,7 @@ export class Task {
       url: `/tasks/${parameters.id}`,
       method: 'GET',
       params: {
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         'serialize-ids-as-strings': true,
       },
     };
