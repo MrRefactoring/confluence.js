@@ -170,7 +170,7 @@ export class Version {
       url: `/pages/${parameters.id}/versions`,
       method: 'GET',
       params: {
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         cursor: parameters.cursor,
         limit: parameters.limit,
         sort: parameters.sort,
