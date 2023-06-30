@@ -42,7 +42,7 @@ export class Space {
         status: parameters?.status,
         labels: parameters?.labels,
         sort: parameters?.sort,
-        'description-format': parameters?.['description-format'],
+        'description-format': parameters?.descriptionFormat,
         cursor: parameters?.cursor,
         limit: parameters?.limit,
         'serialize-ids-as-strings': true,
