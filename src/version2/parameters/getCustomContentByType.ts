@@ -26,5 +26,5 @@ export interface GetCustomContentByType {
    * Note: If the custom content body type is `storage`, the `storage` and `atlas_doc_format` body formats are able to
    * be returned. If the custom content body type is `raw`, only the `raw` body format is able to be returned.
    */
-  'body-format'?: {};
+  bodyFormat?: {};
 }
