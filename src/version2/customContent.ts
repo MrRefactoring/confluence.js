@@ -42,7 +42,7 @@ export class CustomContent {
         type: parameters.type,
         cursor: parameters.cursor,
         limit: parameters.limit,
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         'serialize-ids-as-strings': true,
       },
     };
