@@ -157,7 +157,7 @@ export class CustomContent {
       url: `/custom-content/${parameters.id}`,
       method: 'GET',
       params: {
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         version: parameters.version,
         'serialize-ids-as-strings': true,
       },
