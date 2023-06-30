@@ -37,7 +37,7 @@ export class Page {
       url: `/labels/${parameters.id}/pages`,
       method: 'GET',
       params: {
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
