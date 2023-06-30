@@ -69,7 +69,7 @@ export class Space {
       url: `/spaces/${parameters.id}`,
       method: 'GET',
       params: {
-        'description-format': parameters['description-format'],
+        'description-format': parameters.descriptionFormat,
       },
     };
 
