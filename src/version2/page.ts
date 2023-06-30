@@ -233,7 +233,7 @@ export class Page {
       method: 'GET',
       params: {
         status: parameters.status,
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         cursor: parameters.cursor,
         limit: parameters.limit,
         'serialize-ids-as-strings': true,
