@@ -11,7 +11,7 @@ export interface GetCustomContentById {
    * Note: If the custom content body type is `storage`, the `storage` and `atlas_doc_format` body formats are able to
    * be returned. If the custom content body type is `raw`, only the `raw` body format is able to be returned.
    */
-  'body-format'?: {};
+  bodyFormat?: {};
   /**
    * Allows you to retrieve a previously published version. Specify the previous version's number to retrieve its
    * details.
