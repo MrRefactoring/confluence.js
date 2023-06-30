@@ -238,7 +238,7 @@ export class Version {
       url: `/custom-content/${parameters.customContentId}/versions`,
       method: 'GET',
       params: {
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         cursor: parameters.cursor,
         limit: parameters.limit,
         sort: parameters.sort,
