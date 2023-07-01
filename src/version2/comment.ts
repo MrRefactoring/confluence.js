@@ -37,7 +37,7 @@ export class Comment {
       url: `/pages/${parameters.id}/footer-comments`,
       method: 'GET',
       params: {
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
