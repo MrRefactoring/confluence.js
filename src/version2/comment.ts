@@ -547,7 +547,7 @@ export class Comment {
       method: 'GET',
       params: {
         'serialize-ids-as-strings': true,
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
