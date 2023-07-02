@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class Label {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) {}
 
   /**
@@ -45,7 +48,18 @@ export class Label {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const labels = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const paginatedLabels = this.paginationService.buildPaginatedResult(labels, this.getAttachmentLabels.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedLabels as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -86,7 +100,18 @@ export class Label {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const labels = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const paginatedLabels = this.paginationService.buildPaginatedResult(labels, this.getBlogPostLabels.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedLabels as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -129,7 +154,18 @@ export class Label {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const labels = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const paginatedLabels = this.paginationService.buildPaginatedResult(labels, this.getCustomContentLabels.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedLabels as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -170,6 +206,17 @@ export class Label {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const labels = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const paginatedLabels = this.paginationService.buildPaginatedResult(labels, this.getPageLabels.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedLabels as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 }

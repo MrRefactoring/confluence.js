@@ -8,6 +8,7 @@ export * from './blogPostInlineComment';
 export * from './blogPostNestedBodyWrite';
 export * from './blogPostSortOrder';
 export * from './blogPostVersion';
+export * from './spaceDescriptionFormat';
 export * from './body';
 export * from './bodyRepresentation';
 export * from './bodyType';

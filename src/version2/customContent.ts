@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class CustomContent {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) {}
 
   /**
@@ -47,7 +50,18 @@ export class CustomContent {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const customContents = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const paginatedCustomContents = this.paginationService.buildPaginatedResult(customContents, this.getCustomContentByTypeInBlogPost.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedCustomContents as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -89,7 +103,18 @@ export class CustomContent {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const customContents = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const paginatedCustomContents = this.paginationService.buildPaginatedResult(customContents, this.getCustomContentByType.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedCustomContents as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -269,7 +294,18 @@ export class CustomContent {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const customContents = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const paginatedCustomContents = this.paginationService.buildPaginatedResult(customContents, this.getCustomContentByTypeInPage.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedCustomContents as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -312,6 +348,17 @@ export class CustomContent {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const customContents = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const paginatedCustomContents = this.paginationService.buildPaginatedResult(customContents, this.getCustomContentByTypeInSpace.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedCustomContents as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 }

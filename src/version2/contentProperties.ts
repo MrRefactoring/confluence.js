@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class ContentProperties {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) {}
 
   /**
@@ -41,7 +44,18 @@ export class ContentProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const contentProperties = await this.client.sendRequest<Models.Pagination<Models.ContentProperty>>(config);
+      const paginatedContentProperties = this.paginationService.buildPaginatedResult(contentProperties, this.getAttachmentContentProperties.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedContentProperties as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -216,7 +230,18 @@ export class ContentProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const contentProperties = await this.client.sendRequest<Models.Pagination<Models.ContentProperty>>(config);
+      const paginatedContentProperties = this.paginationService.buildPaginatedResult(contentProperties, this.getBlogpostContentProperties.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedContentProperties as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -391,7 +416,18 @@ export class ContentProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const contentProperties = await this.client.sendRequest<Models.Pagination<Models.ContentProperty>>(config);
+      const paginatedContentProperties = this.paginationService.buildPaginatedResult(contentProperties, this.getCustomContentContentProperties.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedContentProperties as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -566,7 +602,18 @@ export class ContentProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const contentProperties = await this.client.sendRequest<Models.Pagination<Models.ContentProperty>>(config);
+      const paginatedContentProperties = this.paginationService.buildPaginatedResult(contentProperties, this.getPageContentProperties.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedContentProperties as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -738,7 +785,18 @@ export class ContentProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const contentProperties = await this.client.sendRequest<Models.Pagination<Models.ContentProperty>>(config);
+      const paginatedContentProperties = this.paginationService.buildPaginatedResult(contentProperties, this.getCommentContentProperties.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedContentProperties as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**

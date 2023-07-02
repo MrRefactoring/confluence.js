@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class Attachment {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) {}
 
   /**
@@ -82,7 +85,18 @@ export class Attachment {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const attachments = await this.client.sendRequest<Models.Pagination<Models.Attachment>>(config);
+      const paginatedAttachments = this.paginationService.buildPaginatedResult(attachments, this.getBlogpostAttachments.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedAttachments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -124,7 +138,18 @@ export class Attachment {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const attachments = await this.client.sendRequest<Models.Pagination<Models.Attachment>>(config);
+      const paginatedAttachments = this.paginationService.buildPaginatedResult(attachments, this.getCustomContentAttachments.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedAttachments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -164,7 +189,18 @@ export class Attachment {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const attachments = await this.client.sendRequest<Models.Pagination<Models.Attachment>>(config);
+      const paginatedAttachments = this.paginationService.buildPaginatedResult(attachments, this.getLabelAttachments.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedAttachments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -206,6 +242,17 @@ export class Attachment {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const attachments = await this.client.sendRequest<Models.Pagination<Models.Attachment>>(config);
+      const paginatedAttachments = this.paginationService.buildPaginatedResult(attachments, this.getPageAttachments.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedAttachments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 }

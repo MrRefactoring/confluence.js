@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class Comment {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) {}
 
   /**
@@ -45,7 +48,18 @@ export class Comment {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const pageComments = await this.client.sendRequest<Models.Pagination<Models.PageComment>>(config);
+      const paginatedPageComments = this.paginationService.buildPaginatedResult(pageComments, this.getPageFooterComments.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedPageComments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -86,7 +100,18 @@ export class Comment {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const pageInlineComments = await this.client.sendRequest<Models.Pagination<Models.PageInlineComment>>(config);
+      const paginatedPageInlineComments = this.paginationService.buildPaginatedResult(pageInlineComments, this.getPageInlineComments.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedPageInlineComments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -129,7 +154,18 @@ export class Comment {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const blogPostComments = await this.client.sendRequest<Models.Pagination<Models.BlogPostComment>>(config);
+      const paginatedBlogPostComments = this.paginationService.buildPaginatedResult(blogPostComments, this.getBlogPostFooterComments.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedBlogPostComments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -172,7 +208,18 @@ export class Comment {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const blogPostInlineComments = await this.client.sendRequest<Models.Pagination<Models.BlogPostInlineComment>>(config);
+      const paginatedBlogPostInlineComments = this.paginationService.buildPaginatedResult(blogPostInlineComments, this.getBlogPostInlineComments.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedBlogPostInlineComments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -360,7 +407,18 @@ export class Comment {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const childrenComments = await this.client.sendRequest<Models.Pagination<Models.ChildrenComment>>(config);
+      const paginatedChildrenComments = this.paginationService.buildPaginatedResult(childrenComments, this.getFooterCommentChildren.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedChildrenComments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -554,6 +612,17 @@ export class Comment {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const inlineCommentChildren = await this.client.sendRequest<Models.Pagination<Models.InlineCommentChildren>>(config);
+      const paginatedInlineCommentChildren = this.paginationService.buildPaginatedResult(inlineCommentChildren, this.getInlineCommentChildren.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedInlineCommentChildren as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 }

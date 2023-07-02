@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class Task {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) { }
 
   /**
@@ -56,7 +59,18 @@ export class Task {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const tasks = await this.client.sendRequest<Models.Pagination<Models.Task>>(config);
+      const paginatedTasks = this.paginationService.buildPaginatedResult(tasks, this.getTasks.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedTasks as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**

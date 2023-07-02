@@ -1,2 +1,2 @@
 /** The type of space. */
-export interface SpaceType {}
+export type SpaceType = 'global' | 'personal';

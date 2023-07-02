@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class Page {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) {}
 
   /**
@@ -45,7 +48,18 @@ export class Page {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const pages = await this.client.sendRequest<Models.Pagination<Models.Page>>(config);
+      const paginatedPages = this.paginationService.buildPaginatedResult(pages, this.getLabelPages.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedPages as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -84,7 +98,18 @@ export class Page {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const pages = await this.client.sendRequest<Models.Pagination<Models.Page>>(config);
+      const paginatedPages = this.paginationService.buildPaginatedResult(pages, this.getPages.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedPages as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -240,6 +265,17 @@ export class Page {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const pages = await this.client.sendRequest<Models.Pagination<Models.Page>>(config);
+      const paginatedPages = this.paginationService.buildPaginatedResult(pages, this.getPagesInSpace.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedPages as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 }
