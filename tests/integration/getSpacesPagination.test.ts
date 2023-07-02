@@ -43,3 +43,9 @@ test.serial('`next()` function should works', async t => {
   t.is(secondSpaceBatch.results.length, 1);
   t.is(secondSpaceBatch.results[0].description.view.representation, 'view');
 });
+
+test.serial('`getAllSpaces()` function should works', async t => {
+  const allSpaces = await version2Client.space.getAllSpaces({ limit: 1, descriptionFormat: 'plain' });
+
+  t.truthy(allSpaces.length > 1);
+});
