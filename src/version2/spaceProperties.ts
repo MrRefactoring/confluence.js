@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class SpaceProperties {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) {}
 
   /**
@@ -46,7 +49,18 @@ export class SpaceProperties {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const spaceProperties = await this.client.sendRequest<Models.Pagination<Models.SpaceProperty>>(config);
+      const paginatedSpaceProperties = this.paginationService.buildPaginatedResult(spaceProperties, this.getSpaceProperties.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedSpaceProperties as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**

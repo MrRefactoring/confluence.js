@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class Version {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) {}
 
   /**
@@ -41,7 +44,18 @@ export class Version {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const attachmentVersions = await this.client.sendRequest<Models.Pagination<Models.AttachmentVersion>>(config);
+      const paginatedAttachmentVersions = this.paginationService.buildPaginatedResult(attachmentVersions, this.getAttachmentVersions.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedAttachmentVersions as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -109,7 +123,18 @@ export class Version {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const blogPostVersions = await this.client.sendRequest<Models.Pagination<Models.BlogPostVersion>>(config);
+      const paginatedBlogPostVersions = this.paginationService.buildPaginatedResult(blogPostVersions, this.getBlogPostVersions.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedBlogPostVersions as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -177,7 +202,18 @@ export class Version {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const pageVersions = await this.client.sendRequest<Models.Pagination<Models.PageVersion>>(config);
+      const paginatedPageVersions = this.paginationService.buildPaginatedResult(pageVersions, this.getPageVersions.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedPageVersions as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -245,7 +281,18 @@ export class Version {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const customContentVersions = await this.client.sendRequest<Models.Pagination<Models.CustomContentVersion>>(config);
+      const paginatedCustomContentVersions = this.paginationService.buildPaginatedResult(customContentVersions, this.getCustomContentVersions.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedCustomContentVersions as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -313,7 +360,18 @@ export class Version {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const commentVersions = await this.client.sendRequest<Models.Pagination<Models.CommentVersion>>(config);
+      const paginatedCommentVersions = this.paginationService.buildPaginatedResult(commentVersions, this.getFooterCommentVersions.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedCommentVersions as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -383,7 +441,18 @@ export class Version {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const commentVersions = await this.client.sendRequest<Models.Pagination<Models.CommentVersion>>(config);
+      const paginatedCommentVersions = this.paginationService.buildPaginatedResult(commentVersions, this.getInlineCommentVersions.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedCommentVersions as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**

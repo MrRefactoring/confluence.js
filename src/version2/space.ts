@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class Space {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) {}
 
   /**
@@ -49,7 +52,18 @@ export class Space {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const spaces = await this.client.sendRequest<Models.Pagination<Models.Space>>(config);
+      const paginatedSpaces = this.paginationService.buildPaginatedResult(spaces, this.getSpaces.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedSpaces as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -70,6 +84,7 @@ export class Space {
       method: 'GET',
       params: {
         'description-format': parameters.descriptionFormat,
+        'serialize-ids-as-strings': true,
       },
     };
 

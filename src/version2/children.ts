@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class Children {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) {}
 
   /**
@@ -44,7 +47,18 @@ export class Children {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const childPages = await this.client.sendRequest<Models.Pagination<Models.ChildPage>>(config);
+      const paginatedChildPages = this.paginationService.buildPaginatedResult(childPages, this.getChildPages.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedChildPages as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -86,6 +100,17 @@ export class Children {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const childCustomContents = await this.client.sendRequest<Models.Pagination<Models.ChildCustomContent>>(config);
+      const paginatedChildCustomContents = this.paginationService.buildPaginatedResult(childCustomContents, this.getChildCustomContent.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedChildCustomContents as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 }

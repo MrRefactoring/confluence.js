@@ -1,3 +1,5 @@
+import { SpaceDescriptionFormat } from '../models';
+
 export interface GetSpaces {
   /** Filter the results to spaces based on their IDs. Multiple IDs can be specified as a comma-separated list. */
   ids?: number[];
@@ -15,7 +17,7 @@ export interface GetSpaces {
    * The content format type to be returned in the `description` field of the response. If available, the representation
    * will be available under a response field of the same name under the `description` field.
    */
-  descriptionFormat?: {};
+  descriptionFormat?: SpaceDescriptionFormat;
   /**
    * Used for pagination, this opaque cursor will be returned in the `next` URL in the `Link` response header. Use the
    * relative URL in the `Link` header to retrieve the `next` set of results.

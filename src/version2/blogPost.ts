@@ -2,9 +2,12 @@ import * as Models from './models';
 import * as Parameters from './parameters';
 import { Callback } from '../callback';
 import { Client } from '../clients';
+import { PaginationService } from '../services';
 import { RequestConfig } from '../requestConfig';
 
 export class BlogPost {
+  private paginationService = new PaginationService();
+
   constructor(private client: Client) {}
 
   /**
@@ -46,7 +49,18 @@ export class BlogPost {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const blogPosts = await this.client.sendRequest<Models.Pagination<Models.BlogPost>>(config);
+      const paginatedBlogPosts = this.paginationService.buildPaginatedResult(blogPosts, this.getBlogPosts.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedBlogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -213,7 +227,18 @@ export class BlogPost {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const blogPosts = await this.client.sendRequest<Models.Pagination<Models.BlogPost>>(config);
+      const paginatedBlogPosts = this.paginationService.buildPaginatedResult(blogPosts, this.getLabelBlogPosts.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedBlogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 
   /**
@@ -256,6 +281,17 @@ export class BlogPost {
       },
     };
 
-    return this.client.sendRequest(config, callback);
+    try {
+      const blogPosts = await this.client.sendRequest<Models.Pagination<Models.BlogPost>>(config);
+      const paginatedBlogPosts = this.paginationService.buildPaginatedResult(blogPosts, this.getBlogPostsInSpace.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedBlogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
   }
 }

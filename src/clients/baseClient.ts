@@ -1,4 +1,4 @@
-import { AuthenticationService } from '../services/authenticationService';
+import { AuthenticationService } from '../services';
 import type { Callback } from '../callback';
 import type { Client } from './client';
 import type { Config } from '../config';
@@ -84,6 +84,22 @@ export class BaseClient implements Client {
     return this.#instance;
   }
 
+  getResponseHandler<T>(callback?: Callback<T>) {
+    const callbackResponseHandler = callback && ((data: T): void => callback(null, data));
+    const defaultResponseHandler = (data: T): T => data;
+
+    return callbackResponseHandler ?? defaultResponseHandler;
+  }
+
+  getErrorHandler(callback?: Callback<never>) {
+    const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
+    const defaultErrorHandler = (error: Error) => {
+      throw error;
+    };
+
+    return callbackErrorHandler ?? defaultErrorHandler;
+  }
+
   async sendRequest<T>(requestConfig: RequestConfig, callback: never, telemetryData?: any): Promise<T>;
   async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>, telemetryData?: any): Promise<void>;
   async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T> | never): Promise<void | T> {
@@ -102,10 +118,7 @@ export class BaseClient implements Client {
 
       const response = await this.instance.request<T>(modifiedRequestConfig);
 
-      const callbackResponseHandler = callback && ((data: T): void => callback(null, data));
-      const defaultResponseHandler = (data: T): T => data;
-
-      const responseHandler = callbackResponseHandler ?? defaultResponseHandler;
+      const responseHandler = this.getResponseHandler(callback);
 
       this.config.middlewares?.onResponse?.(response.data);
 
@@ -113,12 +126,7 @@ export class BaseClient implements Client {
     } catch (e: any) {
       const err = this.config.newErrorHandling && e.isAxiosError ? e.response.data : e;
 
-      const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
-      const defaultErrorHandler = (error: Error) => {
-        throw error;
-      };
-
-      const errorHandler = callbackErrorHandler ?? defaultErrorHandler;
+      const errorHandler = this.getErrorHandler(callback);
 
       this.config.middlewares?.onError?.(err);
 
