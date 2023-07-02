@@ -18,4 +18,3 @@ test('`getAllLabelAttachments` should be defined', t => {
 test('`getAllPageAttachments` should be defined', t => {
   t.truthy(!!version2Client.attachment.getAllPageAttachments);
 });
-
