@@ -246,7 +246,7 @@ export class Comment {
       url: `/footer-comments/${parameters.commentId}`,
       method: 'GET',
       params: {
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         version: parameters.version,
         'serialize-ids-as-strings': true,
       },
