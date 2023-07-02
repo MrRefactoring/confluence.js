@@ -352,7 +352,7 @@ export class Comment {
       url: `/footer-comments/${parameters.id}/children`,
       method: 'GET',
       params: {
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
