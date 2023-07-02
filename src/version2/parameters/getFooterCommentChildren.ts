@@ -5,7 +5,7 @@ export interface GetFooterCommentChildren {
    * The content format type to be returned in the `body` field of the response. If available, the representation will
    * be available under a response field of the same name under the `body` field.
    */
-  'body-format'?: {};
+  bodyFormat?: {};
   /** Used to sort the result by a particular field. */
   sort?: 'created-date' | '-created-date' | 'modified-date' | '-modified-date';
   /**
