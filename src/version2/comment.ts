@@ -121,7 +121,7 @@ export class Comment {
       url: `/blogposts/${parameters.id}/footer-comments`,
       method: 'GET',
       params: {
-        'body-format': parameters['body-format'],
+        'body-format': parameters.bodyFormat,
         sort: parameters.sort,
         cursor: parameters.cursor,
         limit: parameters.limit,
