@@ -1,5 +1,5 @@
 import type { Callback } from '../callback';
-import { Config } from '../config';
+import type { Config } from '../config';
 import type { RequestConfig } from '../requestConfig';
 
 export interface Client {

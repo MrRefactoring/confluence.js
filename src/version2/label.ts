@@ -49,7 +49,7 @@ export class Label {
     };
 
     try {
-      const labels = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const labels = await this.client.sendRequest<Models.Pagination<Models.Label>>(config);
       const paginatedLabels = this.paginationService.buildPaginatedResult(labels, this.getAttachmentLabels.bind(this));
 
       const responseHandler = this.client.getResponseHandler(callback);
@@ -101,7 +101,7 @@ export class Label {
     };
 
     try {
-      const labels = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const labels = await this.client.sendRequest<Models.Pagination<Models.Label>>(config);
       const paginatedLabels = this.paginationService.buildPaginatedResult(labels, this.getBlogPostLabels.bind(this));
 
       const responseHandler = this.client.getResponseHandler(callback);
@@ -155,7 +155,7 @@ export class Label {
     };
 
     try {
-      const labels = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const labels = await this.client.sendRequest<Models.Pagination<Models.Label>>(config);
       const paginatedLabels = this.paginationService.buildPaginatedResult(labels, this.getCustomContentLabels.bind(this));
 
       const responseHandler = this.client.getResponseHandler(callback);
@@ -207,7 +207,7 @@ export class Label {
     };
 
     try {
-      const labels = await this.client.sendRequest<Models.Pagination<Models.CustomContent>>(config);
+      const labels = await this.client.sendRequest<Models.Pagination<Models.Label>>(config);
       const paginatedLabels = this.paginationService.buildPaginatedResult(labels, this.getPageLabels.bind(this));
 
       const responseHandler = this.client.getResponseHandler(callback);

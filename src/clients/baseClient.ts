@@ -1,4 +1,4 @@
-import { AuthenticationService } from '../services/authenticationService';
+import { AuthenticationService } from '../services';
 import type { Callback } from '../callback';
 import type { Client } from './client';
 import type { Config } from '../config';
