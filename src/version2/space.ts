@@ -10,6 +10,29 @@ export class Space {
 
   constructor(private client: Client) {}
 
+  /** Fetches all spaces. */
+  async getAllSpaces<T = Models.Space[]>(
+    parameters: Parameters.GetSpaces | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all spaces. */
+  async getAllSpaces<T = Models.Space[]>(parameters?: Parameters.GetSpaces, callback?: never): Promise<T>;
+  async getAllSpaces<T = Models.Space[]>(parameters?: Parameters.GetSpaces, callback?: Callback<T>): Promise<void | T> {
+    try {
+      const { getAll: getAllSpaces } = await this.getSpaces(parameters);
+
+      const spaces = await getAllSpaces();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(spaces as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
   /**
    * Returns all spaces. The results will be sorted by id ascending. The number of results is limited by the `limit`
    * parameter and additional results (if available) will be available through the `next` URL present in the `Link`

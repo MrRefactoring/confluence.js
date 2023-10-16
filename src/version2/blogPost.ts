@@ -10,6 +10,32 @@ export class BlogPost {
 
   constructor(private client: Client) {}
 
+  /** Fetches all blog posts. */
+  async getAllBlogPosts<T = Models.BlogPost[]>(
+    parameters: Parameters.GetBlogPosts | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all blog posts. */
+  async getAllBlogPosts<T = Models.BlogPost[]>(parameters?: Parameters.GetBlogPosts, callback?: never): Promise<T>;
+  async getAllBlogPosts<T = Models.BlogPost[]>(
+    parameters?: Parameters.GetBlogPosts,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllBlogPosts } = await this.getBlogPosts(parameters);
+
+      const blogPosts = await getAllBlogPosts();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(blogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
   /**
    * Returns all blog posts. The number of results is limited by the `limit` parameter and additional results (if
    * available) will be available through the `next` URL present in the `Link` response header.
@@ -189,6 +215,35 @@ export class BlogPost {
     return this.client.sendRequest(config, callback);
   }
 
+  /** Fetches all blog posts of specified label. */
+  async getAllLabelBlogPosts<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all blog posts of specified label. */
+  async getAllLabelBlogPosts<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback?: never,
+  ): Promise<T>;
+  async getAllLabelBlogPosts<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllBlogPosts } = await this.getLabelBlogPosts(parameters);
+
+      const blogPosts = await getAllBlogPosts();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(blogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
   /**
    * Returns the blogposts of specified label. The number of results is limited by the `limit` parameter and additional
    * results (if available) will be available through the `next` URL present in the `Link` response header.
@@ -229,11 +284,43 @@ export class BlogPost {
 
     try {
       const blogPosts = await this.client.sendRequest<Models.Pagination<Models.BlogPost>>(config);
-      const paginatedBlogPosts = this.paginationService.buildPaginatedResult(blogPosts, this.getLabelBlogPosts.bind(this));
+      const paginatedBlogPosts = this.paginationService.buildPaginatedResult(
+        blogPosts,
+        this.getLabelBlogPosts.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 
       return responseHandler(paginatedBlogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /** Fetches all blog posts in a space. */
+  async getAllBlogPostsInSpace<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all blog posts in a space. */
+  async getAllBlogPostsInSpace<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback?: never,
+  ): Promise<T>;
+  async getAllBlogPostsInSpace<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllBlogPosts } = await this.getBlogPostsInSpace(parameters);
+
+      const blogPosts = await getAllBlogPosts();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(blogPosts as T);
     } catch (e: any) {
       const errorHandler = this.client.getErrorHandler(callback);
 
@@ -283,7 +370,10 @@ export class BlogPost {
 
     try {
       const blogPosts = await this.client.sendRequest<Models.Pagination<Models.BlogPost>>(config);
-      const paginatedBlogPosts = this.paginationService.buildPaginatedResult(blogPosts, this.getBlogPostsInSpace.bind(this));
+      const paginatedBlogPosts = this.paginationService.buildPaginatedResult(
+        blogPosts,
+        this.getBlogPostsInSpace.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 

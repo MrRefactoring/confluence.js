@@ -10,6 +10,35 @@ export class Comment {
 
   constructor(private client: Client) {}
 
+  /** Fetches all footer comments of a page. */
+  async getAllPageFooterComments<T = Models.PageComment[]>(
+    parameters: Parameters.GetPageFooterComments,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all footer comments of a page. */
+  async getAllPageFooterComments<T = Models.PageComment[]>(
+    parameters: Parameters.GetPageFooterComments,
+    callback?: never,
+  ): Promise<T>;
+  async getAllPageFooterComments<T = Models.PageComment[]>(
+    parameters: Parameters.GetPageFooterComments,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllPageFooterComments } = await this.getPageFooterComments(parameters);
+
+      const pageFooterComments = await getAllPageFooterComments();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(pageFooterComments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
   /**
    * Returns the root footer comments of specific page. The number of results is limited by the `limit` parameter and
    * additional results (if available) will be available through the `next` URL present in the `Link` response header.
@@ -50,11 +79,43 @@ export class Comment {
 
     try {
       const pageComments = await this.client.sendRequest<Models.Pagination<Models.PageComment>>(config);
-      const paginatedPageComments = this.paginationService.buildPaginatedResult(pageComments, this.getPageFooterComments.bind(this));
+      const paginatedPageComments = this.paginationService.buildPaginatedResult(
+        pageComments,
+        this.getPageFooterComments.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 
       return responseHandler(paginatedPageComments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /** Fetches all inline comments of a page. */
+  async getAllPageInlineComments<T = Models.PageInlineComment[]>(
+    parameters: Parameters.GetPageInlineComments,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all inline comments of a page. */
+  async getAllPageInlineComments<T = Models.PageInlineComment[]>(
+    parameters: Parameters.GetPageInlineComments,
+    callback?: never,
+  ): Promise<T>;
+  async getAllPageInlineComments<T = Models.PageInlineComment[]>(
+    parameters: Parameters.GetPageInlineComments,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllPageInlineComments } = await this.getPageInlineComments(parameters);
+
+      const pageInlineComments = await getAllPageInlineComments();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(pageInlineComments as T);
     } catch (e: any) {
       const errorHandler = this.client.getErrorHandler(callback);
 
@@ -102,11 +163,43 @@ export class Comment {
 
     try {
       const pageInlineComments = await this.client.sendRequest<Models.Pagination<Models.PageInlineComment>>(config);
-      const paginatedPageInlineComments = this.paginationService.buildPaginatedResult(pageInlineComments, this.getPageInlineComments.bind(this));
+      const paginatedPageInlineComments = this.paginationService.buildPaginatedResult(
+        pageInlineComments,
+        this.getPageInlineComments.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 
       return responseHandler(paginatedPageInlineComments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /** Fetches all footer comments of a blog post. */
+  async getAllBlogPostFooterComments<T = Models.BlogPostComment[]>(
+    parameters: Parameters.GetBlogPostFooterComments,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all footer comments of a blog post. */
+  async getAllBlogPostFooterComments<T = Models.BlogPostComment[]>(
+    parameters: Parameters.GetBlogPostFooterComments,
+    callback?: never,
+  ): Promise<T>;
+  async getAllBlogPostFooterComments<T = Models.BlogPostComment[]>(
+    parameters: Parameters.GetBlogPostFooterComments,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllBlogPostFooterComments } = await this.getBlogPostFooterComments(parameters);
+
+      const blogPostFooterComments = await getAllBlogPostFooterComments();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(blogPostFooterComments as T);
     } catch (e: any) {
       const errorHandler = this.client.getErrorHandler(callback);
 
@@ -156,11 +249,43 @@ export class Comment {
 
     try {
       const blogPostComments = await this.client.sendRequest<Models.Pagination<Models.BlogPostComment>>(config);
-      const paginatedBlogPostComments = this.paginationService.buildPaginatedResult(blogPostComments, this.getBlogPostFooterComments.bind(this));
+      const paginatedBlogPostComments = this.paginationService.buildPaginatedResult(
+        blogPostComments,
+        this.getBlogPostFooterComments.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 
       return responseHandler(paginatedBlogPostComments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /** Fetches all inline comments of a blog post. */
+  async getAllBlogPostInlineComments<T = Models.BlogPostInlineComment[]>(
+    parameters: Parameters.GetBlogPostInlineComments,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all inline comments of a blog post. */
+  async getAllBlogPostInlineComments<T = Models.BlogPostInlineComment[]>(
+    parameters: Parameters.GetBlogPostInlineComments,
+    callback?: never,
+  ): Promise<T>;
+  async getAllBlogPostInlineComments<T = Models.BlogPostInlineComment[]>(
+    parameters: Parameters.GetBlogPostInlineComments,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllBlogPostInlineComments } = await this.getBlogPostInlineComments(parameters);
+
+      const blogPostInlineComments = await getAllBlogPostInlineComments();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(blogPostInlineComments as T);
     } catch (e: any) {
       const errorHandler = this.client.getErrorHandler(callback);
 
@@ -209,8 +334,13 @@ export class Comment {
     };
 
     try {
-      const blogPostInlineComments = await this.client.sendRequest<Models.Pagination<Models.BlogPostInlineComment>>(config);
-      const paginatedBlogPostInlineComments = this.paginationService.buildPaginatedResult(blogPostInlineComments, this.getBlogPostInlineComments.bind(this));
+      const blogPostInlineComments = await this.client.sendRequest<Models.Pagination<Models.BlogPostInlineComment>>(
+        config,
+      );
+      const paginatedBlogPostInlineComments = this.paginationService.buildPaginatedResult(
+        blogPostInlineComments,
+        this.getBlogPostInlineComments.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 
@@ -367,6 +497,35 @@ export class Comment {
     return this.client.sendRequest(config, callback);
   }
 
+  /** Fetches all children of a footer comment. */
+  async getAllFooterCommentChildren<T = Models.ChildrenComment[]>(
+    parameters: Parameters.GetFooterCommentChildren,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all children of a footer comment. */
+  async getAllFooterCommentChildren<T = Models.ChildrenComment[]>(
+    parameters: Parameters.GetFooterCommentChildren,
+    callback?: never,
+  ): Promise<T>;
+  async getAllFooterCommentChildren<T = Models.ChildrenComment[]>(
+    parameters: Parameters.GetFooterCommentChildren,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllFooterCommentChildren } = await this.getFooterCommentChildren(parameters);
+
+      const footerCommentChildren = await getAllFooterCommentChildren();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(footerCommentChildren as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
   /**
    * Returns the children footer comments of specific comment. The number of results is limited by the `limit` parameter
    * and additional results (if available) will be available through the `next` URL present in the `Link` response
@@ -409,7 +568,10 @@ export class Comment {
 
     try {
       const childrenComments = await this.client.sendRequest<Models.Pagination<Models.ChildrenComment>>(config);
-      const paginatedChildrenComments = this.paginationService.buildPaginatedResult(childrenComments, this.getFooterCommentChildren.bind(this));
+      const paginatedChildrenComments = this.paginationService.buildPaginatedResult(
+        childrenComments,
+        this.getFooterCommentChildren.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 
@@ -572,6 +734,35 @@ export class Comment {
     return this.client.sendRequest(config, callback);
   }
 
+  /** Fetches all children of an inline comment. */
+  async getAllInlineCommentChildren<T = Models.InlineCommentChildren[]>(
+    parameters: Parameters.GetInlineCommentChildren,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all children of an inline comment. */
+  async getAllInlineCommentChildren<T = Models.InlineCommentChildren[]>(
+    parameters: Parameters.GetInlineCommentChildren,
+    callback?: never,
+  ): Promise<T>;
+  async getAllInlineCommentChildren<T = Models.InlineCommentChildren[]>(
+    parameters: Parameters.GetInlineCommentChildren,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllInlineCommentChildren } = await this.getInlineCommentChildren(parameters);
+
+      const inlineCommentChildren = await getAllInlineCommentChildren();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(inlineCommentChildren as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
   /**
    * Returns the children inline comments of specific comment. The number of results is limited by the `limit` parameter
    * and additional results (if available) will be available through the `next` URL present in the `Link` response
@@ -613,8 +804,13 @@ export class Comment {
     };
 
     try {
-      const inlineCommentChildren = await this.client.sendRequest<Models.Pagination<Models.InlineCommentChildren>>(config);
-      const paginatedInlineCommentChildren = this.paginationService.buildPaginatedResult(inlineCommentChildren, this.getInlineCommentChildren.bind(this));
+      const inlineCommentChildren = await this.client.sendRequest<Models.Pagination<Models.InlineCommentChildren>>(
+        config,
+      );
+      const paginatedInlineCommentChildren = this.paginationService.buildPaginatedResult(
+        inlineCommentChildren,
+        this.getInlineCommentChildren.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 

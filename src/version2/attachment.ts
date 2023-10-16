@@ -46,6 +46,35 @@ export class Attachment {
     return this.client.sendRequest(config, callback);
   }
 
+  /** Fetches all attachments of a blog post. */
+  async getAllBlogPostAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetBlogpostAttachments,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all attachments of a blog post. */
+  async getAllBlogPostAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetBlogpostAttachments,
+    callback?: never,
+  ): Promise<T>;
+  async getAllBlogPostAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetBlogpostAttachments,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllAttachments } = await this.getBlogPostAttachments(parameters);
+
+      const attachments = await getAllAttachments();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(attachments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
   /**
    * Returns the attachments of specific blog post. The number of results is limited by the `limit` parameter and
    * additional results (if available) will be available through the `next` URL present in the `Link` response header.
@@ -53,7 +82,7 @@ export class Attachment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the blog
    * post and its corresponding space.
    */
-  async getBlogpostAttachments<T = Models.Pagination<Models.Attachment>>(
+  async getBlogPostAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetBlogpostAttachments,
     callback: Callback<T>,
   ): Promise<void>;
@@ -64,11 +93,11 @@ export class Attachment {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the blog
    * post and its corresponding space.
    */
-  async getBlogpostAttachments<T = Models.Pagination<Models.Attachment>>(
+  async getBlogPostAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetBlogpostAttachments,
     callback?: never,
   ): Promise<T>;
-  async getBlogpostAttachments<T = Models.Pagination<Models.Attachment>>(
+  async getBlogPostAttachments<T = Models.Pagination<Models.Attachment>>(
     parameters: Parameters.GetBlogpostAttachments,
     callback?: Callback<T>,
   ): Promise<void | T> {
@@ -87,11 +116,43 @@ export class Attachment {
 
     try {
       const attachments = await this.client.sendRequest<Models.Pagination<Models.Attachment>>(config);
-      const paginatedAttachments = this.paginationService.buildPaginatedResult(attachments, this.getBlogpostAttachments.bind(this));
+      const paginatedAttachments = this.paginationService.buildPaginatedResult(
+        attachments,
+        this.getBlogPostAttachments.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 
       return responseHandler(paginatedAttachments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /** Fetches all attachments of a custom content. */
+  async getAllCustomContentAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetCustomContentAttachments,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all attachments of a custom content. */
+  async getAllCustomContentAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetCustomContentAttachments,
+    callback?: never,
+  ): Promise<T>;
+  async getAllCustomContentAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetCustomContentAttachments,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllAttachments } = await this.getCustomContentAttachments(parameters);
+
+      const attachments = await getAllAttachments();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(attachments as T);
     } catch (e: any) {
       const errorHandler = this.client.getErrorHandler(callback);
 
@@ -140,11 +201,43 @@ export class Attachment {
 
     try {
       const attachments = await this.client.sendRequest<Models.Pagination<Models.Attachment>>(config);
-      const paginatedAttachments = this.paginationService.buildPaginatedResult(attachments, this.getCustomContentAttachments.bind(this));
+      const paginatedAttachments = this.paginationService.buildPaginatedResult(
+        attachments,
+        this.getCustomContentAttachments.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 
       return responseHandler(paginatedAttachments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /** Fetches all attachments of a label. */
+  async getAllLabelAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetLabelAttachments,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all attachments of a label. */
+  async getAllLabelAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetLabelAttachments,
+    callback?: never,
+  ): Promise<T>;
+  async getAllLabelAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetLabelAttachments,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllAttachments } = await this.getLabelAttachments(parameters);
+
+      const attachments = await getAllAttachments();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(attachments as T);
     } catch (e: any) {
       const errorHandler = this.client.getErrorHandler(callback);
 
@@ -191,11 +284,43 @@ export class Attachment {
 
     try {
       const attachments = await this.client.sendRequest<Models.Pagination<Models.Attachment>>(config);
-      const paginatedAttachments = this.paginationService.buildPaginatedResult(attachments, this.getLabelAttachments.bind(this));
+      const paginatedAttachments = this.paginationService.buildPaginatedResult(
+        attachments,
+        this.getLabelAttachments.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 
       return responseHandler(paginatedAttachments as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /** Fetches all attachments of a page. */
+  async getAllPageAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetPageAttachments,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all attachments of a page. */
+  async getAllPageAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetPageAttachments,
+    callback?: never,
+  ): Promise<T>;
+  async getAllPageAttachments<T = Models.Attachment[]>(
+    parameters: Parameters.GetPageAttachments,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllAttachments } = await this.getPageAttachments(parameters);
+
+      const attachments = await getAllAttachments();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(attachments as T);
     } catch (e: any) {
       const errorHandler = this.client.getErrorHandler(callback);
 
@@ -244,7 +369,10 @@ export class Attachment {
 
     try {
       const attachments = await this.client.sendRequest<Models.Pagination<Models.Attachment>>(config);
-      const paginatedAttachments = this.paginationService.buildPaginatedResult(attachments, this.getPageAttachments.bind(this));
+      const paginatedAttachments = this.paginationService.buildPaginatedResult(
+        attachments,
+        this.getPageAttachments.bind(this),
+      );
 
       const responseHandler = this.client.getResponseHandler(callback);
 
