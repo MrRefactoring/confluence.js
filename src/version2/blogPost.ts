@@ -1,0 +1,387 @@
+import * as Models from './models';
+import * as Parameters from './parameters';
+import { Callback } from '../callback';
+import { Client } from '../clients';
+import { PaginationService } from '../services';
+import { RequestConfig } from '../requestConfig';
+
+export class BlogPost {
+  private paginationService = new PaginationService();
+
+  constructor(private client: Client) {}
+
+  /** Fetches all blog posts. */
+  async getAllBlogPosts<T = Models.BlogPost[]>(
+    parameters: Parameters.GetBlogPosts | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all blog posts. */
+  async getAllBlogPosts<T = Models.BlogPost[]>(parameters?: Parameters.GetBlogPosts, callback?: never): Promise<T>;
+  async getAllBlogPosts<T = Models.BlogPost[]>(
+    parameters?: Parameters.GetBlogPosts,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllBlogPosts } = await this.getBlogPosts(parameters);
+
+      const blogPosts = await getAllBlogPosts();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(blogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /**
+   * Returns all blog posts. The number of results is limited by the `limit` parameter and additional results (if
+   * available) will be available through the `next` URL present in the `Link` response header.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
+   * ('Can use' global permission). Only blog posts that the user has permission to view will be returned.
+   */
+  async getBlogPosts<T = Models.Pagination<Models.BlogPost>>(
+    parameters: Parameters.GetBlogPosts | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns all blog posts. The number of results is limited by the `limit` parameter and additional results (if
+   * available) will be available through the `next` URL present in the `Link` response header.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
+   * ('Can use' global permission). Only blog posts that the user has permission to view will be returned.
+   */
+  async getBlogPosts<T = Models.Pagination<Models.BlogPost>>(
+    parameters?: Parameters.GetBlogPosts,
+    callback?: never,
+  ): Promise<T>;
+  async getBlogPosts<T = Models.Pagination<Models.BlogPost>>(
+    parameters?: Parameters.GetBlogPosts,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/blogposts',
+      method: 'GET',
+      params: {
+        id: parameters?.id,
+        status: parameters?.status,
+        'body-format': parameters?.bodyFormat,
+        cursor: parameters?.cursor,
+        limit: parameters?.limit,
+        'serialize-ids-as-strings': true,
+      },
+    };
+
+    try {
+      const blogPosts = await this.client.sendRequest<Models.Pagination<Models.BlogPost>>(config);
+      const paginatedBlogPosts = this.paginationService.buildPaginatedResult(blogPosts, this.getBlogPosts.bind(this));
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedBlogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /**
+   * Creates a new blog post in the space specified by the spaceId.
+   *
+   * By default this will create the blog post as a non-draft, unless the status is specified as draft. If creating a
+   * non-draft, the title must not be empty.
+   *
+   * Currently only supports the storage representation specified in the body.representation enums below
+   */
+  async createBlogPost<T = Models.BlogPost>(
+    parameters: Parameters.CreateBlogPost | undefined,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Creates a new blog post in the space specified by the spaceId.
+   *
+   * By default this will create the blog post as a non-draft, unless the status is specified as draft. If creating a
+   * non-draft, the title must not be empty.
+   *
+   * Currently only supports the storage representation specified in the body.representation enums below
+   */
+  async createBlogPost<T = Models.BlogPost>(parameters?: Parameters.CreateBlogPost, callback?: never): Promise<T>;
+  async createBlogPost<T = Models.BlogPost>(
+    parameters?: Parameters.CreateBlogPost,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: '/blogposts',
+      method: 'POST',
+      params: {
+        'serialize-ids-as-strings': true,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns a specific blog post.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
+   * corresponding space.
+   */
+  async getBlogPostById<T = Models.BlogPost>(
+    parameters: Parameters.GetBlogPostById,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns a specific blog post.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
+   * corresponding space.
+   */
+  async getBlogPostById<T = Models.BlogPost>(parameters: Parameters.GetBlogPostById, callback?: never): Promise<T>;
+  async getBlogPostById<T = Models.BlogPost>(
+    parameters: Parameters.GetBlogPostById,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/blogposts/${parameters.id}`,
+      method: 'GET',
+      params: {
+        'body-format': parameters.bodyFormat,
+        'get-draft': parameters.getDraft,
+        version: parameters.version,
+        'serialize-ids-as-strings': true,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Update a blog post by id.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
+   * corresponding space. Permission to update blog posts in the space.
+   */
+  async updateBlogPost<T = Models.BlogPost>(
+    parameters: Parameters.UpdateBlogPost,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Update a blog post by id.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
+   * corresponding space. Permission to update blog posts in the space.
+   */
+  async updateBlogPost<T = Models.BlogPost>(parameters: Parameters.UpdateBlogPost, callback?: never): Promise<T>;
+  async updateBlogPost<T = Models.BlogPost>(
+    parameters: Parameters.UpdateBlogPost,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/blogposts/${parameters.id}`,
+      method: 'PUT',
+      params: {
+        'serialize-ids-as-strings': true,
+      },
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Delete a blog post by id.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
+   * corresponding space. Permission to delete blog posts in the space.
+   */
+  async deleteBlogPost<T = void>(parameters: Parameters.DeleteBlogPost, callback: Callback<T>): Promise<void>;
+  /**
+   * Delete a blog post by id.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
+   * corresponding space. Permission to delete blog posts in the space.
+   */
+  async deleteBlogPost<T = void>(parameters: Parameters.DeleteBlogPost, callback?: never): Promise<T>;
+  async deleteBlogPost<T = void>(parameters: Parameters.DeleteBlogPost, callback?: Callback<T>): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/blogposts/${parameters.id}`,
+      method: 'DELETE',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /** Fetches all blog posts of specified label. */
+  async getAllLabelBlogPosts<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all blog posts of specified label. */
+  async getAllLabelBlogPosts<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback?: never,
+  ): Promise<T>;
+  async getAllLabelBlogPosts<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllBlogPosts } = await this.getLabelBlogPosts(parameters);
+
+      const blogPosts = await getAllBlogPosts();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(blogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /**
+   * Returns the blogposts of specified label. The number of results is limited by the `limit` parameter and additional
+   * results (if available) will be available through the `next` URL present in the `Link` response header.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
+   * and its corresponding space.
+   */
+  async getLabelBlogPosts<T = Models.Pagination<Models.BlogPost>>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns the blogposts of specified label. The number of results is limited by the `limit` parameter and additional
+   * results (if available) will be available through the `next` URL present in the `Link` response header.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page
+   * and its corresponding space.
+   */
+  async getLabelBlogPosts<T = Models.Pagination<Models.BlogPost>>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback?: never,
+  ): Promise<T>;
+  async getLabelBlogPosts<T = Models.Pagination<Models.BlogPost>>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/labels/${parameters.id}/blogposts`,
+      method: 'GET',
+      params: {
+        'body-format': parameters.bodyFormat,
+        sort: parameters.sort,
+        cursor: parameters.cursor,
+        limit: parameters.limit,
+        'serialize-ids-as-strings': true,
+      },
+    };
+
+    try {
+      const blogPosts = await this.client.sendRequest<Models.Pagination<Models.BlogPost>>(config);
+      const paginatedBlogPosts = this.paginationService.buildPaginatedResult(
+        blogPosts,
+        this.getLabelBlogPosts.bind(this),
+      );
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedBlogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /** Fetches all blog posts in a space. */
+  async getAllBlogPostsInSpace<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /** Fetches all blog posts in a space. */
+  async getAllBlogPostsInSpace<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback?: never,
+  ): Promise<T>;
+  async getAllBlogPostsInSpace<T = Models.BlogPost[]>(
+    parameters: Parameters.GetLabelBlogPosts,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    try {
+      const { getAll: getAllBlogPosts } = await this.getBlogPostsInSpace(parameters);
+
+      const blogPosts = await getAllBlogPosts();
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(blogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+
+  /**
+   * Returns all blog posts in a space. The number of results is limited by the `limit` parameter and additional results
+   * (if available) will be available through the `next` URL present in the `Link` response header.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
+   * ('Can use' global permission) and view the space. Only blog posts that the user has permission to view will be
+   * returned.
+   */
+  async getBlogPostsInSpace<T = Models.Pagination<Models.BlogPost>>(
+    parameters: Parameters.GetBlogPostsInSpace,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns all blog posts in a space. The number of results is limited by the `limit` parameter and additional results
+   * (if available) will be available through the `next` URL present in the `Link` response header.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
+   * ('Can use' global permission) and view the space. Only blog posts that the user has permission to view will be
+   * returned.
+   */
+  async getBlogPostsInSpace<T = Models.Pagination<Models.BlogPost>>(
+    parameters: Parameters.GetBlogPostsInSpace,
+    callback?: never,
+  ): Promise<T>;
+  async getBlogPostsInSpace<T = Models.Pagination<Models.BlogPost>>(
+    parameters: Parameters.GetBlogPostsInSpace,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/spaces/${parameters.id}/blogposts`,
+      method: 'GET',
+      params: {
+        status: parameters.status,
+        'body-format': parameters.bodyFormat,
+        cursor: parameters.cursor,
+        limit: parameters.limit,
+        'serialize-ids-as-strings': true,
+      },
+    };
+
+    try {
+      const blogPosts = await this.client.sendRequest<Models.Pagination<Models.BlogPost>>(config);
+      const paginatedBlogPosts = this.paginationService.buildPaginatedResult(
+        blogPosts,
+        this.getBlogPostsInSpace.bind(this),
+      );
+
+      const responseHandler = this.client.getResponseHandler(callback);
+
+      return responseHandler(paginatedBlogPosts as T);
+    } catch (e: any) {
+      const errorHandler = this.client.getErrorHandler(callback);
+
+      return errorHandler(e);
+    }
+  }
+}
