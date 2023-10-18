@@ -97,6 +97,9 @@ export class ContentChildrenAndDescendants {
     const config: RequestConfig = {
       url: `/api/content/${pageId}/move/${parameters.position}/${parameters.targetId}`,
       method: 'PUT',
+      headers: {
+	'Content-Type': 'application/json'
+      }
     };
 
     return this.client.sendRequest(config, callback);
