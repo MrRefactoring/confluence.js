@@ -98,8 +98,8 @@ export class ContentChildrenAndDescendants {
       url: `/api/content/${pageId}/move/${parameters.position}/${parameters.targetId}`,
       method: 'PUT',
       headers: {
-	'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     };
 
     return this.client.sendRequest(config, callback);
