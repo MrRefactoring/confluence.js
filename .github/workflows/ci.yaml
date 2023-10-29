@@ -3,27 +3,63 @@ on: push
 
 jobs:
   build:
+    name: Build
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Installing dependencies
+        run: npm ci
+      - name: Building sources
+        run: npm run build
+
+  lint:
+    name: Lint Code
+    needs: build
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - name: Linting
+        run: npm run lint
+        env:
+          CI: true
+
+  test_unit:
+    name: Unit Tests
+    needs: build
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    steps:
+      - name: Running unit tests
+        run: npm run test:unit
+
+  test_integration:
+    name: Integration Tests
+    needs:
+      - lint
+      - test_unit
     runs-on: self-hosted
     strategy:
       max-parallel: 1
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x, 20.x]
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - name: Create .env file
+      - name: Creating `.env` file
         run: |
           touch .env
           echo HOST=${{ secrets.HOST }} >> .env
           echo EMAIL=${{ secrets.EMAIL }} >> .env
           echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-      - run: npm run build
-      - run: npm run test:unit
-      - run: npm run test:e2e
-      - run: npm run lint
-        env:
-          CI: true
+      - name: Running integration tests
+        run: npm run test:integration

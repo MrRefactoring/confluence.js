@@ -2,25 +2,106 @@ name: NPM publish
 on: workflow_dispatch
 
 jobs:
-  publish:
+  build:
+    name: Build
     runs-on: self-hosted
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v2
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
+        uses: actions/checkout@v4
+      - name: Use Node.js 18.x.x
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - name: Install dependencies
+          node-version: 18
+      - name: Installing dependencies
         run: npm ci
-      - name: Create .env file
+      - name: Building sources
+        run: npm run build
+
+  lint:
+    name: Lint Code
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Linting
+        run: npm run lint
+        env:
+          CI: true
+
+  test_unit:
+    name: Unit Tests
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Running unit tests
+        run: npm run test:unit
+
+  test_integration:
+    name: Integration Tests
+    needs:
+      - lint
+      - test_unit
+    runs-on: self-hosted
+    steps:
+      - name: Creating `.env` file
         run: |
           touch .env
           echo HOST=${{ secrets.HOST }} >> .env
           echo EMAIL=${{ secrets.EMAIL }} >> .env
           echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
+      - name: Running integration tests
+        run: npm run test:integration
+
+  publish:
+    name: Package publish
+    needs:
+      - test_integration
+    runs-on: self-hosted
+    steps:
       - name: Publishing
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-docs:
+    name: Docs publish
+    needs:
+      - publish
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate docs
+        run: npm run doc
+
+      - name: Extract version
+        id: pkg
+        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
+
+      - name: Checkout docs branch
+        uses: actions/checkout@v4
+        with:
+          ref: docs
+          clean: false
+
+      - name: Copy docs to root
+        run: |
+          cp -r docs/* .
+
+      - name: Commit and push docs
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Update documentation for version v${{ steps.pkg.outputs.version }}"
+          git push
