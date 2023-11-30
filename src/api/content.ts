@@ -285,6 +285,7 @@ export class Content {
         cqlcontext: parameters.cqlcontext,
         cursor: parameters.cursor,
         limit: parameters.limit,
+        expand: parameters.expand,
       },
     };
 
