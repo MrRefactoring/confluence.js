@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.2] - 2023-12-01
+
+Changes in this version:
+
+- Implemented automatic GitHub release and tag creation in the CI pipeline. This enhancement, addressed in issue [#133](https://github.com/MrRefactoring/confluence.js/issues/133), automates the process of creating GitHub releases and tags corresponding to new versions, streamlining the release process.
+- Thanks to [Joe Ennever](https://github.com/JoeEnnever), the `searchContentByCQL` method has been enhanced with an `expand` property. This addition, merged in pull request [#134](https://github.com/MrRefactoring/confluence.js/pull/134/files), allows for more flexible and detailed content queries in the Confluence API.
+
 ### 1.7.0
 
 - `apiPrefix` was added to the code for allowing to use of custom API prefix for all clients. Thanks to [Petr Plenkov](https://github.com/ThePlenkov) for the pull request.
