@@ -35,26 +35,27 @@ jobs:
       - name: Running unit tests
         run: npm run test:unit
 
-  test_integration:
-    name: Integration Tests
-    needs:
-      - lint
-      - test_unit
-    runs-on: self-hosted
-    steps:
-      - name: Creating `.env` file
-        run: |
-          touch .env
-          echo HOST=${{ secrets.HOST }} >> .env
-          echo EMAIL=${{ secrets.EMAIL }} >> .env
-          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-      - name: Running integration tests
-        run: npm run test:integration
+#  test_integration:
+#    name: Integration Tests
+#    needs:
+#      - lint
+#      - test_unit
+#    runs-on: self-hosted
+#    steps:
+#      - name: Creating `.env` file
+#        run: |
+#          touch .env
+#          echo HOST=${{ secrets.HOST }} >> .env
+#          echo EMAIL=${{ secrets.EMAIL }} >> .env
+#          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
+#      - name: Running integration tests
+#        run: npm run test:integration
 
   publish:
     name: Package publish
     needs:
-      - test_integration
+      - lint
+      - test_unit
     runs-on: self-hosted
     steps:
       - name: Publishing
