@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.7.2] - 2023-12-01
+### [1.7.2] - 2023-12-01
 
 Changes in this version:
 

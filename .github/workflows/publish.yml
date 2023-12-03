@@ -35,27 +35,26 @@ jobs:
       - name: Running unit tests
         run: npm run test:unit
 
-#  test_integration:
-#    name: Integration Tests
-#    needs:
-#      - lint
-#      - test_unit
-#    runs-on: self-hosted
-#    steps:
-#      - name: Creating `.env` file
-#        run: |
-#          touch .env
-#          echo HOST=${{ secrets.HOST }} >> .env
-#          echo EMAIL=${{ secrets.EMAIL }} >> .env
-#          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-#      - name: Running integration tests
-#        run: npm run test:integration
+  test_integration:
+    name: Integration Tests
+    needs:
+      - lint
+      - test_unit
+    runs-on: self-hosted
+    steps:
+      - name: Creating `.env` file
+        run: |
+          touch .env
+          echo HOST=${{ secrets.HOST }} >> .env
+          echo EMAIL=${{ secrets.EMAIL }} >> .env
+          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
+      - name: Running integration tests
+        run: npm run test:integration
 
   publish:
     name: Package publish
     needs:
-      - lint
-      - test_unit
+      - test_integration
     runs-on: self-hosted
     steps:
       - name: Publishing
@@ -87,7 +86,7 @@ jobs:
 
       - name: Extract version
         id: pkg
-        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
       - name: Checkout docs branch
         uses: actions/checkout@v4
@@ -124,14 +123,13 @@ jobs:
           node-version: 18
 
       - name: Extract version from package.json
-        id: pkg
-        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
       - name: Create and Push Git Tag
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          TAG="v${{ steps.pkg.outputs.version }}"
+          TAG="v${{ env.version }}"
           git tag $TAG
           git push origin $TAG
 
@@ -150,8 +148,7 @@ jobs:
           node-version: 18
 
       - name: Extract version from package.json
-        id: pkg
-        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
       - name: Extract Changelog Entry
         id: changelog
@@ -167,8 +164,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ steps.pkg.outputs.version }}
-          name: Release v${{ steps.pkg.outputs.version }}
+          tag_name: v${{ env.version }}
+          name: Release v${{ env.version }}
           body: ${{ env.CHANGELOG }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

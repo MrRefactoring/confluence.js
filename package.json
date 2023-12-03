@@ -10,8 +10,7 @@
   "types": "out/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "npm run build && npm run test && npm run lint",
-    "test": "npm run test:unit",
+    "test": "npm run test:unit && npm run test:integration",
     "prettier": "prettier --write src",
     "doc": "typedoc --name \"Confluence.js - Cloud and Server API library\" --out docs ./src/index.ts --plugin typedoc-plugin-extras --footerDate --footerTime --footerTypedocVersion --favicon https://svgshare.com/i/bVi.svg",
     "lint": "eslint src tests --ext .ts",
@@ -51,7 +50,7 @@
     "@typescript-eslint/parser": "^6.13.1",
     "ava": "^5.3.1",
     "dotenv": "^16.3.1",
-    "eslint": "^8.54.0",
+    "eslint": "^8.55.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
