@@ -271,6 +271,7 @@ export class Space {
       method: 'GET',
       params: {
         depth: parameters.depth,
+        expand: parameters.expand,
         start: parameters.start,
         limit: parameters.limit,
       },
