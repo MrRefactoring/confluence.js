@@ -40,6 +40,7 @@ export class ContentComments {
         limit: parameters.limit,
         location: parameters.location,
         depth: parameters.depth,
+        expand: parameters.expand,
       },
     };
 
