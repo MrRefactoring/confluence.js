@@ -87,12 +87,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          registry-url: https://registry.npmjs.org/
       - name: Installing dependencies
         run: npm ci
       - name: Building sources
         run: npm run build
       - name: Publishing
-        run: npm publish dist
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
