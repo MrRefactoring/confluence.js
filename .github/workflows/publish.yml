@@ -92,7 +92,7 @@ jobs:
       - name: Building sources
         run: npm run build
       - name: Publishing
-        run: npm publish
+        run: npm publish dist
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
