@@ -9,6 +9,9 @@
     "type": "git",
     "url": "git+https://github.com/MrRefactoring/confluence.js.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "main": "out/index.js",
   "types": "out/index.d.ts",
   "scripts": {
