@@ -5,7 +5,10 @@
   "author": "Vladislav Tupikin <mrrefactoring@yandex.ru>",
   "license": "MIT",
   "homepage": "https://mrrefactoring.github.io/confluence.js",
-  "repository": "https://github.com/MrRefactoring/confluence.js.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrRefactoring/confluence.js.git"
+  },
   "main": "out/index.js",
   "types": "out/index.d.ts",
   "scripts": {
