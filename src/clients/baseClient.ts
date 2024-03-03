@@ -1,9 +1,9 @@
+import axios, { AxiosInstance } from 'axios';
 import { AuthenticationService } from '../services/authenticationService';
 import type { Callback } from '../callback';
 import type { Client } from './client';
 import type { Config } from '../config';
 import type { RequestConfig } from '../requestConfig';
-import axios, { AxiosInstance } from 'axios';
 
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
 const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
@@ -37,12 +37,11 @@ export class BaseClient implements Client {
       } else if (value instanceof Function) {
         const part = value();
 
+        // eslint-disable-next-line consistent-return
         return part && parts.push(part);
       }
 
       parts.push(`${this.encode(key)}=${this.encode(value)}`);
-
-      return;
     });
 
     return parts.join('&');

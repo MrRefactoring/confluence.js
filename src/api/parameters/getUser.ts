@@ -30,12 +30,12 @@ export interface GetUser {
    * - `isExternalCollaborator` returns whether the user is an external collaborator user
    */
   expand?:
-  | 'operations'
-  | 'details.personal'
-  | 'details.business'
-  | 'personalSpace'
-  | 'isExternalCollaborator'
-  | ('operations' | 'details.personal' | 'details.business' | 'personalSpace' | 'isExternalCollaborator')[]
-  | string
-  | string[];
+    | 'operations'
+    | 'details.personal'
+    | 'details.business'
+    | 'personalSpace'
+    | 'isExternalCollaborator'
+    | ('operations' | 'details.personal' | 'details.business' | 'personalSpace' | 'isExternalCollaborator')[]
+    | string
+    | string[];
 }

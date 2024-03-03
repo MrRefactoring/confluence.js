@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
-import { ConfluenceClient } from '../../../src';
 import test from 'ava';
+import { ConfluenceClient } from '../../../src';
 
 const config = { host: '' };
 
