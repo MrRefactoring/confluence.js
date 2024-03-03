@@ -1,5 +1,10 @@
 # Changelog
 
+### [1.7.3] - 2024-03-04
+
+- Dependencies updated
+- Expand properties added for few endpoints
+
 ### [1.7.2] - 2023-12-01
 
 Changes in this version:

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
-import { ConfluenceClient } from '../../src';
 import test from 'ava';
+import { ConfluenceClient } from '../../src';
 
 const HOST = process.env.HOST!;
 const EMAIL = process.env.EMAIL!;

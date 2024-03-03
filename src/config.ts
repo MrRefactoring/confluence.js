@@ -24,18 +24,18 @@ export namespace Config {
   export type Telemetry = boolean | any;
 
   export type Authentication = UtilityTypes.XOR4<
-  {
-    jwt: Authentication.JWT;
-  },
-  {
-    personalAccessToken: Authentication.PersonalAccessToken;
-  },
-  {
-    basic: Authentication.Basic;
-  },
-  {
-    oauth2: Authentication.OAuth2;
-  }
+    {
+      jwt: Authentication.JWT;
+    },
+    {
+      personalAccessToken: Authentication.PersonalAccessToken;
+    },
+    {
+      basic: Authentication.Basic;
+    },
+    {
+      oauth2: Authentication.OAuth2;
+    }
   >;
 
   export interface Middlewares {
@@ -61,14 +61,14 @@ export namespace Config {
     };
 
     export type Basic = UtilityTypes.XOR<
-    {
-      email: string;
-      apiToken: string;
-    },
-    {
-      username: string;
-      password: string;
-    }
+      {
+        email: string;
+        apiToken: string;
+      },
+      {
+        username: string;
+        password: string;
+      }
     >;
 
     export type OAuth2 = {

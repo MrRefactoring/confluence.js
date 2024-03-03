@@ -19,15 +19,6 @@ export interface ConvertContentBody extends ContentBodyCreate {
    * - `macroRenderedOutput` additionally converts body to view format
    */
   expand?:
-  | 'webresource'
-  | 'webresource.superbatch.uris.js'
-  | 'webresource.superbatch.uris.css'
-  | 'webresource.uris.js'
-  | 'webresource.uris.css'
-  | 'embeddedContent'
-  | 'mediaToken'
-  | 'macroRenderedOutput'
-  | (
     | 'webresource'
     | 'webresource.superbatch.uris.js'
     | 'webresource.superbatch.uris.css'
@@ -36,9 +27,18 @@ export interface ConvertContentBody extends ContentBodyCreate {
     | 'embeddedContent'
     | 'mediaToken'
     | 'macroRenderedOutput'
-  )[]
-  | string
-  | string[];
+    | (
+        | 'webresource'
+        | 'webresource.superbatch.uris.js'
+        | 'webresource.superbatch.uris.css'
+        | 'webresource.uris.js'
+        | 'webresource.uris.css'
+        | 'embeddedContent'
+        | 'mediaToken'
+        | 'macroRenderedOutput'
+      )[]
+    | string
+    | string[];
 
   /**
    * The space key used for resolving embedded content (page includes, files, and links) in the content body. For

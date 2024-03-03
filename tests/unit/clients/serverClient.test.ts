@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
-import { ServerClient } from '../../../src';
 import test from 'ava';
+import { ServerClient } from '../../../src';
 
 const config = {
   host: 'https://localhost',

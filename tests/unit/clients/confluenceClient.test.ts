@@ -1,5 +1,5 @@
-import { ConfluenceClient } from '../../../src';
 import test from 'ava';
+import { ConfluenceClient } from '../../../src';
 
 test('Confluence Client properties should be defined', t => {
   const client = new ConfluenceClient({ host: '' });

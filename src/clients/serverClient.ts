@@ -1,6 +1,8 @@
 import { BaseClient } from './baseClient';
 import { Config } from '../config';
-import { Audit, Content, ContentBody, Group, LongTask, Search, Space, User } from '../server';
+import {
+  Audit, Content, ContentBody, Group, LongTask, Search, Space, User,
+} from '../server';
 
 export class ServerClient extends BaseClient {
   constructor(config: Config) {

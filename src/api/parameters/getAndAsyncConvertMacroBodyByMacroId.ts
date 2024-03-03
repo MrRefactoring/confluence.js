@@ -43,26 +43,6 @@ export interface GetAndAsyncConvertMacroBodyByMacroId {
   embeddedContentRender?: string;
   /** A multi-value parameter indicating which properties of the content to expand and populate. */
   expand?:
-  | 'embeddedContent'
-  | 'mediaToken'
-  | 'webresource.superbatch.metatags'
-  | 'webresource.superbatch.tags.all'
-  | 'webresource.superbatch.tags.css'
-  | 'webresource.superbatch.tags.data'
-  | 'webresource.superbatch.tags.js'
-  | 'webresource.superbatch.uris.all'
-  | 'webresource.superbatch.uris.css'
-  | 'webresource.superbatch.uris.data'
-  | 'webresource.superbatch.uris.js'
-  | 'webresource.tags.all'
-  | 'webresource.tags.css'
-  | 'webresource.tags.data'
-  | 'webresource.tags.js'
-  | 'webresource.uris.all'
-  | 'webresource.uris.css'
-  | 'webresource.uris.data'
-  | 'webresource.uris.js'
-  | (
     | 'embeddedContent'
     | 'mediaToken'
     | 'webresource.superbatch.metatags'
@@ -82,7 +62,27 @@ export interface GetAndAsyncConvertMacroBodyByMacroId {
     | 'webresource.uris.css'
     | 'webresource.uris.data'
     | 'webresource.uris.js'
-  )[]
-  | string
-  | string[];
+    | (
+        | 'embeddedContent'
+        | 'mediaToken'
+        | 'webresource.superbatch.metatags'
+        | 'webresource.superbatch.tags.all'
+        | 'webresource.superbatch.tags.css'
+        | 'webresource.superbatch.tags.data'
+        | 'webresource.superbatch.tags.js'
+        | 'webresource.superbatch.uris.all'
+        | 'webresource.superbatch.uris.css'
+        | 'webresource.superbatch.uris.data'
+        | 'webresource.superbatch.uris.js'
+        | 'webresource.tags.all'
+        | 'webresource.tags.css'
+        | 'webresource.tags.data'
+        | 'webresource.tags.js'
+        | 'webresource.uris.all'
+        | 'webresource.uris.css'
+        | 'webresource.uris.data'
+        | 'webresource.uris.js'
+      )[]
+    | string
+    | string[];
 }
