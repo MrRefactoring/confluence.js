@@ -131,6 +131,28 @@ jobs:
           git commit -m "Update documentation for version v${{ steps.pkg.outputs.version }}"
           git push
 
+  creating-git-tag:
+    name: Create Git Tag
+    needs:
+      - publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - name: Use Node.js 18.x.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Extract version from package.json
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+      - name: Create and Push Git Tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          TAG="v${{ env.version }}"
+          git tag $TAG
+          git push origin $TAG
+
   creating-github-release:
     name: Create GitHub Release
     needs:
