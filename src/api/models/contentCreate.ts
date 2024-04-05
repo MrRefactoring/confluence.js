@@ -50,10 +50,11 @@ export interface ContentCreate {
     atlas_doc_format?: ContentBodyCreate;
   };
   /**
-   * The new version for the created content. 
+   * The new version for the created content.
+   *
    * To get the current version number, use [Get content by ID](#api-content-id-get) and retrieve `version.number`.
    */
-  version?: {    
+  version?: {
     /** The version comment. */
     message?: string;
   };
