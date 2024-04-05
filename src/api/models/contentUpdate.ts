@@ -11,6 +11,8 @@ export interface ContentUpdate {
   version: {
     /** The version number. */
     number: number;
+    /** The version comment. */
+    message?: string;
   };
   /** The updated title of the content. If you are not changing this field, set this to the current `title`. */
   title: string;
