@@ -1,13 +1,13 @@
-import { Container } from './container';
-import { ContentBody } from './contentBody';
-import { ContentChildren } from './contentChildren';
-import { ContentChildType } from './contentChildType';
-import { ContentHistory } from './contentHistory';
-import { ContentRestriction } from './contentRestriction';
-import { GenericLinks } from './genericLinks';
-import { OperationCheckResult } from './operationCheckResult';
-import { Space } from './space';
-import { Version } from './version';
+import type { Container } from './container';
+import type { ContentBody } from './contentBody';
+import type { ContentChildren } from './contentChildren';
+import type { ContentChildType } from './contentChildType';
+import type { ContentHistory } from './contentHistory';
+import type { ContentRestriction } from './contentRestriction';
+import type { GenericLinks } from './genericLinks';
+import type { OperationCheckResult } from './operationCheckResult';
+import type { Space } from './space';
+import type { Version } from './version';
 
 /** Base object for all content types. */
 export interface Content {

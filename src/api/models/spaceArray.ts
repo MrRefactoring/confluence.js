@@ -1,5 +1,5 @@
-import { GenericLinks } from './genericLinks';
-import { Space } from './space';
+import type { GenericLinks } from './genericLinks';
+import type { Space } from './space';
 
 export interface SpaceArray {
   results: Space[];

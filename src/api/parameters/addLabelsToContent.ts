@@ -1,4 +1,4 @@
-import { LabelCreateArray } from '../models';
+import type { LabelCreateArray } from '../models';
 
 export interface AddLabelsToContent {
   /** The ID of the content that will have labels added to it. */

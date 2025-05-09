@@ -1,4 +1,6 @@
-import { ContentBodyCreate } from '../models';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { ContentBodyCreate } from '../models';
+import type { OneOrMany } from '~/interfaces';
 
 export interface ConvertContentBody extends ContentBodyCreate {
   /** The name of the target format for the content body. */
@@ -18,7 +20,7 @@ export interface ConvertContentBody extends ContentBodyCreate {
    * - `mediaToken` returns JWT token for retrieving attachment data from Media API
    * - `macroRenderedOutput` additionally converts body to view format
    */
-  expand?:
+  expand?: OneOrMany<
     | 'webresource'
     | 'webresource.superbatch.uris.js'
     | 'webresource.superbatch.uris.css'
@@ -27,18 +29,8 @@ export interface ConvertContentBody extends ContentBodyCreate {
     | 'embeddedContent'
     | 'mediaToken'
     | 'macroRenderedOutput'
-    | (
-        | 'webresource'
-        | 'webresource.superbatch.uris.js'
-        | 'webresource.superbatch.uris.css'
-        | 'webresource.uris.js'
-        | 'webresource.uris.css'
-        | 'embeddedContent'
-        | 'mediaToken'
-        | 'macroRenderedOutput'
-      )[]
     | string
-    | string[];
+  >;
 
   /**
    * The space key used for resolving embedded content (page includes, files, and links) in the content body. For

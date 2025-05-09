@@ -1,4 +1,4 @@
-import { UserPropertyCreate } from '../models';
+import type { UserPropertyCreate } from '../models';
 
 export interface CreateUserProperty extends UserPropertyCreate {
   /**

@@ -1,6 +1,6 @@
-import { Group } from './group';
-import { OperationCheckResult } from './operationCheckResult';
-import { User } from './user';
+import type { Group } from './group';
+import type { OperationCheckResult } from './operationCheckResult';
+import type { User } from './user';
 
 /**
  * This object represents a permission for given space. Permissions consist of* at least one operation object with an

@@ -1,5 +1,5 @@
-import { GenericLinks } from './genericLinks';
-import { RelationData } from './relationData';
+import type { GenericLinks } from './genericLinks';
+import type { RelationData } from './relationData';
 
 export interface Relation {
   name: string;

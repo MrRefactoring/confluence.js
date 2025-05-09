@@ -1,4 +1,4 @@
-import { ContentPropertyUpdate } from '../models';
+import type { ContentPropertyUpdate } from '../models';
 
 export interface UpdateContentProperty extends ContentPropertyUpdate {
   /** The ID of the content that the property belongs to. */

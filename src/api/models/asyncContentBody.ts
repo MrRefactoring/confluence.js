@@ -1,6 +1,6 @@
-import { EmbeddedContent } from './embeddedContent';
-import { GenericLinks } from './genericLinks';
-import { WebResourceDependencies } from './webResourceDependencies';
+import type { EmbeddedContent } from './embeddedContent';
+import type { GenericLinks } from './genericLinks';
+import type { WebResourceDependencies } from './webResourceDependencies';
 
 export interface AsyncContentBody {
   value?: string;

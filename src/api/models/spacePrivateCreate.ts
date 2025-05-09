@@ -1,5 +1,5 @@
-import { SpaceDescriptionCreate } from './spaceDescriptionCreate';
-import { SpacePermissionCreate } from './spacePermissionCreate';
+import type { SpaceDescriptionCreate } from './spaceDescriptionCreate';
+import type { SpacePermissionCreate } from './spacePermissionCreate';
 
 /** This is the request object used when creating a new private space. */
 export interface SpacePrivateCreate {

@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
+import type { RequestConfig } from '../requestConfig';
 
 export class Settings {
   constructor(private client: Client) {}
@@ -227,28 +227,6 @@ export class Settings {
   async getSystemInfo<T = Models.SystemInfoEntity>(callback?: Callback<T>): Promise<void | T> {
     const config: RequestConfig = {
       url: '/api/settings/systemInfo',
-      method: 'GET',
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /** @deprecated Gets Content State settings for a space */
-  async getContentStateSettings<T = Models.ContentStateSettings>(
-    parameters: Parameters.GetContentStateSettings,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** @deprecated Gets Content State settings for a space */
-  async getContentStateSettings<T = Models.ContentStateSettings>(
-    parameters: Parameters.GetContentStateSettings,
-    callback?: never,
-  ): Promise<T>;
-  async getContentStateSettings<T = Models.ContentStateSettings>(
-    parameters: Parameters.GetContentStateSettings,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: `/api/space/${parameters.spaceKey}/state/settings`,
       method: 'GET',
     };
 

@@ -1,4 +1,4 @@
-import { PermissionSubject } from './permissionSubject';
+import type { PermissionSubject } from './permissionSubject';
 
 /**
  * This object represents a list of space permissions for custom content type for an individual user. Permissions

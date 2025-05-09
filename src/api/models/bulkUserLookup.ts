@@ -1,8 +1,7 @@
-import { GenericLinks } from './genericLinks';
-import { Icon } from './icon';
-import { OperationCheckResult } from './operationCheckResult';
-import { Space } from './space';
-import { UserDetails } from './userDetails';
+import type { GenericLinks } from './genericLinks';
+import type { Icon } from './icon';
+import type { OperationCheckResult } from './operationCheckResult';
+import type { Space } from './space';
 
 export interface BulkUserLookup {
   type: string;
@@ -31,7 +30,6 @@ export interface BulkUserLookup {
   /** The display name of the user. Depending on the user's privacy setting, this may be the same as publicName. */
   displayName: string;
   operations?: OperationCheckResult[];
-  details?: UserDetails;
   personalSpace?: Space;
   _expandable: {
     operations?: string;

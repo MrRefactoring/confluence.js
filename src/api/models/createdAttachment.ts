@@ -1,6 +1,6 @@
-import { Attachment } from './attachment';
-import { AttachmentContainer } from './attachmentContainer';
-import { Version } from './version';
+import type { Attachment } from './attachment';
+import type { AttachmentContainer } from './attachmentContainer';
+import type { Version } from './version';
 
 export interface CreatedAttachment extends Attachment {
   version: Version;

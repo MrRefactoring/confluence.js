@@ -1,28 +1,11 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
+import type { RequestConfig } from '../requestConfig';
 
 export class ContentPermissions {
   constructor(private client: Client) {}
-
-  /** @deprecated Will be removed in the next major version. Use `checkContentPermission` method instead. */
-  async permissionCheck<T = Models.PermissionCheckResponse>(
-    parameters: Parameters.PermissionCheck,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** @deprecated Will be removed in the next major version. Use `checkContentPermission` method instead. */
-  async permissionCheck<T = Models.PermissionCheckResponse>(
-    parameters: Parameters.PermissionCheck,
-    callback?: never,
-  ): Promise<T>;
-  async permissionCheck<T = Models.PermissionCheckResponse>(
-    parameters: Parameters.PermissionCheck,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    return this.checkContentPermission(parameters, callback!);
-  }
 
   /**
    * Check if a user or a group can perform an operation to the specified content. The `operation` to check must be

@@ -1,5 +1,5 @@
-import { GenericLinks } from './genericLinks';
-import { MigratedUser } from './migratedUser';
+import type { GenericLinks } from './genericLinks';
+import type { MigratedUser } from './migratedUser';
 
 export interface MigratedUserArray {
   results: MigratedUser[];

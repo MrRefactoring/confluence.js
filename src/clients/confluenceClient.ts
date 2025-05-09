@@ -1,5 +1,5 @@
 import { BaseClient } from './baseClient';
-import { Config } from '../config';
+import type { Config } from '../config';
 import {
   Analytics,
   Audit,
@@ -8,7 +8,6 @@ import {
   ContentBody,
   ContentChildrenAndDescendants,
   ContentComments,
-  ContentContentState,
   ContentLabels,
   ContentMacroBody,
   ContentPermissions,
@@ -50,7 +49,6 @@ export class ConfluenceClient extends BaseClient {
   contentBody = new ContentBody(this);
   contentChildrenAndDescendants = new ContentChildrenAndDescendants(this);
   contentComments = new ContentComments(this);
-  contentContentState = new ContentContentState(this);
   contentLabels = new ContentLabels(this);
   contentMacroBody = new ContentMacroBody(this);
   contentPermissions = new ContentPermissions(this);

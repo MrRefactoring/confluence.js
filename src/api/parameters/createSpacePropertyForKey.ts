@@ -1,4 +1,4 @@
-import { SpacePropertyCreateNoKey } from '../models';
+import type { SpacePropertyCreateNoKey } from '../models';
 
 export interface CreateSpacePropertyForKey extends SpacePropertyCreateNoKey {
   /** The key of the space that the property will be created in. */

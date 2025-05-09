@@ -1,4 +1,4 @@
-import { LookAndFeel } from './lookAndFeel';
+import type { LookAndFeel } from './lookAndFeel';
 
 export interface LookAndFeelSettings {
   selected: string;

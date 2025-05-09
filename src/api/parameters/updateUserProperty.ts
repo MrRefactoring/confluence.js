@@ -1,4 +1,4 @@
-import { UserPropertyUpdate } from '../models';
+import type { UserPropertyUpdate } from '../models';
 
 export interface UpdateUserProperty extends UserPropertyUpdate {
   /**

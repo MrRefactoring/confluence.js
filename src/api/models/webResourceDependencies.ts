@@ -1,4 +1,4 @@
-import { SuperBatchWebResources } from './superBatchWebResources';
+import type { SuperBatchWebResources } from './superBatchWebResources';
 
 export interface WebResourceDependencies {
   keys?: string[];

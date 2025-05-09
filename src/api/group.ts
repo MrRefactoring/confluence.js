@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
+import type { RequestConfig } from '../requestConfig';
 
 export class Group {
   constructor(private client: Client) {}
@@ -183,14 +183,6 @@ export class Group {
     return this.client.sendRequest(config, callback);
   }
 
-  /** @deprecated Will be removed in the next major version. Use `getGroupByName` instead. */
-  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback: Callback<T>): Promise<void>;
-  /** @deprecated Will be removed in the next major version. Use `getGroupByName` instead. */
-  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: never): Promise<T>;
-  async getGroup<T = Models.Group>(parameters: Parameters.GetGroup, callback?: Callback<T>): Promise<void | T> {
-    return this.getGroupByName(parameters, callback!);
-  }
-
   /**
    * Returns a user group for a given group name.
    *
@@ -294,23 +286,6 @@ export class Group {
     };
 
     return this.client.sendRequest(config, callback);
-  }
-
-  /** @deprecated Will be removed in the next major version. Use `searchGroups` instead. */
-  async getGroupsSearch<T = Models.GroupArrayWithLinks>(
-    parameters: Parameters.GetGroupsSearch,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** @deprecated Will be removed in the next major version. Use `searchGroups` instead. */
-  async getGroupsSearch<T = Models.GroupArrayWithLinks>(
-    parameters: Parameters.GetGroupsSearch,
-    callback?: never,
-  ): Promise<T>;
-  async getGroupsSearch<T = Models.GroupArrayWithLinks>(
-    parameters: Parameters.GetGroupsSearch,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    return this.searchGroups(parameters, callback!);
   }
 
   /** Get search results of groups by partial query provided. */

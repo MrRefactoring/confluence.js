@@ -1,3 +1,3 @@
-import { LabelCreate } from './labelCreate';
+import type { LabelCreate } from './labelCreate';
 
 export type LabelCreateArray = LabelCreate[];

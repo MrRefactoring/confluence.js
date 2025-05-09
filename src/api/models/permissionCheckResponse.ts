@@ -1,4 +1,4 @@
-import { Message } from './message';
+import type { Message } from './message';
 
 /**
  * This object represents the response for the content permission check API. If the user or group does not have*

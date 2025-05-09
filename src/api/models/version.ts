@@ -1,7 +1,7 @@
-import { Content } from './content';
-import { GenericLinks } from './genericLinks';
-import { User } from './user';
-import { UsersUserKeys } from './usersUserKeys';
+import type { Content } from './content';
+import type { GenericLinks } from './genericLinks';
+import type { User } from './user';
+import type { UsersUserKeys } from './usersUserKeys';
 
 export interface Version {
   by: User;

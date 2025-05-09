@@ -1,4 +1,4 @@
-import { ContentState } from './contentState';
+import type { ContentState } from './contentState';
 
 export interface ContentStateResponse {
   /** Null or content state */

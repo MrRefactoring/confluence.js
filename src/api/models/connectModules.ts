@@ -1,4 +1,4 @@
-import { AppDescriptor } from './appDescriptor';
+import type { AppDescriptor } from './appDescriptor';
 
 /**
  * A list of app modules in the same format as the `modules` property in the [app

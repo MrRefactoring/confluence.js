@@ -1,5 +1,5 @@
-import { BulkUserLookup } from './bulkUserLookup';
-import { GenericLinks } from './genericLinks';
+import type { BulkUserLookup } from './bulkUserLookup';
+import type { GenericLinks } from './genericLinks';
 
 export interface BulkUserLookupArray {
   results: BulkUserLookup[];

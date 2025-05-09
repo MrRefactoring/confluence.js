@@ -1,5 +1,5 @@
-import { ContentArray } from './contentArray';
-import { GenericLinks } from './genericLinks';
+import type { ContentArray } from './contentArray';
+import type { GenericLinks } from './genericLinks';
 
 export interface ContentChildren {
   attachment?: ContentArray;

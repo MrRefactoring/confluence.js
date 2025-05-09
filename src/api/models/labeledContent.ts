@@ -1,4 +1,4 @@
-import { LabeledContentType } from './labeledContentType';
+import type { LabeledContentType } from './labeledContentType';
 
 export interface LabeledContent {
   contentType: LabeledContentType;

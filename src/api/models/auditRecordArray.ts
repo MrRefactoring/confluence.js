@@ -1,5 +1,5 @@
-import { AuditRecord } from './auditRecord';
-import { GenericLinks } from './genericLinks';
+import type { AuditRecord } from './auditRecord';
+import type { GenericLinks } from './genericLinks';
 
 export interface AuditRecordArray {
   results: AuditRecord[];

@@ -1,4 +1,4 @@
-import { WatchUser } from './watchUser';
+import type { WatchUser } from './watchUser';
 
 export interface Watch {
   type: string;

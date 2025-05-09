@@ -1,4 +1,4 @@
-import { ContentBodyCreate } from './contentBodyCreate';
+import type { ContentBodyCreate } from './contentBodyCreate';
 
 export interface ContentCreate {
   /** The ID of the draft content. Required when publishing a draft. */

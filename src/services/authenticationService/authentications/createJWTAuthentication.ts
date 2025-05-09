@@ -1,8 +1,8 @@
 import * as jwt from 'atlassian-jwt';
-import { Config } from '../../../config';
+import type { JWT } from '~';
 
 export function createJWTAuthentication(
-  authenticationData: Config.Authentication.JWT,
+  { jwt: { issuer, secret, expiryTimeSeconds } }: JWT,
   requestData: {
     method: string;
     url: string;
@@ -11,17 +11,17 @@ export function createJWTAuthentication(
   const { method, url } = requestData;
 
   const now = Math.floor(Date.now() / 1000);
-  const expire = now + 180;
+  const expire = now + (expiryTimeSeconds ?? 180);
 
   const request = jwt.fromMethodAndUrl(method, url);
   const tokenData = {
-    iss: authenticationData.issuer,
+    iss: issuer,
     qsh: jwt.createQueryStringHash(request),
     iat: now,
     exp: expire,
   };
 
-  const token = jwt.encodeSymmetric(tokenData, authenticationData.secret);
+  const token = jwt.encodeSymmetric(tokenData, secret);
 
   return `JWT ${token}`;
 }

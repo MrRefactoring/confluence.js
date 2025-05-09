@@ -1,4 +1,4 @@
-import { Embeddable } from './embeddable';
+import type { Embeddable } from './embeddable';
 
 export interface EmbeddedContent {
   entityId?: number;

@@ -1,5 +1,5 @@
-import { GenericLinks } from './genericLinks';
-import { SearchResult } from './searchResult';
+import type { GenericLinks } from './genericLinks';
+import type { SearchResult } from './searchResult';
 
 export interface SearchPageResponseSearchResult {
   results: SearchResult[];

@@ -1,6 +1,6 @@
 .idea/
 node_modules/
-out/
+dist/
 docs/
 
 .DS_Store

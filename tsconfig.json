@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "CommonJS",
-    "outDir": "out",
+    "target": "ES2022",
+    "outDir": "dist",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "strict": true,
-    "sourceMap": true,
     "declaration": true,
-    "importHelpers": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "~": ["src"],
+      "~/*": ["src/*"]
+    }
   },
+  "include": ["src", "rollup.config.ts"],
   "exclude": [
     "node_modules",
-    "out",
-    "tests"
+    "dist",
   ]
 }

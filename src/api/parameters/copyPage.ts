@@ -1,4 +1,4 @@
-import { CopyPageRequest } from '../models';
+import type { CopyPageRequest } from '../models';
 
 export interface CopyPage {
   id: string;

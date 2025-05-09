@@ -1,4 +1,5 @@
-import { CreateAttachments } from './createAttachments';
+import type { CreateAttachments } from './createAttachments';
+import type { ExtractBaseType } from '~/interfaces';
 
 export interface UpdateAttachmentData {
   /** The ID of the content that the attachment is attached to. */
@@ -7,5 +8,5 @@ export interface UpdateAttachmentData {
   attachmentId: string;
 
   /** Attachment data to update. */
-  attachment: CreateAttachments.Attachment;
+  attachment: ExtractBaseType<CreateAttachments['attachments']>;
 }

@@ -1,5 +1,5 @@
-import { ContentBodyCreate } from './contentBodyCreate';
-import { Label } from './label';
+import type { ContentBodyCreate } from './contentBodyCreate';
+import type { Label } from './label';
 
 /** This object is used to update content templates. */
 export interface ContentTemplateUpdate {

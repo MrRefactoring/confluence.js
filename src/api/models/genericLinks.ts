@@ -1,6 +1,5 @@
-export type GenericLinks = {
-  [key: string]: any;
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export type GenericLinks = Record<string, any> & {
   self: string;
   next?: string;
   tinyui?: string;

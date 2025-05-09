@@ -1,4 +1,4 @@
-import { GenericLinks } from './genericLinks';
+import type { GenericLinks } from './genericLinks';
 
 /**
  * Shows whether a piece of content has attachments, comments, or child pages.* Note, this doesn't actually contain the

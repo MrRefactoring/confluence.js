@@ -1,4 +1,4 @@
-import { Icon } from './icon';
+import type { Icon } from './icon';
 
 /** Theme object without links. Used in ThemeArray. */
 export interface ThemeNoLinks {

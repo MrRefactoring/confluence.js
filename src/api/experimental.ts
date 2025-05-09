@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
+import type { RequestConfig } from '../requestConfig';
 
 export class Experimental {
   constructor(private client: Client) {}
@@ -314,25 +314,6 @@ export class Experimental {
     const config: RequestConfig = {
       url: `/api/user/${parameters.userId}/property/${parameters.key}`,
       method: 'DELETE',
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /** @deprecated Get the total number of distinct viewers a piece of content has. */
-  async getViewers<T = Models.GetViewers>(parameters: Parameters.GetViewers, callback: Callback<T>): Promise<void>;
-  /** @deprecated Get the total number of distinct viewers a piece of content has. */
-  async getViewers<T = Models.GetViewers>(parameters: Parameters.GetViewers, callback?: never): Promise<T>;
-  async getViewers<T = Models.GetViewers>(
-    parameters: Parameters.GetViewers,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: `/api/analytics/content/${parameters.contentId}/viewers`,
-      method: 'GET',
-      params: {
-        fromDate: parameters.fromDate,
-      },
     };
 
     return this.client.sendRequest(config, callback);

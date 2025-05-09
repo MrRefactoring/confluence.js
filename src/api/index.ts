@@ -5,7 +5,6 @@ export * from './contentAttachments';
 export * from './contentBody';
 export * from './contentChildrenAndDescendants';
 export * from './contentComments';
-export * from './contentContentState';
 export * from './contentLabels';
 export * from './contentMacroBody';
 export * from './contentPermissions';

@@ -1,5 +1,5 @@
-import { EmbeddedContent } from './embeddedContent';
-import { WebResourceDependencies } from './webResourceDependencies';
+import type { EmbeddedContent } from './embeddedContent';
+import type { WebResourceDependencies } from './webResourceDependencies';
 
 export interface ContentBody {
   value: string;

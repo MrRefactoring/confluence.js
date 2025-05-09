@@ -1,25 +1,11 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
+import type { RequestConfig } from '../requestConfig';
 
 export class Search {
   constructor(private client: Client) {}
-
-  /** @deprecated Will be removed in the next major version. Use `searchByCQL` instead. */
-  async search<T = Models.SearchPageResponseSearchResult>(
-    parameters: Parameters.Search,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** @deprecated Will be removed in the next major version. Use `searchByCQL` instead. */
-  async search<T = Models.SearchPageResponseSearchResult>(parameters: Parameters.Search, callback?: never): Promise<T>;
-  async search<T = Models.SearchPageResponseSearchResult>(
-    parameters: Parameters.Search,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    return this.searchByCQL(parameters, callback!);
-  }
 
   /**
    * Searches for content using the [Confluence Query Language
@@ -75,23 +61,6 @@ export class Search {
     };
 
     return this.client.sendRequest(config, callback);
-  }
-
-  /** @deprecated Will be removed in the next major version. Use `searchUser` instead. */
-  async userSearch<T = Models.SearchPageResponseSearchResult>(
-    parameters: Parameters.UserSearch,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** @deprecated Will be removed in the next major version. Use `searchUser` instead. */
-  async userSearch<T = Models.SearchPageResponseSearchResult>(
-    parameters: Parameters.UserSearch,
-    callback?: never,
-  ): Promise<T>;
-  async userSearch<T = Models.SearchPageResponseSearchResult>(
-    parameters: Parameters.UserSearch,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    return this.searchUser(parameters, callback!);
   }
 
   /**

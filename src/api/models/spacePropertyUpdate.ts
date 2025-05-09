@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface SpacePropertyUpdate {
   /** The value of the property. */
   value: Record<string, any>;

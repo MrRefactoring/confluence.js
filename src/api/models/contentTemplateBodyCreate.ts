@@ -1,4 +1,4 @@
-import { ContentBodyCreate } from './contentBodyCreate';
+import type { ContentBodyCreate } from './contentBodyCreate';
 
 /** This object is used when creating or updating content. */
 export interface ContentTemplateBodyCreate {

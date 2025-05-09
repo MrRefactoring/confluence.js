@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.0.0] - 2025-05-09
+### **Breaking Changes** ⚠️
+- **Deprecated APIs removed**: APIs marked as deprecated in v1.x have been removed.
+- **Server API removed**: Server-related code and support are no longer included.
+- **Node.js version**: Minimum supported version is now **Node 20**.
+  - Upgrade your environment if using Node < 20.
+
+### **Major Improvements** ✨
+- **Dual CJS/ESM support**: Added ESM (ECMAScript Modules) support **alongside** existing CommonJS.
+  - Use `import` (ESM) or `require` (CJS) — both work.
+  - ESM entry point: `dist/esm/index.js` (via `"module"` field in `package.json`).
+- **Testing**: Replaced `ava` with [`vitest`](https://vitest.dev/) for faster, modern testing.
+- **Security**: Fixed JWT expiry time handling.
+  - Tokens now respect configured TTL consistently.
+
+### **Other Changes**
+- **Telemetry**: All telemetry/tracking code has been removed.
+  - No data is collected by the package.
+
 ### [1.7.3] - 2024-03-04
 
 - Dependencies updated

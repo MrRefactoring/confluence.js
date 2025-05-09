@@ -1,5 +1,5 @@
-import { BlueprintTemplate } from './blueprintTemplate';
-import { GenericLinks } from './genericLinks';
+import type { BlueprintTemplate } from './blueprintTemplate';
+import type { GenericLinks } from './genericLinks';
 
 export interface BlueprintTemplateArray {
   results: BlueprintTemplate[];

@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
+import type { RequestConfig } from '../requestConfig';
 
 export class Relation {
   constructor(private client: Client) {}
@@ -56,20 +56,6 @@ export class Relation {
     };
 
     return this.client.sendRequest(config, callback);
-  }
-
-  /** @deprecated Will be removed in the next major version. Use `getRelationship` instead. */
-  async GetRelationship<T = Models.Relation>(
-    parameters: Parameters.GetRelationship,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** @deprecated Will be removed in the next major version. Use `getRelationship` instead. */
-  async GetRelationship<T = Models.Relation>(parameters: Parameters.GetRelationship, callback?: never): Promise<T>;
-  async GetRelationship<T = Models.Relation>(
-    parameters: Parameters.GetRelationship,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    return this.getRelationship(parameters, callback!);
   }
 
   /**
@@ -162,14 +148,6 @@ export class Relation {
     };
 
     return this.client.sendRequest(config, callback);
-  }
-
-  /** @deprecated Will be removed in the next major version. Use `deleteRelationship` instead. */
-  async delete<T = void>(parameters: Parameters.Delete, callback: Callback<T>): Promise<void>;
-  /** @deprecated Will be removed in the next major version. Use `deleteRelationship` instead. */
-  async delete<T = void>(parameters: Parameters.Delete, callback?: never): Promise<T>;
-  async delete<T = void>(parameters: Parameters.Delete, callback?: Callback<T>): Promise<void | T> {
-    return this.deleteRelationship(parameters, callback!);
   }
 
   /**

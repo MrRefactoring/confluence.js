@@ -1,4 +1,4 @@
-import { Task } from './task';
+import type { Task } from './task';
 
 export interface TaskPageResponse {
   results: Task[];
