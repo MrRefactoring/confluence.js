@@ -1,4 +1,4 @@
-import { CreateAttachments } from './createAttachments';
+import type { CreateAttachments } from './createAttachments';
 
 export interface CreateOrUpdateAttachments {
   /** The ID of the content to add the attachment to. */
@@ -7,5 +7,5 @@ export interface CreateOrUpdateAttachments {
   status?: 'current' | 'draft' | string;
 
   /** The attachments to be created or updated. */
-  attachments: CreateAttachments.Attachment | CreateAttachments.Attachment[];
+  attachments: CreateAttachments['attachments'];
 }

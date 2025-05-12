@@ -1,4 +1,4 @@
-import { Message } from './message';
+import type { Message } from './message';
 
 /**
  * Current status of a long running task*

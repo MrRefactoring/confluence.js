@@ -98,7 +98,7 @@ export interface GetAndConvertMacroBodyByMacroId {
         | 'space'
         | 'extensions.inlineProperties'
         | 'extensions.resolution'
-      )[]
+    )[]
     | string
     | string[];
 }

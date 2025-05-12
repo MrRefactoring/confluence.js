@@ -1,6 +1,6 @@
-import { GenericLinks } from './genericLinks';
-import { Icon } from './icon';
-import { OperationCheckResult } from './operationCheckResult';
+import type { GenericLinks } from './genericLinks';
+import type { Icon } from './icon';
+import type { OperationCheckResult } from './operationCheckResult';
 
 export interface UserAnonymous {
   type: string;

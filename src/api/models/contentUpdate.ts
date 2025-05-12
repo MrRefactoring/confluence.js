@@ -1,5 +1,5 @@
-import { ContentBodyCreate } from './contentBodyCreate';
-import { ContentBodyCreateStorage } from './contentBodyCreateStorage';
+import type { ContentBodyCreate } from './contentBodyCreate';
+import type { ContentBodyCreateStorage } from './contentBodyCreateStorage';
 
 export interface ContentUpdate {
   /**

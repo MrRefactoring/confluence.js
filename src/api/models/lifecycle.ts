@@ -21,12 +21,6 @@ export interface Lifecycle {
   clientKey?: string;
 
   /**
-   * @deprecated This is the public key for this Atlassian product instance. This field is deprecated and should not be
-   *   used.
-   */
-  publicKey?: string;
-
-  /**
    * The account ID for identifying users in the `sub` claim sent in JWT during calls. This is the user associated with
    * the relevant action, and may not be present if there is no logged in user.
    */
@@ -38,15 +32,6 @@ export interface Lifecycle {
    * secret.
    */
   sharedSecret?: string;
-
-  /** @deprecated This is a string representation of the host product's version. Generally you should not need it. */
-  serverVersion?: string;
-
-  /**
-   * @deprecated This is a [SemVer-compliant](https://semver.org/) version of Atlassian Connect which is running on the
-   *   host server, for example: `1.1.15`.
-   */
-  pluginsVersion?: string;
 
   /** URL prefix for this Atlassian product instance. All of its REST endpoints begin with this `baseUrl`. */
   baseUrl: string;

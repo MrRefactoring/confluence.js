@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /** This object is used when creating or updating content. */
 export interface ContentBodyCreate {
   /** The body of the content in the relevant format. */

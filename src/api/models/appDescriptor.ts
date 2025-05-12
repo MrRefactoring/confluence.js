@@ -1,4 +1,5 @@
-import { Lifecycle } from './lifecycle';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { Lifecycle } from './lifecycle';
 
 export interface AppDescriptor {
   /** Defines the authentication type to use when signing requests between the host application and the connect app. */

@@ -1,5 +1,5 @@
-import { ContentProperty } from './contentProperty';
-import { GenericLinks } from './genericLinks';
+import type { ContentProperty } from './contentProperty';
+import type { GenericLinks } from './genericLinks';
 
 export interface ContentPropertyArray {
   results: ContentProperty[];

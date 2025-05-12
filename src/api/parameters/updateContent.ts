@@ -1,4 +1,4 @@
-import { ContentUpdate } from '../models';
+import type { ContentUpdate } from '../models';
 
 export interface UpdateContent extends ContentUpdate {
   /** The ID of the content to be updated. */

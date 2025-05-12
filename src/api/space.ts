@@ -1,9 +1,9 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
 import { paramSerializer } from '../paramSerializer';
-import { RequestConfig } from '../requestConfig';
+import type { RequestConfig } from '../requestConfig';
 
 export class Space {
   constructor(private client: Client) {}

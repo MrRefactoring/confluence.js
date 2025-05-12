@@ -1,4 +1,4 @@
-import { ContentBodyCreate } from '../models';
+import type { ContentBodyCreate } from '../models';
 
 export interface AsyncConvertContentBodyRequest extends ContentBodyCreate {
   /** The name of the target format for the content body. */
@@ -75,7 +75,7 @@ export interface AsyncConvertContentBodyRequest extends ContentBodyCreate {
         | 'webresource.uris.css'
         | 'webresource.uris.data'
         | 'webresource.uris.js'
-      )[]
+    )[]
     | string
     | string[];
 }

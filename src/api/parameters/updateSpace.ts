@@ -1,4 +1,4 @@
-import { SpaceUpdate } from '../models';
+import type { SpaceUpdate } from '../models';
 
 export interface UpdateSpace extends SpaceUpdate {
   /** The key of the space to update. */

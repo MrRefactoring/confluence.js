@@ -1,4 +1,4 @@
-import { ContentState } from './contentState';
+import type { ContentState } from './contentState';
 
 export interface ContentStateSettings {
   /** Whether users can place content states on any pages and blog posts in the space */

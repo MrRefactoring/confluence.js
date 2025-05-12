@@ -1,4 +1,4 @@
-import { TaskStatusUpdate } from '../models';
+import type { TaskStatusUpdate } from '../models';
 
 export interface UpdateTaskById extends TaskStatusUpdate {
   /** Global ID of the inline task to update */

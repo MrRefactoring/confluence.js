@@ -1,4 +1,4 @@
-import { GenericLinks } from './genericLinks';
+import type { GenericLinks } from './genericLinks';
 
 export interface Group {
   type: string;

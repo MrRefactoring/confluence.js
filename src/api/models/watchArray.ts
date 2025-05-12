@@ -1,5 +1,5 @@
-import { GenericLinks } from './genericLinks';
-import { Watch } from './watch';
+import type { GenericLinks } from './genericLinks';
+import type { Watch } from './watch';
 
 export interface WatchArray {
   results: Watch[];

@@ -1,4 +1,5 @@
-import {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type {
   AttachmentMetadata,
   Container,
   Content,
@@ -16,17 +17,7 @@ export interface UpdateAttachmentProperties {
   id: string;
   /** The ID of the attachment to update. */
   attachmentId: string;
-
-  /** @deprecated Use `update` property instead. */
-  body?: UpdateAttachmentProperties.Properties;
-
-  update?: UpdateAttachmentProperties.Properties;
-}
-
-export namespace UpdateAttachmentProperties {
-  export interface Properties {
-    [key: string]: any;
-
+  update: Record<string, any> & {
     id: string;
     type: 'page' | 'blogpost' | 'attachment' | 'content' | string;
     status: 'current' | 'draft' | string;
@@ -63,5 +54,5 @@ export namespace UpdateAttachmentProperties {
       macroRenderedOutput: string;
     };
     _links?: GenericLinks;
-  }
+  };
 }

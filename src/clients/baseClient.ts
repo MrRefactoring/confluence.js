@@ -1,9 +1,16 @@
-import axios, { AxiosInstance } from 'axios';
-import { AuthenticationService } from '../services/authenticationService';
-import type { Callback } from '../callback';
+/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unnecessary-condition */
+import type { AxiosInstance } from 'axios';
+import axios from 'axios';
+import { getAuthenticationToken } from '~/services';
+import type { Callback } from '~/callback';
 import type { Client } from './client';
-import type { Config } from '../config';
-import type { RequestConfig } from '../requestConfig';
+import {
+  ConfigSchema,
+  type Config,
+  type Error as ConfluenceError,
+} from '~/config';
+import type { RequestConfig } from '~/requestConfig';
+import { ZodError } from 'zod';
 
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
 const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
@@ -13,6 +20,16 @@ export class BaseClient implements Client {
 
   constructor(protected readonly config: Config) {
     this.config.apiPrefix = this.config.apiPrefix || '/wiki/rest/';
+
+    try {
+      this.config = ConfigSchema.parse(this.config);
+    } catch (e) {
+      if (e instanceof ZodError && e.errors[0].code === 'invalid_string') {
+        throw new Error(e.errors[0].message);
+      }
+
+      throw e;
+    }
   }
 
   protected paramSerializer(parameters: Record<string, any>): string {
@@ -24,20 +41,16 @@ export class BaseClient implements Client {
       }
 
       if (Array.isArray(value)) {
-        // eslint-disable-next-line no-param-reassign
         value = value.join(',');
       }
 
       if (value instanceof Date) {
-        // eslint-disable-next-line no-param-reassign
         value = value.toISOString();
       } else if (value !== null && typeof value === 'object') {
-        // eslint-disable-next-line no-param-reassign
         value = JSON.stringify(value);
       } else if (value instanceof Function) {
         const part = value();
 
-        // eslint-disable-next-line consistent-return
         return part && parts.push(part);
       }
 
@@ -83,14 +96,14 @@ export class BaseClient implements Client {
     return this.#instance;
   }
 
-  async sendRequest<T>(requestConfig: RequestConfig, callback: never, telemetryData?: any): Promise<T>;
-  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>, telemetryData?: any): Promise<void>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback: never): Promise<T>;
+  async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T>): Promise<void>;
   async sendRequest<T>(requestConfig: RequestConfig, callback: Callback<T> | never): Promise<void | T> {
     try {
       const modifiedRequestConfig = {
         ...requestConfig,
         headers: this.removeUndefinedProperties({
-          Authorization: await AuthenticationService.getAuthenticationToken(this.config.authentication, {
+          Authorization: await getAuthenticationToken(this.config.authentication, {
             baseURL: this.config.host,
             url: this.instance.getUri(requestConfig),
             method: requestConfig.method!,
@@ -110,9 +123,9 @@ export class BaseClient implements Client {
 
       return responseHandler(response.data);
     } catch (e: any) {
-      const err = this.config.newErrorHandling && e.isAxiosError ? e.response.data : e;
+      const err = e.isAxiosError ? e.response.data : e;
 
-      const callbackErrorHandler = callback && ((error: Config.Error) => callback(error));
+      const callbackErrorHandler = callback && ((error: ConfluenceError) => callback(error));
       const defaultErrorHandler = (error: Error) => {
         throw error;
       };

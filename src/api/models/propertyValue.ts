@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * The value of the property. This can be empty or a complex object.* For example,
  *

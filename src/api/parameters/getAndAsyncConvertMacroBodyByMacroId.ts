@@ -82,7 +82,7 @@ export interface GetAndAsyncConvertMacroBodyByMacroId {
         | 'webresource.uris.css'
         | 'webresource.uris.data'
         | 'webresource.uris.js'
-      )[]
+    )[]
     | string
     | string[];
 }

@@ -1,4 +1,4 @@
-import { SpaceWatchUser } from './spaceWatchUser';
+import type { SpaceWatchUser } from './spaceWatchUser';
 
 export interface SpaceWatch {
   type: string;

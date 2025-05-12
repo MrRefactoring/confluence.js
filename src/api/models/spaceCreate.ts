@@ -1,5 +1,5 @@
-import { SpaceDescriptionCreate } from './spaceDescriptionCreate';
-import { SpacePermission } from './spacePermission';
+import type { SpaceDescriptionCreate } from './spaceDescriptionCreate';
+import type { SpacePermission } from './spacePermission';
 
 /** This is the request object used when creating a new space. */
 export interface SpaceCreate {

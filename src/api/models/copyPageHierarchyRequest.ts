@@ -1,4 +1,4 @@
-import { CopyPageHierarchyTitleOptions } from './copyPageHierarchyTitleOptions';
+import type { CopyPageHierarchyTitleOptions } from './copyPageHierarchyTitleOptions';
 
 export interface CopyPageHierarchyRequest {
   /** If set to `true`, attachments are copied to the destination page. */

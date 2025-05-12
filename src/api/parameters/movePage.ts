@@ -1,8 +1,6 @@
 export interface MovePage {
   /** The ID of the page to be moved */
   pageId?: string;
-  /** @deprecated The ID of the page to be moved */
-  id?: string;
   /**
    * The position to move the page to relative to the target page:
    *

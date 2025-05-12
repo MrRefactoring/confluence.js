@@ -1,4 +1,4 @@
-import { VersionRestore } from '../models';
+import type { VersionRestore } from '../models';
 
 export interface RestoreContentVersion extends VersionRestore {
   /** The ID of the content for which the history will be restored. */

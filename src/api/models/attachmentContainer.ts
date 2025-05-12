@@ -1,4 +1,5 @@
-import { GenericLinks } from './genericLinks';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { GenericLinks } from './genericLinks';
 
 export interface AttachmentContainer {
   id: string;

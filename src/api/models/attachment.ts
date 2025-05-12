@@ -1,5 +1,6 @@
-import { AttachmentMetadata } from './attachmentMetadata';
-import { GenericLinks } from './genericLinks';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { AttachmentMetadata } from './attachmentMetadata';
+import type { GenericLinks } from './genericLinks';
 
 export interface Attachment {
   id: string;

@@ -1,4 +1,4 @@
-import { Space } from './space';
+import type { Space } from './space';
 
 export interface SpaceProperty {
   id: number;

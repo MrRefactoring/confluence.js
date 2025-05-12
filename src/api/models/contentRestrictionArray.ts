@@ -1,5 +1,5 @@
-import { ContentRestriction } from './contentRestriction';
-import { GenericLinks } from './genericLinks';
+import type { ContentRestriction } from './contentRestriction';
+import type { GenericLinks } from './genericLinks';
 
 export interface ContentRestrictionArray {
   results: ContentRestriction[];

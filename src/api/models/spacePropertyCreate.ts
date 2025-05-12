@@ -1,4 +1,4 @@
-import { PropertyValue } from './propertyValue';
+import type { PropertyValue } from './propertyValue';
 
 export interface SpacePropertyCreate {
   /** The key of the new property. */

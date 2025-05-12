@@ -1,4 +1,4 @@
-import { LookAndFeel } from '../models';
+import type { LookAndFeel } from '../models';
 
 export interface UpdateLookAndFeelSettings extends LookAndFeel {
   /**

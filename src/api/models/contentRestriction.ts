@@ -1,7 +1,7 @@
-import { Content } from './content';
-import { GenericLinks } from './genericLinks';
-import { GroupArray } from './groupArray';
-import { UserArray } from './userArray';
+import type { Content } from './content';
+import type { GenericLinks } from './genericLinks';
+import type { GroupArray } from './groupArray';
+import type { UserArray } from './userArray';
 
 export interface ContentRestriction {
   operation: string;

@@ -1,4 +1,4 @@
-import { SpaceDescriptionCreate } from './spaceDescriptionCreate';
+import type { SpaceDescriptionCreate } from './spaceDescriptionCreate';
 
 export interface SpaceUpdate {
   /** The name of the space. */

@@ -1,4 +1,4 @@
-import { ContentRestrictionUpdateArray } from '../models';
+import type { ContentRestrictionUpdateArray } from '../models';
 
 export interface UpdateRestrictions {
   /** The ID of the content to update restrictions for. */

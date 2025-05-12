@@ -1,5 +1,5 @@
-import { ContentTemplate } from './contentTemplate';
-import { GenericLinks } from './genericLinks';
+import type { ContentTemplate } from './contentTemplate';
+import type { GenericLinks } from './genericLinks';
 
 export interface ContentTemplateArray {
   results: ContentTemplate[];

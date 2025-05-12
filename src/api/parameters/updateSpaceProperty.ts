@@ -1,4 +1,4 @@
-import { SpacePropertyUpdate } from '../models';
+import type { SpacePropertyUpdate } from '../models';
 
 export interface UpdateSpaceProperty extends SpacePropertyUpdate {
   /** The key of the space that the property is in. */

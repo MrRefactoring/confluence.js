@@ -56,7 +56,7 @@ export interface GetSpaces {
         | 'theme'
         | 'homepage'
         | 'history'
-      )[]
+    )[]
     | string
     | string[];
   /** The starting index of the returned spaces. */

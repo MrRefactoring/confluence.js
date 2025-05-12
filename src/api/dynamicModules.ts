@@ -1,7 +1,7 @@
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
+import type { RequestConfig } from '../requestConfig';
 
 export class DynamicModules {
   constructor(private client: Client) {}

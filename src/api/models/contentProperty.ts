@@ -1,5 +1,5 @@
-import { Content } from './content';
-import { GenericLinks } from './genericLinks';
+import type { Content } from './content';
+import type { GenericLinks } from './genericLinks';
 
 export interface ContentProperty {
   id: number;

@@ -1,5 +1,5 @@
-import { GenericLinks } from './genericLinks';
-import { ThemeNoLinks } from './themeNoLinks';
+import type { GenericLinks } from './genericLinks';
+import type { ThemeNoLinks } from './themeNoLinks';
 
 export interface ThemeArray {
   results: ThemeNoLinks[];

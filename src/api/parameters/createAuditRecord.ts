@@ -1,3 +1,3 @@
-import { AuditRecordCreate } from '../models';
+import type { AuditRecordCreate } from '../models';
 
 export interface CreateAuditRecord extends AuditRecordCreate {}

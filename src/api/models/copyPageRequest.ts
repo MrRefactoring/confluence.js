@@ -1,5 +1,5 @@
-import { ContentBodyCreate } from './contentBodyCreate';
-import { CopyPageRequestDestination } from './copyPageRequestDestination';
+import type { ContentBodyCreate } from './contentBodyCreate';
+import type { CopyPageRequestDestination } from './copyPageRequestDestination';
 
 export interface CopyPageRequest {
   /** If set to `true`, attachments are copied to the destination page. */

@@ -1,6 +1,5 @@
-import { Icon } from './icon';
-import { OperationCheckResult } from './operationCheckResult';
-import { UserDetails } from './userDetails';
+import type { Icon } from './icon';
+import type { OperationCheckResult } from './operationCheckResult';
 
 /**
  * This essentially the same as the `User` object, but no `_links` property and* no `_expandable` property (therefore,
@@ -26,7 +25,6 @@ export interface SpaceWatchUser {
   profilePicture: Icon;
   displayName: string;
   operations?: OperationCheckResult[];
-  details?: UserDetails;
   accountType: string;
   email: string;
   publicName: string;

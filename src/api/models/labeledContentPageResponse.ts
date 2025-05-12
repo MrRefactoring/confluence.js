@@ -1,4 +1,4 @@
-import { LabeledContent } from './labeledContent';
+import type { LabeledContent } from './labeledContent';
 
 export interface LabeledContentPageResponse {
   results: LabeledContent[];

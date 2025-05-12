@@ -1,4 +1,4 @@
-import { ContentPropertyCreateNoKey } from '../models';
+import type { ContentPropertyCreateNoKey } from '../models';
 
 export interface CreateContentPropertyForKey extends ContentPropertyCreateNoKey {
   /** The ID of the content to add the property to. */

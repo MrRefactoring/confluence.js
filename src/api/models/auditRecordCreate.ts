@@ -1,5 +1,5 @@
-import { AffectedObject } from './affectedObject';
-import { ChangedValue } from './changedValue';
+import type { AffectedObject } from './affectedObject';
+import type { ChangedValue } from './changedValue';
 
 export interface AuditRecordCreate {
   /**
@@ -13,10 +13,6 @@ export interface AuditRecordCreate {
     displayName?: string;
     /** Always defaults to null. */
     operations?: {};
-    /** @deprecated This property has been deprecated and will be removed soon. */
-    username?: string;
-    /** @deprecated This property has been deprecated and will be removed soon. */
-    userKey?: string;
   };
   /** The IP address of the computer where the event was initiated from. */
   remoteAddress: string;

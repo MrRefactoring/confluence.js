@@ -1,15 +1,11 @@
-import { AffectedObject } from './affectedObject';
-import { ChangedValue } from './changedValue';
+import type { AffectedObject } from './affectedObject';
+import type { ChangedValue } from './changedValue';
 
 export interface AuditRecord {
   author: {
     type: string;
     displayName: string;
     operations: {};
-    /** @deprecated This property has been deprecated and will be removed soon. */
-    username: string;
-    /** @deprecated This property has been deprecated and will be removed soon. */
-    userKey: string;
   };
   remoteAddress: string;
   /** The creation date-time of the audit record, as a timestamp. */

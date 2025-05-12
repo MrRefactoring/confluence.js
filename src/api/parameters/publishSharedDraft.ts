@@ -1,4 +1,4 @@
-import { ContentBlueprintDraft } from '../models';
+import type { ContentBlueprintDraft } from '../models';
 
 export interface PublishSharedDraft extends ContentBlueprintDraft {
   /**

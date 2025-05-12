@@ -1,4 +1,4 @@
-import { PermissionSubjectWithGroupId } from './permissionSubjectWithGroupId';
+import type { PermissionSubjectWithGroupId } from './permissionSubjectWithGroupId';
 
 /** This object represents the request for the content permission check API. */
 export interface ContentPermissionRequest {

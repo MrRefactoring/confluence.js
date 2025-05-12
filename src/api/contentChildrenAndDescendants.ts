@@ -1,8 +1,8 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
+import type { RequestConfig } from '../requestConfig';
 
 export class ContentChildrenAndDescendants {
   constructor(private client: Client) {}
@@ -92,10 +92,8 @@ export class ContentChildrenAndDescendants {
    */
   async movePage<T = Models.MovePage>(parameters: Parameters.MovePage, callback?: never): Promise<T>;
   async movePage<T = Models.MovePage>(parameters: Parameters.MovePage, callback?: Callback<T>): Promise<void | T> {
-    const pageId = parameters.pageId || parameters.id;
-
     const config: RequestConfig = {
-      url: `/api/content/${pageId}/move/${parameters.position}/${parameters.targetId}`,
+      url: `/api/content/${parameters.pageId}/move/${parameters.position}/${parameters.targetId}`,
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -221,23 +219,6 @@ export class ContentChildrenAndDescendants {
     };
 
     return this.client.sendRequest(config, callback);
-  }
-
-  /** @deprecated This API will be removed in the next major version. Use `getDescendantsOfType` method instead. */
-  async descendantsOfType<T = Models.ContentArray>(
-    parameters: Parameters.DescendantsOfType,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** @deprecated This API will be removed in the next major version. Use `getDescendantsOfType` method instead. */
-  async descendantsOfType<T = Models.ContentArray>(
-    parameters: Parameters.DescendantsOfType,
-    callback?: never,
-  ): Promise<T>;
-  async descendantsOfType<T = Models.ContentArray>(
-    parameters: Parameters.DescendantsOfType,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    return this.getDescendantsOfType(parameters, callback!);
   }
 
   /**

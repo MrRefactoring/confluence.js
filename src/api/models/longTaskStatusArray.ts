@@ -1,5 +1,5 @@
-import { GenericLinks } from './genericLinks';
-import { LongTaskStatus } from './longTaskStatus';
+import type { GenericLinks } from './genericLinks';
+import type { LongTaskStatus } from './longTaskStatus';
 
 export interface LongTaskStatusArray {
   results: LongTaskStatus[];

@@ -1,25 +1,11 @@
-import * as Models from './models';
-import * as Parameters from './parameters';
-import { Callback } from '../callback';
-import { Client } from '../clients';
-import { RequestConfig } from '../requestConfig';
+import type * as Models from './models';
+import type * as Parameters from './parameters';
+import type { Callback } from '../callback';
+import type { Client } from '../clients';
+import type { RequestConfig } from '../requestConfig';
 
 export class SpacePermissions {
   constructor(private client: Client) {}
-
-  /** @deprecated Will be removed in the next major version. Use `addPermissionToSpace` instead. */
-  async addPermission<T = Models.SpacePermissionV2>(
-    parameters: Parameters.AddPermission,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /** @deprecated Will be removed in the next major version. Use `addPermissionToSpace` instead. */
-  async addPermission<T = Models.SpacePermissionV2>(parameters: Parameters.AddPermission, callback?: never): Promise<T>;
-  async addPermission<T = Models.SpacePermissionV2>(
-    parameters: Parameters.AddPermission,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    return this.addPermissionToSpace(parameters, callback!);
-  }
 
   /**
    * Adds new permission to space.

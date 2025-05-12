@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Confluence.js logo" src="./assets/logo.svg"/>
+  <img alt="Confluence.js logo" src="https://bad37fb3-cb50-4e0b-9035-a3e09e8afb3b.selstorage.ru/confluence.js%2Flogo.svg"/>
 
 <a href="https://www.npmjs.com/package/confluence.js"><img alt="NPM version" src="https://img.shields.io/npm/v/confluence.js.svg?maxAge=3600&style=flat-square" /></a>
 <a href="https://www.npmjs.com/package/confluence.js"><img alt="NPM downloads per month" src="https://img.shields.io/npm/dm/confluence.js.svg?maxAge=3600&style=flat-square" /></a>
@@ -23,7 +23,6 @@ Usability, consistency, and performance are key focuses of confluence.js, and it
     - [Basic](#basic-authentication)
     - [OAuth 2.0](#oauth-20)
     - [JWT](#jwt)
-    - [Personal access token](#personal-access-token)
   - [Your first request and using algorithm](#your-first-request-and-using-algorithm)
   - [`apiPrefix` config parameter](#apiprefix-config-parameter)
 - [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
@@ -32,7 +31,7 @@ Usability, consistency, and performance are key focuses of confluence.js, and it
 
 ## Installation
 
-**Node.js 10.0.0 or newer is required.**
+**Node.js 20.0.0 or newer is required.**
 
 Install with the npm:
 
@@ -46,6 +45,12 @@ Install with the yarn:
 yarn add confluence.js
 ```
 
+Install with the pnpm
+
+```bash
+pnpm add confluence.js
+```
+
 ## Usage
 
 #### Authentication
@@ -54,25 +59,9 @@ There are several types of authentication to gain access to the Confluence API. 
 
 ##### [Basic authentication](https://developer.atlassian.com/cloud/confluence/basic-auth-for-rest-apis/)
 
-Basic authentication allows you to log in with credentials. You can use username and password, but this login method is not supported in the online version, and most standalone versions, so it's better to release API Token, read how to do it [here](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/), and use it together with email.
-
-Username and password example:
-
-```typescript
-import { ConfluenceClient } from 'confluence.js';
-
-const client = new ConfluenceClient({
-  host: 'https://your-domain.atlassian.net',
-  authentication: {
-    basic: {
-      username: 'YOUR_USERNAME',
-      password: 'YOUR_PASSWORD',
-    },
-  },
-});
-```
-
-Email and API Token example:
+// TODO refine
+Basic authentication allows you to log in with credentials.
+How to release API Token, read how to do it [here](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/), and use it together with email.
 
 ```typescript
 import { ConfluenceClient } from 'confluence.js';
@@ -120,19 +109,6 @@ const client = new ConfluenceClient({
       secret: 'shhhh',
       expiryTimeSeconds: 180,
     },
-  },
-});
-```
-
-##### [Personal access token](https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html)
-
-```typescript
-import { ConfluenceClient } from 'confluence.js';
-
-const client = new ConfluenceClient({
-  host: 'https://your-domain.atlassian.net',
-  authentication: {
-    personalAccessToken: 'secrectPAT',
   },
 });
 ```
@@ -293,11 +269,12 @@ If you use Webpack and need to reduce the size of the assembly, you can create y
 
 ```typescript
 import { BaseClient } from 'confluence.js';
-import { Api } from 'confluence.js';
+import { Content } from 'confluence.js/api/content';
+import { Space } from 'confluence.js/api/space';
 
 export class CustomConfluenceClient extends BaseClient {
-  content = new Api.Content(this);
-  space = new Api.Space(this);
+  content = new Content(this);
+  space = new Space(this);
 }
 ```
 
