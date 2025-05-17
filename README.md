@@ -1,71 +1,99 @@
 <div align="center">
   <img alt="Confluence.js logo" src="https://bad37fb3-cb50-4e0b-9035-a3e09e8afb3b.selstorage.ru/confluence.js%2Flogo.svg"/>
 
-<a href="https://www.npmjs.com/package/confluence.js"><img alt="NPM version" src="https://img.shields.io/npm/v/confluence.js.svg?maxAge=3600&style=flat-square" /></a>
-<a href="https://www.npmjs.com/package/confluence.js"><img alt="NPM downloads per month" src="https://img.shields.io/npm/dm/confluence.js.svg?maxAge=3600&style=flat-square" /></a>
-<a href="https://github.com/MrRefactoring/confluence.js"><img alt="build status" src="https://img.shields.io/github/actions/workflow/status/mrrefactoring/confluence.js/ci.yaml?style=flat-square"></a>
-<a href="https://github.com/mrrefactoring/confluence.js/blob/develop/LICENSE"><img alt="license" src="https://img.shields.io/github/license/mrrefactoring/confluence.js?color=green&style=flat-square"/></a>
+  <a href="https://www.npmjs.com/package/confluence.js"><img alt="NPM version" src="https://img.shields.io/npm/v/confluence.js.svg?maxAge=3600&style=flat-square" /></a>
+  <a href="https://www.npmjs.com/package/confluence.js"><img alt="NPM downloads per month" src="https://img.shields.io/npm/dm/confluence.js.svg?maxAge=3600&style=flat-square" /></a>
+  <a href="https://github.com/MrRefactoring/confluence.js"><img alt="build status" src="https://img.shields.io/github/actions/workflow/status/mrrefactoring/confluence.js/ci.yaml?style=flat-square"></a>
+  <a href="https://github.com/mrrefactoring/confluence.js/blob/develop/LICENSE"><img alt="license" src="https://img.shields.io/github/license/mrrefactoring/confluence.js?color=green&style=flat-square"/></a>
 
-<span>JavaScript / TypeScript library for Node.JS and browsers to easily interact with Atlassian Confluence API</span>
+  <span>JavaScript/TypeScript library for Node.js and browsers to interact with Atlassian Confluence API</span>
 </div>
 
 ## About
 
-confluence.js is a powerful [Node.JS](https://nodejs.org/) / Browser module that allows you to interact with the [Confluence API](https://developer.atlassian.com/cloud/confluence/rest/intro/) very easily.
+Confluence.js is a powerful Node.js and browser-compatible module that provides seamless interaction with:
+- [Confluence Cloud REST API](https://developer.atlassian.com/cloud/confluence/rest/)
 
-Usability, consistency, and performance are key focuses of confluence.js, and it also has nearly 100% coverage of the Confluence API. It receives new Confluence features shortly after they arrive in the API.
+Designed for developer experience and performance, it offers full API coverage and stays updated with new Confluence features.
 
-## Table of contents
+## Table of Contents
 
-- [Installation](#installation)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Quick Example](#quick-example)
+- [Documentation](#documentation)
 - [Usage](#usage)
   - [Authentication](#authentication)
-    - [Basic](#basic-authentication)
+    - [Basic Auth](#basic-authentication)
     - [OAuth 2.0](#oauth-20)
     - [JWT](#jwt)
-  - [Your first request and using algorithm](#your-first-request-and-using-algorithm)
-  - [`apiPrefix` config parameter](#apiprefix-config-parameter)
-- [Decreasing Webpack bundle size](#decreasing-webpack-bundle-size)
-- [Take a look at our other products](#take-a-look-at-our-other-products)
+  - [First Request](#first-request)
+  - [API Structure](#api-structure)
+  - [Custom API Prefix](#custom-api-prefix)
+- [Tree Shaking](#tree-shaking)
+- [Other Products](#other-products)
 - [License](#license)
 
-## Installation
+## Getting Started
 
-**Node.js 20.0.0 or newer is required.**
+### Installation
 
-Install with the npm:
+**Requires Node.js 20.0.0 or newer**
 
 ```bash
+# npm
 npm install confluence.js
-```
 
-Install with the yarn:
-
-```bash
+# yarn
 yarn add confluence.js
-```
 
-Install with the pnpm
-
-```bash
+# pnpm
 pnpm add confluence.js
 ```
 
-## Usage
+### Quick Example
 
-#### Authentication
-
-There are several types of authentication to gain access to the Confluence API. Let's take a look at a few of them below
-
-##### [Basic authentication](https://developer.atlassian.com/cloud/confluence/basic-auth-for-rest-apis/)
-
-// TODO refine
-Basic authentication allows you to log in with credentials.
-How to release API Token, read how to do it [here](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/), and use it together with email.
+Create a Confluence space in 3 steps:
 
 ```typescript
 import { ConfluenceClient } from 'confluence.js';
 
+const client = new ConfluenceClient({
+  host: 'https://your-domain.atlassian.net',
+  authentication: {
+    basic: {
+      email: 'your@email.com',
+      apiToken: 'YOUR_API_TOKEN', // Create one: https://id.atlassian.com/manage-profile/security/api-tokens
+    },
+  },
+});
+
+async function createSpace() {
+  const space = await client.space.createSpace({
+    name: 'Project Galaxy',
+    key: 'GALAXY',
+  });
+  console.log(`Space created: ${space.key}`);
+}
+
+createSpace();
+```
+
+## Documentation
+
+Full API reference and guides available at:
+[https://mrrefactoring.github.io/confluence.js/](https://mrrefactoring.github.io/confluence.js/)
+
+## Usage
+
+### Authentication
+
+#### Basic Authentication
+
+1. Create an API token: [Atlassian Account Settings](https://id.atlassian.com/manage-profile/security/api-tokens)
+2. Configure the client:
+
+```typescript
 const client = new ConfluenceClient({
   host: 'https://your-domain.atlassian.net',
   authentication: {
@@ -77,15 +105,11 @@ const client = new ConfluenceClient({
 });
 ```
 
-##### [OAuth 2.0](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/)
+#### OAuth 2.0
 
-Only the authorization token is currently supported. To release it, you need to read the [documentation](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/) and write your own code to get the token.
-
-Example of usage
+Implement OAuth 2.0 flow using Atlassian's [documentation](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/):
 
 ```typescript
-import { ConfluenceClient } from 'confluence.js';
-
 const client = new ConfluenceClient({
   host: 'https://your-domain.atlassian.net',
   authentication: {
@@ -96,121 +120,57 @@ const client = new ConfluenceClient({
 });
 ```
 
-##### [JWT](https://developer.atlassian.com/cloud/confluence/understanding-jwt/)
+#### JWT
+
+For server-to-server integration:
 
 ```typescript
-import { ConfluenceClient } from 'confluence.js';
-
 const client = new ConfluenceClient({
   host: 'https://your-domain.atlassian.net',
   authentication: {
     jwt: {
-      issuer: 'ISSUER',
-      secret: 'shhhh',
+      issuer: 'your-client-id',
+      secret: 'your-secret-key',
       expiryTimeSeconds: 180,
     },
   },
 });
 ```
 
-#### Your first request and using algorithm
+### First Request
+
+Create a page in an existing space:
 
 ```typescript
-import { ConfluenceClient } from 'confluence.js'; // Or import ServerClient if using standalone (Server) API
-
-const client = new ConfluenceClient({
-  host: 'https://your-domain.atlassian.net',
-  authentication: {
-    basic: {
-      email: 'YOUR_EMAIL',
-      apiToken: 'YOUR_API_TOKEN',
+const page = await client.content.createContent({
+  title: 'Project Overview',
+  type: 'page',
+  space: { key: 'GALAXY' },
+  body: {
+    storage: {
+      value: '<p>Welcome to our project documentation</p>',
+      representation: 'storage',
     },
   },
 });
 
-async function main() {
-  const space = await client.space.createSpace({
-    name: 'My new space',
-    key: 'SPACENAME',
-  });
-
-  console.log(space);
-}
-
-main();
-
-// Expected output:
-// {
-//   id: 558714,
-//   key: 'SPACENAME',
-//   name: 'My new space',
-//   description: {
-//     plain: {
-//       value: '',
-//       representation: 'plain',
-//       embeddedContent: []
-//     },
-//     _expandable: {view: ''}
-//   },
-//   homepage: {
-//     id: '555312',
-//     type: 'page',
-//     status: 'current',
-//     title: 'My new space Home',
-//     macroRenderedOutput: {},
-//     extensions: {position: 581},
-//     _expandable: {
-//       container: '/rest/api/space/SPACENAME',
-//       metadata: '',
-//       restrictions: '/rest/api/content/555312/restriction/byOperation',
-//       history: '/rest/api/content/555312/history',
-//       body: '',
-//       version: '',
-//       descendants: '/rest/api/content/555312/descendant',
-//       space: '/rest/api/space/SPACENAME',
-//       childTypes: '',
-//       operations: '',
-//       schedulePublishDate: '',
-//       children: '/rest/api/content/555312/child',
-//       ancestors: ''
-//     },
-//     _links: {
-//       self: 'https://xxx.atlassian.net/wiki/rest/api/content/555312',
-//       tinyui: '/x/qIoI',
-//       editui: '/pages/resumedraft.action?draftId=555312',
-//       webui: '/spaces/SPACENAME/overview'
-//     }
-//   },
-//   type: 'global',
-//   permissions: [...],
-//   status: 'current',
-//   _expandable: {
-//     settings: '/rest/api/space/SPACENAME/settings',
-//     metadata: '',
-//     operations: '',
-//     lookAndFeel: '/rest/api/settings/lookandfeel?spaceKey=SPACENAME',
-//     identifiers: '',
-//     icon: '',
-//     theme: '/rest/api/space/SPACENAME/theme',
-//     history: ''
-//   },
-//   _links: {
-//     context: '/wiki',
-//     self: 'https://xxx.atlassian.net/wiki/rest/api/space/SPACENAME',
-//     collection: '/rest/api/space',
-//     webui: '/spaces/SPACENAME',
-//     base: 'https://xxx.atlassian.net/wiki'
-//   }
-// }
+console.log(`Page created: ${page.title}`);
 ```
 
-The algorithm for using the library:
+### API Structure
+
+Access endpoints using `client.<group>.<method>` pattern:
 
 ```typescript
-client.<group>.<methodName>(parametersObject);
+// Get space details
+const space = await client.space.getSpace({ spaceKey: 'GALAXY' });
+
+// Search content
+const results = await client.search.search({ cql: 'title~"Project"' });
 ```
 
-Available groups:
+<details>
+  <summary>🔽 Available API Groups</summary>
 
 - [analytics](https://developer.atlassian.com/cloud/confluence/rest/api-group-analytics/)
 - [audit](https://developer.atlassian.com/cloud/confluence/rest/api-group-audit)
@@ -244,45 +204,46 @@ Available groups:
 - [themes](https://developer.atlassian.com/cloud/confluence/rest/api-group-themes/#api-group-themes)
 - [users](https://developer.atlassian.com/cloud/confluence/rest/api-group-users/#api-group-users)
 
-The name of the methods is the name of the endpoint in the group without spaces and in `camelCase`.
+</details>
 
-The parameters depend on the specific endpoint. For more information, [see here](https://mrrefactoring.github.io/confluence.js/).
+### Custom API Prefix
 
-#### `apiPrefix` config parameter
-
-The `apiPrefix` parameter is used to specify the prefix for the API. For example, if you use the custom domain `https://mydomain.atlassian.net/api` for API.
-
-Example of use:
+For custom API endpoints:
 
 ```typescript
-import { ConfluenceClient } from 'confluence.js';
-
 const client = new ConfluenceClient({
-  host: 'https://your-domain.atlassian.net',
-  apiPrefix: '/api',
+  host: 'https://custom-domain.com',
+  apiPrefix: '/confluence-api', // Default: '/wiki/rest/api'
 });
 ```
 
-## Decreasing Webpack bundle size
+## Tree Shaking
 
-If you use Webpack and need to reduce the size of the assembly, you can create your client with only the groups you use.
+Optimize bundle size by importing only needed modules:
 
 ```typescript
+// custom-client.ts
 import { BaseClient } from 'confluence.js';
 import { Content } from 'confluence.js/api/content';
 import { Space } from 'confluence.js/api/space';
 
-export class CustomConfluenceClient extends BaseClient {
+export class CustomClient extends BaseClient {
   content = new Content(this);
   space = new Space(this);
 }
+
+// Usage
+const client = new CustomClient({ /* config */ });
+await client.space.getSpace({ spaceKey: 'GALAXY' });
 ```
 
-## Take a look at our other products
+## Other Products
 
-* [Jira.js](https://github.com/MrRefactoring/jira.js) - A JavaScript / TypeScript wrapper for the JIRA REST API
-* [Trello.js](https://github.com/MrRefactoring/trello.js) - JavaScript / TypeScript library for Node.JS and browsers to easily interact with Atlassian Trello API
+Explore our other Atlassian integration libraries:
+- [Jira.js](https://github.com/MrRefactoring/jira.js) - Jira API wrapper
+- [Trello.js](https://github.com/MrRefactoring/trello.js) - Trello API integration
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+MIT License © MrRefactoring
+See [LICENSE](https://github.com/mrrefactoring/confluence.js/blob/develop/LICENSE) for details.
