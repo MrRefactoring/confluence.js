@@ -68,5 +68,59 @@ export default defineConfig([
         tsconfig: './tsconfig.json',
       }),
     ]
+  },
+  {
+    input: 'src/experimental/index.ts',
+    output: {
+      dir: 'dist/experimental/cjs',
+      format: 'cjs',
+      preserveModules: true,
+      preserveModulesRoot: 'src/experimental',
+      sourcemap: true,
+      entryFileNames: '[name].cjs',
+    },
+    plugins: [
+      nodeExternals(),
+      alias({
+        entries: [
+          { find: '~', replacement: `${__dirname}/src` }
+        ]
+      }),
+      resolve(),
+      commonjs(),
+      typescript({
+        outDir: 'dist/experimental/cjs',
+        rootDir: 'src/experimental',
+        declaration: false,
+        tsconfig: './tsconfig.json',
+      }),
+    ],
+  },
+  {
+    input: 'src/experimental/index.ts',
+    output: {
+      dir: 'dist/experimental/esm',
+      format: 'esm',
+      preserveModules: true,
+      preserveModulesRoot: 'src/experimental',
+      sourcemap: true,
+      entryFileNames: '[name].mjs',
+    },
+    plugins: [
+      nodeExternals(),
+      alias({
+        entries: [
+          { find: '~', replacement: `${__dirname}/src` }
+        ]
+      }),
+      resolve(),
+      commonjs(),
+      typescript({
+        outDir: 'dist/experimental/esm',
+        rootDir: 'src/experimental',
+        tsconfig: './tsconfig.json',
+      }),
+      esnextToNodeNext()
+    ],
   }
 ]);

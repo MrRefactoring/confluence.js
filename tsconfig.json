@@ -13,7 +13,7 @@
       "~/*": ["src/*"]
     }
   },
-  "include": ["src", "rollup.config.ts"],
+  "include": ["src", "tests", "rollup.config.ts"],
   "exclude": [
     "node_modules",
     "dist",

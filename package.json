@@ -24,6 +24,11 @@
       "import": "./dist/esm/*.mjs",
       "require": "./dist/cjs/*.cjs"
     },
+    "./experimental": {
+      "types": "./dist/experimental/esm/index.d.ts",
+      "import": "./dist/experimental/esm/index.mjs",
+      "require": "./dist/experimental/cjs/index.cjs"
+    },
     "./package.json": "./package.json"
   },
   "keywords": [
@@ -45,13 +50,14 @@
   },
   "scripts": {
     "build": "rollup -c rollup.config.ts --configPlugin typescript",
-    "test": "pnpm run test:unit && pnpm run test:integration",
     "prettier": "prettier --write src",
     "doc": "typedoc --name \"Confluence.js - Cloud and Server API library\" --out docs ./src/index.ts --favicon https://bad37fb3-cb50-4e0b-9035-a3e09e8afb3b.selstorage.ru/confluence.js%2Ffavicon.svg",
     "lint": "eslint --ext .ts src tests",
     "lint:fix": "pnpm run lint --fix",
+    "test": "pnpm run test:unit && pnpm run test:integration",
     "test:unit": "vitest run tests/unit --minWorkers=1 --maxWorkers=8 --sequence.concurrent",
     "test:integration": "vitest run tests/integration --bail=1 --no-file-parallelism --max-concurrency 1 -c vitest.config.mts --hookTimeout 100000 --testTimeout 100000",
+    "test:experimental": "vitest run tests/experimental --bail=1 --no-file-parallelism --max-concurrency 1 -c vitest.config.mts --hookTimeout 100000 --testTimeout 100000",
     "code:formatting": "npm run prettier && npm run lint:fix"
   },
   "dependencies": {
@@ -59,32 +65,32 @@
     "axios": "^1.9.0",
     "form-data": "^4.0.2",
     "oauth": "^0.10.2",
-    "zod": "^3.24.4"
+    "zod": "^3.25.28"
   },
   "devDependencies": {
-    "@eslint/js": "^9.26.0",
+    "@eslint/js": "^9.27.0",
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^12.1.2",
-    "@stylistic/eslint-plugin-js": "^4.2.0",
-    "@stylistic/eslint-plugin-ts": "^4.2.0",
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.17.46",
+    "@stylistic/eslint-plugin-js": "^4.4.0",
+    "@stylistic/eslint-plugin-ts": "^4.4.0",
+    "@types/express": "^4.17.22",
+    "@types/node": "^20.17.50",
     "@types/oauth": "^0.9.6",
     "dotenv": "^16.5.0",
-    "eslint": "^9.26.0",
-    "globals": "^16.1.0",
+    "eslint": "^9.27.0",
+    "globals": "^16.2.0",
     "jiti": "^2.4.2",
     "prettier": "^3.5.3",
     "prettier-plugin-jsdoc": "^1.3.2",
-    "rollup": "^4.40.2",
+    "rollup": "^4.41.1",
     "rollup-plugin-esnext-to-nodenext": "^1.0.0",
     "rollup-plugin-node-externals": "^8.0.0",
     "tslib": "^2.8.1",
-    "typedoc": "^0.28.4",
+    "typedoc": "^0.28.5",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.1",
-    "vitest": "^3.1.3"
+    "vitest": "^3.1.4"
   }
 }
