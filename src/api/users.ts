@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class Users {
@@ -153,7 +153,8 @@ export class Users {
   }
 
   /**
-   * Returns user details for the ids provided in request.
+   * Returns user details for the ids provided in the request. Currently this API returns a maximum of 100 results. If
+   * more than 100 account ids are passed in, then the first 100 will be returned.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
@@ -163,7 +164,8 @@ export class Users {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns user details for the ids provided in request.
+   * Returns user details for the ids provided in the request. Currently this API returns a maximum of 100 results. If
+   * more than 100 account ids are passed in, then the first 100 will be returned.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
@@ -190,8 +192,10 @@ export class Users {
   }
 
   /**
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
+   * Returns a user's email address regardless of the user’s profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
@@ -201,8 +205,10 @@ export class Users {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns a user's email address. This API is only available to apps approved by Atlassian, according to these
+   * Returns a user's email address regardless of the user’s profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
@@ -227,9 +233,10 @@ export class Users {
   }
 
   /**
-   * Returns user email addresses for a set of accountIds. This API is only available to apps approved by Atlassian,
-   * according to these
+   * Returns a user's email address regardless of the user’s profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    *
    * Any accounts which are not available will not be included in the result.
    *
@@ -241,9 +248,10 @@ export class Users {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Returns user email addresses for a set of accountIds. This API is only available to apps approved by Atlassian,
-   * according to these
+   * Returns a user's email address regardless of the user’s profile visibility settings. For Connect apps, this API is
+   * only available to apps approved by Atlassian, according to these
    * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
+   * For Forge apps, this API only supports access via asApp() requests.
    *
    * Any accounts which are not available will not be included in the result.
    *
@@ -275,6 +283,8 @@ export class Users {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
    * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getBulkUserMigration<T = Models.MigratedUserArray>(
     parameters: Parameters.GetBulkUserMigration,
@@ -286,6 +296,8 @@ export class Users {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
    * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getBulkUserMigration<T = Models.MigratedUserArray>(
     parameters: Parameters.GetBulkUserMigration,

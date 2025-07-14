@@ -4,6 +4,7 @@ import type { Callback } from '../callback';
 import type { Client } from '../clients';
 import type { RequestConfig } from '../requestConfig';
 
+/** @deprecated Will be removed in next major version. */
 export class ContentComments {
   constructor(private client: Client) {}
 
@@ -12,6 +13,8 @@ export class ContentComments {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentComments<T = Models.ContentArray>(
     parameters: Parameters.GetContentComments,
@@ -22,6 +25,8 @@ export class ContentComments {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentComments<T = Models.ContentArray>(
     parameters: Parameters.GetContentComments,

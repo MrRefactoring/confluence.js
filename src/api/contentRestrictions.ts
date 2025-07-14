@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class ContentRestrictions {
@@ -221,13 +221,15 @@ export class ContentRestrictions {
    * Returns whether the specified content restriction applies to a group. For example, if a page with `id=123` has a
    * `read` restriction for the `admins` group, the following request will return `true`:
    *
-   * `https://your-domain.atlassian.net/wiki/rest/api/content/123/restriction/byOperation/read/group/admins`
+   * `https://your-domain.atlassian.net/api/content/123/restriction/byOperation/read/group/admins`
    *
    * Note that a response of `true` does not guarantee that the group can view the page, as it does not account for
    * account-inherited restrictions, space permissions, or even product access. For more information, see [Confluence
    * permissions](https://confluence.atlassian.com/x/_AozKw).
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentRestrictionStatusForGroup<T = unknown>(
     parameters: Parameters.GetContentRestrictionStatusForGroup,
@@ -237,13 +239,15 @@ export class ContentRestrictions {
    * Returns whether the specified content restriction applies to a group. For example, if a page with `id=123` has a
    * `read` restriction for the `admins` group, the following request will return `true`:
    *
-   * `https://your-domain.atlassian.net/wiki/rest/api/content/123/restriction/byOperation/read/group/admins`
+   * `https://your-domain.atlassian.net/api/content/123/restriction/byOperation/read/group/admins`
    *
    * Note that a response of `true` does not guarantee that the group can view the page, as it does not account for
    * account-inherited restrictions, space permissions, or even product access. For more information, see [Confluence
    * permissions](https://confluence.atlassian.com/x/_AozKw).
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentRestrictionStatusForGroup<T = unknown>(
     parameters: Parameters.GetContentRestrictionStatusForGroup,
@@ -266,6 +270,8 @@ export class ContentRestrictions {
    * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async addGroupToContentRestriction<T = unknown>(
     parameters: Parameters.AddGroupToContentRestriction,
@@ -276,6 +282,8 @@ export class ContentRestrictions {
    * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async addGroupToContentRestriction<T = unknown>(
     parameters: Parameters.AddGroupToContentRestriction,
@@ -298,6 +306,8 @@ export class ContentRestrictions {
    * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async removeGroupByName<T = unknown>(parameters: Parameters.RemoveGroupByName, callback: Callback<T>): Promise<void>;
   /**
@@ -305,6 +315,8 @@ export class ContentRestrictions {
    * content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async removeGroupByName<T = unknown>(parameters: Parameters.RemoveGroupByName, callback?: never): Promise<T>;
   async removeGroupByName<T = unknown>(
@@ -323,7 +335,7 @@ export class ContentRestrictions {
    * Returns whether the specified content restriction applies to a group. For example, if a page with `id=123` has a
    * `read` restriction for the `123456` group id, the following request will return `true`:
    *
-   * `https://your-domain.atlassian.net/wiki/rest/api/content/123/restriction/byOperation/read/byGroupId/123456`
+   * `https://your-domain.atlassian.net/api/content/123/restriction/byOperation/read/byGroupId/123456`
    *
    * Note that a response of `true` does not guarantee that the group can view the page, as it does not account for
    * account-inherited restrictions, space permissions, or even product access. For more information, see [Confluence
@@ -339,7 +351,7 @@ export class ContentRestrictions {
    * Returns whether the specified content restriction applies to a group. For example, if a page with `id=123` has a
    * `read` restriction for the `123456` group id, the following request will return `true`:
    *
-   * `https://your-domain.atlassian.net/wiki/rest/api/content/123/restriction/byOperation/read/byGroupId/123456`
+   * `https://your-domain.atlassian.net/api/content/123/restriction/byOperation/read/byGroupId/123456`
    *
    * Note that a response of `true` does not guarantee that the group can view the page, as it does not account for
    * account-inherited restrictions, space permissions, or even product access. For more information, see [Confluence
@@ -426,7 +438,7 @@ export class ContentRestrictions {
    * `read` restriction for a user with an account ID of `384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192`, the following
    * request will return `true`:
    *
-   * `https://your-domain.atlassian.net/wiki/rest/api/content/123/restriction/byOperation/read/user?accountId=384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192`
+   * `https://your-domain.atlassian.net/api/content/123/restriction/byOperation/read/user?accountId=384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192`
    *
    * Note that a response of `true` does not guarantee that the user can view the page, as it does not account for
    * account-inherited restrictions, space permissions, or even product access. For more information, see [Confluence
@@ -443,7 +455,7 @@ export class ContentRestrictions {
    * `read` restriction for a user with an account ID of `384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192`, the following
    * request will return `true`:
    *
-   * `https://your-domain.atlassian.net/wiki/rest/api/content/123/restriction/byOperation/read/user?accountId=384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192`
+   * `https://your-domain.atlassian.net/api/content/123/restriction/byOperation/read/user?accountId=384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192`
    *
    * Note that a response of `true` does not guarantee that the user can view the page, as it does not account for
    * account-inherited restrictions, space permissions, or even product access. For more information, see [Confluence

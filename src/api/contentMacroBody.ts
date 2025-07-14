@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class ContentMacroBody {
@@ -16,9 +16,22 @@ export class ContentMacroBody {
    * '50884bd9-0cb8-41d5-98be-f80943c14f96'. The ID is then persisted as new versions of content are created, and is
    * only modified by Confluence if there are conflicting IDs.
    *
+   * For Forge macros, the value for macro ID is the "local ID" of that particular ADF node. This value can be retrieved
+   * either client-side by calling view.getContext() and accessing "localId" on the resulting object, or server-side by
+   * examining the "local-id" parameter node inside the "parameters" node.
+   *
+   * Note that there are other attributes named "local-id", but only this particular one is used to store the macro ID.
+   *
+   * Example: <ac:adf-node type="extension"> <ac:adf-attribute
+   * key="extension-type">com.atlassian.ecosystem</ac:adf-attribute> <ac:adf-attribute key="parameters">
+   * <ac:adf-parameter key="local-id">e9c4aa10-73fa-417c-888d-48c719ae4165</ac:adf-parameter> </ac:adf-parameter>
+   * </ac:adf-node>
+   *
    * Note, to preserve backwards compatibility this resource will also match on the hash of the macro body, even if a
    * macro ID is found. This check will eventually become redundant, as macro IDs are generated for pages and
    * transparently propagate out to all instances.
+   *
+   * This backwards compatibility logic does not apply to Forge macros; those can only be retrieved by their ID.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content that the
    * macro is in.
@@ -36,9 +49,22 @@ export class ContentMacroBody {
    * '50884bd9-0cb8-41d5-98be-f80943c14f96'. The ID is then persisted as new versions of content are created, and is
    * only modified by Confluence if there are conflicting IDs.
    *
+   * For Forge macros, the value for macro ID is the "local ID" of that particular ADF node. This value can be retrieved
+   * either client-side by calling view.getContext() and accessing "localId" on the resulting object, or server-side by
+   * examining the "local-id" parameter node inside the "parameters" node.
+   *
+   * Note that there are other attributes named "local-id", but only this particular one is used to store the macro ID.
+   *
+   * Example: <ac:adf-node type="extension"> <ac:adf-attribute
+   * key="extension-type">com.atlassian.ecosystem</ac:adf-attribute> <ac:adf-attribute key="parameters">
+   * <ac:adf-parameter key="local-id">e9c4aa10-73fa-417c-888d-48c719ae4165</ac:adf-parameter> </ac:adf-parameter>
+   * </ac:adf-node>
+   *
    * Note, to preserve backwards compatibility this resource will also match on the hash of the macro body, even if a
    * macro ID is found. This check will eventually become redundant, as macro IDs are generated for pages and
    * transparently propagate out to all instances.
+   *
+   * This backwards compatibility logic does not apply to Forge macros; those can only be retrieved by their ID.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content that the
    * macro is in.
@@ -68,9 +94,22 @@ export class ContentMacroBody {
    * '50884bd9-0cb8-41d5-98be-f80943c14f96'. The ID is then persisted as new versions of content are created, and is
    * only modified by Confluence if there are conflicting IDs.
    *
+   * For Forge macros, the value for macro ID is the "local ID" of that particular ADF node. This value can be retrieved
+   * either client-side by calling view.getContext() and accessing "localId" on the resulting object, or server-side by
+   * examining the "local-id" parameter node inside the "parameters" node.
+   *
+   * Note that there are other attributes named "local-id", but only this particular one is used to store the macro ID.
+   *
+   * Example: <ac:adf-node type="extension"> <ac:adf-attribute
+   * key="extension-type">com.atlassian.ecosystem</ac:adf-attribute> <ac:adf-attribute key="parameters">
+   * <ac:adf-parameter key="local-id">e9c4aa10-73fa-417c-888d-48c719ae4165</ac:adf-parameter> </ac:adf-parameter>
+   * </ac:adf-node>
+   *
    * Note, to preserve backwards compatibility this resource will also match on the hash of the macro body, even if a
    * macro ID is found. This check will eventually become redundant, as macro IDs are generated for pages and
    * transparently propagate out to all instances.
+   *
+   * This backwards compatibility logic does not apply to Forge macros; those can only be retrieved by their ID.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content that the
    * macro is in.
@@ -88,9 +127,22 @@ export class ContentMacroBody {
    * '50884bd9-0cb8-41d5-98be-f80943c14f96'. The ID is then persisted as new versions of content are created, and is
    * only modified by Confluence if there are conflicting IDs.
    *
+   * For Forge macros, the value for macro ID is the "local ID" of that particular ADF node. This value can be retrieved
+   * either client-side by calling view.getContext() and accessing "localId" on the resulting object, or server-side by
+   * examining the "local-id" parameter node inside the "parameters" node.
+   *
+   * Note that there are other attributes named "local-id", but only this particular one is used to store the macro ID.
+   *
+   * Example: <ac:adf-node type="extension"> <ac:adf-attribute
+   * key="extension-type">com.atlassian.ecosystem</ac:adf-attribute> <ac:adf-attribute key="parameters">
+   * <ac:adf-parameter key="local-id">e9c4aa10-73fa-417c-888d-48c719ae4165</ac:adf-parameter> </ac:adf-parameter>
+   * </ac:adf-node>
+   *
    * Note, to preserve backwards compatibility this resource will also match on the hash of the macro body, even if a
    * macro ID is found. This check will eventually become redundant, as macro IDs are generated for pages and
    * transparently propagate out to all instances.
+   *
+   * This backwards compatibility logic does not apply to Forge macros; those can only be retrieved by their ID.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content that the
    * macro is in.
@@ -125,9 +177,22 @@ export class ContentMacroBody {
    * '884bd9-0cb8-41d5-98be-f80943c14f96'. The ID is then persisted as new versions of content are created, and is only
    * modified by Confluence if there are conflicting IDs.
    *
+   * For Forge macros, the value for macro ID is the "local ID" of that particular ADF node. This value can be retrieved
+   * either client-side by calling view.getContext() and accessing "localId" on the resulting object, or server-side by
+   * examining the "local-id" parameter node inside the "parameters" node.
+   *
+   * Note that there are other attributes named "local-id", but only this particular one is used to store the macro ID.
+   *
+   * Example: <ac:adf-node type="extension"> <ac:adf-attribute
+   * key="extension-type">com.atlassian.ecosystem</ac:adf-attribute> <ac:adf-attribute key="parameters">
+   * <ac:adf-parameter key="local-id">e9c4aa10-73fa-417c-888d-48c719ae4165</ac:adf-parameter> </ac:adf-parameter>
+   * </ac:adf-node>
+   *
    * Note, to preserve backwards compatibility this resource will also match on the hash of the macro body, even if a
    * macro ID is found. This check will eventually become redundant, as macro IDs are generated for pages and
    * transparently propagate out to all instances.
+   *
+   * This backwards compatibility logic does not apply to Forge macros; those can only be retrieved by their ID.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content that the
    * macro is in.
@@ -145,9 +210,22 @@ export class ContentMacroBody {
    * '884bd9-0cb8-41d5-98be-f80943c14f96'. The ID is then persisted as new versions of content are created, and is only
    * modified by Confluence if there are conflicting IDs.
    *
+   * For Forge macros, the value for macro ID is the "local ID" of that particular ADF node. This value can be retrieved
+   * either client-side by calling view.getContext() and accessing "localId" on the resulting object, or server-side by
+   * examining the "local-id" parameter node inside the "parameters" node.
+   *
+   * Note that there are other attributes named "local-id", but only this particular one is used to store the macro ID.
+   *
+   * Example: <ac:adf-node type="extension"> <ac:adf-attribute
+   * key="extension-type">com.atlassian.ecosystem</ac:adf-attribute> <ac:adf-attribute key="parameters">
+   * <ac:adf-parameter key="local-id">e9c4aa10-73fa-417c-888d-48c719ae4165</ac:adf-parameter> </ac:adf-parameter>
+   * </ac:adf-node>
+   *
    * Note, to preserve backwards compatibility this resource will also match on the hash of the macro body, even if a
    * macro ID is found. This check will eventually become redundant, as macro IDs are generated for pages and
    * transparently propagate out to all instances.
+   *
+   * This backwards compatibility logic does not apply to Forge macros; those can only be retrieved by their ID.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content that the
    * macro is in.

@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class ContentVersions {
@@ -12,6 +12,8 @@ export class ContentVersions {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content. If the
    * content is a blog post, 'View' permission for the space is required.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentVersions<T = Models.VersionArray>(
     parameters: Parameters.GetContentVersions,
@@ -22,6 +24,8 @@ export class ContentVersions {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content. If the
    * content is a blog post, 'View' permission for the space is required.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentVersions<T = Models.VersionArray>(
     parameters: Parameters.GetContentVersions,
@@ -88,6 +92,8 @@ export class ContentVersions {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content. If the
    * content is a blog post, 'View' permission for the space is required.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentVersion<T = Models.Version>(
     parameters: Parameters.GetContentVersion,
@@ -98,6 +104,8 @@ export class ContentVersions {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content. If the
    * content is a blog post, 'View' permission for the space is required.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentVersion<T = Models.Version>(parameters: Parameters.GetContentVersion, callback?: never): Promise<T>;
   async getContentVersion<T = Models.Version>(

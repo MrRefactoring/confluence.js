@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class ContentLabels {
@@ -12,6 +12,8 @@ export class ContentLabels {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getLabelsForContent<T = Models.LabelArray>(
     parameters: Parameters.GetLabelsForContent,
@@ -22,6 +24,8 @@ export class ContentLabels {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getLabelsForContent<T = Models.LabelArray>(
     parameters: Parameters.GetLabelsForContent,
@@ -91,8 +95,9 @@ export class ContentLabels {
   }
 
   /**
-   * Removes a label from a piece of content. This is similar to [Remove label from
-   * content](#api-content-id-label-label-delete) except that the label name is specified via a query parameter.
+   * Removes a label from a piece of content. Labels can't be deleted from archived content. This is similar to [Remove
+   * label from content](#api-content-id-label-label-delete) except that the label name is specified via a query
+   * parameter.
    *
    * Use this method if the label name has "/" characters, as [Remove label from content using query
    * parameter](#api-content-id-label-delete) does not accept "/" characters for the label name.
@@ -104,8 +109,9 @@ export class ContentLabels {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Removes a label from a piece of content. This is similar to [Remove label from
-   * content](#api-content-id-label-label-delete) except that the label name is specified via a query parameter.
+   * Removes a label from a piece of content. Labels can't be deleted from archived content. This is similar to [Remove
+   * label from content](#api-content-id-label-label-delete) except that the label name is specified via a query
+   * parameter.
    *
    * Use this method if the label name has "/" characters, as [Remove label from content using query
    * parameter](#api-content-id-label-delete) does not accept "/" characters for the label name.
@@ -132,8 +138,9 @@ export class ContentLabels {
   }
 
   /**
-   * Removes a label from a piece of content. This is similar to [Remove label from content using query
-   * parameter](#api-content-id-label-delete) except that the label name is specified via a path parameter.
+   * Removes a label from a piece of content. Labels can't be deleted from archived content. This is similar to [Remove
+   * label from content using query parameter](#api-content-id-label-delete) except that the label name is specified via
+   * a path parameter.
    *
    * Use this method if the label name does not have "/" characters, as the path parameter does not accept "/"
    * characters for security reasons. Otherwise, use [Remove label from content using query
@@ -146,8 +153,9 @@ export class ContentLabels {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Removes a label from a piece of content. This is similar to [Remove label from content using query
-   * parameter](#api-content-id-label-delete) except that the label name is specified via a path parameter.
+   * Removes a label from a piece of content. Labels can't be deleted from archived content. This is similar to [Remove
+   * label from content using query parameter](#api-content-id-label-delete) except that the label name is specified via
+   * a path parameter.
    *
    * Use this method if the label name does not have "/" characters, as the path parameter does not accept "/"
    * characters for security reasons. Otherwise, use [Remove label from content using query

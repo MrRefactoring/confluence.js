@@ -24,4 +24,11 @@ export interface SearchUser {
    * - `personalSpace` returns the personal space of the user.
    */
   expand?: string[];
+  /**
+   * Filters users by permission type. Use `none` to default to licensed users, `externalCollaborator` for
+   * external/guest users, and `all` to include all permission types.
+   *
+   * @default none
+   */
+  sitePermissionTypeFilter?: 'all' | 'externalCollaborator' | 'none' | string;
 }

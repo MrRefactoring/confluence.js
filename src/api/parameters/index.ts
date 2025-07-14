@@ -1,3 +1,7 @@
+export * from './bulkAsyncConvertContentBodyResponse';
+export * from './bulkAsyncConvertContentBodyRequest';
+export * from './getContentsWithState';
+export * from './deleteGroupById';
 export * from './addContentWatcher';
 export * from './addCustomContentPermissions';
 export * from './addGroupToContentRestriction';

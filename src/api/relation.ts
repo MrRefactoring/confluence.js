@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class Relation {
@@ -12,8 +12,8 @@ export class Relation {
    * way.
    *
    * For example, the following method finds all content that the current user has an 'ignore' relationship with: `GET
-   * https://your-domain.atlassian.net/wiki/rest/api/relation/ignore/from/user/current/to/content` Note, 'ignore' is an
-   * example custom relationship type.
+   * https://your-domain.atlassian.net/api/relation/ignore/from/user/current/to/content` Note, 'ignore' is an example
+   * custom relationship type.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view both the target entity
    * and source entity.
@@ -27,8 +27,8 @@ export class Relation {
    * way.
    *
    * For example, the following method finds all content that the current user has an 'ignore' relationship with: `GET
-   * https://your-domain.atlassian.net/wiki/rest/api/relation/ignore/from/user/current/to/content` Note, 'ignore' is an
-   * example custom relationship type.
+   * https://your-domain.atlassian.net/api/relation/ignore/from/user/current/to/content` Note, 'ignore' is an example
+   * custom relationship type.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view both the target entity
    * and source entity.
@@ -64,7 +64,7 @@ export class Relation {
    *
    * For example, you can use this method to find whether the current user has selected a particular page as a favorite
    * (i.e. 'save for later'): `GET
-   * https://your-domain.atlassian.net/wiki/rest/api/relation/favourite/from/user/current/to/content/123`
+   * https://your-domain.atlassian.net/api/relation/favourite/from/user/current/to/content/123`
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view both the target entity
    * and source entity.
@@ -79,7 +79,7 @@ export class Relation {
    *
    * For example, you can use this method to find whether the current user has selected a particular page as a favorite
    * (i.e. 'save for later'): `GET
-   * https://your-domain.atlassian.net/wiki/rest/api/relation/favourite/from/user/current/to/content/123`
+   * https://your-domain.atlassian.net/api/relation/favourite/from/user/current/to/content/123`
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view both the target entity
    * and source entity.
@@ -109,7 +109,7 @@ export class Relation {
    * default, but you can use this method to create any type of relationship between two entities.
    *
    * For example, the following method creates a 'sibling' relationship between two pieces of content: `GET
-   * https://your-domain.atlassian.net/wiki/rest/api/relation/sibling/from/content/123/to/content/456`
+   * https://your-domain.atlassian.net/api/relation/sibling/from/content/123/to/content/456`
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
@@ -123,7 +123,7 @@ export class Relation {
    * default, but you can use this method to create any type of relationship between two entities.
    *
    * For example, the following method creates a 'sibling' relationship between two pieces of content: `GET
-   * https://your-domain.atlassian.net/wiki/rest/api/relation/sibling/from/content/123/to/content/456`
+   * https://your-domain.atlassian.net/api/relation/sibling/from/content/123/to/content/456`
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
@@ -189,9 +189,8 @@ export class Relation {
    * way.
    *
    * For example, the following method finds all users that have a 'collaborator' relationship to a piece of content
-   * with an ID of '1234': `GET
-   * https://your-domain.atlassian.net/wiki/rest/api/relation/collaborator/to/content/1234/from/user` Note,
-   * 'collaborator' is an example custom relationship type.
+   * with an ID of '1234': `GET https://your-domain.atlassian.net/api/relation/collaborator/to/content/1234/from/user`
+   * Note, 'collaborator' is an example custom relationship type.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view both the target entity
    * and source entity.
@@ -205,9 +204,8 @@ export class Relation {
    * way.
    *
    * For example, the following method finds all users that have a 'collaborator' relationship to a piece of content
-   * with an ID of '1234': `GET
-   * https://your-domain.atlassian.net/wiki/rest/api/relation/collaborator/to/content/1234/from/user` Note,
-   * 'collaborator' is an example custom relationship type.
+   * with an ID of '1234': `GET https://your-domain.atlassian.net/api/relation/collaborator/to/content/1234/from/user`
+   * Note, 'collaborator' is an example custom relationship type.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view both the target entity
    * and source entity.

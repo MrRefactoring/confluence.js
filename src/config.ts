@@ -54,7 +54,12 @@ export const MiddlewaresSchema = z.object({
 });
 
 export const ConfigSchema = z.object({
-  host: z.string().url({ message:  'Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?' }),
+  host: z
+    .string()
+    .url({
+      message:
+        'Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?',
+    }),
   baseRequestConfig: z.optional(RequestConfigSchema),
   authentication: z.optional(AuthenticationSchema),
   middlewares: z.optional(MiddlewaresSchema),

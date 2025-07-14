@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class Content {
@@ -14,6 +14,8 @@ export class Content {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only content that the user has permission to view will be returned.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContent<T = Models.ContentArray>(
     parameters: Parameters.GetContent | undefined,
@@ -26,6 +28,8 @@ export class Content {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only content that the user has permission to view will be returned.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContent<T = Models.ContentArray>(parameters?: Parameters.GetContent, callback?: never): Promise<T>;
   async getContent<T = Models.ContentArray>(
@@ -63,6 +67,8 @@ export class Content {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Add' permission for the space that the
    * content will be created in, and permission to view the draft if publishing a draft.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async createContent<T = Models.Content>(
     parameters: Parameters.CreateContent | undefined,
@@ -79,6 +85,8 @@ export class Content {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Add' permission for the space that the
    * content will be created in, and permission to view the draft if publishing a draft.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async createContent<T = Models.Content>(parameters?: Parameters.CreateContent, callback?: never): Promise<T>;
   async createContent<T = Models.Content>(
@@ -223,12 +231,7 @@ export class Content {
       },
       data: {
         ...parameters,
-        version: parameters.version,
-        title: parameters.title,
-        type: parameters.type,
         status: parameters.bodyStatus,
-        space: parameters.space,
-        ancestors: parameters.ancestors,
       },
     };
 
@@ -241,11 +244,12 @@ export class Content {
    *
    * When additional results are available, returns `next` and `prev` URLs to retrieve them in subsequent calls. The
    * URLs each contain a cursor that points to the appropriate set of results. Use `limit` to specify the number of
-   * results returned in each call. Example subsequent call (taken from example response):
-   *
-   *     https://your-domain.atlassian.net/wiki/rest/api/content/search?cql=type=page&limit=25&cursor=raNDoMsTRiNg
+   * results returned in each call.
    *
    * The response to this will have a `prev` URL similar to the `next` in the example response.
+   *
+   * If the expand query parameter is used with the `body.export_view` and/or `body.styled_view` properties, then the
+   * query limit parameter will be restricted to a maximum value of 25.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only content that the user has permission to view will be returned.
@@ -260,11 +264,12 @@ export class Content {
    *
    * When additional results are available, returns `next` and `prev` URLs to retrieve them in subsequent calls. The
    * URLs each contain a cursor that points to the appropriate set of results. Use `limit` to specify the number of
-   * results returned in each call. Example subsequent call (taken from example response):
-   *
-   *     https://your-domain.atlassian.net/wiki/rest/api/content/search?cql=type=page&limit=25&cursor=raNDoMsTRiNg
+   * results returned in each call.
    *
    * The response to this will have a `prev` URL similar to the `next` in the example response.
+   *
+   * If the expand query parameter is used with the `body.export_view` and/or `body.styled_view` properties, then the
+   * query limit parameter will be restricted to a maximum value of 25.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Only content that the user has permission to view will be returned.
@@ -299,6 +304,8 @@ export class Content {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content. If the
    * content is a blog post, 'View' permission for the space is required.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentById<T = Models.Content>(parameters: Parameters.GetContentById, callback: Callback<T>): Promise<void>;
   /**
@@ -308,6 +315,8 @@ export class Content {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content. If the
    * content is a blog post, 'View' permission for the space is required.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentById<T = Models.Content>(parameters: Parameters.GetContentById, callback?: never): Promise<T>;
   async getContentById<T = Models.Content>(
@@ -336,6 +345,8 @@ export class Content {
    * Note, updating draft content is currently not supported.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async updateContent<T = Models.Content>(parameters: Parameters.UpdateContent, callback: Callback<T>): Promise<void>;
   /**
@@ -345,6 +356,8 @@ export class Content {
    * Note, updating draft content is currently not supported.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async updateContent<T = Models.Content>(parameters: Parameters.UpdateContent, callback?: never): Promise<T>;
   async updateContent<T = Models.Content>(
@@ -383,6 +396,8 @@ export class Content {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Delete' permission for the space that the
    * content is in.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async deleteContent<T = void>(parameters: Parameters.DeleteContent, callback: Callback<T>): Promise<void>;
   /**
@@ -397,6 +412,8 @@ export class Content {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Delete' permission for the space that the
    * content is in.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async deleteContent<T = void>(parameters: Parameters.DeleteContent, callback?: never): Promise<T>;
   async deleteContent<T = void>(parameters: Parameters.DeleteContent, callback?: Callback<T>): Promise<void | T> {
@@ -415,6 +432,8 @@ export class Content {
    * Returns the most recent update for a piece of content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getHistoryForContent<T = Models.ContentHistory>(
     parameters: Parameters.GetHistoryForContent,
@@ -424,6 +443,8 @@ export class Content {
    * Returns the most recent update for a piece of content.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getHistoryForContent<T = Models.ContentHistory>(
     parameters: Parameters.GetHistoryForContent,

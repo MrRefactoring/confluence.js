@@ -2,8 +2,8 @@
 import FormData from 'form-data';
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class ContentAttachments {
@@ -16,6 +16,8 @@ export class ContentAttachments {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content. If the
    * content is a blog post, 'View' permission for the space is required.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getAttachments<T = Models.ContentArray<Models.Attachment>>(
     parameters: Parameters.GetAttachments,
@@ -28,6 +30,8 @@ export class ContentAttachments {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content. If the
    * content is a blog post, 'View' permission for the space is required.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getAttachments<T = Models.ContentArray<Models.Attachment>>(
     parameters: Parameters.GetAttachments,
@@ -273,6 +277,7 @@ export class ContentAttachments {
       responseType: 'arraybuffer',
       params: {
         version: parameters.version,
+        status: parameters.status,
       },
     };
 

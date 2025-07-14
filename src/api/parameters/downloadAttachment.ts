@@ -8,4 +8,10 @@ export interface DownloadAttachment {
    * the attachment.
    */
   version?: number;
+  /**
+   * The statuses allowed on the retrieved attachment. If this parameter is absent, it will default to `current`.
+   *
+   * @default current
+   */
+  status?: string | string[];
 }

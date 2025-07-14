@@ -4,11 +4,7 @@ import axios from 'axios';
 import { getAuthenticationToken } from '~/services';
 import type { Callback } from '~/callback';
 import type { Client } from './client';
-import {
-  ConfigSchema,
-  type Config,
-  type Error as ConfluenceError,
-} from '~/config';
+import { ConfigSchema, type Config, type Error as ConfluenceError } from '~/config';
 import type { RequestConfig } from '~/requestConfig';
 import { ZodError } from 'zod';
 
