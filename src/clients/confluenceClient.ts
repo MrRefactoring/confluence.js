@@ -32,8 +32,8 @@ import {
   Template,
   Themes,
   Users,
+  UserProperties,
 } from '../api';
-import { UserProperties } from '~/api/userProperties';
 
 export class ConfluenceClient extends BaseClient {
   constructor(config: Config) {
