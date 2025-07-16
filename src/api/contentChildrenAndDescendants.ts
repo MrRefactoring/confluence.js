@@ -65,6 +65,8 @@ export class ContentChildrenAndDescendants {
       params: {
         expand: parameters.expand,
         parentVersion: parameters.parentVersion,
+        start: parameters.start,
+        limit: parameters.limit,
       },
     };
 

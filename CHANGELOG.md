@@ -35,6 +35,7 @@
   - Added `key` property to `longRunningTask.getTasks`
   - Added `sitePermissionTypeFilter` property to `search.searchUser`
   - Added `alias` property to both `space.createSpace` and `space.createPrivateSpace`
+  - #145 Added `start` and `limit` properties to `contentChildrenAndDescendants.getContentChildren`. Thanks to @javierbrea for requesting this feature.
 
 ### **API Changes** 🔄
 - **Experimental methods moved**:
