@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class ContentStates {
@@ -191,7 +191,7 @@ export class ContentStates {
   /**
    * Get content states that are suggested in the space.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Space view permission
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space.
    */
   async getSpaceContentStates<T = Models.ContentState[]>(
     parameters: Parameters.GetSpaceContentStates,
@@ -200,7 +200,7 @@ export class ContentStates {
   /**
    * Get content states that are suggested in the space.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Space view permission
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space.
    */
   async getSpaceContentStates<T = Models.ContentState[]>(
     parameters: Parameters.GetSpaceContentStates,
@@ -222,7 +222,7 @@ export class ContentStates {
    * Get object describing whether content states are allowed at all, if custom content states or space content states
    * are restricted, and a list of space content states allowed for the space if they are not restricted.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Space admin permission
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
    */
   async getContentStateSettings<T = Models.ContentStateSettings>(
     parameters: Parameters.GetContentStateSettings,
@@ -232,7 +232,7 @@ export class ContentStates {
    * Get object describing whether content states are allowed at all, if custom content states or space content states
    * are restricted, and a list of space content states allowed for the space if they are not restricted.
    *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Space admin permission
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
    */
   async getContentStateSettings<T = Models.ContentStateSettings>(
     parameters: Parameters.GetContentStateSettings,
@@ -245,6 +245,48 @@ export class ContentStates {
     const config: RequestConfig = {
       url: `/api/space/${parameters.spaceKey}/state/settings`,
       method: 'GET',
+    };
+
+    return this.client.sendRequest(config, callback);
+  }
+
+  /**
+   * Returns all content that has the provided content state in a space.
+   *
+   * If the expand query parameter is used with the `body.export_view` and/or `body.styled_view` properties, then the
+   * query limit parameter will be restricted to a maximum value of 25.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space.
+   */
+  async getContentsWithState<T = Models.ContentArray>(
+    parameters: Parameters.GetContentsWithState,
+    callback: Callback<T>,
+  ): Promise<void>;
+  /**
+   * Returns all content that has the provided content state in a space.
+   *
+   * If the expand query parameter is used with the `body.export_view` and/or `body.styled_view` properties, then the
+   * query limit parameter will be restricted to a maximum value of 25.
+   *
+   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space.
+   */
+  async getContentsWithState<T = Models.ContentArray>(
+    parameters: Parameters.GetContentsWithState,
+    callback?: never,
+  ): Promise<T>;
+  async getContentsWithState<T = Models.ContentArray>(
+    parameters: Parameters.GetContentsWithState,
+    callback?: Callback<T>,
+  ): Promise<void | T> {
+    const config: RequestConfig = {
+      url: `/api/space/${parameters.spaceKey}/state/content`,
+      method: 'GET',
+      params: {
+        'state-id': parameters.stateId,
+        expand: parameters.expand,
+        limit: parameters.limit,
+        start: parameters.start,
+      },
     };
 
     return this.client.sendRequest(config, callback);

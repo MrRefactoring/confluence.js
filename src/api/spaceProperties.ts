@@ -4,6 +4,7 @@ import type { Callback } from '../callback';
 import type { Client } from '../clients';
 import type { RequestConfig } from '../requestConfig';
 
+/** @deprecated Will be removed in next major version. */
 export class SpaceProperties {
   constructor(private client: Client) {}
 
@@ -11,6 +12,8 @@ export class SpaceProperties {
    * Returns all properties for the given space. Space properties are a key-value storage associated with a space.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘View’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getSpaceProperties<T = Models.SpacePropertyArray>(
     parameters: Parameters.GetSpaceProperties,
@@ -20,6 +23,8 @@ export class SpaceProperties {
    * Returns all properties for the given space. Space properties are a key-value storage associated with a space.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘View’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getSpaceProperties<T = Models.SpacePropertyArray>(
     parameters: Parameters.GetSpaceProperties,
@@ -46,6 +51,8 @@ export class SpaceProperties {
    * Creates a new space property.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘Admin’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async createSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpaceProperty,
@@ -55,6 +62,8 @@ export class SpaceProperties {
    * Creates a new space property.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘Admin’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async createSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpaceProperty,
@@ -81,6 +90,8 @@ export class SpaceProperties {
    * Returns a space property.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘View’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpaceProperty,
@@ -90,6 +101,8 @@ export class SpaceProperties {
    * Returns a space property.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘View’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.GetSpaceProperty,
@@ -115,6 +128,8 @@ export class SpaceProperties {
    * property is passed as a path parameter, rather than in the request body.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘Admin’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async createSpacePropertyForKey<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpacePropertyForKey,
@@ -125,6 +140,8 @@ export class SpaceProperties {
    * property is passed as a path parameter, rather than in the request body.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘Admin’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async createSpacePropertyForKey<T = Models.SpaceProperty>(
     parameters: Parameters.CreateSpacePropertyForKey,
@@ -149,6 +166,8 @@ export class SpaceProperties {
    * Updates a space property. Note, you cannot update the key of a space property, only the value.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘Admin’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async updateSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.UpdateSpaceProperty,
@@ -158,6 +177,8 @@ export class SpaceProperties {
    * Updates a space property. Note, you cannot update the key of a space property, only the value.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘Admin’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async updateSpaceProperty<T = Models.SpaceProperty>(
     parameters: Parameters.UpdateSpaceProperty,
@@ -183,12 +204,16 @@ export class SpaceProperties {
    * Deletes a space property.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘Admin’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async deleteSpaceProperty<T = void>(parameters: Parameters.DeleteSpaceProperty, callback: Callback<T>): Promise<void>;
   /**
    * Deletes a space property.
    *
    * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘Admin’ permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async deleteSpaceProperty<T = void>(parameters: Parameters.DeleteSpaceProperty, callback?: never): Promise<T>;
   async deleteSpaceProperty<T = void>(

@@ -2,11 +2,15 @@ export interface GetUser {
   /**
    * This parameter is no longer available and will be removed from the documentation soon. Use `accountId` instead. See
    * the [deprecation notice](/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for details.
+   *
+   * @deprecated Will be removed in next major version.
    */
   key?: string;
   /**
    * This parameter is no longer available and will be removed from the documentation soon. Use `accountId` instead. See
    * the [deprecation notice](/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for details.
+   *
+   * @deprecated Will be removed in next major version.
    */
   username?: string;
   /**

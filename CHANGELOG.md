@@ -1,5 +1,55 @@
 # Changelog
 
+## [2.1.0] - 2025-07-17
+### **Deprecations** ⚠️
+- **Package dependencies**:
+  - Replaced deprecated `atlassian-jwt` with `@atlassian/atlassian-jwt`.
+- **Content APIs**:
+  - Deprecated all content-related methods due to [Confluence API changes](https://developer.atlassian.com/cloud/confluence/changelog/#CHANGE-2520):
+    - `content.getContent`, `content.createContent`, `content.getContentById`, `content.updateContent`, `content.deleteContent`
+    - `content.getHistoryForContent`, `contentAttachments.getAttachments`, `contentBody.convertContentBody`
+    - `contentChildrenAndDescendants.getContentChildren`, `contentChildrenAndDescendants.getContentChildrenByType`
+    - `ContentComments`, `contentLabels.getLabelsForContent`, `ContentProperties`
+    - `contentVersions.getContentVersions`, `contentVersions.getContentVersion`
+- **Group APIs**:
+  - Deprecated group-related methods:
+    - `group.removeGroup`, `group.getGroupByQueryParam`, `group.getGroupByName`
+    - `group.getMembersByQueryParam`, `group.getGroupMembers`
+- **Other APIs**:
+  - Deprecated `InlineTasks`, `SpaceProperties`, `users.getBulkUserMigration`
+  - Deprecated content restriction methods:
+    - `contentRestrictions.getContentRestrictionStatusForGroup`
+    - `contentRestrictions.addGroupToContentRestriction`
+    - `contentRestrictions.removeGroupByName`
+  - Deprecated `settings.setLookAndFeelSettings`
+  - Deprecated space-related methods:
+    - `space.getSpaces`, `space.getSpace`, `space.getContentForSpace`, `space.getContentByTypeForSpace`
+
+### **New Features** ✨
+- **New endpoints**:
+  - Added `contentBody.bulkAsyncConvertContentBodyResponse` and `contentBody.bulkAsyncConvertContentBodyRequest`
+  - Added `contentStates.getContentsWithState` method
+  - Introduced new `UserProperties` API
+- **API improvements**:
+  - Added `status` property to `contentAttachments.downloadAttachment`
+  - Added `key` property to `longRunningTask.getTasks`
+  - Added `sitePermissionTypeFilter` property to `search.searchUser`
+  - Added `alias` property to both `space.createSpace` and `space.createPrivateSpace`
+  - #145 Added `start` and `limit` properties to `contentChildrenAndDescendants.getContentChildren`. Thanks to @javierbrea for requesting this feature.
+
+### **API Changes** 🔄
+- **Experimental methods moved**:
+  - Moved experimental user property methods to `userProperties` namespace:
+    - `getUserProperties`, `getUserProperty`, `createUserProperty`, `updateUserProperty`, `deleteUserProperty`
+- **Parameter fixes**:
+  - Simplified `group.removeGroupById` parameters (no longer requires `operationKey` and `groupId`)
+
+### **Other Changes**
+- **Package structure**:
+  - Reordered `exports` in `package.json` for better module resolution
+
+---
+
 ## [2.0.0] - 2025-05-09
 ### **Breaking Changes** ⚠️
 - **Deprecated APIs removed**: APIs marked as deprecated in v1.x have been removed.
@@ -19,12 +69,12 @@
 - **Telemetry**: All telemetry/tracking code has been removed.
   - No data is collected by the package.
 
-### [1.7.3] - 2024-03-04
+## [1.7.3] - 2024-03-04
 
 - Dependencies updated
 - Expand properties added for few endpoints
 
-### [1.7.2] - 2023-12-01
+## [1.7.2] - 2023-12-01
 
 Changes in this version:
 

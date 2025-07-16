@@ -29,3 +29,4 @@ export * from './spaceSettings';
 export * from './template';
 export * from './themes';
 export * from './users';
+export * from './userProperties';

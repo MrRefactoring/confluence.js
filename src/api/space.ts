@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import { paramSerializer } from '../paramSerializer';
 import type { RequestConfig } from '../requestConfig';
 
@@ -14,6 +14,8 @@ export class Space {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Note, the returned list will only contain spaces that the current user has
    * permission to view.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getSpaces<T = Models.SpaceArray>(
     parameters: Parameters.GetSpaces | undefined,
@@ -25,6 +27,8 @@ export class Space {
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission). Note, the returned list will only contain spaces that the current user has
    * permission to view.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getSpaces<T = Models.SpaceArray>(parameters?: Parameters.GetSpaces, callback?: never): Promise<T>;
   async getSpaces<T = Models.SpaceArray>(parameters?: Parameters.GetSpaces, callback?: Callback<T>): Promise<void | T> {
@@ -68,8 +72,9 @@ export class Space {
       url: '/api/space',
       method: 'POST',
       data: {
-        key: parameters?.key,
         name: parameters?.name,
+        key: parameters?.key,
+        alias: parameters?.alias,
         description: parameters?.description,
         permissions: parameters?.permissions,
       },
@@ -105,8 +110,9 @@ export class Space {
       url: '/api/space/_private',
       method: 'POST',
       data: {
-        key: parameters?.key,
         name: parameters?.name,
+        key: parameters?.key,
+        alias: parameters?.alias,
         description: parameters?.description,
         permissions: parameters?.permissions,
       },
@@ -120,6 +126,8 @@ export class Space {
    * space.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getSpace<T = Models.Space>(parameters: Parameters.GetSpace, callback: Callback<T>): Promise<void>;
   /**
@@ -127,6 +135,8 @@ export class Space {
    * space.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getSpace<T = Models.Space>(parameters: Parameters.GetSpace, callback?: never): Promise<T>;
   async getSpace<T = Models.Space>(parameters: Parameters.GetSpace, callback?: Callback<T>): Promise<void | T> {
@@ -176,17 +186,17 @@ export class Space {
   }
 
   /**
-   * Deletes a space. Note, the space will be deleted in a long running task. Therefore, the space may not be deleted
-   * yet when this method has returned. Clients should poll the status link that is returned in the response until the
-   * task completes.
+   * Permanently deletes a space without sending it to the trash. Note, the space will be deleted in a long running
+   * task. Therefore, the space may not be deleted yet when this method has returned. Clients should poll the status
+   * link that is returned in the response until the task completes.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
    */
   async deleteSpace<T = Models.LongTask>(parameters: Parameters.DeleteSpace, callback: Callback<T>): Promise<void>;
   /**
-   * Deletes a space. Note, the space will be deleted in a long running task. Therefore, the space may not be deleted
-   * yet when this method has returned. Clients should poll the status link that is returned in the response until the
-   * task completes.
+   * Permanently deletes a space without sending it to the trash. Note, the space will be deleted in a long running
+   * task. Therefore, the space may not be deleted yet when this method has returned. Clients should poll the status
+   * link that is returned in the response until the task completes.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
    */
@@ -209,6 +219,8 @@ export class Space {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space. Note, the
    * returned list will only contain content that the current user has permission to view.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentForSpace<T = Models.ContentArray>(
     parameters: Parameters.GetContentForSpace,
@@ -220,6 +232,8 @@ export class Space {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space. Note, the
    * returned list will only contain content that the current user has permission to view.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentForSpace<T = Models.ContentArray>(
     parameters: Parameters.GetContentForSpace,
@@ -248,6 +262,8 @@ export class Space {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space. Note, the
    * returned list will only contain content that the current user has permission to view.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentByTypeForSpace<T = Models.ContentArray>(
     parameters: Parameters.GetContentByTypeForSpace,
@@ -258,6 +274,8 @@ export class Space {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space. Note, the
    * returned list will only contain content that the current user has permission to view.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentByTypeForSpace<T = Models.ContentArray>(
     parameters: Parameters.GetContentByTypeForSpace,

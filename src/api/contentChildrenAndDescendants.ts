@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class ContentChildrenAndDescendants {
@@ -24,6 +24,8 @@ export class ContentChildrenAndDescendants {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
@@ -46,6 +48,8 @@ export class ContentChildrenAndDescendants {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentChildren<T = Models.ContentChildren>(
     parameters: Parameters.GetContentChildren,
@@ -61,6 +65,8 @@ export class ContentChildrenAndDescendants {
       params: {
         expand: parameters.expand,
         parentVersion: parameters.parentVersion,
+        start: parameters.start,
+        limit: parameters.limit,
       },
     };
 
@@ -119,6 +125,8 @@ export class ContentChildrenAndDescendants {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentChildrenByType<T = Models.ContentArray>(
     parameters: Parameters.GetContentChildrenByType,
@@ -140,6 +148,8 @@ export class ContentChildrenAndDescendants {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentChildrenByType<T = Models.ContentArray>(
     parameters: Parameters.GetContentChildrenByType,
@@ -169,7 +179,11 @@ export class ContentChildrenAndDescendants {
    *
    * A piece of content has different types of descendants, depending on its type:
    *
-   * - `page`: descendant is `page`, `comment`, `attachment`
+   * - `page`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `whiteboard`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `database`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `embed`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `folder`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
    * - `blogpost`: descendant is `comment`, `attachment`
    * - `attachment`: descendant is `comment`
    * - `comment`: descendant is `attachment`
@@ -191,7 +205,11 @@ export class ContentChildrenAndDescendants {
    *
    * A piece of content has different types of descendants, depending on its type:
    *
-   * - `page`: descendant is `page`, `comment`, `attachment`
+   * - `page`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `whiteboard`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `database`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `embed`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `folder`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
    * - `blogpost`: descendant is `comment`, `attachment`
    * - `attachment`: descendant is `comment`
    * - `comment`: descendant is `attachment`
@@ -228,12 +246,19 @@ export class ContentChildrenAndDescendants {
    *
    * A piece of content has different types of descendants, depending on its type:
    *
-   * - `page`: descendant is `page`, `comment`, `attachment`
+   * - `page`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `whiteboard`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `database`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `embed`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `folder`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
    * - `blogpost`: descendant is `comment`, `attachment`
    * - `attachment`: descendant is `comment`
    * - `comment`: descendant is `attachment`
    *
    * Custom content types that are provided by apps can also be returned.
+   *
+   * If the expand query parameter is used with the `body.export_view` and/or `body.styled_view` properties, then the
+   * query limit parameter will be restricted to a maximum value of 25.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
@@ -249,12 +274,19 @@ export class ContentChildrenAndDescendants {
    *
    * A piece of content has different types of descendants, depending on its type:
    *
-   * - `page`: descendant is `page`, `comment`, `attachment`
+   * - `page`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `whiteboard`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `database`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `embed`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
+   * - `folder`: descendant is `page`, `whiteboard`, `database`, `embed`, `folder`, `comment`, `attachment`
    * - `blogpost`: descendant is `comment`, `attachment`
    * - `attachment`: descendant is `comment`
    * - `comment`: descendant is `attachment`
    *
    * Custom content types that are provided by apps can also be returned.
+   *
+   * If the expand query parameter is used with the `body.export_view` and/or `body.styled_view` properties, then the
+   * query limit parameter will be restricted to a maximum value of 25.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
@@ -329,6 +361,7 @@ export class ContentChildrenAndDescendants {
    *
    * - `space`: page will be copied to the specified space as a root page on the space
    * - `parent_page`: page will be copied as a child of the specified parent page
+   * - `parent_content`: page will be copied as a child of the specified parent content
    * - `existing_page`: page will be copied and replace the specified page
    *
    * By default, the following objects are expanded: `space`, `history`, `version`.
@@ -344,6 +377,7 @@ export class ContentChildrenAndDescendants {
    *
    * - `space`: page will be copied to the specified space as a root page on the space
    * - `parent_page`: page will be copied as a child of the specified parent page
+   * - `parent_content`: page will be copied as a child of the specified parent content
    * - `existing_page`: page will be copied and replace the specified page
    *
    * By default, the following objects are expanded: `space`, `history`, `version`.

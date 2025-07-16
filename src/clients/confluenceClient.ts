@@ -32,6 +32,7 @@ import {
   Template,
   Themes,
   Users,
+  UserProperties,
 } from '../api';
 
 export class ConfluenceClient extends BaseClient {
@@ -48,10 +49,12 @@ export class ConfluenceClient extends BaseClient {
   contentAttachments = new ContentAttachments(this);
   contentBody = new ContentBody(this);
   contentChildrenAndDescendants = new ContentChildrenAndDescendants(this);
+  /** @deprecated Will be removed in next major version. */
   contentComments = new ContentComments(this);
   contentLabels = new ContentLabels(this);
   contentMacroBody = new ContentMacroBody(this);
   contentPermissions = new ContentPermissions(this);
+  /** @deprecated Will be removed in next major version. */
   contentProperties = new ContentProperties(this);
   contentRestrictions = new ContentRestrictions(this);
   contentStates = new ContentStates(this);
@@ -60,6 +63,7 @@ export class ConfluenceClient extends BaseClient {
   dynamicModules = new DynamicModules(this);
   experimental = new Experimental(this);
   group = new Group(this);
+  /** @deprecated Will be removed in next major version. */
   inlineTasks = new InlineTasks(this);
   labelInfo = new LabelInfo(this);
   longRunningTask = new LongRunningTask(this);
@@ -68,9 +72,11 @@ export class ConfluenceClient extends BaseClient {
   settings = new Settings(this);
   space = new Space(this);
   spacePermissions = new SpacePermissions(this);
+  /** @deprecated Will be removed in next major version. */
   spaceProperties = new SpaceProperties(this);
   spaceSettings = new SpaceSettings(this);
   template = new Template(this);
   themes = new Themes(this);
   users = new Users(this);
+  userProperties = new UserProperties(this);
 }

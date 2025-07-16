@@ -4,144 +4,8 @@ import type { Client } from '../clients';
 import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
-export class Experimental {
+export class UserProperties {
   constructor(private client: Client) {}
-
-  /**
-   * Moves a pagetree rooted at a page to the space's trash:
-   *
-   * - If the content's type is `page` and its status is `current`, it will be trashed including all its descendants.
-   * - For every other combination of content type and status, this API is not supported.
-   *
-   * This API accepts the pageTree delete request and returns a task ID. The delete process happens asynchronously.
-   *
-   * Use the `/longtask/<taskId>` REST API to get the copy task status.
-   *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Delete' permission for the space that the
-   * content is in.
-   */
-  async deletePageTree<T = Models.LongTask>(
-    parameters: Parameters.DeletePageTree,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Moves a pagetree rooted at a page to the space's trash:
-   *
-   * - If the content's type is `page` and its status is `current`, it will be trashed including all its descendants.
-   * - For every other combination of content type and status, this API is not supported.
-   *
-   * This API accepts the pageTree delete request and returns a task ID. The delete process happens asynchronously.
-   *
-   * Use the `/longtask/<taskId>` REST API to get the copy task status.
-   *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Delete' permission for the space that the
-   * content is in.
-   */
-  async deletePageTree<T = Models.LongTask>(parameters: Parameters.DeletePageTree, callback?: never): Promise<T>;
-  async deletePageTree<T = Models.LongTask>(
-    parameters: Parameters.DeletePageTree,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: `/api/content/${parameters.id}/pageTree`,
-      method: 'DELETE',
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /**
-   * Returns a list of labels associated with a space. Can provide a prefix as well as other filters to select different
-   * types of labels.
-   */
-  async getLabelsForSpace<T = Models.LabelArray>(
-    parameters: Parameters.GetLabelsForSpace,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Returns a list of labels associated with a space. Can provide a prefix as well as other filters to select different
-   * types of labels.
-   */
-  async getLabelsForSpace<T = Models.LabelArray>(
-    parameters: Parameters.GetLabelsForSpace,
-    callback?: never,
-  ): Promise<T>;
-  async getLabelsForSpace<T = Models.LabelArray>(
-    parameters: Parameters.GetLabelsForSpace,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: `/api/space/${parameters.spaceKey}/label`,
-      method: 'GET',
-      params: {
-        prefix: parameters.prefix,
-        start: parameters.start,
-        limit: parameters.limit,
-      },
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  /**
-   * Adds labels to a piece of content. Does not modify the existing labels.
-   *
-   * Notes:
-   *
-   * - Labels can also be added when creating content ([Create content](#api-content-post)).
-   * - Labels can be updated when updating content ([Update content](#api-content-id-put)). This will delete the existing
-   *   labels and replace them with the labels in the request.
-   *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
-   */
-  async addLabelsToSpace<T = Models.LabelArray>(
-    parameters: Parameters.AddLabelsToSpace,
-    callback: Callback<T>,
-  ): Promise<void>;
-  /**
-   * Adds labels to a piece of content. Does not modify the existing labels.
-   *
-   * Notes:
-   *
-   * - Labels can also be added when creating content ([Create content](#api-content-post)).
-   * - Labels can be updated when updating content ([Update content](#api-content-id-put)). This will delete the existing
-   *   labels and replace them with the labels in the request.
-   *
-   * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
-   */
-  async addLabelsToSpace<T = Models.LabelArray>(parameters: Parameters.AddLabelsToSpace, callback?: never): Promise<T>;
-  async addLabelsToSpace<T = Models.LabelArray>(
-    parameters: Parameters.AddLabelsToSpace,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: `/api/space/${parameters.spaceKey}/label`,
-      method: 'POST',
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
-
-  async deleteLabelFromSpace<T = void>(
-    parameters: Parameters.DeleteLabelFromSpace,
-    callback: Callback<T>,
-  ): Promise<void>;
-  async deleteLabelFromSpace<T = void>(parameters: Parameters.DeleteLabelFromSpace, callback?: never): Promise<T>;
-  async deleteLabelFromSpace<T = void>(
-    parameters: Parameters.DeleteLabelFromSpace,
-    callback?: Callback<T>,
-  ): Promise<void | T> {
-    const config: RequestConfig = {
-      url: `/api/space/${parameters.spaceKey}/label`,
-      method: 'DELETE',
-      params: {
-        name: parameters.name,
-        prefix: parameters.prefix,
-      },
-    };
-
-    return this.client.sendRequest(config, callback);
-  }
 
   /**
    * Returns the properties for a user as list of property keys. For more information about user properties, see
@@ -150,8 +14,6 @@ export class Experimental {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
-   *
-   * @deprecated Will be removed in next major version. Use `userProperties.getUserProperties` instead.
    */
   async getUserProperties<T = Models.UserPropertyKeyArray>(
     parameters: Parameters.GetUserProperties,
@@ -164,8 +26,6 @@ export class Experimental {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
-   *
-   * @deprecated Will be removed in next major version. Use `userProperties.getUserProperties` instead.
    */
   async getUserProperties<T = Models.UserPropertyKeyArray>(
     parameters: Parameters.GetUserProperties,
@@ -194,8 +54,6 @@ export class Experimental {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
-   *
-   * @deprecated Will be removed in next major version. Use `userProperties.getUserProperty` instead.
    */
   async getUserProperty<T = Models.UserProperty>(
     parameters: Parameters.GetUserProperty,
@@ -208,8 +66,6 @@ export class Experimental {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
-   *
-   * @deprecated Will be removed in next major version. Use `userProperties.getUserProperty` instead.
    */
   async getUserProperty<T = Models.UserProperty>(parameters: Parameters.GetUserProperty, callback?: never): Promise<T>;
   async getUserProperty<T = Models.UserProperty>(
@@ -232,8 +88,6 @@ export class Experimental {
    * `Note:` the number of properties which could be created per app in a tenant for each user might be restricted by
    * fixed system limits. **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access
    * the Confluence site ('Can use' global permission).
-   *
-   * @deprecated Will be removed in next major version. Use `userProperties.createUserProperty` instead.
    */
   async createUserProperty<T = unknown>(
     parameters: Parameters.CreateUserProperty,
@@ -247,8 +101,6 @@ export class Experimental {
    * `Note:` the number of properties which could be created per app in a tenant for each user might be restricted by
    * fixed system limits. **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access
    * the Confluence site ('Can use' global permission).
-   *
-   * @deprecated Will be removed in next major version. Use `userProperties.createUserProperty` instead.
    */
   async createUserProperty<T = unknown>(parameters: Parameters.CreateUserProperty, callback?: never): Promise<T>;
   async createUserProperty<T = unknown>(
@@ -274,8 +126,6 @@ export class Experimental {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
-   *
-   * @deprecated Will be removed in next major version. Use `userProperties.updateUserProperty` instead.
    */
   async updateUserProperty<T = void>(parameters: Parameters.UpdateUserProperty, callback: Callback<T>): Promise<void>;
   /**
@@ -286,8 +136,6 @@ export class Experimental {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
-   *
-   * @deprecated Will be removed in next major version. Use `userProperties.updateUserProperty` instead.
    */
   async updateUserProperty<T = void>(parameters: Parameters.UpdateUserProperty, callback?: never): Promise<T>;
   async updateUserProperty<T = void>(
@@ -312,8 +160,6 @@ export class Experimental {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
-   *
-   * @deprecated Will be removed in next major version. Use `userProperties.deleteUserProperty` instead.
    */
   async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback: Callback<T>): Promise<void>;
   /**
@@ -323,8 +169,6 @@ export class Experimental {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site
    * ('Can use' global permission).
-   *
-   * @deprecated Will be removed in next major version. Use `userProperties.deleteUserProperty` instead.
    */
   async deleteUserProperty<T = void>(parameters: Parameters.DeleteUserProperty, callback?: never): Promise<T>;
   async deleteUserProperty<T = void>(

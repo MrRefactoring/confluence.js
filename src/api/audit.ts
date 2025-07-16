@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class Audit {
@@ -155,7 +155,7 @@ export class Audit {
   }
 
   /**
-   * Sets the retention period for records in the audit log. The retention period can be set to a maximum of 20 years.
+   * Sets the retention period for records in the audit log. The retention period can be set to a maximum of 1 year.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
    * permission.
@@ -165,7 +165,7 @@ export class Audit {
     callback: Callback<T>,
   ): Promise<void>;
   /**
-   * Sets the retention period for records in the audit log. The retention period can be set to a maximum of 20 years.
+   * Sets the retention period for records in the audit log. The retention period can be set to a maximum of 1 year.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global
    * permission.

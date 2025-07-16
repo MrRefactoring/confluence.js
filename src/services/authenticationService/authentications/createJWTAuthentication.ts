@@ -1,4 +1,4 @@
-import * as jwt from 'atlassian-jwt';
+import * as jwt from '@atlassian/atlassian-jwt';
 import type { JWT } from '~';
 
 export function createJWTAuthentication(
