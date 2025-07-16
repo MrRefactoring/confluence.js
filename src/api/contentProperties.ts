@@ -4,6 +4,7 @@ import type { Callback } from '../callback';
 import type { Client } from '../clients';
 import type { RequestConfig } from '../requestConfig';
 
+/** @deprecated Will be removed in next major version. */
 export class ContentProperties {
   constructor(private client: Client) {}
 
@@ -13,6 +14,8 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentProperties<T = Models.ContentPropertyArray>(
     parameters: Parameters.GetContentProperties,
@@ -24,6 +27,8 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentProperties<T = Models.ContentPropertyArray>(
     parameters: Parameters.GetContentProperties,
@@ -58,6 +63,8 @@ export class ContentProperties {
    * `metadata.properties` of the request.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async createContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentProperty,
@@ -74,6 +81,8 @@ export class ContentProperties {
    * `metadata.properties` of the request.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async createContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentProperty,
@@ -101,6 +110,8 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.GetContentProperty,
@@ -112,6 +123,8 @@ export class ContentProperties {
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
    * permission to view the content if it is a page.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async getContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.GetContentProperty,
@@ -144,6 +157,8 @@ export class ContentProperties {
    * `metadata.properties` of the request.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async createContentPropertyForKey<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentPropertyForKey,
@@ -160,6 +175,8 @@ export class ContentProperties {
    * `metadata.properties` of the request.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async createContentPropertyForKey<T = Models.ContentProperty>(
     parameters: Parameters.CreateContentPropertyForKey,
@@ -186,6 +203,8 @@ export class ContentProperties {
    * [Confluence entity properties](https://developer.atlassian.com/cloud/confluence/confluence-entity-properties/).
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async updateContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.UpdateContentProperty,
@@ -197,6 +216,8 @@ export class ContentProperties {
    * [Confluence entity properties](https://developer.atlassian.com/cloud/confluence/confluence-entity-properties/).
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async updateContentProperty<T = Models.ContentProperty>(
     parameters: Parameters.UpdateContentProperty,
@@ -223,6 +244,8 @@ export class ContentProperties {
    * properties](https://developer.atlassian.com/cloud/confluence/confluence-entity-properties/).
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async deleteContentProperty<T = void>(
     parameters: Parameters.DeleteContentProperty,
@@ -233,6 +256,8 @@ export class ContentProperties {
    * properties](https://developer.atlassian.com/cloud/confluence/confluence-entity-properties/).
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async deleteContentProperty<T = void>(parameters: Parameters.DeleteContentProperty, callback?: never): Promise<T>;
   async deleteContentProperty<T = void>(

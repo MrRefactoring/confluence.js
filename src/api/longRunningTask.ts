@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class LongRunningTask {
@@ -34,6 +34,7 @@ export class LongRunningTask {
       url: '/api/longtask',
       method: 'GET',
       params: {
+        key: parameters?.key,
         start: parameters?.start,
         limit: parameters?.limit,
       },

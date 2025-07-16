@@ -6,7 +6,7 @@ import type {
   RequestConfig } from '../../src';
 import {
   BaseClient,
-  ConfluenceClient
+  ConfluenceClient,
 } from '../../src';
 
 describe('Type definitions', () => {

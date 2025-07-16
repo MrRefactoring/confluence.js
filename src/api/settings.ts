@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class Settings {
@@ -180,6 +180,8 @@ export class Settings {
    * space. Note, the default space settings are inherited from the current global settings.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async setLookAndFeelSettings<T = unknown>(
     parameters: Parameters.SetLookAndFeelSettings | undefined,
@@ -190,6 +192,8 @@ export class Settings {
    * space. Note, the default space settings are inherited from the current global settings.
    *
    * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
+   *
+   * @deprecated Will be removed in next major version.
    */
   async setLookAndFeelSettings<T = unknown>(
     parameters?: Parameters.SetLookAndFeelSettings,

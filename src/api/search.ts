@@ -1,7 +1,7 @@
 import type * as Models from './models';
 import type * as Parameters from './parameters';
-import type { Callback } from '../callback';
 import type { Client } from '../clients';
+import type { Callback } from '../callback';
 import type { RequestConfig } from '../requestConfig';
 
 export class Search {
@@ -67,6 +67,9 @@ export class Search {
    * Searches for users using user-specific queries from the [Confluence Query Language
    * (CQL)](https://developer.atlassian.com/cloud/confluence/advanced-searching-using-cql/).
    *
+   * Note that CQL input queries submitted through the `/api/search/user` endpoint only support user-specific fields
+   * like `user`, `user.fullname`, `user.accountid`, and `user.userkey`.
+   *
    * Note that some user fields may be set to null depending on the user's privacy settings. These are: email,
    * profilePicture, displayName, and timeZone.
    */
@@ -77,6 +80,9 @@ export class Search {
   /**
    * Searches for users using user-specific queries from the [Confluence Query Language
    * (CQL)](https://developer.atlassian.com/cloud/confluence/advanced-searching-using-cql/).
+   *
+   * Note that CQL input queries submitted through the `/api/search/user` endpoint only support user-specific fields
+   * like `user`, `user.fullname`, `user.accountid`, and `user.userkey`.
    *
    * Note that some user fields may be set to null depending on the user's privacy settings. These are: email,
    * profilePicture, displayName, and timeZone.
@@ -97,6 +103,7 @@ export class Search {
         start: parameters.start,
         limit: parameters.limit,
         expand: parameters.expand,
+        sitePermissionTypeFilter: parameters.sitePermissionTypeFilter,
       },
     };
 
