@@ -56,7 +56,6 @@ export class Search {
         excludeCurrentSpaces: parameters.excludeCurrentSpaces,
         excerpt: parameters.excerpt,
         sitePermissionTypeFilter: parameters.sitePermissionTypeFilter,
-        _: parameters, // todo
         expand: parameters.expand,
       },
     };

@@ -122,6 +122,7 @@ export class ContentBody {
         contentIdContext: parameters.contentIdContext,
         allowCache: parameters.allowCache,
         embeddedContentRender: parameters.embeddedContentRender,
+        expand: parameters.expand,
       },
       data: {
         value: parameters.value,
