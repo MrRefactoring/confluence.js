@@ -203,6 +203,7 @@ const results = await client.search.search({ cql: 'title~"Project"' });
 - [template](https://developer.atlassian.com/cloud/confluence/rest/api-group-template/#api-group-template)
 - [themes](https://developer.atlassian.com/cloud/confluence/rest/api-group-themes/#api-group-themes)
 - [users](https://developer.atlassian.com/cloud/confluence/rest/api-group-users/#api-group-users)
+- [userProperties](https://developer.atlassian.com/cloud/confluence/rest/v1/api-group-user-properties/#api-group-user-properties)
 
 </details>
 

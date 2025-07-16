@@ -33,6 +33,7 @@ import {
   Themes,
   Users,
 } from '../api';
+import { UserProperties } from '~/api/userProperties';
 
 export class ConfluenceClient extends BaseClient {
   constructor(config: Config) {
@@ -77,4 +78,5 @@ export class ConfluenceClient extends BaseClient {
   template = new Template(this);
   themes = new Themes(this);
   users = new Users(this);
+  userProperties = new UserProperties(this);
 }
