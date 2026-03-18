@@ -6,10 +6,13 @@ import type { Callback } from '~/callback';
 import type { Client } from './client';
 import { ConfigSchema, type Config, type Error as ConfluenceError } from '~/config';
 import type { RequestConfig } from '~/requestConfig';
-import { ZodError } from 'zod';
+import { ZodError, z } from 'zod';
 
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
 const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
+const NON_EMAIL_BASIC_AUTH_WARNING =
+  '[confluence.js] authentication.basic.email is not a valid email address; treating it as login workaround.';
+const EMAIL_SCHEMA = z.email();
 
 export class BaseClient implements Client {
   #instance: AxiosInstance | undefined;
@@ -19,12 +22,29 @@ export class BaseClient implements Client {
 
     try {
       this.config = ConfigSchema.parse(this.config);
+      this.warnIfNonEmailBasicAuthLogin();
     } catch (e) {
-      if (e instanceof ZodError && e.errors[0].code === 'invalid_string') {
-        throw new Error(e.errors[0].message);
+      if (e instanceof ZodError && e.issues[0]?.message) {
+        throw new Error(e.issues[0].message, e);
       }
 
       throw e;
+    }
+  }
+
+  private warnIfNonEmailBasicAuthLogin() {
+    if (this.config.suppressWarnings) {
+      return;
+    }
+
+    const authentication = this.config.authentication;
+
+    if (!authentication || !('basic' in authentication)) {
+      return;
+    }
+
+    if (!EMAIL_SCHEMA.safeParse(authentication.basic.email).success) {
+      console.warn(NON_EMAIL_BASIC_AUTH_WARNING);
     }
   }
 

@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.2.0] - 2026-03-18
+### **Dependencies** 📦
+- Migrated `zod` from v3 to v4, including schema/runtime compatibility updates for validation and error handling.
+
+### **Configuration** 🔧
+- `authentication.basic.email` now accepts any string value.
+- Added `suppressWarnings` config option (default: `false`) to control advisory warnings.
+- Added warning when `authentication.basic.email` is not a valid email: `[confluence.js] authentication.basic.email is not a valid email address; treating it as login workaround.`
+
+### **Documentation** 📝
+- Added Confluence Server workaround docs: use login in `authentication.basic.email` and set `apiPrefix` to `/rest/api/`.
+- Added explicit notice that Confluence Server approach is not officially supported and should be treated as a workaround.
+
+---
+
 ## [2.1.0] - 2025-07-17
 ### **Deprecations** ⚠️
 - **Package dependencies**:

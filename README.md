@@ -30,6 +30,7 @@ Designed for developer experience and performance, it offers full API coverage a
   - [First Request](#first-request)
   - [API Structure](#api-structure)
   - [Custom API Prefix](#custom-api-prefix)
+  - [Confluence Server Workaround](#confluence-server-workaround)
 - [Tree Shaking](#tree-shaking)
 - [Other Products](#other-products)
 - [License](#license)
@@ -217,6 +218,30 @@ const client = new ConfluenceClient({
   apiPrefix: '/confluence-api', // Default: '/wiki/rest/api'
 });
 ```
+
+### Confluence Server Workaround
+
+This package officially targets Confluence Cloud APIs.
+
+For Confluence Server instances, you can try this workaround:
+
+```typescript
+const client = new ConfluenceClient({
+  host: 'https://your-confluence-server.example.com',
+  apiPrefix: '/rest/api/',
+  suppressWarnings: true,
+  authentication: {
+    basic: {
+      email: 'YOUR_LOGIN',
+      apiToken: 'YOUR_PASSWORD_OR_TOKEN',
+    },
+  },
+});
+```
+
+Use your login in the `email` field and set `apiPrefix` to `/rest/api/`.
+
+This approach is not officially supported and should only be used as a workaround.
 
 ## Tree Shaking
 

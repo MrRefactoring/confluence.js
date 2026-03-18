@@ -26,8 +26,8 @@ export default defineConfig([
       nodeExternals(),
       alias({
         entries: [
-          { find: '~', replacement: `${__dirname}/src` }
-        ]
+          { find: '~', replacement: `${__dirname}/src` },
+        ],
       }),
       resolve(),
       commonjs(),
@@ -38,8 +38,8 @@ export default defineConfig([
         declarationDir: 'dist/esm/types',
         tsconfig: './tsconfig.json',
       }),
-      esnextToNodeNext()
-    ]
+      esnextToNodeNext(),
+    ],
   },
   {
     input: 'src/index.ts',
@@ -56,8 +56,8 @@ export default defineConfig([
       nodeExternals(),
       alias({
         entries: [
-          { find: '~', replacement: `${__dirname}/src` }
-        ]
+          { find: '~', replacement: `${__dirname}/src` },
+        ],
       }),
       resolve(),
       commonjs(),
@@ -67,6 +67,6 @@ export default defineConfig([
         declaration: false,
         tsconfig: './tsconfig.json',
       }),
-    ]
-  }
+    ],
+  },
 ]);

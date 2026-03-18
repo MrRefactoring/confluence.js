@@ -9,7 +9,7 @@ import type { AxiosError } from 'axios';
 export const BasicSchema = z.strictObject({
   basic: z.strictObject({
     /** User's email associated with Atlassian account */
-    email: z.string().email(),
+    email: z.string(),
     /**
      * API token generated from Atlassian account settings
      *
@@ -48,14 +48,14 @@ export const RequestConfigSchema = z.any();
 /** Middleware configuration schema */
 export const MiddlewaresSchema = z.object({
   /** Error handler middleware */
-  onError: z.optional(z.function().args(z.any()).returns(z.void())),
+  onError: z.optional(z.custom<(input: unknown) => void>((value) => typeof value === 'function')),
   /** Response handler middleware */
-  onResponse: z.optional(z.function().args(z.any()).returns(z.void())),
+  onResponse: z.optional(z.custom<(input: unknown) => void>((value) => typeof value === 'function')),
 });
 
 export const ConfigSchema = z.object({
-  host: z.string().url({
-    message:
+  host: z.url({
+    error:
       'Couldn\'t parse the host URL. Perhaps you forgot to add \'http://\' or \'https://\' at the beginning of the URL?',
   }),
   baseRequestConfig: z.optional(RequestConfigSchema),
@@ -63,6 +63,7 @@ export const ConfigSchema = z.object({
   middlewares: z.optional(MiddlewaresSchema),
   /** Adds `'X-Atlassian-Token': 'no-check'` to each request header */
   noCheckAtlassianToken: z.optional(z.boolean()),
+  suppressWarnings: z.boolean().optional().default(false),
   /** Prefix for all API routes. */
   apiPrefix: z.optional(z.string()),
 });
