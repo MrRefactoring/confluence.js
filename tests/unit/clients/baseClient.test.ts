@@ -4,8 +4,10 @@ import { ConfigSchema, type Config } from '~/config';
 import { ZodError } from 'zod';
 
 describe('BaseClient', () => {
-  const nonEmailWarningMessage =
-    '[confluence.js] authentication.basic.email is not a valid email address; treating it as login workaround.';
+  const nonEmailWarningText =
+    'authentication.basic.email is not a valid email address; treating it as login workaround.';
+  const highlightedNonEmailWarningMessage =
+    `\x1b[33m[confluence.js warning]\x1b[0m ${nonEmailWarningText}`;
 
   describe('constructor', () => {
     it('should set default apiPrefix if not provided', () => {
@@ -81,7 +83,7 @@ describe('BaseClient', () => {
         },
       });
 
-      expect(warnSpy).toHaveBeenCalledWith(nonEmailWarningMessage);
+      expect(warnSpy).toHaveBeenCalledWith(highlightedNonEmailWarningMessage);
 
       warnSpy.mockRestore();
     });
@@ -100,7 +102,25 @@ describe('BaseClient', () => {
         },
       });
 
-      expect(warnSpy).not.toHaveBeenCalledWith(nonEmailWarningMessage);
+      expect(warnSpy).not.toHaveBeenCalled();
+
+      warnSpy.mockRestore();
+    });
+
+    it('should print highlighted warning prefix when non-email login is provided', () => {
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+      new BaseClient({
+        host: 'https://example.com',
+        authentication: {
+          basic: {
+            email: 'server-login',
+            apiToken: 'token',
+          },
+        },
+      });
+
+      expect(warnSpy).toHaveBeenCalledWith(highlightedNonEmailWarningMessage);
 
       warnSpy.mockRestore();
     });

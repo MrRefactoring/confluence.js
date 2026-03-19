@@ -228,7 +228,7 @@ For Confluence Server instances, you can try this workaround:
 ```typescript
 const client = new ConfluenceClient({
   host: 'https://your-confluence-server.example.com',
-  apiPrefix: '/rest/api/',
+  apiPrefix: '/rest',
   suppressWarnings: true,
   authentication: {
     basic: {
@@ -239,7 +239,7 @@ const client = new ConfluenceClient({
 });
 ```
 
-Use your login in the `email` field and set `apiPrefix` to `/rest/api/`.
+Use your login in the `email` field and set `apiPrefix` to `/rest`.
 
 This approach is not officially supported and should only be used as a workaround.
 

@@ -63,7 +63,7 @@ export const ConfigSchema = z.object({
   middlewares: z.optional(MiddlewaresSchema),
   /** Adds `'X-Atlassian-Token': 'no-check'` to each request header */
   noCheckAtlassianToken: z.optional(z.boolean()),
-  suppressWarnings: z.boolean().optional().default(false),
+  suppressWarnings: z.boolean().default(false).optional(),
   /** Prefix for all API routes. */
   apiPrefix: z.optional(z.string()),
 });

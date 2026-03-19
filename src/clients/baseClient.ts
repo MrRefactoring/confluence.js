@@ -10,8 +10,11 @@ import { ZodError, z } from 'zod';
 
 const ATLASSIAN_TOKEN_CHECK_FLAG = 'X-Atlassian-Token';
 const ATLASSIAN_TOKEN_CHECK_NOCHECK_VALUE = 'no-check';
+const WARNING_PREFIX = '\x1b[33m[confluence.js warning]\x1b[0m';
+const NON_EMAIL_BASIC_AUTH_WARNING_TEXT =
+  'authentication.basic.email is not a valid email address; treating it as login workaround.';
 const NON_EMAIL_BASIC_AUTH_WARNING =
-  '[confluence.js] authentication.basic.email is not a valid email address; treating it as login workaround.';
+  `${WARNING_PREFIX} ${NON_EMAIL_BASIC_AUTH_WARNING_TEXT}`;
 const EMAIL_SCHEMA = z.email();
 
 export class BaseClient implements Client {
