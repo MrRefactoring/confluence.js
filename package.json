@@ -32,7 +32,9 @@
   },
   "files": [
     "dist",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "MIGRATION.md",
+    "tools/codemod"
   ],
   "repository": {
     "type": "git",
