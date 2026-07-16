@@ -9,8 +9,8 @@ export const SpaceIconSchema = apiObject({
    */
   path: z.string().optional(),
   /**
-   * The path (relative to base URL) that can be used to retrieve a link to download the space icon. 3LO apps should
-   * use this link instead of the value provided in the `path` property to retrieve the icon.
+   * The path (relative to base URL) that can be used to retrieve a link to download the space icon. 3LO apps should use
+   * this link instead of the value provided in the `path` property to retrieve the icon.
    *
    * Currently this field is only returned for `global` spaces and not `personal` spaces.
    */

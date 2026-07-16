@@ -30,7 +30,7 @@ export type Space = {
   type: string;
   metadata?: {
     labels?: LabelArray;
-    _expandable?: Record<string, any>;
+    _expandable?: Record<string, unknown>;
   };
   operations?: OperationCheckResult[];
   permissions?: SpacePermission[];

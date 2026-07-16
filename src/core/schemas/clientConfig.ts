@@ -18,11 +18,10 @@ export const clientConfigSchema = z.object({
   headers: z.record(z.string(), z.string()).optional(),
   getAuthOn401: z.custom<() => Promise<z.infer<typeof authSchema>>>(val => typeof val === 'function').optional(),
   /**
-   * Opt-in retry for transient transport failures only — network errors
-   * (ECONNRESET, ETIMEDOUT, ENOTFOUND, EAI_AGAIN, EPIPE, UND_ERR_SOCKET,
-   * ERR_SSL_*) and HTTP 502/503/504. Never retries 4xx (including 401, 429)
-   * or 5xx other than 502/503/504 — those signal client or server logic and
-   * masking them would hide real regressions. Disabled by default.
+   * Opt-in retry for transient transport failures only — network errors (ECONNRESET, ETIMEDOUT, ENOTFOUND, EAI_AGAIN,
+   * EPIPE, UND_ERR_SOCKET, ERR_SSL_*) and HTTP 502/503/504. Never retries 4xx (including 401, 429) or 5xx other than
+   * 502/503/504 — those signal client or server logic and masking them would hide real regressions. Disabled by
+   * default.
    */
   retry: transientRetrySchema.optional(),
 });

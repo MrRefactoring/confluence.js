@@ -33,7 +33,7 @@ export const AttachmentSummarySchema = apiObject({
   /** Media Type for the attachment. */
   mediaType: z.string().optional(),
   /** Media Type description for the attachment. */
-  mediaTypeDescription: z.string().optional(),
+  mediaTypeDescription: z.string().nullish(),
   /** Comment for the attachment. */
   comment: z.string().optional(),
   /**
@@ -47,8 +47,8 @@ export const AttachmentSummarySchema = apiObject({
   webuiLink: z.string().optional(),
   /** Download link of the attachment. */
   downloadLink: z.string().optional(),
-  version: VersionSchema.optional(),
-  _links: AttachmentLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  _links: AttachmentLinksSchema.nullish(),
 });
 
 export type AttachmentSummary = z.infer<typeof AttachmentSummarySchema>;

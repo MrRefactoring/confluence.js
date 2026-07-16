@@ -3,7 +3,7 @@ import { apiObject } from '#/core';
 import { PrincipalSchema } from './principal';
 
 export const SpaceRoleAssignmentSchema = apiObject({
-  principal: PrincipalSchema.optional(),
+  principal: PrincipalSchema.nullish(),
   /** The role to which the principal is assigned. */
   roleId: z.string().optional(),
 });

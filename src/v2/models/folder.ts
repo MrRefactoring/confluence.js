@@ -14,8 +14,8 @@ export const FolderSchema = apiObject({
   /** Title of the folder. */
   title: z.string().optional(),
   /** ID of the parent content, or null if there is no parent content. */
-  parentId: z.string().optional(),
-  parentType: ParentContentTypeSchema.optional(),
+  parentId: z.string().nullish(),
+  parentType: ParentContentTypeSchema.nullish(),
   /** Position of the folder within the given parent page tree. */
   position: z.number().nullish(),
   /** The account ID of the user who created this folder. */
@@ -26,8 +26,8 @@ export const FolderSchema = apiObject({
   createdAt: z.coerce.date().optional(),
   /** ID of the space the folder is in. */
   spaceId: z.string().optional(),
-  version: VersionSchema.optional(),
-  _links: FolderLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  _links: FolderLinksSchema.nullish(),
 });
 
 export type Folder = z.infer<typeof FolderSchema>;

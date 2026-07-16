@@ -9,7 +9,7 @@ export const SpacePermissionSchema = apiObject({
   /** Describes the space permission’s usage. */
   description: z.string().optional(),
   /** The permissions required for this permission to be enabled. */
-  requiredPermissionIds: z.array(z.string()).optional(),
+  requiredPermissionIds: z.array(z.string()).nullish(),
 });
 
 export type SpacePermission = z.infer<typeof SpacePermissionSchema>;

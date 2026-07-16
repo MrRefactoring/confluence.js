@@ -9,8 +9,8 @@ export const UpdateFooterCommentModelSchema = apiObject({
     number: z.number().optional(),
     /** Optional message store for the new version. */
     message: z.string().optional(),
-  }).optional(),
-  body: z.union([CommentBodyWriteSchema, CommentNestedBodyWriteSchema]).optional(),
+  }).nullish(),
+  body: z.union([CommentBodyWriteSchema, CommentNestedBodyWriteSchema]).nullish(),
 });
 
 export type UpdateFooterCommentModel = z.infer<typeof UpdateFooterCommentModelSchema>;

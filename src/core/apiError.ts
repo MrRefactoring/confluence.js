@@ -1,5 +1,5 @@
 /**
- * Thrown when Jira returns a non-2xx HTTP response.
+ * Thrown when Confluence returns a non-2xx HTTP response.
  *
  * @stable
  */

@@ -18,11 +18,11 @@ export const DetailedVersionSchema = apiObject({
   /** Describes if the content type is modified in this version (e.g. page to blog) */
   contentTypeModified: z.boolean().optional(),
   /** The account IDs of users that collaborated on this version. */
-  collaborators: z.array(z.string()).optional(),
+  collaborators: z.array(z.string()).nullish(),
   /** The version number of the version prior to this current content update. */
-  prevVersion: z.number().optional(),
+  prevVersion: z.number().nullish(),
   /** The version number of the version after this current content update. */
-  nextVersion: z.number().optional(),
+  nextVersion: z.number().nullish(),
 });
 
 export type DetailedVersion = z.infer<typeof DetailedVersionSchema>;

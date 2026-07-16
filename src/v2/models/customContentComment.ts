@@ -13,9 +13,9 @@ export const CustomContentCommentSchema = apiObject({
   title: z.string().optional(),
   /** ID of the custom content containing the comment. */
   customContentId: z.string().optional(),
-  version: VersionSchema.optional(),
-  body: BodySchema.optional(),
-  _links: CommentLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  body: BodySchema.nullish(),
+  _links: CommentLinksSchema.nullish(),
 });
 
 export type CustomContentComment = z.infer<typeof CustomContentCommentSchema>;

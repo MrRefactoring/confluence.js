@@ -38,7 +38,7 @@ export const AttachmentSchema = apiObject({
   /** Media Type for the attachment. */
   mediaType: z.string().optional(),
   /** Media Type description for the attachment. */
-  mediaTypeDescription: z.string().optional(),
+  mediaTypeDescription: z.string().nullish(),
   /** Comment for the attachment. */
   comment: z.string().optional(),
   /**
@@ -52,28 +52,28 @@ export const AttachmentSchema = apiObject({
   webuiLink: z.string().optional(),
   /** Download link of the attachment. */
   downloadLink: z.string().optional(),
-  version: VersionSchema.optional(),
+  version: VersionSchema.nullish(),
   labels: apiObject({
-    results: z.array(LabelSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(LabelSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   properties: apiObject({
-    results: z.array(ContentPropertySchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(ContentPropertySchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   operations: apiObject({
-    results: z.array(OperationSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(OperationSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   versions: apiObject({
-    results: z.array(VersionSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
-  _links: AttachmentLinksSchema.optional(),
+    results: z.array(VersionSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
+  _links: AttachmentLinksSchema.nullish(),
 });
 
 export type Attachment = z.infer<typeof AttachmentSchema>;

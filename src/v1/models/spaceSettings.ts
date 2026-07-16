@@ -16,9 +16,9 @@ export const SpaceSettingsSchema = apiObject({
     default: z.string(),
   }).optional(),
   /**
-   * The content rendering mode for the space. Controls spacing and typography in the editor and renderer. Valid
-   * values are "standard" and "compact". When set to "compact", content is rendered more densely with smaller spacing
-   * and typography.
+   * The content rendering mode for the space. Controls spacing and typography in the editor and renderer. Valid values
+   * are "standard" and "compact". When set to "compact", content is rendered more densely with smaller spacing and
+   * typography.
    */
   contentMode: z.enum(['standard', 'compact']).nullish(),
   spaceKey: z.string().optional(),

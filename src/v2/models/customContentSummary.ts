@@ -41,9 +41,9 @@ export const CustomContentSummarySchema = apiObject({
   authorId: z.string().optional(),
   /** Date and time when the custom content was created. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */
   createdAt: z.coerce.date().optional(),
-  version: VersionSchema.optional(),
-  body: CustomContentBodySummarySchema.optional(),
-  _links: CustomContentLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  body: CustomContentBodySummarySchema.nullish(),
+  _links: CustomContentLinksSchema.nullish(),
 });
 
 export type CustomContentSummary = z.infer<typeof CustomContentSummarySchema>;

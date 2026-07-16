@@ -62,8 +62,8 @@ export type Content = {
     _links?: GenericLinks;
   };
   metadata?: ContentMetadata;
-  macroRenderedOutput?: Record<string, any>;
-  extensions?: Record<string, any>;
+  macroRenderedOutput?: Record<string, unknown>;
+  extensions?: Record<string, unknown>;
   _expandable?: {
     childTypes?: string;
     container?: string;

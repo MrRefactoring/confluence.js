@@ -15,11 +15,11 @@ export const BlogPostInlineCommentSchema = apiObject({
   title: z.string().optional(),
   /** ID of the blog post the comment is in. */
   blogPostId: z.string().optional(),
-  version: VersionSchema.optional(),
-  body: BodySummarySchema.optional(),
+  version: VersionSchema.nullish(),
+  body: BodySummarySchema.nullish(),
   resolutionStatus: InlineCommentResolutionStatusSchema.optional(),
-  properties: InlineCommentPropertiesSchema.optional(),
-  _links: CommentLinksSchema.optional(),
+  properties: InlineCommentPropertiesSchema.nullish(),
+  _links: CommentLinksSchema.nullish(),
 });
 
 export type BlogPostInlineComment = z.infer<typeof BlogPostInlineCommentSchema>;

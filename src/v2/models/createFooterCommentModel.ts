@@ -17,7 +17,7 @@ export const CreateFooterCommentModelSchema = apiObject({
   attachmentId: z.string().optional(),
   /** ID of the custom content, if intending to create a comment against a custom content. */
   customContentId: z.string().optional(),
-  body: z.union([CommentBodyWriteSchema, CommentNestedBodyWriteSchema]).optional(),
+  body: z.union([CommentBodyWriteSchema, CommentNestedBodyWriteSchema]).nullish(),
 });
 
 export type CreateFooterCommentModel = z.infer<typeof CreateFooterCommentModelSchema>;

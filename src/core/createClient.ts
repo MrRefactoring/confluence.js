@@ -69,10 +69,13 @@ async function getAuthHeaders(auth: Auth): Promise<Record<string, string>> {
 }
 
 /**
- * Creates a low-level Jira API client.
+ * Creates a low-level Confluence API client.
  *
- * Prefer `createCloudClient` from `@jira.js/cloud` or `createAgileClient`
- * from `@jira.js/agile` unless you need direct transport control.
+ * The client carries only transport, auth and retry policy — it is version agnostic, so one instance drives both
+ * `confluence.js/v1` and `confluence.js/v2`.
+ *
+ * Prefer `createV1Client` / `createV2Client` from `confluence.js` unless you want the flat functions and a smaller
+ * bundle.
  *
  * @stable
  */
@@ -185,7 +188,7 @@ export function createClient(config: ClientConfig): Client {
           data = JSON.parse(text);
         } catch (e) {
           if (e instanceof SyntaxError) {
-            // Jira sometimes sends application/json Content-Type with a plain-text body
+            // Confluence sometimes sends application/json Content-Type with a plain-text body
             data = text || undefined;
           } else {
             throw e;

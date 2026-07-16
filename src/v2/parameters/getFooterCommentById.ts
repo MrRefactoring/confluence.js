@@ -21,21 +21,21 @@ export const GetFooterCommentByIdSchema = z.object({
    */
   includeProperties: z.boolean().optional(),
   /**
-   * Includes operations associated with this footer comment in the response, as defined in the `Operation` object.
-   * The number of results will be limited to 50 and sorted in the default sort order. A `meta` and `_links` property
-   * will be present to indicate if more results are available and a link to retrieve the rest of the results.
+   * Includes operations associated with this footer comment in the response, as defined in the `Operation` object. The
+   * number of results will be limited to 50 and sorted in the default sort order. A `meta` and `_links` property will
+   * be present to indicate if more results are available and a link to retrieve the rest of the results.
    */
   includeOperations: z.boolean().optional(),
   /**
-   * Includes likes associated with this footer comment in the response. The number of results will be limited to 50
-   * and sorted in the default sort order. A `meta` and `_links` property will be present to indicate if more results
-   * are available and a link to retrieve the rest of the results.
+   * Includes likes associated with this footer comment in the response. The number of results will be limited to 50 and
+   * sorted in the default sort order. A `meta` and `_links` property will be present to indicate if more results are
+   * available and a link to retrieve the rest of the results.
    */
   includeLikes: z.boolean().optional(),
   /**
-   * Includes versions associated with this footer comment in the response. The number of results will be limited to
-   * 50 and sorted in the default sort order. A `meta` and `_links` property will be present to indicate if more
-   * results are available and a link to retrieve the rest of the results.
+   * Includes versions associated with this footer comment in the response. The number of results will be limited to 50
+   * and sorted in the default sort order. A `meta` and `_links` property will be present to indicate if more results
+   * are available and a link to retrieve the rest of the results.
    */
   includeVersions: z.boolean().optional(),
   /**

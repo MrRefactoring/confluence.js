@@ -9,7 +9,7 @@ export const ContentPropertySchema = apiObject({
   key: z.string().optional(),
   /** Value of the property. Must be a valid JSON value. */
   value: z.unknown().optional(),
-  version: VersionSchema.optional(),
+  version: VersionSchema.nullish(),
 });
 
 export type ContentProperty = z.infer<typeof ContentPropertySchema>;

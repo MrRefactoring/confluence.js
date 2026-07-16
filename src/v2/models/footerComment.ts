@@ -26,29 +26,29 @@ export const FooterCommentSchema = apiObject({
   customContentId: z.string().optional(),
   /** ID of the parent comment if the comment is a reply. */
   parentCommentId: z.string().optional(),
-  version: VersionSchema.optional(),
+  version: VersionSchema.nullish(),
   properties: apiObject({
-    results: z.array(ContentPropertySchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(ContentPropertySchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   operations: apiObject({
-    results: z.array(OperationSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(OperationSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   likes: apiObject({
-    results: z.array(LikeSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(LikeSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   versions: apiObject({
-    results: z.array(VersionSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
-  body: BodySchema.optional(),
-  _links: CommentLinksSchema.optional(),
+    results: z.array(VersionSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
+  body: BodySchema.nullish(),
+  _links: CommentLinksSchema.nullish(),
 });
 
 export type FooterComment = z.infer<typeof FooterCommentSchema>;

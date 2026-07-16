@@ -13,7 +13,7 @@ export const CreateInlineCommentModelSchema = apiObject({
   pageId: z.string().optional(),
   /** ID of the parent comment, if intending to create a reply. Do not provide if creating a top level comment. */
   parentCommentId: z.string().optional(),
-  body: z.union([CommentBodyWriteSchema, CommentNestedBodyWriteSchema]).optional(),
+  body: z.union([CommentBodyWriteSchema, CommentNestedBodyWriteSchema]).nullish(),
   /**
    * Object describing the text to highlight on the page/blog post. Only applicable for top level inline comments (not
    * replies) and required in that case.
@@ -21,18 +21,15 @@ export const CreateInlineCommentModelSchema = apiObject({
   inlineCommentProperties: apiObject({
     /** The text to highlight */
     textSelection: z.string().optional(),
-    /**
-     * The number of matches for the selected text on the page (should be strictly greater than
-     * textSelectionMatchIndex)
-     */
+    /** The number of matches for the selected text on the page (should be strictly greater than textSelectionMatchIndex) */
     textSelectionMatchCount: z.number().optional(),
     /**
-     * The match index to highlight. This is zero-based. E.g. if you have 3 occurrences of "hello world" on a page
-     * and you want to highlight the second occurrence, you should pass 1 for textSelectionMatchIndex and 3 for
+     * The match index to highlight. This is zero-based. E.g. if you have 3 occurrences of "hello world" on a page and
+     * you want to highlight the second occurrence, you should pass 1 for textSelectionMatchIndex and 3 for
      * textSelectionMatchCount.
      */
     textSelectionMatchIndex: z.number().optional(),
-  }).optional(),
+  }).nullish(),
 });
 
 export type CreateInlineCommentModel = z.infer<typeof CreateInlineCommentModelSchema>;

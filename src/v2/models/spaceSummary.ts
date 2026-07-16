@@ -25,9 +25,9 @@ export const SpaceSummarySchema = apiObject({
   createdAt: z.coerce.date().optional(),
   /** ID of the space's homepage. */
   homepageId: z.string().optional(),
-  description: SpaceDescriptionSchema.optional(),
-  icon: SpaceIconSchema.optional(),
-  _links: SpaceLinksSchema.optional(),
+  description: SpaceDescriptionSchema.nullish(),
+  icon: SpaceIconSchema.nullish(),
+  _links: SpaceLinksSchema.nullish(),
 });
 
 export type SpaceSummary = z.infer<typeof SpaceSummarySchema>;

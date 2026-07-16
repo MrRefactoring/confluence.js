@@ -14,8 +14,8 @@ export const WhiteboardSchema = apiObject({
   /** Title of the whiteboard. */
   title: z.string().optional(),
   /** ID of the parent content, or null if there is no parent content. */
-  parentId: z.string().optional(),
-  parentType: ParentContentTypeSchema.optional(),
+  parentId: z.string().nullish(),
+  parentType: ParentContentTypeSchema.nullish(),
   /** Position of the whiteboard within the given parent page tree. */
   position: z.number().nullish(),
   /** The account ID of the user who created this whiteboard originally. */
@@ -26,8 +26,8 @@ export const WhiteboardSchema = apiObject({
   createdAt: z.coerce.date().optional(),
   /** ID of the space the whiteboard is in. */
   spaceId: z.string().optional(),
-  version: VersionSchema.optional(),
-  _links: WhiteboardLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  _links: WhiteboardLinksSchema.nullish(),
 });
 
 export type Whiteboard = z.infer<typeof WhiteboardSchema>;

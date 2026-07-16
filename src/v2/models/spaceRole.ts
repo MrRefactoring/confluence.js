@@ -11,7 +11,7 @@ export const SpaceRoleSchema = apiObject({
   /** The description for the space role’s usage. */
   description: z.string().optional(),
   /** The space permissions the space role is comprised of. */
-  spacePermissions: z.array(z.string()).optional(),
+  spacePermissions: z.array(z.string()).nullish(),
 });
 
 export type SpaceRole = z.infer<typeof SpaceRoleSchema>;

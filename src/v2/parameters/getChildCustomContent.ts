@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 export const GetChildCustomContentSchema = z.object({
   /**
-   * The ID of the parent custom content. If you don't know the custom content ID, use Get custom-content and filter
-   * the results.
+   * The ID of the parent custom content. If you don't know the custom content ID, use Get custom-content and filter the
+   * results.
    */
   id: z.number(),
   /**

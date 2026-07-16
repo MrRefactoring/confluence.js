@@ -14,23 +14,19 @@ export interface RetryOptions {
 /**
  * Wraps an async operation with automatic retry on retriable HTTP errors.
  *
- * Retries only on: 429, 502, 503, 504. Never retries 401, 403, 404, 500,
- * or network TypeError.
- *
- * @stable
+ * Retries only on: 429, 502, 503, 504. Never retries 401, 403, 404, 500, or network TypeError.
  *
  * @example
- * ```typescript
- * const issue = await withRetry(
- *   () => client.issues.getIssue({ issueIdOrKey: 'PROJ-1' }),
- *   { maxAttempts: 4, initialDelayMs: 500 },
- * );
- * ```
+ *   ```typescript
+ *   const issue = await withRetry(
+ *     () => client.issues.getIssue({ issueIdOrKey: 'PROJ-1' }),
+ *     { maxAttempts: 4, initialDelayMs: 500 },
+ *   );
+ *   ```;
+ *
+ * @stable
  */
-export async function withRetry<T>(
-  operation: () => Promise<T>,
-  options: RetryOptions = {},
-): Promise<T> {
+export async function withRetry<T>(operation: () => Promise<T>, options: RetryOptions = {}): Promise<T> {
   const { maxAttempts = 3, initialDelayMs = 1000, backoffFactor = 2 } = options;
   let lastError: unknown;
   let delayMs = initialDelayMs;

@@ -21,8 +21,8 @@ export const PageSchema = apiObject({
   /** ID of the space the page is in. */
   spaceId: z.string().optional(),
   /** ID of the parent page, or null if there is no parent page. */
-  parentId: z.string().optional(),
-  parentType: ParentContentTypeSchema.optional(),
+  parentId: z.string().nullish(),
+  parentType: ParentContentTypeSchema.nullish(),
   /** Position of child page within the given parent page tree. */
   position: z.number().nullish(),
   /** The account ID of the user who created this page originally. */
@@ -33,36 +33,36 @@ export const PageSchema = apiObject({
   lastOwnerId: z.string().nullish(),
   /** Date and time when the page was created. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */
   createdAt: z.coerce.date().optional(),
-  version: VersionSchema.optional(),
-  body: BodySchema.optional(),
+  version: VersionSchema.nullish(),
+  body: BodySchema.nullish(),
   labels: apiObject({
-    results: z.array(LabelSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(LabelSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   properties: apiObject({
-    results: z.array(ContentPropertySchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(ContentPropertySchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   operations: apiObject({
-    results: z.array(OperationSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(OperationSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   likes: apiObject({
-    results: z.array(LikeSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(LikeSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   versions: apiObject({
-    results: z.array(VersionSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(VersionSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   /** Whether the page has been favorited by the current user. */
   isFavoritedByCurrentUser: z.boolean().optional(),
-  _links: AbstractPageLinksSchema.optional(),
+  _links: AbstractPageLinksSchema.nullish(),
 });
 
 export type Page = z.infer<typeof PageSchema>;

@@ -4,8 +4,8 @@ import { BodyTypeSchema } from './bodyType';
 /** Contains fields for each representation type requested. */
 
 export const BodySummarySchema = apiObject({
-  storage: BodyTypeSchema.optional(),
-  atlas_doc_format: BodyTypeSchema.optional(),
+  storage: BodyTypeSchema.nullish(),
+  atlas_doc_format: BodyTypeSchema.nullish(),
 });
 
 export type BodySummary = z.infer<typeof BodySummarySchema>;

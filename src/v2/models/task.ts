@@ -15,21 +15,21 @@ export const TaskSchema = apiObject({
   blogPostId: z.string().optional(),
   /** Status of the task. */
   status: z.enum(['complete', 'incomplete']).optional(),
-  body: TaskBodySchema.optional(),
+  body: TaskBodySchema.nullish(),
   /** Account ID of the user who created this task. */
   createdBy: z.string().optional(),
   /** Account ID of the user to whom this task is assigned. */
-  assignedTo: z.string().optional(),
+  assignedTo: z.string().nullish(),
   /** Account ID of the user who completed this task. */
-  completedBy: z.string().optional(),
+  completedBy: z.string().nullish(),
   /** Date and time when the task was created. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */
   createdAt: z.coerce.date().optional(),
   /** Date and time when the task was updated. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */
   updatedAt: z.coerce.date().optional(),
   /** Date and time when the task is due. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */
-  dueAt: z.coerce.date().optional(),
+  dueAt: z.coerce.date().nullish(),
   /** Date and time when the task was completed. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */
-  completedAt: z.coerce.date().optional(),
+  completedAt: z.coerce.date().nullish(),
 });
 
 export type Task = z.infer<typeof TaskSchema>;

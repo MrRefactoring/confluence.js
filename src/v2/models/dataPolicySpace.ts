@@ -11,13 +11,13 @@ export const DataPolicySpaceSchema = apiObject({
   key: z.string().optional(),
   /** Name of the space. */
   name: z.string().optional(),
-  description: SpaceDescriptionSchema.optional(),
+  description: SpaceDescriptionSchema.nullish(),
   dataPolicy: apiObject({
     /** Whether the space contains any content blocked for (inaccessible to) the requesting client application. */
     anyContentBlocked: z.boolean().optional(),
-  }).optional(),
-  icon: SpaceIconSchema.optional(),
-  _links: SpaceLinksSchema.optional(),
+  }).nullish(),
+  icon: SpaceIconSchema.nullish(),
+  _links: SpaceLinksSchema.nullish(),
 });
 
 export type DataPolicySpace = z.infer<typeof DataPolicySpaceSchema>;

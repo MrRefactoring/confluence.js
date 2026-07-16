@@ -16,7 +16,7 @@ export const CommentVersionSchema = apiObject({
   minorEdit: z.boolean().optional(),
   /** The account ID of the user who created this version. */
   authorId: z.string().optional(),
-  comment: VersionedEntitySchema.optional(),
+  comment: VersionedEntitySchema.nullish(),
 });
 
 export type CommentVersion = z.infer<typeof CommentVersionSchema>;

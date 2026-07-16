@@ -14,8 +14,8 @@ export const DatabaseSchema = apiObject({
   /** Title of the database. */
   title: z.string().optional(),
   /** ID of the parent content, or null if there is no parent content. */
-  parentId: z.string().optional(),
-  parentType: ParentContentTypeSchema.optional(),
+  parentId: z.string().nullish(),
+  parentType: ParentContentTypeSchema.nullish(),
   /** Position of the database within the given parent page tree. */
   position: z.number().nullish(),
   /** The account ID of the user who created this database originally. */
@@ -26,8 +26,8 @@ export const DatabaseSchema = apiObject({
   createdAt: z.coerce.date().optional(),
   /** ID of the space the database is in. */
   spaceId: z.string().optional(),
-  version: VersionSchema.optional(),
-  _links: DatabaseLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  _links: DatabaseLinksSchema.nullish(),
 });
 
 export type Database = z.infer<typeof DatabaseSchema>;

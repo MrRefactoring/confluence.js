@@ -10,18 +10,18 @@ export const SpacePropertySchema = apiObject({
   value: z.unknown().optional(),
   /** RFC3339 compliant date time at which the property was created. */
   createdAt: z.coerce.date().optional(),
-  /** Atlassian account ID of the user that created the space property. */
-  createdBy: z.string().optional(),
   version: apiObject({
     /** RFC3339 compliant date time at which the property's current version was created. */
     createdAt: z.coerce.date().optional(),
-    /** Atlassian account ID of the user that created the space property's current version. */
-    createdBy: z.string().optional(),
     /** Message associated with the current version. */
     message: z.string().optional(),
     /** The space property's current version number. */
     number: z.number().optional(),
-  }).optional(),
+    /** Atlassian account ID of the user that created the space property's current version. */
+    authorId: z.string().optional(),
+  }).nullish(),
+  /** Atlassian account ID of the user that created the space property. */
+  authorId: z.string().optional(),
 });
 
 export type SpaceProperty = z.infer<typeof SpacePropertySchema>;

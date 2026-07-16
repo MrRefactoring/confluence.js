@@ -12,7 +12,7 @@ export const ContentPropertyUpdateSchema = apiObject({
     number: z.number().optional(),
     /** Message to be associated with the new version. */
     message: z.string().optional(),
-  }).optional(),
+  }).nullish(),
 });
 
 export type ContentPropertyUpdate = z.infer<typeof ContentPropertyUpdateSchema>;

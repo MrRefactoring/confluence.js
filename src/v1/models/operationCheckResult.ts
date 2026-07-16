@@ -23,8 +23,8 @@ export const OperationCheckResultSchema = apiObject({
     'use',
   ]),
   /**
-   * The space or content type that the operation applies to. Could be one of- - application - page - blogpost -
-   * comment - attachment - space
+   * The space or content type that the operation applies to. Could be one of- - application - page - blogpost - comment
+   * - attachment - space
    */
   targetType: z.string(),
 });

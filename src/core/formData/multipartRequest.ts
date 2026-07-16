@@ -118,7 +118,7 @@ function createBoundary(): string {
       ? crypto.randomUUID().replace(/-/g, '')
       : `${Date.now()}${Math.random().toString(16).slice(2)}`;
 
-  return `jira-js-${suffix}`;
+  return `confluence-js-${suffix}`;
 }
 
 function toReadableStream(iterable: AsyncIterable<Uint8Array>): ReadableStream<Uint8Array> {

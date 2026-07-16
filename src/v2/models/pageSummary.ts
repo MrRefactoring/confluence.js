@@ -15,8 +15,8 @@ export const PageSummarySchema = apiObject({
   /** ID of the space the page is in. */
   spaceId: z.string().optional(),
   /** ID of the parent page, or null if there is no parent page. */
-  parentId: z.string().optional(),
-  parentType: ParentContentTypeSchema.optional(),
+  parentId: z.string().nullish(),
+  parentType: ParentContentTypeSchema.nullish(),
   /** Position of child page within the given parent page tree. */
   position: z.number().nullish(),
   /** The account ID of the user who created this page originally. */
@@ -29,9 +29,9 @@ export const PageSummarySchema = apiObject({
   subtype: z.string().nullish(),
   /** Date and time when the page was created. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */
   createdAt: z.coerce.date().optional(),
-  version: VersionSchema.optional(),
-  body: BodySummarySchema.optional(),
-  _links: AbstractPageLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  body: BodySummarySchema.nullish(),
+  _links: AbstractPageLinksSchema.nullish(),
 });
 
 export type PageSummary = z.infer<typeof PageSummarySchema>;

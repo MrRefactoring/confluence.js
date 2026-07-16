@@ -16,7 +16,7 @@ export const BlogPostVersionSchema = apiObject({
   minorEdit: z.boolean().optional(),
   /** The account ID of the user who created this version. */
   authorId: z.string().optional(),
-  blogpost: VersionedEntitySchema.optional(),
+  blogpost: VersionedEntitySchema.nullish(),
 });
 
 export type BlogPostVersion = z.infer<typeof BlogPostVersionSchema>;

@@ -29,29 +29,29 @@ export const SpaceSchema = apiObject({
   createdAt: z.coerce.date().optional(),
   /** ID of the space's homepage. */
   homepageId: z.string().optional(),
-  description: SpaceDescriptionSchema.optional(),
-  icon: SpaceIconSchema.optional(),
+  description: SpaceDescriptionSchema.nullish(),
+  icon: SpaceIconSchema.nullish(),
   labels: apiObject({
-    results: z.array(LabelSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(LabelSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   properties: apiObject({
-    results: z.array(SpacePropertySchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(SpacePropertySchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   operations: apiObject({
-    results: z.array(OperationSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(OperationSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   permissions: apiObject({
-    results: z.array(SpacePermissionAssignmentSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
-  _links: SpaceLinksSchema.optional(),
+    results: z.array(SpacePermissionAssignmentSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
+  _links: SpaceLinksSchema.nullish(),
 });
 
 export type Space = z.infer<typeof SpaceSchema>;

@@ -21,13 +21,13 @@ export const ContentRestrictionUpdateSchema = apiObject({
     'use',
   ]),
   /**
-   * The users/groups that the restrictions will be applied to. At least one of `user` or `group` must be specified
-   * for this object.
+   * The users/groups that the restrictions will be applied to. At least one of `user` or `group` must be specified for
+   * this object.
    */
   restrictions: apiObject({
     /**
-     * The groups that the restrictions will be applied to. This array must have at least one item, otherwise it
-     * should be omitted.
+     * The groups that the restrictions will be applied to. This array must have at least one item, otherwise it should
+     * be omitted.
      */
     group: z
       .array(

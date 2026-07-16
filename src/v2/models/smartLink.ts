@@ -14,8 +14,8 @@ export const SmartLinkSchema = apiObject({
   /** Title of the Smart Link in the content tree. */
   title: z.string().optional(),
   /** ID of the parent content, or null if there is no parent content. */
-  parentId: z.string().optional(),
-  parentType: ParentContentTypeSchema.optional(),
+  parentId: z.string().nullish(),
+  parentType: ParentContentTypeSchema.nullish(),
   /** Position of the Smart Link within the given parent page tree. */
   position: z.number().nullish(),
   /** The account ID of the user who created this Smart Link in the content tree originally. */
@@ -31,8 +31,8 @@ export const SmartLinkSchema = apiObject({
   embedUrl: z.string().optional(),
   /** ID of the space the Smart Link is in. */
   spaceId: z.string().optional(),
-  version: VersionSchema.optional(),
-  _links: SmartLinkLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  _links: SmartLinkLinksSchema.nullish(),
 });
 
 export type SmartLink = z.infer<typeof SmartLinkSchema>;

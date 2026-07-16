@@ -13,9 +13,9 @@ export const AttachmentCommentSchema = apiObject({
   title: z.string().optional(),
   /** ID of the attachment containing the comment. */
   attachmentId: z.string().optional(),
-  version: VersionSchema.optional(),
-  body: BodySchema.optional(),
-  _links: CommentLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  body: BodySchema.nullish(),
+  _links: CommentLinksSchema.nullish(),
 });
 
 export type AttachmentComment = z.infer<typeof AttachmentCommentSchema>;

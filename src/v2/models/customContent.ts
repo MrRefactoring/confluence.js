@@ -46,29 +46,29 @@ export const CustomContentSchema = apiObject({
   authorId: z.string().optional(),
   /** Date and time when the custom content was created. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */
   createdAt: z.coerce.date().optional(),
-  version: VersionSchema.optional(),
+  version: VersionSchema.nullish(),
   labels: apiObject({
-    results: z.array(LabelSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(LabelSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   properties: apiObject({
-    results: z.array(ContentPropertySchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(ContentPropertySchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   operations: apiObject({
-    results: z.array(OperationSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
+    results: z.array(OperationSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
   versions: apiObject({
-    results: z.array(VersionSchema).optional(),
-    meta: OptionalFieldMetaSchema.optional(),
-    _links: OptionalFieldLinksSchema.optional(),
-  }).optional(),
-  body: CustomContentBodySchema.optional(),
-  _links: CustomContentLinksSchema.optional(),
+    results: z.array(VersionSchema).nullish(),
+    meta: OptionalFieldMetaSchema.nullish(),
+    _links: OptionalFieldLinksSchema.nullish(),
+  }).nullish(),
+  body: CustomContentBodySchema.nullish(),
+  _links: CustomContentLinksSchema.nullish(),
 });
 
 export type CustomContent = z.infer<typeof CustomContentSchema>;

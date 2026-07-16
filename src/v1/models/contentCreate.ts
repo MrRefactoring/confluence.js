@@ -70,9 +70,9 @@ export const ContentCreateSchema = apiObject({
     type: z.string(),
   }).nullish(),
   /**
-   * The parent content of the new content. If you are creating a top-level `page` or `comment`, this can be left
-   * blank. If you are creating a child page, this is where the parent page id goes. If you are creating a child
-   * comment, this is where the parent comment id goes. Only one parent content id can be specified.
+   * The parent content of the new content. If you are creating a top-level `page` or `comment`, this can be left blank.
+   * If you are creating a child page, this is where the parent page id goes. If you are creating a child comment, this
+   * is where the parent comment id goes. Only one parent content id can be specified.
    */
   ancestors: z
     .array(

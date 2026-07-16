@@ -13,9 +13,9 @@ export const ChildrenCommentSchema = apiObject({
   title: z.string().optional(),
   /** ID of the parent comment the child comment is in. */
   parentCommentId: z.string().optional(),
-  version: VersionSchema.optional(),
-  body: BodySummarySchema.optional(),
-  _links: CommentLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  body: BodySummarySchema.nullish(),
+  _links: CommentLinksSchema.nullish(),
 });
 
 export type ChildrenComment = z.infer<typeof ChildrenCommentSchema>;

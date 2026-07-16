@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const GetAttachmentLabelsSchema = z.object({
   /** The ID of the attachment for which labels should be returned. */
-  id: z.number(),
+  id: z.string(),
   /** Filter the results to labels based on their prefix. */
   prefix: z.enum(['my', 'team', 'global', 'system']).optional(),
   /** Used to sort the result by a particular field. */
@@ -13,8 +13,8 @@ export const GetAttachmentLabelsSchema = z.object({
    */
   cursor: z.string().optional(),
   /**
-   * Maximum number of labels per result to return. If more results exist, use the `Link` header to retrieve a
-   * relative URL that will return the next set of results.
+   * Maximum number of labels per result to return. If more results exist, use the `Link` header to retrieve a relative
+   * URL that will return the next set of results.
    */
   limit: z.number().optional(),
 });

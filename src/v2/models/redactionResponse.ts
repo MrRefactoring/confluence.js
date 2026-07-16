@@ -7,8 +7,8 @@ import { RedactionSectionSchema } from './redactionSection';
  */
 
 export const RedactionResponseSchema = apiObject({
-  body: RedactionSectionSchema.optional(),
-  title: RedactionSectionSchema.optional(),
+  body: RedactionSectionSchema.nullish(),
+  title: RedactionSectionSchema.nullish(),
 });
 
 export type RedactionResponse = z.infer<typeof RedactionResponseSchema>;

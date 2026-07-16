@@ -9,8 +9,8 @@ export const GetPageVersionsSchema = z.object({
    */
   id: z.number(),
   /**
-   * The content format types to be returned in the `body` field of the response. If available, the representation
-   * will be available under a response field of the same name under the `body` field.
+   * The content format types to be returned in the `body` field of the response. If available, the representation will
+   * be available under a response field of the same name under the `body` field.
    */
   bodyFormat: PrimaryBodyRepresentationSchema.optional(),
   /**

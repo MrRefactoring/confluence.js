@@ -16,7 +16,7 @@ export const PageVersionSchema = apiObject({
   minorEdit: z.boolean().optional(),
   /** The account ID of the user who created this version. */
   authorId: z.string().optional(),
-  page: VersionedEntitySchema.optional(),
+  page: VersionedEntitySchema.nullish(),
 });
 
 export type PageVersion = z.infer<typeof PageVersionSchema>;

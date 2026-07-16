@@ -23,7 +23,7 @@ export type ContentMetadata = {
       lastSeen?: Date;
       friendlyLastSeen?: string;
     };
-    scheduled?: Record<string, any>;
+    scheduled?: Record<string, unknown>;
     _expandable?: {
       favourited?: string;
       lastmodified?: string;
@@ -33,7 +33,7 @@ export type ContentMetadata = {
     };
   };
   properties?: GenericLinks;
-  frontend?: Record<string, any>;
+  frontend?: Record<string, unknown>;
   labels?: LabelArray | Label[];
 };
 /** Metadata object for page, blogpost, comment content */

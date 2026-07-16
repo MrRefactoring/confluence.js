@@ -7,9 +7,9 @@ import { CustomContentBodyWriteSchema } from './customContentBodyWrite';
  */
 
 export const CustomContentNestedBodyWriteSchema = apiObject({
-  storage: CustomContentBodyWriteSchema.optional(),
-  atlas_doc_format: CustomContentBodyWriteSchema.optional(),
-  raw: CustomContentBodyWriteSchema.optional(),
+  storage: CustomContentBodyWriteSchema.nullish(),
+  atlas_doc_format: CustomContentBodyWriteSchema.nullish(),
+  raw: CustomContentBodyWriteSchema.nullish(),
 });
 
 export type CustomContentNestedBodyWrite = z.infer<typeof CustomContentNestedBodyWriteSchema>;

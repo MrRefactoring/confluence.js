@@ -16,7 +16,7 @@ export const AttachmentVersionSchema = apiObject({
   minorEdit: z.boolean().optional(),
   /** The account ID of the user who created this version. */
   authorId: z.string().optional(),
-  attachment: VersionedEntitySchema.optional(),
+  attachment: VersionedEntitySchema.nullish(),
 });
 
 export type AttachmentVersion = z.infer<typeof AttachmentVersionSchema>;

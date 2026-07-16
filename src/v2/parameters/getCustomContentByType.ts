@@ -28,8 +28,8 @@ export const GetCustomContentByTypeSchema = z.object({
    */
   limit: z.number().optional(),
   /**
-   * The content format types to be returned in the `body` field of the response. If available, the representation
-   * will be available under a response field of the same name under the `body` field.
+   * The content format types to be returned in the `body` field of the response. If available, the representation will
+   * be available under a response field of the same name under the `body` field.
    *
    * Note: If the custom content body type is `storage`, the `storage` and `atlas_doc_format` body formats are able to
    * be returned. If the custom content body type is `raw`, only the `raw` body format is able to be returned.

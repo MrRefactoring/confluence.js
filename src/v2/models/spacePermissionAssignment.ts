@@ -6,32 +6,14 @@ export const SpacePermissionAssignmentSchema = apiObject({
   id: z.string().optional(),
   /** The entity the space permissions corresponds to. */
   principal: apiObject({
-    type: z.enum(['user', 'group', 'role']).optional(),
+    type: z.string().optional(),
     /** ID of the entity. */
     id: z.string().optional(),
-  }).optional(),
+  }).nullish(),
   /** The operation the space permission corresponds to. */
   operation: apiObject({
     /** The type of operation. */
-    key: z
-      .enum([
-        'use',
-        'create',
-        'read',
-        'update',
-        'delete',
-        'copy',
-        'move',
-        'export',
-        'purge',
-        'purge_version',
-        'administer',
-        'restore',
-        'create_space',
-        'restrict_content',
-        'archive',
-      ])
-      .optional(),
+    key: z.string().optional(),
     /** The type of entity the operation type targets. */
     targetType: z
       .enum([
@@ -48,7 +30,7 @@ export const SpacePermissionAssignmentSchema = apiObject({
         'userProfile',
       ])
       .optional(),
-  }).optional(),
+  }).nullish(),
 });
 
 export type SpacePermissionAssignment = z.infer<typeof SpacePermissionAssignmentSchema>;

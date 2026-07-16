@@ -17,9 +17,9 @@ export const BlogPostSummarySchema = apiObject({
   authorId: z.string().optional(),
   /** Date and time when the blog post was created. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */
   createdAt: z.coerce.date().optional(),
-  version: VersionSchema.optional(),
-  body: BodySummarySchema.optional(),
-  _links: AbstractPageLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  body: BodySummarySchema.nullish(),
+  _links: AbstractPageLinksSchema.nullish(),
 });
 
 export type BlogPostSummary = z.infer<typeof BlogPostSummarySchema>;

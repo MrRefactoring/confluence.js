@@ -15,11 +15,11 @@ export const InlineCommentChildrenSchema = apiObject({
   title: z.string().optional(),
   /** ID of the parent comment the child comment is in. */
   parentCommentId: z.string().optional(),
-  version: VersionSchema.optional(),
-  body: BodySummarySchema.optional(),
+  version: VersionSchema.nullish(),
+  body: BodySummarySchema.nullish(),
   resolutionStatus: InlineCommentResolutionStatusSchema.optional(),
-  properties: InlineCommentPropertiesSchema.optional(),
-  _links: CommentLinksSchema.optional(),
+  properties: InlineCommentPropertiesSchema.nullish(),
+  _links: CommentLinksSchema.nullish(),
 });
 
 export type InlineCommentChildren = z.infer<typeof InlineCommentChildrenSchema>;

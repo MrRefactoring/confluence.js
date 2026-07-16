@@ -115,14 +115,8 @@ export async function getDescendantsOfType(client: Client, parameters: GetDescen
  * renaming page titles during the copy; for example, search and replace can be used in conjunction to rewrite the
  * copied page titles.
  *
- * Response example: <pre><code>
- *  {
- *       "id" : "1180606",
- *       "links" : {
- *            "status" : "/rest/api/longtask/1180606"
- *       }
- *  }
- *  </code></pre>
+ * Response example: <pre><code> { "id" : "1180606", "links" : { "status" : "/rest/api/longtask/1180606" } }
+ * </code></pre>
  *
  * Use the /longtask/<taskId> REST API to get the copy task status.
  */

@@ -15,11 +15,11 @@ export const PageInlineCommentSchema = apiObject({
   title: z.string().optional(),
   /** ID of the page the comment is in. */
   pageId: z.string().optional(),
-  version: VersionSchema.optional(),
-  body: BodySummarySchema.optional(),
+  version: VersionSchema.nullish(),
+  body: BodySummarySchema.nullish(),
   resolutionStatus: InlineCommentResolutionStatusSchema.optional(),
-  properties: InlineCommentPropertiesSchema.optional(),
-  _links: CommentLinksSchema.optional(),
+  properties: InlineCommentPropertiesSchema.nullish(),
+  _links: CommentLinksSchema.nullish(),
 });
 
 export type PageInlineComment = z.infer<typeof PageInlineCommentSchema>;

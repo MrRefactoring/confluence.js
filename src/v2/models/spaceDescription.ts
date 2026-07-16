@@ -4,8 +4,8 @@ import { BodyTypeSchema } from './bodyType';
 /** Contains fields for each representation type requested. */
 
 export const SpaceDescriptionSchema = apiObject({
-  plain: BodyTypeSchema.optional(),
-  view: BodyTypeSchema.optional(),
+  plain: BodyTypeSchema.nullish(),
+  view: BodyTypeSchema.nullish(),
 });
 
 export type SpaceDescription = z.infer<typeof SpaceDescriptionSchema>;

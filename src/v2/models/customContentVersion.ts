@@ -16,7 +16,7 @@ export const CustomContentVersionSchema = apiObject({
   minorEdit: z.boolean().optional(),
   /** The account ID of the user who created this version. */
   authorId: z.string().optional(),
-  custom: VersionedEntitySchema.optional(),
+  custom: VersionedEntitySchema.nullish(),
 });
 
 export type CustomContentVersion = z.infer<typeof CustomContentVersionSchema>;

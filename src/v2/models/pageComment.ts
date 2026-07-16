@@ -13,9 +13,9 @@ export const PageCommentSchema = apiObject({
   title: z.string().optional(),
   /** ID of the page the comment is in. */
   pageId: z.string().optional(),
-  version: VersionSchema.optional(),
-  body: BodySummarySchema.optional(),
-  _links: CommentLinksSchema.optional(),
+  version: VersionSchema.nullish(),
+  body: BodySummarySchema.nullish(),
+  _links: CommentLinksSchema.nullish(),
 });
 
 export type PageComment = z.infer<typeof PageCommentSchema>;
