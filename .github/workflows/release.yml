@@ -34,11 +34,19 @@ jobs:
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 🏗️ Build all packages
+      - name: 🏗️ Build
         run: pnpm run build
 
       - name: 🧪 Unit tests
-        run: pnpm run test:unit
+        run: pnpm run test
+
+      # What building cannot prove: that the exports map resolves and the packed
+      # tarball actually imports. Publishing a broken one is not undoable.
+      - name: 🔎 Are the types wrong?
+        run: pnpm run check:attw
+
+      - name: 🚚 Consumer smoke tests
+        run: pnpm run check:consumers
 
       # Changesets action:
       # - If changesets are pending → creates/updates "Version Packages" PR

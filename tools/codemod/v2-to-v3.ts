@@ -183,13 +183,12 @@ export default function transform(file: FileInfo, api: API, _options: Options): 
   // new ConfluenceClient({...}) → createV1Client({...})
   root
     .find(j.NewExpression, { callee: { type: 'Identifier', name: 'ConfluenceClient' } })
-    .forEach((path: ASTPath<never>) => {
-      const node = path.node as unknown as { arguments: unknown[] };
-      const config = node.arguments[0] as ObjectExpression | undefined;
+    .forEach(path => {
+      const config = path.node.arguments[0] as ObjectExpression | undefined;
 
       if (config?.type === 'ObjectExpression') rewriteConfig(j, config);
 
-      path.replace(j.callExpression(j.identifier('createV1Client'), node.arguments as never[]) as never);
+      path.replace(j.callExpression(j.identifier('createV1Client'), path.node.arguments as never[]));
       touched = true;
     });
 

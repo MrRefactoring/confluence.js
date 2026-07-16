@@ -37,6 +37,6 @@ jobs:
         run: pnpm changeset version --snapshot dev
 
       - name: 📤 Publish dev snapshot to NPM
-        run: pnpm publish -r --tag dev --no-git-checks --provenance
+        run: pnpm publish --tag dev --no-git-checks --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
