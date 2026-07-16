@@ -1,25 +1,29 @@
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { loadEnv } from 'vite';
+import { resolve } from 'node:path';
 import { defineConfig } from 'vitest/config';
-import { vitestShared } from './vitestShared';
 
-const repoRoot = dirname(fileURLToPath(import.meta.url));
-
-const TEST_PACKAGES_IN_ORDER = ['legacy', 'cloud'] as const;
-
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, repoRoot, '');
-
-  return {
-    test: {
-      ...vitestShared.test,
-      env,
-      maxWorkers: 1,
-      minWorkers: 1,
-      projects: TEST_PACKAGES_IN_ORDER.map(
-        pkg => `./packages/${pkg}/vitest.config.ts`,
-      ),
+export default defineConfig({
+  test: {
+    include: ['tests/unit/**/*.test.ts'],
+    environment: 'node',
+    reporters: ['verbose'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json-summary', 'lcov'],
+      reportsDirectory: './coverage',
+      reportOnFailure: true,
+      all: true,
+      include: ['src/**/*.ts'],
+      exclude: [
+        // Generated Zod schema/type containers — pure declarations, no runtime branching.
+        'src/*/models/**',
+        'src/*/parameters/**',
+        // Barrel re-exports and the generated factories — no logic of their own.
+        '**/index.ts',
+        'src/*/create*Client.ts',
+      ],
     },
-  };
+  },
+  resolve: {
+    alias: [{ find: /^#\/(.*)/, replacement: resolve(import.meta.dirname, 'src/$1') }],
+  },
 });

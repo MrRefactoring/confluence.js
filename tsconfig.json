@@ -1,8 +1,23 @@
 {
-  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "noEmit": true
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "forceConsistentCasingInFileNames": true,
+    "stripInternal": true,
+    "lib": ["ES2022", "DOM"],
+    "types": ["node"],
+    "paths": {
+      "#/*": ["./src/*"]
+    }
   },
-  "include": ["vitestShared.ts", "vitest.config.ts", "eslint.config.ts"],
-  "exclude": ["node_modules", "coverage", "docs", "dist", "packages"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "eslint.config.ts"]
 }

@@ -1,12 +1,39 @@
 {
   "name": "confluence.js",
   "version": "3.0.0",
-  "private": true,
-  "description": "confluence.js is a powerful Node.JS/Browser module that allows you to interact with the Confluence API very easily",
+  "description": "Type-safe Confluence REST API client for TypeScript and JavaScript. Covers both Confluence Cloud API v2 and v1 from one package. ESM-only, tree-shakable, runtime-validated by Zod 4. Atlassian Confluence SDK for Node.js 22+ and modern browsers.",
   "author": "Vladislav Tupikin <vladislav.tupikin@icloud.com>",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json",
+    "./core": {
+      "types": "./dist/core/index.d.ts",
+      "import": "./dist/core/index.js"
+    },
+    "./v1": {
+      "types": "./dist/v1/index.d.ts",
+      "import": "./dist/v1/index.js"
+    },
+    "./v2": {
+      "types": "./dist/v2/index.d.ts",
+      "import": "./dist/v2/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MrRefactoring/confluence.js.git"
@@ -15,33 +42,76 @@
   "bugs": {
     "url": "https://github.com/MrRefactoring/confluence.js/issues"
   },
-  "engines": {
-    "node": ">=22"
-  },
+  "keywords": [
+    "confluence",
+    "confluence-api",
+    "confluence-rest-api",
+    "confluence-client",
+    "confluence-sdk",
+    "confluence-cloud",
+    "confluence-typescript",
+    "atlassian",
+    "atlassian-api",
+    "atlassian-confluence",
+    "wiki",
+    "api-client",
+    "rest-client",
+    "typescript",
+    "javascript",
+    "nodejs",
+    "browser",
+    "type-safe",
+    "esm",
+    "tree-shaking",
+    "zod",
+    "fetch",
+    "openapi",
+    "pages",
+    "spaces",
+    "blogposts",
+    "attachments",
+    "automation"
+  ],
   "scripts": {
-    "build": "pnpm -r --filter './packages/*' run build",
-    "test": "vitest run",
-    "test:legacy": "vitest run --project legacy",
-    "test:cloud": "vitest run --project cloud",
-    "test:unit": "pnpm -r run test:unit",
-    "test:integration": "pnpm -r run test:integration",
-    "test:coverage": "vitest run --coverage",
-    "lint": "eslint packages/*/src eslint.config.ts",
+    "build": "tsc && tsc-alias --resolve-full-paths",
+    "lint": "eslint src",
+    "typecheck": "tsc -p tsconfig.test.json",
     "lint:fix": "pnpm run lint --fix",
-    "prettier": "prettier --write packages",
-    "doc": "typedoc --name \"Confluence.js - Cloud and Server API library\" --out docs ./packages/cloud/src/index.ts --favicon https://bad37fb3-cb50-4e0b-9035-a3e09e8afb3b.selstorage.ru/confluence.js%2Ffavicon.svg",
-    "code:formatting": "pnpm -r run replace:all && pnpm run prettier",
+    "prettier": "prettier --write src",
+    "code:formatting": "pnpm run prettier && pnpm run lint:fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:live": "vitest run --config vitest.config.live.ts",
+    "test:live:v1": "vitest run --config vitest.config.live.ts tests/live/v1",
+    "test:live:v2": "vitest run --config vitest.config.live.ts tests/live/v2",
+    "check:attw": "attw --pack . --profile=esm-only",
+    "check:consumers": "tsx scripts/check-consumers.ts",
+    "prepublishOnly": "pnpm run build && pnpm run lint && pnpm run check:attw",
+    "codemod:v2-to-v3": "jscodeshift -t tools/codemod/v2-to-v3.ts --parser ts --extensions ts,tsx,js,jsx",
+    "docs:api": "typedoc",
+    "docs:dev": "pnpm run docs:api && vitepress dev docs",
+    "docs:build": "pnpm run docs:api && vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:status": "changeset status",
-    "release:publish": "pnpm publish -r --no-git-checks --provenance",
+    "release:publish": "pnpm publish --no-git-checks --provenance",
     "prepare": "husky"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.3",
     "@changesets/cli": "^2.31.0",
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/jscodeshift": "^17.3.0",
     "@types/node": "^22.20.0",
     "@vitest/coverage-v8": "^4.1.9",
     "dotenv": "^17.4.2",
@@ -49,15 +119,22 @@
     "globals": "^17.6.0",
     "husky": "^9.1.7",
     "jiti": "^2.7.0",
+    "jscodeshift": "^17.3.0",
     "prettier": "^3.8.4",
     "prettier-plugin-jsdoc": "^1.8.1",
     "tsc-alias": "^1.8.17",
+    "tsx": "^4.22.5",
     "typedoc": "^0.28.19",
+    "typedoc-plugin-markdown": "^4.12.0",
+    "typedoc-vitepress-theme": "^1.1.3",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.61.1",
     "vite": "^8.0.16",
-    "vite-plugin-externalize-deps": "^0.10.0",
+    "vitepress": "^1.6.4",
     "vitest": "^4.1.9"
+  },
+  "engines": {
+    "node": ">=22"
   },
   "packageManager": "pnpm@11.8.0"
 }
