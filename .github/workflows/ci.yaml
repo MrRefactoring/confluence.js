@@ -9,9 +9,13 @@ on:
   repository_dispatch:
     types: [ pr-approved ]
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
-    name: 🏗️ Build
+    name: 🏗️ Build & lint
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,13 +29,17 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
-      - name: 📌 Installing dependencies
+      - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: 🛠️ Building sources
+      - name: 🛠️ Build
         run: pnpm run build
+      - name: 🔍 Lint
+        run: pnpm run lint
+      - name: 🧾 Typecheck (sources and tests)
+        run: pnpm run typecheck
 
   test:
-    name: 🧪 Unit Tests
+    name: 🧪 Unit tests
     needs: build
     runs-on: ubuntu-latest
     strategy:
@@ -48,35 +56,30 @@ jobs:
         uses: pnpm/action-setup@v4
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: 🏗️ Build packages
-        run: pnpm run build
       - name: 🧪 Unit tests
-        run: pnpm run test:unit
+        run: pnpm run test
 
-  test_integration:
-    name: 🧩 Integration Tests
-    needs: test
+  # Proves the artifact people install, which building the sources does not:
+  # the exports map resolves (attw) and the packed tarball imports and runs from
+  # a real project (consumers).
+  package:
+    name: 📦 Package checks
+    needs: build
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      matrix:
-        node-version: [22.x, 24.x]
     steps:
       - name: 🔄 Checkout sources
         uses: actions/checkout@v4
-      - name: ⚙️ Use Node.js ${{ matrix.node-version }}
+      - name: ⚙️ Use Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22.x
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: 📝 Creating `.env` file
-        run: |
-          touch .env
-          echo HOST=${{ secrets.HOST }} >> .env
-          echo EMAIL=${{ secrets.EMAIL }} >> .env
-          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-      - name: 🚀 Running integration tests
-        run: pnpm run test:integration
+      - name: 🏗️ Build
+        run: pnpm run build
+      - name: 🔎 Are the types wrong?
+        run: pnpm run check:attw
+      - name: 🚚 Consumer smoke tests
+        run: pnpm run check:consumers
