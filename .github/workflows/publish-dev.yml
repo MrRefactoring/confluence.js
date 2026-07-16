@@ -4,11 +4,11 @@ on:
   workflow_dispatch
 
 env:
-  NODE_VERSION: '20.x'
-  PNPM_VERSION: '10'
+  NODE_VERSION: '22.x'
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   build-and-publish:
@@ -26,8 +26,6 @@ jobs:
 
       - name: 📦 Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
@@ -35,20 +33,10 @@ jobs:
       - name: 🛠️ Run build
         run: pnpm run build
 
-      - name: 🔖 Update package version
-        id: update-version
-        run: |
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-          TIMESTAMP=$(date -u +"%Y%m%d%H%M%S")
-          NEW_VERSION="${CURRENT_VERSION}-dev${TIMESTAMP}"
-          pnpm version --no-git-tag-version $NEW_VERSION
-          echo "New version: $NEW_VERSION"
-          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+      - name: 🔖 Snapshot version
+        run: pnpm changeset version --snapshot dev
 
-      - name: 🔄 Update package-lock.json
-        run: pnpm install
-
-      - name: 📤 Publish to NPM Dev Channel
-        run: pnpm publish --tag dev --no-git-checks
+      - name: 📤 Publish dev snapshot to NPM
+        run: pnpm publish -r --tag dev --no-git-checks --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

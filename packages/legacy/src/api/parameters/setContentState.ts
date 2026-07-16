@@ -1,0 +1,11 @@
+import type { ContentStateRestInput } from '../models/index.js';
+
+export interface SetContentState extends ContentStateRestInput {
+  /** The Id of the content whose content state is to be set. */
+  id?: string;
+  /**
+   * Status of content onto which state will be placed. If draft, then draft state will change. If current, state will
+   * be placed onto a new version of the content with same body as previous version.
+   */
+  status?: 'current' | 'draft' | string;
+}

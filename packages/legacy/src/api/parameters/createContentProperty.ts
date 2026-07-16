@@ -1,0 +1,6 @@
+import type { ContentPropertyCreate } from '../models/index.js';
+
+export interface CreateContentProperty extends ContentPropertyCreate {
+  /** The ID of the content to add the property to. */
+  id: string;
+}

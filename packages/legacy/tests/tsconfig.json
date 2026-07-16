@@ -1,0 +1,12 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+    "paths": {
+      "@confluence.js/legacy": ["../src/index.ts"]
+    }
+  },
+  "include": ["integration", "unit"]
+}

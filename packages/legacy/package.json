@@ -1,0 +1,43 @@
+{
+  "name": "@confluence.js/legacy",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Confluence Cloud REST API v1 client (legacy)",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --emitDeclarationOnly && tsc-alias --resolve-full-paths",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration --bail=1 --hookTimeout 100000 --testTimeout 100000",
+    "prettier": "prettier --write src",
+    "replace:wiki-rest": "grep -rl '/wiki/rest' src/api | xargs sed -i '' 's|/wiki/rest||g'",
+    "replace:all": "pnpm run replace:wiki-rest"
+  },
+  "dependencies": {
+    "@atlassian/atlassian-jwt": "^2.2.0",
+    "axios": "^1.10.0",
+    "form-data": "^4.0.3",
+    "oauth": "^0.10.2",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.23",
+    "@types/oauth": "^0.9.6"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
