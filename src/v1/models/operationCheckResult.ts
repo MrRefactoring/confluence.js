@@ -4,24 +4,7 @@ import { apiObject } from '#/core';
 
 export const OperationCheckResultSchema = apiObject({
   /** The operation itself. */
-  operation: z.enum([
-    'administer',
-    'archive',
-    'clear_permissions',
-    'copy',
-    'create',
-    'create_space',
-    'delete',
-    'export',
-    'move',
-    'purge',
-    'purge_version',
-    'read',
-    'restore',
-    'restrict_content',
-    'update',
-    'use',
-  ]),
+  operation: z.string(),
   /**
    * The space or content type that the operation applies to. Could be one of- - application - page - blogpost - comment
    * - attachment - space
