@@ -1,3 +1,4 @@
 pnpm run lint
-pnpm run test:unit
+pnpm run typecheck
+pnpm run test
 pnpm run build
