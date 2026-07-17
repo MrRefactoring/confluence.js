@@ -101,7 +101,7 @@ describe('Confluence Cloud v1 — users.getBulkUserLookup (live, gated-graceful)
     const me = await client.users.getCurrentUser({});
 
     try {
-      const bulk = await client.users.getBulkUserLookup({ accountId: [me.accountId!] });
+      const bulk = await client.users.getBulkUserLookup({ accountId: me.accountId! });
 
       expect(Array.isArray(bulk.results)).toBe(true);
 

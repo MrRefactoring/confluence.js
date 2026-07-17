@@ -1,6 +1,6 @@
-import type { z } from 'zod';
-import { apiObject } from '#/core';
+import { z } from 'zod';
+import { AddContentRestrictionSchema } from './addContentRestriction';
 
-export const AddContentRestrictionUpdateArraySchema = apiObject({});
+export const AddContentRestrictionUpdateArraySchema = z.array(AddContentRestrictionSchema);
 
 export type AddContentRestrictionUpdateArray = z.infer<typeof AddContentRestrictionUpdateArraySchema>;

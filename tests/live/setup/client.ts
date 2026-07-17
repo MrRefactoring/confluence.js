@@ -39,7 +39,17 @@ export function getV2Client(): V2Client {
   return cachedV2Client;
 }
 
-/** Singleton Cloud v1 client. */
+/**
+ * Singleton Cloud v1 client.
+ *
+ * `X-Atlassian-Token: no-check` is set for every request because the v1 API
+ * enforces XSRF protection on every mutating call and answers
+ * `403 XSRF check failed` without it. Atlassian's spec declares the header as a
+ * parameter on only three operations (addSpaceWatcher, addLabelWatcher,
+ * removeContentWatcher) but enforces it on all of them, so a client-wide header is
+ * the only thing that makes v1 writes work across the board. This is what
+ * `noCheckAtlassianToken: true` did in 2.x.
+ */
 export function getV1Client(): V1Client {
   if (!cachedV1Client) {
     const { host, email, apiToken } = requireLiveEnv();
@@ -47,6 +57,7 @@ export function getV1Client(): V1Client {
     cachedV1Client = createV1Client({
       host,
       auth: { type: 'basic', email, apiToken },
+      headers: { 'X-Atlassian-Token': 'no-check' },
       retry: RETRY,
     });
   }

@@ -1,6 +1,6 @@
-import type { z } from 'zod';
-import { apiObject } from '#/core';
+import { z } from 'zod';
+import { AsyncIdSchema } from './asyncId';
 
-export const AsyncIdArraySchema = apiObject({});
+export const AsyncIdArraySchema = z.array(AsyncIdSchema);
 
 export type AsyncIdArray = z.infer<typeof AsyncIdArraySchema>;

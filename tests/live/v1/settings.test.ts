@@ -57,7 +57,7 @@ describe('Confluence Cloud v1 — settings.getLookAndFeelSettings (live)', () =>
 describe('Confluence Cloud v1 — settings.getSystemInfo (live, gated-graceful)', () => {
   it('returns typed system info, or a typed ApiError without admin rights', async () => {
     try {
-      const info = await client.settings.getSystemInfo({});
+      const info = await client.settings.getSystemInfo();
 
       expect(typeof info.cloudId).toBe('string');
     } catch (error) {
@@ -89,7 +89,7 @@ describe('Confluence Cloud v1 — themes (live)', () => {
   // typed 404 and not an empty body.
   it('returns the global theme when one is set, or a typed 404 when the site uses the default', async () => {
     try {
-      const theme = await client.themes.getGlobalTheme({});
+      const theme = await client.themes.getGlobalTheme();
 
       expect(typeof theme.themeKey).toBe('string');
     } catch (error) {
