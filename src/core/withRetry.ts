@@ -14,12 +14,15 @@ export interface RetryOptions {
 /**
  * Wraps an async operation with automatic retry on retriable HTTP errors.
  *
- * Retries only on: 429, 502, 503, 504. Never retries 401, 403, 404, 500, or network TypeError.
+ * Retries only an {@link ApiError} carrying 429, 502, 503 or 504 — a rate limit or a gateway. Anything else is rethrown
+ * on the first attempt: 401, 403, 404 and 500 all describe the request, and a plain `Error` from the operation is not
+ * an HTTP answer at all. It is therefore a rate-limit helper, not a poller — to wait on eventually-consistent state,
+ * loop on the value rather than on a thrown error.
  *
  * @example
  *   ```typescript
- *   const issue = await withRetry(
- *     () => client.issues.getIssue({ issueIdOrKey: 'PROJ-1' }),
+ *   const page = await withRetry(
+ *     () => confluence.page.getPageById({ id: 12345 }),
  *     { maxAttempts: 4, initialDelayMs: 500 },
  *   );
  *   ```;

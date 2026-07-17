@@ -5,12 +5,16 @@ export const IsWatchingSpaceSchema = z.object({
   spaceKey: z.string(),
   /**
    * This parameter is no longer available and will be removed from the documentation soon. Use `accountId` instead. See
-   * the [deprecation notice](/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for details.
+   * the [deprecation
+   * notice](https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for
+   * details.
    */
   key: z.string().optional(),
   /**
    * This parameter is no longer available and will be removed from the documentation soon. Use `accountId` instead. See
-   * the [deprecation notice](/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for details.
+   * the [deprecation
+   * notice](https://developer.atlassian.com/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for
+   * details.
    */
   username: z.string().optional(),
   /**

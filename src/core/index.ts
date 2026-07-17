@@ -36,7 +36,7 @@ export type {
 
 export { BufferSchema, createMultipartRequestBody, toFormDataFile } from './formData/index.js';
 
-export type { AttachmentInput, Buffer } from './formData/index.js';
+export type { AttachmentContent, AttachmentInput, Buffer, MultipartRequestBody } from './formData/index.js';
 
 export { withRetry } from './withRetry.js';
 

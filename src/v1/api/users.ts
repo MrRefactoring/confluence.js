@@ -18,7 +18,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * more. The information returned may be restricted by the user's profile visibility settings.
  *
  * **Note:** to add, edit, or delete users in your organization, see the [user management REST
- * API](/cloud/admin/user-management/about/).
+ * API](https://developer.atlassian.com/cloud/admin/user-management/about/).
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
