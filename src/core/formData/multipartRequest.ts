@@ -166,6 +166,29 @@ async function* encodeMultipart(attachments: AttachmentInput[], boundary: string
   yield textEncoder.encode(`--${boundary}--\r\n`);
 }
 
+/**
+ * One {@link AttachmentInput} as a single `FormData`-appendable part.
+ *
+ * Generated multipart endpoints assemble their own `FormData` and append each attachment to it, so they need the
+ * content as one value rather than as a whole encoded body — that is what this provides, and
+ * {@link createMultipartRequestBody} is the streaming alternative for callers building a request by hand.
+ *
+ * Streaming content is collected here: a `FormData` part has to know its length, so a stream cannot stay lazy once it
+ * goes into one.
+ */
+export async function toFormDataFile(attachment: AttachmentInput): Promise<Blob> {
+  const { content } = attachment;
+
+  if (content instanceof Blob) return content;
+
+  const type = typeof content === 'string' ? 'text/plain; charset=utf-8' : 'application/octet-stream';
+  const chunks: Uint8Array[] = [];
+
+  for await (const chunk of contentToAsyncIterable(content)) chunks.push(chunk);
+
+  return new Blob(chunks as BlobPart[], { type });
+}
+
 export function createMultipartRequestBody(input: AttachmentInput | AttachmentInput[]): MultipartRequestBody {
   const attachments = Array.isArray(input) ? input : [input];
   const hasStreamingInput = attachments.some(attachment => isStreamLikeContent(attachment.content));

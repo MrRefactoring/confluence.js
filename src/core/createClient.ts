@@ -2,6 +2,7 @@ import { bodyToFetchBody, requiresDuplex, shouldSetJsonContentType } from './bod
 import type { Auth, ClientConfig, SendRequestOptions } from './schemas/index.js';
 import type { Client } from './interfaces/index.js';
 import { ApiError } from './apiError.js';
+import { BufferSchema } from './formData/index.js';
 import { buildUrlWithSearchParams } from './serializeSearchParams.js';
 
 /** Node/undici error codes that signal a recoverable transport-layer failure. */
@@ -175,7 +176,18 @@ export function createClient(config: ClientConfig): Client {
 
       const contentType = response.headers.get('content-type');
 
-      if (response.status === 204 || (contentType && !contentType.includes('application/json'))) {
+      if (response.status === 204) return undefined as T;
+
+      // A download endpoint says so with `BufferSchema`, and it is the only
+      // reliable signal: the response carries the *file's* content type, so
+      // `text/plain` is as legitimate for a download as `application/pdf` and
+      // sniffing the header cannot tell the two intents apart. Without this the
+      // body was dropped on the floor and every download resolved to `undefined`.
+      if ((requestConfig.schema as unknown) === BufferSchema) {
+        return BufferSchema.parse(new Uint8Array(await response.arrayBuffer())) as T;
+      }
+
+      if (contentType && !contentType.includes('application/json')) {
         return undefined as T;
       }
 

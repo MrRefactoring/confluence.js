@@ -34,7 +34,7 @@ export type {
   RefreshAtlassianOAuthTokensOptions,
 } from './oauth/index.js';
 
-export { BufferSchema, createMultipartRequestBody } from './formData/index.js';
+export { BufferSchema, createMultipartRequestBody, toFormDataFile } from './formData/index.js';
 
 export type { AttachmentInput, Buffer } from './formData/index.js';
 

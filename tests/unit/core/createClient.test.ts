@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
-import { ApiError, createClient } from '#/core';
+import { ApiError, BufferSchema, createClient } from '#/core';
 
 const HOST = 'https://acme.atlassian.net';
 
@@ -154,6 +154,34 @@ describe('responses', () => {
     mockFetch([new Response('just words', { status: 200, headers: { 'content-type': 'application/json' } })]);
 
     await expect(createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET' })).resolves.toBe('just words');
+  });
+
+  // `BufferSchema` is how a download endpoint declares itself. It has to be the
+  // signal rather than the content type, because a download carries the *file's*
+  // type — a text attachment is `text/plain`, indistinguishable from an ordinary
+  // non-JSON response, which is discarded on purpose just below.
+  it('returns the raw bytes for an endpoint that asks for a Buffer', async () => {
+    const bytes = new Uint8Array([0x50, 0x4b, 0x03, 0x04]);
+
+    mockFetch([new Response(bytes, { status: 200, headers: { 'content-type': 'application/zip' } })]);
+
+    const body = await createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET', schema: BufferSchema });
+
+    expect(new Uint8Array(body as Uint8Array)).toEqual(bytes);
+  });
+
+  it('returns the bytes of a download whose content type is plain text', async () => {
+    mockFetch([new Response('file contents', { status: 200, headers: { 'content-type': 'text/plain' } })]);
+
+    const body = await createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET', schema: BufferSchema });
+
+    expect(Buffer.from(body as Uint8Array).toString('utf8')).toBe('file contents');
+  });
+
+  it('still discards a non-JSON body when the endpoint does not ask for a Buffer', async () => {
+    mockFetch([new Response('<html/>', { status: 200, headers: { 'content-type': 'text/html' } })]);
+
+    await expect(createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET' })).resolves.toBeUndefined();
   });
 });
 
