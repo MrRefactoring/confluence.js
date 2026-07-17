@@ -7,6 +7,7 @@ coverage/
 # them are tracked — previously all of docs/ was ignored, which is why the site
 # has no home in the repo yet.
 docs/api/
+docs/ru/api/
 docs/.vitepress/dist/
 docs/.vitepress/cache/
 

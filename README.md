@@ -7,6 +7,8 @@
   <a href="https://github.com/mrrefactoring/confluence.js/blob/develop/LICENSE"><img alt="license" src="https://img.shields.io/github/license/mrrefactoring/confluence.js?color=green&style=flat-square"/></a>
 
   <span>Type-safe Confluence REST API client for Node.js and browsers</span>
+
+  <p><b><a href="https://mrrefactoring.github.io/confluence.js/">Documentation</a></b> · <a href="https://mrrefactoring.github.io/confluence.js/guide/getting-started">Getting Started</a> · <a href="https://mrrefactoring.github.io/confluence.js/api/">API Reference</a> · <a href="https://mrrefactoring.github.io/confluence.js/ru/">Русский</a></p>
 </div>
 
 ## About

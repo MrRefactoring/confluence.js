@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="confluence.js">
+  <title>confluence.js</title>
+  <defs>
+    <linearGradient id="cfjs-a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="cfjs-b" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Two streams flowing together: the name, drawn. They meet at the foot and
+       continue as one, which is also what the package does with the two APIs. -->
+  <path d="M14 8 C14 30 32 30 32 50" fill="none" stroke="url(#cfjs-a)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M50 8 C50 30 32 30 32 50" fill="none" stroke="url(#cfjs-b)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M32 44 L32 56" fill="none" stroke="#1e40af" stroke-width="8" stroke-linecap="round"/>
+</svg>
