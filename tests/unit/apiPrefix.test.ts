@@ -5,13 +5,13 @@ import { searchContentByCQL } from '#/v1';
 import { createV1Client, createV2Client } from '#/index';
 
 /**
- * The API path (`/wiki/api/v2`, `/wiki/rest/api`) lives in the generated request
- * URLs, not in `host`. That is what lets one client drive both versions and keeps
- * `host` the bare site URL it was in 2.x.
+ * The API path (`/wiki/api/v2`, `/wiki/rest/api`) lives in each request URL, not
+ * in `host`. That is what lets one client drive both versions and keeps `host` the
+ * bare site URL it was in 2.x.
  *
- * It is also invisible in day-to-day work and comes from generator config
- * (`endpointUrlPrefix`), so a regeneration could drop it and nothing else here
- * would notice — every call would just 404 against a live site. These tests pin it.
+ * It is also invisible in day-to-day work: nothing else here would notice if a
+ * prefix went missing — every call would just 404 against a live site, far from
+ * this file. These tests pin it.
  */
 
 const HOST = 'https://acme.atlassian.net';

@@ -83,9 +83,9 @@ describe('Confluence Cloud v1 — getDescendantsOfType (live)', () => {
   });
 
   // `depth` is declared `enum: ['all', 'root', '<any positive integer …>']` in the
-  // spec — the placeholder is prose, not a value. The generator drops such enums,
-  // so `depth` is a plain string and the numeric depths the API documents are
-  // reachable. This test is the reason that matters: 'root' must exclude the
+  // spec — the placeholder is prose, not a value. An enum like that is dropped
+  // rather than honoured, so `depth` is a plain string and the numeric depths the
+  // API documents are reachable. This test is the reason that matters: 'root' must exclude the
   // grandchild that 'all' includes.
   it('honors `depth: root` — immediate children only, excluding the grandchild', async () => {
     const descendants = await client.contentChildrenAndDescendants.getDescendantsOfType({

@@ -88,8 +88,9 @@ describe('Confluence Cloud v1 — contentStates read paths (live)', () => {
 describe('Confluence Cloud v1 — content state lifecycle (live, round-trip)', () => {
   it('sets a custom state on the page, reads it back, then removes it', async () => {
     // `id` is the *content* id and `body.id` would be the state id — two different
-    // things the spec gives the same name. They only became separable once the
-    // generator stopped flattening a colliding body into the parameters object.
+    // things the spec gives the same name. They only stay separable because a
+    // colliding body is passed through whole rather than flattened into the
+    // parameters object.
     const set = await client.contentStates
       .setContentState({
         id: pageId,

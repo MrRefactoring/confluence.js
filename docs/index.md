@@ -25,7 +25,7 @@ features:
     details: v2 for everything Atlassian is building on, v1 for what it does not cover yet. Both take the same host — the API path belongs to the request, not to your config.
   - icon: 🔒
     title: Type-safe end to end
-    details: Every endpoint, parameter and response is typed. Generated from Atlassian's own OpenAPI specs, so the types track the API.
+    details: Every endpoint, parameter and response is typed against Atlassian's own OpenAPI specs, so the types track the API.
   - icon: ✅
     title: Runtime validation
     details: Responses are checked against Zod 4 schemas. When Atlassian drifts from its own spec you find out at the boundary, not three functions later.

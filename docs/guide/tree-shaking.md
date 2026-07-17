@@ -37,7 +37,7 @@ Nothing you do not import is reachable, so nothing else is bundled. Two calls co
 
 ## One client, both versions
 
-`createClient` is version-agnostic — the API path lives in each generated URL, so the same client drives v1 and v2:
+`createClient` is version-agnostic — the API path lives in each request URL, so the same client drives v1 and v2:
 
 ```ts
 import { createClient } from 'confluence.js/core';

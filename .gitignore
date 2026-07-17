@@ -3,7 +3,7 @@ node_modules/
 dist/
 coverage/
 
-# Generated API reference (typedoc) and the built site. The docs sources beside
+# The API reference (typedoc output) and the built site. The docs sources beside
 # them are tracked — previously all of docs/ was ignored, which is why the site
 # has no home in the repo yet.
 docs/api/

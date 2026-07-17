@@ -107,7 +107,8 @@ describe('Confluence Cloud v1 — blueprint draft publishing (live, gated-gracef
   // sites without one have nothing to publish. Both endpoints are pinned for their
   // parameter shape and typed refusal; the `status` query parameter and the body's
   // own `status` field collide by name in the spec, and only stay separable
-  // because the generator no longer flattens a colliding body into the parameters.
+  // because a colliding body is passed through whole rather than flattened into
+  // the parameters.
   it('refuses to publish a legacy draft that does not exist, in a typed way', async () => {
     const error = await client.content
       .publishLegacyDraft({

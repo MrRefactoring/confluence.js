@@ -14,10 +14,10 @@ export default defineConfig({
       all: true,
       include: ['src/**/*.ts'],
       exclude: [
-        // Generated Zod schema/type containers — pure declarations, no runtime branching.
+        // Zod schema/type containers — pure declarations, no runtime branching.
         'src/*/models/**',
         'src/*/parameters/**',
-        // Barrel re-exports and the generated factories — no logic of their own.
+        // Barrel re-exports and the client factories — no logic of their own.
         '**/index.ts',
         'src/*/create*Client.ts',
       ],

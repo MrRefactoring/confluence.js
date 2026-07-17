@@ -10,8 +10,8 @@ import { waitFor } from '../helpers/poll';
  * Live integration suite for the Confluence Cloud v2 `comment` API.
  *
  * The module exposes three families of methods, all verified here against the
- * generated Zod models (`FooterComment`, `InlineComment`, the per-parent
- * `*Comments` listings and the `*Children` listings):
+ * Zod models (`FooterComment`, `InlineComment`, the per-parent `*Comments`
+ * listings and the `*Children` listings):
  *
  *   - Footer comments (covered DEEP, full CRUD lifecycle): `createFooterComment`,
  *     `getFooterCommentById`, `updateFooterComment`, `getFooterCommentChildren`

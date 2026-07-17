@@ -74,7 +74,7 @@ from the same package and the same host. See
 ### `apiPrefix`
 
 In 2.x the client prepended `apiPrefix` (default `/wiki/rest/`) to every URL. In
-3.0 the API path is part of the generated request URL, which is what lets one
+3.0 the API path is part of each request URL, which is what lets one
 client serve both versions. If you used `apiPrefix` to route through a proxy, put
 the prefix in `host` instead:
 
@@ -87,8 +87,8 @@ the prefix in `host` instead:
 
 v1 enforces XSRF protection on every write: without `X-Atlassian-Token: no-check`
 each one answers `403 XSRF check failed`. In 2.x that was yours to opt into, and
-forgetting it was the usual first 403. In 3.0 every generated v1 write sends the
-header itself, so the option is gone with nothing to replace it:
+forgetting it was the usual first 403. In 3.0 every v1 write sends the header
+itself, so the option is gone with nothing to replace it:
 
 ```diff
 -const client = new ConfluenceClient({ host, authentication, noCheckAtlassianToken: true });
@@ -161,7 +161,7 @@ going away, and it still gets the v1 API it always had.
 
 This is the break most likely to touch your code, and it is not one we chose.
 
-`confluence.js` generates its client from Atlassian's published OpenAPI spec.
+`confluence.js` follows Atlassian's published OpenAPI spec.
 Since 2.x was released, **Atlassian removed 37 operations from the v1 spec** —
 including `getContent`, `createContent` and `getSpace` — because v2 covers them.
 They are gone from v1 in 3.0 for the same reason.

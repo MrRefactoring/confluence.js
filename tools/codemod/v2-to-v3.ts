@@ -131,8 +131,8 @@ function rewriteConfig(j: JSCodeshift, config: ObjectExpression): void {
   rewriteAuthentication(j, config);
 
   // `noCheckAtlassianToken` has nothing left to opt into: v1 enforces XSRF on
-  // every write, so every generated v1 call now sends `X-Atlassian-Token:
-  // no-check` itself. Drop the option instead of translating it into a header.
+  // every write, so every v1 call now sends `X-Atlassian-Token: no-check`
+  // itself. Drop the option instead of translating it into a header.
   const noCheck = property(j, config, 'noCheckAtlassianToken');
 
   if (noCheck) {

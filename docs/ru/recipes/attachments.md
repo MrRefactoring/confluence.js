@@ -58,7 +58,7 @@ console.log(created.results.map(result => result.title));
 ```
 
 ::: tip Ни FormData, ни заголовка
-В 2.x приходилось собирать `FormData` вручную и помнить про `X-Atlassian-Token: no-check`. Теперь ни то ни другое не ваша забота: сгенерированный вызов сам кодирует multipart-тело и сам шлёт XSRF-заголовок.
+В 2.x приходилось собирать `FormData` вручную и помнить про `X-Atlassian-Token: no-check`. Теперь ни то ни другое не ваша забота: вызов сам кодирует multipart-тело и сам шлёт XSRF-заголовок.
 :::
 
 ## Создать или обновить

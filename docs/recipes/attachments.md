@@ -58,7 +58,7 @@ console.log(created.results.map(result => result.title));
 ```
 
 ::: tip No FormData, no header
-2.x made you build the `FormData` and remember `X-Atlassian-Token: no-check`. Neither is your job now — the generated call encodes the multipart body and sends the XSRF header itself.
+2.x made you build the `FormData` and remember `X-Atlassian-Token: no-check`. Neither is your job now — the call encodes the multipart body and sends the XSRF header itself.
 :::
 
 ## Upsert

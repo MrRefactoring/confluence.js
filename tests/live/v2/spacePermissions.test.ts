@@ -13,7 +13,7 @@ import { createTestSpace, type TestSpace } from '../setup/fixtures';
  * freshly created, disposable test space (auto-deleted on cleanup) — no existing
  * space is ever read from or mutated.
  *
- * Contract verified against the generated Zod source of truth:
+ * Contract verified against the Zod source of truth:
  *   - `getSpacePermissionsAssignments` returns a typed page of
  *     `SpacePermissionAssignment` rows — each with an optional `principal`
  *     ({ type ∈ user|group|role, id }) and `operation` ({ key, targetType }) whose

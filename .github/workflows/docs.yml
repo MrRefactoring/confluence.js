@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Generates the API reference from src, then builds the site. Dead links are
+      # Builds the API reference from src, then the site around it. Dead links are
       # not ignored, so a broken cross-reference fails here rather than shipping.
       - name: Build docs
         run: pnpm run docs:build

@@ -45,7 +45,7 @@ catch (error) {
 
 ## `ZodError` — Atlassian drifted from its own spec
 
-Every response is validated against a Zod schema generated from Atlassian's OpenAPI spec. When a response does not match, you get a `ZodError` instead of a silently wrong object:
+Every response is validated against a Zod schema that mirrors Atlassian's OpenAPI spec. When a response does not match, you get a `ZodError` instead of a silently wrong object:
 
 ```ts
 import { ZodError } from 'zod';

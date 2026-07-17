@@ -49,7 +49,7 @@ It rewrites what it can and leaves a `TODO(confluence.js@3)` comment wherever a 
 
 ### `noCheckAtlassianToken` is gone with nothing to replace it
 
-v1 enforces XSRF protection on every write: without `X-Atlassian-Token: no-check` each one answers `403 XSRF check failed`. In 2.x that was yours to opt into, and forgetting it was the usual first 403. Every generated v1 write now sends the header itself — there is nothing left to configure.
+v1 enforces XSRF protection on every write: without `X-Atlassian-Token: no-check` each one answers `403 XSRF check failed`. In 2.x that was yours to opt into, and forgetting it was the usual first 403. Every v1 write now sends the header itself — there is nothing left to configure.
 
 ## Callbacks are gone
 
@@ -97,7 +97,7 @@ New in 3.0: a response that does not match its schema throws a `ZodError`. See [
 
 This is the break most likely to touch your code, and it is not one we chose.
 
-`confluence.js` generates its client from Atlassian's published OpenAPI spec, and **Atlassian removed 37 operations from the v1 spec** since 2.x shipped — including `getContent`, `createContent` and `getSpace` — because v2 covers them. They are gone from v1 in 3.0 for the same reason.
+`confluence.js` follows Atlassian's published OpenAPI spec, and **Atlassian removed 37 operations from the v1 spec** since 2.x shipped — including `getContent`, `createContent` and `getSpace` — because v2 covers them. They are gone from v1 in 3.0 for the same reason.
 
 Nearly all have a v2 equivalent:
 

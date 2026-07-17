@@ -42,19 +42,19 @@ function summarise(page: Page): string {
 
 Parameter types are named after the operation (`CreatePage`, `GetPageById`), response types after the entity (`Page`, `Space`, `Relation`).
 
-## The types are generated from Atlassian's spec
+## The types follow Atlassian's spec
 
-They are not hand-written: `src/v1` and `src/v2` are generated from Atlassian's published OpenAPI documents, so they track the API rather than someone's memory of it.
+`src/v1` and `src/v2` track Atlassian's published OpenAPI documents, so the types follow the API rather than someone's memory of it.
 
-Where the spec and reality disagree — and they do — the difference is caught by an integration suite that runs every namespace against a live Confluence Cloud site, and fixed in the generator. A response that does not match its type raises a `ZodError` at the boundary; see [Error handling](./error-handling).
+Where the spec and reality disagree — and they do — the difference is caught by an integration suite that runs every namespace against a live Confluence Cloud site. A response that does not match its type raises a `ZodError` at the boundary; see [Error handling](./error-handling).
 
 ## `unknown` over `any`
 
-Where the spec describes no shape, the generated code says `unknown`, not `any`. It is less convenient on purpose: `any` would let a typo through silently, `unknown` makes you look at what actually came back.
+Where the spec describes no shape, the types say `unknown`, not `any`. It is less convenient on purpose: `any` would let a typo through silently, `unknown` makes you look at what actually came back.
 
 ## Ids across versions
 
-v2 types content ids as `number`, v1 as `string`. Same id, different declaration — the specs disagree, and the generated types follow their spec rather than inventing a compromise:
+v2 types content ids as `number`, v1 as `string`. Same id, different declaration — the specs disagree, and each version follows its own spec rather than inventing a compromise:
 
 ```ts
 const page = await v2.page.getPageById({ id: 12345 });

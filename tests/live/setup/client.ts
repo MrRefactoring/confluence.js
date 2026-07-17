@@ -5,7 +5,7 @@
  * than constructing its own, so retry and auth policy are defined once.
  *
  * Both factories take the bare site URL: the API path (`/wiki/api/v2`,
- * `/wiki/rest/api`) lives in the generated request URLs, so one `host` drives both
+ * `/wiki/rest/api`) lives in each request URL, so one `host` drives both
  * versions.
  *
  * {@link rawRequest} stays for the last gap neither typed client covers — multipart
@@ -43,9 +43,9 @@ export function getV2Client(): V2Client {
  * Singleton Cloud v1 client.
  *
  * Deliberately configured exactly like the v2 one, with no XSRF header: v1
- * enforces XSRF protection on every mutating call, and the generated code carries
- * `X-Atlassian-Token: no-check` on each of them. That this suite's writes pass
- * with a bare config is the proof the header is really being sent.
+ * enforces XSRF protection on every mutating call, and every v1 write carries
+ * `X-Atlassian-Token: no-check` itself. That this suite's writes pass with a
+ * bare config is the proof the header is really being sent.
  */
 export function getV1Client(): V1Client {
   if (!cachedV1Client) {

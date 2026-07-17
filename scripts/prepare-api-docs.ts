@@ -8,13 +8,13 @@
  *    placeholders — `<taskId>`, `<url>`, an unclosed `<pre><code>`. Vue reads
  *    those as elements and the build dies on "Element is missing end tag".
  *
- * 2. **Trim the sidebar.** TypeDoc lists every generated page, and `models` +
+ * 2. **Trim the sidebar.** TypeDoc lists every page it writes, and `models` +
  *    `parameters` are the bulk of them — VitePress embeds the whole tree into
  *    every page's hydration state, so leaving them in inflates each HTML file by
  *    hundreds of kilobytes. They stay reachable: every function signature links
  *    to the types it uses. Only the navigation tree drops them.
  *
- * 3. **Mirror the reference under `/ru/api/`.** The generated reference is
+ * 3. **Mirror the reference under `/ru/api/`.** The reference itself is
  *    English (it comes from Atlassian's own descriptions), but VitePress's
  *    language switcher rewrites `/api/*` → `/ru/api/*`, so the route has to
  *    resolve. `hreflang` marks the two as the same page. The RU sidebar is the
@@ -110,6 +110,6 @@ writeFileSync(ruSidebarPath, JSON.stringify(trimmed).replaceAll('"/api/', '"/ru/
 if (existsSync(ruApiDir)) rmSync(ruApiDir, { recursive: true, force: true });
 cpSync(apiDir, ruApiDir, { recursive: true });
 
-console.log(`[prepare-api-docs] escaped stray markup in ${escapedFiles} generated page(s)`);
+console.log(`[prepare-api-docs] escaped stray markup in ${escapedFiles} page(s)`);
 console.log(`[prepare-api-docs] sidebar ${count(sidebar)} → ${count(trimmed)} entries (models, parameters dropped)`);
 console.log(`[prepare-api-docs] mirrored ${relative(root, apiDir)} → ${relative(root, ruApiDir)}`);

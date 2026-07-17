@@ -75,7 +75,7 @@ A v2 page id and a v1 content id are the same number. v2 types it as a `number`,
 
 ## v1 is a complement, and it is shrinking
 
-v1 is not the old API kept alive. `confluence.js` generates it from Atlassian's **published** v1 spec, and Atlassian keeps pruning that spec as v2 grows: 37 operations that `confluence.js@2` exposed — `getContent`, `createContent`, `getSpace` among them — are already gone from it, because v2 covers them.
+v1 is not the old API kept alive. `confluence.js` follows Atlassian's **published** v1 spec, and Atlassian keeps pruning that spec as v2 grows: 37 operations that `confluence.js@2` exposed — `getContent`, `createContent`, `getSpace` among them — are already gone from it, because v2 covers them.
 
 That is the direction, not an accident. Expect v1 to narrow further, and move each v1 call to v2 as soon as v2 grows an equivalent. The [migration guide](../migration/v2-to-v3#the-v1-surface-follows-atlassians-current-spec) maps every removed operation to its v2 replacement.
 

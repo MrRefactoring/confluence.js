@@ -268,7 +268,7 @@ describe('Confluence Cloud v2 — spaceRoles custom-role lifecycle (live, premiu
 
 describe('Confluence Cloud v2 — spaceRoles.setSpaceRoleAssignments (live, premium-gated mutation)', () => {
   it('attempts a role assignment on the test space, asserting a typed result or ApiError', async () => {
-    // The body is an opaque `z.record(string, any)` in the generated parameters; the live
+    // The body is an opaque `z.record(string, any)` in the parameters; the live
     // shape is a role-assignment payload. We send a minimal, well-formed-looking body and
     // tolerate either a typed result page or a typed ApiError (gated / validation).
     try {

@@ -57,7 +57,7 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: false,
 
-  // Deliberately not ignoring anything under /api/: `docs:build` always generates
+  // Deliberately not ignoring anything under /api/: `docs:build` always rebuilds
   // the reference first, so a dead link there is a real one worth failing on.
   ignoreDeadLinks: ['localhostLinks'],
 

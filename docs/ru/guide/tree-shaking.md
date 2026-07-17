@@ -37,7 +37,7 @@ await createPage(client, { body: { spaceId: '123456', status: 'current', title: 
 
 ## Один клиент, обе версии
 
-`createClient` не привязан к версии: путь к API живёт в каждом сгенерированном URL, поэтому один и тот же клиент обслуживает и v1, и v2:
+`createClient` не привязан к версии: путь к API живёт в каждом запросном URL, поэтому один и тот же клиент обслуживает и v1, и v2:
 
 ```ts
 import { createClient } from 'confluence.js/core';
