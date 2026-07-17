@@ -27,14 +27,14 @@ export const AsyncContentBodySchema = apiObject({
    */
   status: z.enum(['WORKING', 'QUEUED', 'FAILED', 'COMPLETED', 'RERUNNING']).optional(),
   embeddedContent: z.array(EmbeddedContentSchema).optional(),
-  webresource: WebResourceDependenciesSchema.optional(),
+  webresource: WebResourceDependenciesSchema.nullish(),
   mediaToken: apiObject({
     collectionIds: z.array(z.string()).optional(),
     contentId: z.string().optional(),
     expiryDateTime: z.string().optional(),
     fileIds: z.array(z.string()).optional(),
     token: z.string().optional(),
-  }).optional(),
+  }).nullish(),
   _expandable: apiObject({
     content: z.string().optional(),
     embeddedContent: z.string().optional(),

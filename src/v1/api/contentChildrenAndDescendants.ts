@@ -2,6 +2,7 @@ import { MovePageSchema, type MovePage } from '../models/movePage';
 import { ContentChildrenSchema, type ContentChildren } from '../models/contentChildren';
 import { ContentArraySchema, type ContentArray } from '../models/contentArray';
 import { LongTaskSchema, type LongTask } from '../models/longTask';
+import { ContentSchema, type Content } from '../models/content';
 import type { MovePage as MovePageParameters } from '../parameters/movePage';
 import type { GetContentDescendants } from '../parameters/getContentDescendants';
 import type { GetDescendantsOfType } from '../parameters/getDescendantsOfType';
@@ -161,8 +162,8 @@ export async function copyPageHierarchy(client: Client, parameters: CopyPageHier
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Add' permission for the space that the
  * content will be copied in and permission to update the content if copying to an `existing_page`.
  */
-export async function copyPage(client: Client, parameters: CopyPage): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function copyPage(client: Client, parameters: CopyPage): Promise<Content> {
+  const config: SendRequestOptions<Content> = {
     url: `/wiki/rest/api/content/${parameters.id}/copy`,
     method: 'POST',
     headers: {
@@ -181,6 +182,7 @@ export async function copyPage(client: Client, parameters: CopyPage): Promise<un
       pageTitle: parameters.pageTitle,
       body: parameters.body,
     },
+    schema: ContentSchema,
   };
 
   return await client.sendRequest(config);

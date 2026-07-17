@@ -10,7 +10,7 @@ export const GetDescendantsOfTypeSchema = z.object({
    * root level of the content means immediate (level 1) descendants of the type requested. all represents returning all
    * descendants of the type requested.
    */
-  depth: z.enum(['all', 'root', '<any positive integer argument in the range of 1 and 100>']).optional(),
+  depth: z.string().optional(),
   /**
    * A multi-value parameter indicating which properties of the content to expand.
    *

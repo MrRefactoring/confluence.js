@@ -5,7 +5,7 @@ import type { CreateOrUpdateAttachments } from '../parameters/createOrUpdateAtta
 import type { UpdateAttachmentProperties } from '../parameters/updateAttachmentProperties';
 import type { UpdateAttachmentData } from '../parameters/updateAttachmentData';
 import type { DownloadAttatchment } from '../parameters/downloadAttatchment';
-import type { Client, SendRequestOptions } from '#/core';
+import { type Client, type SendRequestOptions, toFormDataFile, BufferSchema, type Buffer } from '#/core';
 
 /**
  * Adds an attachment to a piece of content. This method only adds a new attachment. If you want to update an existing
@@ -38,6 +38,13 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
  */
 export async function createAttachment(client: Client, parameters: CreateAttachment): Promise<ContentArray> {
+  const formData = new FormData();
+  const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
+
+  for (const attachment of items) {
+    formData.append('file', await toFormDataFile(attachment), attachment.filename);
+  }
+
   const config: SendRequestOptions<ContentArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment`,
     method: 'POST',
@@ -47,7 +54,7 @@ export async function createAttachment(client: Client, parameters: CreateAttachm
     searchParams: {
       status: parameters.status,
     },
-    body: parameters.body,
+    body: formData,
     schema: ContentArraySchema,
   };
 
@@ -88,6 +95,13 @@ export async function createOrUpdateAttachments(
   client: Client,
   parameters: CreateOrUpdateAttachments,
 ): Promise<ContentArray> {
+  const formData = new FormData();
+  const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
+
+  for (const attachment of items) {
+    formData.append('file', await toFormDataFile(attachment), attachment.filename);
+  }
+
   const config: SendRequestOptions<ContentArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment`,
     method: 'PUT',
@@ -97,7 +111,7 @@ export async function createOrUpdateAttachments(
     searchParams: {
       status: parameters.status,
     },
-    body: parameters.body,
+    body: formData,
     schema: ContentArraySchema,
   };
 
@@ -120,16 +134,7 @@ export async function updateAttachmentProperties(
     headers: {
       'X-Atlassian-Token': 'no-check',
     },
-    body: {
-      id: parameters.id,
-      type: parameters.type,
-      status: parameters.status,
-      title: parameters.title,
-      container: parameters.container,
-      metadata: parameters.metadata,
-      extensions: parameters.extensions,
-      version: parameters.version,
-    },
+    body: parameters.body,
     schema: ContentSchema,
   };
 
@@ -170,13 +175,20 @@ export async function updateAttachmentProperties(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
  */
 export async function updateAttachmentData(client: Client, parameters: UpdateAttachmentData): Promise<Content> {
+  const formData = new FormData();
+  const items = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
+
+  for (const attachment of items) {
+    formData.append('file', await toFormDataFile(attachment), attachment.filename);
+  }
+
   const config: SendRequestOptions<Content> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}/data`,
     method: 'POST',
     headers: {
       'X-Atlassian-Token': 'no-check',
     },
-    body: parameters.body,
+    body: formData,
     schema: ContentSchema,
   };
 
@@ -184,14 +196,15 @@ export async function updateAttachmentData(client: Client, parameters: UpdateAtt
 }
 
 /** Redirects the client to a URL that serves an attachment's binary data. */
-export async function downloadAttatchment(client: Client, parameters: DownloadAttatchment): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function downloadAttatchment(client: Client, parameters: DownloadAttatchment): Promise<Buffer> {
+  const config: SendRequestOptions<Buffer> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}/download`,
     method: 'GET',
     searchParams: {
       version: parameters.version,
       status: parameters.status,
     },
+    schema: BufferSchema,
   };
 
   return await client.sendRequest(config);

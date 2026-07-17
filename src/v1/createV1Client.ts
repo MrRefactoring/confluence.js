@@ -1,4 +1,4 @@
-import { type ClientConfig, createClient } from '#/core';
+import { type ClientConfig, createClient, type Buffer } from '#/core';
 import * as audit from './api/audit';
 import * as content from './api/content';
 import * as experimental from './api/experimental';
@@ -258,7 +258,7 @@ export function createV1Client(clientConfig: ClientConfig) {
         contentChildrenAndDescendants.getDescendantsOfType(client, parameters),
       copyPageHierarchy: (parameters: CopyPageHierarchy): Promise<LongTask> =>
         contentChildrenAndDescendants.copyPageHierarchy(client, parameters),
-      copyPage: (parameters: CopyPage): Promise<unknown> => contentChildrenAndDescendants.copyPage(client, parameters),
+      copyPage: (parameters: CopyPage): Promise<Content> => contentChildrenAndDescendants.copyPage(client, parameters),
     },
     contentAttachments: {
       createAttachment: (parameters: CreateAttachment): Promise<ContentArray> =>
@@ -269,7 +269,7 @@ export function createV1Client(clientConfig: ClientConfig) {
         contentAttachments.updateAttachmentProperties(client, parameters),
       updateAttachmentData: (parameters: UpdateAttachmentData): Promise<Content> =>
         contentAttachments.updateAttachmentData(client, parameters),
-      downloadAttatchment: (parameters: DownloadAttatchment): Promise<unknown> =>
+      downloadAttatchment: (parameters: DownloadAttatchment): Promise<Buffer> =>
         contentAttachments.downloadAttatchment(client, parameters),
     },
     contentMacroBody: {

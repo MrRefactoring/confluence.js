@@ -55,11 +55,7 @@ export async function setContentState(client: Client, parameters: SetContentStat
     searchParams: {
       status: parameters.status,
     },
-    body: {
-      name: parameters.name,
-      color: parameters.color,
-      id: parameters.id,
-    },
+    body: parameters.body,
     schema: ContentStateResponseSchema,
   };
 

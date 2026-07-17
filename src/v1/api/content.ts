@@ -55,14 +55,7 @@ export async function publishLegacyDraft(client: Client, parameters: PublishLega
       status: parameters.status,
       expand: parameters.expand,
     },
-    body: {
-      version: parameters.version,
-      title: parameters.title,
-      type: parameters.type,
-      status: parameters.status,
-      space: parameters.space,
-      ancestors: parameters.ancestors,
-    },
+    body: parameters.body,
     schema: ContentSchema,
   };
 
@@ -88,14 +81,7 @@ export async function publishSharedDraft(client: Client, parameters: PublishShar
       status: parameters.status,
       expand: parameters.expand,
     },
-    body: {
-      version: parameters.version,
-      title: parameters.title,
-      type: parameters.type,
-      status: parameters.status,
-      space: parameters.space,
-      ancestors: parameters.ancestors,
-    },
+    body: parameters.body,
     schema: ContentSchema,
   };
 
