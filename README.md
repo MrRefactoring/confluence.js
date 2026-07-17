@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Confluence.js logo" src="https://bad37fb3-cb50-4e0b-9035-a3e09e8afb3b.selstorage.ru/confluence.js%2Flogo.svg"/>
+  <img alt="Confluence.js logo" width="420" src="https://raw.githubusercontent.com/MrRefactoring/confluence.js/master/docs/public/logo.svg"/>
 
   <a href="https://www.npmjs.com/package/confluence.js"><img alt="NPM version" src="https://img.shields.io/npm/v/confluence.js.svg?maxAge=3600&style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/confluence.js"><img alt="NPM downloads per month" src="https://img.shields.io/npm/dm/confluence.js.svg?maxAge=3600&style=flat-square" /></a>

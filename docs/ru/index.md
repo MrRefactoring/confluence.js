@@ -6,7 +6,7 @@ hero:
   text: Типобезопасный клиент Confluence Cloud API
   tagline: Обе версии REST API в одном пакете, валидация через Zod, tree-shaking, только ESM.
   image:
-    src: /logo.svg
+    src: /favicon.svg
     alt: confluence.js
   actions:
     - theme: brand

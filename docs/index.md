@@ -6,7 +6,7 @@ hero:
   text: Type-safe Confluence Cloud API client
   tagline: Both REST API versions from one package, validated by Zod, tree-shakable, ESM-only.
   image:
-    src: /logo.svg
+    src: /favicon.svg
     alt: confluence.js
   actions:
     - theme: brand

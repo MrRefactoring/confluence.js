@@ -77,7 +77,7 @@ export default defineConfig({
       `(function(){try{var K='confluence.js:locale',B='/confluence.js/',p=location.pathname,isRu=p.indexOf(B+'ru/')===0||p===B+'ru'||p===B+'ru/';var s=localStorage.getItem(K);if(s)return;if(isRu){localStorage.setItem(K,'ru');return;}var L=(navigator.language||'').toLowerCase();if(L.indexOf('ru')===0&&p.indexOf(B)===0){localStorage.setItem(K,'ru');location.replace(p.replace(B,B+'ru/')+location.search+location.hash);}else{localStorage.setItem(K,'en');}}catch(e){}})();`,
     ],
 
-    ['link', { rel: 'icon', href: '/confluence.js/logo.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: '/confluence.js/favicon.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'theme-color', content: '#0052cc' }],
     ['meta', { name: 'author', content: 'Vladislav Tupikin' }],
 
@@ -139,7 +139,7 @@ export default defineConfig({
   },
 
   themeConfig: {
-    logo: '/logo.svg',
+    logo: '/favicon.svg',
     search: { provider: 'local' },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/MrRefactoring/confluence.js' },
