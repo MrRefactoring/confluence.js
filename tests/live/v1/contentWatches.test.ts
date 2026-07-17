@@ -82,7 +82,7 @@ describe('Confluence Cloud v1 — content watch lifecycle (live, round-trip)', (
   });
 
   it('removes the watch, and the status flips to not watching', async () => {
-    await client.contentWatches.removeContentWatcher({ 'X-Atlassian-Token': 'no-check', contentId: pageId, accountId });
+    await client.contentWatches.removeContentWatcher({ contentId: pageId, accountId });
 
     const status = await client.contentWatches.getContentWatchStatus({ contentId: pageId, accountId });
 
@@ -105,7 +105,7 @@ describe('Confluence Cloud v1 — content watch lifecycle (live, round-trip)', (
   });
 
   it('removes the watcher again, leaving the page unwatched', async () => {
-    await client.contentWatches.removeContentWatcher({ 'X-Atlassian-Token': 'no-check', contentId: pageId, accountId });
+    await client.contentWatches.removeContentWatcher({ contentId: pageId, accountId });
 
     const status = await client.contentWatches.getContentWatchStatus({ contentId: pageId, accountId });
 
@@ -119,7 +119,7 @@ describe('Confluence Cloud v1 — space watch lifecycle (live, round-trip)', () 
 
     expect(before.watching).toBe(false);
 
-    await client.contentWatches.addSpaceWatcher({ 'X-Atlassian-Token': 'no-check', spaceKey, accountId });
+    await client.contentWatches.addSpaceWatcher({ spaceKey, accountId });
 
     const during = await client.contentWatches.isWatchingSpace({ spaceKey, accountId });
 
@@ -146,7 +146,7 @@ describe('Confluence Cloud v1 — label watch lifecycle (live, round-trip)', () 
 
     expect(before.watching).toBe(false);
 
-    await client.contentWatches.addLabelWatcher({ 'X-Atlassian-Token': 'no-check', labelName, accountId });
+    await client.contentWatches.addLabelWatcher({ labelName, accountId });
 
     const during = await client.contentWatches.isWatchingLabel({ labelName, accountId });
 

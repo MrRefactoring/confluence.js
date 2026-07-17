@@ -26,6 +26,9 @@ export async function deletePageTree(client: Client, parameters: DeletePageTree)
   const config: SendRequestOptions<LongTask> = {
     url: `/wiki/rest/api/content/${parameters.id}/pageTree`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     schema: LongTaskSchema,
   };
 
@@ -66,6 +69,9 @@ export async function addLabelsToSpace(client: Client, parameters: AddLabelsToSp
   const config: SendRequestOptions<LabelArray> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/label`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: parameters.body,
     schema: LabelArraySchema,
   };
@@ -77,6 +83,9 @@ export async function deleteLabelFromSpace(client: Client, parameters: DeleteLab
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/label`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       name: parameters.name,
       prefix: parameters.prefix,

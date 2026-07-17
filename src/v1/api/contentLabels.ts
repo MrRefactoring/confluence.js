@@ -19,6 +19,9 @@ export async function addLabelsToContent(client: Client, parameters: AddLabelsTo
   const config: SendRequestOptions<LabelArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/label`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: parameters.body,
     schema: LabelArraySchema,
   };
@@ -43,6 +46,9 @@ export async function removeLabelFromContentUsingQueryParameter(
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/label`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       name: parameters.name,
     },
@@ -66,6 +72,9 @@ export async function removeLabelFromContent(client: Client, parameters: RemoveL
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/label/${parameters.label}`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
   };
 
   return await client.sendRequest(config);

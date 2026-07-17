@@ -24,6 +24,9 @@ export async function movePage(client: Client, parameters: MovePageParameters): 
   const config: SendRequestOptions<MovePage> = {
     url: `/wiki/rest/api/content/${parameters.pageId}/move/${parameters.position}/${parameters.targetId}`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     schema: MovePageSchema,
   };
 
@@ -124,6 +127,9 @@ export async function copyPageHierarchy(client: Client, parameters: CopyPageHier
   const config: SendRequestOptions<LongTask> = {
     url: `/wiki/rest/api/content/${parameters.id}/pagehierarchy/copy`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       copyAttachments: parameters.copyAttachments,
       copyPermissions: parameters.copyPermissions,
@@ -159,6 +165,9 @@ export async function copyPage(client: Client, parameters: CopyPage): Promise<un
   const config: SendRequestOptions<unknown> = {
     url: `/wiki/rest/api/content/${parameters.id}/copy`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       expand: parameters.expand,
     },

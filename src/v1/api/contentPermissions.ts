@@ -23,6 +23,9 @@ export async function checkContentPermission(
   const config: SendRequestOptions<PermissionCheckResponse> = {
     url: `/wiki/rest/api/content/${parameters.id}/permission/check`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       subject: parameters.subject,
       operation: parameters.operation,

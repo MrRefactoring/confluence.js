@@ -15,6 +15,9 @@ export async function createSpace(client: Client, parameters: CreateSpace): Prom
   const config: SendRequestOptions<Space> = {
     url: '/wiki/rest/api/space',
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       name: parameters.name,
       key: parameters.key,
@@ -39,6 +42,9 @@ export async function createPrivateSpace(client: Client, parameters: CreatePriva
   const config: SendRequestOptions<Space> = {
     url: '/wiki/rest/api/space/_private',
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       name: parameters.name,
       key: parameters.key,
@@ -64,6 +70,9 @@ export async function updateSpace(client: Client, parameters: UpdateSpace): Prom
   const config: SendRequestOptions<Space> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       name: parameters.name,
       description: parameters.description,
@@ -88,6 +97,9 @@ export async function deleteSpace(client: Client, parameters: DeleteSpace): Prom
   const config: SendRequestOptions<LongTask> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     schema: LongTaskSchema,
   };
 

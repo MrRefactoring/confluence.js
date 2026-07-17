@@ -1,8 +1,6 @@
 import { z } from 'zod';
 
 export const RemoveContentWatcherSchema = z.object({
-  /** Note, you must add header when making a request, as this operation has XSRF protection. */
-  'X-Atlassian-Token': z.string(),
   /** The ID of the content to remove the watcher from. */
   contentId: z.string(),
   /**

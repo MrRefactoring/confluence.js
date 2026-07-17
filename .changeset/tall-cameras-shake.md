@@ -34,6 +34,8 @@ entry points at `confluence.js/v1`, `confluence.js/v2` and `confluence.js/core`.
 - `authentication: { basic: {…} }` → `auth: { type: 'basic', … }`; `oauth2` → `auth: { type: 'bearer', token }`
 - JWT (Atlassian Connect) authentication is not supported — Connect apps should stay on `confluence.js@2`
 - Callbacks, `middlewares`, `apiPrefix` and `baseRequestConfig` are removed
+- `noCheckAtlassianToken` is removed with nothing to replace it: v1 enforces XSRF
+  on every write, so every v1 write now sends `X-Atlassian-Token: no-check` itself
 - `BaseClient` and the per-namespace classes are gone, as are deep imports like `confluence.js/api/content`
 - Errors are `ApiError` (`status`, `statusText`, `body`) rather than `AxiosError`
 - The v1 surface follows Atlassian's current spec, which has dropped 37 operations

@@ -44,6 +44,9 @@ export async function updateLookAndFeel(client: Client, parameters: UpdateLookAn
   const config: SendRequestOptions<LookAndFeelSelection> = {
     url: '/wiki/rest/api/settings/lookandfeel',
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       spaceKey: parameters.spaceKey,
       lookAndFeelType: parameters.lookAndFeelType,
@@ -70,6 +73,9 @@ export async function updateLookAndFeelSettings(
   const config: SendRequestOptions<LookAndFeelWithLinks> = {
     url: '/wiki/rest/api/settings/lookandfeel/custom',
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       spaceKey: parameters.spaceKey,
     },
@@ -100,6 +106,9 @@ export async function resetLookAndFeelSettings(client: Client, parameters: Reset
   const config: SendRequestOptions<void> = {
     url: '/wiki/rest/api/settings/lookandfeel/custom',
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       spaceKey: parameters.spaceKey,
     },

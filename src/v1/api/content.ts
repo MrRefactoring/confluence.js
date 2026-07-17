@@ -22,6 +22,9 @@ export async function archivePages(client: Client, parameters: ArchivePages): Pr
   const config: SendRequestOptions<LongTask> = {
     url: '/wiki/rest/api/content/archive',
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       pages: parameters.pages,
     },
@@ -45,6 +48,9 @@ export async function publishLegacyDraft(client: Client, parameters: PublishLega
   const config: SendRequestOptions<Content> = {
     url: `/wiki/rest/api/content/blueprint/instance/${parameters.draftId}`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       status: parameters.status,
       expand: parameters.expand,
@@ -75,6 +81,9 @@ export async function publishSharedDraft(client: Client, parameters: PublishShar
   const config: SendRequestOptions<Content> = {
     url: `/wiki/rest/api/content/blueprint/instance/${parameters.draftId}`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       status: parameters.status,
       expand: parameters.expand,

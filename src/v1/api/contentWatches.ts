@@ -115,9 +115,6 @@ export async function getContentWatchStatus(client: Client, parameters: GetConte
  * - Specify a user via a query parameter: Use the `accountId` to identify the user.
  * - Do not specify a user: The currently logged-in user will be used.
  *
- * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF
- * protection.
- *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
  * or 'Space Administrator' permission for the relevant space if specifying a user, otherwise permission to access the
  * Confluence site ('Can use' global permission).
@@ -126,6 +123,9 @@ export async function addContentWatcher(client: Client, parameters: AddContentWa
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/watch/content/${parameters.contentId}`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       key: parameters.key,
       username: parameters.username,
@@ -151,7 +151,7 @@ export async function removeContentWatcher(client: Client, parameters: RemoveCon
     url: `/wiki/rest/api/user/watch/content/${parameters.contentId}`,
     method: 'DELETE',
     headers: {
-      'X-Atlassian-Token': parameters['X-Atlassian-Token'],
+      'X-Atlassian-Token': 'no-check',
     },
     searchParams: {
       key: parameters.key,
@@ -193,9 +193,6 @@ export async function isWatchingLabel(client: Client, parameters: IsWatchingLabe
  * - Specify a user via a query parameter: Use the `accountId` to identify the user.
  * - Do not specify a user: The currently logged-in user will be used.
  *
- * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF
- * protection.
- *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
  * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).
  */
@@ -204,7 +201,7 @@ export async function addLabelWatcher(client: Client, parameters: AddLabelWatche
     url: `/wiki/rest/api/user/watch/label/${parameters.labelName}`,
     method: 'POST',
     headers: {
-      'X-Atlassian-Token': parameters['X-Atlassian-Token'],
+      'X-Atlassian-Token': 'no-check',
     },
     searchParams: {
       key: parameters.key,
@@ -229,6 +226,9 @@ export async function removeLabelWatcher(client: Client, parameters: RemoveLabel
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/watch/label/${parameters.labelName}`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       key: parameters.key,
       username: parameters.username,
@@ -270,9 +270,6 @@ export async function isWatchingSpace(client: Client, parameters: IsWatchingSpac
  * - Specify a user via a query parameter: Use the `accountId` to identify the user.
  * - Do not specify a user: The currently logged-in user will be used.
  *
- * Note, you must add the `X-Atlassian-Token: no-check` header when making a request, as this operation has XSRF
- * protection.
- *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
  * or 'Space Administrator' permission for the relevant space if specifying a user, otherwise permission to access the
  * Confluence site ('Can use' global permission).
@@ -282,7 +279,7 @@ export async function addSpaceWatcher(client: Client, parameters: AddSpaceWatche
     url: `/wiki/rest/api/user/watch/space/${parameters.spaceKey}`,
     method: 'POST',
     headers: {
-      'X-Atlassian-Token': parameters['X-Atlassian-Token'],
+      'X-Atlassian-Token': 'no-check',
     },
     searchParams: {
       key: parameters.key,
@@ -308,6 +305,9 @@ export async function removeSpaceWatch(client: Client, parameters: RemoveSpaceWa
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/watch/space/${parameters.spaceKey}`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       key: parameters.key,
       username: parameters.username,

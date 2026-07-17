@@ -49,6 +49,9 @@ export async function setContentState(client: Client, parameters: SetContentStat
   const config: SendRequestOptions<ContentStateResponse> = {
     url: `/wiki/rest/api/content/${parameters.id}/state`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       status: parameters.status,
     },
@@ -76,6 +79,9 @@ export async function removeContentState(
   const config: SendRequestOptions<ContentStateResponse> = {
     url: `/wiki/rest/api/content/${parameters.id}/state`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       status: parameters.status,
     },

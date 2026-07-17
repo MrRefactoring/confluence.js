@@ -31,6 +31,9 @@ export async function asyncConvertContentBodyRequest(
   const config: SendRequestOptions<AsyncId> = {
     url: `/wiki/rest/api/contentbody/convert/async/${parameters.to}`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       expand: parameters.expand,
       spaceKeyContext: parameters.spaceKeyContext,
@@ -121,6 +124,9 @@ export async function bulkAsyncConvertContentBodyRequest(
   const config: SendRequestOptions<AsyncIdArray> = {
     url: '/wiki/rest/api/contentbody/convert/async/bulk/tasks',
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       conversionInputs: parameters.conversionInputs,
     },

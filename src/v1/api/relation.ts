@@ -77,6 +77,9 @@ export async function createRelationship(client: Client, parameters: CreateRelat
   const config: SendRequestOptions<Relation> = {
     url: `/wiki/rest/api/relation/${parameters.relationName}/from/${parameters.sourceType}/${parameters.sourceKey}/to/${parameters.targetType}/${parameters.targetKey}`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       sourceStatus: parameters.sourceStatus,
       targetStatus: parameters.targetStatus,
@@ -100,6 +103,9 @@ export async function deleteRelationship(client: Client, parameters: DeleteRelat
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/relation/${parameters.relationName}/from/${parameters.sourceType}/${parameters.sourceKey}/to/${parameters.targetType}/${parameters.targetKey}`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       sourceStatus: parameters.sourceStatus,
       targetStatus: parameters.targetStatus,

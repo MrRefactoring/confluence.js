@@ -1,8 +1,6 @@
 import { z } from 'zod';
 
 export const AddLabelWatcherSchema = z.object({
-  /** Note, you must add header when making a request, as this operation has XSRF protection. */
-  'X-Atlassian-Token': z.string(),
   /** The name of the label to add the watcher to. */
   labelName: z.string(),
   /**

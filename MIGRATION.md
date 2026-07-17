@@ -67,7 +67,7 @@ from the same package and the same host. See
 | `apiPrefix` | *removed* — the API path is part of the request now |
 | `baseRequestConfig` | *removed* — it was an axios config; the transport is `fetch` |
 | `middlewares: { onError, onResponse }` | *removed* — use `try`/`catch` |
-| `noCheckAtlassianToken: true` | `headers: { 'X-Atlassian-Token': 'no-check' }` |
+| `noCheckAtlassianToken: true` | *removed* — v1 always sends it, see [below](#nocheckatlassiantoken) |
 | — | `retry` — opt-in retry for transient transport failures |
 | — | `getAuthOn401` — re-derive auth after a 401 |
 
@@ -82,6 +82,20 @@ the prefix in `host` instead:
 -const client = new ConfluenceClient({ host: 'https://proxy.internal', apiPrefix: '/confluence/wiki/rest/' });
 +const client = createV1Client({ host: 'https://proxy.internal/confluence' });
 ```
+
+### `noCheckAtlassianToken`
+
+v1 enforces XSRF protection on every write: without `X-Atlassian-Token: no-check`
+each one answers `403 XSRF check failed`. In 2.x that was yours to opt into, and
+forgetting it was the usual first 403. In 3.0 every generated v1 write sends the
+header itself, so the option is gone with nothing to replace it:
+
+```diff
+-const client = new ConfluenceClient({ host, authentication, noCheckAtlassianToken: true });
++const client = createV1Client({ host, auth });
+```
+
+The codemod deletes the option for you. v2 has no such requirement.
 
 ### `middlewares`
 

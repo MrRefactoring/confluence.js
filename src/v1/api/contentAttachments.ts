@@ -11,9 +11,6 @@ import type { Client, SendRequestOptions } from '#/core';
  * Adds an attachment to a piece of content. This method only adds a new attachment. If you want to update an existing
  * attachment, use [Create or update attachments](#api-content-id-child-attachment-put).
  *
- * Note, you must set a `X-Atlassian-Token: nocheck` header on the request for this method, otherwise it will be
- * blocked. This protects against XSRF attacks, which is necessary as this method accepts multipart/form-data.
- *
  * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
  * libraries have classes that make it easier to implement multipart posts, like the
  * [MultipartEntityBuilder](https://hc.apache.org/httpcomponents-client-5.1.x/current/httpclient5/apidocs/) Java class
@@ -44,6 +41,9 @@ export async function createAttachment(client: Client, parameters: CreateAttachm
   const config: SendRequestOptions<ContentArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       status: parameters.status,
     },
@@ -57,9 +57,6 @@ export async function createAttachment(client: Client, parameters: CreateAttachm
 /**
  * Adds an attachment to a piece of content. If the attachment already exists for the content, then the attachment is
  * updated (i.e. a new version of the attachment is created).
- *
- * Note, you must set a `X-Atlassian-Token: nocheck` header on the request for this method, otherwise it will be
- * blocked. This protects against XSRF attacks, which is necessary as this method accepts multipart/form-data.
  *
  * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
  * libraries have classes that make it easier to implement multipart posts, like the
@@ -94,6 +91,9 @@ export async function createOrUpdateAttachments(
   const config: SendRequestOptions<ContentArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       status: parameters.status,
     },
@@ -117,6 +117,9 @@ export async function updateAttachmentProperties(
   const config: SendRequestOptions<Content> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       id: parameters.id,
       type: parameters.type,
@@ -139,9 +142,6 @@ export async function updateAttachmentProperties(
  *
  * This method is essentially the same as [Create or update attachments](#api-content-id-child-attachment-put), except
  * that it matches the attachment ID rather than the name.
- *
- * Note, you must set a `X-Atlassian-Token: nocheck` header on the request for this method, otherwise it will be
- * blocked. This protects against XSRF attacks, which is necessary as this method accepts multipart/form-data.
  *
  * The media type 'multipart/form-data' is defined in [RFC 7578](https://www.ietf.org/rfc/rfc7578.txt). Most client
  * libraries have classes that make it easier to implement multipart posts, like the
@@ -173,6 +173,9 @@ export async function updateAttachmentData(client: Client, parameters: UpdateAtt
   const config: SendRequestOptions<Content> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}/data`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: parameters.body,
     schema: ContentSchema,
   };

@@ -27,6 +27,9 @@ export async function updateSpaceSettings(client: Client, parameters: UpdateSpac
   const config: SendRequestOptions<SpaceSettings> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/settings`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       routeOverrideEnabled: parameters.routeOverrideEnabled,
       contentMode: parameters.contentMode,

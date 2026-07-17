@@ -41,6 +41,9 @@ export async function createGroup(client: Client, parameters: CreateGroup): Prom
   const config: SendRequestOptions<Group> = {
     url: '/wiki/rest/api/group',
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       name: parameters.name,
     },
@@ -78,6 +81,9 @@ export async function removeGroupById(client: Client, parameters: RemoveGroupByI
   const config: SendRequestOptions<void> = {
     url: '/wiki/rest/api/group/by-id',
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       id: parameters.id,
     },
@@ -139,6 +145,9 @@ export async function addUserToGroupByGroupId(client: Client, parameters: AddUse
   const config: SendRequestOptions<void> = {
     url: '/wiki/rest/api/group/userByGroupId',
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       groupId: parameters.groupId,
     },
@@ -162,6 +171,9 @@ export async function removeMemberFromGroupByGroupId(
   const config: SendRequestOptions<void> = {
     url: '/wiki/rest/api/group/userByGroupId',
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       groupId: parameters.groupId,
       accountId: parameters.accountId,

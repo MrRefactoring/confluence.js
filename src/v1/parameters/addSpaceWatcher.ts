@@ -1,8 +1,6 @@
 import { z } from 'zod';
 
 export const AddSpaceWatcherSchema = z.object({
-  /** Note, you must add header when making a request, as this operation has XSRF protection. */
-  'X-Atlassian-Token': z.string(),
   /** The key of the space to add the watcher to. */
   spaceKey: z.string(),
   /**

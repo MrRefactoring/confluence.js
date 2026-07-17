@@ -5,7 +5,7 @@
  *   - `new ConfluenceClient({…})`      → `createV1Client({…})`
  *   - `authentication: { basic: … }`   → `auth: { type: 'basic', … }`
  *   - `authentication: { oauth2: … }`  → `auth: { type: 'bearer', token }`
- *   - `noCheckAtlassianToken: true`    → `headers: { 'X-Atlassian-Token': 'no-check' }`
+ *   - `noCheckAtlassianToken: true`    → dropped (v1 always sends the header now)
  *   - deep imports (`confluence.js/api/content`) → `confluence.js/v1`
  *   - trailing callback arguments      → dropped (the API is promise-only)
  *
@@ -130,13 +130,13 @@ function rewriteAuthentication(j: JSCodeshift, config: ObjectExpression): void {
 function rewriteConfig(j: JSCodeshift, config: ObjectExpression): void {
   rewriteAuthentication(j, config);
 
+  // `noCheckAtlassianToken` has nothing left to opt into: v1 enforces XSRF on
+  // every write, so every generated v1 call now sends `X-Atlassian-Token:
+  // no-check` itself. Drop the option instead of translating it into a header.
   const noCheck = property(j, config, 'noCheckAtlassianToken');
 
   if (noCheck) {
-    noCheck.key = j.identifier('headers');
-    noCheck.value = j.objectExpression([
-      j.objectProperty(j.stringLiteral('X-Atlassian-Token'), j.stringLiteral('no-check')),
-    ]);
+    config.properties = config.properties.filter(prop => (prop as unknown) !== noCheck);
   }
 
   for (const [key, why] of UNTRANSLATABLE_CONFIG) {

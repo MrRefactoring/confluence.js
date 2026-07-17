@@ -43,6 +43,9 @@ export async function addRestrictions(client: Client, parameters: AddRestriction
   const config: SendRequestOptions<ContentRestrictionArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       expand: parameters.expand,
     },
@@ -66,6 +69,9 @@ export async function updateRestrictions(
   const config: SendRequestOptions<ContentRestrictionArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       expand: parameters.expand,
     },
@@ -88,6 +94,9 @@ export async function deleteRestrictions(
   const config: SendRequestOptions<ContentRestrictionArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       expand: parameters.expand,
     },
@@ -179,6 +188,9 @@ export async function addGroupToContentRestrictionByGroupId(
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}/byGroupId/${parameters.groupId}`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
   };
 
   return await client.sendRequest(config);
@@ -197,6 +209,9 @@ export async function removeGroupFromContentRestriction(
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}/byGroupId/${parameters.groupId}`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
   };
 
   return await client.sendRequest(config);
@@ -244,6 +259,9 @@ export async function addUserToContentRestriction(
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}/user`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       key: parameters.key,
       username: parameters.username,
@@ -267,6 +285,9 @@ export async function removeUserFromContentRestriction(
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}/user`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       key: parameters.key,
       username: parameters.username,

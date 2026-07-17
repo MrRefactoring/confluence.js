@@ -22,6 +22,9 @@ export async function createContentTemplate(
   const config: SendRequestOptions<ContentTemplate> = {
     url: '/wiki/rest/api/template',
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       name: parameters.name,
       templateType: parameters.templateType,
@@ -49,6 +52,9 @@ export async function updateContentTemplate(
   const config: SendRequestOptions<ContentTemplate> = {
     url: '/wiki/rest/api/template',
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       templateId: parameters.templateId,
       name: parameters.name,
@@ -158,6 +164,9 @@ export async function removeTemplate(client: Client, parameters: RemoveTemplate)
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/template/${parameters.contentTemplateId}`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
   };
 
   return await client.sendRequest(config);

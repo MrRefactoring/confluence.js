@@ -13,6 +13,9 @@ export async function restoreContentVersion(client: Client, parameters: RestoreC
   const config: SendRequestOptions<Version> = {
     url: `/wiki/rest/api/content/${parameters.id}/version`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       expand: parameters.expand,
     },
@@ -36,6 +39,9 @@ export async function deleteContentVersion(client: Client, parameters: DeleteCon
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/version/${parameters.versionNumber}`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
   };
 
   return await client.sendRequest(config);

@@ -82,6 +82,9 @@ export async function setSpaceTheme(client: Client, parameters: SetSpaceTheme): 
   const config: SendRequestOptions<Theme> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/theme`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       themeKey: parameters.themeKey,
     },
@@ -100,6 +103,9 @@ export async function resetSpaceTheme(client: Client, parameters: ResetSpaceThem
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/theme`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
   };
 
   return await client.sendRequest(config);

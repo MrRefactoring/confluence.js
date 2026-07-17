@@ -26,6 +26,9 @@ export async function registerModules(client: Client, parameters: RegisterModule
   const config: SendRequestOptions<void> = {
     url: '/wiki/rest/atlassian-connect/1/app/module/dynamic',
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: parameters.body,
   };
 
@@ -41,6 +44,9 @@ export async function removeModules(client: Client, parameters: RemoveModules): 
   const config: SendRequestOptions<void> = {
     url: '/wiki/rest/atlassian-connect/1/app/module/dynamic',
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       moduleKey: parameters.moduleKey,
     },

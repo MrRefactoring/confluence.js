@@ -60,6 +60,9 @@ export async function createUserProperty(client: Client, parameters: CreateUserP
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/${parameters.userId}/property/${parameters.key}`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       value: parameters.value,
     },
@@ -81,6 +84,9 @@ export async function updateUserProperty(client: Client, parameters: UpdateUserP
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/${parameters.userId}/property/${parameters.key}`,
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       value: parameters.value,
     },
@@ -101,6 +107,9 @@ export async function deleteUserProperty(client: Client, parameters: DeleteUserP
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/${parameters.userId}/property/${parameters.key}`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
   };
 
   return await client.sendRequest(config);

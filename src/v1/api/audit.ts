@@ -41,6 +41,9 @@ export async function createAuditRecord(client: Client, parameters: CreateAuditR
   const config: SendRequestOptions<AuditRecord> = {
     url: '/wiki/rest/api/audit',
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       author: parameters.author,
       remoteAddress: parameters.remoteAddress,
@@ -104,6 +107,9 @@ export async function setRetentionPeriod(client: Client, parameters: SetRetentio
   const config: SendRequestOptions<RetentionPeriod> = {
     url: '/wiki/rest/api/audit/retention',
     method: 'PUT',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       number: parameters.number,
       units: parameters.units,

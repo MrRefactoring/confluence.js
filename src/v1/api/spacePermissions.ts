@@ -20,6 +20,9 @@ export async function addPermissionToSpace(
   const config: SendRequestOptions<SpacePermissionV2> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/permission`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       subject: parameters.subject,
       operation: parameters.operation,
@@ -47,6 +50,9 @@ export async function addCustomContentPermissions(
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/permission/custom-content`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     body: {
       subject: parameters.subject,
       operations: parameters.operations,
@@ -68,6 +74,9 @@ export async function removePermission(client: Client, parameters: RemovePermiss
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/permission/${parameters.id}`,
     method: 'DELETE',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
   };
 
   return await client.sendRequest(config);
