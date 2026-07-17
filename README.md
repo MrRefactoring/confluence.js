@@ -172,10 +172,18 @@ Reach for **v2** by default — it is where Atlassian is investing. It covers
 pages, blog posts, custom content, whiteboards, databases, folders, comments,
 attachments, labels, tasks, versions, spaces, space permissions and space roles.
 
-Reach for **v1** for what v2 has no equivalent for: content restrictions,
+Reach for **v1** only for what v2 has no equivalent for: content restrictions,
 watches, permissions checks, content states, groups, relations, CQL search,
 templates, themes, settings, user properties, audit records and long-running
 tasks.
+
+v1 is a complement to v2, not the old API kept alive. This package tracks
+Atlassian's v1 spec as published, and that spec is shrinking: 37 operations that
+2.x exposed — `getContent`, `createContent`, `getSpace` among them — are already
+gone from it, and 33 of those have a v2 equivalent
+([the map](./MIGRATION.md#the-v1-surface-follows-atlassians-current-spec)).
+Expect it to narrow further, and treat a v1 call as something to move to v2 once
+v2 covers it.
 
 ## Error handling
 

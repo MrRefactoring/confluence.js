@@ -195,6 +195,11 @@ What stayed in v1 is what v2 has no answer for: content restrictions, watches,
 permission checks, content states, groups, relations, CQL search, templates,
 themes, settings, user properties, audit records and long-running tasks.
 
+This is a direction, not a one-off. `confluence.js` follows the published v1 spec
+rather than freezing a private copy of the old API, and that spec keeps narrowing
+as v2 grows. Expect v1 to lose more operations over time, and move each call to
+v2 as soon as v2 has an equivalent.
+
 ### Attachment upload
 
 Neither spec declares multipart upload, so no generated method covers it. Use the
