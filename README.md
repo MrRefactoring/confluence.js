@@ -172,10 +172,10 @@ Reach for **v2** by default — it is where Atlassian is investing. It covers
 pages, blog posts, custom content, whiteboards, databases, folders, comments,
 attachments, labels, tasks, versions, spaces, space permissions and space roles.
 
-Reach for **v1** only for what v2 has no equivalent for: content restrictions,
-watches, permissions checks, content states, groups, relations, CQL search,
-templates, themes, settings, user properties, audit records and long-running
-tasks.
+Reach for **v1** only for what v2 has no equivalent for: attachment *upload* (v2
+reads attachments but cannot create them), content restrictions, watches,
+permission checks, content states, groups, relations, CQL search, templates,
+themes, settings, user properties, audit records and long-running tasks.
 
 v1 is a complement to v2, not the old API kept alive. This package tracks
 Atlassian's v1 spec as published, and that spec is shrinking: 37 operations that

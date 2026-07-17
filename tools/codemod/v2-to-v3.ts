@@ -33,7 +33,7 @@ const REMOVED_V1_METHODS = new Map<string, string>([
   ['getContentChildrenByType', 'v2: children.getPageChildren'],
   ['getContentComments', 'v2: comment.getPageFooterComments / comment.getPageInlineComments'],
   ['getAttachments', 'v2: attachment.getPageAttachments'],
-  ['createAttachments', 'no v2 equivalent — raw multipart POST, see MIGRATION.md'],
+  ['createAttachments', 'v1: contentAttachments.createAttachment — takes `attachments: { filename, content }`'],
   ['downloadAttachment', 'v2: attachment.getAttachmentById, then fetch downloadLink'],
   ['getContentVersions', 'v2: version.getPageVersions'],
   ['getContentVersion', 'v2: version.getPageVersions'],

@@ -166,7 +166,7 @@ Since 2.x was released, **Atlassian removed 37 operations from the v1 spec** —
 including `getContent`, `createContent` and `getSpace` — because v2 covers them.
 They are gone from v1 in 3.0 for the same reason.
 
-Every one of them has a v2 equivalent:
+Nearly all of them have a v2 equivalent:
 
 | 2.x — `client.<ns>.<method>` | 3.0 — `createV2Client()` |
 |---|---|
@@ -179,7 +179,6 @@ Every one of them has a v2 equivalent:
 | `contentChildrenAndDescendants.getContentChildren`, `…ByType` | `children.getPageChildren` / `descendants.getPageDescendants` |
 | `contentComments.getContentComments` | `comment.getPageFooterComments` / `comment.getPageInlineComments` |
 | `contentAttachments.getAttachments` | `attachment.getPageAttachments` |
-| `contentAttachments.createAttachments` | *no v2 equivalent* — see [below](#attachment-upload) |
 | `contentAttachments.downloadAttachment` | `attachment.getAttachmentById` then fetch `downloadLink` |
 | `contentVersions.getContentVersions`, `getContentVersion` | `version.getPageVersions` / `version.getBlogPostVersions` |
 | `content.getHistoryForContent` | `version.getPageVersions` |
@@ -191,9 +190,14 @@ Every one of them has a v2 equivalent:
 | `inlineTasks.searchTasks`, `getTaskById`, `updateTaskById` | `task.getTasks` / `task.getTaskById` |
 | `group.addUserToGroup`, `group.removeMemberFromGroup` | *no v2 equivalent* — user management moved to the [Admin API](https://developer.atlassian.com/cloud/admin/user-management/rest/) |
 
-What stayed in v1 is what v2 has no answer for: content restrictions, watches,
-permission checks, content states, groups, relations, CQL search, templates,
-themes, settings, user properties, audit records and long-running tasks.
+One of the 37 did not move to v2 but stayed in v1 under a new name:
+`contentAttachments.createAttachments` is now
+`contentAttachments.createAttachment` — see [Attachment upload](#attachment-upload).
+
+What stayed in v1 is what v2 has no answer for: attachment upload, content
+restrictions, watches, permission checks, content states, groups, relations, CQL
+search, templates, themes, settings, user properties, audit records and
+long-running tasks.
 
 This is a direction, not a one-off. `confluence.js` follows the published v1 spec
 rather than freezing a private copy of the old API, and that spec keeps narrowing
@@ -202,22 +206,25 @@ v2 as soon as v2 has an equivalent.
 
 ### Attachment upload
 
-Neither spec declares multipart upload, so no generated method covers it. Use the
-v1 REST endpoint directly with the same auth:
+Upload is v1's, and v1 keeps it — v2 reads attachments but cannot create them.
+`createAttachments` is now `contentAttachments.createAttachment`, and it takes the
+file content directly rather than a hand-built `FormData`:
 
-```typescript
-const form = new FormData();
-form.append('file', new Blob([bytes]), 'report.pdf');
-
-await fetch(`${host}/wiki/rest/api/content/${pageId}/child/attachment`, {
-  method: 'POST',
-  headers: {
-    Authorization: `Basic ${btoa(`${email}:${apiToken}`)}`,
-    'X-Atlassian-Token': 'no-check',
-  },
-  body: form,
-});
+```diff
+-await client.contentAttachments.createAttachments({
+-  id: pageId,
+-  attachment: { file: fs.createReadStream('report.pdf') },
+-});
++await confluence.contentAttachments.createAttachment({
++  id: pageId,
++  attachments: { filename: 'report.pdf', content: bytes },
++});
 ```
+
+`content` accepts a `string`, `Buffer`, `Blob`/`File`, a Node stream or any async
+iterable of bytes, and `attachments` takes one attachment or an array of them.
+`contentAttachments.downloadAttatchment` (Atlassian's spelling, kept because it is
+the operation id) returns the bytes back.
 
 ## Imports and entry points
 
