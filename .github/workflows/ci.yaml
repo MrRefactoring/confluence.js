@@ -22,13 +22,13 @@ jobs:
         node-version: [22.x, 24.x]
     steps:
       - name: 🔄 Checkout sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: ⚙️ Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
       - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
       - name: 🛠️ Build
@@ -47,34 +47,31 @@ jobs:
         node-version: [22.x, 24.x]
     steps:
       - name: 🔄 Checkout sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: ⚙️ Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
       - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
       - name: 🧪 Unit tests
         run: pnpm run test
 
-  # Proves the artifact people install, which building the sources does not:
-  # the exports map resolves (attw) and the packed tarball imports and runs from
-  # a real project (consumers).
   package:
     name: 📦 Package checks
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: 🔄 Checkout sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: ⚙️ Use Node.js 22.x
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22.x
       - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
       - name: 🏗️ Build
