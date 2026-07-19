@@ -169,9 +169,9 @@ async function* encodeMultipart(attachments: AttachmentInput[], boundary: string
 /**
  * One {@link AttachmentInput} as a single `FormData`-appendable part.
  *
- * Multipart endpoints assemble their own `FormData` and append each attachment to it, so they need the
- * content as one value rather than as a whole encoded body — that is what this provides, and
- * {@link createMultipartRequestBody} is the streaming alternative for callers building a request by hand.
+ * Multipart endpoints assemble their own `FormData` and append each attachment to it, so they need the content as one
+ * value rather than as a whole encoded body — that is what this provides, and {@link createMultipartRequestBody} is the
+ * streaming alternative for callers building a request by hand.
  *
  * Streaming content is collected here: a `FormData` part has to know its length, so a stream cannot stay lazy once it
  * goes into one.

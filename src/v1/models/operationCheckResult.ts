@@ -7,7 +7,8 @@ export const OperationCheckResultSchema = apiObject({
   operation: z.string(),
   /**
    * The space or content type that the operation applies to. Could be one of- - application - page - blogpost - comment
-   * - attachment - space
+   *
+   * - Attachment - space
    */
   targetType: z.string(),
 });
