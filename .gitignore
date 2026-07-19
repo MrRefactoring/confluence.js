@@ -10,6 +10,7 @@ docs/api/
 docs/ru/api/
 docs/.vitepress/dist/
 docs/.vitepress/cache/
+docs/.vitepress/.temp/
 
 .DS_Store
 .env
