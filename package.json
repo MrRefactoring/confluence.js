@@ -99,6 +99,7 @@
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:status": "changeset status",
+    "version:dev": "node scripts/devVersion.ts",
     "release:publish": "pnpm publish --no-git-checks --provenance",
     "prepare": "husky"
   },

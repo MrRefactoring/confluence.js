@@ -16,16 +16,16 @@ jobs:
 
     steps:
       - name: 🔄 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: https://registry.npmjs.org/
 
       - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
@@ -33,8 +33,14 @@ jobs:
       - name: 🛠️ Run build
         run: pnpm run build
 
-      - name: 🔖 Snapshot version
-        run: pnpm changeset version --snapshot dev
+      # Two steps, because changesets only knows the release this branch leads to:
+      # it moves package.json there, then dev-version.ts turns that into
+      # <base>-dev.<n>, numbering from what is already on npm.
+      - name: 🔖 Apply pending changesets
+        run: pnpm changeset version
+
+      - name: 🔖 Stamp dev version
+        run: pnpm run version:dev
 
       - name: 📤 Publish dev snapshot to NPM
         run: pnpm publish --tag dev --no-git-checks --provenance
