@@ -89,18 +89,34 @@ const confluence = createV2Client({
 });
 ```
 
-### OAuth 2.0
+### OAuth 2.0 (3LO)
 
-Pass the access token as a bearer token:
+Hand over your app credentials and a refresh token. The client refreshes before
+expiry, retries once on a 401, and resolves the cloud id itself:
 
 ```typescript
 const confluence = createV2Client({
-  host: 'https://your-domain.atlassian.net',
-  auth: { type: 'bearer', token: 'YOUR_ACCESS_TOKEN' },
+  auth: {
+    type: 'oauth2',
+    clientId: 'YOUR_CLIENT_ID',
+    clientSecret: 'YOUR_CLIENT_SECRET',
+    refreshToken: 'YOUR_REFRESH_TOKEN',
+    // Atlassian rotates the refresh token on every refresh — persist the new one.
+    onTokenRefresh: ({ refreshToken }) => tokenStore.save(refreshToken),
+  },
 });
 ```
 
-For tokens that expire, hand over a resolver instead of a string — it is called
+No `host`: 3LO tokens only work through `api.atlassian.com`, never on your site's
+own domain, so the client builds that URL from the cloud id. Pass `cloudId` or
+`siteUrl` if the token can reach more than one site.
+
+`confluence.js` also exports the flow itself — `generateAuthorizationUrl`,
+`parseCallbackUrl`, `exchangeAuthorizationCode`, `refreshOAuth2Token` and
+`getAccessibleResources`. See the [OAuth 2.0 guide](https://mrrefactoring.github.io/confluence.js/guide/oauth2)
+— scopes differ between v1 and v2, and refresh tokens rotate.
+
+For a bearer token from somewhere other than 3LO, hand over a resolver — called
 per request — and a hook to re-derive auth after a 401:
 
 ```typescript
@@ -110,10 +126,6 @@ const confluence = createV2Client({
   getAuthOn401: async () => ({ type: 'bearer', token: await refresh() }),
 });
 ```
-
-`confluence.js/core` also exports helpers for the Atlassian OAuth 2.0 (3LO) flow
-itself: `buildAtlassianAuthUrl`, `parseAtlassianCallbackUrl`,
-`obtainAtlassianOAuthTokens` and `refreshAtlassianOAuthTokens`.
 
 > **JWT (Atlassian Connect) is not supported in 3.x.** See
 > [MIGRATION.md](./MIGRATION.md#jwt-authentication-is-gone).
@@ -189,22 +201,27 @@ v2 covers it.
 
 ## Error handling
 
-Any non-2xx response throws an `ApiError` carrying the status and the parsed
-body:
+Every failure is one of this package's own error types — nothing leaks from
+`fetch`. Non-2xx responses throw an `ApiError` subclass carrying the status and
+the parsed body; transport faults throw a `NetworkError`; the OAuth flow throws
+an `OAuthError`.
 
 ```typescript
-import { ApiError } from 'confluence.js';
+import { isNotFoundError, isRateLimitError } from 'confluence.js';
 
 try {
   await confluence.page.getPageById({ id: 42 });
 } catch (error) {
-  if (error instanceof ApiError && error.status === 404) {
-    console.log('no such page');
-  } else {
-    throw error;
-  }
+  if (isNotFoundError(error)) return null;
+  if (isRateLimitError(error)) await sleep(error.retryAfterMs ?? 60_000);
+  throw error;
 }
 ```
+
+`AuthError` (401), `ForbiddenError` (403), `NotFoundError` (404),
+`RateLimitError` (429) and `ServerError` (5xx) all extend `ApiError`, so
+`instanceof` works — but prefer the `isXxx` predicates: they survive two copies
+of the package in one `node_modules`, where `instanceof` silently returns false.
 
 A response that does not match its schema throws a `ZodError` instead. That
 means Atlassian's API drifted from its own spec, and it is worth

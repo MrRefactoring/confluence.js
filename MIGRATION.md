@@ -62,7 +62,7 @@ from the same package and the same host. See
 | 2.x | 3.0 |
 |---|---|
 | `authentication: { basic: { email, apiToken } }` | `auth: { type: 'basic', email, apiToken }` |
-| `authentication: { oauth2: { accessToken } }` | `auth: { type: 'bearer', token }` |
+| `authentication: { oauth2: { accessToken } }` | `auth: { type: 'oauth2', accessToken, cloudId }` — see [below](#oauth-20) |
 | `authentication: { jwt: { … } }` | *removed* — see [below](#jwt-authentication-is-gone) |
 | `apiPrefix` | *removed* — the API path is part of the request now |
 | `baseRequestConfig` | *removed* — it was an axios config; the transport is `fetch` |
@@ -70,6 +70,31 @@ from the same package and the same host. See
 | `noCheckAtlassianToken: true` | *removed* — v1 always sends it, see [below](#nocheckatlassiantoken) |
 | — | `retry` — opt-in retry for transient transport failures |
 | — | `getAuthOn401` — re-derive auth after a 401 |
+| — | `auth: { type: 'oauth2' }` — 3LO with automatic refresh and cloud id resolution |
+
+### OAuth 2.0
+
+2.x treated an OAuth token as an opaque bearer string against your site's host. That only ever worked by accident: 3LO tokens are rejected on `your-domain.atlassian.net` and are accepted solely through the Atlassian gateway.
+
+3.0 makes OAuth 2.0 a strategy of its own. Give it the credentials and it refreshes the token before expiry, retries once on a `401`, resolves the cloud id, and routes to `https://api.atlassian.com/ex/confluence/{cloudId}`:
+
+```ts
+const confluence = createV2Client({
+  auth: {
+    type: 'oauth2',
+    clientId,
+    clientSecret,
+    refreshToken,
+    onTokenRefresh: ({ refreshToken }) => tokenStore.save(refreshToken),
+  },
+});
+```
+
+`host` is not passed — the gateway URL is derived. If you keep managing tokens yourself, `auth: { type: 'oauth2', accessToken, cloudId }` behaves like the 2.x setup, minus the wrong base URL.
+
+Persist the rotated `refreshToken` from `onTokenRefresh`: Atlassian invalidates the previous one on every refresh, and losing it costs the user another consent screen.
+
+The 3LO flow helpers are exported from the package root: `generateAuthorizationUrl`, `exchangeAuthorizationCode`, `refreshOAuth2Token`, `getAccessibleResources`.
 
 ### `apiPrefix`
 
@@ -138,7 +163,7 @@ Every method returned a promise *and* accepted a callback. 3.0 is promise-only:
 ## JWT authentication is gone
 
 2.x supported Atlassian Connect JWT via `@atlassian/atlassian-jwt`. 3.0 does not:
-`auth` is `basic` or `bearer` only.
+`auth` is `basic`, `bearer` or `oauth2` only.
 
 JWT is signed per request — the token depends on the request method and URL — so
 it cannot be expressed as a static header, and supporting it means carrying a
@@ -260,21 +285,33 @@ points are `confluence.js`, `confluence.js/v1`, `confluence.js/v2` and
 
 ## Errors
 
-2.x rejected with an `AxiosError`. 3.0 throws `ApiError`:
+2.x rejected with an `AxiosError`. 3.0 throws a typed error per status:
 
 ```diff
 -import type { Error as ConfluenceError } from 'confluence.js';
-+import { ApiError } from 'confluence.js';
++import { isNotFoundError } from 'confluence.js';
 
  try {
    await client.group.getGroups({});
  } catch (error) {
 -  if (error.response?.status === 404) { … }
-+  if (error instanceof ApiError && error.status === 404) { … }
++  if (isNotFoundError(error)) { … }
  }
 ```
 
 `ApiError` carries `status`, `statusText` and `body` (the parsed response body).
+`AuthError` (401), `ForbiddenError` (403), `NotFoundError` (404),
+`RateLimitError` (429, with `retryAfterMs`) and `ServerError` (5xx) extend it, so
+catching `ApiError` still catches everything.
+
+Two failures that used to escape as something else now have types of their own:
+a transport fault is a `NetworkError` (with `code`, `transient` and the original
+error as `cause`) rather than a raw `TypeError` from `fetch`, and an OAuth 2.0
+failure is an `OAuthError` rather than a plain `Error`.
+
+Prefer the `isXxx` predicates over `instanceof`: they check a branded marker
+instead of the prototype chain, so they still work when two copies of the package
+end up installed together.
 
 New in 3.0: a response that does not match its schema throws a `ZodError`. That
 means Atlassian's API drifted from its own spec — please

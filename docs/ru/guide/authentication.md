@@ -1,6 +1,6 @@
 ---
 title: Аутентификация
-description: Аутентификация confluence.js через API-токен Atlassian или OAuth 2.0 (3LO), включая обновление токенов и хук повторной авторизации после 401.
+description: Аутентификация confluence.js через API-токен Atlassian или OAuth 2.0 (3LO), включая автоматическое обновление токенов и определение cloud id.
 ---
 
 # Аутентификация
@@ -24,22 +24,33 @@ const confluence = createV2Client({
 });
 ```
 
-Клиент отправляет их HTTP-заголовком Basic. Токен несёт **ваши** права: куда дотягиваетесь вы, туда дотянется и скрипт.
+Клиент отправляет это заголовком HTTP Basic. Токен несёт **ваши** права: куда дотягиваетесь вы, туда дотянется и скрипт.
 
 ## OAuth 2.0 (3LO)
 
-Чтобы действовать от имени других пользователей, передайте access-токен как bearer:
+Нужен, когда вы действуете от имени других пользователей. Передайте клиенту учётные данные приложения и refresh-токен — остальное он сделает сам: обновит токен до истечения, один раз повторит запрос после `401` и найдёт нужный сайт.
 
 ```ts
 const confluence = createV2Client({
-  host: 'https://your-domain.atlassian.net',
-  auth: { type: 'bearer', token: accessToken },
+  auth: {
+    type: 'oauth2',
+    clientId: process.env.OAUTH_CLIENT_ID!,
+    clientSecret: process.env.OAUTH_CLIENT_SECRET!,
+    refreshToken: await tokenStore.refreshToken(),
+    onTokenRefresh: async ({ refreshToken, expiresAt }) => {
+      await tokenStore.save({ refreshToken, expiresAt });
+    },
+  },
 });
 ```
 
-### Токены, которые истекают
+`host` здесь нет: токены 3LO не принимаются на домене вашего сайта и работают только через шлюз Atlassian, поэтому клиент собирает этот URL сам.
 
-Access-токен в переменной устаревает. Передайте вместо него резолвер — он вызывается на **каждый запрос**, поэтому всегда видит актуальный токен:
+У 3LO достаточно подвижных частей — разные семейства scopes для v1 и v2, ротация refresh-токенов, обработка колбэка, — чтобы вынести его в [отдельное руководство](./oauth2). Прочитайте его, прежде чем это подключать.
+
+## Bearer-токены с истечением
+
+Вне 3LO — шлюз или прокси, выпускающий собственные токены, — передайте резолвер, он вызывается на **каждом запросе**:
 
 ```ts
 const confluence = createV2Client({
@@ -48,7 +59,7 @@ const confluence = createV2Client({
 });
 ```
 
-А если токен истёк прямо в полёте, `getAuthOn401` один раз переполучит авторизацию и повторит запрос:
+А если токен истёк прямо во время запроса, `getAuthOn401` пересоберёт аутентификацию и повторит его:
 
 ```ts
 const confluence = createV2Client({
@@ -58,55 +69,14 @@ const confluence = createV2Client({
 });
 ```
 
-Срабатывает только на `401` и только один раз на запрос — второй `401` это уже настоящий `ApiError`, а не бесконечный цикл.
-
-## Сам поток 3LO
-
-`confluence.js/core` закрывает и процесс авторизации, так что отдельная OAuth-библиотека не нужна:
-
-```ts
-import {
-  buildAtlassianAuthUrl,
-  parseAtlassianCallbackUrl,
-  obtainAtlassianOAuthTokens,
-  refreshAtlassianOAuthTokens,
-} from 'confluence.js/core';
-
-// 1. Отправляем пользователя сюда.
-const url = buildAtlassianAuthUrl({
-  clientId: process.env.OAUTH_CLIENT_ID!,
-  redirectUri: 'https://your-app.example/callback',
-  scope: ['read:page:confluence', 'write:page:confluence', 'offline_access'],
-  state: sessionState,
-});
-
-// 2. Он возвращается на ваш redirect URI.
-const { code } = parseAtlassianCallbackUrl(request.url, { expectedState: sessionState });
-
-// 3. Меняем код на токены.
-const tokens = await obtainAtlassianOAuthTokens({
-  clientId: process.env.OAUTH_CLIENT_ID!,
-  clientSecret: process.env.OAUTH_CLIENT_SECRET!,
-  redirectUri: 'https://your-app.example/callback',
-  code,
-});
-
-// 4. Позже, когда access-токен истечёт.
-const refreshed = await refreshAtlassianOAuthTokens({
-  clientId: process.env.OAUTH_CLIENT_ID!,
-  clientSecret: process.env.OAUTH_CLIENT_SECRET!,
-  refreshToken: tokens.refreshToken,
-});
-```
-
-Запрашивайте `offline_access`, если нужен refresh-токен.
+Срабатывает только на `401` и только один раз за запрос — второй `401` это уже настоящий `ApiError`, а не цикл повторов.
 
 ## JWT (Atlassian Connect) не поддерживается
 
-В 3.x JWT убран. Connect-приложения аутентифицируются как *приложение*: общий секрет и подписанный JWT на каждый запрос — модель, отличная от двух описанных выше, и жёстко связанная с жизненным циклом Connect.
+В 3.x JWT убран. Connect-приложения аутентифицируются как *приложение*: общий секрет и подписанный JWT на каждый запрос — модель, отличная от двух описанных выше, и она привязывает клиент к жизненному циклу Connect.
 
-Если вы пишете Connect-приложение, оставайтесь на `confluence.js@2`. См. [руководство по миграции](../migration/v2-to-v3).
+Если вы делаете Connect-приложение, оставайтесь на `confluence.js@2`. См. [руководство по миграции](../migration/v2-to-v3).
 
-## Куда уходят учётные данные
+## Куда попадают учётные данные
 
-Никуда, кроме заголовка `Authorization` ваших же запросов. В пакете нет телеметрии, аналитики и сторонних хостов: единственные сетевые вызовы — те, что делаете вы, к тому `host`, который настроили.
+Ваши учётные данные уходят в два места и никуда больше: в заголовок `Authorization` ваших собственных запросов и — при OAuth 2.0 — на собственные эндпоинты Atlassian `auth.atlassian.com` и `api.atlassian.com` для обновления токена и поиска сайта. Ни телеметрии, ни аналитики, ни сторонних хостов в пакете нет.

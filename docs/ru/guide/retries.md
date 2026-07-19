@@ -35,14 +35,14 @@ const confluence = createV2Client({
 **Любой 4xx, включая 429.** Rate limit — это сигнал притормозить, а не временный сбой, который можно замазать: повтор по таймеру только быстрее сжигает лимит и прячет тот факт, что вы за него вышли. Обрабатывайте осознанно:
 
 ```ts
-import { ApiError } from 'confluence.js';
+import { isRateLimitError } from 'confluence.js';
 
 try {
   await confluence.page.createPage({ body: page });
 } catch (error) {
-  if (error instanceof ApiError && error.status === 429) {
-    // На rate limit Atlassian присылает Retry-After — уважьте его и вернитесь в очередь.
-    await enqueueAfterBackoff();
+  if (isRateLimitError(error)) {
+    // Совет самого Atlassian, уже разобранный из Retry-After.
+    await enqueueAfter(error.retryAfterMs ?? 60_000);
 
     return;
   }
@@ -53,9 +53,9 @@ try {
 
 **5xx, кроме 502/503/504,** тоже не повторяется. `500` от Confluence означает, что сервер принял запрос и подавился им: повтор обычно воспроизведёт тот же сбой, а замалчивание скроет настоящую ошибку — в API или в том, что вы отправили.
 
-## `withRetry` — rate limit, точечно
+## `withRetry` — та же политика, точечно
 
-Политика клиента намеренно игнорирует `429`. Когда для конкретного вызова его всё-таки надо переждать, помогает `withRetry`:
+Когда повторы нужны вокруг одного вызова, а не всего клиента, помогает `withRetry`:
 
 ```ts
 import { withRetry } from 'confluence.js/core';
@@ -67,13 +67,22 @@ const page = await withRetry(() => confluence.page.getPageById({ id: 12345 }), {
 });
 ```
 
-Он повторяет `ApiError` со статусом **429, 502, 503 или 504** — и больше ничего: 401, 403, 404 и 500 пробрасываются с первой же попытки.
+Он применяет **ровно ту же политику, что выше** — временные транспортные сбои и 502/503/504, — поэтому обёртка вызова никогда не меняет набор «временных» сбоев. 401, 403, 404 и 500 пробрасываются с первой же попытки.
 
-::: warning Это не поллер
-`withRetry` реагирует только на эти четыре статуса. Обычный `throw` внутри операции не повторяется, поэтому ждать согласованности с его помощью нельзя:
+Чтобы отдельный вызов пережидал rate limit, включите это явно:
 
 ```ts
-// ❌ выполнится ровно один раз — брошенный Error не является ApiError
+await withRetry(() => confluence.page.createPage({ body: page }), {
+  maxAttempts: 3,
+  retryRateLimit: true, // ждёт Retry-After, если Confluence его прислал
+});
+```
+
+::: warning Это не поллер
+`withRetry` реагирует только на такие сбои. Обычный `throw` внутри операции не повторяется, поэтому ждать согласованности с его помощью нельзя:
+
+```ts
+// ❌ выполнится ровно один раз — брошенный Error не является повторяемым сбоем
 await withRetry(async () => {
   const hits = await confluence.search.searchByCQL({ cql: `id=${pageId}` });
   if (!hits.results.length) throw new Error('ещё не проиндексировано');

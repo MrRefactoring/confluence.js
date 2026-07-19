@@ -21,6 +21,7 @@ const guideSidebar = (ru = false) => {
         { text: ru ? 'Быстрый старт' : 'Getting Started', link: `${p}/guide/getting-started` },
         { text: ru ? 'Установка' : 'Installation', link: `${p}/guide/installation` },
         { text: ru ? 'Аутентификация' : 'Authentication', link: `${p}/guide/authentication` },
+        { text: 'OAuth 2.0 (3LO)', link: `${p}/guide/oauth2` },
         { text: ru ? 'Выбор версии API' : 'Choosing a version', link: `${p}/guide/choosing-a-version` },
         { text: ru ? 'Обработка ошибок' : 'Error Handling', link: `${p}/guide/error-handling` },
         { text: ru ? 'Повторы запросов' : 'Retries', link: `${p}/guide/retries` },
