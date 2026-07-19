@@ -1,48 +1,29 @@
 import { bodyToFetchBody, requiresDuplex, shouldSetJsonContentType } from './bodyToFetchBody.js';
 import type { Auth, ClientConfig, SendRequestOptions } from './schemas/index.js';
 import type { Client } from './interfaces/index.js';
-import { ApiError } from './apiError.js';
+import type { OAuth2Manager } from './oauth/index.js';
+import { createApiError, isNetworkError, toNetworkError, TRANSIENT_HTTP_STATUSES } from './errors/index.js';
 import { BufferSchema } from './formData/index.js';
 import { buildUrlWithSearchParams } from './serializeSearchParams.js';
+import { clientConfigSchema } from './schemas/index.js';
+import { createOAuth2Manager } from './oauth/index.js';
 
-/** Node/undici error codes that signal a recoverable transport-layer failure. */
-const TRANSIENT_NETWORK_CODES = new Set([
-  'ECONNRESET',
-  'ECONNREFUSED',
-  'ETIMEDOUT',
-  'ENOTFOUND',
-  'EAI_AGAIN',
-  'EPIPE',
-  'UND_ERR_SOCKET',
-  'UND_ERR_CONNECT_TIMEOUT',
-  'UND_ERR_HEADERS_TIMEOUT',
-  'UND_ERR_BODY_TIMEOUT',
-]);
-/** HTTP statuses that signal a recoverable upstream failure. */
-const TRANSIENT_HTTP_STATUSES = new Set([502, 503, 504]);
-
-function isTransientNetworkError(err: unknown): boolean {
-  if (!(err instanceof Error)) return false;
-
-  const stack: unknown[] = [];
-  let cur: unknown = err;
-  while (cur && stack.length < 5) {
-    stack.push(cur);
-    cur = (cur as { cause?: unknown }).cause;
+/**
+ * Whether this 401 means "missing scope" rather than "stale token".
+ *
+ * Reads a clone, so the body stays available for the error that gets thrown later.
+ */
+async function isScopeMismatchResponse(response: Response): Promise<boolean> {
+  try {
+    return /scope does not match/i.test(await response.clone().text());
+  } catch {
+    return false;
   }
+}
 
-  for (const node of stack) {
-    if (!(node instanceof Error)) continue;
-
-    const code = (node as Error & { code?: string }).code;
-
-    if (code && TRANSIENT_NETWORK_CODES.has(code)) return true;
-
-    // OpenSSL errors surface as ERR_SSL_* — any of them indicates a broken TLS session.
-    if (code?.startsWith('ERR_SSL_')) return true;
-  }
-
-  return false;
+/** A `Client` is anything with `sendRequest`; a `ClientConfig` never has one. */
+function isClient(value: ClientConfig | Client): value is Client {
+  return typeof (value as Client).sendRequest === 'function';
 }
 
 function base64Encode(str: string): string {
@@ -54,6 +35,13 @@ function base64Encode(str: string): string {
 }
 
 async function getAuthHeaders(auth: Auth): Promise<Record<string, string>> {
+  if (auth.type === 'oauth2') {
+    // Handled by the manager, which owns refresh and expiry. Reaching here means
+    // the caller swapped in OAuth 2.0 through `getAuthOn401`, which cannot carry
+    // that state — so fall back to whatever static token was supplied.
+    return auth.accessToken ? { Authorization: `Bearer ${auth.accessToken}` } : {};
+  }
+
   if (auth.type === 'basic') {
     const encoded = base64Encode(`${auth.email}:${auth.apiToken}`);
 
@@ -80,16 +68,32 @@ async function getAuthHeaders(auth: Auth): Promise<Record<string, string>> {
  *
  * @stable
  */
-export function createClient(config: ClientConfig): Client {
+export function createClient(config: ClientConfig | Client): Client {
+  // Already a client: hand it straight back. This is what lets createV1Client and
+  // createV2Client share one instance — and with it one OAuth token. Building a
+  // client per factory would give each its own refresh cycle, and the first
+  // rotation would kill the other's refresh token.
+  if (isClient(config)) return config;
+
+  clientConfigSchema.parse(config);
+
   const { host, auth, headers: configHeaders = {}, getAuthOn401, retry } = config;
   const retryMaxAttempts = Math.max(1, retry?.maxAttempts ?? 1);
   const retryInitialDelayMs = retry?.initialDelayMs ?? 500;
   const retryBackoffFactor = retry?.backoffFactor ?? 2;
 
+  // One manager per client, so the refreshed token and the resolved cloud id are
+  // shared by every request instead of being rediscovered per call.
+  const oauth2Manager: OAuth2Manager | undefined = auth?.type === 'oauth2' ? createOAuth2Manager(auth) : undefined;
+
   return {
     async sendRequest<T>(requestConfig: SendRequestOptions<T>): Promise<T> {
       const path = requestConfig.url.startsWith('/') ? requestConfig.url : `/${requestConfig.url}`;
-      const normalizedHost = host && (host.endsWith('/') ? host.slice(0, -1) : host);
+      // Under OAuth 2.0 the gateway URL wins over `host`: a 3LO token is rejected
+      // on the site's own domain, so honouring `host` there would only produce 401s.
+      const effectiveHost = oauth2Manager ? await oauth2Manager.getBaseUrl() : host;
+      const normalizedHost =
+        effectiveHost && (effectiveHost.endsWith('/') ? effectiveHost.slice(0, -1) : effectiveHost);
       const url = normalizedHost ? normalizedHost + path : requestConfig.url;
       const fullUrl = buildUrlWithSearchParams(url, requestConfig.searchParams);
 
@@ -118,10 +122,17 @@ export function createClient(config: ClientConfig): Client {
         return fetch(fullUrl, init);
       };
 
-      let derivedAuthHeaders = auth ? await getAuthHeaders(auth) : {};
+      const currentAuthHeaders = async (): Promise<Record<string, string>> => {
+        if (oauth2Manager) return { Authorization: await oauth2Manager.getAuthorizationHeader() };
+
+        return auth ? getAuthHeaders(auth) : {};
+      };
+
+      let derivedAuthHeaders = await currentAuthHeaders();
       let response: Response;
       let delayMs = retryInitialDelayMs;
       let networkAttempt = 0;
+      let reauthenticated = false;
       // Retry loop: covers transport-layer failures (TLS/socket/DNS) and
       // 502/503/504 upstream failures. Auth re-derivation on 401 happens once
       // per response cycle, inside the loop, so a refreshed token survives
@@ -132,20 +143,40 @@ export function createClient(config: ClientConfig): Client {
         try {
           response = await doRequest(derivedAuthHeaders);
         } catch (err) {
-          if (networkAttempt + 1 < retryMaxAttempts && isTransientNetworkError(err)) {
+          // A bad URL also rejects here, as a TypeError with no code — wrapping it
+          // keeps one catch surface, and `transient: false` keeps it out of retries.
+          const networkError = isNetworkError(err) ? err : toNetworkError(err, fullUrl);
+
+          if (networkAttempt + 1 < retryMaxAttempts && networkError.transient) {
             networkAttempt += 1;
             await new Promise<void>(resolve => setTimeout(resolve, delayMs));
             delayMs = Math.round(delayMs * retryBackoffFactor);
             continue;
           }
 
-          throw err;
+          throw networkError;
         }
 
-        if (response.status === 401 && getAuthOn401) {
-          const newAuth = await getAuthOn401();
-          derivedAuthHeaders = await getAuthHeaders(newAuth);
-          continue;
+        // Re-authentication is attempted at most once per request: a second 401
+        // means the fresh credentials are themselves rejected, and retrying that
+        // forever would turn a bad token into an infinite loop.
+        //
+        // A missing scope also answers 401, and refreshing cannot mint a scope the
+        // app never asked for. Worse, each pointless refresh rotates the refresh
+        // token, so a loop of scope errors would churn credentials for nothing.
+        if (response.status === 401 && !reauthenticated && !(await isScopeMismatchResponse(response))) {
+          if (oauth2Manager?.canRefresh()) {
+            reauthenticated = true;
+            await oauth2Manager.forceRefresh();
+            derivedAuthHeaders = await currentAuthHeaders();
+            continue;
+          }
+
+          if (getAuthOn401) {
+            reauthenticated = true;
+            derivedAuthHeaders = await getAuthHeaders(await getAuthOn401());
+            continue;
+          }
         }
 
         if (TRANSIENT_HTTP_STATUSES.has(response.status) && networkAttempt + 1 < retryMaxAttempts) {
@@ -166,11 +197,12 @@ export function createClient(config: ClientConfig): Client {
         } catch {
           //
         }
-        throw new ApiError(
+        throw createApiError(
           `Request failed: ${response.status} ${response.statusText}${text ? ` - ${text}` : ''}`,
           response.status,
           response.statusText,
           detail,
+          response.headers,
         );
       }
 

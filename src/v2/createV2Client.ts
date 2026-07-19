@@ -1,4 +1,4 @@
-import { type ClientConfig, createClient, type Buffer } from '#/core';
+import { type ClientConfig, type Client, createClient, type Buffer } from '#/core';
 import * as adminKey from './api/adminKey';
 import * as attachment from './api/attachment';
 import * as label from './api/label';
@@ -360,7 +360,7 @@ import type {
   SpaceProperty,
 } from './models';
 
-export function createV2Client(clientConfig: ClientConfig) {
+export function createV2Client(clientConfig: ClientConfig | Client) {
   const client = createClient(clientConfig);
 
   return {

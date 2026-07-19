@@ -1,5 +1,5 @@
 import { bodyToFetchBody, requiresDuplex, shouldSetJsonContentType } from './bodyToFetchBody.js';
-import { ApiError } from './apiError.js';
+import { createApiError, SchemaMismatchError, toNetworkError } from './errors/index.js';
 import type { SendRequestOptions } from './schemas/index.js';
 import { buildUrlWithSearchParams } from './serializeSearchParams.js';
 
@@ -22,7 +22,13 @@ export async function sendRequest<T = unknown>(options: SendRequestOptions<T>): 
     }
   }
 
-  const response = await fetch(fullUrl, init);
+  let response: Response;
+
+  try {
+    response = await fetch(fullUrl, init);
+  } catch (err) {
+    throw toNetworkError(err, fullUrl);
+  }
 
   if (!response.ok) {
     const text = await response.text();
@@ -32,11 +38,12 @@ export async function sendRequest<T = unknown>(options: SendRequestOptions<T>): 
     } catch {
       //
     }
-    throw new ApiError(
-      `Request failed: ${response.status} ${response.statusText}`,
+    throw createApiError(
+      `Request failed: ${response.status} ${response.statusText}${text ? ` - ${text}` : ''}`,
       response.status,
       response.statusText,
       detail,
+      response.headers,
     );
   }
 
@@ -64,7 +71,13 @@ export async function sendRequest<T = unknown>(options: SendRequestOptions<T>): 
   const text = await response.text();
 
   if (schema) {
-    throw new ApiError('Schema provided but response is not JSON', 0, '', text);
+    // Not an HTTP failure — the response was a 2xx that simply is not what the
+    // endpoint's schema describes, so it gets its own error rather than a
+    // fabricated status.
+    throw new SchemaMismatchError(
+      `Expected a JSON response to validate against the schema, got ${contentType ?? 'no content type'}`,
+      text,
+    );
   }
 
   return text as T;

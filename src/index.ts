@@ -26,6 +26,46 @@ export { createV1Client, type V1Client } from './v1/createV1Client.js';
 
 export { createV2Client, type V2Client } from './v2/createV2Client.js';
 
-export { ApiError } from './core/index.js';
+export {
+  ApiError,
+  AuthError,
+  ForbiddenError,
+  NotFoundError,
+  RateLimitError,
+  ScopeError,
+  ServerError,
+  NetworkError,
+  OAuthError,
+  ConfigError,
+  SchemaMismatchError,
+  isApiError,
+  isAuthError,
+  isForbiddenError,
+  isNotFoundError,
+  isRateLimitError,
+  isServerError,
+  isNetworkError,
+  isOAuthError,
+  isConfigError,
+  isSchemaMismatchError,
+  isReauthorizationRequired,
+  isScopeError,
+} from './core/index.js';
 
 export type { Auth, ClientConfig } from './core/index.js';
+
+export {
+  generateAuthorizationUrl,
+  exchangeAuthorizationCode,
+  refreshOAuth2Token,
+  getAccessibleResources,
+  parseCallbackUrl,
+} from './core/index.js';
+
+export type {
+  OAuth2TokenResponse,
+  AccessibleResource,
+  TokenRefreshEvent,
+  OnTokenRefresh,
+  CallbackParams,
+} from './core/index.js';

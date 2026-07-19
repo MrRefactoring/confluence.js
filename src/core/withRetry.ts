@@ -1,6 +1,4 @@
-import { ApiError } from './apiError.js';
-
-const RETRYABLE_STATUS_CODES = new Set([429, 502, 503, 504]);
+import { isApiError, isNetworkError, isRateLimitError, TRANSIENT_HTTP_STATUSES } from './errors/index.js';
 
 export interface RetryOptions {
   /** Total number of attempts including the first. Default: 3. */
@@ -9,15 +7,23 @@ export interface RetryOptions {
   initialDelayMs?: number;
   /** Exponential backoff multiplier. Default: 2. */
   backoffFactor?: number;
+  /**
+   * Also retry a 429, waiting out `Retry-After` when Confluence sent one. Off by default: a rate limit asks you to slow
+   * the whole client down, and retrying one call in place papers over that.
+   */
+  retryRateLimit?: boolean;
 }
 
 /**
- * Wraps an async operation with automatic retry on retriable HTTP errors.
+ * Wraps an async operation with automatic retry on failures worth retrying.
  *
- * Retries only an {@link ApiError} carrying 429, 502, 503 or 504 — a rate limit or a gateway. Anything else is rethrown
- * on the first attempt: 401, 403, 404 and 500 all describe the request, and a plain `Error` from the operation is not
- * an HTTP answer at all. It is therefore a rate-limit helper, not a poller — to wait on eventually-consistent state,
- * loop on the value rather than on a thrown error.
+ * Retries a transient transport failure and a 502/503/504 gateway error — the same policy the client applies to its own
+ * requests, so wrapping a call does not change which failures count as temporary. Everything else is rethrown on the
+ * first attempt: 401, 403, 404 and 500 describe the request, not the moment. A 429 joins the list only under
+ * `retryRateLimit`, and then honours `Retry-After`.
+ *
+ * It is therefore a transient-failure helper, not a poller — to wait on eventually-consistent state, loop on the value
+ * rather than on a thrown error.
  *
  * @example
  *   ```typescript
@@ -30,7 +36,7 @@ export interface RetryOptions {
  * @stable
  */
 export async function withRetry<T>(operation: () => Promise<T>, options: RetryOptions = {}): Promise<T> {
-  const { maxAttempts = 3, initialDelayMs = 1000, backoffFactor = 2 } = options;
+  const { maxAttempts = 3, initialDelayMs = 1000, backoffFactor = 2, retryRateLimit = false } = options;
   let lastError: unknown;
   let delayMs = initialDelayMs;
 
@@ -40,13 +46,20 @@ export async function withRetry<T>(operation: () => Promise<T>, options: RetryOp
     } catch (err) {
       lastError = err;
 
-      const isRetryable = err instanceof ApiError && RETRYABLE_STATUS_CODES.has(err.status);
+      const rateLimited = retryRateLimit && isRateLimitError(err);
+      const isRetryable =
+        rateLimited ||
+        (isNetworkError(err) && err.transient) ||
+        (isApiError(err) && TRANSIENT_HTTP_STATUSES.has(err.status));
 
       if (!isRetryable || attempt === maxAttempts) {
         throw err;
       }
 
-      await new Promise<void>(resolve => setTimeout(resolve, delayMs));
+      // Atlassian's own advice beats the backoff curve whenever it gave any.
+      const waitMs = (isRateLimitError(err) ? err.retryAfterMs : undefined) ?? delayMs;
+
+      await new Promise<void>(resolve => setTimeout(resolve, waitMs));
       delayMs = Math.round(delayMs * backoffFactor);
     }
   }

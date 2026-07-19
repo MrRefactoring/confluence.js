@@ -15,7 +15,7 @@ import { createV1Client, createV2Client } from '#/index';
  */
 
 const HOST = 'https://acme.atlassian.net';
-const AUTH = { type: 'basic', email: 'a@b.c', apiToken: 'token' } as const;
+const AUTH = { type: 'basic', email: 'a@b.co', apiToken: 'token' } as const;
 
 /**
  * Records every request URL. Answers 204, which sendRequest returns as undefined

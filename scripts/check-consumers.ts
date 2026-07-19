@@ -40,7 +40,7 @@ interface Consumer {
   verify: (dir: string) => [string, string[]];
 }
 
-const CONFIG = "{ host: 'https://acme.atlassian.net', auth: { type: 'basic', email: 'a@b.c', apiToken: 'x' } }";
+const CONFIG = "{ host: 'https://acme.atlassian.net', auth: { type: 'basic', email: 'a@b.co', apiToken: 'x' } }";
 
 /** Runtime smoke: drives every entry point and asserts requests still carry the API path. */
 const SMOKE_JS = `

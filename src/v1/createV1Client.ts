@@ -1,4 +1,4 @@
-import { type ClientConfig, createClient, type Buffer } from '#/core';
+import { type ClientConfig, type Client, createClient, type Buffer } from '#/core';
 import * as audit from './api/audit';
 import * as content from './api/content';
 import * as experimental from './api/experimental';
@@ -213,7 +213,7 @@ import type {
   UserProperty,
 } from './models';
 
-export function createV1Client(clientConfig: ClientConfig) {
+export function createV1Client(clientConfig: ClientConfig | Client) {
   const client = createClient(clientConfig);
 
   return {

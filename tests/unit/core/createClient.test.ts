@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
-import { ApiError, BufferSchema, createClient } from '#/core';
+import { ApiError, BufferSchema, createClient, isNetworkError, type NetworkError } from '#/core';
 
 const HOST = 'https://acme.atlassian.net';
 
@@ -41,10 +41,10 @@ describe('auth headers', () => {
   it('base64-encodes email and token for basic auth', async () => {
     const calls = mockFetch([json({})]);
 
-    await createClient({ host: HOST, auth: { type: 'basic', email: 'a@b.c', apiToken: 'secret' } })
+    await createClient({ host: HOST, auth: { type: 'basic', email: 'a@b.co', apiToken: 'secret' } })
       .sendRequest({ url: '/x', method: 'GET' });
 
-    const expected = `Basic ${Buffer.from('a@b.c:secret').toString('base64')}`;
+    const expected = `Basic ${Buffer.from('a@b.co:secret').toString('base64')}`;
 
     expect((calls[0].init.headers as Record<string, string>).Authorization).toBe(expected);
   });
@@ -241,9 +241,15 @@ describe('retry', () => {
   it('does not retry a non-transport error such as a bad URL', async () => {
     const calls = mockFetch([new TypeError('Invalid URL')]);
 
-    await expect(createClient({ host: HOST, retry }).sendRequest({ url: '/x', method: 'GET' })).rejects.toThrow(
-      TypeError,
-    );
+    const error = await createClient({ host: HOST, retry })
+      .sendRequest({ url: '/x', method: 'GET' })
+      .catch((e: unknown) => e);
+
+    // Wrapped rather than rethrown, so every failure of this client is catchable
+    // as one of its own errors. `transient: false` is what keeps it out of retries.
+    expect(isNetworkError(error)).toBe(true);
+    expect((error as NetworkError).transient).toBe(false);
+    expect((error as NetworkError).cause).toBeInstanceOf(TypeError);
     expect(calls).toHaveLength(1);
   });
 });
