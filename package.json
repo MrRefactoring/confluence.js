@@ -16,6 +16,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./browser": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/browser.js"
+    },
     "./package.json": "./package.json",
     "./core": {
       "types": "./dist/core/index.d.ts",
@@ -75,7 +79,8 @@
     "automation"
   ],
   "scripts": {
-    "build": "tsc && tsc-alias --resolve-full-paths",
+    "build": "tsc && tsc-alias --resolve-full-paths && pnpm run build:browser",
+    "build:browser": "vite build --config vite.browser.config.ts",
     "lint": "eslint src",
     "typecheck": "tsc -p tsconfig.test.json",
     "lint:fix": "pnpm run lint --fix",
@@ -88,6 +93,8 @@
     "test:live:v1": "vitest run --config vitest.config.live.ts tests/live/v1",
     "test:live:v2": "vitest run --config vitest.config.live.ts tests/live/v2",
     "check:attw": "attw --pack . --profile=esm-only",
+    "check:browser": "node scripts/checkBrowserSafe.ts",
+    "check:browser:e2e": "node scripts/checkBrowser.ts",
     "check:consumers": "tsx scripts/check-consumers.ts",
     "prepublishOnly": "pnpm run build && pnpm run lint && pnpm run check:attw",
     "codemod:v2-to-v3": "jscodeshift -t tools/codemod/v2-to-v3.ts --parser ts --extensions ts,tsx,js,jsx",
@@ -126,6 +133,7 @@
     "husky": "^9.1.7",
     "jiti": "^2.7.0",
     "jscodeshift": "^17.4.0",
+    "playwright": "^1.61.1",
     "prettier": "^3.9.5",
     "prettier-plugin-jsdoc": "^1.8.1",
     "tsc-alias": "^1.9.1",

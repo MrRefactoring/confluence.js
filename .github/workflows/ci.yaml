@@ -80,3 +80,12 @@ jobs:
         run: pnpm run check:attw
       - name: 🚚 Consumer smoke tests
         run: pnpm run check:consumers
+      # Static: nothing Node-only is named in the runtime or in the declarations.
+      - name: 🌐 Browser-safe build
+        run: pnpm run check:browser
+      # Live: the built package actually loads and works in a browser. Kept in
+      # this job so the browser download only happens once per run.
+      - name: 🎭 Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+      - name: 🌍 Browser smoke tests
+        run: pnpm run check:browser:e2e
