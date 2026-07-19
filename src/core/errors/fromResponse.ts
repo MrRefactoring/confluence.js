@@ -9,6 +9,7 @@ import {
   type ApiErrorOptions,
 } from './apiError.js';
 import { NetworkError } from './networkError.js';
+import { PRODUCT } from '../productInfo.js';
 
 /** Node/undici error codes that signal a recoverable transport-layer failure. */
 const TRANSIENT_NETWORK_CODES = new Set([
@@ -87,9 +88,9 @@ export function parseRetryAfter(header: string | null, now = Date.now()): number
 /**
  * Whether a 401 is really a missing scope.
  *
- * Confluence says so in the body — `{"code":401,"message":"Unauthorized; scope does not match"}` — and nowhere else,
- * so the message is the only signal there is. Matched loosely, since the wording is Atlassian's to change; a miss
- * only costs the caller a plain `AuthError`.
+ * Confluence says so in the body — `{"code":401,"message":"Unauthorized; scope does not match"}` — and nowhere else, so
+ * the message is the only signal there is. Matched loosely, since the wording is Atlassian's to change; a miss only
+ * costs the caller a plain `AuthError`.
  */
 function isScopeMismatch(body: unknown): boolean {
   const message = typeof body === 'object' && body !== null ? (body as { message?: unknown }).message : body;
@@ -109,9 +110,8 @@ export function createApiError(
   if (status === 401) {
     return isScopeMismatch(body)
       ? new ScopeError(
-        `${message}\n\nThe token is missing a scope this endpoint requires. Refreshing will not help: add the scope ` +
-            'in the developer console and have the user authorize again. Note that v2 endpoints need granular scopes ' +
-            '(read:page:confluence) while v1 endpoints need classic ones (read:confluence-content.all).',
+        `${message}\n\nThe token is missing a scope this endpoint requires. Refreshing will not help: add the ` +
+            `scope in the developer console and have the user authorize again.${PRODUCT.scopeHint ? ` ${PRODUCT.scopeHint}` : ''}`,
         statusText,
         body,
         options,

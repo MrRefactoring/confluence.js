@@ -26,12 +26,20 @@ function isClient(value: ClientConfig | Client): value is Client {
   return typeof (value as Client).sendRequest === 'function';
 }
 
-function base64Encode(str: string): string {
-  if (typeof Buffer !== 'undefined') {
-    return Buffer.from(str, 'utf-8').toString('base64');
-  }
+/**
+ * Base64 for the Basic auth header, the same way in every runtime.
+ *
+ * `btoa` alone mangles anything outside Latin-1, so the string is encoded to UTF-8 bytes first — a credential may well
+ * hold non-ASCII. Verified byte-identical to `Buffer.from(…).toString('base64')`.
+ */
+function base64Encode(value: string): string {
+  const bytes = new TextEncoder().encode(value);
 
-  return btoa(unescape(encodeURIComponent(str)));
+  let binary = '';
+
+  for (const byte of bytes) binary += String.fromCharCode(byte);
+
+  return btoa(binary);
 }
 
 async function getAuthHeaders(auth: Auth): Promise<Record<string, string>> {

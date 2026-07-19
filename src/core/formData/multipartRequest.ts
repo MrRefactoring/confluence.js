@@ -1,14 +1,53 @@
 import type { AttachmentInput, AttachmentContent } from './attachmentInput.js';
+import { PRODUCT_SLUG } from '../productInfo.js';
 
 export type MultipartRequestBody = {
-  body: FormData | AsyncIterable<Uint8Array> | ReadableStream<Uint8Array>;
+  body: FormData | ReadableStream<Uint8Array>;
   headers?: Record<string, string>;
 };
 
 const textEncoder = new TextEncoder();
 
-function isNodeRuntime(): boolean {
-  return typeof process !== 'undefined' && !!process.versions.node;
+let streamingSupport: boolean | undefined;
+
+/**
+ * Whether this runtime accepts a `ReadableStream` as a request body.
+ *
+ * Node and Chromium do and signal it by reading `duplex`; Firefox and Safari do not, and the option stays untouched.
+ * Detecting it this way rather than by sniffing for `process` matters: bundlers routinely shim `process` as an empty
+ * object, where reading `process.versions.node` throws outright.
+ *
+ * The probe constructs a request and discards it, so the caller's own stream is never touched.
+ */
+function supportsRequestStreaming(): boolean {
+  if (streamingSupport !== undefined) return streamingSupport;
+
+  if (typeof Request === 'undefined' || typeof ReadableStream === 'undefined') {
+    streamingSupport = false;
+
+    return streamingSupport;
+  }
+
+  let duplexRead = false;
+
+  try {
+    new Request('https://streaming.probe.invalid', {
+      method: 'POST',
+      body: new ReadableStream(),
+      get duplex() {
+        duplexRead = true;
+
+        return 'half';
+      },
+    } as RequestInit);
+  } catch {
+    // A runtime that refuses a stream body outright cannot stream either.
+    duplexRead = false;
+  }
+
+  streamingSupport = duplexRead;
+
+  return streamingSupport;
 }
 
 function isAsyncIterable(value: unknown): value is AsyncIterable<Uint8Array | string> {
@@ -17,32 +56,21 @@ function isAsyncIterable(value: unknown): value is AsyncIterable<Uint8Array | st
   return typeof (value as { [Symbol.asyncIterator]?: unknown })[Symbol.asyncIterator] === 'function';
 }
 
+/** Node's `Buffer` is a `Uint8Array`, so the structural check covers it without naming a Node type. */
+function isBytes(value: unknown): value is Uint8Array {
+  return ArrayBuffer.isView(value) && !(value instanceof DataView);
+}
+
 function isStreamLikeContent(content: AttachmentContent): boolean {
   if (typeof content === 'string') return false;
 
   if (content instanceof Blob) return false;
 
-  if (typeof Buffer !== 'undefined' && content instanceof Buffer) return false;
+  if (isBytes(content)) return false;
 
   if (typeof ReadableStream !== 'undefined' && content instanceof ReadableStream) return true;
 
   return isAsyncIterable(content);
-}
-
-function toFormDataPart(content: AttachmentContent): Blob {
-  if (typeof content === 'string') {
-    return new Blob([content], { type: 'text/plain; charset=utf-8' });
-  }
-
-  if (content instanceof Blob) {
-    return content;
-  }
-
-  if (typeof Buffer !== 'undefined' && content instanceof Buffer) {
-    return new Blob([new Uint8Array(content)], { type: 'application/octet-stream' });
-  }
-
-  throw new TypeError('Streaming attachment content requires streaming multipart mode');
 }
 
 function escapeQuotes(value: string): string {
@@ -87,8 +115,8 @@ async function* contentToAsyncIterable(content: AttachmentContent): AsyncIterabl
     return;
   }
 
-  if (typeof Buffer !== 'undefined' && content instanceof Buffer) {
-    yield new Uint8Array(content);
+  if (isBytes(content)) {
+    yield content;
 
     return;
   }
@@ -118,7 +146,7 @@ function createBoundary(): string {
       ? crypto.randomUUID().replace(/-/g, '')
       : `${Date.now()}${Math.random().toString(16).slice(2)}`;
 
-  return `confluence-js-${suffix}`;
+  return `${PRODUCT_SLUG}-${suffix}`;
 }
 
 function toReadableStream(iterable: AsyncIterable<Uint8Array>): ReadableStream<Uint8Array> {
@@ -189,36 +217,40 @@ export async function toFormDataFile(attachment: AttachmentInput): Promise<Blob>
   return new Blob(chunks as BlobPart[], { type });
 }
 
-export function createMultipartRequestBody(input: AttachmentInput | AttachmentInput[]): MultipartRequestBody {
+/**
+ * A multipart body for `input`, streaming it where the runtime allows.
+ *
+ * Content that is already in memory — a `File`, `Blob`, `Uint8Array` or string — goes into a `FormData`, which every
+ * runtime handles and which lets the platform read a `File` off disk without loading it.
+ *
+ * Streaming content is sent as a stream where request streaming exists (Node, Chromium over HTTP/2) and is otherwise
+ * collected into a `Blob` first, because Firefox and Safari cannot send a stream at all. Collecting is the fallback
+ * rather than the default, so nothing silently buffers a large upload on a runtime that could have streamed it.
+ */
+export async function createMultipartRequestBody(
+  input: AttachmentInput | AttachmentInput[],
+): Promise<MultipartRequestBody> {
   const attachments = Array.isArray(input) ? input : [input];
   const hasStreamingInput = attachments.some(attachment => isStreamLikeContent(attachment.content));
 
-  if (!hasStreamingInput && typeof FormData !== 'undefined') {
-    const formData = new FormData();
+  if (hasStreamingInput && supportsRequestStreaming()) {
+    const boundary = createBoundary();
 
-    for (const attachment of attachments) {
-      formData.append('file', toFormDataPart(attachment.content), attachment.filename);
-    }
-
-    return { body: formData };
-  }
-
-  const boundary = createBoundary();
-  const iterable = encodeMultipart(attachments, boundary);
-
-  if (isNodeRuntime()) {
     return {
-      body: iterable,
+      body: toReadableStream(encodeMultipart(attachments, boundary)),
       headers: {
         'Content-Type': `multipart/form-data; boundary=${boundary}`,
       },
     };
   }
 
-  return {
-    body: toReadableStream(iterable),
-    headers: {
-      'Content-Type': `multipart/form-data; boundary=${boundary}`,
-    },
-  };
+  const formData = new FormData();
+
+  for (const attachment of attachments) {
+    // Collapses a stream into a Blob when we got here by falling back; a no-op
+    // for content that was already in memory.
+    formData.append('file', await toFormDataFile(attachment), attachment.filename);
+  }
+
+  return { body: formData };
 }

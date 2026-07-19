@@ -14,12 +14,21 @@ describe('bodyToFetchBody', () => {
     expect(bodyToFetchBody('{"already":"json"}')).toBe('{"already":"json"}');
   });
 
-  it('converts a Buffer to a Uint8Array — fetch rejects a bare Buffer', () => {
-    const result = bodyToFetchBody(Buffer.from('bytes'));
+  it('passes a Buffer through untouched — fetch accepts one, pooled byteOffset and all', () => {
+    // Verified against a real server: undici sends a Buffer, including a
+    // subarray with a non-zero byteOffset, byte for byte. Copying it into a
+    // fresh Uint8Array only duplicated the payload, and naming Buffer here
+    // would have pulled @types/node into the shipped declarations.
+    const buffer = Buffer.from('bytes');
 
-    expect(result).toBeInstanceOf(Uint8Array);
-    expect(result).not.toBeInstanceOf(Buffer);
-    expect(new TextDecoder().decode(result as Uint8Array)).toBe('bytes');
+    expect(bodyToFetchBody(buffer)).toBe(buffer);
+  });
+
+  it('treats a pooled Buffer subarray as binary rather than JSON-serializing it', () => {
+    const pooled = Buffer.from('xxxxxxxxxx').subarray(2, 7);
+
+    expect(bodyToFetchBody(pooled)).toBe(pooled);
+    expect(shouldSetJsonContentType(pooled)).toBe(false);
   });
 
   it.each([

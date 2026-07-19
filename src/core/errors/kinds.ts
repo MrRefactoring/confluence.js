@@ -1,3 +1,5 @@
+import { PRODUCT } from '../productInfo.js';
+
 /**
  * Every error this package throws carries the list of kinds it belongs to, under a well-known symbol.
  *
@@ -6,7 +8,7 @@
  * returns false. `instanceof` still works, because each class also implements `Symbol.hasInstance` on top of the same
  * list.
  */
-export const ERROR_KINDS = Symbol.for('confluence.js:error-kinds');
+export const ERROR_KINDS = Symbol.for(`${PRODUCT.packageName}:error-kinds`);
 
 export type ErrorKind =
   | 'api'

@@ -69,3 +69,7 @@ export type {
   OnTokenRefresh,
   CallbackParams,
 } from './core/index.js';
+
+export { createMultipartRequestBody, toFormDataFile } from './core/index.js';
+
+export type { AttachmentContent, AttachmentInput, MultipartRequestBody } from './core/index.js';

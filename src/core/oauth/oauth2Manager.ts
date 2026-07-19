@@ -1,9 +1,10 @@
 import type { AccessibleResource, OnTokenRefresh } from './types.js';
 import { getAccessibleResources, refreshOAuth2Token } from './helpers.js';
 import { isOAuthError, OAuthError } from '../errors/index.js';
+import { PRODUCT } from '../productInfo.js';
 
 /** 3LO tokens are only accepted through the gateway, never on the site's own domain. */
-const GATEWAY_BASE = 'https://api.atlassian.com/ex/confluence';
+const GATEWAY_BASE = `https://api.atlassian.com/ex/${PRODUCT.gatewaySlug}`;
 /** Refresh this many ms before `expiresAt`, to absorb clock skew and in-flight latency. */
 const EXPIRY_SKEW_MS = 60_000;
 

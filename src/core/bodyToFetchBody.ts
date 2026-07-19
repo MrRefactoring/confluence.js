@@ -17,9 +17,9 @@ function isBinaryBody(body: unknown): boolean {
 
   if (typeof ArrayBuffer !== 'undefined' && body instanceof ArrayBuffer) return true;
 
+  // Covers Node's Buffer too, which is a Uint8Array — naming it here would drag
+  // @types/node into the declaration and break browser consumers.
   if (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView(body as ArrayBufferView)) return true;
-
-  if (typeof Buffer !== 'undefined' && body instanceof Buffer) return true;
 
   if (isAsyncIterable(body)) return true;
 
@@ -27,10 +27,6 @@ function isBinaryBody(body: unknown): boolean {
 }
 
 export function bodyToFetchBody(body: unknown): BodyInit | AsyncIterable<unknown> {
-  if (typeof Buffer !== 'undefined' && body instanceof Buffer) {
-    return new Uint8Array(body);
-  }
-
   if (isBinaryBody(body)) {
     return body as BodyInit | AsyncIterable<unknown>;
   }
