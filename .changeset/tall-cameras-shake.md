@@ -60,6 +60,24 @@ const v1 = createV1Client(client);
 const v2 = createV2Client(client);
 ```
 
+**Node and the browser, from one build.** There is no separate web build: the code
+branches on what the runtime supports rather than on which runtime it is. It loads
+from a dependency-resolving CDN as published, and a self-contained `dist/browser.js`
+with zod inlined covers plain file hosts and `<script type="module">`:
+
+```html
+<script type="module">
+  import { createV2Client } from 'https://esm.sh/confluence.js';
+</script>
+```
+
+Attachments accept the same values everywhere — a `File`, `Blob`, `Uint8Array`,
+string, stream, and still Node's `Buffer` and `Readable`, which are a `Uint8Array`
+and an `AsyncIterable` respectively. They are no longer *named* in `AttachmentContent`,
+so the shipped declarations compile in a project without `@types/node`. Where a
+browser cannot send a request body as a stream, the stream is read into a `Blob`
+rather than failing. See the [browser guide](https://mrrefactoring.github.io/confluence.js/guide/browser).
+
 **Every failure has a type.** Non-2xx responses throw an `ApiError` subclass —
 `AuthError`, `ForbiddenError`, `NotFoundError`, `RateLimitError` (with
 `retryAfterMs` parsed from `Retry-After`), `ServerError`. Transport faults throw
@@ -86,6 +104,11 @@ if (isRateLimitError(error)) await sleep(error.retryAfterMs ?? 60_000);
 - `BaseClient` and the per-namespace classes are gone, as are deep imports like `confluence.js/api/content`
 - Errors are `ApiError` and its subclasses (`status`, `statusText`, `body`) rather
   than `AxiosError`; transport faults are `NetworkError`, OAuth failures are `OAuthError`
+- `AttachmentContent` no longer names `Buffer` or `Readable`. Both still work — the
+  type describes them structurally — but a declaration that required `@types/node`
+  broke every browser consumer
+- `createMultipartRequestBody` returns a `Promise`: collecting a stream for a runtime
+  that cannot send one is asynchronous
 - The v1 surface follows Atlassian's current spec, which has dropped 37 operations
   (`getContent`, `createContent`, `getSpace`, …) since 2.x shipped — each is mapped
   to its v2 equivalent in the migration guide

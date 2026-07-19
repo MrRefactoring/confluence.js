@@ -25,6 +25,7 @@ const guideSidebar = (ru = false) => {
         { text: ru ? 'Выбор версии API' : 'Choosing a version', link: `${p}/guide/choosing-a-version` },
         { text: ru ? 'Обработка ошибок' : 'Error Handling', link: `${p}/guide/error-handling` },
         { text: ru ? 'Повторы запросов' : 'Retries', link: `${p}/guide/retries` },
+        { text: ru ? 'Браузеры' : 'Browsers', link: `${p}/guide/browser` },
         { text: 'Tree-Shaking', link: `${p}/guide/tree-shaking` },
         { text: 'TypeScript', link: `${p}/guide/typescript` },
       ],
