@@ -359,10 +359,8 @@ import type {
   SpaceProperties,
   SpaceProperty,
 } from './models';
-
 export function createV2Client(clientConfig: ClientConfig | Client) {
   const client = createClient(clientConfig);
-
   return {
     adminKey: {
       getAdminKey: (): Promise<AdminKey> => adminKey.getAdminKey(client),
@@ -838,5 +836,4 @@ export function createV2Client(clientConfig: ClientConfig | Client) {
     },
   };
 }
-
 export type V2Client = ReturnType<typeof createV2Client>;

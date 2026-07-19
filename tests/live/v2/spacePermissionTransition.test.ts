@@ -40,6 +40,19 @@ const COMBINATION_PRINCIPAL_TYPES = [
 ] as const;
 const GATED_STATUSES = [400, 403, 404, 405, 501];
 
+/**
+ * A transition is already running on the tenant, so this one is refused.
+ *
+ * Not a gate and not a failure: `generateSpacePermissionCombinations` earlier in this file starts a real background
+ * task, and while it is in flight the bulk writes below legitimately conflict with it. Worth its own name rather than
+ * being folded into {@link GATED_STATUSES}, because it means the opposite — the call was well-formed and reached the
+ * business logic.
+ *
+ * This only began appearing once bodyless POSTs started carrying a `Content-Type`. Before that the generate call was
+ * rejected in transport, no task was ever started, and these writes reported a "gated" 400 while exercising nothing.
+ */
+const TRANSITION_IN_PROGRESS = 409;
+
 let client: ReturnType<typeof createV2Client>;
 const tracker = new ResourceTracker();
 let space: TestSpace;
@@ -51,7 +64,7 @@ let producedTaskId: string | undefined;
 
 function expectGatedError(error: unknown) {
   expect(error).toBeInstanceOf(ApiError);
-  expect(GATED_STATUSES).toContain((error as ApiError).status);
+  expect([...GATED_STATUSES, TRANSITION_IN_PROGRESS]).toContain((error as ApiError).status);
 }
 
 function expectWellFormedTask(task: { taskId: string; status: string; statusUrl: string }) {

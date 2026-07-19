@@ -1,4 +1,5 @@
 import type { AttachmentInput, AttachmentContent } from './attachmentInput.js';
+import { mimeTypeFor } from './mimeType.js';
 import { PRODUCT_SLUG } from '../productInfo.js';
 
 export type MultipartRequestBody = {
@@ -174,12 +175,11 @@ function toReadableStream(iterable: AsyncIterable<Uint8Array>): ReadableStream<U
 
 async function* encodeMultipart(attachments: AttachmentInput[], boundary: string): AsyncIterable<Uint8Array> {
   for (const attachment of attachments) {
+    // A Blob knows its own type; otherwise the filename is what we have.
     const contentType =
-      typeof attachment.content === 'string'
-        ? 'text/plain; charset=utf-8'
-        : attachment.content instanceof Blob && attachment.content.type
-          ? attachment.content.type
-          : 'application/octet-stream';
+      attachment.content instanceof Blob && attachment.content.type
+        ? attachment.content.type
+        : mimeTypeFor(attachment.filename);
 
     const preamble = `--${boundary}\r\nContent-Disposition: form-data; name="file"; filename="${escapeQuotes(attachment.filename)}"\r\nContent-Type: ${contentType}\r\n\r\n`;
     yield textEncoder.encode(preamble);
@@ -209,7 +209,9 @@ export async function toFormDataFile(attachment: AttachmentInput): Promise<Blob>
 
   if (content instanceof Blob) return content;
 
-  const type = typeof content === 'string' ? 'text/plain; charset=utf-8' : 'application/octet-stream';
+  // The filename is the only clue to the content type, and Atlassian decides
+  // whether to preview or download based on what we send.
+  const type = mimeTypeFor(attachment.filename);
   const chunks: Uint8Array[] = [];
 
   for await (const chunk of contentToAsyncIterable(content)) chunks.push(chunk);

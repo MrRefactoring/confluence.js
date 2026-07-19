@@ -4,13 +4,13 @@ import { VersionSortOrderSchema } from '../models';
 
 export const GetBlogPostVersionsSchema = z.object({
   /**
-   * The ID of the blog post to be queried for its versions. If you don't know the blog post ID, use Get blog posts and
-   * filter the results.
+   * The ID of the blog post to be queried for its versions. If you don't know the blog post ID, use Get blog posts
+   * and filter the results.
    */
   id: z.number(),
   /**
-   * The content format types to be returned in the `body` field of the response. If available, the representation will
-   * be available under a response field of the same name under the `body` field.
+   * The content format types to be returned in the `body` field of the response. If available, the representation
+   * will be available under a response field of the same name under the `body` field.
    */
   bodyFormat: PrimaryBodyRepresentationSchema.optional(),
   /**

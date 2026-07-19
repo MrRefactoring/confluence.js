@@ -7,9 +7,9 @@ export const SearchUserSchema = z.object({
    * build a CQL query.
    *
    * Example queries: cql=type=user will return up to 10k users cql=user="1234" will return user with accountId "1234"
-   * You can also use IN, NOT IN, != operators cql=user IN ("12", "34") will return users with accountids "12" and "34"
-   * cql=user.fullname~jo will return users with nickname/full name starting with "jo" cql=user.accountid="123" will
-   * return user with accountId "123"
+   * You can also use IN, NOT IN, != operators cql=user IN ("12", "34") will return users with accountids "12" and
+   * "34" cql=user.fullname~jo will return users with nickname/full name starting with "jo" cql=user.accountid="123"
+   * will return user with accountId "123"
    */
   cql: z.string(),
   /** The starting index of the returned users. */

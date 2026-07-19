@@ -15,8 +15,8 @@ export const UpdateSpaceRoleSchema = z.object({
    */
   spacePermissions: z.array(z.string()),
   /**
-   * If space anonymous access is assigned to the role being modified, the Id of a role to migrate those assignments to
-   * can be specified. Anonymous access role assignments left unchanged if unspecified.
+   * If space anonymous access is assigned to the role being modified, the Id of a role to migrate those assignments
+   * to can be specified. Anonymous access role assignments left unchanged if unspecified.
    */
   anonymousReassignmentRoleId: z.string().optional(),
   /**

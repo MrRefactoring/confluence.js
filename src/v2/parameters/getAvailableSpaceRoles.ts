@@ -2,7 +2,10 @@ import { z } from 'zod';
 import { PrincipalTypeSchema } from '../models';
 
 export const GetAvailableSpaceRolesSchema = z.object({
-  /** The space ID for which to filter available space roles; if empty, return all available space roles for the tenant. */
+  /**
+   * The space ID for which to filter available space roles; if empty, return all available space roles for the
+   * tenant.
+   */
   spaceId: z.string().optional(),
   /** The space role type to filter results by. */
   roleType: z.string().optional(),

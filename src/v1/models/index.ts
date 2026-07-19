@@ -44,10 +44,6 @@ export * from './bulkUserLookupArray';
 
 export * from './buttonLookAndFeel';
 
-export * from './cQLPersonalDataConvertedQueries';
-
-export * from './cQLPersonalDataMigrationRequest';
-
 export * from './changedValue';
 
 export * from './connectModule';
@@ -141,6 +137,10 @@ export * from './copyPageHierarchyTitleOptions';
 export * from './copyPageRequest';
 
 export * from './copyPageRequestDestination';
+
+export * from './cqlPersonalDataConvertedQueries';
+
+export * from './cqlPersonalDataMigrationRequest';
 
 export * from './dynamicModulesErrorMessage';
 

@@ -23,8 +23,7 @@ export const PRODUCT: ProductInfo = {
   gatewaySlug: 'confluence',
 
   /** Product-specific advice appended to a scope-mismatch 401, where the scope families differ per product. */
-  scopeHint:
-    'Note that v2 endpoints need granular scopes (read:page:confluence) while v1 endpoints need classic ones (read:confluence-content.all).',
+  scopeHint: 'Note that v2 endpoints need granular scopes (read:page:confluence) while v1 endpoints need classic ones (read:confluence-content.all).',
 };
 
 /**

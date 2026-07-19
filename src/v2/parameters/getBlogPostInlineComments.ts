@@ -22,8 +22,8 @@ export const GetBlogPostInlineCommentsSchema = z.object({
    */
   cursor: z.string().optional(),
   /**
-   * Maximum number of inline comments per result to return. If more results exist, use the `Link` header to retrieve a
-   * relative URL that will return the next set of results.
+   * Maximum number of inline comments per result to return. If more results exist, use the `Link` header to retrieve
+   * a relative URL that will return the next set of results.
    */
   limit: z.number().optional(),
 });

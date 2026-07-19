@@ -13,8 +13,8 @@ export const UpdateInlineCommentModelSchema = apiObject({
   body: z.union([CommentBodyWriteSchema, CommentNestedBodyWriteSchema]).nullish(),
   /**
    * Resolved state of the comment. Set to true to resolve the comment, set to false to reopen it. If matching the
-   * existing state (i.e. true -> resolved or false -> open/reopened) , no change will occur. A dangling comment cannot
-   * be updated.
+   * existing state (i.e. true -> resolved or false -> open/reopened) , no change will occur. A dangling comment
+   * cannot be updated.
    */
   resolved: z.boolean().optional(),
 });

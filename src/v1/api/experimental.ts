@@ -14,8 +14,14 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * This API accepts the pageTree delete request and returns a task ID. The delete process happens asynchronously.
  *
- * Response example: <pre><code> { "id" : "1180606", "links" : { "status" : "/rest/api/longtask/1180606" } }
- * </code></pre>
+ * Response example: <pre><code>
+ *  {
+ *       "id" : "1180606",
+ *       "links" : {
+ *            "status" : "/rest/api/longtask/1180606"
+ *       }
+ *  }
+ *  </code></pre>
  *
  * Use the `/longtask/<taskId>` REST API to get the copy task status.
  *

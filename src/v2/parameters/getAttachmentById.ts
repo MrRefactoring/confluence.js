@@ -18,9 +18,9 @@ export const GetAttachmentByIdSchema = z.object({
    */
   includeLabels: z.boolean().optional(),
   /**
-   * Includes content properties associated with this attachment in the response. The number of results will be limited
-   * to 50 and sorted in the default sort order. A `meta` and `_links` property will be present to indicate if more
-   * results are available and a link to retrieve the rest of the results.
+   * Includes content properties associated with this attachment in the response. The number of results will be
+   * limited to 50 and sorted in the default sort order. A `meta` and `_links` property will be present to indicate if
+   * more results are available and a link to retrieve the rest of the results.
    */
   includeProperties: z.boolean().optional(),
   /**
@@ -30,9 +30,9 @@ export const GetAttachmentByIdSchema = z.object({
    */
   includeOperations: z.boolean().optional(),
   /**
-   * Includes versions associated with this attachment in the response. The number of results will be limited to 50 and
-   * sorted in the default sort order. A `meta` and `_links` property will be present to indicate if more results are
-   * available and a link to retrieve the rest of the results.
+   * Includes versions associated with this attachment in the response. The number of results will be limited to 50
+   * and sorted in the default sort order. A `meta` and `_links` property will be present to indicate if more results
+   * are available and a link to retrieve the rest of the results.
    */
   includeVersions: z.boolean().optional(),
   /**

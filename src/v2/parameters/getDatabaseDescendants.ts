@@ -4,13 +4,13 @@ export const GetDatabaseDescendantsSchema = z.object({
   /** The ID of the database. */
   id: z.number(),
   /**
-   * Maximum number of items per result to return. If more results exist, call the endpoint with the cursor to fetch the
-   * next set of results.
+   * Maximum number of items per result to return. If more results exist, call the endpoint with the cursor to fetch
+   * the next set of results.
    */
   limit: z.number().optional(),
   /**
-   * Maximum depth of descendants to return. If more results are required, use the endpoint corresponding to the content
-   * type of the deepest descendant to fetch more descendants.
+   * Maximum depth of descendants to return. If more results are required, use the endpoint corresponding to the
+   * content type of the deepest descendant to fetch more descendants.
    */
   depth: z.number().optional(),
   /**

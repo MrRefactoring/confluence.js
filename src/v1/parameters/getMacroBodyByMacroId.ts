@@ -4,8 +4,8 @@ export const GetMacroBodyByMacroIdSchema = z.object({
   /** The ID for the content that contains the macro. */
   id: z.string(),
   /**
-   * The version of the content that contains the macro. Specifying `0` as the `version` will return the macro body for
-   * the latest content version.
+   * The version of the content that contains the macro. Specifying `0` as the `version` will return the macro body
+   * for the latest content version.
    */
   version: z.number(),
   /**

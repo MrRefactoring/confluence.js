@@ -22,8 +22,8 @@ export const GetSpacesSchema = z.object({
   /** Used to sort the result by a particular field. */
   sort: SpaceSortOrderSchema.optional(),
   /**
-   * The content format type to be returned in the `description` field of the response. If available, the representation
-   * will be available under a response field of the same name under the `description` field.
+   * The content format type to be returned in the `description` field of the response. If available, the
+   * representation will be available under a response field of the same name under the `description` field.
    */
   descriptionFormat: SpaceDescriptionBodyRepresentationSchema.optional(),
   /** If the icon for the space should be fetched or not. */
@@ -34,8 +34,8 @@ export const GetSpacesSchema = z.object({
    */
   cursor: z.string().optional(),
   /**
-   * Maximum number of spaces per result to return. If more results exist, use the `Link` response header to retrieve a
-   * relative URL that will return the next set of results.
+   * Maximum number of spaces per result to return. If more results exist, use the `Link` response header to retrieve
+   * a relative URL that will return the next set of results.
    */
   limit: z.number().optional(),
 });

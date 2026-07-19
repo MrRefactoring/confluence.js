@@ -10,8 +10,15 @@ describe('bodyToFetchBody', () => {
     expect(bodyToFetchBody([1, 2])).toBe('[1,2]');
   });
 
-  it('passes a string through unserialized, so a pre-built payload is not double-encoded', () => {
-    expect(bodyToFetchBody('{"already":"json"}')).toBe('{"already":"json"}');
+  it('JSON-encodes a string, because that is what the endpoints taking one expect', () => {
+    // Some endpoints take a lone JSON string as their whole body. Passing the
+    // string through unencoded shipped it as `text/plain` and made those
+    // unreachable through the client.
+    expect(bodyToFetchBody('a-value')).toBe('"a-value"');
+    // A pre-encoded payload is therefore encoded again, by design. Anything that
+    // must reach the wire byte for byte goes as a Uint8Array or a Blob, which
+    // are passed through untouched.
+    expect(bodyToFetchBody('{"already":"json"}')).toBe('"{\\"already\\":\\"json\\"}"');
   });
 
   it('passes a Buffer through untouched — fetch accepts one, pooled byteOffset and all', () => {

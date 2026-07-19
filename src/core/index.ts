@@ -33,7 +33,6 @@ export { createClient } from './createClient.js';
 
 export type { Client } from './interfaces/index.js';
 
-export { sendRequest } from './sendRequest.js';
 
 export {
   httpMethodSchema,
@@ -70,7 +69,7 @@ export type {
   OnTokenRefresh,
 } from './oauth/index.js';
 
-export { BufferSchema, createMultipartRequestBody, toFormDataFile } from './formData/index.js';
+export { BufferSchema, createMultipartRequestBody, toFormDataFile, mimeTypeFor } from './formData/index.js';
 
 export type { AttachmentContent, AttachmentInput, Buffer, MultipartRequestBody } from './formData/index.js';
 

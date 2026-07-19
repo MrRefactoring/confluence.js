@@ -21,11 +21,14 @@ export const CreateInlineCommentModelSchema = apiObject({
   inlineCommentProperties: apiObject({
     /** The text to highlight */
     textSelection: z.string().optional(),
-    /** The number of matches for the selected text on the page (should be strictly greater than textSelectionMatchIndex) */
+    /**
+     * The number of matches for the selected text on the page (should be strictly greater than
+     * textSelectionMatchIndex)
+     */
     textSelectionMatchCount: z.number().optional(),
     /**
-     * The match index to highlight. This is zero-based. E.g. if you have 3 occurrences of "hello world" on a page and
-     * you want to highlight the second occurrence, you should pass 1 for textSelectionMatchIndex and 3 for
+     * The match index to highlight. This is zero-based. E.g. if you have 3 occurrences of "hello world" on a page
+     * and you want to highlight the second occurrence, you should pass 1 for textSelectionMatchIndex and 3 for
      * textSelectionMatchCount.
      */
     textSelectionMatchIndex: z.number().optional(),

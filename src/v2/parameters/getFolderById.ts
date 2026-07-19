@@ -15,8 +15,8 @@ export const GetFolderByIdSchema = z.object({
   includeOperations: z.boolean().optional(),
   /**
    * Includes content properties associated with this folder in the response. The number of results will be limited to
-   * 50 and sorted in the default sort order. A `meta` and `_links` property will be present to indicate if more results
-   * are available and a link to retrieve the rest of the results.
+   * 50 and sorted in the default sort order. A `meta` and `_links` property will be present to indicate if more
+   * results are available and a link to retrieve the rest of the results.
    */
   includeProperties: z.boolean().optional(),
 });

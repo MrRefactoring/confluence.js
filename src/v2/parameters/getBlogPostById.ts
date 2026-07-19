@@ -8,8 +8,8 @@ export const GetBlogPostByIdSchema = z.object({
    */
   id: z.number(),
   /**
-   * The content format types to be returned in the `body` field of the response. If available, the representation will
-   * be available under a response field of the same name under the `body` field.
+   * The content format types to be returned in the `body` field of the response. If available, the representation
+   * will be available under a response field of the same name under the `body` field.
    */
   bodyFormat: PrimaryBodyRepresentationSingleSchema.optional(),
   /** Retrieve the draft version of this blog post. */
@@ -52,8 +52,8 @@ export const GetBlogPostByIdSchema = z.object({
    */
   includeVersions: z.boolean().optional(),
   /**
-   * Includes the current version associated with this blog post in the response. By default this is included and can be
-   * omitted by setting the value to `false`.
+   * Includes the current version associated with this blog post in the response. By default this is included and can
+   * be omitted by setting the value to `false`.
    */
   includeVersion: z.boolean().optional(),
   /** Includes whether this blog post has been favorited by the current user. */

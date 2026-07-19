@@ -30,7 +30,10 @@ export const InlineCommentSchema = apiObject({
    * or reopened.
    */
   resolutionLastModifierId: z.string().optional(),
-  /** Timestamp of the last modification to the comment's resolution status. Null until comment is resolved or reopened. */
+  /**
+   * Timestamp of the last modification to the comment's resolution status. Null until comment is resolved or
+   * reopened.
+   */
   resolutionLastModifiedAt: z.coerce.date().optional(),
   resolutionStatus: InlineCommentResolutionStatusSchema.optional(),
   properties: apiObject({

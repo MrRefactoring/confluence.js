@@ -40,11 +40,9 @@ import { type Client, type SendRequestOptions, toFormDataFile, BufferSchema, typ
 export async function createAttachment(client: Client, parameters: CreateAttachment): Promise<ContentArray> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
-
   for (const attachment of items) {
     formData.append('file', await toFormDataFile(attachment), attachment.filename);
   }
-
   const config: SendRequestOptions<ContentArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment`,
     method: 'POST',
@@ -97,11 +95,9 @@ export async function createOrUpdateAttachments(
 ): Promise<ContentArray> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
-
   for (const attachment of items) {
     formData.append('file', await toFormDataFile(attachment), attachment.filename);
   }
-
   const config: SendRequestOptions<ContentArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment`,
     method: 'PUT',
@@ -177,11 +173,9 @@ export async function updateAttachmentProperties(
 export async function updateAttachmentData(client: Client, parameters: UpdateAttachmentData): Promise<Content> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
-
   for (const attachment of items) {
     formData.append('file', await toFormDataFile(attachment), attachment.filename);
   }
-
   const config: SendRequestOptions<Content> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}/data`,
     method: 'POST',
