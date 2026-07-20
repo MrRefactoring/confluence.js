@@ -28,6 +28,9 @@ export const WatchUserSchema = apiObject({
   email: z.string(),
   publicName: z.string(),
   personalSpace: z.record(z.string(), z.any()).nullable(),
+  accountStatus: z.string().optional(),
+  locale: z.string().optional(),
+  guest: z.boolean().optional(),
 });
 
 export type WatchUser = z.infer<typeof WatchUserSchema>;

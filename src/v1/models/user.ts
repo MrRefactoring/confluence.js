@@ -32,6 +32,8 @@ export type User = {
     personalSpace?: string;
   };
   _links?: GenericLinks;
+  accountStatus?: string;
+  locale?: string;
 };
 
 export const UserSchema: z.ZodType<User> = apiObject({
@@ -68,4 +70,6 @@ export const UserSchema: z.ZodType<User> = apiObject({
     personalSpace: z.string().optional(),
   }).optional(),
   _links: GenericLinksSchema.optional(),
+  accountStatus: z.string().optional(),
+  locale: z.string().optional(),
 });

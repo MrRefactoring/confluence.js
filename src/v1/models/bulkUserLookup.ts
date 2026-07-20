@@ -38,6 +38,8 @@ export const BulkUserLookupSchema = apiObject({
     personalSpace: z.string().optional(),
   }),
   _links: GenericLinksSchema,
+  accountStatus: z.string().optional(),
+  locale: z.string().optional(),
 });
 
 export type BulkUserLookup = z.infer<typeof BulkUserLookupSchema>;

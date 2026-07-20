@@ -16,6 +16,7 @@ export const PageCommentSchema = apiObject({
   version: VersionSchema.nullish(),
   body: BodySummarySchema.nullish(),
   _links: CommentLinksSchema.nullish(),
+  resolutionStatus: z.string().optional(),
 });
 
 export type PageComment = z.infer<typeof PageCommentSchema>;

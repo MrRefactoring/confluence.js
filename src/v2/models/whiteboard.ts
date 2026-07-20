@@ -28,6 +28,8 @@ export const WhiteboardSchema = apiObject({
   spaceId: z.string().optional(),
   version: VersionSchema.nullish(),
   _links: WhiteboardLinksSchema.nullish(),
+  operations: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.any()).optional(),
 });
 
 export type Whiteboard = z.infer<typeof WhiteboardSchema>;

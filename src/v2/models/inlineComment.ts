@@ -44,6 +44,8 @@ export const InlineCommentSchema = apiObject({
     inlineMarkerRef: z.string().optional(),
     /** Text that is highlighted. */
     inlineOriginalSelection: z.string().optional(),
+    'inline-marker-ref': z.string().optional(),
+    'inline-original-selection': z.string().optional(),
   }).nullish(),
   operations: apiObject({
     results: z.array(OperationSchema).nullish(),

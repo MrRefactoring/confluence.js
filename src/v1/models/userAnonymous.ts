@@ -13,6 +13,9 @@ export const UserAnonymousSchema = apiObject({
     operations: z.string().optional(),
   }).optional(),
   _links: GenericLinksSchema,
+  accountStatus: z.string().optional(),
+  locale: z.string().optional(),
+  isExternalCollaborator: z.boolean().optional(),
 });
 
 export type UserAnonymous = z.infer<typeof UserAnonymousSchema>;

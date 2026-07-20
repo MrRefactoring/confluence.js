@@ -49,6 +49,7 @@ export const FooterCommentSchema = apiObject({
   }).nullish(),
   body: BodySchema.nullish(),
   _links: CommentLinksSchema.nullish(),
+  resolutionStatus: z.string().optional(),
 });
 
 export type FooterComment = z.infer<typeof FooterCommentSchema>;

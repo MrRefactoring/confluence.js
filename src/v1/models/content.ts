@@ -84,6 +84,8 @@ export type Content = {
     draftVersion?: string;
   };
   _links?: GenericLinks;
+  ari?: string;
+  base64EncodedAri?: string;
 };
 /** Base object for all content types. */
 
@@ -160,4 +162,6 @@ export const ContentSchema: z.ZodType<Content> = apiObject({
     draftVersion: z.string().optional(),
   }).optional(),
   _links: GenericLinksSchema.optional(),
+  ari: z.string().optional(),
+  base64EncodedAri: z.string().optional(),
 });

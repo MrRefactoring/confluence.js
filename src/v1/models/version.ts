@@ -23,6 +23,8 @@ export type Version = {
   confRev?: string | null;
   syncRev?: string | null;
   syncRevSource?: string | null;
+  ncsStepVersion?: string;
+  ncsStepVersionSource?: string;
 };
 
 export const VersionSchema: z.ZodType<Version> = apiObject({
@@ -49,4 +51,6 @@ export const VersionSchema: z.ZodType<Version> = apiObject({
   syncRev: z.string().nullish(),
   /** Source of the synchrony revision */
   syncRevSource: z.string().nullish(),
+  ncsStepVersion: z.string().optional(),
+  ncsStepVersionSource: z.string().optional(),
 });

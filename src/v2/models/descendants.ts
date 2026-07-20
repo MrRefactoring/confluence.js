@@ -20,6 +20,7 @@ export const DescendantsSchema = apiObject({
    * content tree.
    */
   childPosition: z.number().nullish(),
+  lastModified: z.string().optional(),
 });
 
 export type Descendants = z.infer<typeof DescendantsSchema>;
