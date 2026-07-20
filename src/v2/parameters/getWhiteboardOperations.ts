@@ -1,0 +1,8 @@
+import { z } from 'zod';
+
+export const GetWhiteboardOperationsSchema = z.object({
+  /** The ID of the whiteboard for which operations should be returned. */
+  id: z.number(),
+});
+
+export type GetWhiteboardOperations = z.input<typeof GetWhiteboardOperationsSchema>;

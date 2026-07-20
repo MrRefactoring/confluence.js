@@ -1,0 +1,11 @@
+import { z } from 'zod';
+import { apiObject } from '#/core';
+
+export const GetViewersSchema = apiObject({
+  /** The content ID. */
+  id: z.number().optional(),
+  /** The total number of distinct viewers for the content. */
+  count: z.number().optional(),
+});
+
+export type GetViewers = z.infer<typeof GetViewersSchema>;

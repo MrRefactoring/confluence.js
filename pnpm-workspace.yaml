@@ -1,2 +1,6 @@
-onlyBuiltDependencies:
-  - esbuild
+# pnpm 11 renamed this setting: `onlyBuiltDependencies` was pnpm 10's name and is
+# silently ignored now, which made every fresh `pnpm install --frozen-lockfile`
+# fail with ERR_PNPM_IGNORED_BUILDS. esbuild arrives with vite and vitepress and
+# needs its postinstall to fetch its platform binary.
+allowBuilds:
+  esbuild: true
