@@ -212,8 +212,10 @@ import type {
   UserPropertyKeyArray,
   UserProperty,
 } from './models';
+
 export function createV1Client(clientConfig: ClientConfig | Client) {
   const client = createClient(clientConfig);
+
   return {
     audit: {
       getAuditRecords: (parameters?: GetAuditRecords): Promise<AuditRecordArray> =>
@@ -507,4 +509,5 @@ export function createV1Client(clientConfig: ClientConfig | Client) {
     },
   };
 }
+
 export type V1Client = ReturnType<typeof createV1Client>;
