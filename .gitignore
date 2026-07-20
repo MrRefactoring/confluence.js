@@ -1,7 +1,16 @@
 .idea/
 node_modules/
 dist/
-docs/
+coverage/
+
+# The API reference (typedoc output) and the built site. The docs sources beside
+# them are tracked — previously all of docs/ was ignored, which is why the site
+# has no home in the repo yet.
+docs/api/
+docs/ru/api/
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+docs/.vitepress/.temp/
 
 .DS_Store
 .env

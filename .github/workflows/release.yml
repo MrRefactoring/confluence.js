@@ -1,0 +1,65 @@
+name: 🚀 Release
+
+on:
+  push:
+    branches:
+      - master
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: 🚀 Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write        # create git tags, push version commits
+      pull-requests: write   # create "Version Packages" PR
+      id-token: write        # npm provenance attestation
+
+    steps:
+      - name: 🔄 Checkout sources
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: ⚙️ Use Node.js 22.x
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+          registry-url: https://registry.npmjs.org
+
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build
+        run: pnpm run build
+
+      - name: 🧪 Unit tests
+        run: pnpm run test
+
+      # What building cannot prove: that the exports map resolves and the packed
+      # tarball actually imports. Publishing a broken one is not undoable.
+      - name: 🔎 Are the types wrong?
+        run: pnpm run check:attw
+
+      - name: 🚚 Consumer smoke tests
+        run: pnpm run check:consumers
+
+      # Changesets action:
+      # - If changesets are pending → creates/updates "Version Packages" PR
+      # - If this IS the version commit (no pending changesets) → publishes to npm
+      - name: 📦 Create Release PR or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm run release:publish
+          version: pnpm run changeset:version
+          title: 'chore(release): version packages'
+          commit: 'chore(release): version packages'
+          createGithubReleases: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

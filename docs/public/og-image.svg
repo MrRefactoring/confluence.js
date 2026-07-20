@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="streamA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="streamB" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <circle cx="1060" cy="110" r="190" fill="#2563eb" opacity="0.10"/>
+  <circle cx="140" cy="560" r="150" fill="#2dd4bf" opacity="0.08"/>
+
+  <g transform="translate(96 175) scale(3.4)">
+    <path d="M14 8 C14 30 32 30 32 50" fill="none" stroke="url(#streamA)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M50 8 C50 30 32 30 32 50" fill="none" stroke="url(#streamB)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M32 44 L32 56" fill="none" stroke="#93c5fd" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <text x="336" y="292" font-family="Helvetica, Arial, sans-serif" font-size="86" font-weight="700" fill="#ffffff">confluence.js</text>
+  <text x="338" y="352" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="400" fill="#93c5fd">Type-safe Confluence Cloud REST API client</text>
+  <text x="338" y="412" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="400" fill="#64748b">v1 + v2 · ESM-only · Zod-validated · tree-shakable</text>
+</svg>

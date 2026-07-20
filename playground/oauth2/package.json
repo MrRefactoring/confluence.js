@@ -1,0 +1,14 @@
+{
+  "name": "confluence.js-playground-oauth2",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Standalone playground: the full Atlassian OAuth 2.0 (3LO) flow with confluence.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.ts"
+  },
+  "dependencies": {
+    "confluence.js": "file:../.."
+  }
+}

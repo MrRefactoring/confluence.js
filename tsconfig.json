@@ -1,21 +1,23 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "outDir": "dist",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "strict": true,
+    "outDir": "dist",
+    "rootDir": "src",
     "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
+    "verbatimModuleSyntax": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./",
+    "stripInternal": true,
+    "lib": ["ES2022", "DOM"],
+    "types": ["node"],
     "paths": {
-      "~": ["src"],
-      "~/*": ["src/*"]
+      "#/*": ["./src/*"]
     }
   },
-  "include": ["src", "rollup.config.ts"],
-  "exclude": [
-    "node_modules",
-    "dist",
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "eslint.config.ts"]
 }
