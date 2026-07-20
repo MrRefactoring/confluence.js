@@ -1,3 +1,4 @@
+import type { core as zodCore } from 'zod';
 import { bodyToFetchBody, requiresDuplex, shouldSetJsonContentType } from './bodyToFetchBody.js';
 import type { Auth, ClientConfig, SendRequestOptions } from './schemas/index.js';
 import type { Client } from './interfaces/index.js';
@@ -10,6 +11,7 @@ import {
   TRANSIENT_HTTP_STATUSES,
 } from './errors/index.js';
 import { BufferSchema } from './formData/index.js';
+import { isSchemaAuditEnabled, recordSchemaDrift } from './schemaAudit.js';
 import { buildUrlWithSearchParams } from './serializeSearchParams.js';
 import { clientConfigSchema } from './schemas/index.js';
 import { createOAuth2Manager } from './oauth/index.js';
@@ -25,6 +27,70 @@ async function isScopeMismatchResponse(response: Response): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+/**
+ * Removes the keys an audit run found undocumented, so the response can be parsed a second time.
+ *
+ * Audit-only. `path` is a zod issue path, so every segment is an object key or an array index, and anything that is
+ * not there any more is simply skipped — the walk describes a body that was just parsed, not an arbitrary structure.
+ */
+function dropKeys(body: unknown, path: readonly PropertyKey[], keys: readonly PropertyKey[]): void {
+  let target = body;
+
+  for (const segment of path) {
+    if (target === null || typeof target !== 'object') return;
+
+    target = (target as Record<PropertyKey, unknown>)[segment];
+  }
+
+  if (target === null || typeof target !== 'object') return;
+
+  for (const key of keys) {
+    delete (target as Record<PropertyKey, unknown>)[key];
+  }
+}
+
+interface DriftFinding {
+  path: PropertyKey[];
+  keys: PropertyKey[];
+}
+
+/**
+ * Reads a validation failure as pure schema drift, or decides it is not.
+ *
+ * Audit-only. Returns the undocumented keys when *every* complaint is one, and `undefined` the moment anything else
+ * appears — a missing field or a changed type is real breakage, and the audit must not quietly absorb it.
+ *
+ * Unions need the recursion. Zod reports each branch it tried, and branches that failed for their own reasons are
+ * simply the wrong branch; what identifies the right one is a branch whose only complaint is undocumented keys. Without
+ * this, every union-typed response throws instead of being recorded, and the drift inside it accumulates unseen behind
+ * a report that looks complete.
+ */
+function readDrift(issues: readonly zodCore.$ZodIssue[], base: PropertyKey[] = []): DriftFinding[] | undefined {
+  const findings: DriftFinding[] = [];
+
+  for (const issue of issues) {
+    if (issue.code === 'unrecognized_keys') {
+      findings.push({ path: [...base, ...issue.path], keys: [...issue.keys] });
+      continue;
+    }
+
+    if (issue.code === 'invalid_union') {
+      const branch = issue.errors
+        .map(branchIssues => readDrift(branchIssues, [...base, ...issue.path]))
+        .find(result => result !== undefined);
+
+      if (branch === undefined) return undefined;
+
+      findings.push(...branch);
+      continue;
+    }
+
+    return undefined;
+  }
+
+  return findings;
 }
 
 /** A `Client` is anything with `sendRequest`; a `ClientConfig` never has one. */
@@ -273,6 +339,34 @@ export function createClient(config: ClientConfig | Client): Client {
         const parsed = requestConfig.schema.safeParse(data);
 
         if (!parsed.success) {
+          const endpoint = `${requestConfig.method ?? 'GET'} ${requestConfig.url}`;
+
+          // Under audit, undocumented keys are the finding — not a failure. They
+          // are recorded and the response is handed back unvalidated, so a single
+          // stale schema cannot end the run before the rest has been looked at.
+          // Anything else in the issue list is real breakage and still throws,
+          // which is why this checks that *every* issue is an extra key.
+          const drift = isSchemaAuditEnabled() ? readDrift(parsed.error.issues) : undefined;
+
+          if (drift) {
+            for (const finding of drift) {
+              recordSchemaDrift({
+                endpoint,
+                path: finding.path.join('.'),
+                keys: finding.keys.map(key => String(key)),
+              });
+              dropKeys(data, finding.path, finding.keys);
+            }
+
+            // Re-parsed rather than returned raw, so the caller still gets what
+            // the schema promises: `z.coerce.date()` and friends only run on a
+            // successful parse, and handing back the untouched body would turn
+            // every Date into a string — failures that say nothing about drift.
+            const cleaned = requestConfig.schema.safeParse(data);
+
+            if (cleaned.success) return cleaned.data as T;
+          }
+
           // The response parsed as JSON but is not the shape the endpoint
           // promises. Callers should not have to know zod is the validator to
           // catch this, so it arrives as the library's own error with the
