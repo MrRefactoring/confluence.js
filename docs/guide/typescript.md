@@ -46,7 +46,7 @@ Parameter types are named after the operation (`CreatePage`, `GetPageById`), res
 
 `src/v1` and `src/v2` track Atlassian's published OpenAPI documents, so the types follow the API rather than someone's memory of it.
 
-Where the spec and reality disagree — and they do — the difference is caught by an integration suite that runs every namespace against a live Confluence Cloud site. A response that does not match its type raises a `ZodError` at the boundary; see [Error handling](./error-handling).
+Where the spec and reality disagree — and they do — the difference is caught by an integration suite that runs every namespace against a live Confluence Cloud site. A response that does not match its type raises a `SchemaMismatchError` at the boundary; see [Error handling](./error-handling).
 
 ## `unknown` over `any`
 

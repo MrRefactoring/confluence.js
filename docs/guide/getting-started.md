@@ -81,5 +81,5 @@ console.log(`Created: ${page.title} (#${page.id})`);
 
 - [Choosing a version](./choosing-a-version) — when you need v1 and when v2 is enough. Read this one early; it saves the most time.
 - [Authentication](./authentication) — basic auth, OAuth 2.0, and refreshing tokens.
-- [Error handling](./error-handling) — `ApiError`, and what a `ZodError` means.
+- [Error handling](./error-handling) — `ApiError`, and what a `SchemaMismatchError` means.
 - [Recipes](../recipes/pages) — pages, spaces, attachments, search.

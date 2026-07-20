@@ -21,10 +21,10 @@ Error
 ├── NetworkError        no response at all — DNS, TLS, socket, timeout
 ├── OAuthError          token exchange, refresh, or cloud-id resolution
 ├── ConfigError         the client cannot be built as configured
-└── SchemaMismatchError a 2xx that is not JSON where JSON was promised
+└── SchemaMismatchError a 2xx whose body is not what the schema describes
 ```
 
-Plus `ZodError` from Zod itself, when the JSON parsed but its shape drifted.
+Plus `ZodError` from Zod itself, when the config you built the client with is invalid.
 
 ## Narrowing: prefer the predicates
 
@@ -98,13 +98,24 @@ if (isReauthorizationRequired(error)) {
 }
 ```
 
-## `ZodError` — Atlassian drifted from its own spec
+## `SchemaMismatchError` — Atlassian drifted from its own spec
 
-Every response is validated against a Zod schema mirroring Atlassian's OpenAPI spec. A mismatch throws a `ZodError` instead of handing you a silently wrong object.
+Every response is validated against a Zod schema mirroring Atlassian's OpenAPI spec. A mismatch throws instead of handing you a silently wrong object.
+
+Two things count as a mismatch, and one error covers both — from your side they mean the same thing, that the API answered 2xx and the value cannot be trusted:
+
+```ts
+if (isSchemaMismatchError(error)) {
+  console.error(error.body);   // the raw response, always
+  console.error(error.cause);  // the ZodError, when the JSON parsed but its shape drifted
+}
+```
+
+`cause` is what tells the two apart: a shape drift carries the underlying `ZodError`, a response that was not JSON at all carries nothing. You do not have to know this library validates with Zod in order to catch the failure — that is the point of not throwing the `ZodError` bare.
 
 This is not your bug. It means the live API and the published spec disagree — a field documented as required came back `null`, or an enum grew a value. It is worth [an issue](https://github.com/MrRefactoring/confluence.js/issues): the fix belongs in this package, and each one makes the types truer for everyone.
 
-Note that `ConfigError` and a `ZodError` can also surface from `createV1Client` / `createV2Client` themselves, synchronously, when the config is invalid — before any request goes out.
+Note that `ConfigError` and a `ZodError` can also surface from `createV1Client` / `createV2Client` themselves, synchronously, when the config is invalid — before any request goes out. Config validation is the one place a bare `ZodError` still reaches you: it is your input, not Atlassian's output.
 
 ## Some statuses are data, not failures
 

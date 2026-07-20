@@ -12,7 +12,7 @@ serve both — the API path belongs to the request, not to your config.
 Runtime dependencies are down to `zod` alone. axios, form-data, oauth and
 atlassian-jwt are gone with the old transport, which is now the built-in `fetch`.
 Every response is validated against a Zod 4 schema, so API drift raises a
-`ZodError` instead of surfacing as `undefined` later on.
+`SchemaMismatchError` instead of surfacing as `undefined` later on.
 
 ```ts
 import { createV2Client } from 'confluence.js';
@@ -82,7 +82,9 @@ rather than failing. See the [browser guide](https://mrrefactoring.github.io/con
 `AuthError`, `ForbiddenError`, `NotFoundError`, `RateLimitError` (with
 `retryAfterMs` parsed from `Retry-After`), `ServerError`. Transport faults throw
 `NetworkError` instead of leaking a raw `fetch` `TypeError`, and OAuth failures
-throw `OAuthError`. Each ships an `isXxx` predicate that checks a branded marker
+throw `OAuthError`. A 2xx whose body does not match the schema throws
+`SchemaMismatchError`, carrying the raw `body` and, when the shape drifted, the
+underlying `ZodError` on `cause`. Each ships an `isXxx` predicate that checks a branded marker
 rather than the prototype chain, so narrowing survives two copies of the package
 in one `node_modules`:
 
