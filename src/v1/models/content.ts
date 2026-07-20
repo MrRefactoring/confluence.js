@@ -81,6 +81,7 @@ export type Content = {
     schedulePublishDate?: string;
     schedulePublishInfo?: string;
     macroRenderedOutput?: string;
+    draftVersion?: string;
   };
   _links?: GenericLinks;
 };
@@ -156,6 +157,7 @@ export const ContentSchema: z.ZodType<Content> = apiObject({
     schedulePublishDate: z.string().optional(),
     schedulePublishInfo: z.string().optional(),
     macroRenderedOutput: z.string().optional(),
+    draftVersion: z.string().optional(),
   }).optional(),
   _links: GenericLinksSchema.optional(),
 });

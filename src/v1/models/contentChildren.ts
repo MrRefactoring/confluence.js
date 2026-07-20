@@ -19,6 +19,7 @@ export type ContentChildren = {
     database?: string;
     embed?: string;
     folder?: string;
+    slide?: string;
   };
   _links?: GenericLinks;
 };
@@ -39,6 +40,7 @@ export const ContentChildrenSchema: z.ZodType<ContentChildren> = apiObject({
     database: z.string().optional(),
     embed: z.string().optional(),
     folder: z.string().optional(),
+    slide: z.string().optional(),
   }).optional(),
   _links: GenericLinksSchema.optional(),
 });

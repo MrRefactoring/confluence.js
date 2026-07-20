@@ -29,26 +29,52 @@ async function isScopeMismatchResponse(response: Response): Promise<boolean> {
   }
 }
 
+/** What an undocumented value looks like, in the vocabulary a schema would use to describe it. */
+function describeValue(value: unknown): string {
+  if (value === null) return 'null';
+
+  if (Array.isArray(value)) {
+    const elements = new Set(value.slice(0, 10).map(element => describeValue(element)));
+
+    return elements.size === 0 ? 'unknown[]' : `${[...elements].sort().join(' | ')}[]`;
+  }
+
+  return typeof value;
+}
+
 /**
- * Removes the keys an audit run found undocumented, so the response can be parsed a second time.
+ * Reads the undocumented values, then removes them so the response can be parsed a second time.
  *
- * Audit-only. `path` is a zod issue path, so every segment is an object key or an array index, and anything that is
- * not there any more is simply skipped — the walk describes a body that was just parsed, not an arbitrary structure.
+ * Audit-only, and it reports the types because the point of the audit is to write the missing field into the schema —
+ * which cannot be done from a list of names. Guessing `contributorIds` is an array of strings from its name alone is
+ * how a schema ends up wrong in a new way.
+ *
+ * `path` is a zod issue path, so every segment is an object key or an array index, and anything no longer there is
+ * simply skipped — the walk describes a body that was just parsed, not an arbitrary structure.
  */
-function dropKeys(body: unknown, path: readonly PropertyKey[], keys: readonly PropertyKey[]): void {
+function takeKeys(
+  body: unknown,
+  path: readonly PropertyKey[],
+  keys: readonly PropertyKey[],
+): Record<string, string> {
   let target = body;
 
   for (const segment of path) {
-    if (target === null || typeof target !== 'object') return;
+    if (target === null || typeof target !== 'object') return {};
 
     target = (target as Record<PropertyKey, unknown>)[segment];
   }
 
-  if (target === null || typeof target !== 'object') return;
+  if (target === null || typeof target !== 'object') return {};
+
+  const types: Record<string, string> = {};
 
   for (const key of keys) {
+    types[String(key)] = describeValue((target as Record<PropertyKey, unknown>)[key]);
     delete (target as Record<PropertyKey, unknown>)[key];
   }
+
+  return types;
 }
 
 interface DriftFinding {
@@ -354,8 +380,8 @@ export function createClient(config: ClientConfig | Client): Client {
                 endpoint,
                 path: finding.path.join('.'),
                 keys: finding.keys.map(key => String(key)),
+                types: takeKeys(data, finding.path, finding.keys),
               });
-              dropKeys(data, finding.path, finding.keys);
             }
 
             // Re-parsed rather than returned raw, so the caller still gets what

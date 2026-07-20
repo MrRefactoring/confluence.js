@@ -18,6 +18,8 @@ export interface SchemaDrift {
   path: string;
   /** The keys the API sent that the schema does not describe. */
   keys: string[];
+  /** What each of those keys actually held, so the missing field can be written into the schema. */
+  types: Record<string, string>;
 }
 
 type Store = { [STORE]?: SchemaDrift[] };

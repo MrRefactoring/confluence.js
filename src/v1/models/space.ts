@@ -54,6 +54,8 @@ export type Space = {
     history?: string;
     homepage?: string;
     identifiers?: string;
+    roles?: string;
+    typeSettings?: string;
   };
   _links: GenericLinks;
 };
@@ -100,6 +102,8 @@ export const SpaceSchema: z.ZodType<Space> = apiObject({
     history: z.string().optional(),
     homepage: z.string().optional(),
     identifiers: z.string().optional(),
+    roles: z.string().optional(),
+    typeSettings: z.string().optional(),
   }),
   _links: GenericLinksSchema,
 });
