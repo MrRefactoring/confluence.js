@@ -1,6 +1,6 @@
 {
   "name": "confluence.js",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Type-safe Confluence REST API client for TypeScript and JavaScript. Covers both Confluence Cloud API v2 and v1 from one package. ESM-only, tree-shakable, runtime-validated by Zod 4. Atlassian Confluence SDK for Node.js 22+ and modern browsers.",
   "author": "Vladislav Tupikin <vladislav.tupikin@icloud.com>",
   "license": "MIT",
@@ -107,7 +107,7 @@
     "changeset:version": "changeset version",
     "changeset:status": "changeset status",
     "version:dev": "node scripts/devVersion.ts",
-    "release:publish": "pnpm publish --no-git-checks --provenance",
+    "release:publish": "changeset publish",
     "prepare": "husky",
     "audit:schemas": "node scripts/schemaAudit.ts"
   },
