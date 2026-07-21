@@ -63,3 +63,43 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # changesets/action tags and releases only the packages it detects as
+      # published, and it detects them by grepping the publish command's stdout for
+      # the "New tag:" lines that only `changeset publish` prints — never `pnpm
+      # publish`. So the publish path uploads to npm but leaves no tag behind, and
+      # v3.0.0 had to be tagged by hand. This step closes that gap without touching
+      # the known-good `pnpm publish --provenance` command.
+      #
+      # It fires on every master push, so it tells the two paths apart itself:
+      #   - changesets still pending → the action only opened/updated the version
+      #                                PR; nothing was published, so do nothing.
+      #   - none pending             → the version commit merged and was published,
+      #                                so tag it. Idempotent: skips when the tag is
+      #                                already there, so a re-run cannot double-tag.
+      - name: 🏷️ Tag and release the published version
+        if: steps.changesets.outputs.published != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pending="$(find .changeset -maxdepth 1 -name '*.md' ! -name 'README.md' | wc -l | tr -d ' ')"
+          if [ "${pending}" != "0" ]; then
+            echo "Changesets still pending — the action opened the version PR, nothing published. Nothing to tag."
+            exit 0
+          fi
+
+          version="$(node -p "require('./package.json').version")"
+          tag="v${version}"
+
+          if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
+            echo "Tag ${tag} already exists — nothing to do."
+            exit 0
+          fi
+
+          awk -v h="## ${version}" '$0==h{f=1;next} /^## /{if(f)exit} f' CHANGELOG.md > /tmp/release-notes.md
+          if [ -s /tmp/release-notes.md ]; then
+            gh release create "${tag}" --target "${GITHUB_SHA}" --title "${tag}" --notes-file /tmp/release-notes.md
+          else
+            echo "No CHANGELOG section for ${version}; falling back to generated notes."
+            gh release create "${tag}" --target "${GITHUB_SHA}" --title "${tag}" --generate-notes
+          fi
