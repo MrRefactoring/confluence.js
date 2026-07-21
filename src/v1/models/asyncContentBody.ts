@@ -42,6 +42,7 @@ export const AsyncContentBodySchema = apiObject({
     mediaToken: z.string().optional(),
   }).optional(),
   _links: GenericLinksSchema.optional(),
+  content: z.unknown().optional(),
 });
 
 export type AsyncContentBody = z.infer<typeof AsyncContentBodySchema>;

@@ -19,6 +19,8 @@ export const VersionSchema = apiObject({
   ncsStepVersion: z.string().nullish(),
   /** Account ids of everyone who has contributed to the content. */
   contributorIds: z.array(z.unknown()).optional(),
+  comment: z.record(z.string(), z.any()).optional(),
+  attachment: z.record(z.string(), z.any()).optional(),
 });
 
 export type Version = z.infer<typeof VersionSchema>;
