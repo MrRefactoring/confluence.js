@@ -71,28 +71,27 @@ jobs:
       # v3.0.0 had to be tagged by hand. This step closes that gap without touching
       # the known-good `pnpm publish --provenance` command.
       #
-      # It fires on every master push, so it tells the two paths apart itself:
-      #   - changesets still pending → the action only opened/updated the version
-      #                                PR; nothing was published, so do nothing.
-      #   - none pending             → the version commit merged and was published,
-      #                                so tag it. Idempotent: skips when the tag is
-      #                                already there, so a re-run cannot double-tag.
+      # It fires on every master push and tells the two paths apart by the version in
+      # the *committed* HEAD, not the working tree. The action's `version` step
+      # rewrites package.json and deletes the changesets in place on the version-PR
+      # path too — so the working tree always looks like the next release, and reading
+      # it (or counting leftover changesets) mistakes the version-PR path for a
+      # publish. Only the commit that merged the version PR actually carries the
+      # bumped version, so:
+      #   - HEAD still holds the current version → its tag exists → nothing to do
+      #     (this is the version-PR path, or a re-run).
+      #   - HEAD holds a new, untagged version  → the version PR merged and published,
+      #     so tag that commit. Idempotent: the tag check makes re-runs safe.
       - name: 🏷️ Tag and release the published version
         if: steps.changesets.outputs.published != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pending="$(find .changeset -maxdepth 1 -name '*.md' ! -name 'README.md' | wc -l | tr -d ' ')"
-          if [ "${pending}" != "0" ]; then
-            echo "Changesets still pending — the action opened the version PR, nothing published. Nothing to tag."
-            exit 0
-          fi
-
-          version="$(node -p "require('./package.json').version")"
+          version="$(git show HEAD:package.json | jq -r .version)"
           tag="v${version}"
 
           if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
-            echo "Tag ${tag} already exists — nothing to do."
+            echo "Tag ${tag} already exists — nothing to do (version-PR path or re-run)."
             exit 0
           fi
 
