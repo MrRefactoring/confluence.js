@@ -20,6 +20,7 @@ export const InlineCommentChildrenSchema = apiObject({
   resolutionStatus: InlineCommentResolutionStatusSchema.optional(),
   properties: InlineCommentPropertiesSchema.nullish(),
   _links: CommentLinksSchema.nullish(),
+  pageId: z.string().optional(),
 });
 
 export type InlineCommentChildren = z.infer<typeof InlineCommentChildrenSchema>;

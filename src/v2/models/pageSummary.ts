@@ -32,6 +32,7 @@ export const PageSummarySchema = apiObject({
   version: VersionSchema.nullish(),
   body: BodySummarySchema.nullish(),
   _links: AbstractPageLinksSchema.nullish(),
+  sourceTemplateEntityId: z.string().optional(),
 });
 
 export type PageSummary = z.infer<typeof PageSummarySchema>;

@@ -16,6 +16,8 @@ export const ChildrenCommentSchema = apiObject({
   version: VersionSchema.nullish(),
   body: BodySummarySchema.nullish(),
   _links: CommentLinksSchema.nullish(),
+  resolutionStatus: z.string().optional(),
+  pageId: z.string().optional(),
 });
 
 export type ChildrenComment = z.infer<typeof ChildrenCommentSchema>;

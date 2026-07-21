@@ -33,6 +33,8 @@ export const SmartLinkSchema = apiObject({
   spaceId: z.string().optional(),
   version: VersionSchema.nullish(),
   _links: SmartLinkLinksSchema.nullish(),
+  operations: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.any()).optional(),
 });
 
 export type SmartLink = z.infer<typeof SmartLinkSchema>;

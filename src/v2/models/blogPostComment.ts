@@ -16,6 +16,7 @@ export const BlogPostCommentSchema = apiObject({
   version: VersionSchema.nullish(),
   body: BodySummarySchema.nullish(),
   _links: CommentLinksSchema.nullish(),
+  resolutionStatus: z.string().optional(),
 });
 
 export type BlogPostComment = z.infer<typeof BlogPostCommentSchema>;

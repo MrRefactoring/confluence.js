@@ -23,6 +23,7 @@ interface SchemaDrift {
   endpoint: string;
   path: string;
   keys: string[];
+  types: Record<string, string>;
 }
 
 // `--report-only` rebuilds the summary from the last run's findings. The suite takes
@@ -73,6 +74,7 @@ function normalizeEndpoint(endpoint: string): string {
 }
 
 const byField = new Map<string, Set<string>>();
+const typesByField = new Map<string, Set<string>>();
 
 if (existsSync(findings)) {
   const lines = readFileSync(findings, 'utf8').trim();
@@ -86,6 +88,10 @@ if (existsSync(findings)) {
       if (!byField.has(field)) byField.set(field, new Set());
 
       byField.get(field)!.add(normalizeEndpoint(entry.endpoint));
+
+      if (!typesByField.has(field)) typesByField.set(field, new Set());
+
+      typesByField.get(field)!.add(entry.types?.[key] ?? 'unknown');
     }
   }
 }
@@ -107,15 +113,17 @@ if (ranked.length === 0) {
     'the published spec has fallen behind the API — but each one is a field consumers cannot see',
     'in the types.',
     '',
-    '| Field | Endpoints | Seen at |',
-    '| --- | ---: | --- |',
+    '| Field | Type | Endpoints | Seen at |',
+    '| --- | --- | ---: | --- |',
   );
 
   for (const [field, seen] of ranked) {
     const sample = [...seen].sort().slice(0, 3).join('<br>');
     const more = seen.size > 3 ? `<br>…and ${seen.size - 3} more` : '';
 
-    summary.push(`| \`${field}\` | ${seen.size} | ${sample}${more} |`);
+    const types = [...(typesByField.get(field) ?? new Set(['unknown']))].sort().join(' | ');
+
+    summary.push(`| \`${field}\` | \`${types}\` | ${seen.size} | ${sample}${more} |`);
   }
 }
 

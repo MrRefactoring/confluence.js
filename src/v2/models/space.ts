@@ -52,6 +52,7 @@ export const SpaceSchema = apiObject({
     _links: OptionalFieldLinksSchema.nullish(),
   }).nullish(),
   _links: SpaceLinksSchema.nullish(),
+  currentActiveAlias: z.string().optional(),
 });
 
 export type Space = z.infer<typeof SpaceSchema>;

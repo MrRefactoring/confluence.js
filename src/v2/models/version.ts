@@ -15,6 +15,10 @@ export const VersionSchema = apiObject({
   minorEdit: z.boolean().optional(),
   /** The account ID of the user who created this version. */
   authorId: z.string().optional(),
+  /** Internal content-sync step version. Returned as null while no sync step applies. */
+  ncsStepVersion: z.string().nullish(),
+  /** Account ids of everyone who has contributed to the content. */
+  contributorIds: z.array(z.unknown()).optional(),
 });
 
 export type Version = z.infer<typeof VersionSchema>;

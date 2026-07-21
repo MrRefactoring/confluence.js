@@ -35,6 +35,8 @@ export type ContentMetadata = {
   properties?: GenericLinks;
   frontend?: Record<string, unknown>;
   labels?: LabelArray | Label[];
+  mediaType?: string;
+  _expandable?: Record<string, unknown>;
 };
 /** Metadata object for page, blogpost, comment content */
 
@@ -68,4 +70,6 @@ export const ContentMetadataSchema: z.ZodType<ContentMetadata> = apiObject({
   properties: GenericLinksSchema.optional(),
   frontend: z.record(z.string(), z.any()).optional(),
   labels: z.union([LabelArraySchema, z.array(LabelSchema)]).optional(),
+  mediaType: z.string().optional(),
+  _expandable: z.record(z.string(), z.any()).optional(),
 });

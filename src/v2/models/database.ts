@@ -28,6 +28,8 @@ export const DatabaseSchema = apiObject({
   spaceId: z.string().optional(),
   version: VersionSchema.nullish(),
   _links: DatabaseLinksSchema.nullish(),
+  operations: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.any()).optional(),
 });
 
 export type Database = z.infer<typeof DatabaseSchema>;

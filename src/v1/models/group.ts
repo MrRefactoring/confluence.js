@@ -23,6 +23,7 @@ export const GroupSchema = apiObject({
    */
   managedBy: z.enum(['ADMINS', 'EXTERNAL', 'TEAM_MEMBERS', 'OPEN']).optional(),
   _links: GenericLinksSchema.optional(),
+  resourceAri: z.string().optional(),
 });
 
 export type Group = z.infer<typeof GroupSchema>;
