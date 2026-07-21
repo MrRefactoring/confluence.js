@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.0.1
+
+### Patch Changes
+
+- ce62e61: Types now describe the fields Confluence returns that its own spec never documented.
+
+  The schema audit shipped in the previous release found 161 undocumented fields across 93 endpoints — keys the API sends
+  at runtime that the published types hid. This release adds 154 of them into the types; the remaining 7 sit behind
+  inline or collection schemas and are tracked separately.
+
+  Every addition is optional and additive. Nothing that used to type-check stops doing so, runtime validation is
+  unchanged, and no field is renamed or removed — consumers simply gain access in the types to values they were already
+  receiving: `_links` keys on every entity, the `Container` and `Version` fields, user `accountStatus`/`locale`, comment
+  `resolutionStatus`, and more.
+
+- 01eebdd: Adds a schema audit that reports the keys Confluence sends but the schemas do not describe.
+
+  Nothing changes for callers. Response validation stays loose, so undocumented fields keep passing through untouched,
+  and the published types are byte-identical. The audit is off unless `AUDIT_SCHEMAS=true` is set, which only this
+  package's own nightly run does; `src/core/schemaAudit.ts` is internal and is not exported.
+
+  The first run found 161 undocumented fields across 93 endpoints — Atlassian's published spec having fallen behind its
+  own API rather than anything broken. Each one is a field consumers receive at runtime but cannot see in the types, and
+  fixing them is what makes the types truer.
+
 ## 3.0.0
 
 ### Major Changes
