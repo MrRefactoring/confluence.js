@@ -61,9 +61,11 @@ jobs:
       #   - it prints the `New tag:` lines the action greps to learn what shipped, so
       #     the action tags the actual release commit and cuts the GitHub release —
       #     `pnpm publish` prints neither, which is why v3.0.0 had to be tagged by hand.
-      # Provenance is preserved via NPM_CONFIG_PROVENANCE: `changeset publish` shells
-      # out to `pnpm publish`, which reads it as `--provenance` (needs id-token: write,
-      # granted above).
+      # Provenance is switched on in .npmrc (`provenance=true`), not here: `changeset
+      # publish` delegates to pnpm 11's native publish, which reads .npmrc but ignores
+      # the NPM_CONFIG_* env prefix (its own is PNPM_CONFIG_*) — 3.0.2 shipped without
+      # an attestation because the env var never reached it. id-token: write, granted
+      # above, is what lets the OIDC-authenticated publish sign the attestation.
       - name: 📦 Create Release PR or Publish
         id: changesets
         uses: changesets/action@v1
@@ -76,4 +78,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: 'true'
