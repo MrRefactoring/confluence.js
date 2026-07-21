@@ -6,6 +6,8 @@ export const AccessByEmailSchema = apiObject({
   emailsWithoutAccess: z.array(z.string()).optional(),
   /** List of invalid emails provided in the request. */
   invalidEmails: z.array(z.string()).optional(),
+  /** Emails from the request that have no access to the site. */
+  noAccessEmails: z.array(z.unknown()).optional(),
 });
 
 export type AccessByEmail = z.infer<typeof AccessByEmailSchema>;

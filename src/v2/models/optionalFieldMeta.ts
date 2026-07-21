@@ -9,6 +9,8 @@ export const OptionalFieldMetaSchema = apiObject({
    * next set of results.
    */
   cursor: z.string().optional(),
+  /** Number of items in the collection. */
+  count: z.number().optional(),
 });
 
 export type OptionalFieldMeta = z.infer<typeof OptionalFieldMetaSchema>;

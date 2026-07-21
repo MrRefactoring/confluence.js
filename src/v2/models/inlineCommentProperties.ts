@@ -6,6 +6,8 @@ export const InlineCommentPropertiesSchema = apiObject({
   inlineMarkerRef: z.string().optional(),
   /** Text that is highlighted. */
   inlineOriginalSelection: z.string().optional(),
+  'inline-marker-ref': z.string().optional(),
+  'inline-original-selection': z.string().optional(),
 });
 
 export type InlineCommentProperties = z.infer<typeof InlineCommentPropertiesSchema>;
