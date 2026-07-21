@@ -107,7 +107,7 @@
     "changeset:version": "changeset version",
     "changeset:status": "changeset status",
     "version:dev": "node scripts/devVersion.ts",
-    "release:publish": "changeset publish",
+    "release:publish": "node scripts/publish.ts",
     "prepare": "husky",
     "audit:schemas": "node scripts/schemaAudit.ts"
   },

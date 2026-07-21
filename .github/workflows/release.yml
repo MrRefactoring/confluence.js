@@ -50,22 +50,19 @@ jobs:
 
       # Changesets action:
       # - If changesets are pending → creates/updates "Version Packages" PR
-      # - If this IS the version commit (no pending changesets) → publishes to npm,
-      #   then tags the release commit and creates the GitHub release.
+      # - If none are pending → runs `release:publish` (the publish path)
       #
-      # `release:publish` is `changeset publish`, not `pnpm publish`, and that choice
-      # is load-bearing here:
-      #   - it queries the registry per package and publishes only versions not
-      #     already there, so a master push with nothing to release is a clean no-op
-      #     instead of `pnpm publish` erroring on "cannot publish over 3.0.1";
-      #   - it prints the `New tag:` lines the action greps to learn what shipped, so
-      #     the action tags the actual release commit and cuts the GitHub release —
-      #     `pnpm publish` prints neither, which is why v3.0.0 had to be tagged by hand.
-      # Provenance is switched on in .npmrc (`provenance=true`), not here: `changeset
-      # publish` delegates to pnpm 11's native publish, which reads .npmrc but ignores
-      # the NPM_CONFIG_* env prefix (its own is PNPM_CONFIG_*) — 3.0.2 shipped without
-      # an attestation because the env var never reached it. id-token: write, granted
-      # above, is what lets the OIDC-authenticated publish sign the attestation.
+      # `release:publish` is `scripts/publish.ts`, which publishes with
+      # `pnpm publish --provenance`. The explicit flag is the whole point: it is the
+      # only thing that makes pnpm sign the SLSA provenance attestation. Given an
+      # id-token, pnpm's native publish otherwise takes the OIDC trusted-publishing
+      # path and produces no attestation, ignoring both `.npmrc provenance=true` and
+      # NPM_CONFIG_PROVENANCE — which is why 3.0.2 and 3.0.3 shipped unsigned. The
+      # script first checks the registry and no-ops if the version is already out, so a
+      # master push with nothing to release doesn't fail on "cannot publish over".
+      #
+      # `pnpm publish` prints no "New tag:" line for the action to parse, so it creates
+      # no tag or release; the step below does that instead.
       - name: 📦 Create Release PR or Publish
         id: changesets
         uses: changesets/action@v1
@@ -78,3 +75,35 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # changesets/action tags and releases only packages it detects as published, and
+      # it detects them from the "New tag:" lines that `pnpm publish` does not print —
+      # so on the publish path it leaves no tag behind. This fills that gap.
+      #
+      # It reads the version from the *committed* HEAD, not the working tree: the
+      # action's `version` step rewrites package.json in place on the version-PR path,
+      # so the working tree always looks like the next release. Only the commit that
+      # merged the version PR actually carries the bumped version, so:
+      #   - HEAD still holds the current version → its tag exists → nothing to do.
+      #   - HEAD holds a new, untagged version  → the version PR merged and published,
+      #     so tag that commit. The tag check keeps re-runs idempotent.
+      - name: 🏷️ Tag and release the published version
+        if: steps.changesets.outputs.published != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          version="$(git show HEAD:package.json | jq -r .version)"
+          tag="v${version}"
+
+          if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
+            echo "Tag ${tag} already exists — nothing to do (version-PR path or re-run)."
+            exit 0
+          fi
+
+          awk -v h="## ${version}" '$0==h{f=1;next} /^## /{if(f)exit} f' CHANGELOG.md > /tmp/release-notes.md
+          if [ -s /tmp/release-notes.md ]; then
+            gh release create "${tag}" --target "${GITHUB_SHA}" --title "${tag}" --notes-file /tmp/release-notes.md
+          else
+            echo "No CHANGELOG section for ${version}; falling back to generated notes."
+            gh release create "${tag}" --target "${GITHUB_SHA}" --title "${tag}" --generate-notes
+          fi
