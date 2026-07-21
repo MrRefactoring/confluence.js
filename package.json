@@ -1,6 +1,6 @@
 {
   "name": "confluence.js",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Type-safe Confluence REST API client for TypeScript and JavaScript. Covers both Confluence Cloud API v2 and v1 from one package. ESM-only, tree-shakable, runtime-validated by Zod 4. Atlassian Confluence SDK for Node.js 22+ and modern browsers.",
   "author": "Vladislav Tupikin <vladislav.tupikin@icloud.com>",
   "license": "MIT",
