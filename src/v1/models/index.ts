@@ -156,6 +156,8 @@ export * from './genericUserKey';
 
 export * from './genericUserName';
 
+export * from './getRestrictionsByOperation';
+
 export * from './getViewers';
 
 export * from './getViews';

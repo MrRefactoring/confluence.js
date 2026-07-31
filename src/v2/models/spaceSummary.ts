@@ -20,7 +20,7 @@ export const SpaceSummarySchema = apiObject({
   /** The account ID of the user who owns this space. */
   spaceOwnerId: z.string().optional(),
   /** Currently active alias for a Confluence space. */
-  currentActiveAlias: z.string().optional(),
+  currentActiveAlias: z.string().nullish(),
   /** Date and time when the space was created. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */
   createdAt: z.coerce.date().optional(),
   /** ID of the space's homepage. */

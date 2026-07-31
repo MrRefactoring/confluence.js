@@ -1,10 +1,14 @@
 import { ContentRestrictionArraySchema, type ContentRestrictionArray } from '../models/contentRestrictionArray';
+import {
+  GetRestrictionsByOperationSchema,
+  type GetRestrictionsByOperation,
+} from '../models/getRestrictionsByOperation';
 import { ContentRestrictionSchema, type ContentRestriction } from '../models/contentRestriction';
 import type { GetRestrictions } from '../parameters/getRestrictions';
 import type { AddRestrictions } from '../parameters/addRestrictions';
 import type { UpdateRestrictions } from '../parameters/updateRestrictions';
 import type { DeleteRestrictions } from '../parameters/deleteRestrictions';
-import type { GetRestrictionsByOperation } from '../parameters/getRestrictionsByOperation';
+import type { GetRestrictionsByOperation as GetRestrictionsByOperationParameters } from '../parameters/getRestrictionsByOperation';
 import type { GetRestrictionsForOperation } from '../parameters/getRestrictionsForOperation';
 import type { GetIndividualGroupRestrictionStatusByGroupId } from '../parameters/getIndividualGroupRestrictionStatusByGroupId';
 import type { AddGroupToContentRestrictionByGroupId } from '../parameters/addGroupToContentRestrictionByGroupId';
@@ -115,14 +119,15 @@ export async function deleteRestrictions(
  */
 export async function getRestrictionsByOperation(
   client: Client,
-  parameters: GetRestrictionsByOperation,
-): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+  parameters: GetRestrictionsByOperationParameters,
+): Promise<GetRestrictionsByOperation> {
+  const config: SendRequestOptions<GetRestrictionsByOperation> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
     },
+    schema: GetRestrictionsByOperationSchema,
   };
 
   return await client.sendRequest(config);
