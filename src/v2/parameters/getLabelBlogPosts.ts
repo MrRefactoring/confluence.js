@@ -8,8 +8,8 @@ export const GetLabelBlogPostsSchema = z.object({
   /** Filter the results based on space ids. Multiple space ids can be specified as a comma-separated list. */
   spaceId: z.array(z.number()).optional(),
   /**
-   * The content format types to be returned in the `body` field of the response. If available, the representation
-   * will be available under a response field of the same name under the `body` field.
+   * The content format types to be returned in the `body` field of the response. If available, the representation will
+   * be available under a response field of the same name under the `body` field.
    */
   bodyFormat: PrimaryBodyRepresentationSchema.optional(),
   /** Used to sort the result by a particular field. */

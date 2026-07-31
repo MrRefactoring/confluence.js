@@ -14,8 +14,7 @@ export const SearchByCQLSchema = z.object({
    * - `contentId` ID of the content to search against. Optional. Must be in the space specified by `spaceKey`.
    * - `contentStatuses` Content statuses to search against. Optional.
    *
-   * Specify these values in an object. For example, `cqlcontext={%22spaceKey%22:%22TEST%22,
-   * %22contentId%22:%22123%22}`
+   * Specify these values in an object. For example, `cqlcontext={%22spaceKey%22:%22TEST%22, %22contentId%22:%22123%22}`
    */
   cqlcontext: z.string().optional(),
   /** Pointer to a set of search results, returned as part of the `next` or `prev` URL from the previous search call. */

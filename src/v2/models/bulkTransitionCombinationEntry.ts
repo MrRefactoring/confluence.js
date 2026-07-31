@@ -4,8 +4,8 @@ import { BulkTransitionDecodedPermissionSchema } from './bulkTransitionDecodedPe
 
 export const BulkTransitionCombinationEntrySchema = apiObject({
   /**
-   * The opaque id identifying this unique combination of space permissions. Pass directly to the bulk
-   * role-assignments or access-removals endpoints.
+   * The opaque id identifying this unique combination of space permissions. Pass directly to the bulk role-assignments
+   * or access-removals endpoints.
    */
   combinationId: z.string(),
   /** Number of spaces that currently have this combination. */

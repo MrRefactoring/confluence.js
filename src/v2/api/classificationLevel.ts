@@ -207,8 +207,7 @@ export async function putBlogPostClassificationLevel(
 
 /**
  * Resets the [classification level](https://developer.atlassian.com/cloud/admin/dlp/rest/intro/#Classification%20level)
- * for a specific blog post for the space\
- * [default classification
+ * for a specific blog post for the space [default classification
  * level](https://support.atlassian.com/security-and-access-policies/docs/what-is-a-default-classification-level/).
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Permission to access the Confluence site
