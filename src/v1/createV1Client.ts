@@ -172,6 +172,7 @@ import type {
   UserWatch,
   PermissionCheckResponse,
   ContentRestrictionArray,
+  GetRestrictionsByOperation as GetRestrictionsByOperationModel,
   ContentRestriction,
   ContentStateResponse,
   AvailableContentStates,
@@ -328,7 +329,7 @@ export function createV1Client(clientConfig: ClientConfig | Client) {
         contentRestrictions.updateRestrictions(client, parameters),
       deleteRestrictions: (parameters: DeleteRestrictions): Promise<ContentRestrictionArray> =>
         contentRestrictions.deleteRestrictions(client, parameters),
-      getRestrictionsByOperation: (parameters: GetRestrictionsByOperation): Promise<unknown> =>
+      getRestrictionsByOperation: (parameters: GetRestrictionsByOperation): Promise<GetRestrictionsByOperationModel> =>
         contentRestrictions.getRestrictionsByOperation(client, parameters),
       getRestrictionsForOperation: (parameters: GetRestrictionsForOperation): Promise<ContentRestriction> =>
         contentRestrictions.getRestrictionsForOperation(client, parameters),

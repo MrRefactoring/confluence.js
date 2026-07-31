@@ -52,7 +52,8 @@ export const SpaceSchema = apiObject({
     _links: OptionalFieldLinksSchema.nullish(),
   }).nullish(),
   _links: SpaceLinksSchema.nullish(),
-  currentActiveAlias: z.string().optional(),
+  /** Currently active alias for a Confluence space. Returned as null when the space has none. */
+  currentActiveAlias: z.string().nullish(),
 });
 
 export type Space = z.infer<typeof SpaceSchema>;
