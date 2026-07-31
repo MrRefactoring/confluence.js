@@ -6,8 +6,9 @@ export const OperationCheckResultSchema = apiObject({
   /** The operation itself. */
   operation: z.string(),
   /**
-   * The space or content type that the operation applies to. Could be one of- - application - page - blogpost -
-   * comment - attachment - space
+   * The space or content type that the operation applies to. Could be one of- - application - page - blogpost - comment
+   *
+   * - Attachment - space
    */
   targetType: z.string(),
 });

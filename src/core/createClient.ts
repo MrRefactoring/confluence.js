@@ -52,11 +52,7 @@ function describeValue(value: unknown): string {
  * `path` is a zod issue path, so every segment is an object key or an array index, and anything no longer there is
  * simply skipped — the walk describes a body that was just parsed, not an arbitrary structure.
  */
-function takeKeys(
-  body: unknown,
-  path: readonly PropertyKey[],
-  keys: readonly PropertyKey[],
-): Record<string, string> {
+function takeKeys(body: unknown, path: readonly PropertyKey[], keys: readonly PropertyKey[]): Record<string, string> {
   let target = body;
 
   for (const segment of path) {
@@ -85,7 +81,7 @@ interface DriftFinding {
 /**
  * Reads a validation failure as pure schema drift, or decides it is not.
  *
- * Audit-only. Returns the undocumented keys when *every* complaint is one, and `undefined` the moment anything else
+ * Audit-only. Returns the undocumented keys when _every_ complaint is one, and `undefined` the moment anything else
  * appears — a missing field or a changed type is real breakage, and the audit must not quietly absorb it.
  *
  * Unions need the recursion. Zod reports each branch it tried, and branches that failed for their own reasons are

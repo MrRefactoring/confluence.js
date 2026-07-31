@@ -4,8 +4,8 @@ export const GetAndConvertMacroBodyByMacroIdSchema = z.object({
   /** The ID for the content that contains the macro. */
   id: z.string(),
   /**
-   * The version of the content that contains the macro. Specifying `0` as the `version` will return the macro body
-   * for the latest content version.
+   * The version of the content that contains the macro. Specifying `0` as the `version` will return the macro body for
+   * the latest content version.
    */
   version: z.number(),
   /**
@@ -17,13 +17,13 @@ export const GetAndConvertMacroBodyByMacroIdSchema = z.object({
   /** The content representation to return the macro in. */
   to: z.string(),
   /**
-   * A multi-value parameter indicating which properties of the content to expand and populate. Expands are dependent
-   * on the `to` conversion format and may be irrelevant for certain conversions (e.g. `macroRenderedOutput` is
-   * redundant when converting to `view` format).
+   * A multi-value parameter indicating which properties of the content to expand and populate. Expands are dependent on
+   * the `to` conversion format and may be irrelevant for certain conversions (e.g. `macroRenderedOutput` is redundant
+   * when converting to `view` format).
    *
    * If rendering to `view` format, and the body content being converted includes arbitrary nested content (such as
-   * macros); then it is necessary to include webresource expands in the request. Webresources for content body are
-   * the batched JS and CSS dependencies for any nested dynamic content (i.e. macros).
+   * macros); then it is necessary to include webresource expands in the request. Webresources for content body are the
+   * batched JS and CSS dependencies for any nested dynamic content (i.e. macros).
    *
    * - `embeddedContent` returns metadata for nested content (e.g. page included using page include macro)
    * - `mediaToken` returns JWT token for retrieving attachment data from Media API

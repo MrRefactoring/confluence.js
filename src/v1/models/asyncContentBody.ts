@@ -22,8 +22,8 @@ export const AsyncContentBodySchema = apiObject({
   renderTaskId: z.string().optional(),
   error: z.string().optional(),
   /**
-   * Rerunning is reserved for when the job is working, but there is a previous run's value in the cache. You may
-   * choose to continue polling, or use the cached value.
+   * Rerunning is reserved for when the job is working, but there is a previous run's value in the cache. You may choose
+   * to continue polling, or use the cached value.
    */
   status: z.enum(['WORKING', 'QUEUED', 'FAILED', 'COMPLETED', 'RERUNNING']).optional(),
   embeddedContent: z.array(EmbeddedContentSchema).optional(),

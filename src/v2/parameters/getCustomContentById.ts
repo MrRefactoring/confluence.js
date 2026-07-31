@@ -8,8 +8,8 @@ export const GetCustomContentByIdSchema = z.object({
    */
   id: z.number(),
   /**
-   * The content format types to be returned in the `body` field of the response. If available, the representation
-   * will be available under a response field of the same name under the `body` field.
+   * The content format types to be returned in the `body` field of the response. If available, the representation will
+   * be available under a response field of the same name under the `body` field.
    *
    * Note: If the custom content body type is `storage`, the `storage` and `atlas_doc_format` body formats are able to
    * be returned. If the custom content body type is `raw`, only the `raw` body format is able to be returned.
@@ -33,15 +33,15 @@ export const GetCustomContentByIdSchema = z.object({
    */
   includeProperties: z.boolean().optional(),
   /**
-   * Includes operations associated with this custom content in the response, as defined in the `Operation` object.
-   * The number of results will be limited to 50 and sorted in the default sort order. A `meta` and `_links` property
-   * will be present to indicate if more results are available and a link to retrieve the rest of the results.
+   * Includes operations associated with this custom content in the response, as defined in the `Operation` object. The
+   * number of results will be limited to 50 and sorted in the default sort order. A `meta` and `_links` property will
+   * be present to indicate if more results are available and a link to retrieve the rest of the results.
    */
   includeOperations: z.boolean().optional(),
   /**
-   * Includes versions associated with this custom content in the response. The number of results will be limited to
-   * 50 and sorted in the default sort order. A `meta` and `_links` property will be present to indicate if more
-   * results are available and a link to retrieve the rest of the results.
+   * Includes versions associated with this custom content in the response. The number of results will be limited to 50
+   * and sorted in the default sort order. A `meta` and `_links` property will be present to indicate if more results
+   * are available and a link to retrieve the rest of the results.
    */
   includeVersions: z.boolean().optional(),
   /**

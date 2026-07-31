@@ -3,8 +3,8 @@ import { PrimaryBodyRepresentationSchema } from '../models';
 
 export const GetTasksSchema = z.object({
   /**
-   * The content format types to be returned in the `body` field of the response. If available, the representation
-   * will be available under a response field of the same name under the `body` field.
+   * The content format types to be returned in the `body` field of the response. If available, the representation will
+   * be available under a response field of the same name under the `body` field.
    */
   bodyFormat: PrimaryBodyRepresentationSchema.optional(),
   /** Specifies whether to include blank tasks in the response. Defaults to `true`. */
@@ -16,8 +16,8 @@ export const GetTasksSchema = z.object({
   /** Filters on the space ID of the task. Multiple IDs can be specified. */
   spaceId: z.array(z.number()).optional(),
   /**
-   * Filters on the page ID of the task. Multiple IDs can be specified. Note - page and blog post filters can be used
-   * in conjunction.
+   * Filters on the page ID of the task. Multiple IDs can be specified. Note - page and blog post filters can be used in
+   * conjunction.
    */
   pageId: z.array(z.number()).optional(),
   /**
@@ -36,10 +36,7 @@ export const GetTasksSchema = z.object({
    * milliseconds.
    */
   createdAtFrom: z.number().optional(),
-  /**
-   * Filters on end of date-time range of task based on creation date (inclusive). Input is epoch time in
-   * milliseconds.
-   */
+  /** Filters on end of date-time range of task based on creation date (inclusive). Input is epoch time in milliseconds. */
   createdAtTo: z.number().optional(),
   /** Filters on start of date-time range of task based on due date (inclusive). Input is epoch time in milliseconds. */
   dueAtFrom: z.number().optional(),
