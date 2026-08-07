@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const FindTargetFromSourceSchema = z.object({
   /**
@@ -8,7 +9,7 @@ export const FindTargetFromSourceSchema = z.object({
    */
   relationName: z.string(),
   /** The source entity type of the relationship. */
-  sourceType: z.enum(['user', 'content', 'space']),
+  sourceType: openEnum(['user', 'content', 'space']),
   /**
    * The identifier for the source entity:
    *
@@ -22,7 +23,7 @@ export const FindTargetFromSourceSchema = z.object({
    */
   sourceKey: z.string(),
   /** The target entity type of the relationship. */
-  targetType: z.enum(['user', 'content', 'space']),
+  targetType: openEnum(['user', 'content', 'space']),
   /** The status of the source. This parameter is only used when the `sourceType` is 'content'. */
   sourceStatus: z.string().optional(),
   /** The status of the target. This parameter is only used when the `targetType` is 'content'. */
@@ -44,7 +45,7 @@ export const FindTargetFromSourceSchema = z.object({
    * - `source` returns the source entity.
    * - `target` returns the target entity.
    */
-  expand: z.array(z.enum(['relationData', 'source', 'target'])).optional(),
+  expand: z.array(openEnum(['relationData', 'source', 'target'])).optional(),
   /** The starting index of the returned relationships. */
   start: z.number().optional(),
   /** The maximum number of relationships to return per page. Note, this may be restricted by fixed system limits. */

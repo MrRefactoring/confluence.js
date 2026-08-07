@@ -5,7 +5,7 @@ import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 import { LabelArraySchema, type LabelArray } from './labelArray';
 import { LabelSchema, type Label } from './label';
 
-export type ContentMetadata = {
+export interface ContentMetadata {
   currentuser?: {
     favourited?: {
       isFavourite?: boolean;
@@ -37,7 +37,7 @@ export type ContentMetadata = {
   labels?: LabelArray | Label[];
   mediaType?: string;
   _expandable?: Record<string, unknown>;
-};
+}
 /** Metadata object for page, blogpost, comment content */
 
 export const ContentMetadataSchema: z.ZodType<ContentMetadata> = apiObject({

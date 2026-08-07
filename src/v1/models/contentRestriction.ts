@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { UserArraySchema, type UserArray } from './userArray';
 import { GroupArraySchema, type GroupArray } from './groupArray';
 import { ContentSchema, type Content } from './content';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
-export type ContentRestriction = {
+export interface ContentRestriction {
   operation:
     | 'administer'
     | 'copy'
@@ -18,7 +18,8 @@ export type ContentRestriction = {
     | 'read'
     | 'restore'
     | 'update'
-    | 'use';
+    | 'use'
+    | (string & {});
   restrictions?: {
     user?: UserArray;
     group?: GroupArray;
@@ -33,10 +34,10 @@ export type ContentRestriction = {
     content?: string;
   };
   _links: GenericLinks;
-};
+}
 
 export const ContentRestrictionSchema: z.ZodType<ContentRestriction> = apiObject({
-  operation: z.enum([
+  operation: openEnum([
     'administer',
     'copy',
     'create',

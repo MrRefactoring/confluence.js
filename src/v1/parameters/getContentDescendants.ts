@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetContentDescendantsSchema = z.object({
   /** The ID of the content to be queried for its descendants. */
@@ -14,7 +15,7 @@ export const GetContentDescendantsSchema = z.object({
    * - `embed` returns all child embeds of the content.
    * - `folder` returns all child folders of the content.
    */
-  expand: z.array(z.enum(['attachment', 'comment', 'page'])).optional(),
+  expand: z.array(openEnum(['attachment', 'comment', 'page'])).optional(),
 });
 
 export type GetContentDescendants = z.input<typeof GetContentDescendantsSchema>;

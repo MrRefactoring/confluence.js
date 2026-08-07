@@ -1,10 +1,11 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const RemoveUserFromContentRestrictionSchema = z.object({
   /** The ID of the content that the restriction applies to. */
   id: z.string(),
   /** The operation that the restriction applies to. */
-  operationKey: z.enum(['read', 'update']),
+  operationKey: openEnum(['read', 'update']),
   /**
    * This parameter is no longer available and will be removed from the documentation soon. Use `accountId` instead. See
    * the [deprecation

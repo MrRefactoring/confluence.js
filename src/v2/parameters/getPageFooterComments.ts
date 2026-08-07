@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { PrimaryBodyRepresentationSchema } from '../models';
 import { CommentSortOrderSchema } from '../models';
 
@@ -11,7 +12,7 @@ export const GetPageFooterCommentsSchema = z.object({
    */
   bodyFormat: PrimaryBodyRepresentationSchema.optional(),
   /** Filter the footer comment being retrieved by its status. */
-  status: z.array(z.enum(['current', 'archived', 'trashed', 'deleted', 'historical', 'draft'])).optional(),
+  status: z.array(openEnum(['current', 'archived', 'trashed', 'deleted', 'historical', 'draft'])).optional(),
   /** Used to sort the result by a particular field. */
   sort: CommentSortOrderSchema.optional(),
   /**

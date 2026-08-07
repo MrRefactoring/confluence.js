@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { PrimaryBodyRepresentationSchema } from '../models';
 import { CommentSortOrderSchema } from '../models';
 
@@ -11,9 +12,9 @@ export const GetPageInlineCommentsSchema = z.object({
    */
   bodyFormat: PrimaryBodyRepresentationSchema.optional(),
   /** Filter the inline comment being retrieved by its status. */
-  status: z.array(z.enum(['current', 'archived', 'trashed', 'deleted', 'historical', 'draft'])).optional(),
+  status: z.array(openEnum(['current', 'archived', 'trashed', 'deleted', 'historical', 'draft'])).optional(),
   /** Filter the inline comment being retrieved by its resolution status. */
-  resolutionStatus: z.array(z.enum(['resolved', 'open', 'dangling', 'reopened'])).optional(),
+  resolutionStatus: z.array(openEnum(['resolved', 'open', 'dangling', 'reopened'])).optional(),
   /** Used to sort the result by a particular field. */
   sort: CommentSortOrderSchema.optional(),
   /**

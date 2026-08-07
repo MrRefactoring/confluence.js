@@ -1,6 +1,7 @@
-import { z } from 'zod';
+import type { z } from 'zod';
+import { openEnum } from '#/core';
 /** The status of the space. */
 
-export const SpaceStatusSchema = z.enum(['current', 'archived']);
+export const SpaceStatusSchema = openEnum(['current', 'archived']);
 
 export type SpaceStatus = z.infer<typeof SpaceStatusSchema>;

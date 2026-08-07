@@ -1,10 +1,11 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetDescendantsOfTypeSchema = z.object({
   /** The ID of the content to be queried for its descendants. */
   id: z.string(),
   /** The type of descendants to return. */
-  type: z.enum(['page', 'comment', 'attachment']),
+  type: openEnum(['page', 'comment', 'attachment']),
   /**
    * Filter the results to descendants upto a desired level of the content. Note, the maximum value supported is 100.
    * root level of the content means immediate (level 1) descendants of the type requested. all represents returning all

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { PrimaryBodyRepresentationSchema } from '../models';
 
 export const GetTasksSchema = z.object({
@@ -10,7 +11,7 @@ export const GetTasksSchema = z.object({
   /** Specifies whether to include blank tasks in the response. Defaults to `true`. */
   includeBlankTasks: z.boolean().optional(),
   /** Filters on the status of the task. */
-  status: z.enum(['complete', 'incomplete']).optional(),
+  status: openEnum(['complete', 'incomplete']).optional(),
   /** Filters on task ID. Multiple IDs can be specified. */
   taskId: z.array(z.number()).optional(),
   /** Filters on the space ID of the task. Multiple IDs can be specified. */

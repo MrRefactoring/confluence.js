@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /**
  * Defines where the page will be copied to, and can be one of the following types.*
  *
@@ -10,7 +10,7 @@ import { apiObject } from '#/core';
  */
 
 export const CopyPageRequestDestinationSchema = apiObject({
-  type: z.enum(['space', 'existing_page', 'parent_page', 'parent_content']),
+  type: openEnum(['space', 'existing_page', 'parent_page', 'parent_content']),
   /** The space key for `space` type, and content id for `parent_page`, `parent_content`, and `existing_page` */
   value: z.string(),
 });

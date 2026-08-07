@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { EmbeddedContentSchema } from './embeddedContent';
 import { WebResourceDependenciesSchema } from './webResourceDependencies';
 import { GenericLinksSchema } from './genericLinks';
 
 export const ContentBodySchema = apiObject({
   value: z.string(),
-  representation: z.enum([
+  representation: openEnum([
     'view',
     'export_view',
     'styled_view',

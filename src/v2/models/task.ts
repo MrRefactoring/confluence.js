@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { TaskBodySchema } from './taskBody';
 
 export const TaskSchema = apiObject({
@@ -14,7 +14,7 @@ export const TaskSchema = apiObject({
   /** ID of the blog post the task is in. */
   blogPostId: z.string().optional(),
   /** Status of the task. */
-  status: z.enum(['complete', 'incomplete']).optional(),
+  status: openEnum(['complete', 'incomplete']).optional(),
   body: TaskBodySchema.nullish(),
   /** Account ID of the user who created this task. */
   createdBy: z.string().optional(),

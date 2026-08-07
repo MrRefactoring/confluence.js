@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetRelationshipSchema = z.object({
   /**
@@ -8,7 +9,7 @@ export const GetRelationshipSchema = z.object({
    */
   relationName: z.string(),
   /** The source entity type of the relationship. This must be 'user', if the `relationName` is 'favourite'. */
-  sourceType: z.enum(['user', 'content', 'space']),
+  sourceType: openEnum(['user', 'content', 'space']),
   /**
    * - The identifier for the source entity:
    * - If `sourceType` is `user`, then specify either `current` (logged-in user), the user key of the user, or the account
@@ -24,7 +25,7 @@ export const GetRelationshipSchema = z.object({
    * The target entity type of the relationship. This must be 'space' or 'content', if the `relationName` is
    * 'favourite'.
    */
-  targetType: z.enum(['user', 'content', 'space']),
+  targetType: openEnum(['user', 'content', 'space']),
   /**
    * The identifier for the target entity:
    *
@@ -58,7 +59,7 @@ export const GetRelationshipSchema = z.object({
    * - `source` returns the source entity.
    * - `target` returns the target entity.
    */
-  expand: z.array(z.enum(['relationData', 'source', 'target'])).optional(),
+  expand: z.array(openEnum(['relationData', 'source', 'target'])).optional(),
 });
 
 export type GetRelationship = z.input<typeof GetRelationshipSchema>;

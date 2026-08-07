@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { VersionRestoreSchema } from '../models';
 
 export const RestoreContentVersionSchema = z
-  .object({
+  .object({})
+  .extend(VersionRestoreSchema.shape)
+  .extend({
     /** The ID of the content for which the history will be restored. */
     id: z.string(),
     /**
@@ -13,7 +15,6 @@ export const RestoreContentVersionSchema = z
      * - `content` returns the content for the version.
      */
     expand: z.array(z.string()).optional(),
-  })
-  .extend(VersionRestoreSchema.shape);
+  });
 
 export type RestoreContentVersion = z.input<typeof RestoreContentVersionSchema>;

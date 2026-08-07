@@ -1,26 +1,25 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetAuditRecordsForTimePeriodSchema = z.object({
   /** The number of units for the time period. */
   number: z.number().optional(),
   /** The unit of time that the time period is measured in. */
-  units: z
-    .enum([
-      'NANOS',
-      'MICROS',
-      'MILLIS',
-      'SECONDS',
-      'MINUTES',
-      'HOURS',
-      'HALF_DAYS',
-      'DAYS',
-      'WEEKS',
-      'MONTHS',
-      'YEARS',
-      'DECADES',
-      'CENTURIES',
-    ])
-    .optional(),
+  units: openEnum([
+    'NANOS',
+    'MICROS',
+    'MILLIS',
+    'SECONDS',
+    'MINUTES',
+    'HOURS',
+    'HALF_DAYS',
+    'DAYS',
+    'WEEKS',
+    'MONTHS',
+    'YEARS',
+    'DECADES',
+    'CENTURIES',
+  ]).optional(),
   /** Filters the results to records that have string property values matching the `searchString`. */
   searchString: z.string().optional(),
   /** The starting index of the returned records. */

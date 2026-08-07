@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const MovePageSchema = z.object({
   /** The ID of the page to be moved */
@@ -10,7 +11,7 @@ export const MovePageSchema = z.object({
    * - `after` - move the page under the same parent as the target, after the target in the list of children
    * - `append` - move the page to be a child of the target
    */
-  position: z.enum(['before', 'after', 'append']),
+  position: openEnum(['before', 'after', 'append']),
   /** The ID of the target page for this operation */
   targetId: z.string(),
 });

@@ -1,7 +1,8 @@
-import { z } from 'zod';
+import type { z } from 'zod';
+import { openEnum } from '#/core';
 /** The type of space. */
 
-export const SpaceTypeSchema = z.enum([
+export const SpaceTypeSchema = openEnum([
   'global',
   'collaboration',
   'knowledge_base',

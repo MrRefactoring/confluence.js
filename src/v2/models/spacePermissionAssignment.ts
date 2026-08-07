@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const SpacePermissionAssignmentSchema = apiObject({
   /** ID of the space permission. */
@@ -15,21 +15,19 @@ export const SpacePermissionAssignmentSchema = apiObject({
     /** The type of operation. */
     key: z.string().optional(),
     /** The type of entity the operation type targets. */
-    targetType: z
-      .enum([
-        'page',
-        'blogpost',
-        'comment',
-        'attachment',
-        'whiteboard',
-        'database',
-        'embed',
-        'folder',
-        'space',
-        'application',
-        'userProfile',
-      ])
-      .optional(),
+    targetType: openEnum([
+      'page',
+      'blogpost',
+      'comment',
+      'attachment',
+      'whiteboard',
+      'database',
+      'embed',
+      'folder',
+      'space',
+      'application',
+      'userProfile',
+    ]).optional(),
   }).nullish(),
 });
 

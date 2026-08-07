@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const VersionRestoreSchema = apiObject({
   /** Set to 'restore'. */
-  operationKey: z.enum(['restore']),
+  operationKey: openEnum(['restore']),
   params: apiObject({
     /** The version number to be restored. */
     versionNumber: z.number(),

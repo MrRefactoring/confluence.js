@@ -12,7 +12,7 @@ import { ContentRestrictionSchema, type ContentRestriction } from './contentRest
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 import { ContentMetadataSchema, type ContentMetadata } from './contentMetadata';
 
-export type Content = {
+export interface Content {
   id?: string;
   type: string;
   status: string;
@@ -86,7 +86,7 @@ export type Content = {
   _links?: GenericLinks;
   ari?: string;
   base64EncodedAri?: string;
-};
+}
 /** Base object for all content types. */
 
 export const ContentSchema: z.ZodType<Content> = apiObject({

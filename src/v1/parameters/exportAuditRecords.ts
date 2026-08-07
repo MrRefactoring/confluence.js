@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const ExportAuditRecordsSchema = z.object({
   /**
@@ -14,7 +15,7 @@ export const ExportAuditRecordsSchema = z.object({
   /** Filters the exported results to records that have string property values matching the `searchString`. */
   searchString: z.string().optional(),
   /** The format of the export file for the audit records. */
-  format: z.enum(['csv', 'zip']).optional(),
+  format: openEnum(['csv', 'zip']).optional(),
 });
 
 export type ExportAuditRecords = z.input<typeof ExportAuditRecordsSchema>;

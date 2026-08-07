@@ -2,7 +2,9 @@ import { z } from 'zod';
 import { CopyPageRequestSchema } from '../models';
 
 export const CopyPageSchema = z
-  .object({
+  .object({})
+  .extend(CopyPageRequestSchema.shape)
+  .extend({
     id: z.string(),
     /**
      * A multi-value parameter indicating which properties of the content to expand. Maximum sub-expansions allowed is
@@ -67,7 +69,6 @@ export const CopyPageSchema = z
      * - `extensions.resolution` returns the resolution status of each comment.
      */
     expand: z.array(z.string()).optional(),
-  })
-  .extend(CopyPageRequestSchema.shape);
+  });
 
 export type CopyPage = z.input<typeof CopyPageSchema>;

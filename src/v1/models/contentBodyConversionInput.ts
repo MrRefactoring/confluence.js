@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { ContentBodyCreateSchema } from './contentBodyCreate';
 
 export const ContentBodyConversionInputSchema = apiObject({
@@ -35,7 +35,7 @@ export const ContentBodyConversionInputSchema = apiObject({
    * Mode used for rendering embedded content, such as attachments. - `current` renders the embedded content using the
    * latest version. - `version-at-save` renders the embedded content using the version at the time of save.
    */
-  embeddedContentRender: z.enum(['current', 'version-at-save']).optional(),
+  embeddedContentRender: openEnum(['current', 'version-at-save']).optional(),
   /**
    * A multi-value, comma-separated parameter indicating which properties of the content to expand and populate. Expands
    * are dependent on the `to` conversion format and may be irrelevant for certain conversions (e.g.

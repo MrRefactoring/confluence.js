@@ -5,7 +5,7 @@ import { VersionSchema, type Version } from './version';
 import { UsersUserKeysSchema, type UsersUserKeys } from './usersUserKeys';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
-export type ContentHistory = {
+export interface ContentHistory {
   latest: boolean;
   createdBy?: User;
   ownedBy?: User;
@@ -26,7 +26,7 @@ export type ContentHistory = {
     lastOwnedBy?: string;
   };
   _links?: GenericLinks;
-};
+}
 
 export const ContentHistorySchema: z.ZodType<ContentHistory> = apiObject({
   latest: z.boolean(),

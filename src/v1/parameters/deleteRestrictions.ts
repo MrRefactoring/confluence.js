@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const DeleteRestrictionsSchema = z.object({
   /** The ID of the content to remove restrictions from. */
@@ -12,7 +13,7 @@ export const DeleteRestrictionsSchema = z.object({
    */
   expand: z
     .array(
-      z.enum([
+      openEnum([
         'restrictions.user',
         'read.restrictions.user',
         'update.restrictions.user',

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { SpaceSortOrderSchema } from '../models';
 import { SpaceDescriptionBodyRepresentationSchema } from '../models';
 
@@ -8,11 +9,17 @@ export const GetSpacesSchema = z.object({
   /** Filter the results to spaces based on their keys. Multiple keys can be specified as a comma-separated list. */
   keys: z.array(z.string()).optional(),
   /** Filter the results to spaces based on their type. */
-  type: z
-    .enum(['global', 'collaboration', 'knowledge_base', 'personal', 'system', 'onboarding', 'xflow_sample_space'])
-    .optional(),
+  type: openEnum([
+    'global',
+    'collaboration',
+    'knowledge_base',
+    'personal',
+    'system',
+    'onboarding',
+    'xflow_sample_space',
+  ]).optional(),
   /** Filter the results to spaces based on their status. */
-  status: z.enum(['current', 'archived']).optional(),
+  status: openEnum(['current', 'archived']).optional(),
   /** Filter the results to spaces based on their labels. Multiple labels can be specified as a comma-separated list. */
   labels: z.array(z.string()).optional(),
   /** Filter the results to spaces favorited by the user with the specified account ID. */

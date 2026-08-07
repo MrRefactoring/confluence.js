@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { ContentRestrictionAddOrUpdateArraySchema } from '../models';
 
 export const UpdateRestrictionsSchema = z.object({
@@ -13,7 +14,7 @@ export const UpdateRestrictionsSchema = z.object({
    */
   expand: z
     .array(
-      z.enum([
+      openEnum([
         'restrictions.user',
         'read.restrictions.user',
         'update.restrictions.user',

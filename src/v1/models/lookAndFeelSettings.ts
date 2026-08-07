@@ -1,9 +1,9 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
+import type { z } from 'zod';
+import { apiObject, openEnum } from '#/core';
 import { LookAndFeelSchema } from './lookAndFeel';
 
 export const LookAndFeelSettingsSchema = apiObject({
-  selected: z.enum(['global', 'custom']),
+  selected: openEnum(['global', 'custom']),
   global: LookAndFeelSchema,
   theme: LookAndFeelSchema.optional(),
   custom: LookAndFeelSchema,

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { BlogPostSortOrderSchema } from '../models';
 import { PrimaryBodyRepresentationSchema } from '../models';
 
@@ -10,7 +11,7 @@ export const GetBlogPostsSchema = z.object({
   /** Used to sort the result by a particular field. */
   sort: BlogPostSortOrderSchema.optional(),
   /** Filter the results to blog posts based on their status. By default, `current` is used. */
-  status: z.array(z.enum(['current', 'deleted', 'trashed'])).optional(),
+  status: z.array(openEnum(['current', 'deleted', 'trashed'])).optional(),
   /** Filter the results to blog posts based on their title. */
   title: z.string().optional(),
   /**

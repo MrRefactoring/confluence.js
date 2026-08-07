@@ -1,5 +1,6 @@
-import { z } from 'zod';
+import type { z } from 'zod';
+import { openEnum } from '#/core';
 
-export const ClassificationLevelStatusSchema = z.enum(['DRAFT', 'PUBLISHED', 'ARCHIVED']);
+export const ClassificationLevelStatusSchema = openEnum(['DRAFT', 'PUBLISHED', 'ARCHIVED']);
 
 export type ClassificationLevelStatus = z.infer<typeof ClassificationLevelStatusSchema>;

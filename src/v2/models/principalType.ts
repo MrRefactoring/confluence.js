@@ -1,6 +1,7 @@
-import { z } from 'zod';
+import type { z } from 'zod';
+import { openEnum } from '#/core';
 /** The principal type. */
 
-export const PrincipalTypeSchema = z.enum(['USER', 'GROUP', 'ACCESS_CLASS']);
+export const PrincipalTypeSchema = openEnum(['USER', 'GROUP', 'ACCESS_CLASS']);
 
 export type PrincipalType = z.infer<typeof PrincipalTypeSchema>;

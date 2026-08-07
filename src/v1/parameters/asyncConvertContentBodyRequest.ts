@@ -1,10 +1,13 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { ContentBodyCreateSchema } from '../models';
 
 export const AsyncConvertContentBodyRequestSchema = z
-  .object({
+  .object({})
+  .extend(ContentBodyCreateSchema.shape)
+  .extend({
     /** The name of the target format for the content body. */
-    to: z.enum(['export_view']),
+    to: openEnum(['export_view']),
     /**
      * A multi-value parameter indicating which properties of the content to expand and populate. Expands are dependent
      * on the `to` conversion format and may be irrelevant for certain conversions (e.g. `macroRenderedOutput` is
@@ -63,8 +66,7 @@ export const AsyncConvertContentBodyRequestSchema = z
      * - `current` renders the embedded content using the latest version.
      * - `version-at-save` renders the embedded content using the version at the time of save.
      */
-    embeddedContentRender: z.enum(['current', 'version-at-save']).optional(),
-  })
-  .extend(ContentBodyCreateSchema.shape);
+    embeddedContentRender: openEnum(['current', 'version-at-save']).optional(),
+  });
 
 export type AsyncConvertContentBodyRequest = z.input<typeof AsyncConvertContentBodyRequestSchema>;

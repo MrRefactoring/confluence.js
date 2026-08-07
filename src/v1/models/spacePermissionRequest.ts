@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
+import type { z } from 'zod';
+import { apiObject, openEnum } from '#/core';
 import { PermissionSubjectSchema } from './permissionSubject';
 import { GenericLinksSchema } from './genericLinks';
 /**
@@ -37,7 +37,7 @@ import { GenericLinksSchema } from './genericLinks';
 export const SpacePermissionRequestSchema = apiObject({
   subject: PermissionSubjectSchema,
   operation: apiObject({
-    key: z.enum([
+    key: openEnum([
       'administer',
       'archive',
       'copy',
@@ -54,7 +54,7 @@ export const SpacePermissionRequestSchema = apiObject({
       'use',
     ]),
     /** The space or content type that the operation applies to. */
-    target: z.enum(['page', 'blogpost', 'comment', 'attachment', 'space']),
+    target: openEnum(['page', 'blogpost', 'comment', 'attachment', 'space']),
   }),
   _links: GenericLinksSchema.optional(),
 });

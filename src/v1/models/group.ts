@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { GenericLinksSchema } from './genericLinks';
 
 export const GroupSchema = apiObject({
-  type: z.enum(['group']),
+  type: openEnum(['group']),
   name: z.string(),
   id: z.string(),
   /**
@@ -12,7 +12,7 @@ export const GroupSchema = apiObject({
    * - `USERBASE_GROUP`: This value indicates that the collection of users is used as a group.
    * - `TEAM_COLLABORATION`: This value indicates that the collection of users is used as a team.
    */
-  usageType: z.enum(['USERBASE_GROUP', 'TEAM_COLLABORATION']).optional(),
+  usageType: openEnum(['USERBASE_GROUP', 'TEAM_COLLABORATION']).optional(),
   /**
    * This property represents how this collection of users is managed:
    *
@@ -21,7 +21,7 @@ export const GroupSchema = apiObject({
    * - `TEAM_MEMBERS`: This value indicates that the collection of users is managed by its members.
    * - `OPEN`: This value indicates that the collection of users is not actively managed by any users.
    */
-  managedBy: z.enum(['ADMINS', 'EXTERNAL', 'TEAM_MEMBERS', 'OPEN']).optional(),
+  managedBy: openEnum(['ADMINS', 'EXTERNAL', 'TEAM_MEMBERS', 'OPEN']).optional(),
   _links: GenericLinksSchema.optional(),
   resourceAri: z.string().optional(),
 });

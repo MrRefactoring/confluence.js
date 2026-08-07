@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { PrimaryBodyRepresentationSingleSchema } from '../models';
 
 export const GetPageByIdSchema = z.object({
@@ -12,7 +13,7 @@ export const GetPageByIdSchema = z.object({
   /** Retrieve the draft version of this page. */
   getDraft: z.boolean().optional(),
   /** Filter the page being retrieved by its status. */
-  status: z.array(z.enum(['current', 'archived', 'trashed', 'deleted', 'historical', 'draft'])).optional(),
+  status: z.array(openEnum(['current', 'archived', 'trashed', 'deleted', 'historical', 'draft'])).optional(),
   /**
    * Allows you to retrieve a previously published version. Specify the previous version's number to retrieve its
    * details.

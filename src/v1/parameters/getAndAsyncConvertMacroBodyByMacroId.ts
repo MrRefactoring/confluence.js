@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetAndAsyncConvertMacroBodyByMacroIdSchema = z.object({
   /** The ID for the content that contains the macro. */
@@ -21,7 +22,7 @@ export const GetAndAsyncConvertMacroBodyByMacroIdSchema = z.object({
    * - `styled_view`
    * - `view`
    */
-  to: z.enum(['export_view', 'view', 'styled_view']),
+  to: openEnum(['export_view', 'view', 'styled_view']),
   /**
    * A multi-value parameter indicating which properties of the content to expand and populate. Expands are dependent on
    * the `to` conversion format and may be irrelevant for certain conversions (e.g. `macroRenderedOutput` is redundant
@@ -75,7 +76,7 @@ export const GetAndAsyncConvertMacroBodyByMacroIdSchema = z.object({
    * - `current` renders the embedded content using the latest version.
    * - `version-at-save` renders the embedded content using the version at the time of save.
    */
-  embeddedContentRender: z.enum(['current', 'version-at-save']).optional(),
+  embeddedContentRender: openEnum(['current', 'version-at-save']).optional(),
 });
 
 export type GetAndAsyncConvertMacroBodyByMacroId = z.input<typeof GetAndAsyncConvertMacroBodyByMacroIdSchema>;

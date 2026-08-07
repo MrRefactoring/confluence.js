@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { ContentBodyCreateSchema } from './contentBodyCreate';
 import { ContentBodyCreateStorageSchema } from './contentBodyCreateStorage';
 
@@ -30,7 +30,7 @@ export const ContentUpdateSchema = apiObject({
    * The updated status of the content. Note, if you change the status of a page from 'current' to 'draft' and it has an
    * existing draft, the existing draft will be deleted in favor of the updated page.
    */
-  status: z.enum(['current', 'trashed', 'deleted', 'historical', 'draft']).optional(),
+  status: openEnum(['current', 'trashed', 'deleted', 'historical', 'draft']).optional(),
   /** The new parent for the content. Only one parent content 'id' can be specified. */
   ancestors: z
     .array(

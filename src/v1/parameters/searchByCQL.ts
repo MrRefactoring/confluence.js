@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const SearchByCQLSchema = z.object({
   /**
@@ -30,12 +31,12 @@ export const SearchByCQLSchema = z.object({
   /** Whether to exclude current spaces and only show archived spaces. */
   excludeCurrentSpaces: z.boolean().optional(),
   /** The excerpt strategy to apply to the result */
-  excerpt: z.enum(['highlight', 'indexed', 'none', 'highlight_unescaped', 'indexed_unescaped']).optional(),
+  excerpt: openEnum(['highlight', 'indexed', 'none', 'highlight_unescaped', 'indexed_unescaped']).optional(),
   /**
    * Filters users by permission type. Use `none` to default to licensed users, `externalCollaborator` for
    * external/guest users, and `all` to include all permission types.
    */
-  sitePermissionTypeFilter: z.enum(['all', 'externalCollaborator', 'none']).optional(),
+  sitePermissionTypeFilter: openEnum(['all', 'externalCollaborator', 'none']).optional(),
   _: z.number().optional(),
   expand: z.array(z.string()).optional(),
 });

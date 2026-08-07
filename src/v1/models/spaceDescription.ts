@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const SpaceDescriptionSchema = apiObject({
   value: z.string(),
-  representation: z.enum(['plain', 'view']),
+  representation: openEnum(['plain', 'view']),
   embeddedContent: z.array(z.record(z.string(), z.any())),
 });
 

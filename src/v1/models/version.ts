@@ -5,7 +5,7 @@ import { ContentSchema, type Content } from './content';
 import { UsersUserKeysSchema, type UsersUserKeys } from './usersUserKeys';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
-export type Version = {
+export interface Version {
   by?: User;
   when: Date | null;
   friendlyWhen?: string | null;
@@ -25,7 +25,7 @@ export type Version = {
   syncRevSource?: string | null;
   ncsStepVersion?: string;
   ncsStepVersionSource?: string;
-};
+}
 
 export const VersionSchema: z.ZodType<Version> = apiObject({
   by: z.lazy(() => UserSchema).optional(),

@@ -1,6 +1,7 @@
-import { z } from 'zod';
+import type { z } from 'zod';
+import { openEnum } from '#/core';
 /** The role type. */
 
-export const RoleTypeSchema = z.enum(['SYSTEM', 'CUSTOM']);
+export const RoleTypeSchema = openEnum(['SYSTEM', 'CUSTOM']);
 
 export type RoleType = z.infer<typeof RoleTypeSchema>;

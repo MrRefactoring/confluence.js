@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** This object is used when creating or updating content. */
 
 export const ContentBodyCreateSchema = apiObject({
   /** The body of the content in the relevant format. */
   value: z.string(),
   /** The content format type. Set the value of this property to the name of the format being used, e.g. 'storage'. */
-  representation: z.enum([
+  representation: openEnum([
     'view',
     'export_view',
     'styled_view',

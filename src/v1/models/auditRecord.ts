@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { OperationCheckResultSchema } from './operationCheckResult';
 import { GenericUserNameSchema } from './genericUserName';
 import { GenericUserKeySchema } from './genericUserKey';
@@ -9,7 +9,7 @@ import { ChangedValueSchema } from './changedValue';
 
 export const AuditRecordSchema = apiObject({
   author: apiObject({
-    type: z.enum(['user']),
+    type: openEnum(['user']),
     displayName: z.string(),
     operations: z.array(OperationCheckResultSchema).nullish(),
     username: GenericUserNameSchema.optional(),

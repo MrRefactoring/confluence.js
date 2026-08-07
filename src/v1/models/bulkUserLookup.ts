@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { GenericUserNameSchema } from './genericUserName';
 import { GenericUserKeySchema } from './genericUserKey';
 import { GenericAccountIdSchema } from './genericAccountId';
@@ -10,7 +10,7 @@ import { SpaceSchema } from './space';
 import { GenericLinksSchema } from './genericLinks';
 
 export const BulkUserLookupSchema = apiObject({
-  type: z.enum(['known', 'unknown', 'anonymous', 'user']),
+  type: openEnum(['known', 'unknown', 'anonymous', 'user']),
   username: GenericUserNameSchema.optional(),
   userKey: GenericUserKeySchema.optional(),
   accountId: GenericAccountIdSchema,
