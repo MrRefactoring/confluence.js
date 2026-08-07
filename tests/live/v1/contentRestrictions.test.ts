@@ -4,6 +4,7 @@ import type { V1Client } from '#/v1';
 import { getV1Client } from '../setup/client';
 import { ResourceTracker } from '../setup/resources';
 import { createTestPage, createTestSpace } from '../setup/fixtures';
+import { unlessNotEntitled } from '../setup/entitlement';
 
 /**
  * Content restrictions are v1-only and have no v2 equivalent — one of the reasons
@@ -103,10 +104,14 @@ describe('Confluence Cloud v1 — restriction status probes (live)', () => {
     expect(openError).toBeInstanceOf(ApiError);
     expect((openError as ApiError).status).toBe(404);
 
-    await client.contentRestrictions.addRestrictions({
-      id: pageId,
-      body: [{ operation: 'read', restrictions: { user: [{ type: 'known', accountId }] } }],
-    });
+    const restricted = await unlessNotEntitled(
+      client.contentRestrictions.addRestrictions({
+        id: pageId,
+        body: [{ operation: 'read', restrictions: { user: [{ type: 'known', accountId }] } }],
+      }),
+    );
+
+    if (!restricted) return;
 
     await expect(
       client.contentRestrictions.getContentRestrictionStatusForUser({ id: pageId, operationKey: 'read', accountId }),
@@ -130,10 +135,14 @@ describe('Confluence Cloud v1 — restriction status probes (live)', () => {
 
 describe('Confluence Cloud v1 — restriction lifecycle (live, full round-trip)', () => {
   it('adds a read restriction for the current user and reads it back', async () => {
-    const added = await client.contentRestrictions.addRestrictions({
-      id: pageId,
-      body: [{ operation: 'read', restrictions: { user: [{ type: 'known', accountId }] } }],
-    });
+    const added = await unlessNotEntitled(
+      client.contentRestrictions.addRestrictions({
+        id: pageId,
+        body: [{ operation: 'read', restrictions: { user: [{ type: 'known', accountId }] } }],
+      }),
+    );
+
+    if (!added) return;
 
     expect(Array.isArray(added.results)).toBe(true);
 
@@ -148,7 +157,9 @@ describe('Confluence Cloud v1 — restriction lifecycle (live, full round-trip)'
   });
 
   it('deletes every restriction, leaving the page open again', async () => {
-    await client.contentRestrictions.deleteRestrictions({ id: pageId });
+    const cleared = await unlessNotEntitled(client.contentRestrictions.deleteRestrictions({ id: pageId }));
+
+    if (!cleared) return;
 
     const read = await client.contentRestrictions.getRestrictions({ id: pageId, expand: ['restrictions.user'] });
     const readRestriction = read.results.find(restriction => restriction.operation === 'read');
