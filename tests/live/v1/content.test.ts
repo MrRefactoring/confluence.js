@@ -4,6 +4,7 @@ import type { V1Client } from '#/v1';
 import { getV1Client, getV2Client } from '../setup/client';
 import { ResourceTracker } from '../setup/resources';
 import { createTestPage, createTestSpace } from '../setup/fixtures';
+import { isNotEntitled, unlessNotEntitled } from '../setup/entitlement';
 import { testName } from '../helpers/naming';
 import { waitFor } from '../helpers/poll';
 
@@ -76,7 +77,9 @@ describe('Confluence Cloud v1 — content.archivePages (live, async task)', () =
     const v2 = getV2Client();
     const page = await createTestPage(tracker, spaceId, { title: testName('archivable') });
 
-    const started = await client.content.archivePages({ pages: [{ id: Number(page.id) }] });
+    const started = await unlessNotEntitled(client.content.archivePages({ pages: [{ id: Number(page.id) }] }));
+
+    if (!started) return;
 
     expect(started.id).toBeTruthy();
 
@@ -96,6 +99,9 @@ describe('Confluence Cloud v1 — content.archivePages (live, async task)', () =
   // 500 it is, rather than the 4xx it ought to be.
   it('answers an unknown page id with a typed 500', async () => {
     const error = await client.content.archivePages({ pages: [{ id: 0 }] }).catch((e: unknown) => e);
+
+    // A plan without archiving refuses before it ever looks the id up, so there is no 500 to pin.
+    if (isNotEntitled(error)) return;
 
     expect(error).toBeInstanceOf(ApiError);
     expect((error as ApiError).status).toBe(500);
