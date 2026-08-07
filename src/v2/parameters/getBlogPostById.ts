@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { PrimaryBodyRepresentationSingleSchema } from '../models';
 
 export const GetBlogPostByIdSchema = z.object({
@@ -15,7 +16,7 @@ export const GetBlogPostByIdSchema = z.object({
   /** Retrieve the draft version of this blog post. */
   getDraft: z.boolean().optional(),
   /** Filter the blog post being retrieved by its status. */
-  status: z.array(z.enum(['current', 'trashed', 'deleted', 'historical', 'draft'])).optional(),
+  status: z.array(openEnum(['current', 'trashed', 'deleted', 'historical', 'draft'])).optional(),
   /**
    * Allows you to retrieve a previously published version. Specify the previous version's number to retrieve its
    * details.

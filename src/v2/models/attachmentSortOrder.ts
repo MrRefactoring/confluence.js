@@ -1,9 +1,10 @@
-import { z } from 'zod';
+import type { z } from 'zod';
+import { openEnum } from '#/core';
 /**
  * The sort fields for attachments. The default sort direction is ascending. To sort in descending order, append a `-`
  * character before the sort field. For example, `fieldName` or `-fieldName`.
  */
 
-export const AttachmentSortOrderSchema = z.enum(['created-date', '-created-date', 'modified-date', '-modified-date']);
+export const AttachmentSortOrderSchema = openEnum(['created-date', '-created-date', 'modified-date', '-modified-date']);
 
 export type AttachmentSortOrder = z.infer<typeof AttachmentSortOrderSchema>;

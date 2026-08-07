@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { PageSortOrderSchema } from '../models';
 import { PrimaryBodyRepresentationSchema } from '../models';
 
@@ -6,11 +7,11 @@ export const GetPagesInSpaceSchema = z.object({
   /** The ID of the space for which pages should be returned. */
   id: z.number(),
   /** Filter the results to pages at the root level of the space or to all pages in the space. */
-  depth: z.enum(['all', 'root']).optional(),
+  depth: openEnum(['all', 'root']).optional(),
   /** Used to sort the result by a particular field. */
   sort: PageSortOrderSchema.optional(),
   /** Filter the results to pages based on their status. By default, `current` and `archived` are used. */
-  status: z.array(z.enum(['current', 'archived', 'deleted', 'trashed'])).optional(),
+  status: z.array(openEnum(['current', 'archived', 'deleted', 'trashed'])).optional(),
   /** Filter the results to pages based on their title. */
   title: z.string().optional(),
   /**

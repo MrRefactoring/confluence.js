@@ -12,7 +12,7 @@ import { LookAndFeelSchema, type LookAndFeel } from './lookAndFeel';
 import { UserSchema, type User } from './user';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
-export type Space = {
+export interface Space {
   id?: number;
   key: string;
   alias?: string;
@@ -59,7 +59,7 @@ export type Space = {
   };
   _links: GenericLinks;
   ari?: string;
-};
+}
 
 export const SpaceSchema: z.ZodType<Space> = apiObject({
   id: z.number().optional(),

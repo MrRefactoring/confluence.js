@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { GenericLinksSchema } from './genericLinks';
 
 export const SpaceSettingsSchema = apiObject({
@@ -20,7 +20,7 @@ export const SpaceSettingsSchema = apiObject({
    * are "standard" and "compact". When set to "compact", content is rendered more densely with smaller spacing and
    * typography.
    */
-  contentMode: z.enum(['standard', 'compact']).nullish(),
+  contentMode: openEnum(['standard', 'compact']).nullish(),
   spaceKey: z.string().optional(),
   _links: GenericLinksSchema,
 });

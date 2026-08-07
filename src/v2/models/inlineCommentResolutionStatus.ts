@@ -1,6 +1,7 @@
-import { z } from 'zod';
+import type { z } from 'zod';
+import { openEnum } from '#/core';
 /** Inline comment resolution status */
 
-export const InlineCommentResolutionStatusSchema = z.enum(['open', 'reopened', 'resolved', 'dangling']);
+export const InlineCommentResolutionStatusSchema = openEnum(['open', 'reopened', 'resolved', 'dangling']);
 
 export type InlineCommentResolutionStatus = z.infer<typeof InlineCommentResolutionStatusSchema>;

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const SpaceSettingsUpdateSchema = apiObject({
   /**
@@ -14,7 +14,7 @@ export const SpaceSettingsUpdateSchema = apiObject({
    * are "standard" and "compact". When set to "compact", content is rendered more densely with smaller spacing and
    * typography.
    */
-  contentMode: z.enum(['standard', 'compact']).nullish(),
+  contentMode: openEnum(['standard', 'compact']).nullish(),
 });
 
 export type SpaceSettingsUpdate = z.infer<typeof SpaceSettingsUpdateSchema>;

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetContentTemplateSchema = z.object({
   /** The ID of the content template to be returned. */
@@ -8,7 +9,7 @@ export const GetContentTemplateSchema = z.object({
    *
    * - `body` or `body.storage` returns the content of the template in storage format.
    */
-  expand: z.array(z.enum(['body', 'body.storage'])).optional(),
+  expand: z.array(openEnum(['body', 'body.storage'])).optional(),
 });
 
 export type GetContentTemplate = z.input<typeof GetContentTemplateSchema>;

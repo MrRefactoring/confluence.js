@@ -4,7 +4,7 @@ import { UserSchema, type User } from './user';
 import { GroupSchema, type Group } from './group';
 import { OperationCheckResultSchema, type OperationCheckResult } from './operationCheckResult';
 
-export type SpacePermission = {
+export interface SpacePermission {
   id?: number;
   subjects?: {
     user?: {
@@ -27,7 +27,7 @@ export type SpacePermission = {
   operation: OperationCheckResult;
   anonymousAccess: boolean;
   unlicensedAccess: boolean;
-};
+}
 /**
  * This object represents a permission for given space. Permissions consist of* at least one operation object with an
  * accompanying subjects object.*

@@ -3,7 +3,7 @@ import { apiObject } from '#/core';
 import { ContentArraySchema, type ContentArray } from './contentArray';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
-export type ContentChildren = {
+export interface ContentChildren {
   attachment?: ContentArray;
   comment?: ContentArray;
   page?: ContentArray;
@@ -22,7 +22,7 @@ export type ContentChildren = {
     slide?: string;
   };
   _links?: GenericLinks;
-};
+}
 
 export const ContentChildrenSchema: z.ZodType<ContentChildren> = apiObject({
   attachment: z.lazy(() => ContentArraySchema).optional(),

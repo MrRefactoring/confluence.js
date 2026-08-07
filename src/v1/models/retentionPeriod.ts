@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const RetentionPeriodSchema = apiObject({
   /** The number of units for the retention period. */
   number: z.number(),
   /** The unit of time that the retention period is measured in. */
-  units: z.enum([
+  units: openEnum([
     'NANOS',
     'MICROS',
     'MILLIS',

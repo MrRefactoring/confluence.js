@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetRestrictionsByOperationSchema = z.object({
   /** The ID of the content to be queried for its restrictions. */
@@ -10,7 +11,7 @@ export const GetRestrictionsByOperationSchema = z.object({
    * - `restrictions.group` returns the piece of content that the restrictions are applied to. Expanded by default.
    * - `content` returns the piece of content that the restrictions are applied to.
    */
-  expand: z.array(z.enum(['restrictions.user', 'restrictions.group', 'content'])).optional(),
+  expand: z.array(openEnum(['restrictions.user', 'restrictions.group', 'content'])).optional(),
 });
 
 export type GetRestrictionsByOperation = z.input<typeof GetRestrictionsByOperationSchema>;

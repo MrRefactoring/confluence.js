@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** The user or group that the permission applies to. */
 
 export const PermissionSubjectWithGroupIdSchema = apiObject({
-  type: z.enum(['user', 'group']),
+  type: openEnum(['user', 'group']),
   /**
    * For `type=user`, identifier should be user's accountId or `anonymous` for anonymous users
    *

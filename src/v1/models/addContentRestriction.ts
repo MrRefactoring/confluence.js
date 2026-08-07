@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { GenericUserNameSchema } from './genericUserName';
 import { GenericUserKeySchema } from './genericUserKey';
 import { GenericAccountIdSchema } from './genericAccountId';
 
 export const AddContentRestrictionSchema = apiObject({
   /** The restriction operation applied to content. */
-  operation: z.enum(['read', 'update']),
+  operation: openEnum(['read', 'update']),
   /**
    * The users/groups that the restrictions will be applied to. At least one of `user` or `group` must be specified for
    * this object.
@@ -20,7 +20,7 @@ export const AddContentRestrictionSchema = apiObject({
       .array(
         apiObject({
           /** Set to 'known'. */
-          type: z.enum(['known', 'unknown', 'anonymous', 'user']),
+          type: openEnum(['known', 'unknown', 'anonymous', 'user']),
           username: GenericUserNameSchema.optional(),
           userKey: GenericUserKeySchema.optional(),
           accountId: GenericAccountIdSchema,
@@ -35,7 +35,7 @@ export const AddContentRestrictionSchema = apiObject({
       .array(
         apiObject({
           /** Set to 'group'. */
-          type: z.enum(['group']),
+          type: openEnum(['group']),
           /** The name of the group. */
           name: z.string(),
         }),

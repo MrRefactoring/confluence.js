@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { ApiError } from '#/core';
-import type { V1Client } from '#/v1';
+import type { User, V1Client } from '#/v1';
 import { getV1Client } from '../setup/client';
 
 /**
@@ -21,7 +21,7 @@ beforeAll(() => {
 });
 
 /** Every v1 user response shares this core shape. */
-function expectWellFormedUser(user: Record<string, unknown>): void {
+function expectWellFormedUser(user: User): void {
   expect(user).toMatchObject({ type: expect.any(String) });
 
   if (user.accountId !== undefined) expect(typeof user.accountId).toBe('string');
@@ -105,7 +105,7 @@ describe('Confluence Cloud v1 — users.getBulkUserLookup (live, gated-graceful)
 
       expect(Array.isArray(bulk.results)).toBe(true);
 
-      for (const user of bulk.results ?? []) expectWellFormedUser(user as Record<string, unknown>);
+      for (const user of bulk.results ?? []) expectWellFormedUser(user);
     } catch (error) {
       expect(error).toBeInstanceOf(ApiError);
     }

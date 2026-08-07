@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetUserSchema = z.object({
   /**
@@ -13,7 +14,7 @@ export const GetUserSchema = z.object({
    * - `personalSpace` returns the user's personal space, if it exists.
    * - `isExternalCollaborator`(@deprecated) see `isGuest` in response to find out whether the user is a guest.
    */
-  expand: z.array(z.enum(['operations', 'personalSpace', 'isExternalCollaborator'])).optional(),
+  expand: z.array(openEnum(['operations', 'personalSpace', 'isExternalCollaborator'])).optional(),
 });
 
 export type GetUser = z.input<typeof GetUserSchema>;

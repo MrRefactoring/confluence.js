@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { GenericUserNameSchema, type GenericUserName } from './genericUserName';
 import { GenericUserKeySchema, type GenericUserKey } from './genericUserKey';
 import { GenericAccountIdSchema, type GenericAccountId } from './genericAccountId';
@@ -9,12 +9,12 @@ import { UserDetailsSchema, type UserDetails } from './userDetails';
 import { SpaceSchema, type Space } from './space';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
-export type User = {
-  type: 'known' | 'unknown' | 'anonymous' | 'user';
+export interface User {
+  type: 'known' | 'unknown' | 'anonymous' | 'user' | (string & {});
   username?: GenericUserName;
   userKey?: GenericUserKey;
   accountId?: GenericAccountId;
-  accountType?: 'atlassian' | 'app' | '';
+  accountType?: 'atlassian' | 'app' | '' | (string & {});
   email?: string | null;
   publicName?: string;
   profilePicture?: Icon;
@@ -34,10 +34,10 @@ export type User = {
   _links?: GenericLinks;
   accountStatus?: string;
   locale?: string;
-};
+}
 
 export const UserSchema: z.ZodType<User> = apiObject({
-  type: z.enum(['known', 'unknown', 'anonymous', 'user']),
+  type: openEnum(['known', 'unknown', 'anonymous', 'user']),
   username: GenericUserNameSchema.optional(),
   userKey: GenericUserKeySchema.optional(),
   accountId: GenericAccountIdSchema.optional(),
@@ -45,7 +45,7 @@ export const UserSchema: z.ZodType<User> = apiObject({
    * The account type of the user, may return empty string if unavailable. App is if the user is a bot user created on
    * behalf of an Atlassian app.
    */
-  accountType: z.enum(['atlassian', 'app', '']).optional(),
+  accountType: openEnum(['atlassian', 'app', '']).optional(),
   /** The email address of the user. Depending on the user's privacy setting, this may return an empty string. */
   email: z.string().nullish(),
   /** The public name or nickname of the user. Will always contain a value. */

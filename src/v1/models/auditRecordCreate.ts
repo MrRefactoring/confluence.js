@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { OperationCheckResultSchema } from './operationCheckResult';
 import { GenericUserNameSchema } from './genericUserName';
 import { GenericUserKeySchema } from './genericUserKey';
@@ -13,7 +13,7 @@ export const AuditRecordCreateSchema = apiObject({
    */
   author: apiObject({
     /** Set to 'user'. */
-    type: z.enum(['user']),
+    type: openEnum(['user']),
     /** The name that is displayed on the audit log in the Confluence UI. */
     displayName: z.string().optional(),
     /** Always defaults to null. */

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { ContentStateRestInputSchema } from '../models';
 
 export const SetContentStateSchema = z.object({
@@ -8,7 +9,7 @@ export const SetContentStateSchema = z.object({
    * Status of content onto which state will be placed. If draft, then draft state will change. If current, state will
    * be placed onto a new version of the content with same body as previous version.
    */
-  status: z.enum(['current', 'draft']),
+  status: openEnum(['current', 'draft']),
   body: ContentStateRestInputSchema,
 });
 

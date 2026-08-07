@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { BulkTransitionDecodedPermissionSchema } from './bulkTransitionDecodedPermission';
 
 export const BulkTransitionCombinationEntrySchema = apiObject({
@@ -20,7 +20,7 @@ export const BulkTransitionCombinationEntrySchema = apiObject({
    * combination.
    */
   principalTypes: z.array(
-    z.enum([
+    openEnum([
       'USER',
       'GROUP',
       'GUEST',

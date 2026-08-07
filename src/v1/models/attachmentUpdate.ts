@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const AttachmentUpdateSchema = apiObject({
   /**
@@ -13,7 +13,7 @@ export const AttachmentUpdateSchema = apiObject({
   /** The ID of the attachment to be updated. */
   id: z.string(),
   /** Set this to `attachment`. */
-  type: z.enum(['attachment']),
+  type: openEnum(['attachment']),
   /** The updated name of the attachment. */
   title: z.string().max(255, 'title must be at most 255 characters').optional(),
   metadata: apiObject({

@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const BulkTransitionPrincipalTypeAssignmentSchema = apiObject({
   /** The type of principal. */
-  principalType: z.enum([
+  principalType: openEnum([
     'USER',
     'GROUP',
     'GUEST',

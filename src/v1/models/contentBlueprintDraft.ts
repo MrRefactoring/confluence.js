@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const ContentBlueprintDraftSchema = apiObject({
   /** The version for the new content. */
@@ -10,9 +10,9 @@ export const ContentBlueprintDraftSchema = apiObject({
   /** The title of the content. If you don't want to change the title, set this to the current title of the draft. */
   title: z.string().max(255, 'title must be at most 255 characters'),
   /** The type of content. Set this to `page`. */
-  type: z.enum(['page']),
+  type: openEnum(['page']),
   /** The status of the content. Set this to `current` or omit it altogether. */
-  status: z.enum(['current']).optional(),
+  status: openEnum(['current']).optional(),
   /** The space for the content. */
   space: apiObject({
     /** The key of the space */

@@ -1,6 +1,7 @@
-import { z } from 'zod';
+import type { z } from 'zod';
+import { openEnum } from '#/core';
 /** The account status of the user. */
 
-export const AccountStatusSchema = z.enum(['active', 'inactive', 'closed', 'unknown']);
+export const AccountStatusSchema = openEnum(['active', 'inactive', 'closed', 'unknown']);
 
 export type AccountStatus = z.infer<typeof AccountStatusSchema>;

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { PageSortOrderSchema } from '../models';
 import { PrimaryBodyRepresentationSchema } from '../models';
 
@@ -10,7 +11,7 @@ export const GetPagesSchema = z.object({
   /** Used to sort the result by a particular field. */
   sort: PageSortOrderSchema.optional(),
   /** Filter the results to pages based on their status. By default, `current` and `archived` are used. */
-  status: z.array(z.enum(['current', 'archived', 'deleted', 'trashed'])).optional(),
+  status: z.array(openEnum(['current', 'archived', 'deleted', 'trashed'])).optional(),
   /** Filter the results to pages based on their title. */
   title: z.string().optional(),
   /**
@@ -19,7 +20,7 @@ export const GetPagesSchema = z.object({
    */
   bodyFormat: PrimaryBodyRepresentationSchema.optional(),
   /** Filter the results to pages based on their subtype. */
-  subtype: z.enum(['live', 'page']).optional(),
+  subtype: openEnum(['live', 'page']).optional(),
   /**
    * Used for pagination, this opaque cursor will be returned in the `next` URL in the `Link` response header. Use the
    * relative URL in the `Link` header to retrieve the `next` set of results.

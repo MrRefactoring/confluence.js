@@ -1,6 +1,15 @@
-import { z } from 'zod';
+import type { z } from 'zod';
+import { openEnum } from '#/core';
 /** The status of the content. */
 
-export const ContentStatusSchema = z.enum(['current', 'draft', 'archived', 'historical', 'trashed', 'deleted', 'any']);
+export const ContentStatusSchema = openEnum([
+  'current',
+  'draft',
+  'archived',
+  'historical',
+  'trashed',
+  'deleted',
+  'any',
+]);
 
 export type ContentStatus = z.infer<typeof ContentStatusSchema>;

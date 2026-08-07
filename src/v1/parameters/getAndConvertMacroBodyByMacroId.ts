@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetAndConvertMacroBodyByMacroIdSchema = z.object({
   /** The ID for the content that contains the macro. */
@@ -55,7 +56,7 @@ export const GetAndConvertMacroBodyByMacroIdSchema = z.object({
    * - `current` renders the embedded content using the latest version.
    * - `version-at-save` renders the embedded content using the version at the time of save.
    */
-  embeddedContentRender: z.enum(['current', 'version-at-save']).optional(),
+  embeddedContentRender: openEnum(['current', 'version-at-save']).optional(),
 });
 
 export type GetAndConvertMacroBodyByMacroId = z.input<typeof GetAndConvertMacroBodyByMacroIdSchema>;

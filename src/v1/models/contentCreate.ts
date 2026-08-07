@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { IconSchema } from './icon';
 import { GlobalSpaceIdentifierSchema } from './globalSpaceIdentifier';
 import { SpaceDescriptionSchema } from './spaceDescription';
@@ -57,7 +57,7 @@ export const ContentCreateSchema = apiObject({
     links: z.record(z.string(), z.any()).nullish(),
   }).nullish(),
   /** The status of the new content. */
-  status: z.enum(['current', 'deleted', 'historical', 'draft']).optional(),
+  status: openEnum(['current', 'deleted', 'historical', 'draft']).optional(),
   /**
    * The container of the content. Required if type is `comment` or certain types of custom content. If you are trying
    * to create a comment that is a child of another comment, specify the parent comment in the ancestors field, not in

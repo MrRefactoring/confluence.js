@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { AttachmentSortOrderSchema } from '../models';
 
 export const GetAttachmentsSchema = z.object({
@@ -10,7 +11,7 @@ export const GetAttachmentsSchema = z.object({
    */
   cursor: z.string().optional(),
   /** Filter the results to attachments based on their status. By default, `current` and `archived` are used. */
-  status: z.array(z.enum(['current', 'archived', 'trashed'])).optional(),
+  status: z.array(openEnum(['current', 'archived', 'trashed'])).optional(),
   /** Filters on the mediaType of attachments. Only one may be specified. */
   mediaType: z.string().optional(),
   /** Filters on the file-name of attachments. Only one may be specified. */

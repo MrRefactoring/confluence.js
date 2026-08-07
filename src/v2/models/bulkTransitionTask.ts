@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const BulkTransitionTaskSchema = apiObject({
   /** The ID of the async task. */
   taskId: z.string(),
   /** The current status of the task. */
-  status: z.enum(['IN_PROGRESS', 'COMPLETED', 'FAILED']),
+  status: openEnum(['IN_PROGRESS', 'COMPLETED', 'FAILED']),
   /** URL to poll for task progress. */
   statusUrl: z.string(),
 });

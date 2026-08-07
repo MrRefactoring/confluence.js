@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const SearchUserSchema = z.object({
   /**
@@ -27,7 +28,7 @@ export const SearchUserSchema = z.object({
    * Filters users by permission type. Use `none` to default to licensed users, `externalCollaborator` for
    * external/guest users, and `all` to include all permission types.
    */
-  sitePermissionTypeFilter: z.enum(['all', 'externalCollaborator', 'none']).optional(),
+  sitePermissionTypeFilter: openEnum(['all', 'externalCollaborator', 'none']).optional(),
 });
 
 export type SearchUser = z.input<typeof SearchUserSchema>;

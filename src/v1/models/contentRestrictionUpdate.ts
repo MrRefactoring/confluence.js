@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { UserSchema } from './user';
 import { UserArraySchema } from './userArray';
 import { ContentSchema } from './content';
 
 export const ContentRestrictionUpdateSchema = apiObject({
   /** The restriction operation applied to content. */
-  operation: z.enum([
+  operation: openEnum([
     'administer',
     'copy',
     'create',
@@ -33,7 +33,7 @@ export const ContentRestrictionUpdateSchema = apiObject({
       .array(
         apiObject({
           /** Set to 'group'. */
-          type: z.enum(['group']),
+          type: openEnum(['group']),
           /** The id of the group. */
           id: z.string().optional(),
         }),

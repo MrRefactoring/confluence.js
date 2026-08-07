@@ -1,10 +1,11 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetSpaceContentLabelsSchema = z.object({
   /** The ID of the space for which labels should be returned. */
   id: z.number(),
   /** Filter the results to labels based on their prefix. */
-  prefix: z.enum(['my', 'team']).optional(),
+  prefix: openEnum(['my', 'team']).optional(),
   /** Used to sort the result by a particular field. */
   sort: z.string().optional(),
   /**

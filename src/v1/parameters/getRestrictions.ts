@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetRestrictionsSchema = z.object({
   /** The ID of the content to be queried for its restrictions. */
@@ -13,7 +14,7 @@ export const GetRestrictionsSchema = z.object({
    */
   expand: z
     .array(
-      z.enum([
+      openEnum([
         'restrictions.user',
         'read.restrictions.user',
         'update.restrictions.user',

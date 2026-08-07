@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const GroupCreateSchema = apiObject({
-  type: z.enum(['group']),
+  type: openEnum(['group']),
   id: z.string().optional(),
 });
 

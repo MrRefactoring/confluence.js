@@ -3,14 +3,14 @@ import { apiObject } from '#/core';
 import { UserSchema, type User } from './user';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
-export type UserArray = {
+export interface UserArray {
   results: User[];
   start?: number;
   limit?: number;
   size?: number;
   totalSize?: number;
   _links?: GenericLinks;
-};
+}
 
 export const UserArraySchema: z.ZodType<UserArray> = apiObject({
   results: z.array(z.lazy(() => UserSchema)),

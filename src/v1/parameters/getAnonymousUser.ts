@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetAnonymousUserSchema = z.object({
   /**
@@ -6,7 +7,7 @@ export const GetAnonymousUserSchema = z.object({
    *
    * - `operations` returns the operations that the user is allowed to do.
    */
-  expand: z.array(z.enum(['operations'])).optional(),
+  expand: z.array(openEnum(['operations'])).optional(),
 });
 
 export type GetAnonymousUser = z.input<typeof GetAnonymousUserSchema>;
