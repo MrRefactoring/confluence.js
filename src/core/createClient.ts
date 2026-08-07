@@ -43,6 +43,25 @@ function describeValue(value: unknown): string {
 }
 
 /**
+ * The value the API sent where the schema listed a set, as text for the report.
+ *
+ * Audit-only, like everything else on this path, and the value is the whole finding: an enum that grew is repaired by
+ * adding the value it grew by, which a type name does not carry. Anything that is not a string is described rather
+ * than quoted — a set of numbers or booleans is rare enough that naming its shape is answer enough.
+ */
+function describeValueAtPath(body: unknown, path: readonly PropertyKey[]): string {
+  let target = body;
+
+  for (const segment of path) {
+    if (target === null || typeof target !== 'object') return 'nothing';
+
+    target = (target as Record<PropertyKey, unknown>)[segment];
+  }
+
+  return typeof target === 'string' ? target : describeValue(target);
+}
+
+/**
  * Reads the undocumented values, then removes them so the response can be parsed a second time.
  *
  * Audit-only, and it reports the types because the point of the audit is to write the missing field into the schema —
@@ -52,7 +71,7 @@ function describeValue(value: unknown): string {
  * `path` is a zod issue path, so every segment is an object key or an array index, and anything no longer there is
  * simply skipped — the walk describes a body that was just parsed, not an arbitrary structure.
  */
-function takeKeys(body: unknown, path: readonly PropertyKey[], keys: readonly PropertyKey[]): Record<string, string> {
+function takeKeyTypes(body: unknown, path: readonly PropertyKey[], keys: readonly PropertyKey[]): Record<string, string> {
   let target = body;
 
   for (const segment of path) {
@@ -73,34 +92,53 @@ function takeKeys(body: unknown, path: readonly PropertyKey[], keys: readonly Pr
   return types;
 }
 
-interface DriftFinding {
-  path: PropertyKey[];
-  keys: PropertyKey[];
-}
+type DriftFinding =
+  | { kind: 'keys', path: PropertyKey[], keys: PropertyKey[] }
+  | { kind: 'value', path: PropertyKey[], documented: string[] };
 
 /**
  * Reads a validation failure as pure schema drift, or decides it is not.
  *
- * Audit-only. Returns the undocumented keys when _every_ complaint is one, and `undefined` the moment anything else
- * appears — a missing field or a changed type is real breakage, and the audit must not quietly absorb it.
+ * Audit-only. Returns the gaps when _every_ complaint is one, and `undefined` the moment anything else appears — a
+ * missing field or a changed type is real breakage, and the audit must not quietly absorb it.
+ *
+ * Two kinds count. An undocumented key is a field the specification never described. A value outside a documented set
+ * is the same gap one level down: the field is described, its list of values is not complete. Both are the vendor's
+ * documentation falling behind the vendor's API, and reporting either as breakage sends the reader after a fault in
+ * the wrong codebase.
  *
  * Unions need the recursion. Zod reports each branch it tried, and branches that failed for their own reasons are
  * simply the wrong branch; what identifies the right one is a branch whose only complaint is undocumented keys. Without
  * this, every union-typed response throws instead of being recorded, and the drift inside it accumulates unseen behind
  * a report that looks complete.
+ *
+ * Inside a union, a value outside a documented set does _not_ count. That is how zod says "wrong branch" — every
+ * discriminated branch rejects the value that identifies its siblings — so counting it there would name the first
+ * branch tried as a grown enum and stop the search before the branch that actually matched.
  */
-function readDrift(issues: readonly zodCore.$ZodIssue[], base: PropertyKey[] = []): DriftFinding[] | undefined {
+function readDrift(
+  issues: readonly zodCore.$ZodIssue[],
+  base: PropertyKey[] = [],
+  inUnion = false,
+): DriftFinding[] | undefined {
   const findings: DriftFinding[] = [];
 
   for (const issue of issues) {
+    const path = [...base, ...issue.path];
+
     if (issue.code === 'unrecognized_keys') {
-      findings.push({ path: [...base, ...issue.path], keys: [...issue.keys] });
+      findings.push({ kind: 'keys', path, keys: [...issue.keys] });
+      continue;
+    }
+
+    if (issue.code === 'invalid_value' && !inUnion) {
+      findings.push({ kind: 'value', path, documented: issue.values.map(value => String(value)) });
       continue;
     }
 
     if (issue.code === 'invalid_union') {
       const branch = issue.errors
-        .map(branchIssues => readDrift(branchIssues, [...base, ...issue.path]))
+        .map(branchIssues => readDrift(branchIssues, path, true))
         .find(result => result !== undefined);
 
       if (branch === undefined) return undefined;
@@ -363,30 +401,42 @@ export function createClient(config: ClientConfig | Client): Client {
         if (!parsed.success) {
           const endpoint = `${requestConfig.method ?? 'GET'} ${requestConfig.url}`;
 
-          // Under audit, undocumented keys are the finding — not a failure. They
-          // are recorded and the response is handed back unvalidated, so a single
-          // stale schema cannot end the run before the rest has been looked at.
-          // Anything else in the issue list is real breakage and still throws,
-          // which is why this checks that *every* issue is an extra key.
+          // Under audit, a gap in the specification is the finding — not a failure. It is recorded and the response is
+          // handed back, so a single stale schema cannot end the run before the rest has been looked at. Anything else
+          // in the issue list is real breakage and still throws, which is why this checks that *every* issue is a gap.
           const drift = isSchemaAuditEnabled() ? readDrift(parsed.error.issues) : undefined;
 
           if (drift) {
             for (const finding of drift) {
+              if (finding.kind === 'keys') {
+                recordSchemaDrift({
+                  kind: 'keys',
+                  endpoint,
+                  path: finding.path.join('.'),
+                  keys: finding.keys.map(key => String(key)),
+                  types: takeKeyTypes(data, finding.path, finding.keys),
+                });
+                continue;
+              }
+
               recordSchemaDrift({
+                kind: 'value',
                 endpoint,
                 path: finding.path.join('.'),
-                keys: finding.keys.map(key => String(key)),
-                types: takeKeys(data, finding.path, finding.keys),
+                value: describeValueAtPath(data, finding.path),
+                documented: finding.documented,
               });
             }
 
-            // Re-parsed rather than returned raw, so the caller still gets what
-            // the schema promises: `z.coerce.date()` and friends only run on a
-            // successful parse, and handing back the untouched body would turn
-            // every Date into a string — failures that say nothing about drift.
+            // Undocumented keys are stripped as they are recorded, so the body can be validated for real once they are
+            // gone — the caller still gets what the schema promises, and `z.coerce.date()` and friends only run on a
+            // successful parse. A value outside a documented set cannot be taken out the same way: removing the field
+            // would leave a hole where the schema wants a value, so the response is handed back unvalidated instead.
+            // Either way it reaches the caller — everything wrong with it has been recorded, and one stale schema must
+            // not cut the audit short.
             const cleaned = requestConfig.schema.safeParse(data);
 
-            if (cleaned.success) return cleaned.data as T;
+            return cleaned.success ? (cleaned.data as T) : (data as T);
           }
 
           // The response parsed as JSON but is not the shape the endpoint

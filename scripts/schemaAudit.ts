@@ -19,12 +19,23 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const findings = join(root, 'node_modules', '.cache', 'schema-audit.jsonl');
 
-interface SchemaDrift {
+interface UndocumentedKeys {
+  kind?: 'keys';
   endpoint: string;
   path: string;
   keys: string[];
   types: Record<string, string>;
 }
+
+interface UndocumentedValue {
+  kind: 'value';
+  endpoint: string;
+  path: string;
+  value: string;
+  documented: string[];
+}
+
+type SchemaDrift = UndocumentedKeys | UndocumentedValue;
 
 // `--report-only` rebuilds the summary from the last run's findings. The suite takes
 // several minutes against a live site, and reformatting the report should not cost that.
@@ -75,23 +86,39 @@ function normalizeEndpoint(endpoint: string): string {
 
 const byField = new Map<string, Set<string>>();
 const typesByField = new Map<string, Set<string>>();
+const valuesByField = new Map<string, Set<string>>();
+const documentedByField = new Map<string, Set<string>>();
+const endpointsByField = new Map<string, Set<string>>();
+
+function add(index: Map<string, Set<string>>, field: string, value: string): void {
+  if (!index.has(field)) index.set(field, new Set());
+
+  index.get(field)!.add(value);
+}
 
 if (existsSync(findings)) {
   const lines = readFileSync(findings, 'utf8').trim();
 
   for (const line of lines ? lines.split('\n') : []) {
     const entry = JSON.parse(line) as SchemaDrift;
+    const endpoint = normalizeEndpoint(entry.endpoint);
+
+    if (entry.kind === 'value') {
+      const field = normalize(entry.path);
+
+      add(valuesByField, field, entry.value);
+      add(endpointsByField, field, endpoint);
+
+      for (const documented of entry.documented) add(documentedByField, field, documented);
+
+      continue;
+    }
 
     for (const key of entry.keys) {
       const field = normalize(entry.path ? `${entry.path}.${key}` : key);
 
-      if (!byField.has(field)) byField.set(field, new Set());
-
-      byField.get(field)!.add(normalizeEndpoint(entry.endpoint));
-
-      if (!typesByField.has(field)) typesByField.set(field, new Set());
-
-      typesByField.get(field)!.add(entry.types?.[key] ?? 'unknown');
+      add(byField, field, endpoint);
+      add(typesByField, field, entry.types?.[key] ?? 'unknown');
     }
   }
 }
@@ -99,13 +126,27 @@ if (existsSync(findings)) {
 const ranked = [...byField.entries()].sort(
   (a, b) => b[1].size - a[1].size || a[0].localeCompare(b[0]),
 );
-const endpoints = new Set([...byField.values()].flatMap(set => [...set]));
+const rankedValues = [...valuesByField.entries()].sort(
+  (a, b) => b[1].size - a[1].size || a[0].localeCompare(b[0]),
+);
+const endpoints = new Set(
+  [...byField.values(), ...endpointsByField.values()].flatMap(set => [...set]),
+);
+
+/** `a`, `b`, `c` — at most three, then a count, so one loud finding cannot push the table off the page. */
+function sample(values: Set<string>, separator = '<br>'): string {
+  const shown = [...values].sort().slice(0, 3).join(separator);
+
+  return values.size > 3 ? `${shown}${separator}…and ${values.size - 3} more` : shown;
+}
 
 const summary: string[] = ['## Schema audit', ''];
 
-if (ranked.length === 0) {
+if (ranked.length === 0 && rankedValues.length === 0) {
   summary.push('No drift: every response matched the schema that describes it.');
-} else {
+}
+
+if (ranked.length > 0) {
   summary.push(
     `**${ranked.length} undocumented fields** across **${endpoints.size} endpoints**.`,
     '',
@@ -118,12 +159,33 @@ if (ranked.length === 0) {
   );
 
   for (const [field, seen] of ranked) {
-    const sample = [...seen].sort().slice(0, 3).join('<br>');
-    const more = seen.size > 3 ? `<br>…and ${seen.size - 3} more` : '';
-
     const types = [...(typesByField.get(field) ?? new Set(['unknown']))].sort().join(' | ');
 
-    summary.push(`| \`${field}\` | \`${types}\` | ${seen.size} | ${sample}${more} |`);
+    summary.push(`| \`${field}\` | \`${types}\` | ${seen.size} | ${sample(seen)} |`);
+  }
+
+  summary.push('');
+}
+
+if (rankedValues.length > 0) {
+  summary.push(
+    `**${rankedValues.length} enums have grown** past the values their schema lists.`,
+    '',
+    'The field is described, its set of values is not complete. Callers are unaffected — these',
+    'schemas accept any string outside the audit — but the documented values are what an editor',
+    'suggests, so each one is a value nobody will discover from the types.',
+    '',
+    '| Field | Sent | Documented | Seen at |',
+    '| --- | --- | --- | --- |',
+  );
+
+  for (const [field, sent] of rankedValues) {
+    const documented = documentedByField.get(field) ?? new Set<string>();
+    const seen = endpointsByField.get(field) ?? new Set<string>();
+
+    summary.push(
+      `| \`${field}\` | \`${sample(sent, '`, `')}\` | \`${sample(documented, '`, `')}\` | ${sample(seen)} |`,
+    );
   }
 }
 
@@ -140,8 +202,10 @@ if (run.status !== 0) {
   process.exit(run.status ?? 1);
 }
 
-if (ranked.length > 0) {
-  console.error(`\nSchema audit: ${ranked.length} undocumented fields across ${endpoints.size} endpoints.`);
+if (ranked.length > 0 || rankedValues.length > 0) {
+  console.error(
+    `\nSchema audit: ${ranked.length} undocumented fields, ${rankedValues.length} grown enums, across ${endpoints.size} endpoints.`,
+  );
   process.exit(1);
 }
 
