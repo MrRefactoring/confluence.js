@@ -4,3 +4,6 @@
 # needs its postinstall to fetch its platform binary.
 allowBuilds:
   esbuild: true
+minimumReleaseAgeExclude:
+  - tsx@4.23.10
+  - vite@8.2.1
