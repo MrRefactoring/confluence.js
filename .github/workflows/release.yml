@@ -80,19 +80,24 @@ jobs:
       # it detects them from the "New tag:" lines that `pnpm publish` does not print —
       # so on the publish path it leaves no tag behind. This fills that gap.
       #
-      # It reads the version from the *committed* HEAD, not the working tree: the
-      # action's `version` step rewrites package.json in place on the version-PR path,
-      # so the working tree always looks like the next release. Only the commit that
-      # merged the version PR actually carries the bumped version, so:
-      #   - HEAD still holds the current version → its tag exists → nothing to do.
-      #   - HEAD holds a new, untagged version  → the version PR merged and published,
+      # It reads the version from the pushed commit, named explicitly as GITHUB_SHA.
+      # Not HEAD: on the version-PR path the action commits the bump onto a local
+      # `changeset-release/master` branch and leaves the runner checked out there, so
+      # HEAD already carries the *next* version days before it is published. Reading it
+      # tagged the release the moment the version PR was opened, on the feature commit
+      # that opened it, and left the merge that actually published nothing to do.
+      #
+      # GITHUB_SHA is the commit on master that triggered the run, and only the commit
+      # that merged the version PR carries the bumped version, so:
+      #   - it still holds the current version → its tag exists → nothing to do.
+      #   - it holds a new, untagged version  → the version PR merged and published,
       #     so tag that commit. The tag check keeps re-runs idempotent.
       - name: 🏷️ Tag and release the published version
         if: steps.changesets.outputs.published != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          version="$(git show HEAD:package.json | jq -r .version)"
+          version="$(git show "${GITHUB_SHA}:package.json" | jq -r .version)"
           tag="v${version}"
 
           if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
