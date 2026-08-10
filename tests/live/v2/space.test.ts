@@ -113,20 +113,20 @@ describe('Confluence Cloud v2 — space.getSpaces (live)', () => {
   });
 
   it('applies `sort` direction — ascending and descending are mirror orderings', async () => {
-    // Capture both orderings back-to-back so they observe the same set of spaces
-    // — other suites in the serial run may create/trash spaces, so the snapshot
-    // taken in `beforeAll` is not a reliable count here.
     const asc = (await client.space.getSpaces({ sort: 'key', limit: 250 })).results ?? [];
     const desc = (await client.space.getSpaces({ sort: '-key', limit: 250 })).results ?? [];
 
-    if (asc.length < 2) return; // ordering is unobservable with a single space
+    // Other suites in the serial run create and trash spaces, and these are two
+    // separate requests — one direction can see a space the other does not. Only
+    // the keys present in both orderings say anything about sorting.
+    const shared = new Set(asc.map(s => s.key).filter(key => desc.some(s => s.key === key)));
+    const ascKeys = asc.map(s => s.key).filter(key => shared.has(key));
+    const descKeys = desc.map(s => s.key).filter(key => shared.has(key));
 
-    const ascKeys = asc.map(s => s.key);
-    const descKeys = desc.map(s => s.key);
+    if (ascKeys.length < 2) return; // ordering is unobservable with a single space
 
     // Avoids assuming a specific collation (personal `~`-keys sort unusually):
     // a correct sort param simply makes the two directions exact reverses.
-    expect(ascKeys).toHaveLength(descKeys.length);
     expect(ascKeys).toEqual([...descKeys].reverse());
   });
 });
