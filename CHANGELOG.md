@@ -1,5 +1,60 @@
 # Changelog
 
+## 3.2.0
+
+### Minor Changes
+
+- d6f0547: Two schemas built from an `allOf` no longer come out empty.
+
+  `LookAndFeelWithLinks` and `ContentBlogpost` are each declared as a `$ref` to a base plus an inline extension. The
+  generator kept neither side and emitted an object with no properties, so `updateLookAndFeelSettings` returned `{}` —
+  every field the endpoint answers with was there at runtime, since response objects are loose, but none of it was
+  typed, and none of it was validated.
+
+  Both now carry their base's fields alongside their own. `updateLookAndFeelSettings` returns the look-and-feel shape
+  it always sent, `_links` included.
+
+- d6f0547: A value Atlassian has not written down no longer rejects the response.
+
+  Every documented set of string values — 314 of them across v1 and v2 — was a closed `z.enum`, so the first time
+  Confluence answered with a status, sort order or content type its own specification did not list, strict validation
+  threw a `SchemaMismatchError`. Nothing was wrong with the response and nothing the caller could do would help: the
+  published spec routinely falls behind the API it describes.
+
+  Those fields now accept any string. The documented values survive where they are useful — `Space['status']` is
+  `'current' | 'archived' | (string & {})`, so an editor still suggests both while the compiler accepts whatever the
+  API turns out to send — and the failure message names them.
+
+  Existing code is unaffected at runtime and keeps its autocompletion. A value read out of one of these fields is now
+  assignable to `string` rather than only to the listed literals, so an exhaustive `switch` over one needs a default
+  branch it should arguably have had anyway.
+
+### Patch Changes
+
+- 1b7ea51: The schema audit reports a grown enum as drift rather than as breakage.
+
+  Now that a documented set of values accepts any string, the nightly audit is the only run that still validates those
+  sets strictly — which is the point, since it exists to find where the specification has fallen behind. Without
+  somewhere to put the finding it would simply have thrown, and a single stale enum would have ended the run.
+
+  `SchemaDrift` is now a union of two kinds. `keys` is what it always was, a field the spec never described; `value` is
+  the same gap one level down, a value outside the set a described field lists. The report prints them as separate
+  tables, because the repair differs — a missing key is added to a schema, a missing value to an enum.
+
+  Inside a union a value outside the documented set is not counted: that is how zod says "wrong branch", and reading it
+  as drift would name the first branch tried as a grown enum and stop the search before the branch that matched.
+
+- d6f0547: Hand-written model types are declared as interfaces.
+
+  Twelve v1 models sit on a reference cycle and so have their type spelled out rather than inferred — `Content`,
+  `Space`, `User`, `Version` and the collections around them. Each was `export type X = { … }`; each is now
+  `export interface X`. The type is identical, but an interface reports itself by name in an editor instead of
+  unfolding into its own body, and a consumer can extend or augment it.
+
+  One consequence is worth knowing: TypeScript gives a type alias an implicit index signature and an interface none, so
+  one of these models no longer satisfies `Record<string, unknown>` by assignment. Name the model in the signature
+  instead of the record — the argument was always one of these shapes.
+
 ## 3.1.0
 
 ### Minor Changes
