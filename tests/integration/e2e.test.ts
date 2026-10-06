@@ -93,7 +93,7 @@ test.serial('should update attachment', async t => {
       file: 'testFileContent',
       filename: 'serverApiClient.test.ts',
       minorEdit: false,
-      comment: 'some changes',
+      comment: 'изменения ✓',
       contentType: 'application/javascript',
     },
   });
@@ -106,7 +106,7 @@ test.serial('should update attachment', async t => {
   t.is(attachments.results[0].metadata.mediaType, 'application/javascript');
   t.is(attachments.results[0].version.minorEdit, false);
   t.is(attachments.results[0].version.number, 2);
-  t.is(attachments.results[0].version.message, 'some changes');
+  t.is(attachments.results[0].version.message, 'изменения ✓');
 });
 
 test.serial('should update attachment properties', async t => {
@@ -132,7 +132,7 @@ test.serial('should update attachment properties', async t => {
   t.is(attachment.metadata.mediaType, 'text/plain');
   t.is(attachment.version.minorEdit, false);
   t.is(attachment.version.number, 2);
-  t.is(attachment.version.message, 'some changes');
+  t.is(attachment.version.message, 'изменения ✓');
 });
 
 test.serial('should update content attachment data', async t => {
@@ -143,12 +143,13 @@ test.serial('should update content attachment data', async t => {
       file: 'testFileContent',
       filename: 'serverApiClient.test.ts',
       minorEdit: true,
+      contentType: 'text/plain',
     },
   });
 
   t.truthy(!!attachment);
   t.is(attachment.title, 'serverApiClient.test.ts');
-  t.is(attachment.metadata.mediaType, 'video/mp2t');
+  t.is(attachment.metadata.mediaType, 'text/plain');
   t.is(attachment.version.minorEdit, true);
   t.is(attachment.version.number, 3);
   t.is<string | undefined, undefined>(attachment.version.message, undefined);

@@ -1,5 +1,9 @@
 # Changelog
 
+### [1.7.5] - 2026-10-06
+
+- `contentAttachments.createAttachments`, `contentAttachments.createOrUpdateAttachments` and `contentAttachments.updateAttachmentData` sent `minorEdit` and `comment` as file parts instead of plain form fields. Confluence Cloud now rejects such uploads with `MethodArgumentConversionNotSupportedException`. Fixed in [#169](https://github.com/MrRefactoring/confluence.js/issues/169).
+
 ### [1.7.3] - 2024-03-04
 
 - Dependencies updated
