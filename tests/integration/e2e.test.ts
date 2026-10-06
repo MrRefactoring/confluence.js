@@ -91,7 +91,7 @@ describe('ConfluenceClient E2E Tests', () => {
         file: 'testFileContent',
         filename: 'space.test.ts',
         minorEdit: false,
-        comment: 'some changes',
+        comment: 'изменения ✓',
         contentType: 'application/javascript',
       },
     });
@@ -104,7 +104,7 @@ describe('ConfluenceClient E2E Tests', () => {
     expect(attachments.results[0].metadata.mediaType).toBe('application/javascript');
     expect(attachments.results[0].version.minorEdit).toBe(false);
     expect(attachments.results[0].version.number).toBe(2);
-    expect(attachments.results[0].version.message).toBe('some changes');
+    expect(attachments.results[0].version.message).toBe('изменения ✓');
   });
 
   it('should update attachment properties', async () => {
@@ -130,7 +130,7 @@ describe('ConfluenceClient E2E Tests', () => {
     expect(attachment.metadata.mediaType).toBe('text/plain');
     expect(attachment.version.minorEdit).toBe(false);
     expect(attachment.version.number).toBe(2);
-    expect(attachment.version.message).toBe('some changes');
+    expect(attachment.version.message).toBe('изменения ✓');
   });
 
   it('should update content attachment data', async () => {
@@ -141,12 +141,13 @@ describe('ConfluenceClient E2E Tests', () => {
         file: 'testFileContent',
         filename: 'space.test.ts',
         minorEdit: true,
+        contentType: 'text/plain',
       },
     });
 
     expect(attachment).toBeTruthy();
     expect(attachment.title).toBe('space.test.ts');
-    expect(attachment.metadata.mediaType).toBe('video/mp2t');
+    expect(attachment.metadata.mediaType).toBe('text/plain');
     expect(attachment.version.minorEdit).toBe(true);
     expect(attachment.version.number).toBe(3);
     expect(attachment.version.message).toBeUndefined();

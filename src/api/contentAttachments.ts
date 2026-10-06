@@ -86,14 +86,14 @@ export class ContentAttachments {
     const attachments = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
 
     attachments.forEach(attachment => {
-      formData.append('minorEdit', attachment.minorEdit.toString(), 'minorEdit');
+      formData.append('minorEdit', attachment.minorEdit.toString());
       formData.append('file', attachment.file, {
         filename: attachment.filename,
         contentType: attachment.contentType,
       });
 
       if (attachment.comment) {
-        formData.append('comment', attachment.comment, 'comment');
+        formData.append('comment', attachment.comment);
       }
     });
 
@@ -142,14 +142,14 @@ export class ContentAttachments {
     const attachments = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
 
     attachments.forEach(attachment => {
-      formData.append('minorEdit', attachment.minorEdit.toString(), 'minorEdit');
+      formData.append('minorEdit', attachment.minorEdit.toString());
       formData.append('file', attachment.file, {
         filename: attachment.filename,
         contentType: attachment.contentType,
       });
 
       if (attachment.comment) {
-        formData.append('comment', attachment.comment, 'comment');
+        formData.append('comment', attachment.comment);
       }
     });
 
@@ -239,14 +239,14 @@ export class ContentAttachments {
 
     const formData = new FormData();
 
-    formData.append('minorEdit', attachment.minorEdit.toString(), 'minorEdit');
+    formData.append('minorEdit', attachment.minorEdit.toString());
     formData.append('file', attachment.file, {
       filename: attachment.filename,
       contentType: attachment.contentType,
     });
 
     if (attachment.comment) {
-      formData.append('comment', attachment.comment, 'comment');
+      formData.append('comment', attachment.comment);
     }
 
     const config: RequestConfig = {
