@@ -57,15 +57,9 @@ jobs:
     name: 🚀 Publish Package
     needs: build-and-test
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    outputs:
-      version: ${{ steps.version.outputs.version }}
     steps:
       - name: 🔄 Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
@@ -78,33 +72,15 @@ jobs:
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - name: 🔖 Get and validate version
-        id: version
+      - name: 🔖 Validate version
         run: |
-          if [[ $GITHUB_REF == refs/tags/v* ]]; then
-            TAG_VERSION=${GITHUB_REF#refs/tags/v}
-            echo "Using version from tag: $TAG_VERSION"
-            CURRENT_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION=${GITHUB_REF#refs/tags/v}
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
 
-            if [ "$TAG_VERSION" != "$CURRENT_VERSION" ]; then
-              echo "Updating package version to match tag..."
-              npm version $TAG_VERSION --no-git-tag-version
-              pnpm install
-              git config user.name "GitHub Actions"
-              git config user.email "actions@github.com"
-              git add package.json pnpm-lock.yaml
-              git commit -m "Update version to $TAG_VERSION [skip ci]"
-              git push
-            fi
-          else
-            TAG_VERSION=$(node -p "require('./package.json').version")
-            echo "Using version from package.json: $TAG_VERSION"
+          if [ "$TAG_VERSION" != "$CURRENT_VERSION" ]; then
+            echo "Tag v$TAG_VERSION does not match package.json version $CURRENT_VERSION"
+            exit 1
           fi
-
-          echo "version=$TAG_VERSION" >> $GITHUB_OUTPUT
-          echo "VERSION=$TAG_VERSION" >> $GITHUB_ENV
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
 
       - name: 📌 Install dependencies
         run: pnpm install --frozen-lockfile
@@ -113,41 +89,6 @@ jobs:
         run: pnpm run build
 
       - name: 📤 Publish to NPM
-        run: pnpm publish --no-git-checks
+        run: pnpm publish --no-git-checks --tag release-2.x
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  deploy-documentation:
-    name: 📚 Deploy Documentation
-    needs: publish-package
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🔄 Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: master
-
-      - name: ⚙️ Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
-
-      - name: 📌 Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 📝 Generate documentation
-        run: pnpm run doc
-
-      - name: 🚀 Deploy to docs branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: docs
-          folder: docs
-          clean: true
-          token: '${{ secrets.PAT }}'
-          commit-message: "docs: Update documentation for v${{ needs.publish-package.outputs.version }} [skip ci]"
