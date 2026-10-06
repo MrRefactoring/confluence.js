@@ -2,6 +2,10 @@ name: Comprehensive CI
 
 on:
   push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
   repository_dispatch:
     types: [ pr-approved ]
 
