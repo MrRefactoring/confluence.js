@@ -67,11 +67,11 @@ jobs:
         id: changesets
         uses: changesets/action@v2
         with:
-          publish: pnpm run release:publish
-          version: pnpm run changeset:version
-          title: 'chore(release): version packages'
-          commit: 'chore(release): version packages'
-          createGithubReleases: true
+          publish-script: pnpm run release:publish
+          version-script: pnpm run changeset:version
+          pr-title: 'chore(release): version packages'
+          commit-message: 'chore(release): version packages'
+          create-github-releases: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
