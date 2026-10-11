@@ -65,7 +65,7 @@ jobs:
       # no tag or release; the step below does that instead.
       - name: 📦 Create Release PR or Publish
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
           publish: pnpm run release:publish
           version: pnpm run changeset:version

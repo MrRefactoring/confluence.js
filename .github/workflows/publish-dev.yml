@@ -37,7 +37,11 @@ jobs:
       # it moves package.json there, then dev-version.ts turns that into
       # <base>-dev.<n>, numbering from what is already on npm.
       - name: 🔖 Apply pending changesets
-        run: pnpm changeset version
+        run: |
+          pending_changeset="$(find .changeset -maxdepth 1 -type f -name '*.md' ! -name 'README.md' -print -quit)"
+          if [ -n "$pending_changeset" ]; then
+            pnpm changeset version
+          fi
 
       - name: 🔖 Stamp dev version
         run: pnpm run version:dev
