@@ -11,7 +11,6 @@ export default defineConfig({
       reporter: ['text', 'json-summary', 'lcov'],
       reportsDirectory: './coverage',
       reportOnFailure: true,
-      all: true,
       include: ['src/**/*.ts'],
       exclude: [
         // Zod schema/type containers — pure declarations, no runtime branching.
