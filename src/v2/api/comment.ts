@@ -28,7 +28,7 @@ import type { DeleteFooterComment } from '../parameters/deleteFooterComment';
 import type { GetInlineCommentById } from '../parameters/getInlineCommentById';
 import type { UpdateInlineComment } from '../parameters/updateInlineComment';
 import type { DeleteInlineComment } from '../parameters/deleteInlineComment';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the comments of the specific attachment. The number of results is limited by the `limit` parameter and
@@ -40,6 +40,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getAttachmentComments(
   client: Client,
   parameters: GetAttachmentComments,
+  options?: RequestOptions,
 ): Promise<AttachmentComments> {
   const config: SendRequestOptions<AttachmentComments> = {
     url: `/wiki/api/v2/attachments/${parameters.id}/footer-comments`,
@@ -52,6 +53,7 @@ export async function getAttachmentComments(
       version: parameters.version,
     },
     schema: AttachmentCommentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -67,6 +69,7 @@ export async function getAttachmentComments(
 export async function getCustomContentComments(
   client: Client,
   parameters: GetCustomContentComments,
+  options?: RequestOptions,
 ): Promise<CustomContentComments> {
   const config: SendRequestOptions<CustomContentComments> = {
     url: `/wiki/api/v2/custom-content/${parameters.id}/footer-comments`,
@@ -78,6 +81,7 @@ export async function getCustomContentComments(
       sort: parameters.sort,
     },
     schema: CustomContentCommentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -93,6 +97,7 @@ export async function getCustomContentComments(
 export async function getPageFooterComments(
   client: Client,
   parameters: GetPageFooterComments,
+  options?: RequestOptions,
 ): Promise<PageFooterComments> {
   const config: SendRequestOptions<PageFooterComments> = {
     url: `/wiki/api/v2/pages/${parameters.id}/footer-comments`,
@@ -105,6 +110,7 @@ export async function getPageFooterComments(
       limit: parameters.limit,
     },
     schema: PageFooterCommentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -120,6 +126,7 @@ export async function getPageFooterComments(
 export async function getPageInlineComments(
   client: Client,
   parameters: GetPageInlineComments,
+  options?: RequestOptions,
 ): Promise<PageInlineComments> {
   const config: SendRequestOptions<PageInlineComments> = {
     url: `/wiki/api/v2/pages/${parameters.id}/inline-comments`,
@@ -133,6 +140,7 @@ export async function getPageInlineComments(
       limit: parameters.limit,
     },
     schema: PageInlineCommentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -148,6 +156,7 @@ export async function getPageInlineComments(
 export async function getBlogPostFooterComments(
   client: Client,
   parameters: GetBlogPostFooterComments,
+  options?: RequestOptions,
 ): Promise<BlogPostFooterComments> {
   const config: SendRequestOptions<BlogPostFooterComments> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}/footer-comments`,
@@ -160,6 +169,7 @@ export async function getBlogPostFooterComments(
       limit: parameters.limit,
     },
     schema: BlogPostFooterCommentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -175,6 +185,7 @@ export async function getBlogPostFooterComments(
 export async function getBlogPostInlineComments(
   client: Client,
   parameters: GetBlogPostInlineComments,
+  options?: RequestOptions,
 ): Promise<BlogPostInlineComments> {
   const config: SendRequestOptions<BlogPostInlineComments> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}/inline-comments`,
@@ -188,6 +199,7 @@ export async function getBlogPostInlineComments(
       limit: parameters.limit,
     },
     schema: BlogPostInlineCommentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -200,7 +212,11 @@ export async function getBlogPostInlineComments(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the
  * container and its corresponding space.
  */
-export async function getFooterComments(client: Client, parameters?: GetFooterComments): Promise<FooterComments> {
+export async function getFooterComments(
+  client: Client,
+  parameters?: GetFooterComments,
+  options?: RequestOptions,
+): Promise<FooterComments> {
   const config: SendRequestOptions<FooterComments> = {
     url: '/wiki/api/v2/footer-comments',
     method: 'GET',
@@ -211,6 +227,7 @@ export async function getFooterComments(client: Client, parameters?: GetFooterCo
       limit: parameters?.limit,
     },
     schema: FooterCommentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -230,7 +247,11 @@ export async function getFooterComments(client: Client, parameters?: GetFooterCo
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page or
  * blogpost and its corresponding space. Permission to create comments in the space.
  */
-export async function createFooterComment(client: Client, parameters: CreateFooterComment): Promise<FooterComment> {
+export async function createFooterComment(
+  client: Client,
+  parameters: CreateFooterComment,
+  options?: RequestOptions,
+): Promise<FooterComment> {
   const config: SendRequestOptions<FooterComment> = {
     url: '/wiki/api/v2/footer-comments',
     method: 'POST',
@@ -243,6 +264,7 @@ export async function createFooterComment(client: Client, parameters: CreateFoot
       body: parameters.body,
     },
     schema: FooterCommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -259,6 +281,7 @@ export async function createFooterComment(client: Client, parameters: CreateFoot
 export async function getFooterCommentChildren(
   client: Client,
   parameters: GetFooterCommentChildren,
+  options?: RequestOptions,
 ): Promise<FooterCommentChildren> {
   const config: SendRequestOptions<FooterCommentChildren> = {
     url: `/wiki/api/v2/footer-comments/${parameters.id}/children`,
@@ -270,6 +293,7 @@ export async function getFooterCommentChildren(
       limit: parameters.limit,
     },
     schema: FooterCommentChildrenSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -282,7 +306,11 @@ export async function getFooterCommentChildren(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page and
  * its corresponding space.
  */
-export async function getInlineComments(client: Client, parameters?: GetInlineComments): Promise<InlineComments> {
+export async function getInlineComments(
+  client: Client,
+  parameters?: GetInlineComments,
+  options?: RequestOptions,
+): Promise<InlineComments> {
   const config: SendRequestOptions<InlineComments> = {
     url: '/wiki/api/v2/inline-comments',
     method: 'GET',
@@ -293,6 +321,7 @@ export async function getInlineComments(client: Client, parameters?: GetInlineCo
       limit: parameters?.limit,
     },
     schema: InlineCommentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -307,7 +336,11 @@ export async function getInlineComments(client: Client, parameters?: GetInlineCo
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page or
  * blogpost and its corresponding space. Permission to create comments in the space.
  */
-export async function createInlineComment(client: Client, parameters: CreateInlineComment): Promise<InlineComment> {
+export async function createInlineComment(
+  client: Client,
+  parameters: CreateInlineComment,
+  options?: RequestOptions,
+): Promise<InlineComment> {
   const config: SendRequestOptions<InlineComment> = {
     url: '/wiki/api/v2/inline-comments',
     method: 'POST',
@@ -319,6 +352,7 @@ export async function createInlineComment(client: Client, parameters: CreateInli
       inlineCommentProperties: parameters.inlineCommentProperties,
     },
     schema: InlineCommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -335,6 +369,7 @@ export async function createInlineComment(client: Client, parameters: CreateInli
 export async function getInlineCommentChildren(
   client: Client,
   parameters: GetInlineCommentChildren,
+  options?: RequestOptions,
 ): Promise<InlineCommentChildrenGet> {
   const config: SendRequestOptions<InlineCommentChildrenGet> = {
     url: `/wiki/api/v2/inline-comments/${parameters.id}/children`,
@@ -346,6 +381,7 @@ export async function getInlineCommentChildren(
       limit: parameters.limit,
     },
     schema: InlineCommentChildrenGetSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -357,7 +393,11 @@ export async function getInlineCommentChildren(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the
  * container and its corresponding space.
  */
-export async function getFooterCommentById(client: Client, parameters: GetFooterCommentById): Promise<FooterComment> {
+export async function getFooterCommentById(
+  client: Client,
+  parameters: GetFooterCommentById,
+  options?: RequestOptions,
+): Promise<FooterComment> {
   const config: SendRequestOptions<FooterComment> = {
     url: `/wiki/api/v2/footer-comments/${parameters.commentId}`,
     method: 'GET',
@@ -371,6 +411,7 @@ export async function getFooterCommentById(client: Client, parameters: GetFooter
       'include-version': parameters.includeVersion,
     },
     schema: FooterCommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -382,12 +423,17 @@ export async function getFooterCommentById(client: Client, parameters: GetFooter
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page or
  * blogpost and its corresponding space. Permission to create comments in the space.
  */
-export async function updateFooterComment(client: Client, parameters: UpdateFooterComment): Promise<FooterComment> {
+export async function updateFooterComment(
+  client: Client,
+  parameters: UpdateFooterComment,
+  options?: RequestOptions,
+): Promise<FooterComment> {
   const config: SendRequestOptions<FooterComment> = {
     url: `/wiki/api/v2/footer-comments/${parameters.commentId}`,
     method: 'PUT',
     body: parameters.body,
     schema: FooterCommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -399,10 +445,15 @@ export async function updateFooterComment(client: Client, parameters: UpdateFoot
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page or
  * blogpost and its corresponding space. Permission to delete comments in the space.
  */
-export async function deleteFooterComment(client: Client, parameters: DeleteFooterComment): Promise<void> {
+export async function deleteFooterComment(
+  client: Client,
+  parameters: DeleteFooterComment,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/footer-comments/${parameters.commentId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -414,7 +465,11 @@ export async function deleteFooterComment(client: Client, parameters: DeleteFoot
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page or
  * blogpost and its corresponding space.
  */
-export async function getInlineCommentById(client: Client, parameters: GetInlineCommentById): Promise<InlineComment> {
+export async function getInlineCommentById(
+  client: Client,
+  parameters: GetInlineCommentById,
+  options?: RequestOptions,
+): Promise<InlineComment> {
   const config: SendRequestOptions<InlineComment> = {
     url: `/wiki/api/v2/inline-comments/${parameters.commentId}`,
     method: 'GET',
@@ -428,6 +483,7 @@ export async function getInlineCommentById(client: Client, parameters: GetInline
       'include-version': parameters.includeVersion,
     },
     schema: InlineCommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -439,7 +495,11 @@ export async function getInlineCommentById(client: Client, parameters: GetInline
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page or
  * blogpost and its corresponding space. Permission to create comments in the space.
  */
-export async function updateInlineComment(client: Client, parameters: UpdateInlineComment): Promise<InlineComment> {
+export async function updateInlineComment(
+  client: Client,
+  parameters: UpdateInlineComment,
+  options?: RequestOptions,
+): Promise<InlineComment> {
   const config: SendRequestOptions<InlineComment> = {
     url: `/wiki/api/v2/inline-comments/${parameters.commentId}`,
     method: 'PUT',
@@ -449,6 +509,7 @@ export async function updateInlineComment(client: Client, parameters: UpdateInli
       resolved: parameters.resolved,
     },
     schema: InlineCommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -460,10 +521,15 @@ export async function updateInlineComment(client: Client, parameters: UpdateInli
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page or
  * blogpost and its corresponding space. Permission to delete comments in the space.
  */
-export async function deleteInlineComment(client: Client, parameters: DeleteInlineComment): Promise<void> {
+export async function deleteInlineComment(
+  client: Client,
+  parameters: DeleteInlineComment,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/inline-comments/${parameters.commentId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -8,7 +8,7 @@ import type { GetDatabaseDescendants } from '../parameters/getDatabaseDescendant
 import type { GetSmartLinkDescendants } from '../parameters/getSmartLinkDescendants';
 import type { GetFolderDescendants } from '../parameters/getFolderDescendants';
 import type { GetPageDescendants } from '../parameters/getPageDescendants';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns descendants in the content tree for a given whiteboard by ID in top-to-bottom order (that is, the highest
@@ -41,6 +41,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getWhiteboardDescendants(
   client: Client,
   parameters: GetWhiteboardDescendants,
+  options?: RequestOptions,
 ): Promise<WhiteboardDescendants> {
   const config: SendRequestOptions<WhiteboardDescendants> = {
     url: `/wiki/api/v2/whiteboards/${parameters.id}/descendants`,
@@ -51,6 +52,7 @@ export async function getWhiteboardDescendants(
       cursor: parameters.cursor,
     },
     schema: WhiteboardDescendantsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -87,6 +89,7 @@ export async function getWhiteboardDescendants(
 export async function getDatabaseDescendants(
   client: Client,
   parameters: GetDatabaseDescendants,
+  options?: RequestOptions,
 ): Promise<DatabaseDescendants> {
   const config: SendRequestOptions<DatabaseDescendants> = {
     url: `/wiki/api/v2/databases/${parameters.id}/descendants`,
@@ -97,6 +100,7 @@ export async function getDatabaseDescendants(
       cursor: parameters.cursor,
     },
     schema: DatabaseDescendantsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -133,6 +137,7 @@ export async function getDatabaseDescendants(
 export async function getSmartLinkDescendants(
   client: Client,
   parameters: GetSmartLinkDescendants,
+  options?: RequestOptions,
 ): Promise<SmartLinkDescendants> {
   const config: SendRequestOptions<SmartLinkDescendants> = {
     url: `/wiki/api/v2/embeds/${parameters.id}/descendants`,
@@ -143,6 +148,7 @@ export async function getSmartLinkDescendants(
       cursor: parameters.cursor,
     },
     schema: SmartLinkDescendantsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -179,6 +185,7 @@ export async function getSmartLinkDescendants(
 export async function getFolderDescendants(
   client: Client,
   parameters: GetFolderDescendants,
+  options?: RequestOptions,
 ): Promise<FolderDescendants> {
   const config: SendRequestOptions<FolderDescendants> = {
     url: `/wiki/api/v2/folders/${parameters.id}/descendants`,
@@ -189,6 +196,7 @@ export async function getFolderDescendants(
       cursor: parameters.cursor,
     },
     schema: FolderDescendantsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -222,7 +230,11 @@ export async function getFolderDescendants(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission). Permission to view the page and its corresponding space
  */
-export async function getPageDescendants(client: Client, parameters: GetPageDescendants): Promise<PageDescendants> {
+export async function getPageDescendants(
+  client: Client,
+  parameters: GetPageDescendants,
+  options?: RequestOptions,
+): Promise<PageDescendants> {
   const config: SendRequestOptions<PageDescendants> = {
     url: `/wiki/api/v2/pages/${parameters.id}/descendants`,
     method: 'GET',
@@ -232,6 +244,7 @@ export async function getPageDescendants(client: Client, parameters: GetPageDesc
       cursor: parameters.cursor,
     },
     schema: PageDescendantsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

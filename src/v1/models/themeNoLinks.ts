@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IconSchema } from './icon';
-/** Theme object without links. Used in ThemeArray. */
 
+/** Theme object without links. Used in ThemeArray. */
 export const ThemeNoLinksSchema = apiObject({
   themeKey: z.string(),
   name: z.string().optional(),

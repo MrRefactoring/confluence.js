@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ContentTemplateBodyCreateSchema } from './contentTemplateBodyCreate';
 import { LabelSchema } from './label';
-/** This object is used to update content templates. */
 
+/** This object is used to update content templates. */
 export const ContentTemplateUpdateSchema = apiObject({
   /** The ID of the template being updated. */
   templateId: z.string(),

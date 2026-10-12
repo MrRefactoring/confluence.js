@@ -1,10 +1,10 @@
 import type { z } from 'zod';
 import { openEnum } from '#/core';
+
 /**
  * The sort fields for child pages. The default sort direction is ascending by child-position. To sort in descending
  * order, append a `-` character before the sort field. For example, `fieldName` or `-fieldName`.
  */
-
 export const ChildPageSortOrderSchema = openEnum([
   'created-date',
   '-created-date',

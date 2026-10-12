@@ -10,7 +10,7 @@ import type { UpdatePage } from '../parameters/updatePage';
 import type { DeletePage } from '../parameters/deletePage';
 import type { UpdatePageTitle } from '../parameters/updatePageTitle';
 import type { GetPagesInSpace } from '../parameters/getPagesInSpace';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the pages of specified label. The number of results is limited by the `limit` parameter and additional
@@ -19,7 +19,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page and
  * its corresponding space.
  */
-export async function getLabelPages(client: Client, parameters: GetLabelPages): Promise<LabelPages> {
+export async function getLabelPages(
+  client: Client,
+  parameters: GetLabelPages,
+  options?: RequestOptions,
+): Promise<LabelPages> {
   const config: SendRequestOptions<LabelPages> = {
     url: `/wiki/api/v2/labels/${parameters.id}/pages`,
     method: 'GET',
@@ -31,6 +35,7 @@ export async function getLabelPages(client: Client, parameters: GetLabelPages): 
       limit: parameters.limit,
     },
     schema: LabelPagesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -43,7 +48,7 @@ export async function getLabelPages(client: Client, parameters: GetLabelPages): 
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission). Only pages that the user has permission to view will be returned.
  */
-export async function getPages(client: Client, parameters?: GetPages): Promise<Pages> {
+export async function getPages(client: Client, parameters?: GetPages, options?: RequestOptions): Promise<Pages> {
   const config: SendRequestOptions<Pages> = {
     url: '/wiki/api/v2/pages',
     method: 'GET',
@@ -59,6 +64,7 @@ export async function getPages(client: Client, parameters?: GetPages): Promise<P
       limit: parameters?.limit,
     },
     schema: PagesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -73,7 +79,7 @@ export async function getPages(client: Client, parameters?: GetPages): Promise<P
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the corresponding space.
  * Permission to create a page in the space.
  */
-export async function createPage(client: Client, parameters: CreatePage): Promise<Page> {
+export async function createPage(client: Client, parameters: CreatePage, options?: RequestOptions): Promise<Page> {
   const config: SendRequestOptions<Page> = {
     url: '/wiki/api/v2/pages',
     method: 'POST',
@@ -84,6 +90,7 @@ export async function createPage(client: Client, parameters: CreatePage): Promis
     },
     body: parameters.body,
     schema: PageSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -95,7 +102,7 @@ export async function createPage(client: Client, parameters: CreatePage): Promis
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the page and its
  * corresponding space.
  */
-export async function getPageById(client: Client, parameters: GetPageById): Promise<Page> {
+export async function getPageById(client: Client, parameters: GetPageById, options?: RequestOptions): Promise<Page> {
   const config: SendRequestOptions<Page> = {
     url: `/wiki/api/v2/pages/${parameters.id}`,
     method: 'GET',
@@ -116,6 +123,7 @@ export async function getPageById(client: Client, parameters: GetPageById): Prom
       'include-direct-children': parameters.includeDirectChildren,
     },
     schema: PageSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -132,12 +140,13 @@ export async function getPageById(client: Client, parameters: GetPageById): Prom
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the page and its
  * corresponding space. Permission to update pages in the space.
  */
-export async function updatePage(client: Client, parameters: UpdatePage): Promise<Page> {
+export async function updatePage(client: Client, parameters: UpdatePage, options?: RequestOptions): Promise<Page> {
   const config: SendRequestOptions<Page> = {
     url: `/wiki/api/v2/pages/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
     schema: PageSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -153,11 +162,16 @@ export async function updatePage(client: Client, parameters: UpdatePage): Promis
  * Deleting a page moves the page to the trash, where it can be restored later. To permanently delete a page (or "purge"
  * it), the endpoint must be called on a **trashed** page with the following param `purge=true`.
  *
- * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the page and its
- * corresponding space. Permission to delete pages in the space. Permission to administer the space (if attempting to
- * purge).
+ * **[Permissions](https://support.atlassian.com/confluence-cloud/docs/what-are-confluences-roles/) required**:
+ * Permission to view the page and its corresponding space. Permission to delete pages in the space.
+ * [`manage/content`](https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-space-permissions/#api-space-permissions-get)
+ * permission for the space (if attempting to purge).
+ *
+ * **Note:** To find the display name for each permission ID, call the [Get available space
+ * permissions](https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-space-permissions/#api-space-permissions-get)
+ * API.
  */
-export async function deletePage(client: Client, parameters: DeletePage): Promise<void> {
+export async function deletePage(client: Client, parameters: DeletePage, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/pages/${parameters.id}`,
     method: 'DELETE',
@@ -165,6 +179,7 @@ export async function deletePage(client: Client, parameters: DeletePage): Promis
       purge: parameters.purge,
       draft: parameters.draft,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -176,12 +191,17 @@ export async function deletePage(client: Client, parameters: DeletePage): Promis
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the page and its
  * corresponding space. Permission to update pages in the space.
  */
-export async function updatePageTitle(client: Client, parameters: UpdatePageTitle): Promise<Page> {
+export async function updatePageTitle(
+  client: Client,
+  parameters: UpdatePageTitle,
+  options?: RequestOptions,
+): Promise<Page> {
   const config: SendRequestOptions<Page> = {
     url: `/wiki/api/v2/pages/${parameters.id}/title`,
     method: 'PUT',
     body: parameters.body,
     schema: PageSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -195,7 +215,11 @@ export async function updatePageTitle(client: Client, parameters: UpdatePageTitl
  * use' global permission) and 'View' permission for the space. Only pages that the user has permission to view will be
  * returned.
  */
-export async function getPagesInSpace(client: Client, parameters: GetPagesInSpace): Promise<PagesInSpace> {
+export async function getPagesInSpace(
+  client: Client,
+  parameters: GetPagesInSpace,
+  options?: RequestOptions,
+): Promise<PagesInSpace> {
   const config: SendRequestOptions<PagesInSpace> = {
     url: `/wiki/api/v2/spaces/${parameters.id}/pages`,
     method: 'GET',
@@ -209,6 +233,7 @@ export async function getPagesInSpace(client: Client, parameters: GetPagesInSpac
       limit: parameters.limit,
     },
     schema: PagesInSpaceSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

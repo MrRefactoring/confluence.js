@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { UserSchema } from './user';
-import { UserArraySchema } from './userArray';
-import { ContentSchema } from './content';
+import { UserSchema, type User, type UserInput } from './user';
+import { UserArraySchema, type UserArray, type UserArrayInput } from './userArray';
+import { ContentSchema, type Content, type ContentInput } from './content';
 
 export const ContentRestrictionUpdateSchema = apiObject({
   /** The restriction operation applied to content. */
@@ -39,9 +39,14 @@ export const ContentRestrictionUpdateSchema = apiObject({
         }),
       )
       .optional(),
-    user: z.union([z.array(UserSchema), UserArraySchema]).optional(),
+    user: z
+      .union([
+        z.array(UserSchema as z.ZodType<User, UserInput>),
+        UserArraySchema as z.ZodType<UserArray, UserArrayInput>,
+      ])
+      .optional(),
   }),
-  content: ContentSchema.optional(),
+  content: (ContentSchema as z.ZodType<Content, ContentInput>).optional(),
 });
 
 export type ContentRestrictionUpdate = z.infer<typeof ContentRestrictionUpdateSchema>;

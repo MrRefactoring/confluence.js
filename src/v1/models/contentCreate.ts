@@ -3,14 +3,14 @@ import { apiObject, openEnum } from '#/core';
 import { IconSchema } from './icon';
 import { GlobalSpaceIdentifierSchema } from './globalSpaceIdentifier';
 import { SpaceDescriptionSchema } from './spaceDescription';
-import { ContentSchema } from './content';
+import { ContentSchema, type Content, type ContentInput } from './content';
 import { LabelArraySchema } from './labelArray';
 import { OperationCheckResultSchema } from './operationCheckResult';
-import { SpacePermissionSchema } from './spacePermission';
+import { SpacePermissionSchema, type SpacePermission, type SpacePermissionInput } from './spacePermission';
 import { SpaceSettingsSchema } from './spaceSettings';
 import { ThemeSchema } from './theme';
 import { LookAndFeelSchema } from './lookAndFeel';
-import { UserSchema } from './user';
+import { UserSchema, type User, type UserInput } from './user';
 import { ContentBodyCreateSchema } from './contentBodyCreate';
 
 export const ContentCreateSchema = apiObject({
@@ -36,21 +36,21 @@ export const ContentCreateSchema = apiObject({
         plain: z.string().optional(),
       }).optional(),
     }).nullish(),
-    homepage: ContentSchema.optional(),
+    homepage: (ContentSchema as z.ZodType<Content, ContentInput>).optional(),
     type: z.string().nullish(),
     metadata: apiObject({
       labels: LabelArraySchema.optional(),
       _expandable: z.record(z.string(), z.any()).optional(),
     }).nullish(),
     operations: z.array(OperationCheckResultSchema).nullish(),
-    permissions: z.array(SpacePermissionSchema).nullish(),
+    permissions: z.array(SpacePermissionSchema as z.ZodType<SpacePermission, SpacePermissionInput>).nullish(),
     status: z.string().nullish(),
     settings: SpaceSettingsSchema.optional(),
     theme: ThemeSchema.optional(),
     lookAndFeel: LookAndFeelSchema.optional(),
     history: apiObject({
       createdDate: z.coerce.date(),
-      createdBy: UserSchema.optional(),
+      createdBy: (UserSchema as z.ZodType<User, UserInput>).optional(),
     }).optional(),
     /** The key of the space. */
     key: z.string(),

@@ -1,7 +1,7 @@
 import { VersionSchema, type Version } from '../models/version';
 import type { RestoreContentVersion } from '../parameters/restoreContentVersion';
 import type { DeleteContentVersion } from '../parameters/deleteContentVersion';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Restores a historical version to be the latest version. That is, a new version is created with the content of the
@@ -9,7 +9,11 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
  */
-export async function restoreContentVersion(client: Client, parameters: RestoreContentVersion): Promise<Version> {
+export async function restoreContentVersion(
+  client: Client,
+  parameters: RestoreContentVersion,
+  options?: RequestOptions,
+): Promise<Version> {
   const config: SendRequestOptions<Version> = {
     url: `/wiki/rest/api/content/${parameters.id}/version`,
     method: 'POST',
@@ -17,13 +21,14 @@ export async function restoreContentVersion(client: Client, parameters: RestoreC
       'X-Atlassian-Token': 'no-check',
     },
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     body: {
       operationKey: parameters.operationKey,
       params: parameters.params,
     },
     schema: VersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -35,13 +40,18 @@ export async function restoreContentVersion(client: Client, parameters: RestoreC
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
  */
-export async function deleteContentVersion(client: Client, parameters: DeleteContentVersion): Promise<void> {
+export async function deleteContentVersion(
+  client: Client,
+  parameters: DeleteContentVersion,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/version/${parameters.versionNumber}`,
     method: 'DELETE',
     headers: {
       'X-Atlassian-Token': 'no-check',
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -17,7 +17,7 @@ import type { GetCustomContentVersions } from '../parameters/getCustomContentVer
 import type { GetCustomContentVersionDetails } from '../parameters/getCustomContentVersionDetails';
 import type { GetFooterCommentVersionDetails } from '../parameters/getFooterCommentVersionDetails';
 import type { GetInlineCommentVersionDetails } from '../parameters/getInlineCommentVersionDetails';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the versions of specific attachment.
@@ -28,6 +28,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getAttachmentVersions(
   client: Client,
   parameters: GetAttachmentVersions,
+  options?: RequestOptions,
 ): Promise<AttachmentVersions> {
   const config: SendRequestOptions<AttachmentVersions> = {
     url: `/wiki/api/v2/attachments/${parameters.id}/versions`,
@@ -38,6 +39,7 @@ export async function getAttachmentVersions(
       sort: parameters.sort,
     },
     schema: AttachmentVersionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -49,7 +51,11 @@ export async function getAttachmentVersions(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
  * corresponding space.
  */
-export async function getBlogPostVersions(client: Client, parameters: GetBlogPostVersions): Promise<BlogPostVersions> {
+export async function getBlogPostVersions(
+  client: Client,
+  parameters: GetBlogPostVersions,
+  options?: RequestOptions,
+): Promise<BlogPostVersions> {
   const config: SendRequestOptions<BlogPostVersions> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}/versions`,
     method: 'GET',
@@ -60,6 +66,7 @@ export async function getBlogPostVersions(client: Client, parameters: GetBlogPos
       sort: parameters.sort,
     },
     schema: BlogPostVersionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -71,7 +78,11 @@ export async function getBlogPostVersions(client: Client, parameters: GetBlogPos
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the page and its
  * corresponding space.
  */
-export async function getPageVersions(client: Client, parameters: GetPageVersions): Promise<PageVersions> {
+export async function getPageVersions(
+  client: Client,
+  parameters: GetPageVersions,
+  options?: RequestOptions,
+): Promise<PageVersions> {
   const config: SendRequestOptions<PageVersions> = {
     url: `/wiki/api/v2/pages/${parameters.id}/versions`,
     method: 'GET',
@@ -82,6 +93,7 @@ export async function getPageVersions(client: Client, parameters: GetPageVersion
       sort: parameters.sort,
     },
     schema: PageVersionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -96,6 +108,7 @@ export async function getPageVersions(client: Client, parameters: GetPageVersion
 export async function getFooterCommentVersions(
   client: Client,
   parameters: GetFooterCommentVersions,
+  options?: RequestOptions,
 ): Promise<FooterCommentVersions> {
   const config: SendRequestOptions<FooterCommentVersions> = {
     url: `/wiki/api/v2/footer-comments/${parameters.id}/versions`,
@@ -107,6 +120,7 @@ export async function getFooterCommentVersions(
       sort: parameters.sort,
     },
     schema: FooterCommentVersionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -121,6 +135,7 @@ export async function getFooterCommentVersions(
 export async function getInlineCommentVersions(
   client: Client,
   parameters: GetInlineCommentVersions,
+  options?: RequestOptions,
 ): Promise<InlineCommentVersions> {
   const config: SendRequestOptions<InlineCommentVersions> = {
     url: `/wiki/api/v2/inline-comments/${parameters.id}/versions`,
@@ -132,6 +147,7 @@ export async function getInlineCommentVersions(
       sort: parameters.sort,
     },
     schema: InlineCommentVersionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -145,11 +161,13 @@ export async function getInlineCommentVersions(
 export async function getAttachmentVersionDetails(
   client: Client,
   parameters: GetAttachmentVersionDetails,
+  options?: RequestOptions,
 ): Promise<DetailedVersion> {
   const config: SendRequestOptions<DetailedVersion> = {
     url: `/wiki/api/v2/attachments/${parameters.attachmentId}/versions/${parameters.versionNumber}`,
     method: 'GET',
     schema: DetailedVersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -163,11 +181,13 @@ export async function getAttachmentVersionDetails(
 export async function getBlogPostVersionDetails(
   client: Client,
   parameters: GetBlogPostVersionDetails,
+  options?: RequestOptions,
 ): Promise<DetailedVersion> {
   const config: SendRequestOptions<DetailedVersion> = {
     url: `/wiki/api/v2/blogposts/${parameters.blogpostId}/versions/${parameters.versionNumber}`,
     method: 'GET',
     schema: DetailedVersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -181,11 +201,13 @@ export async function getBlogPostVersionDetails(
 export async function getPageVersionDetails(
   client: Client,
   parameters: GetPageVersionDetails,
+  options?: RequestOptions,
 ): Promise<DetailedVersion> {
   const config: SendRequestOptions<DetailedVersion> = {
     url: `/wiki/api/v2/pages/${parameters.pageId}/versions/${parameters.versionNumber}`,
     method: 'GET',
     schema: DetailedVersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -200,6 +222,7 @@ export async function getPageVersionDetails(
 export async function getCustomContentVersions(
   client: Client,
   parameters: GetCustomContentVersions,
+  options?: RequestOptions,
 ): Promise<CustomContentVersions> {
   const config: SendRequestOptions<CustomContentVersions> = {
     url: `/wiki/api/v2/custom-content/${parameters.customContentId}/versions`,
@@ -211,6 +234,7 @@ export async function getCustomContentVersions(
       sort: parameters.sort,
     },
     schema: CustomContentVersionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -224,11 +248,13 @@ export async function getCustomContentVersions(
 export async function getCustomContentVersionDetails(
   client: Client,
   parameters: GetCustomContentVersionDetails,
+  options?: RequestOptions,
 ): Promise<DetailedVersion> {
   const config: SendRequestOptions<DetailedVersion> = {
     url: `/wiki/api/v2/custom-content/${parameters.customContentId}/versions/${parameters.versionNumber}`,
     method: 'GET',
     schema: DetailedVersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -243,11 +269,13 @@ export async function getCustomContentVersionDetails(
 export async function getFooterCommentVersionDetails(
   client: Client,
   parameters: GetFooterCommentVersionDetails,
+  options?: RequestOptions,
 ): Promise<DetailedVersion> {
   const config: SendRequestOptions<DetailedVersion> = {
     url: `/wiki/api/v2/footer-comments/${parameters.id}/versions/${parameters.versionNumber}`,
     method: 'GET',
     schema: DetailedVersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -262,11 +290,13 @@ export async function getFooterCommentVersionDetails(
 export async function getInlineCommentVersionDetails(
   client: Client,
   parameters: GetInlineCommentVersionDetails,
+  options?: RequestOptions,
 ): Promise<DetailedVersion> {
   const config: SendRequestOptions<DetailedVersion> = {
     url: `/wiki/api/v2/inline-comments/${parameters.id}/versions/${parameters.versionNumber}`,
     method: 'GET',
     schema: DetailedVersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

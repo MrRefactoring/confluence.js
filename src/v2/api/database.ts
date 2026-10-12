@@ -2,7 +2,7 @@ import { DatabaseSchema, type Database } from '../models/database';
 import type { CreateDatabase } from '../parameters/createDatabase';
 import type { GetDatabaseById } from '../parameters/getDatabaseById';
 import type { DeleteDatabase } from '../parameters/deleteDatabase';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Creates a database in the space.
@@ -10,7 +10,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the corresponding space.
  * Permission to create a database in the space.
  */
-export async function createDatabase(client: Client, parameters: CreateDatabase): Promise<Database> {
+export async function createDatabase(
+  client: Client,
+  parameters: CreateDatabase,
+  options?: RequestOptions,
+): Promise<Database> {
   const config: SendRequestOptions<Database> = {
     url: '/wiki/api/v2/databases',
     method: 'POST',
@@ -19,6 +23,7 @@ export async function createDatabase(client: Client, parameters: CreateDatabase)
     },
     body: parameters.body,
     schema: DatabaseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -30,7 +35,11 @@ export async function createDatabase(client: Client, parameters: CreateDatabase)
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the database and its
  * corresponding space.
  */
-export async function getDatabaseById(client: Client, parameters: GetDatabaseById): Promise<Database> {
+export async function getDatabaseById(
+  client: Client,
+  parameters: GetDatabaseById,
+  options?: RequestOptions,
+): Promise<Database> {
   const config: SendRequestOptions<Database> = {
     url: `/wiki/api/v2/databases/${parameters.id}`,
     method: 'GET',
@@ -41,6 +50,7 @@ export async function getDatabaseById(client: Client, parameters: GetDatabaseByI
       'include-properties': parameters.includeProperties,
     },
     schema: DatabaseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -54,10 +64,15 @@ export async function getDatabaseById(client: Client, parameters: GetDatabaseByI
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the database and its
  * corresponding space. Permission to delete databases in the space.
  */
-export async function deleteDatabase(client: Client, parameters: DeleteDatabase): Promise<void> {
+export async function deleteDatabase(
+  client: Client,
+  parameters: DeleteDatabase,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/databases/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

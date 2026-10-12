@@ -5,7 +5,7 @@ import type { ArchivePages } from '../parameters/archivePages';
 import type { PublishLegacyDraft } from '../parameters/publishLegacyDraft';
 import type { PublishSharedDraft } from '../parameters/publishSharedDraft';
 import type { SearchContentByCQL } from '../parameters/searchContentByCQL';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Archives a list of pages. The pages to be archived are specified as a list of content IDs. This API accepts the
@@ -18,7 +18,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Archive' permission for each of the pages in
  * the corresponding space it belongs to.
  */
-export async function archivePages(client: Client, parameters: ArchivePages): Promise<LongTask> {
+export async function archivePages(
+  client: Client,
+  parameters: ArchivePages,
+  options?: RequestOptions,
+): Promise<LongTask> {
   const config: SendRequestOptions<LongTask> = {
     url: '/wiki/rest/api/content/archive',
     method: 'POST',
@@ -29,6 +33,7 @@ export async function archivePages(client: Client, parameters: ArchivePages): Pr
       pages: parameters.pages,
     },
     schema: LongTaskSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -44,7 +49,11 @@ export async function archivePages(client: Client, parameters: ArchivePages): Pr
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the draft and 'Add'
  * permission for the space that the content will be created in.
  */
-export async function publishLegacyDraft(client: Client, parameters: PublishLegacyDraft): Promise<Content> {
+export async function publishLegacyDraft(
+  client: Client,
+  parameters: PublishLegacyDraft,
+  options?: RequestOptions,
+): Promise<Content> {
   const config: SendRequestOptions<Content> = {
     url: `/wiki/rest/api/content/blueprint/instance/${parameters.draftId}`,
     method: 'POST',
@@ -53,10 +62,11 @@ export async function publishLegacyDraft(client: Client, parameters: PublishLega
     },
     searchParams: {
       status: parameters.status,
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     body: parameters.body,
     schema: ContentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -70,7 +80,11 @@ export async function publishLegacyDraft(client: Client, parameters: PublishLega
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the draft and 'Add'
  * permission for the space that the content will be created in.
  */
-export async function publishSharedDraft(client: Client, parameters: PublishSharedDraft): Promise<Content> {
+export async function publishSharedDraft(
+  client: Client,
+  parameters: PublishSharedDraft,
+  options?: RequestOptions,
+): Promise<Content> {
   const config: SendRequestOptions<Content> = {
     url: `/wiki/rest/api/content/blueprint/instance/${parameters.draftId}`,
     method: 'PUT',
@@ -79,10 +93,11 @@ export async function publishSharedDraft(client: Client, parameters: PublishShar
     },
     searchParams: {
       status: parameters.status,
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     body: parameters.body,
     schema: ContentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -130,18 +145,23 @@ export async function publishSharedDraft(client: Client, parameters: PublishShar
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission). Only content that the user has permission to view will be returned.
  */
-export async function searchContentByCQL(client: Client, parameters: SearchContentByCQL): Promise<ContentArray> {
+export async function searchContentByCQL(
+  client: Client,
+  parameters: SearchContentByCQL,
+  options?: RequestOptions,
+): Promise<ContentArray> {
   const config: SendRequestOptions<ContentArray> = {
     url: '/wiki/rest/api/content/search',
     method: 'GET',
     searchParams: {
       cql: parameters.cql,
       cqlcontext: parameters.cqlcontext,
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       cursor: parameters.cursor,
       limit: parameters.limit,
     },
     schema: ContentArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -1,26 +1,26 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { UserSchema } from './user';
+import { UserSchema, type User, type UserInput } from './user';
 import { GroupCreateSchema } from './groupCreate';
 import { OperationCheckResultSchema } from './operationCheckResult';
+
 /**
- * This object represents a permission for given space. Permissions consist of* at least one operation object with an
- * accompanying subjects object.*
+ * This object represents a permission for given space. Permissions consist of at least one operation object with an
+ * accompanying subjects object.
  *
- * The following combinations of `operation` and `targetType` values are* valid for the `operation` object:*
+ * The following combinations of `operation` and `targetType` values are valid for the `operation` object:
  *
- * - 'create': 'page', 'blogpost', 'comment', 'attachment'*
- * - 'read': 'space'*
- * - 'delete': 'page', 'blogpost', 'comment', 'attachment'*
- * - 'export': 'space'*
+ * - 'create': 'page', 'blogpost', 'comment', 'attachment'
+ * - 'read': 'space'
+ * - 'delete': 'page', 'blogpost', 'comment', 'attachment'
+ * - 'export': 'space'
  * - 'administer': 'space'
  */
-
 export const SpacePermissionCreateSchema = apiObject({
   /** The users and/or groups that the permission applies to. */
   subjects: apiObject({
     user: apiObject({
-      results: z.array(UserSchema),
+      results: z.array(UserSchema as z.ZodType<User, UserInput>),
       size: z.number(),
     }).optional(),
     group: apiObject({

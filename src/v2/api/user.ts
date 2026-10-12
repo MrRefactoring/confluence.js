@@ -3,7 +3,7 @@ import { AccessByEmailSchema, type AccessByEmail } from '../models/accessByEmail
 import type { CreateBulkUserLookup } from '../parameters/createBulkUserLookup';
 import type { CheckAccessByEmail } from '../parameters/checkAccessByEmail';
 import type { InviteByEmail } from '../parameters/inviteByEmail';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns user details for the ids provided in the request body.
@@ -11,12 +11,17 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission). The user must be able to view user profiles in the Confluence site.
  */
-export async function createBulkUserLookup(client: Client, parameters: CreateBulkUserLookup): Promise<BulkUserLookup> {
+export async function createBulkUserLookup(
+  client: Client,
+  parameters: CreateBulkUserLookup,
+  options?: RequestOptions,
+): Promise<BulkUserLookup> {
   const config: SendRequestOptions<BulkUserLookup> = {
     url: '/wiki/api/v2/users-bulk',
     method: 'POST',
     body: parameters.body,
     schema: BulkUserLookupSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -28,12 +33,17 @@ export async function createBulkUserLookup(client: Client, parameters: CreateBul
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function checkAccessByEmail(client: Client, parameters: CheckAccessByEmail): Promise<AccessByEmail> {
+export async function checkAccessByEmail(
+  client: Client,
+  parameters: CheckAccessByEmail,
+  options?: RequestOptions,
+): Promise<AccessByEmail> {
   const config: SendRequestOptions<AccessByEmail> = {
     url: '/wiki/api/v2/user/access/check-access-by-email',
     method: 'POST',
     body: parameters.body,
     schema: AccessByEmailSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -49,11 +59,16 @@ export async function checkAccessByEmail(client: Client, parameters: CheckAccess
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function inviteByEmail(client: Client, parameters: InviteByEmail): Promise<void> {
+export async function inviteByEmail(
+  client: Client,
+  parameters: InviteByEmail,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/wiki/api/v2/user/access/invite-by-email',
     method: 'POST',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

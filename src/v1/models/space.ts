@@ -2,14 +2,14 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IconSchema, type Icon } from './icon';
 import { SpaceDescriptionSchema, type SpaceDescription } from './spaceDescription';
-import { ContentSchema, type Content } from './content';
+import { ContentSchema, type Content, type ContentInput } from './content';
 import { LabelArraySchema, type LabelArray } from './labelArray';
 import { OperationCheckResultSchema, type OperationCheckResult } from './operationCheckResult';
-import { SpacePermissionSchema, type SpacePermission } from './spacePermission';
+import { SpacePermissionSchema, type SpacePermission, type SpacePermissionInput } from './spacePermission';
 import { SpaceSettingsSchema, type SpaceSettings } from './spaceSettings';
 import { ThemeSchema, type Theme } from './theme';
 import { LookAndFeelSchema, type LookAndFeel } from './lookAndFeel';
-import { UserSchema, type User } from './user';
+import { UserSchema, type User, type UserInput } from './user';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
 export interface Space {
@@ -59,9 +59,12 @@ export interface Space {
   };
   _links: GenericLinks;
   ari?: string;
+  [key: string]: unknown;
 }
 
-export const SpaceSchema: z.ZodType<Space> = apiObject({
+export type SpaceInput = unknown;
+
+export const SpaceSchema: z.ZodType<Space, SpaceInput> = apiObject({
   id: z.number().optional(),
   key: z.string(),
   alias: z.string().optional(),
@@ -75,21 +78,30 @@ export const SpaceSchema: z.ZodType<Space> = apiObject({
       plain: z.string().optional(),
     }).optional(),
   }).optional(),
-  homepage: z.lazy(() => ContentSchema).optional(),
+  homepage: (
+    z.lazy((): z.ZodType<Content, ContentInput> => ContentSchema) as z.ZodType<Content, ContentInput>
+  ).optional(),
   type: z.string(),
   metadata: apiObject({
     labels: LabelArraySchema.optional(),
     _expandable: z.record(z.string(), z.any()).optional(),
   }).optional(),
   operations: z.array(OperationCheckResultSchema).optional(),
-  permissions: z.array(z.lazy(() => SpacePermissionSchema)).optional(),
+  permissions: z
+    .array(
+      z.lazy((): z.ZodType<SpacePermission, SpacePermissionInput> => SpacePermissionSchema) as z.ZodType<
+        SpacePermission,
+        SpacePermissionInput
+      >,
+    )
+    .optional(),
   status: z.string(),
   settings: SpaceSettingsSchema.optional(),
   theme: ThemeSchema.optional(),
   lookAndFeel: LookAndFeelSchema.optional(),
   history: apiObject({
     createdDate: z.coerce.date(),
-    createdBy: z.lazy(() => UserSchema).optional(),
+    createdBy: (z.lazy((): z.ZodType<User, UserInput> => UserSchema) as z.ZodType<User, UserInput>).optional(),
   }).optional(),
   _expandable: apiObject({
     settings: z.string().optional(),

@@ -4,14 +4,14 @@ import type { CreateSpace } from '../parameters/createSpace';
 import type { CreatePrivateSpace } from '../parameters/createPrivateSpace';
 import type { UpdateSpace } from '../parameters/updateSpace';
 import type { DeleteSpace } from '../parameters/deleteSpace';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Creates a new space. Note, currently you cannot set space labels when creating a space.
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Create Space(s)' global permission.
  */
-export async function createSpace(client: Client, parameters: CreateSpace): Promise<Space> {
+export async function createSpace(client: Client, parameters: CreateSpace, options?: RequestOptions): Promise<Space> {
   const config: SendRequestOptions<Space> = {
     url: '/wiki/rest/api/space',
     method: 'POST',
@@ -26,6 +26,7 @@ export async function createSpace(client: Client, parameters: CreateSpace): Prom
       permissions: parameters.permissions,
     },
     schema: SpaceSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -38,7 +39,11 @@ export async function createSpace(client: Client, parameters: CreateSpace): Prom
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Create Space(s)' global permission.
  */
-export async function createPrivateSpace(client: Client, parameters: CreatePrivateSpace): Promise<Space> {
+export async function createPrivateSpace(
+  client: Client,
+  parameters: CreatePrivateSpace,
+  options?: RequestOptions,
+): Promise<Space> {
   const config: SendRequestOptions<Space> = {
     url: '/wiki/rest/api/space/_private',
     method: 'POST',
@@ -53,6 +58,7 @@ export async function createPrivateSpace(client: Client, parameters: CreatePriva
       permissions: parameters.permissions,
     },
     schema: SpaceSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -66,7 +72,7 @@ export async function createPrivateSpace(client: Client, parameters: CreatePriva
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
  */
-export async function updateSpace(client: Client, parameters: UpdateSpace): Promise<Space> {
+export async function updateSpace(client: Client, parameters: UpdateSpace, options?: RequestOptions): Promise<Space> {
   const config: SendRequestOptions<Space> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}`,
     method: 'PUT',
@@ -81,6 +87,7 @@ export async function updateSpace(client: Client, parameters: UpdateSpace): Prom
       status: parameters.status,
     },
     schema: SpaceSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -93,7 +100,11 @@ export async function updateSpace(client: Client, parameters: UpdateSpace): Prom
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
  */
-export async function deleteSpace(client: Client, parameters: DeleteSpace): Promise<LongTask> {
+export async function deleteSpace(
+  client: Client,
+  parameters: DeleteSpace,
+  options?: RequestOptions,
+): Promise<LongTask> {
   const config: SendRequestOptions<LongTask> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}`,
     method: 'DELETE',
@@ -101,6 +112,7 @@ export async function deleteSpace(client: Client, parameters: DeleteSpace): Prom
       'X-Atlassian-Token': 'no-check',
     },
     schema: LongTaskSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

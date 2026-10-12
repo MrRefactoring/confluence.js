@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { ContentRestrictionSchema } from './contentRestriction';
+import { ContentRestrictionSchema, type ContentRestriction, type ContentRestrictionInput } from './contentRestriction';
 import { GenericLinksSchema } from './genericLinks';
 
 export const ContentRestrictionArraySchema = apiObject({
-  results: z.array(ContentRestrictionSchema),
+  results: z.array(ContentRestrictionSchema as z.ZodType<ContentRestriction, ContentRestrictionInput>),
   start: z.number(),
   limit: z.number(),
   size: z.number(),

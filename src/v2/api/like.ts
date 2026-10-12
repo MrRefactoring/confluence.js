@@ -14,7 +14,7 @@ import type { GetFooterLikeCount } from '../parameters/getFooterLikeCount';
 import type { GetFooterLikeUsers } from '../parameters/getFooterLikeUsers';
 import type { GetInlineLikeCount } from '../parameters/getInlineLikeCount';
 import type { GetInlineLikeUsers } from '../parameters/getInlineLikeUsers';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the count of likes of specific blog post.
@@ -25,11 +25,13 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getBlogPostLikeCount(
   client: Client,
   parameters: GetBlogPostLikeCount,
+  options?: RequestOptions,
 ): Promise<BlogPostLikeCount> {
   const config: SendRequestOptions<BlogPostLikeCount> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}/likes/count`,
     method: 'GET',
     schema: BlogPostLikeCountSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -44,6 +46,7 @@ export async function getBlogPostLikeCount(
 export async function getBlogPostLikeUsers(
   client: Client,
   parameters: GetBlogPostLikeUsers,
+  options?: RequestOptions,
 ): Promise<BlogPostLikeUsers> {
   const config: SendRequestOptions<BlogPostLikeUsers> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}/likes/users`,
@@ -53,6 +56,7 @@ export async function getBlogPostLikeUsers(
       limit: parameters.limit,
     },
     schema: BlogPostLikeUsersSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -64,11 +68,16 @@ export async function getBlogPostLikeUsers(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page and
  * its corresponding space.
  */
-export async function getPageLikeCount(client: Client, parameters: GetPageLikeCount): Promise<PageLikeCount> {
+export async function getPageLikeCount(
+  client: Client,
+  parameters: GetPageLikeCount,
+  options?: RequestOptions,
+): Promise<PageLikeCount> {
   const config: SendRequestOptions<PageLikeCount> = {
     url: `/wiki/api/v2/pages/${parameters.id}/likes/count`,
     method: 'GET',
     schema: PageLikeCountSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -80,7 +89,11 @@ export async function getPageLikeCount(client: Client, parameters: GetPageLikeCo
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page and
  * its corresponding space.
  */
-export async function getPageLikeUsers(client: Client, parameters: GetPageLikeUsers): Promise<PageLikeUsers> {
+export async function getPageLikeUsers(
+  client: Client,
+  parameters: GetPageLikeUsers,
+  options?: RequestOptions,
+): Promise<PageLikeUsers> {
   const config: SendRequestOptions<PageLikeUsers> = {
     url: `/wiki/api/v2/pages/${parameters.id}/likes/users`,
     method: 'GET',
@@ -89,6 +102,7 @@ export async function getPageLikeUsers(client: Client, parameters: GetPageLikeUs
       limit: parameters.limit,
     },
     schema: PageLikeUsersSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -100,11 +114,16 @@ export async function getPageLikeUsers(client: Client, parameters: GetPageLikeUs
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the
  * page/blogpost and its corresponding space.
  */
-export async function getFooterLikeCount(client: Client, parameters: GetFooterLikeCount): Promise<FooterLikeCount> {
+export async function getFooterLikeCount(
+  client: Client,
+  parameters: GetFooterLikeCount,
+  options?: RequestOptions,
+): Promise<FooterLikeCount> {
   const config: SendRequestOptions<FooterLikeCount> = {
     url: `/wiki/api/v2/footer-comments/${parameters.id}/likes/count`,
     method: 'GET',
     schema: FooterLikeCountSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -116,7 +135,11 @@ export async function getFooterLikeCount(client: Client, parameters: GetFooterLi
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the
  * page/blogpost and its corresponding space.
  */
-export async function getFooterLikeUsers(client: Client, parameters: GetFooterLikeUsers): Promise<FooterLikeUsers> {
+export async function getFooterLikeUsers(
+  client: Client,
+  parameters: GetFooterLikeUsers,
+  options?: RequestOptions,
+): Promise<FooterLikeUsers> {
   const config: SendRequestOptions<FooterLikeUsers> = {
     url: `/wiki/api/v2/footer-comments/${parameters.id}/likes/users`,
     method: 'GET',
@@ -125,6 +148,7 @@ export async function getFooterLikeUsers(client: Client, parameters: GetFooterLi
       limit: parameters.limit,
     },
     schema: FooterLikeUsersSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -136,11 +160,16 @@ export async function getFooterLikeUsers(client: Client, parameters: GetFooterLi
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the
  * page/blogpost and its corresponding space.
  */
-export async function getInlineLikeCount(client: Client, parameters: GetInlineLikeCount): Promise<InlineLikeCount> {
+export async function getInlineLikeCount(
+  client: Client,
+  parameters: GetInlineLikeCount,
+  options?: RequestOptions,
+): Promise<InlineLikeCount> {
   const config: SendRequestOptions<InlineLikeCount> = {
     url: `/wiki/api/v2/inline-comments/${parameters.id}/likes/count`,
     method: 'GET',
     schema: InlineLikeCountSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -152,7 +181,11 @@ export async function getInlineLikeCount(client: Client, parameters: GetInlineLi
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the
  * page/blogpost and its corresponding space.
  */
-export async function getInlineLikeUsers(client: Client, parameters: GetInlineLikeUsers): Promise<InlineLikeUsers> {
+export async function getInlineLikeUsers(
+  client: Client,
+  parameters: GetInlineLikeUsers,
+  options?: RequestOptions,
+): Promise<InlineLikeUsers> {
   const config: SendRequestOptions<InlineLikeUsers> = {
     url: `/wiki/api/v2/inline-comments/${parameters.id}/likes/users`,
     method: 'GET',
@@ -161,6 +194,7 @@ export async function getInlineLikeUsers(client: Client, parameters: GetInlineLi
       limit: parameters.limit,
     },
     schema: InlineLikeUsersSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

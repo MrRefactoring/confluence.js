@@ -12,7 +12,7 @@ import type { GetCustomContentAttachments } from '../parameters/getCustomContent
 import type { GetLabelAttachments } from '../parameters/getLabelAttachments';
 import type { GetPageAttachments } from '../parameters/getPageAttachments';
 import type { GetAttachmentThumbnailById } from '../parameters/getAttachmentThumbnailById';
-import { type Client, type SendRequestOptions, BufferSchema, type Buffer } from '#/core';
+import { type Client, type RequestOptions, type SendRequestOptions, BufferSchema, type Buffer } from '#/core';
 
 /**
  * Returns all attachments. The number of results is limited by the `limit` parameter and additional results (if
@@ -21,7 +21,11 @@ import { type Client, type SendRequestOptions, BufferSchema, type Buffer } from 
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the container of the
  * attachment.
  */
-export async function getAttachments(client: Client, parameters?: GetAttachments): Promise<Attachments> {
+export async function getAttachments(
+  client: Client,
+  parameters?: GetAttachments,
+  options?: RequestOptions,
+): Promise<Attachments> {
   const config: SendRequestOptions<Attachments> = {
     url: '/wiki/api/v2/attachments',
     method: 'GET',
@@ -34,6 +38,7 @@ export async function getAttachments(client: Client, parameters?: GetAttachments
       limit: parameters?.limit,
     },
     schema: AttachmentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -44,7 +49,11 @@ export async function getAttachments(client: Client, parameters?: GetAttachments
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the attachment's container.
  */
-export async function getAttachmentById(client: Client, parameters: GetAttachmentById): Promise<Attachment> {
+export async function getAttachmentById(
+  client: Client,
+  parameters: GetAttachmentById,
+  options?: RequestOptions,
+): Promise<Attachment> {
   const config: SendRequestOptions<Attachment> = {
     url: `/wiki/api/v2/attachments/${parameters.id}`,
     method: 'GET',
@@ -58,6 +67,7 @@ export async function getAttachmentById(client: Client, parameters: GetAttachmen
       'include-collaborators': parameters.includeCollaborators,
     },
     schema: AttachmentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -70,17 +80,27 @@ export async function getAttachmentById(client: Client, parameters: GetAttachmen
  * attachment (or "purge" it), the endpoint must be called on a **trashed** attachment with the following param
  * `purge=true`.
  *
- * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the container of the
- * attachment. Permission to delete attachments in the space. Permission to administer the space (if attempting to
- * purge).
+ * **[Permissions](https://support.atlassian.com/confluence-cloud/docs/what-are-confluences-roles/) required**:
+ * Permission to view the container of the attachment. Permission to delete attachments in the space.
+ * [`manage/content`](https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-space-permissions/#api-space-permissions-get)
+ * permission for the space (if attempting to purge).
+ *
+ * **Note:** To find the display name for each permission ID, call the [Get available space
+ * permissions](https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-space-permissions/#api-space-permissions-get)
+ * API.
  */
-export async function deleteAttachment(client: Client, parameters: DeleteAttachment): Promise<void> {
+export async function deleteAttachment(
+  client: Client,
+  parameters: DeleteAttachment,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/attachments/${parameters.id}`,
     method: 'DELETE',
     searchParams: {
       purge: parameters.purge,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -96,6 +116,7 @@ export async function deleteAttachment(client: Client, parameters: DeleteAttachm
 export async function getBlogpostAttachments(
   client: Client,
   parameters: GetBlogpostAttachments,
+  options?: RequestOptions,
 ): Promise<BlogpostAttachments> {
   const config: SendRequestOptions<BlogpostAttachments> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}/attachments`,
@@ -109,6 +130,7 @@ export async function getBlogpostAttachments(
       limit: parameters.limit,
     },
     schema: BlogpostAttachmentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -124,6 +146,7 @@ export async function getBlogpostAttachments(
 export async function getCustomContentAttachments(
   client: Client,
   parameters: GetCustomContentAttachments,
+  options?: RequestOptions,
 ): Promise<CustomContentAttachments> {
   const config: SendRequestOptions<CustomContentAttachments> = {
     url: `/wiki/api/v2/custom-content/${parameters.id}/attachments`,
@@ -137,6 +160,7 @@ export async function getCustomContentAttachments(
       limit: parameters.limit,
     },
     schema: CustomContentAttachmentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -149,7 +173,11 @@ export async function getCustomContentAttachments(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the attachment and its
  * corresponding space.
  */
-export async function getLabelAttachments(client: Client, parameters: GetLabelAttachments): Promise<LabelAttachments> {
+export async function getLabelAttachments(
+  client: Client,
+  parameters: GetLabelAttachments,
+  options?: RequestOptions,
+): Promise<LabelAttachments> {
   const config: SendRequestOptions<LabelAttachments> = {
     url: `/wiki/api/v2/labels/${parameters.id}/attachments`,
     method: 'GET',
@@ -159,6 +187,7 @@ export async function getLabelAttachments(client: Client, parameters: GetLabelAt
       limit: parameters.limit,
     },
     schema: LabelAttachmentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -171,7 +200,11 @@ export async function getLabelAttachments(client: Client, parameters: GetLabelAt
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page and
  * its corresponding space.
  */
-export async function getPageAttachments(client: Client, parameters: GetPageAttachments): Promise<PageAttachments> {
+export async function getPageAttachments(
+  client: Client,
+  parameters: GetPageAttachments,
+  options?: RequestOptions,
+): Promise<PageAttachments> {
   const config: SendRequestOptions<PageAttachments> = {
     url: `/wiki/api/v2/pages/${parameters.id}/attachments`,
     method: 'GET',
@@ -184,6 +217,7 @@ export async function getPageAttachments(client: Client, parameters: GetPageAtta
       limit: parameters.limit,
     },
     schema: PageAttachmentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -197,6 +231,7 @@ export async function getPageAttachments(client: Client, parameters: GetPageAtta
 export async function getAttachmentThumbnailById(
   client: Client,
   parameters: GetAttachmentThumbnailById,
+  options?: RequestOptions,
 ): Promise<Buffer> {
   const config: SendRequestOptions<Buffer> = {
     url: `/wiki/api/v2/attachments/${parameters.id}/thumbnail/download`,
@@ -207,6 +242,7 @@ export async function getAttachmentThumbnailById(
       width: parameters.width,
     },
     schema: BufferSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

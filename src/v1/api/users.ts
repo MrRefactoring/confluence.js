@@ -11,7 +11,7 @@ import type { GetGroupMembershipsForUser } from '../parameters/getGroupMembershi
 import type { GetBulkUserLookup } from '../parameters/getBulkUserLookup';
 import type { GetPrivacyUnsafeUserEmail } from '../parameters/getPrivacyUnsafeUserEmail';
 import type { GetPrivacyUnsafeUserEmailBulk } from '../parameters/getPrivacyUnsafeUserEmailBulk';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a user. This includes information about the user, such as the display name, account ID, profile picture, and
@@ -23,15 +23,16 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getUser(client: Client, parameters: GetUser): Promise<User> {
+export async function getUser(client: Client, parameters: GetUser, options?: RequestOptions): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/wiki/rest/api/user',
     method: 'GET',
     searchParams: {
       accountId: parameters.accountId,
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -43,14 +44,19 @@ export async function getUser(client: Client, parameters: GetUser): Promise<User
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getAnonymousUser(client: Client, parameters?: GetAnonymousUser): Promise<UserAnonymous> {
+export async function getAnonymousUser(
+  client: Client,
+  parameters?: GetAnonymousUser,
+  options?: RequestOptions,
+): Promise<UserAnonymous> {
   const config: SendRequestOptions<UserAnonymous> = {
     url: '/wiki/rest/api/user/anonymous',
     method: 'GET',
     searchParams: {
-      expand: parameters?.expand,
+      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
     },
     schema: UserAnonymousSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -63,14 +69,19 @@ export async function getAnonymousUser(client: Client, parameters?: GetAnonymous
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getCurrentUser(client: Client, parameters?: GetCurrentUser): Promise<User> {
+export async function getCurrentUser(
+  client: Client,
+  parameters?: GetCurrentUser,
+  options?: RequestOptions,
+): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/wiki/rest/api/user/current',
     method: 'GET',
     searchParams: {
-      expand: parameters?.expand,
+      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -85,6 +96,7 @@ export async function getCurrentUser(client: Client, parameters?: GetCurrentUser
 export async function getGroupMembershipsForUser(
   client: Client,
   parameters: GetGroupMembershipsForUser,
+  options?: RequestOptions,
 ): Promise<GroupArrayWithLinks> {
   const config: SendRequestOptions<GroupArrayWithLinks> = {
     url: '/wiki/rest/api/user/memberof',
@@ -95,6 +107,7 @@ export async function getGroupMembershipsForUser(
       limit: parameters.limit,
     },
     schema: GroupArrayWithLinksSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -107,15 +120,20 @@ export async function getGroupMembershipsForUser(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getBulkUserLookup(client: Client, parameters: GetBulkUserLookup): Promise<BulkUserLookupArray> {
+export async function getBulkUserLookup(
+  client: Client,
+  parameters: GetBulkUserLookup,
+  options?: RequestOptions,
+): Promise<BulkUserLookupArray> {
   const config: SendRequestOptions<BulkUserLookupArray> = {
     url: '/wiki/rest/api/user/bulk',
     method: 'GET',
     searchParams: {
       accountId: parameters.accountId,
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: BulkUserLookupArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -133,6 +151,7 @@ export async function getBulkUserLookup(client: Client, parameters: GetBulkUserL
 export async function getPrivacyUnsafeUserEmail(
   client: Client,
   parameters: GetPrivacyUnsafeUserEmail,
+  options?: RequestOptions,
 ): Promise<AccountIdEmailRecord> {
   const config: SendRequestOptions<AccountIdEmailRecord> = {
     url: '/wiki/rest/api/user/email',
@@ -141,6 +160,7 @@ export async function getPrivacyUnsafeUserEmail(
       accountId: parameters.accountId,
     },
     schema: AccountIdEmailRecordSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -160,14 +180,16 @@ export async function getPrivacyUnsafeUserEmail(
 export async function getPrivacyUnsafeUserEmailBulk(
   client: Client,
   parameters: GetPrivacyUnsafeUserEmailBulk,
+  options?: RequestOptions,
 ): Promise<AccountIdEmailRecordArray> {
   const config: SendRequestOptions<AccountIdEmailRecordArray> = {
     url: '/wiki/rest/api/user/email/bulk',
     method: 'GET',
     searchParams: {
-      accountId: parameters.accountId,
+      accountId: Array.isArray(parameters.accountId) ? parameters.accountId.join(',') : parameters.accountId,
     },
     schema: AccountIdEmailRecordArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

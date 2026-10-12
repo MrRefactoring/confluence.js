@@ -6,7 +6,7 @@ import { GenericAccountIdSchema } from './genericAccountId';
 import { IconSchema } from './icon';
 import { OperationCheckResultSchema } from './operationCheckResult';
 import { UserDetailsSchema } from './userDetails';
-import { SpaceSchema } from './space';
+import { SpaceSchema, type Space, type SpaceInput } from './space';
 import { GenericLinksSchema } from './genericLinks';
 
 export const BulkUserLookupSchema = apiObject({
@@ -31,7 +31,7 @@ export const BulkUserLookupSchema = apiObject({
   isGuest: z.boolean().optional(),
   operations: z.array(OperationCheckResultSchema).optional(),
   details: UserDetailsSchema.optional(),
-  personalSpace: SpaceSchema.optional(),
+  personalSpace: (SpaceSchema as z.ZodType<Space, SpaceInput>).optional(),
   _expandable: apiObject({
     operations: z.string().optional(),
     details: z.string().optional(),

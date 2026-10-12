@@ -86,13 +86,16 @@ describe('Confluence Cloud v1 — content.archivePages (live, async task)', () =
     await waitFor(
       () => client.longRunningTask.getTask({ id: started.id! }),
       value => value.finished === true || value.percentageComplete === 100,
-      { maxAttempts: 8, initialDelayMs: 1000 },
+      { maxAttempts: 13, initialDelayMs: 1000, factor: 1.4 },
     );
 
-    const archived = await v2.page.getPageById({ id: Number(page.id) });
+    const archived = await waitFor(
+      () => v2.page.getPageById({ id: Number(page.id) }),
+      value => value.status === 'archived',
+    );
 
     expect(archived.status).toBe('archived');
-  }, 120_000);
+  }, 180_000);
 
   // An id that resolves to nothing is a 500, not a 400 or a 404: the endpoint
   // queues work first and only then discovers there is no such page. Pinned as the

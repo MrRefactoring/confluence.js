@@ -8,7 +8,7 @@ import type { ListSpacePermissionCombinations } from '../parameters/listSpacePer
 import type { BulkAssignSpacePermissionRoles } from '../parameters/bulkAssignSpacePermissionRoles';
 import type { BulkRemoveSpacePermissionAccess } from '../parameters/bulkRemoveSpacePermissionAccess';
 import type { GetSpacePermissionTransitionTaskStatus } from '../parameters/getSpacePermissionTransitionTaskStatus';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Lists the unique unassigned space permission combinations currently present on the tenant. Combinations that already
@@ -26,6 +26,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function listSpacePermissionCombinations(
   client: Client,
   parameters?: ListSpacePermissionCombinations,
+  options?: RequestOptions,
 ): Promise<ListSpacePermissionCombinationsResponse> {
   const config: SendRequestOptions<ListSpacePermissionCombinationsResponse> = {
     url: '/wiki/api/v2/space-permissions/transition/combinations',
@@ -35,6 +36,7 @@ export async function listSpacePermissionCombinations(
       limit: parameters?.limit,
     },
     schema: ListSpacePermissionCombinationsResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -47,11 +49,15 @@ export async function listSpacePermissionCombinations(
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: User must be a Confluence administrator.
  */
-export async function generateSpacePermissionCombinations(client: Client): Promise<BulkTransitionTask> {
+export async function generateSpacePermissionCombinations(
+  client: Client,
+  options?: RequestOptions,
+): Promise<BulkTransitionTask> {
   const config: SendRequestOptions<BulkTransitionTask> = {
     url: '/wiki/api/v2/space-permissions/transition/combinations',
     method: 'POST',
     schema: BulkTransitionTaskSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -66,6 +72,7 @@ export async function generateSpacePermissionCombinations(client: Client): Promi
 export async function bulkAssignSpacePermissionRoles(
   client: Client,
   parameters: BulkAssignSpacePermissionRoles,
+  options?: RequestOptions,
 ): Promise<BulkTransitionTask> {
   const config: SendRequestOptions<BulkTransitionTask> = {
     url: '/wiki/api/v2/space-permissions/transition/role-assignments',
@@ -75,6 +82,7 @@ export async function bulkAssignSpacePermissionRoles(
       spaceSelection: parameters.spaceSelection,
     },
     schema: BulkTransitionTaskSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -89,6 +97,7 @@ export async function bulkAssignSpacePermissionRoles(
 export async function bulkRemoveSpacePermissionAccess(
   client: Client,
   parameters: BulkRemoveSpacePermissionAccess,
+  options?: RequestOptions,
 ): Promise<BulkTransitionTask> {
   const config: SendRequestOptions<BulkTransitionTask> = {
     url: '/wiki/api/v2/space-permissions/transition/access-removals',
@@ -98,6 +107,7 @@ export async function bulkRemoveSpacePermissionAccess(
       spaceSelection: parameters.spaceSelection,
     },
     schema: BulkTransitionTaskSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -112,11 +122,13 @@ export async function bulkRemoveSpacePermissionAccess(
 export async function getSpacePermissionTransitionTaskStatus(
   client: Client,
   parameters: GetSpacePermissionTransitionTaskStatus,
+  options?: RequestOptions,
 ): Promise<BulkTransitionTaskStatus> {
   const config: SendRequestOptions<BulkTransitionTaskStatus> = {
     url: `/wiki/api/v2/space-permissions/transition/tasks/${parameters.taskId}`,
     method: 'GET',
     schema: BulkTransitionTaskStatusSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

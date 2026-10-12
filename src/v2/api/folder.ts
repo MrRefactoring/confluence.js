@@ -2,7 +2,7 @@ import { FolderSchema, type Folder } from '../models/folder';
 import type { CreateFolder } from '../parameters/createFolder';
 import type { GetFolderById } from '../parameters/getFolderById';
 import type { DeleteFolder } from '../parameters/deleteFolder';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Creates a folder in the space.
@@ -10,12 +10,17 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the corresponding space.
  * Permission to create a folder in the space.
  */
-export async function createFolder(client: Client, parameters: CreateFolder): Promise<Folder> {
+export async function createFolder(
+  client: Client,
+  parameters: CreateFolder,
+  options?: RequestOptions,
+): Promise<Folder> {
   const config: SendRequestOptions<Folder> = {
     url: '/wiki/api/v2/folders',
     method: 'POST',
     body: parameters.body,
     schema: FolderSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -27,7 +32,11 @@ export async function createFolder(client: Client, parameters: CreateFolder): Pr
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the folder and its
  * corresponding space.
  */
-export async function getFolderById(client: Client, parameters: GetFolderById): Promise<Folder> {
+export async function getFolderById(
+  client: Client,
+  parameters: GetFolderById,
+  options?: RequestOptions,
+): Promise<Folder> {
   const config: SendRequestOptions<Folder> = {
     url: `/wiki/api/v2/folders/${parameters.id}`,
     method: 'GET',
@@ -38,6 +47,7 @@ export async function getFolderById(client: Client, parameters: GetFolderById): 
       'include-properties': parameters.includeProperties,
     },
     schema: FolderSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -51,10 +61,11 @@ export async function getFolderById(client: Client, parameters: GetFolderById): 
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the folder and its
  * corresponding space. Permission to delete folders in the space.
  */
-export async function deleteFolder(client: Client, parameters: DeleteFolder): Promise<void> {
+export async function deleteFolder(client: Client, parameters: DeleteFolder, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/folders/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

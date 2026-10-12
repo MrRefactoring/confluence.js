@@ -2,13 +2,13 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ClassificationLevelStatusSchema } from './classificationLevelStatus';
 import { ClassificationLevelColorSchema } from './classificationLevelColor';
+
 /**
  * A unit of [data
  * classification](https://support.atlassian.com/security-and-access-policies/docs/what-is-data-classification/) defined
- * by an organiation. * A classification level may be associated with specific storage and handling requirements or
+ * by an organiation. A classification level may be associated with specific storage and handling requirements or
  * expectations.
  */
-
 export const ClassificationLevelSchema = apiObject({
   /** The ID of the classification level. */
   id: z.string().optional(),

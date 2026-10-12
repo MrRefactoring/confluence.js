@@ -1,6 +1,6 @@
 import { PermissionCheckResponseSchema, type PermissionCheckResponse } from '../models/permissionCheckResponse';
 import type { CheckContentPermission } from '../parameters/checkContentPermission';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Check if a user or a group can perform an operation to the specified content. The `operation` to check must be
@@ -19,6 +19,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function checkContentPermission(
   client: Client,
   parameters: CheckContentPermission,
+  options?: RequestOptions,
 ): Promise<PermissionCheckResponse> {
   const config: SendRequestOptions<PermissionCheckResponse> = {
     url: `/wiki/rest/api/content/${parameters.id}/permission/check`,
@@ -31,6 +32,7 @@ export async function checkContentPermission(
       operation: parameters.operation,
     },
     schema: PermissionCheckResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

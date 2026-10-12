@@ -2,7 +2,7 @@ import { WhiteboardSchema, type Whiteboard } from '../models/whiteboard';
 import type { CreateWhiteboard } from '../parameters/createWhiteboard';
 import type { GetWhiteboardById } from '../parameters/getWhiteboardById';
 import type { DeleteWhiteboard } from '../parameters/deleteWhiteboard';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Creates a whiteboard in the space.
@@ -10,7 +10,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the corresponding space.
  * Permission to create a whiteboard in the space.
  */
-export async function createWhiteboard(client: Client, parameters: CreateWhiteboard): Promise<Whiteboard> {
+export async function createWhiteboard(
+  client: Client,
+  parameters: CreateWhiteboard,
+  options?: RequestOptions,
+): Promise<Whiteboard> {
   const config: SendRequestOptions<Whiteboard> = {
     url: '/wiki/api/v2/whiteboards',
     method: 'POST',
@@ -19,6 +23,7 @@ export async function createWhiteboard(client: Client, parameters: CreateWhitebo
     },
     body: parameters.body,
     schema: WhiteboardSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -30,7 +35,11 @@ export async function createWhiteboard(client: Client, parameters: CreateWhitebo
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the whiteboard and its
  * corresponding space.
  */
-export async function getWhiteboardById(client: Client, parameters: GetWhiteboardById): Promise<Whiteboard> {
+export async function getWhiteboardById(
+  client: Client,
+  parameters: GetWhiteboardById,
+  options?: RequestOptions,
+): Promise<Whiteboard> {
   const config: SendRequestOptions<Whiteboard> = {
     url: `/wiki/api/v2/whiteboards/${parameters.id}`,
     method: 'GET',
@@ -41,6 +50,7 @@ export async function getWhiteboardById(client: Client, parameters: GetWhiteboar
       'include-properties': parameters.includeProperties,
     },
     schema: WhiteboardSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -54,10 +64,15 @@ export async function getWhiteboardById(client: Client, parameters: GetWhiteboar
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the whiteboard and its
  * corresponding space. Permission to delete whiteboards in the space.
  */
-export async function deleteWhiteboard(client: Client, parameters: DeleteWhiteboard): Promise<void> {
+export async function deleteWhiteboard(
+  client: Client,
+  parameters: DeleteWhiteboard,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/whiteboards/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

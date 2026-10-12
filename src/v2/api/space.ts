@@ -4,7 +4,7 @@ import { SpaceSchema, type Space } from '../models/space';
 import type { GetSpaces } from '../parameters/getSpaces';
 import type { CreateSpace } from '../parameters/createSpace';
 import type { GetSpaceById } from '../parameters/getSpaceById';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all spaces. The results will be sorted by id ascending. The number of results is limited by the `limit`
@@ -14,7 +14,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission). Only spaces that the user has permission to view will be returned.
  */
-export async function getSpaces(client: Client, parameters?: GetSpaces): Promise<Spaces> {
+export async function getSpaces(client: Client, parameters?: GetSpaces, options?: RequestOptions): Promise<Spaces> {
   const config: SendRequestOptions<Spaces> = {
     url: '/wiki/api/v2/spaces',
     method: 'GET',
@@ -33,6 +33,7 @@ export async function getSpaces(client: Client, parameters?: GetSpaces): Promise
       limit: parameters?.limit,
     },
     schema: SpacesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -46,12 +47,17 @@ export async function getSpaces(client: Client, parameters?: GetSpaces): Promise
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to create spaces.
  */
-export async function createSpace(client: Client, parameters: CreateSpace): Promise<SpaceSummary> {
+export async function createSpace(
+  client: Client,
+  parameters: CreateSpace,
+  options?: RequestOptions,
+): Promise<SpaceSummary> {
   const config: SendRequestOptions<SpaceSummary> = {
     url: '/wiki/api/v2/spaces',
     method: 'POST',
     body: parameters.body,
     schema: SpaceSummarySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -62,7 +68,7 @@ export async function createSpace(client: Client, parameters: CreateSpace): Prom
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the space.
  */
-export async function getSpaceById(client: Client, parameters: GetSpaceById): Promise<Space> {
+export async function getSpaceById(client: Client, parameters: GetSpaceById, options?: RequestOptions): Promise<Space> {
   const config: SendRequestOptions<Space> = {
     url: `/wiki/api/v2/spaces/${parameters.id}`,
     method: 'GET',
@@ -76,6 +82,7 @@ export async function getSpaceById(client: Client, parameters: GetSpaceById): Pr
       'include-labels': parameters.includeLabels,
     },
     schema: SpaceSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

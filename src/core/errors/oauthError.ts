@@ -35,10 +35,10 @@ function readErrorFields(body: unknown): { error?: string; errorDescription?: st
 /**
  * An OAuth 2.0 failure: the token endpoint rejected the request, or the client cannot proceed with what it was given.
  *
- * Deliberately not an `ApiError`: it does not come from the Confluence API, and a caller retrying Confluence calls
- * should not treat "your refresh token is dead" as the same class of problem as "that page is missing".
+ * Deliberately not an `ApiError`: it does not come from the product API, and a caller retrying product calls should not
+ * treat "your refresh token is dead" as the same class of problem as "that page is missing".
  *
- * @stable
+ * @public
  */
 export class OAuthError extends Error {
   readonly [ERROR_KINDS]: readonly ErrorKind[] = ['oauth'];
@@ -66,10 +66,6 @@ export class OAuthError extends Error {
     this.body = options?.body;
     this.error = options?.error ?? fromBody.error;
     this.errorDescription = options?.errorDescription ?? fromBody.errorDescription;
-    // `invalid_grant` is what Atlassian documents for a rotated-out or expired
-    // token; `unauthorized_client` is what it actually sends when the refresh
-    // token is unknown. Both mean the stored grant is dead. `access_denied` is
-    // deliberately absent — from the token endpoint it means a bad client secret.
     this.reauthorizationRequired =
       options?.reauthorizationRequired ?? (this.error === 'invalid_grant' || this.error === 'unauthorized_client');
     Object.setPrototypeOf(this, new.target.prototype);
@@ -86,7 +82,7 @@ export class OAuthError extends Error {
  * Thrown at construction time where possible, so a mistake surfaces before the first request rather than as a puzzling
  * 401.
  *
- * @stable
+ * @public
  */
 export class ConfigError extends Error {
   readonly [ERROR_KINDS]: readonly ErrorKind[] = ['config'];

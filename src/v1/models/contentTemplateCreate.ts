@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ContentTemplateBodyCreateSchema } from './contentTemplateBodyCreate';
 import { LabelSchema } from './label';
-/** This object is used to create content templates. */
 
+/** This object is used to create content templates. */
 export const ContentTemplateCreateSchema = apiObject({
   /** The name of the new template. */
   name: z.string(),

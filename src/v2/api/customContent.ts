@@ -17,7 +17,7 @@ import type { UpdateCustomContent } from '../parameters/updateCustomContent';
 import type { DeleteCustomContent } from '../parameters/deleteCustomContent';
 import type { GetCustomContentByTypeInPage } from '../parameters/getCustomContentByTypeInPage';
 import type { GetCustomContentByTypeInSpace } from '../parameters/getCustomContentByTypeInSpace';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all custom content for a given type within a given blogpost. The number of results is limited by the `limit`
@@ -30,6 +30,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getCustomContentByTypeInBlogPost(
   client: Client,
   parameters: GetCustomContentByTypeInBlogPost,
+  options?: RequestOptions,
 ): Promise<CustomContentByTypeInBlogPost> {
   const config: SendRequestOptions<CustomContentByTypeInBlogPost> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}/custom-content`,
@@ -42,6 +43,7 @@ export async function getCustomContentByTypeInBlogPost(
       'body-format': parameters.bodyFormat,
     },
     schema: CustomContentByTypeInBlogPostSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -57,6 +59,7 @@ export async function getCustomContentByTypeInBlogPost(
 export async function getCustomContentByType(
   client: Client,
   parameters: GetCustomContentByType,
+  options?: RequestOptions,
 ): Promise<CustomContentByType> {
   const config: SendRequestOptions<CustomContentByType> = {
     url: '/wiki/api/v2/custom-content',
@@ -71,6 +74,7 @@ export async function getCustomContentByType(
       'body-format': parameters.bodyFormat,
     },
     schema: CustomContentByTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -83,12 +87,17 @@ export async function getCustomContentByType(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page or
  * blogpost and its corresponding space. Permission to create custom content in the space.
  */
-export async function createCustomContent(client: Client, parameters: CreateCustomContent): Promise<CustomContent> {
+export async function createCustomContent(
+  client: Client,
+  parameters: CreateCustomContent,
+  options?: RequestOptions,
+): Promise<CustomContent> {
   const config: SendRequestOptions<CustomContent> = {
     url: '/wiki/api/v2/custom-content',
     method: 'POST',
     body: parameters.body,
     schema: CustomContentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -100,7 +109,11 @@ export async function createCustomContent(client: Client, parameters: CreateCust
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the custom content, the
  * container of the custom content, and the corresponding space (if different from the container).
  */
-export async function getCustomContentById(client: Client, parameters: GetCustomContentById): Promise<CustomContent> {
+export async function getCustomContentById(
+  client: Client,
+  parameters: GetCustomContentById,
+  options?: RequestOptions,
+): Promise<CustomContent> {
   const config: SendRequestOptions<CustomContent> = {
     url: `/wiki/api/v2/custom-content/${parameters.id}`,
     method: 'GET',
@@ -115,6 +128,7 @@ export async function getCustomContentById(client: Client, parameters: GetCustom
       'include-collaborators': parameters.includeCollaborators,
     },
     schema: CustomContentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -128,12 +142,17 @@ export async function getCustomContentById(client: Client, parameters: GetCustom
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page or
  * blogpost and its corresponding space. Permission to update custom content in the space.
  */
-export async function updateCustomContent(client: Client, parameters: UpdateCustomContent): Promise<CustomContent> {
+export async function updateCustomContent(
+  client: Client,
+  parameters: UpdateCustomContent,
+  options?: RequestOptions,
+): Promise<CustomContent> {
   const config: SendRequestOptions<CustomContent> = {
     url: `/wiki/api/v2/custom-content/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
     schema: CustomContentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -146,17 +165,28 @@ export async function updateCustomContent(client: Client, parameters: UpdateCust
  * apiSupport. To permanently delete a **trashed** custom content, the endpoint must be called with the following param
  * `purge=true`.
  *
- * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page or
- * blogpost and its corresponding space. Permission to delete custom content in the space. Permission to administer the
- * space (if attempting to purge).
+ * **[Permissions](https://support.atlassian.com/confluence-cloud/docs/what-are-confluences-roles/) required**:
+ * Permission to view the content of the page or blogpost and its corresponding space. Permission to delete custom
+ * content in the space.
+ * [`manage/content`](https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-space-permissions/#api-space-permissions-get)
+ * permission for the space (if attempting to purge).
+ *
+ * **Note:** To find the display name for each permission ID, call the [Get available space
+ * permissions](https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-space-permissions/#api-space-permissions-get)
+ * API.
  */
-export async function deleteCustomContent(client: Client, parameters: DeleteCustomContent): Promise<void> {
+export async function deleteCustomContent(
+  client: Client,
+  parameters: DeleteCustomContent,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/custom-content/${parameters.id}`,
     method: 'DELETE',
     searchParams: {
       purge: parameters.purge,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -173,6 +203,7 @@ export async function deleteCustomContent(client: Client, parameters: DeleteCust
 export async function getCustomContentByTypeInPage(
   client: Client,
   parameters: GetCustomContentByTypeInPage,
+  options?: RequestOptions,
 ): Promise<CustomContentByTypeInPage> {
   const config: SendRequestOptions<CustomContentByTypeInPage> = {
     url: `/wiki/api/v2/pages/${parameters.id}/custom-content`,
@@ -185,6 +216,7 @@ export async function getCustomContentByTypeInPage(
       'body-format': parameters.bodyFormat,
     },
     schema: CustomContentByTypeInPageSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -201,6 +233,7 @@ export async function getCustomContentByTypeInPage(
 export async function getCustomContentByTypeInSpace(
   client: Client,
   parameters: GetCustomContentByTypeInSpace,
+  options?: RequestOptions,
 ): Promise<CustomContentByTypeInSpace> {
   const config: SendRequestOptions<CustomContentByTypeInSpace> = {
     url: `/wiki/api/v2/spaces/${parameters.id}/custom-content`,
@@ -212,6 +245,7 @@ export async function getCustomContentByTypeInSpace(
       'body-format': parameters.bodyFormat,
     },
     schema: CustomContentByTypeInSpaceSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

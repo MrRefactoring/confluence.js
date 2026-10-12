@@ -1,16 +1,17 @@
 import type { RegisterModules } from '../parameters/registerModules';
 import type { RemoveModules } from '../parameters/removeModules';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all modules registered dynamically by the calling app.
  *
  * **[Permissions](#permissions) required:** Only Connect apps can make this request.
  */
-export async function getModules(client: Client): Promise<unknown> {
+export async function getModules(client: Client, options?: RequestOptions): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
     url: '/wiki/rest/atlassian-connect/1/app/module/dynamic',
     method: 'GET',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -22,7 +23,11 @@ export async function getModules(client: Client): Promise<unknown> {
  *
  * **[Permissions](#permissions) required:** Only Connect apps can make this request.
  */
-export async function registerModules(client: Client, parameters: RegisterModules): Promise<void> {
+export async function registerModules(
+  client: Client,
+  parameters: RegisterModules,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/wiki/rest/atlassian-connect/1/app/module/dynamic',
     method: 'POST',
@@ -30,6 +35,7 @@ export async function registerModules(client: Client, parameters: RegisterModule
       'X-Atlassian-Token': 'no-check',
     },
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -40,7 +46,11 @@ export async function registerModules(client: Client, parameters: RegisterModule
  *
  * **[Permissions](#permissions) required:** Only Connect apps can make this request.
  */
-export async function removeModules(client: Client, parameters: RemoveModules): Promise<void> {
+export async function removeModules(
+  client: Client,
+  parameters: RemoveModules,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/wiki/rest/atlassian-connect/1/app/module/dynamic',
     method: 'DELETE',
@@ -48,8 +58,9 @@ export async function removeModules(client: Client, parameters: RemoveModules): 
       'X-Atlassian-Token': 'no-check',
     },
     searchParams: {
-      moduleKey: parameters.moduleKey,
+      moduleKey: Array.isArray(parameters.moduleKey) ? parameters.moduleKey.join(',') : parameters.moduleKey,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

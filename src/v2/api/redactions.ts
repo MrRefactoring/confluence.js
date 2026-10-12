@@ -1,7 +1,7 @@
 import { RedactionResponseSchema, type RedactionResponse } from '../models/redactionResponse';
 import type { PostRedactPage } from '../parameters/postRedactPage';
 import type { PostRedactBlog } from '../parameters/postRedactBlog';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Redacts sensitive content in a Confluence page by replacing specified text ranges with redaction markers. Each
@@ -11,12 +11,17 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **Note**: This endpoint requires **Atlassian Guard Premium**.
  */
-export async function postRedactPage(client: Client, parameters: PostRedactPage): Promise<RedactionResponse> {
+export async function postRedactPage(
+  client: Client,
+  parameters: PostRedactPage,
+  options?: RequestOptions,
+): Promise<RedactionResponse> {
   const config: SendRequestOptions<RedactionResponse> = {
     url: `/wiki/api/v2/pages/${parameters.id}/redact`,
     method: 'POST',
     body: parameters.body,
     schema: RedactionResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -30,12 +35,17 @@ export async function postRedactPage(client: Client, parameters: PostRedactPage)
  *
  * **Note**: This endpoint requires **Atlassian Guard Premium**.
  */
-export async function postRedactBlog(client: Client, parameters: PostRedactBlog): Promise<RedactionResponse> {
+export async function postRedactBlog(
+  client: Client,
+  parameters: PostRedactBlog,
+  options?: RequestOptions,
+): Promise<RedactionResponse> {
   const config: SendRequestOptions<RedactionResponse> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}/redact`,
     method: 'POST',
     body: parameters.body,
     schema: RedactionResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

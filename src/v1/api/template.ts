@@ -7,7 +7,7 @@ import type { GetBlueprintTemplates } from '../parameters/getBlueprintTemplates'
 import type { GetContentTemplates } from '../parameters/getContentTemplates';
 import type { GetContentTemplate } from '../parameters/getContentTemplate';
 import type { RemoveTemplate } from '../parameters/removeTemplate';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Creates a new content template. Note, blueprint templates cannot be created via the REST API.
@@ -18,6 +18,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function createContentTemplate(
   client: Client,
   parameters: CreateContentTemplate,
+  options?: RequestOptions,
 ): Promise<ContentTemplate> {
   const config: SendRequestOptions<ContentTemplate> = {
     url: '/wiki/rest/api/template',
@@ -34,6 +35,7 @@ export async function createContentTemplate(
       space: parameters.space,
     },
     schema: ContentTemplateSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -48,6 +50,7 @@ export async function createContentTemplate(
 export async function updateContentTemplate(
   client: Client,
   parameters: UpdateContentTemplate,
+  options?: RequestOptions,
 ): Promise<ContentTemplate> {
   const config: SendRequestOptions<ContentTemplate> = {
     url: '/wiki/rest/api/template',
@@ -65,6 +68,7 @@ export async function updateContentTemplate(
       space: parameters.space,
     },
     schema: ContentTemplateSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -84,6 +88,7 @@ export async function updateContentTemplate(
 export async function getBlueprintTemplates(
   client: Client,
   parameters?: GetBlueprintTemplates,
+  options?: RequestOptions,
 ): Promise<BlueprintTemplateArray> {
   const config: SendRequestOptions<BlueprintTemplateArray> = {
     url: '/wiki/rest/api/template/blueprint',
@@ -92,9 +97,10 @@ export async function getBlueprintTemplates(
       spaceKey: parameters?.spaceKey,
       start: parameters?.start,
       limit: parameters?.limit,
-      expand: parameters?.expand,
+      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
     },
     schema: BlueprintTemplateArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -110,6 +116,7 @@ export async function getBlueprintTemplates(
 export async function getContentTemplates(
   client: Client,
   parameters?: GetContentTemplates,
+  options?: RequestOptions,
 ): Promise<ContentTemplateArray> {
   const config: SendRequestOptions<ContentTemplateArray> = {
     url: '/wiki/rest/api/template/page',
@@ -118,9 +125,10 @@ export async function getContentTemplates(
       spaceKey: parameters?.spaceKey,
       start: parameters?.start,
       limit: parameters?.limit,
-      expand: parameters?.expand,
+      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
     },
     schema: ContentTemplateArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -133,14 +141,19 @@ export async function getContentTemplates(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space to view space
  * templates and permission to access the Confluence site ('Can use' global permission) to view global templates.
  */
-export async function getContentTemplate(client: Client, parameters: GetContentTemplate): Promise<ContentTemplate> {
+export async function getContentTemplate(
+  client: Client,
+  parameters: GetContentTemplate,
+  options?: RequestOptions,
+): Promise<ContentTemplate> {
   const config: SendRequestOptions<ContentTemplate> = {
     url: `/wiki/rest/api/template/${parameters.contentTemplateId}`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: ContentTemplateSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -160,13 +173,18 @@ export async function getContentTemplate(client: Client, parameters: GetContentT
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space to delete a
  * space template or 'Confluence Administrator' global permission to delete a global template.
  */
-export async function removeTemplate(client: Client, parameters: RemoveTemplate): Promise<void> {
+export async function removeTemplate(
+  client: Client,
+  parameters: RemoveTemplate,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/template/${parameters.contentTemplateId}`,
     method: 'DELETE',
     headers: {
       'X-Atlassian-Token': 'no-check',
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

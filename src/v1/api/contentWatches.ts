@@ -13,7 +13,7 @@ import type { RemoveLabelWatcher } from '../parameters/removeLabelWatcher';
 import type { IsWatchingSpace } from '../parameters/isWatchingSpace';
 import type { AddSpaceWatcher } from '../parameters/addSpaceWatcher';
 import type { RemoveSpaceWatch } from '../parameters/removeSpaceWatch';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the watches for a page. A user that watches a page will receive receive notifications when the page is
@@ -28,7 +28,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getWatchesForPage(client: Client, parameters: GetWatchesForPage): Promise<WatchArray> {
+export async function getWatchesForPage(
+  client: Client,
+  parameters: GetWatchesForPage,
+  options?: RequestOptions,
+): Promise<WatchArray> {
   const config: SendRequestOptions<WatchArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/notification/child-created`,
     method: 'GET',
@@ -37,6 +41,7 @@ export async function getWatchesForPage(client: Client, parameters: GetWatchesFo
       limit: parameters.limit,
     },
     schema: WatchArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -55,7 +60,11 @@ export async function getWatchesForPage(client: Client, parameters: GetWatchesFo
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getWatchesForSpace(client: Client, parameters: GetWatchesForSpace): Promise<SpaceWatchArray> {
+export async function getWatchesForSpace(
+  client: Client,
+  parameters: GetWatchesForSpace,
+  options?: RequestOptions,
+): Promise<SpaceWatchArray> {
   const config: SendRequestOptions<SpaceWatchArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/notification/created`,
     method: 'GET',
@@ -64,13 +73,18 @@ export async function getWatchesForSpace(client: Client, parameters: GetWatchesF
       limit: parameters.limit,
     },
     schema: SpaceWatchArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a list of watchers of a space */
-export async function getWatchersForSpace(client: Client, parameters: GetWatchersForSpace): Promise<SpaceWatchArray> {
+export async function getWatchersForSpace(
+  client: Client,
+  parameters: GetWatchersForSpace,
+  options?: RequestOptions,
+): Promise<SpaceWatchArray> {
   const config: SendRequestOptions<SpaceWatchArray> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/watch`,
     method: 'GET',
@@ -79,6 +93,7 @@ export async function getWatchersForSpace(client: Client, parameters: GetWatcher
       limit: parameters.limit,
     },
     schema: SpaceWatchArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -94,7 +109,11 @@ export async function getWatchersForSpace(client: Client, parameters: GetWatcher
  * or 'Space Administrator' permission for the relevant space if specifying a user, otherwise permission to access the
  * Confluence site ('Can use' global permission).
  */
-export async function getContentWatchStatus(client: Client, parameters: GetContentWatchStatus): Promise<UserWatch> {
+export async function getContentWatchStatus(
+  client: Client,
+  parameters: GetContentWatchStatus,
+  options?: RequestOptions,
+): Promise<UserWatch> {
   const config: SendRequestOptions<UserWatch> = {
     url: `/wiki/rest/api/user/watch/content/${parameters.contentId}`,
     method: 'GET',
@@ -104,6 +123,7 @@ export async function getContentWatchStatus(client: Client, parameters: GetConte
       accountId: parameters.accountId,
     },
     schema: UserWatchSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -119,7 +139,11 @@ export async function getContentWatchStatus(client: Client, parameters: GetConte
  * or 'Space Administrator' permission for the relevant space if specifying a user, otherwise permission to access the
  * Confluence site ('Can use' global permission).
  */
-export async function addContentWatcher(client: Client, parameters: AddContentWatcher): Promise<void> {
+export async function addContentWatcher(
+  client: Client,
+  parameters: AddContentWatcher,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/watch/content/${parameters.contentId}`,
     method: 'POST',
@@ -131,6 +155,7 @@ export async function addContentWatcher(client: Client, parameters: AddContentWa
       username: parameters.username,
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -146,7 +171,11 @@ export async function addContentWatcher(client: Client, parameters: AddContentWa
  * or 'Space Administrator' permission for the relevant space if specifying a user, otherwise permission to access the
  * Confluence site ('Can use' global permission).
  */
-export async function removeContentWatcher(client: Client, parameters: RemoveContentWatcher): Promise<void> {
+export async function removeContentWatcher(
+  client: Client,
+  parameters: RemoveContentWatcher,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/watch/content/${parameters.contentId}`,
     method: 'DELETE',
@@ -158,6 +187,7 @@ export async function removeContentWatcher(client: Client, parameters: RemoveCon
       username: parameters.username,
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -172,7 +202,11 @@ export async function removeContentWatcher(client: Client, parameters: RemoveCon
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
  * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).
  */
-export async function isWatchingLabel(client: Client, parameters: IsWatchingLabel): Promise<UserWatch> {
+export async function isWatchingLabel(
+  client: Client,
+  parameters: IsWatchingLabel,
+  options?: RequestOptions,
+): Promise<UserWatch> {
   const config: SendRequestOptions<UserWatch> = {
     url: `/wiki/rest/api/user/watch/label/${parameters.labelName}`,
     method: 'GET',
@@ -182,6 +216,7 @@ export async function isWatchingLabel(client: Client, parameters: IsWatchingLabe
       accountId: parameters.accountId,
     },
     schema: UserWatchSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -196,7 +231,11 @@ export async function isWatchingLabel(client: Client, parameters: IsWatchingLabe
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
  * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).
  */
-export async function addLabelWatcher(client: Client, parameters: AddLabelWatcher): Promise<void> {
+export async function addLabelWatcher(
+  client: Client,
+  parameters: AddLabelWatcher,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/watch/label/${parameters.labelName}`,
     method: 'POST',
@@ -208,6 +247,7 @@ export async function addLabelWatcher(client: Client, parameters: AddLabelWatche
       username: parameters.username,
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -222,7 +262,11 @@ export async function addLabelWatcher(client: Client, parameters: AddLabelWatche
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission
  * if specifying a user, otherwise permission to access the Confluence site ('Can use' global permission).
  */
-export async function removeLabelWatcher(client: Client, parameters: RemoveLabelWatcher): Promise<void> {
+export async function removeLabelWatcher(
+  client: Client,
+  parameters: RemoveLabelWatcher,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/watch/label/${parameters.labelName}`,
     method: 'DELETE',
@@ -234,6 +278,7 @@ export async function removeLabelWatcher(client: Client, parameters: RemoveLabel
       username: parameters.username,
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -249,7 +294,11 @@ export async function removeLabelWatcher(client: Client, parameters: RemoveLabel
  * or 'Space Administrator' permission for the relevant space if specifying a user, otherwise permission to access the
  * Confluence site ('Can use' global permission).
  */
-export async function isWatchingSpace(client: Client, parameters: IsWatchingSpace): Promise<UserWatch> {
+export async function isWatchingSpace(
+  client: Client,
+  parameters: IsWatchingSpace,
+  options?: RequestOptions,
+): Promise<UserWatch> {
   const config: SendRequestOptions<UserWatch> = {
     url: `/wiki/rest/api/user/watch/space/${parameters.spaceKey}`,
     method: 'GET',
@@ -259,6 +308,7 @@ export async function isWatchingSpace(client: Client, parameters: IsWatchingSpac
       accountId: parameters.accountId,
     },
     schema: UserWatchSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -274,7 +324,11 @@ export async function isWatchingSpace(client: Client, parameters: IsWatchingSpac
  * or 'Space Administrator' permission for the relevant space if specifying a user, otherwise permission to access the
  * Confluence site ('Can use' global permission).
  */
-export async function addSpaceWatcher(client: Client, parameters: AddSpaceWatcher): Promise<void> {
+export async function addSpaceWatcher(
+  client: Client,
+  parameters: AddSpaceWatcher,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/watch/space/${parameters.spaceKey}`,
     method: 'POST',
@@ -286,6 +340,7 @@ export async function addSpaceWatcher(client: Client, parameters: AddSpaceWatche
       username: parameters.username,
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -301,7 +356,11 @@ export async function addSpaceWatcher(client: Client, parameters: AddSpaceWatche
  * or 'Space Administrator' permission for the relevant space if specifying a user, otherwise permission to access the
  * Confluence site ('Can use' global permission).
  */
-export async function removeSpaceWatch(client: Client, parameters: RemoveSpaceWatch): Promise<void> {
+export async function removeSpaceWatch(
+  client: Client,
+  parameters: RemoveSpaceWatch,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/watch/space/${parameters.spaceKey}`,
     method: 'DELETE',
@@ -313,6 +372,7 @@ export async function removeSpaceWatch(client: Client, parameters: RemoveSpaceWa
       username: parameters.username,
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

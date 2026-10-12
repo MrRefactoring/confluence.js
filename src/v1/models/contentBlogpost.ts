@@ -1,33 +1,33 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { SpaceSchema } from './space';
-import { ContentHistorySchema } from './contentHistory';
-import { VersionSchema } from './version';
-import { ContentSchema } from './content';
+import { SpaceSchema, type Space, type SpaceInput } from './space';
+import { ContentHistorySchema, type ContentHistory, type ContentHistoryInput } from './contentHistory';
+import { VersionSchema, type Version, type VersionInput } from './version';
+import { ContentSchema, type Content, type ContentInput } from './content';
 import { OperationCheckResultSchema } from './operationCheckResult';
-import { ContentChildrenSchema } from './contentChildren';
+import { ContentChildrenSchema, type ContentChildren, type ContentChildrenInput } from './contentChildren';
 import { ContentChildTypeSchema } from './contentChildType';
 import { ContainerSchema } from './container';
 import { ContentBodySchema } from './contentBody';
-import { ContentRestrictionSchema } from './contentRestriction';
+import { ContentRestrictionSchema, type ContentRestriction, type ContentRestrictionInput } from './contentRestriction';
 import { GenericLinksSchema } from './genericLinks';
-import { ContentMetadataSchema } from './contentMetadata';
-/** Representation of a blogpost (content) */
+import { ContentMetadataSchema, type ContentMetadata, type ContentMetadataInput } from './contentMetadata';
 
+/** Representation of a blogpost (content) */
 export const ContentBlogpostSchema = apiObject({
   id: z.string().optional(),
   /** Can be "page", "blogpost", "attachment" or "content" */
   type: z.string(),
   status: z.string(),
   title: z.string().optional(),
-  space: SpaceSchema.optional(),
-  history: ContentHistorySchema.optional(),
-  version: VersionSchema.optional(),
-  ancestors: z.array(ContentSchema).nullish(),
+  space: (SpaceSchema as z.ZodType<Space, SpaceInput>).optional(),
+  history: (ContentHistorySchema as z.ZodType<ContentHistory, ContentHistoryInput>).optional(),
+  version: (VersionSchema as z.ZodType<Version, VersionInput>).optional(),
+  ancestors: z.array(ContentSchema as z.ZodType<Content, ContentInput>).nullish(),
   operations: z.array(OperationCheckResultSchema).optional(),
-  children: ContentChildrenSchema.optional(),
+  children: (ContentChildrenSchema as z.ZodType<ContentChildren, ContentChildrenInput>).optional(),
   childTypes: ContentChildTypeSchema.optional(),
-  descendants: ContentChildrenSchema.optional(),
+  descendants: (ContentChildrenSchema as z.ZodType<ContentChildren, ContentChildrenInput>).optional(),
   container: ContainerSchema.optional(),
   body: apiObject({
     view: ContentBodySchema.optional(),
@@ -56,8 +56,8 @@ export const ContentBlogpostSchema = apiObject({
     }).optional(),
   }).optional(),
   restrictions: apiObject({
-    read: ContentRestrictionSchema.optional(),
-    update: ContentRestrictionSchema.optional(),
+    read: (ContentRestrictionSchema as z.ZodType<ContentRestriction, ContentRestrictionInput>).optional(),
+    update: (ContentRestrictionSchema as z.ZodType<ContentRestriction, ContentRestrictionInput>).optional(),
     _expandable: apiObject({
       read: z.string().optional(),
       update: z.string().optional(),
@@ -87,7 +87,7 @@ export const ContentBlogpostSchema = apiObject({
   }).optional(),
   ari: z.string().optional(),
   base64EncodedAri: z.string().optional(),
-  metadata: ContentMetadataSchema,
+  metadata: ContentMetadataSchema as z.ZodType<ContentMetadata, ContentMetadataInput>,
   _links: GenericLinksSchema,
 });
 

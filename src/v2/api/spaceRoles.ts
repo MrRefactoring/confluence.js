@@ -12,7 +12,7 @@ import type { UpdateSpaceRole } from '../parameters/updateSpaceRole';
 import type { DeleteSpaceRole } from '../parameters/deleteSpaceRole';
 import type { GetSpaceRoleAssignments } from '../parameters/getSpaceRoleAssignments';
 import type { SetSpaceRoleAssignments } from '../parameters/setSpaceRoleAssignments';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Retrieves the available space roles.
@@ -26,6 +26,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getAvailableSpaceRoles(
   client: Client,
   parameters?: GetAvailableSpaceRoles,
+  options?: RequestOptions,
 ): Promise<AvailableSpaceRoles> {
   const config: SendRequestOptions<AvailableSpaceRoles> = {
     url: '/wiki/api/v2/space-roles',
@@ -39,6 +40,7 @@ export async function getAvailableSpaceRoles(
       limit: parameters?.limit,
     },
     schema: AvailableSpaceRolesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -53,7 +55,11 @@ export async function getAvailableSpaceRoles(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: User must be an organization or site admin.
  * Connect and Forge app users are not authorized to access this resource.
  */
-export async function createSpaceRole(client: Client, parameters: CreateSpaceRole): Promise<SpaceRole> {
+export async function createSpaceRole(
+  client: Client,
+  parameters: CreateSpaceRole,
+  options?: RequestOptions,
+): Promise<SpaceRole> {
   const config: SendRequestOptions<SpaceRole> = {
     url: '/wiki/api/v2/space-roles',
     method: 'POST',
@@ -63,6 +69,7 @@ export async function createSpaceRole(client: Client, parameters: CreateSpaceRol
       spacePermissions: parameters.spacePermissions,
     },
     schema: SpaceRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -76,11 +83,16 @@ export async function createSpaceRole(client: Client, parameters: CreateSpaceRol
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site.
  */
-export async function getSpaceRolesById(client: Client, parameters: GetSpaceRolesById): Promise<SpaceRole> {
+export async function getSpaceRolesById(
+  client: Client,
+  parameters: GetSpaceRolesById,
+  options?: RequestOptions,
+): Promise<SpaceRole> {
   const config: SendRequestOptions<SpaceRole> = {
     url: `/wiki/api/v2/space-roles/${parameters.id}`,
     method: 'GET',
     schema: SpaceRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -95,7 +107,11 @@ export async function getSpaceRolesById(client: Client, parameters: GetSpaceRole
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: User must be an organization or site admin.
  * Connect and Forge app users are not authorized to access this resource.
  */
-export async function updateSpaceRole(client: Client, parameters: UpdateSpaceRole): Promise<UpdateSpaceRoleResponse> {
+export async function updateSpaceRole(
+  client: Client,
+  parameters: UpdateSpaceRole,
+  options?: RequestOptions,
+): Promise<UpdateSpaceRoleResponse> {
   const config: SendRequestOptions<UpdateSpaceRoleResponse> = {
     url: `/wiki/api/v2/space-roles/${parameters.id}`,
     method: 'PUT',
@@ -107,6 +123,7 @@ export async function updateSpaceRole(client: Client, parameters: UpdateSpaceRol
       guestReassignmentRoleId: parameters.guestReassignmentRoleId,
     },
     schema: UpdateSpaceRoleResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -121,11 +138,16 @@ export async function updateSpaceRole(client: Client, parameters: UpdateSpaceRol
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: User must be an organization or site admin.
  * Connect and Forge app users are not authorized to access this resource.
  */
-export async function deleteSpaceRole(client: Client, parameters: DeleteSpaceRole): Promise<DeleteSpaceRoleResponse> {
+export async function deleteSpaceRole(
+  client: Client,
+  parameters: DeleteSpaceRole,
+  options?: RequestOptions,
+): Promise<DeleteSpaceRoleResponse> {
   const config: SendRequestOptions<DeleteSpaceRoleResponse> = {
     url: `/wiki/api/v2/space-roles/${parameters.id}`,
     method: 'DELETE',
     schema: DeleteSpaceRoleResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -140,11 +162,12 @@ export async function deleteSpaceRole(client: Client, parameters: DeleteSpaceRol
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getSpaceRoleMode(client: Client): Promise<SpaceRoleMode> {
+export async function getSpaceRoleMode(client: Client, options?: RequestOptions): Promise<SpaceRoleMode> {
   const config: SendRequestOptions<SpaceRoleMode> = {
     url: '/wiki/api/v2/space-role-mode',
     method: 'GET',
     schema: SpaceRoleModeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -161,6 +184,7 @@ export async function getSpaceRoleMode(client: Client): Promise<SpaceRoleMode> {
 export async function getSpaceRoleAssignments(
   client: Client,
   parameters: GetSpaceRoleAssignments,
+  options?: RequestOptions,
 ): Promise<SpaceRoleAssignmentsGet> {
   const config: SendRequestOptions<SpaceRoleAssignmentsGet> = {
     url: `/wiki/api/v2/spaces/${parameters.id}/role-assignments`,
@@ -174,6 +198,7 @@ export async function getSpaceRoleAssignments(
       limit: parameters.limit,
     },
     schema: SpaceRoleAssignmentsGetSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -191,12 +216,14 @@ export async function getSpaceRoleAssignments(
 export async function setSpaceRoleAssignments(
   client: Client,
   parameters: SetSpaceRoleAssignments,
+  options?: RequestOptions,
 ): Promise<SpaceRoleAssignmentsSet> {
   const config: SendRequestOptions<SpaceRoleAssignmentsSet> = {
     url: `/wiki/api/v2/spaces/${parameters.id}/role-assignments`,
     method: 'POST',
     body: parameters.body,
     schema: SpaceRoleAssignmentsSetSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

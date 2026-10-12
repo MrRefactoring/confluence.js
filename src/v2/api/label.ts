@@ -12,7 +12,7 @@ import type { GetLabels } from '../parameters/getLabels';
 import type { GetPageLabels } from '../parameters/getPageLabels';
 import type { GetSpaceLabels } from '../parameters/getSpaceLabels';
 import type { GetSpaceContentLabels } from '../parameters/getSpaceContentLabels';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the labels of specific attachment. The number of results is limited by the `limit` parameter and additional
@@ -21,7 +21,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the parent content of the
  * attachment and its corresponding space. Only labels that the user has permission to view will be returned.
  */
-export async function getAttachmentLabels(client: Client, parameters: GetAttachmentLabels): Promise<AttachmentLabels> {
+export async function getAttachmentLabels(
+  client: Client,
+  parameters: GetAttachmentLabels,
+  options?: RequestOptions,
+): Promise<AttachmentLabels> {
   const config: SendRequestOptions<AttachmentLabels> = {
     url: `/wiki/api/v2/attachments/${parameters.id}/labels`,
     method: 'GET',
@@ -32,6 +36,7 @@ export async function getAttachmentLabels(client: Client, parameters: GetAttachm
       limit: parameters.limit,
     },
     schema: AttachmentLabelsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -44,7 +49,11 @@ export async function getAttachmentLabels(client: Client, parameters: GetAttachm
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the blog
  * post and its corresponding space. Only labels that the user has permission to view will be returned.
  */
-export async function getBlogPostLabels(client: Client, parameters: GetBlogPostLabels): Promise<BlogPostLabels> {
+export async function getBlogPostLabels(
+  client: Client,
+  parameters: GetBlogPostLabels,
+  options?: RequestOptions,
+): Promise<BlogPostLabels> {
   const config: SendRequestOptions<BlogPostLabels> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}/labels`,
     method: 'GET',
@@ -55,6 +64,7 @@ export async function getBlogPostLabels(client: Client, parameters: GetBlogPostL
       limit: parameters.limit,
     },
     schema: BlogPostLabelsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -71,6 +81,7 @@ export async function getBlogPostLabels(client: Client, parameters: GetBlogPostL
 export async function getCustomContentLabels(
   client: Client,
   parameters: GetCustomContentLabels,
+  options?: RequestOptions,
 ): Promise<CustomContentLabels> {
   const config: SendRequestOptions<CustomContentLabels> = {
     url: `/wiki/api/v2/custom-content/${parameters.id}/labels`,
@@ -82,6 +93,7 @@ export async function getCustomContentLabels(
       limit: parameters.limit,
     },
     schema: CustomContentLabelsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -94,7 +106,7 @@ export async function getCustomContentLabels(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission). Only labels that the user has permission to view will be returned.
  */
-export async function getLabels(client: Client, parameters?: GetLabels): Promise<Labels> {
+export async function getLabels(client: Client, parameters?: GetLabels, options?: RequestOptions): Promise<Labels> {
   const config: SendRequestOptions<Labels> = {
     url: '/wiki/api/v2/labels',
     method: 'GET',
@@ -106,6 +118,7 @@ export async function getLabels(client: Client, parameters?: GetLabels): Promise
       limit: parameters?.limit,
     },
     schema: LabelsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -118,7 +131,11 @@ export async function getLabels(client: Client, parameters?: GetLabels): Promise
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page and
  * its corresponding space. Only labels that the user has permission to view will be returned.
  */
-export async function getPageLabels(client: Client, parameters: GetPageLabels): Promise<PageLabels> {
+export async function getPageLabels(
+  client: Client,
+  parameters: GetPageLabels,
+  options?: RequestOptions,
+): Promise<PageLabels> {
   const config: SendRequestOptions<PageLabels> = {
     url: `/wiki/api/v2/pages/${parameters.id}/labels`,
     method: 'GET',
@@ -129,6 +146,7 @@ export async function getPageLabels(client: Client, parameters: GetPageLabels): 
       limit: parameters.limit,
     },
     schema: PageLabelsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -141,7 +159,11 @@ export async function getPageLabels(client: Client, parameters: GetPageLabels): 
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the space. Only labels that
  * the user has permission to view will be returned.
  */
-export async function getSpaceLabels(client: Client, parameters: GetSpaceLabels): Promise<SpaceLabels> {
+export async function getSpaceLabels(
+  client: Client,
+  parameters: GetSpaceLabels,
+  options?: RequestOptions,
+): Promise<SpaceLabels> {
   const config: SendRequestOptions<SpaceLabels> = {
     url: `/wiki/api/v2/spaces/${parameters.id}/labels`,
     method: 'GET',
@@ -152,6 +174,7 @@ export async function getSpaceLabels(client: Client, parameters: GetSpaceLabels)
       limit: parameters.limit,
     },
     schema: SpaceLabelsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -168,6 +191,7 @@ export async function getSpaceLabels(client: Client, parameters: GetSpaceLabels)
 export async function getSpaceContentLabels(
   client: Client,
   parameters: GetSpaceContentLabels,
+  options?: RequestOptions,
 ): Promise<SpaceContentLabels> {
   const config: SendRequestOptions<SpaceContentLabels> = {
     url: `/wiki/api/v2/spaces/${parameters.id}/content/labels`,
@@ -179,6 +203,7 @@ export async function getSpaceContentLabels(
       limit: parameters.limit,
     },
     schema: SpaceContentLabelsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

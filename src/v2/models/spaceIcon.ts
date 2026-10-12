@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The icon of the space */
 
+/** The icon of the space */
 export const SpaceIconSchema = apiObject({
   /**
    * The path (relative to base URL) at which the space's icon can be retrieved. The format should be like

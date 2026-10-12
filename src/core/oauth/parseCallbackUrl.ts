@@ -18,7 +18,7 @@ export interface CallbackParams {
 }
 
 /** Constant-time string comparison, so a mismatch leaks nothing through timing. */
-function equals(a: string, b: string): boolean {
+function timingSafeEquals(a: string, b: string): boolean {
   if (a.length !== b.length) return false;
 
   let diff = 0;
@@ -49,11 +49,9 @@ function equals(a: string, b: string): boolean {
  *   const tokens = await exchangeAuthorizationCode({ clientId, clientSecret, code, redirectUri });
  *   ```;
  *
- * @stable
+ * @public
  */
 export function parseCallbackUrl(url: string | URL, options: ParseCallbackUrlOptions): CallbackParams {
-  // A relative URL is what a framework request object usually gives you; the base
-  // is irrelevant here, only the query matters.
   const parsed = typeof url === 'string' ? new URL(url, 'http://localhost') : url;
   const params = parsed.searchParams;
 
@@ -66,16 +64,13 @@ export function parseCallbackUrl(url: string | URL, options: ParseCallbackUrlOpt
       error === 'access_denied'
         ? `The user declined authorization${description ? `: ${description}` : '.'}`
         : `Authorization failed: ${error}${description ? ` — ${description}` : ''}`,
-      // A decline here really does need another trip through consent. Flagged
-      // explicitly because the same code from the token endpoint means a bad
-      // client secret, where re-authorizing would loop the user for nothing.
       { error, errorDescription: description, reauthorizationRequired: error === 'access_denied' },
     );
   }
 
   const state = params.get('state');
 
-  if (state === null || !equals(state, options.expectedState)) {
+  if (state === null || !timingSafeEquals(state, options.expectedState)) {
     throw new OAuthError(
       'The `state` in the callback does not match the one issued for this authorization request. The callback was ' +
         'not initiated by this session — discard it.',

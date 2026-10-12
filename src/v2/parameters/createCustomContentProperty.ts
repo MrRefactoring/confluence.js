@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { ContentPropertyCreateSchema } from '../models';
 
-export const CreateCustomContentPropertySchema = z.object({}).extend(ContentPropertyCreateSchema.shape).extend({
+export const CreateCustomContentPropertySchema = z.object(ContentPropertyCreateSchema.shape).extend({
   /** The ID of the custom content to create a property for. */
   customContentId: z.number(),
 });

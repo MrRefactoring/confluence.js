@@ -1,7 +1,7 @@
 import type { z } from 'zod';
 import { openEnum } from '#/core';
-/** The status of the content. */
 
+/** The status of the content. */
 export const ContentStatusSchema = openEnum([
   'current',
   'draft',

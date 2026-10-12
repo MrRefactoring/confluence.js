@@ -19,7 +19,7 @@ export const GetSpacesSchema = z.object({
     'xflow_sample_space',
   ]).optional(),
   /** Filter the results to spaces based on their status. */
-  status: openEnum(['current', 'archived']).optional(),
+  status: openEnum(['current', 'archived', 'trashed']).optional(),
   /** Filter the results to spaces based on their labels. Multiple labels can be specified as a comma-separated list. */
   labels: z.array(z.string()).optional(),
   /** Filter the results to spaces favorited by the user with the specified account ID. */

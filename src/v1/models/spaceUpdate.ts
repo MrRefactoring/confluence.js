@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SpaceDescriptionCreateSchema } from './spaceDescriptionCreate';
-/** The properties of a space that can be updated. */
 
+/** The properties of a space that can be updated. */
 export const SpaceUpdateSchema = apiObject({
   /** The updated name of the space. */
   name: z.string().max(200, 'name must be at most 200 characters').nullish(),

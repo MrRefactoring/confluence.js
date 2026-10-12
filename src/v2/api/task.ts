@@ -3,7 +3,7 @@ import { TaskSchema, type Task } from '../models/task';
 import type { GetTasks } from '../parameters/getTasks';
 import type { GetTaskById } from '../parameters/getTaskById';
 import type { UpdateTask } from '../parameters/updateTask';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all tasks. The number of results is limited by the `limit` parameter and additional results (if available)
@@ -12,7 +12,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission). Only tasks that the user has permission to view will be returned.
  */
-export async function getTasks(client: Client, parameters?: GetTasks): Promise<Tasks> {
+export async function getTasks(client: Client, parameters?: GetTasks, options?: RequestOptions): Promise<Tasks> {
   const config: SendRequestOptions<Tasks> = {
     url: '/wiki/api/v2/tasks',
     method: 'GET',
@@ -37,6 +37,7 @@ export async function getTasks(client: Client, parameters?: GetTasks): Promise<T
       limit: parameters?.limit,
     },
     schema: TasksSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -48,7 +49,7 @@ export async function getTasks(client: Client, parameters?: GetTasks): Promise<T
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the containing page or blog
  * post and its corresponding space.
  */
-export async function getTaskById(client: Client, parameters: GetTaskById): Promise<Task> {
+export async function getTaskById(client: Client, parameters: GetTaskById, options?: RequestOptions): Promise<Task> {
   const config: SendRequestOptions<Task> = {
     url: `/wiki/api/v2/tasks/${parameters.id}`,
     method: 'GET',
@@ -56,6 +57,7 @@ export async function getTaskById(client: Client, parameters: GetTaskById): Prom
       'body-format': parameters.bodyFormat,
     },
     schema: TaskSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -67,7 +69,7 @@ export async function getTaskById(client: Client, parameters: GetTaskById): Prom
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the containing page or blog
  * post and view its corresponding space.
  */
-export async function updateTask(client: Client, parameters: UpdateTask): Promise<Task> {
+export async function updateTask(client: Client, parameters: UpdateTask, options?: RequestOptions): Promise<Task> {
   const config: SendRequestOptions<Task> = {
     url: `/wiki/api/v2/tasks/${parameters.id}`,
     method: 'PUT',
@@ -76,6 +78,7 @@ export async function updateTask(client: Client, parameters: UpdateTask): Promis
     },
     body: parameters.body,
     schema: TaskSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

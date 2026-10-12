@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about data policies. */
 
+/** Details about data policies. */
 export const DataPolicyMetadataSchema = apiObject({
   /** Whether the workspace contains any content blocked for (inaccessible to) the requesting client application. */
   anyContentBlocked: z.boolean().optional(),

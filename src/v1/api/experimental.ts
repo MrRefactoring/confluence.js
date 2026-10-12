@@ -4,7 +4,7 @@ import type { DeletePageTree } from '../parameters/deletePageTree';
 import type { GetLabelsForSpace } from '../parameters/getLabelsForSpace';
 import type { AddLabelsToSpace } from '../parameters/addLabelsToSpace';
 import type { DeleteLabelFromSpace } from '../parameters/deleteLabelFromSpace';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Moves a pagetree rooted at a page to the space's trash:
@@ -22,7 +22,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Delete' permission for the space that the
  * content is in.
  */
-export async function deletePageTree(client: Client, parameters: DeletePageTree): Promise<LongTask> {
+export async function deletePageTree(
+  client: Client,
+  parameters: DeletePageTree,
+  options?: RequestOptions,
+): Promise<LongTask> {
   const config: SendRequestOptions<LongTask> = {
     url: `/wiki/rest/api/content/${parameters.id}/pageTree`,
     method: 'DELETE',
@@ -30,6 +34,7 @@ export async function deletePageTree(client: Client, parameters: DeletePageTree)
       'X-Atlassian-Token': 'no-check',
     },
     schema: LongTaskSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -39,7 +44,11 @@ export async function deletePageTree(client: Client, parameters: DeletePageTree)
  * Returns a list of labels associated with a space. Can provide a prefix as well as other filters to select different
  * types of labels.
  */
-export async function getLabelsForSpace(client: Client, parameters: GetLabelsForSpace): Promise<LabelArray> {
+export async function getLabelsForSpace(
+  client: Client,
+  parameters: GetLabelsForSpace,
+  options?: RequestOptions,
+): Promise<LabelArray> {
   const config: SendRequestOptions<LabelArray> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/label`,
     method: 'GET',
@@ -49,6 +58,7 @@ export async function getLabelsForSpace(client: Client, parameters: GetLabelsFor
       limit: parameters.limit,
     },
     schema: LabelArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -65,7 +75,11 @@ export async function getLabelsForSpace(client: Client, parameters: GetLabelsFor
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
  */
-export async function addLabelsToSpace(client: Client, parameters: AddLabelsToSpace): Promise<LabelArray> {
+export async function addLabelsToSpace(
+  client: Client,
+  parameters: AddLabelsToSpace,
+  options?: RequestOptions,
+): Promise<LabelArray> {
   const config: SendRequestOptions<LabelArray> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/label`,
     method: 'POST',
@@ -74,12 +88,17 @@ export async function addLabelsToSpace(client: Client, parameters: AddLabelsToSp
     },
     body: parameters.body,
     schema: LabelArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
-export async function deleteLabelFromSpace(client: Client, parameters: DeleteLabelFromSpace): Promise<void> {
+export async function deleteLabelFromSpace(
+  client: Client,
+  parameters: DeleteLabelFromSpace,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/label`,
     method: 'DELETE',
@@ -90,6 +109,7 @@ export async function deleteLabelFromSpace(client: Client, parameters: DeleteLab
       name: parameters.name,
       prefix: parameters.prefix,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
