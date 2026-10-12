@@ -65,23 +65,28 @@ describe('Confluence Cloud v1 — relation lifecycle (live, full round-trip)', (
     expect(relationship._links).toBeDefined();
   });
 
-  // `expand` is honored asymmetrically: asking for both, only `source` comes back
-  // expanded — `target` stays a link under `_expandable`. Pinned because the types
-  // present the two as equals and the API does not.
-  it('honors `expand` for source, but leaves target under `_expandable`', async () => {
+  // `expand` selects which entities to include: a source-only request leaves
+  // target under `_expandable`, while requesting both returns both entities.
+  // Keep the two cases separate so serialization cannot silently drop a value.
+  it('expands only the requested entities and returns both when requested', async () => {
     const plain = await client.relation.getRelationship(favourite());
 
     expect(plain.source).toBeUndefined();
     expect(plain._expandable?.source).toBeTruthy();
+
+    const sourceOnly = await client.relation.getRelationship({ ...favourite(), expand: ['source'] });
+
+    expect(sourceOnly.source).toBeDefined();
+    expect(sourceOnly.target).toBeUndefined();
+    expect(sourceOnly._expandable?.target).toBeTruthy();
 
     const expanded = await client.relation.getRelationship({
       ...favourite(),
       expand: ['source', 'target'],
     });
 
-    expect(expanded.source).toBeDefined();
-    expect(expanded.target).toBeUndefined();
-    expect(expanded._expandable?.target).toBeTruthy();
+    expect(expanded.source).toMatchObject({ accountId });
+    expect(expanded.target).toMatchObject({ id: pageId, type: 'page' });
   });
 
   it('deletes the relationship, and reading it back 404s', async () => {

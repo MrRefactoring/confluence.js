@@ -8,7 +8,7 @@ export const ContentIdToContentTypeSchema = apiObject({
    * types, the enumerations are as specified. Custom content ids will be mapped to their associated type.
    */
   results: z
-    .record(z.string(), openEnum(['page', 'blogpost', 'attachment', 'footer-comment', 'inline-comment']))
+    .record(z.string(), openEnum(['page', 'blogpost', 'attachment', 'footer-comment', 'inline-comment']).nullable())
     .nullish(),
 });
 
