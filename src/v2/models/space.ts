@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { nonNullOutput } from '#/core/compatibility';
 import { SpaceTypeSchema } from './spaceType';
 import { SpaceStatusSchema } from './spaceStatus';
 import { SpaceDescriptionSchema } from './spaceDescription';
@@ -28,7 +29,7 @@ export const SpaceSchema = apiObject({
   /** Date and time when the space was created. In format "YYYY-MM-DDTHH:mm:ss.sssZ". */
   createdAt: z.coerce.date().optional(),
   /** ID of the space's homepage. */
-  homepageId: z.string().optional(),
+  homepageId: nonNullOutput(z.string().nullish()).optional(),
   description: SpaceDescriptionSchema.nullish(),
   icon: SpaceIconSchema.nullish(),
   labels: apiObject({
