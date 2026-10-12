@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.3.0
+
+### Minor Changes
+
+- 343bf45: Regenerate the Confluence v1 and v2 clients and shared runtime from updated specifications and the generator. Add per-request cancellation, configurable schema mismatch handling, and Confluence Server/Data Center authentication helpers while preserving the 3.2 request shapes and strict response validation by default.
+
+  Correct comma-separated query serialization and accept documented `null` values for missing IDs in content type mapping responses.
+
+### Patch Changes
+
+- 451fa88: Allow optional `minorEdit` and UTF-8 `comment` values on each attachment in v1 uploads, upserts, and data updates. Preserve positional alignment in multi-file requests by filling missing comments with empty strings and missing minor-edit flags with `false` only when that field is supplied by another attachment.
+- 8ab9511: Accept space responses with an unavailable `homepageId` returned as `null`. Normalize it to `undefined` while preserving the existing optional string type and rejecting invalid homepage ID values.
+- ce53a0f: Update the Zod runtime dependency to version 4.6.5.
+
 ## 3.2.0
 
 ### Minor Changes
