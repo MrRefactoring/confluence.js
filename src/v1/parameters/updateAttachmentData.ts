@@ -6,7 +6,16 @@ export const UpdateAttachmentDataSchema = z.object({
   id: z.string(),
   /** The ID of the attachment to update. */
   attachmentId: z.string(),
-  attachment: z.custom<AttachmentInput | AttachmentInput[]>(),
+  attachment: z.custom<
+    | (AttachmentInput & {
+      minorEdit?: boolean;
+      comment?: string;
+    })
+    | (AttachmentInput & {
+      minorEdit?: boolean;
+      comment?: string;
+    })[]
+  >(),
 });
 
 export type UpdateAttachmentData = z.input<typeof UpdateAttachmentDataSchema>;

@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { ApiError } from '#/core';
 import type { V1Client } from '#/v1';
-import { getV1Client } from '../setup/client';
+import { getV1Client, getV2Client } from '../setup/client';
+import { waitFor } from '../helpers/poll';
 import { ResourceTracker } from '../setup/resources';
 import { createTestPage, createTestSpace } from '../setup/fixtures';
 import { runId } from '../helpers/naming';
@@ -23,6 +24,26 @@ let pageId: string;
 /** A small text attachment, named uniquely per run. */
 function textAttachment(label: string, body: string) {
   return { filename: `cfjs-${label}-${runId()}.txt`, content: body };
+}
+
+async function expectVersionMetadata(id: string, comment: string, minorEdit: boolean) {
+  const attachment = await waitFor(
+    async () => {
+      try {
+        return await getV2Client().attachment.getAttachmentById({ id, includeVersion: true });
+      } catch (error) {
+        if (error instanceof ApiError && error.status === 404) return undefined;
+
+        throw error;
+      }
+    },
+    result => (result?.version?.message ?? '') === comment && result?.version?.minorEdit === minorEdit,
+  );
+
+  expect(attachment?.version?.message ?? '').toBe(comment);
+  expect(attachment?.version?.minorEdit).toBe(minorEdit);
+
+  return attachment!.version!;
 }
 
 beforeAll(async () => {
@@ -53,11 +74,19 @@ describe('Confluence Cloud v1 — contentAttachments.createAttachment (live, mul
   }, 60_000);
 
   it('uploads several files in one request', async () => {
-    const attachments = [textAttachment('multi-a', 'first'), textAttachment('multi-b', 'second')];
+    const comment = 'Résumé — Привет 世界';
+    const attachments = [
+      textAttachment('multi-a', 'first'),
+      { ...textAttachment('multi-b', 'second'), comment, minorEdit: true },
+      { ...textAttachment('multi-c', 'third'), comment: '', minorEdit: false },
+    ];
     const created = await client.contentAttachments.createAttachment({ id: pageId, attachments });
 
-    expect(created.results).toHaveLength(2);
+    expect(created.results).toHaveLength(3);
     expect(created.results.map(result => result.title)).toEqual(attachments.map(a => a.filename));
+    await expectVersionMetadata(created.results[0].id!, '', false);
+    await expectVersionMetadata(created.results[1].id!, comment, true);
+    await expectVersionMetadata(created.results[2].id!, '', false);
   }, 60_000);
 
   it('accepts a Buffer as content, not just a string', async () => {
@@ -89,11 +118,14 @@ describe('Confluence Cloud v1 — contentAttachments.createOrUpdateAttachments (
 
     const second = await client.contentAttachments.createOrUpdateAttachments({
       id: pageId,
-      attachments: { ...attachment, content: 'version two' },
+      attachments: { ...attachment, content: 'version two', comment: 'Upserted attachment', minorEdit: true },
     });
 
     expect(second.results[0].title).toBe(attachment.filename);
     expect(second.results[0].id).toBe(first.results[0].id);
+    const version = await expectVersionMetadata(second.results[0].id!, 'Upserted attachment', true);
+
+    expect(version.number).toBeGreaterThan(1);
   }, 90_000);
 });
 
@@ -106,11 +138,14 @@ describe('Confluence Cloud v1 — contentAttachments.updateAttachmentData (live,
     const updated = await client.contentAttachments.updateAttachmentData({
       id: pageId,
       attachmentId,
-      attachment: { ...attachment, content: 'after' },
+      attachment: { ...attachment, content: 'after', comment: 'Replaced attachment data', minorEdit: true },
     });
 
     expect(updated.id).toBe(attachmentId);
     expect(updated.version?.number).toBeGreaterThan(1);
+    const version = await expectVersionMetadata(attachmentId, 'Replaced attachment data', true);
+
+    expect(version.number).toBe(updated.version?.number);
   }, 90_000);
 
   it('rejects an unknown attachment id with an ApiError', async () => {

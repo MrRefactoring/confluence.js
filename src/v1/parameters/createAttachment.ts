@@ -7,7 +7,16 @@ export const CreateAttachmentSchema = z.object({
   id: z.string(),
   /** The status of the content that the attachment is being added to. */
   status: openEnum(['current', 'draft']).optional(),
-  attachments: z.custom<AttachmentInput | AttachmentInput[]>(),
+  attachments: z.custom<
+    | (AttachmentInput & {
+      minorEdit?: boolean;
+      comment?: string;
+    })
+    | (AttachmentInput & {
+      minorEdit?: boolean;
+      comment?: string;
+    })[]
+  >(),
 });
 
 export type CreateAttachment = z.input<typeof CreateAttachmentSchema>;
