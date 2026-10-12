@@ -3,7 +3,9 @@ import { ApiError } from '#/core';
 import type { createV2Client } from '#/v2';
 import { getV2Client, rawRequest } from '../setup/client';
 import { ResourceTracker } from '../setup/resources';
+import { createTestSpace } from '../setup/fixtures';
 import { spaceKey, testName } from '../helpers/naming';
+import { waitFor } from '../helpers/poll';
 
 /**
  * Reference live integration suite for the Confluence Cloud v2 `space` API
@@ -36,8 +38,9 @@ const SPACE_TYPES = [
 const SPACE_STATUSES = ['current', 'archived'] as const;
 
 let client: ReturnType<typeof createV2Client>;
-/** Every space visible to the account — discovered once, used to drive assertions. */
-let allSpaces: NonNullable<Awaited<ReturnType<typeof client.space.getSpaces>>['results']>;
+/** The suite's spaces — discovered once, used to drive assertions. */
+let fixtureSpaces: NonNullable<Awaited<ReturnType<typeof client.space.getSpaces>>['results']>;
+const tracker = new ResourceTracker();
 
 /** A meaningful structural check for a space summary returned by the API. */
 function expectWellFormedSpace(space: { id?: string; key?: string; type?: string; status?: string; createdAt?: Date }) {
@@ -54,9 +57,18 @@ function expectWellFormedSpace(space: { id?: string; key?: string; type?: string
 beforeAll(async () => {
   client = getV2Client();
 
-  allSpaces = (await client.space.getSpaces({ limit: 250 })).results ?? [];
-  expect(allSpaces.length, 'the account must have at least one visible space to test against').toBeGreaterThan(0);
+  const spaces = [await createTestSpace(tracker, 'anchor-a'), await createTestSpace(tracker, 'anchor-b')];
+  const ids = spaces.map(space => Number(space.id));
+  const listed = await waitFor(
+    () => client.space.getSpaces({ ids, limit: 250 }),
+    page => spaces.every(space => page.results?.some(result => result.id === space.id)),
+  );
+
+  fixtureSpaces = listed.results ?? [];
+  expect(fixtureSpaces).toHaveLength(spaces.length);
 });
+
+afterAll(() => tracker.cleanup());
 
 describe('Confluence Cloud v2 — space.getSpaces (live)', () => {
   it('returns a page of correctly-typed space summaries', async () => {
@@ -70,11 +82,11 @@ describe('Confluence Cloud v2 — space.getSpaces (live)', () => {
   });
 
   it('honors `limit` and exposes a pagination cursor when more results exist', async () => {
-    const firstPage = await client.space.getSpaces({ limit: 1 });
+    const firstPage = await client.space.getSpaces({ ids: fixtureSpaces.map(space => Number(space.id)), limit: 1 });
 
     expect(firstPage.results?.length ?? 0).toBeLessThanOrEqual(1);
 
-    if (allSpaces.length > 1) {
+    if (fixtureSpaces.length > 1) {
       // With more spaces than the page size, exactly one comes back and the
       // `Link`-header cursor is surfaced as `_links.next`.
       expect(firstPage.results).toHaveLength(1);
@@ -84,7 +96,7 @@ describe('Confluence Cloud v2 — space.getSpaces (live)', () => {
   });
 
   it('filters by `keys` — only spaces with the requested key are returned', async () => {
-    const sample = allSpaces[0];
+    const sample = fixtureSpaces[0];
 
     const filtered = await client.space.getSpaces({ keys: [sample.key!] });
 
@@ -94,17 +106,22 @@ describe('Confluence Cloud v2 — space.getSpaces (live)', () => {
   });
 
   it('filters by `type` — server-side filter matches a client-side filter of the full list', async () => {
-    const sampleType = allSpaces[0].type;
-    const expectedCount = allSpaces.filter(s => s.type === sampleType).length;
+    const sampleType = fixtureSpaces[0].type;
+    const expectedCount = fixtureSpaces.filter(s => s.type === sampleType).length;
 
-    const filtered = await client.space.getSpaces({ type: sampleType, limit: 250 });
+    const ids = fixtureSpaces.map(space => Number(space.id));
+    const filtered = await client.space.getSpaces({ ids, type: sampleType, limit: 250 });
 
     expect(filtered.results!.every(s => s.type === sampleType)).toBe(true);
     expect(filtered.results!.length).toBe(expectedCount);
+
+    const otherType = await client.space.getSpaces({ ids, type: 'personal', limit: 250 });
+
+    expect(otherType.results).toHaveLength(0);
   });
 
-  it('filters by `ids` consistently with the unfiltered listing', async () => {
-    const sample = allSpaces[0];
+  it('filters by `ids` consistently with the fixture listing', async () => {
+    const sample = fixtureSpaces[0];
 
     const filtered = await client.space.getSpaces({ ids: [Number(sample.id)] });
 
@@ -113,8 +130,12 @@ describe('Confluence Cloud v2 — space.getSpaces (live)', () => {
   });
 
   it('applies `sort` direction — ascending and descending are mirror orderings', async () => {
-    const asc = (await client.space.getSpaces({ sort: 'key', limit: 250 })).results ?? [];
-    const desc = (await client.space.getSpaces({ sort: '-key', limit: 250 })).results ?? [];
+    const ids = fixtureSpaces.map(space => Number(space.id));
+    const asc = (await client.space.getSpaces({ ids, sort: 'key', limit: 250 })).results ?? [];
+    const desc = (await client.space.getSpaces({ ids, sort: '-key', limit: 250 })).results ?? [];
+
+    expect(asc).toHaveLength(fixtureSpaces.length);
+    expect(desc).toHaveLength(fixtureSpaces.length);
 
     // Other suites in the serial run create and trash spaces, and these are two
     // separate requests — one direction can see a space the other does not. Only
@@ -133,7 +154,7 @@ describe('Confluence Cloud v2 — space.getSpaces (live)', () => {
 
 describe('Confluence Cloud v2 — space.getSpaceById (live)', () => {
   it('returns the same canonical entity as the corresponding getSpaces summary', async () => {
-    const summary = allSpaces[0];
+    const summary = fixtureSpaces[0];
 
     const full = await client.space.getSpaceById({ id: Number(summary.id) });
 
@@ -148,7 +169,7 @@ describe('Confluence Cloud v2 — space.getSpaceById (live)', () => {
   });
 
   it('expands `operations` and `labels` only when the include-* flags are set', async () => {
-    const id = Number(allSpaces[0].id);
+    const id = Number(fixtureSpaces[0].id);
 
     const base = await client.space.getSpaceById({ id });
     expect(base.operations).toBeUndefined();
