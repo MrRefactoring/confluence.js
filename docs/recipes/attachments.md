@@ -61,6 +61,24 @@ console.log(created.results.map(result => result.title));
 2.x made you build the `FormData` and remember `X-Atlassian-Token: no-check`. Neither is your job now — the call encodes the multipart body and sends the XSRF header itself.
 :::
 
+## Version comments and minor edits
+
+Each attachment can set optional `comment` and `minorEdit` fields. `comment` is the UTF-8 version message; `minorEdit: true` suppresses notification emails and activity stream updates for the change.
+
+```ts
+await v1.contentAttachments.createAttachment({
+  id: '12345',
+  attachments: [
+    { filename: 'notes.txt', content: 'first' },
+    { filename: 'report.txt', content: 'second', comment: 'Résumé updated', minorEdit: true },
+  ],
+});
+```
+
+These fields also work on each item passed to `createOrUpdateAttachments` and on `attachment` in `updateAttachmentData`.
+
+When at least one file sets `comment`, files without it send an empty comment. When at least one sets `minorEdit`, files without it send `false`. If every file omits a field, the request omits that field entirely. Explicit `false` and empty comments are preserved.
+
 ## Upsert
 
 `createAttachment` (POST) adds; `createOrUpdateAttachments` (PUT) adds *or* versions an existing one with the same filename:

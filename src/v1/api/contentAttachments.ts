@@ -51,9 +51,19 @@ export async function createAttachment(
 ): Promise<ContentArray> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
+  const hasTextField0 = items.some(attachment => attachment['minorEdit'] !== undefined);
+  const hasTextField1 = items.some(attachment => attachment['comment'] !== undefined);
 
   for (const attachment of items) {
     formData.append('file', await toFormDataFile(attachment), attachment.filename);
+
+    if (hasTextField0) {
+      formData.append('minorEdit', String(attachment['minorEdit'] ?? false));
+    }
+
+    if (hasTextField1) {
+      formData.append('comment', String(attachment['comment'] ?? ''));
+    }
   }
 
   const config: SendRequestOptions<ContentArray> = {
@@ -110,9 +120,19 @@ export async function createOrUpdateAttachments(
 ): Promise<ContentArray> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
+  const hasTextField0 = items.some(attachment => attachment['minorEdit'] !== undefined);
+  const hasTextField1 = items.some(attachment => attachment['comment'] !== undefined);
 
   for (const attachment of items) {
     formData.append('file', await toFormDataFile(attachment), attachment.filename);
+
+    if (hasTextField0) {
+      formData.append('minorEdit', String(attachment['minorEdit'] ?? false));
+    }
+
+    if (hasTextField1) {
+      formData.append('comment', String(attachment['comment'] ?? ''));
+    }
   }
 
   const config: SendRequestOptions<ContentArray> = {
@@ -197,9 +217,19 @@ export async function updateAttachmentData(
 ): Promise<Content> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
+  const hasTextField0 = items.some(attachment => attachment['minorEdit'] !== undefined);
+  const hasTextField1 = items.some(attachment => attachment['comment'] !== undefined);
 
   for (const attachment of items) {
     formData.append('file', await toFormDataFile(attachment), attachment.filename);
+
+    if (hasTextField0) {
+      formData.append('minorEdit', String(attachment['minorEdit'] ?? false));
+    }
+
+    if (hasTextField1) {
+      formData.append('comment', String(attachment['comment'] ?? ''));
+    }
   }
 
   const config: SendRequestOptions<Content> = {

@@ -7,7 +7,16 @@ export const CreateOrUpdateAttachmentsSchema = z.object({
   id: z.string(),
   /** The status of the content that the attachment is being added to. This should always be set to 'current'. */
   status: openEnum(['current', 'draft']).optional(),
-  attachments: z.custom<AttachmentInput | AttachmentInput[]>(),
+  attachments: z.custom<
+    | (AttachmentInput & {
+      minorEdit?: boolean;
+      comment?: string;
+    })
+    | (AttachmentInput & {
+      minorEdit?: boolean;
+      comment?: string;
+    })[]
+  >(),
 });
 
 export type CreateOrUpdateAttachments = z.input<typeof CreateOrUpdateAttachmentsSchema>;
