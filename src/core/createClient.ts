@@ -1,20 +1,35 @@
+import { PRODUCT } from './productInfo.js';
 import type { core as zodCore } from 'zod';
 import { bodyToFetchBody, requiresDuplex, shouldSetJsonContentType } from './bodyToFetchBody.js';
 import type { Auth, ClientConfig, SendRequestOptions } from './schemas/index.js';
 import type { Client } from './interfaces/index.js';
 import type { OAuth2Manager } from './oauth/index.js';
 import {
+  AuthError,
   createApiError,
   isNetworkError,
   SchemaMismatchError,
   toNetworkError,
   TRANSIENT_HTTP_STATUSES,
 } from './errors/index.js';
-import { BufferSchema } from './formData/index.js';
+import { BlobSchema, BufferSchema } from './formData/index.js';
 import { isSchemaAuditEnabled, recordSchemaDrift } from './schemaAudit.js';
+import { describeIssues, reportSchemaMismatch } from './schemaMismatch.js';
+import type { SchemaMismatchReport } from './schemaMismatch.js';
 import { buildUrlWithSearchParams } from './serializeSearchParams.js';
 import { clientConfigSchema } from './schemas/index.js';
 import { createOAuth2Manager } from './oauth/index.js';
+import { createServerOAuth2Manager } from './oauthServer/index.js';
+
+/**
+ * Whether a response body is JSON, by its media type.
+ *
+ * `application/json` is the common case, but not the only one: SCIM answers `application/scim+json`, and any `+json`
+ * suffix means the same thing.
+ */
+function isJsonMediaType(contentType: string): boolean {
+  return /^[^;]*[/+]json\b/i.test(contentType);
+}
 
 /**
  * Whether this 401 means "missing scope" rather than "stale token".
@@ -46,8 +61,8 @@ function describeValue(value: unknown): string {
  * The value the API sent where the schema listed a set, as text for the report.
  *
  * Audit-only, like everything else on this path, and the value is the whole finding: an enum that grew is repaired by
- * adding the value it grew by, which a type name does not carry. Anything that is not a string is described rather
- * than quoted — a set of numbers or booleans is rare enough that naming its shape is answer enough.
+ * adding the value it grew by, which a type name does not carry. Anything that is not a string is described rather than
+ * quoted — a set of numbers or booleans is rare enough that naming its shape is answer enough.
  */
 function describeValueAtPath(body: unknown, path: readonly PropertyKey[]): string {
   let target = body;
@@ -71,7 +86,11 @@ function describeValueAtPath(body: unknown, path: readonly PropertyKey[]): strin
  * `path` is a zod issue path, so every segment is an object key or an array index, and anything no longer there is
  * simply skipped — the walk describes a body that was just parsed, not an arbitrary structure.
  */
-function takeKeyTypes(body: unknown, path: readonly PropertyKey[], keys: readonly PropertyKey[]): Record<string, string> {
+function takeKeyTypes(
+  body: unknown,
+  path: readonly PropertyKey[],
+  keys: readonly PropertyKey[],
+): Record<string, string> {
   let target = body;
 
   for (const segment of path) {
@@ -93,8 +112,8 @@ function takeKeyTypes(body: unknown, path: readonly PropertyKey[], keys: readonl
 }
 
 type DriftFinding =
-  | { kind: 'keys', path: PropertyKey[], keys: PropertyKey[] }
-  | { kind: 'value', path: PropertyKey[], documented: string[] };
+  | { kind: 'keys'; path: PropertyKey[]; keys: PropertyKey[] }
+  | { kind: 'value'; path: PropertyKey[]; documented: string[] };
 
 /**
  * Reads a validation failure as pure schema drift, or decides it is not.
@@ -104,8 +123,8 @@ type DriftFinding =
  *
  * Two kinds count. An undocumented key is a field the specification never described. A value outside a documented set
  * is the same gap one level down: the field is described, its list of values is not complete. Both are the vendor's
- * documentation falling behind the vendor's API, and reporting either as breakage sends the reader after a fault in
- * the wrong codebase.
+ * documentation falling behind the vendor's API, and reporting either as breakage sends the reader after a fault in the
+ * wrong codebase.
  *
  * Unions need the recursion. Zod reports each branch it tried, and branches that failed for their own reasons are
  * simply the wrong branch; what identifies the right one is a branch whose only complaint is undocumented keys. Without
@@ -159,6 +178,83 @@ function isClient(value: ClientConfig | Client): value is Client {
 }
 
 /**
+ * The `X-Seraph-LoginReason` values that mean the credentials were presented and refused.
+ *
+ * `AUTHORISATION_FAILED` is deliberately absent: it means the user is who they claim and merely lacks a permission,
+ * which the status already says and which `ForbiddenError` already describes. `OUT` is absent for the same kind of
+ * reason — a Data Center instance behind SSO sets it on responses that are perfectly legitimate.
+ */
+const SERAPH_LOGIN_FAILURES = new Set(['AUTHENTICATED_FAILED', 'AUTHENTICATION_DENIED']);
+
+/**
+ * Whether the credentials were refused, whatever status the response carries.
+ *
+ * An endpoint that permits anonymous access answers `200` with an anonymous-scope body when the API token is expired or
+ * wrong — an empty list where the caller expected their own data — and says so nowhere but this header. Measured
+ * against a live Cloud site, the header rides on `200`, `400` and `401` alike; measured against Data Center, on `403`
+ * as well. A genuine permission denial is outside the set either way: Cloud sends no header at all, Data Center sends
+ * `OK`.
+ */
+function credentialsRejected(response: Response, hasAuth: boolean): boolean {
+  return hasAuth && SERAPH_LOGIN_FAILURES.has(response.headers.get('x-seraph-loginreason') ?? '');
+}
+
+/**
+ * The headers that were actually given.
+ *
+ * An optional header parameter the caller left out reaches here as `undefined`. Dropping it before the merge does two
+ * things: it keeps the literal text `undefined` off the wire, and it stops an omitted parameter from shadowing a header
+ * the client itself was configured with.
+ */
+function definedHeaders(headers: Record<string, string | undefined> | undefined): Record<string, string> {
+  const defined: Record<string, string> = {};
+
+  for (const [name, value] of Object.entries(headers ?? {})) {
+    if (value !== undefined) defined[name] = value;
+  }
+
+  return defined;
+}
+
+/**
+ * `setTimeout` as a promise the signal can cut short.
+ *
+ * Without this an abort would still wait out the whole back-off before anyone noticed it.
+ */
+function sleep(ms: number, signal?: AbortSignal): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
+    if (signal?.aborted) {
+      reject(signal.reason);
+
+      return;
+    }
+
+    const onAbort = () => {
+      clearTimeout(timer);
+      reject(signal!.reason);
+    };
+
+    const timer = setTimeout(() => {
+      signal?.removeEventListener('abort', onAbort);
+      resolve();
+    }, ms);
+
+    signal?.addEventListener('abort', onAbort, { once: true });
+  });
+}
+
+/** The response body as text and, where it parses, as JSON — the pair every error built here carries. */
+async function readBody(response: Response): Promise<{ text: string; detail: unknown }> {
+  const text = await response.text();
+
+  try {
+    return { text, detail: JSON.parse(text) };
+  } catch {
+    return { text, detail: text };
+  }
+}
+
+/**
  * Base64 for the Basic auth header, the same way in every runtime.
  *
  * `btoa` alone mangles anything outside Latin-1, so the string is encoded to UTF-8 bytes first — a credential may well
@@ -174,16 +270,43 @@ function base64Encode(value: string): string {
   return btoa(binary);
 }
 
+function createManagerFor(
+  auth: Auth | undefined,
+  host: string | undefined,
+  customFetch: ClientConfig['fetch'],
+): OAuth2Manager | undefined {
+  if (auth?.type === 'oauth2') return createOAuth2Manager({ ...auth, fetch: customFetch });
+
+  if (auth?.type === 'oauth2Server') return createServerOAuth2Manager({ ...auth, host: host!, fetch: customFetch });
+
+  return undefined;
+}
+
+function contentTypeHeader(
+  contentType: string | undefined,
+  body: unknown,
+  rawBody: unknown,
+  method: string | undefined,
+): Record<string, string> {
+  if (contentType !== undefined) {
+    return body instanceof URLSearchParams ? {} : { 'Content-Type': contentType };
+  }
+
+  if (shouldSetJsonContentType(rawBody, method)) return { 'Content-Type': 'application/json' };
+
+  return {};
+}
+
 async function getAuthHeaders(auth: Auth): Promise<Record<string, string>> {
-  if (auth.type === 'oauth2') {
-    // Handled by the manager, which owns refresh and expiry. Reaching here means
-    // the caller swapped in OAuth 2.0 through `getAuthOn401`, which cannot carry
-    // that state — so fall back to whatever static token was supplied.
+  if (auth.type === 'oauth2' || auth.type === 'oauth2Server') {
     return auth.accessToken ? { Authorization: `Bearer ${auth.accessToken}` } : {};
   }
 
   if (auth.type === 'basic') {
-    const encoded = base64Encode(`${auth.email}:${auth.apiToken}`);
+    const encoded =
+      'email' in auth
+        ? base64Encode(`${auth.email}:${auth.apiToken}`)
+        : base64Encode(`${auth.username}:${auth.password}`);
 
     return { Authorization: `Basic ${encoded}` };
   }
@@ -198,39 +321,40 @@ async function getAuthHeaders(auth: Auth): Promise<Record<string, string>> {
 }
 
 /**
- * Creates a low-level Confluence API client.
+ * Creates a low-level API client.
  *
- * The client carries only transport, auth and retry policy — it is version agnostic, so one instance drives both
- * `confluence.js/v1` and `confluence.js/v2`.
+ * The client carries only transport, auth and retry policy — it knows nothing about any one API version, so a single
+ * instance drives every surface the package exposes, and with it a single set of credentials.
  *
- * Prefer `createV1Client` / `createV2Client` from `confluence.js` unless you want the flat functions and a smaller
- * bundle.
+ * Prefer the surface factories the package exports unless you want the flat functions and a smaller bundle.
  *
- * @stable
+ * @public
  */
 export function createClient(config: ClientConfig | Client): Client {
-  // Already a client: hand it straight back. This is what lets createV1Client and
-  // createV2Client share one instance — and with it one OAuth token. Building a
-  // client per factory would give each its own refresh cycle, and the first
-  // rotation would kill the other's refresh token.
   if (isClient(config)) return config;
 
   clientConfigSchema.parse(config);
 
-  const { host, auth, headers: configHeaders = {}, getAuthOn401, retry } = config;
+  const {
+    host,
+    auth,
+    headers: configHeaders = {},
+    getAuthOn401,
+    retry,
+    onSchemaMismatch = PRODUCT.onSchemaMismatch,
+    fetch: customFetch,
+  } = config;
   const retryMaxAttempts = Math.max(1, retry?.maxAttempts ?? 1);
   const retryInitialDelayMs = retry?.initialDelayMs ?? 500;
   const retryBackoffFactor = retry?.backoffFactor ?? 2;
 
-  // One manager per client, so the refreshed token and the resolved cloud id are
-  // shared by every request instead of being rediscovered per call.
-  const oauth2Manager: OAuth2Manager | undefined = auth?.type === 'oauth2' ? createOAuth2Manager(auth) : undefined;
+  const oauth2Manager = createManagerFor(auth, host, customFetch);
 
   return {
+    host,
+
     async sendRequest<T>(requestConfig: SendRequestOptions<T>): Promise<T> {
       const path = requestConfig.url.startsWith('/') ? requestConfig.url : `/${requestConfig.url}`;
-      // Under OAuth 2.0 the gateway URL wins over `host`: a 3LO token is rejected
-      // on the site's own domain, so honouring `host` there would only produce 401s.
       const effectiveHost = oauth2Manager ? await oauth2Manager.getBaseUrl() : host;
       const normalizedHost =
         effectiveHost && (effectiveHost.endsWith('/') ? effectiveHost.slice(0, -1) : effectiveHost);
@@ -238,28 +362,30 @@ export function createClient(config: ClientConfig | Client): Client {
       const fullUrl = buildUrlWithSearchParams(url, requestConfig.searchParams);
 
       const rawBody = requestConfig.body;
-      const body = rawBody === undefined || rawBody === null ? undefined : bodyToFetchBody(rawBody);
+      const requestContentType = requestConfig.contentType;
+      const body = rawBody === undefined || rawBody === null ? undefined : bodyToFetchBody(rawBody, requestContentType);
 
       const doRequest = async (authHeaders: Record<string, string>): Promise<Response> => {
         const headers: Record<string, string> = {
           Accept: 'application/json',
-          ...(shouldSetJsonContentType(rawBody, requestConfig.method) ? { 'Content-Type': 'application/json' } : {}),
+          ...contentTypeHeader(requestContentType, body, rawBody, requestConfig.method),
           ...authHeaders,
           ...configHeaders,
-          ...requestConfig.headers,
+          ...definedHeaders(requestConfig.headers),
         };
 
         const init: RequestInit & { duplex?: 'half' } = {
           method: requestConfig.method,
           headers: Object.keys(headers).length > 0 ? headers : undefined,
           body: body as BodyInit,
+          signal: requestConfig.signal,
         };
 
         if (requiresDuplex(rawBody)) {
           init.duplex = 'half';
         }
 
-        return fetch(fullUrl, init);
+        return customFetch ? customFetch(fullUrl, init) : fetch(fullUrl, init);
       };
 
       const currentAuthHeaders = async (): Promise<Record<string, string>> => {
@@ -273,23 +399,19 @@ export function createClient(config: ClientConfig | Client): Client {
       let delayMs = retryInitialDelayMs;
       let networkAttempt = 0;
       let reauthenticated = false;
-      // Retry loop: covers transport-layer failures (TLS/socket/DNS) and
-      // 502/503/504 upstream failures. Auth re-derivation on 401 happens once
-      // per response cycle, inside the loop, so a refreshed token survives
-      // subsequent transient retries.
 
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- intentional retry loop
       while (true) {
         try {
           response = await doRequest(derivedAuthHeaders);
         } catch (err) {
-          // A bad URL also rejects here, as a TypeError with no code — wrapping it
-          // keeps one catch surface, and `transient: false` keeps it out of retries.
+          if (requestConfig.signal?.aborted) throw err;
+
           const networkError = isNetworkError(err) ? err : toNetworkError(err, fullUrl);
 
           if (networkAttempt + 1 < retryMaxAttempts && networkError.transient) {
             networkAttempt += 1;
-            await new Promise<void>(resolve => setTimeout(resolve, delayMs));
+            await sleep(delayMs, requestConfig.signal);
             delayMs = Math.round(delayMs * retryBackoffFactor);
             continue;
           }
@@ -297,14 +419,9 @@ export function createClient(config: ClientConfig | Client): Client {
           throw networkError;
         }
 
-        // Re-authentication is attempted at most once per request: a second 401
-        // means the fresh credentials are themselves rejected, and retrying that
-        // forever would turn a bad token into an infinite loop.
-        //
-        // A missing scope also answers 401, and refreshing cannot mint a scope the
-        // app never asked for. Worse, each pointless refresh rotates the refresh
-        // token, so a loop of scope errors would churn credentials for nothing.
-        if (response.status === 401 && !reauthenticated && !(await isScopeMismatchResponse(response))) {
+        const unauthenticated = response.status === 401 || credentialsRejected(response, auth !== undefined);
+
+        if (unauthenticated && !reauthenticated && !(await isScopeMismatchResponse(response))) {
           if (oauth2Manager?.canRefresh()) {
             reauthenticated = true;
             await oauth2Manager.forceRefresh();
@@ -321,7 +438,7 @@ export function createClient(config: ClientConfig | Client): Client {
 
         if (TRANSIENT_HTTP_STATUSES.has(response.status) && networkAttempt + 1 < retryMaxAttempts) {
           networkAttempt += 1;
-          await new Promise<void>(resolve => setTimeout(resolve, delayMs));
+          await sleep(delayMs, requestConfig.signal);
           delayMs = Math.round(delayMs * retryBackoffFactor);
           continue;
         }
@@ -329,14 +446,28 @@ export function createClient(config: ClientConfig | Client): Client {
         break;
       }
 
+      if (credentialsRejected(response, auth !== undefined)) {
+        const reason = response.headers.get('x-seraph-loginreason');
+        const challenge = response.headers.get('x-authentication-denied-reason');
+        const { text, detail } = await readBody(response);
+        const advice = challenge
+          ? 'The credentials may well be correct: Jira is refusing the sign-in until a challenge is answered ' +
+            `(${challenge}).`
+          : 'The API token or password may be expired, revoked or mistyped.';
+        const anonymously = response.ok ? ' and answered as an anonymous user' : '';
+
+        throw new AuthError(
+          `Request failed: Jira rejected the credentials (x-seraph-loginreason: ${reason})${anonymously}. ` +
+            `${advice}${text ? ` - ${text}` : ''}`,
+          response.statusText,
+          detail,
+          { status: response.status },
+        );
+      }
+
       if (!response.ok) {
-        const text = await response.text();
-        let detail: unknown = text;
-        try {
-          detail = JSON.parse(text);
-        } catch {
-          //
-        }
+        const { text, detail } = await readBody(response);
+
         throw createApiError(
           `Request failed: ${response.status} ${response.statusText}${text ? ` - ${text}` : ''}`,
           response.status,
@@ -350,24 +481,25 @@ export function createClient(config: ClientConfig | Client): Client {
 
       if (response.status === 204) return undefined as T;
 
-      // A download endpoint says so with `BufferSchema`, and it is the only
-      // reliable signal: the response carries the *file's* content type, so
-      // `text/plain` is as legitimate for a download as `application/pdf` and
-      // sniffing the header cannot tell the two intents apart. Without this the
-      // body was dropped on the floor and every download resolved to `undefined`.
       if ((requestConfig.schema as unknown) === BufferSchema) {
         return BufferSchema.parse(new Uint8Array(await response.arrayBuffer())) as T;
       }
 
-      if (contentType && !contentType.includes('application/json')) {
-        // An endpoint that declares a schema and answers with something that is
-        // not JSON has broken its contract. Returning `undefined` here would
-        // hand back a value the caller's types say cannot occur, and the
-        // failure would surface far from the call that caused it.
+      if ((requestConfig.schema as unknown) === BlobSchema) {
+        return BlobSchema.parse(await response.blob()) as T;
+      }
+
+      const isJson = contentType !== null && isJsonMediaType(contentType);
+
+      if (contentType && !isJson) {
         if (requestConfig.schema) {
           throw new SchemaMismatchError(
             `Expected a JSON response to validate against the schema, got ${contentType}`,
-            await response.text(),
+            {
+              endpoint: `${requestConfig.method ?? 'GET'} ${requestConfig.url}`,
+              issues: [{ path: '', expected: 'application/json', received: contentType || 'no content type' }],
+            },
+            { body: PRODUCT.preserveSchemaMismatchBody ? await response.text() : undefined },
           );
         }
 
@@ -376,14 +508,13 @@ export function createClient(config: ClientConfig | Client): Client {
 
       let data: unknown;
 
-      if (contentType?.includes('application/json')) {
+      if (isJson) {
         const text = await response.text();
 
         try {
           data = JSON.parse(text);
         } catch (e) {
           if (e instanceof SyntaxError) {
-            // Confluence sometimes sends application/json Content-Type with a plain-text body
             data = text || undefined;
           } else {
             throw e;
@@ -401,9 +532,6 @@ export function createClient(config: ClientConfig | Client): Client {
         if (!parsed.success) {
           const endpoint = `${requestConfig.method ?? 'GET'} ${requestConfig.url}`;
 
-          // Under audit, a gap in the specification is the finding — not a failure. It is recorded and the response is
-          // handed back, so a single stale schema cannot end the run before the rest has been looked at. Anything else
-          // in the issue list is real breakage and still throws, which is why this checks that *every* issue is a gap.
           const drift = isSchemaAuditEnabled() ? readDrift(parsed.error.issues) : undefined;
 
           if (drift) {
@@ -428,26 +556,22 @@ export function createClient(config: ClientConfig | Client): Client {
               });
             }
 
-            // Undocumented keys are stripped as they are recorded, so the body can be validated for real once they are
-            // gone — the caller still gets what the schema promises, and `z.coerce.date()` and friends only run on a
-            // successful parse. A value outside a documented set cannot be taken out the same way: removing the field
-            // would leave a hole where the schema wants a value, so the response is handed back unvalidated instead.
-            // Either way it reaches the caller — everything wrong with it has been recorded, and one stale schema must
-            // not cut the audit short.
             const cleaned = requestConfig.schema.safeParse(data);
 
             return cleaned.success ? (cleaned.data as T) : (data as T);
           }
 
-          // The response parsed as JSON but is not the shape the endpoint
-          // promises. Callers should not have to know zod is the validator to
-          // catch this, so it arrives as the library's own error with the
-          // validation issues preserved on `cause`.
-          throw new SchemaMismatchError(
-            `Response did not match the schema for ${requestConfig.method ?? 'GET'} ${requestConfig.url}`,
-            JSON.stringify(data),
-            { cause: parsed.error },
-          );
+          const report: SchemaMismatchReport = { endpoint, issues: describeIssues(parsed.error.issues, data) };
+          const behavior = isSchemaAuditEnabled() ? 'throw' : onSchemaMismatch;
+
+          if (reportSchemaMismatch(behavior, report)) {
+            throw new SchemaMismatchError(`Response did not match the schema for ${endpoint}`, report, {
+              cause: parsed.error,
+              body: PRODUCT.preserveSchemaMismatchBody ? JSON.stringify(data) : undefined,
+            });
+          }
+
+          return data as T;
         }
 
         return parsed.data as T;

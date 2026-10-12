@@ -9,7 +9,7 @@ import type { UpdateBlogPost } from '../parameters/updateBlogPost';
 import type { DeleteBlogPost } from '../parameters/deleteBlogPost';
 import type { GetLabelBlogPosts } from '../parameters/getLabelBlogPosts';
 import type { GetBlogPostsInSpace } from '../parameters/getBlogPostsInSpace';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all blog posts. The number of results is limited by the `limit` parameter and additional results (if
@@ -18,7 +18,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission). Only blog posts that the user has permission to view will be returned.
  */
-export async function getBlogPosts(client: Client, parameters?: GetBlogPosts): Promise<BlogPosts> {
+export async function getBlogPosts(
+  client: Client,
+  parameters?: GetBlogPosts,
+  options?: RequestOptions,
+): Promise<BlogPosts> {
   const config: SendRequestOptions<BlogPosts> = {
     url: '/wiki/api/v2/blogposts',
     method: 'GET',
@@ -33,6 +37,7 @@ export async function getBlogPosts(client: Client, parameters?: GetBlogPosts): P
       limit: parameters?.limit,
     },
     schema: BlogPostsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -46,7 +51,11 @@ export async function getBlogPosts(client: Client, parameters?: GetBlogPosts): P
  *
  * Currently only supports the storage representation specified in the body.representation enums below
  */
-export async function createBlogPost(client: Client, parameters: CreateBlogPost): Promise<BlogPost> {
+export async function createBlogPost(
+  client: Client,
+  parameters: CreateBlogPost,
+  options?: RequestOptions,
+): Promise<BlogPost> {
   const config: SendRequestOptions<BlogPost> = {
     url: '/wiki/api/v2/blogposts',
     method: 'POST',
@@ -55,6 +64,7 @@ export async function createBlogPost(client: Client, parameters: CreateBlogPost)
     },
     body: parameters.body,
     schema: BlogPostSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -66,7 +76,11 @@ export async function createBlogPost(client: Client, parameters: CreateBlogPost)
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
  * corresponding space.
  */
-export async function getBlogPostById(client: Client, parameters: GetBlogPostById): Promise<BlogPost> {
+export async function getBlogPostById(
+  client: Client,
+  parameters: GetBlogPostById,
+  options?: RequestOptions,
+): Promise<BlogPost> {
   const config: SendRequestOptions<BlogPost> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}`,
     method: 'GET',
@@ -86,6 +100,7 @@ export async function getBlogPostById(client: Client, parameters: GetBlogPostByI
       'include-collaborators': parameters.includeCollaborators,
     },
     schema: BlogPostSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -97,12 +112,17 @@ export async function getBlogPostById(client: Client, parameters: GetBlogPostByI
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
  * corresponding space. Permission to update blog posts in the space.
  */
-export async function updateBlogPost(client: Client, parameters: UpdateBlogPost): Promise<BlogPost> {
+export async function updateBlogPost(
+  client: Client,
+  parameters: UpdateBlogPost,
+  options?: RequestOptions,
+): Promise<BlogPost> {
   const config: SendRequestOptions<BlogPost> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
     schema: BlogPostSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -119,11 +139,20 @@ export async function updateBlogPost(client: Client, parameters: UpdateBlogPost)
  * permanently delete a blog post (or "purge" it), the endpoint must be called on a **trashed** blog post with the
  * following param `purge=true`.
  *
- * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the blog post and its
- * corresponding space. Permission to delete blog posts in the space. Permission to administer the space (if attempting
- * to purge).
+ * **[Permissions](https://support.atlassian.com/confluence-cloud/docs/what-are-confluences-roles/) required**:
+ * Permission to view the blog post and its corresponding space. Permission to delete blog posts in the space.
+ * [`manage/content`](https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-space-permissions/#api-space-permissions-get)
+ * permission for the space (if attempting to purge).
+ *
+ * **Note:** To find the display name for each permission ID, call the [Get available space
+ * permissions](https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-space-permissions/#api-space-permissions-get)
+ * API.
  */
-export async function deleteBlogPost(client: Client, parameters: DeleteBlogPost): Promise<void> {
+export async function deleteBlogPost(
+  client: Client,
+  parameters: DeleteBlogPost,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/blogposts/${parameters.id}`,
     method: 'DELETE',
@@ -131,6 +160,7 @@ export async function deleteBlogPost(client: Client, parameters: DeleteBlogPost)
       purge: parameters.purge,
       draft: parameters.draft,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -143,7 +173,11 @@ export async function deleteBlogPost(client: Client, parameters: DeleteBlogPost)
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content of the page and
  * its corresponding space.
  */
-export async function getLabelBlogPosts(client: Client, parameters: GetLabelBlogPosts): Promise<LabelBlogPosts> {
+export async function getLabelBlogPosts(
+  client: Client,
+  parameters: GetLabelBlogPosts,
+  options?: RequestOptions,
+): Promise<LabelBlogPosts> {
   const config: SendRequestOptions<LabelBlogPosts> = {
     url: `/wiki/api/v2/labels/${parameters.id}/blogposts`,
     method: 'GET',
@@ -155,6 +189,7 @@ export async function getLabelBlogPosts(client: Client, parameters: GetLabelBlog
       limit: parameters.limit,
     },
     schema: LabelBlogPostsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -167,7 +202,11 @@ export async function getLabelBlogPosts(client: Client, parameters: GetLabelBlog
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission) and view the space. Only blog posts that the user has permission to view will be returned.
  */
-export async function getBlogPostsInSpace(client: Client, parameters: GetBlogPostsInSpace): Promise<BlogPostsInSpace> {
+export async function getBlogPostsInSpace(
+  client: Client,
+  parameters: GetBlogPostsInSpace,
+  options?: RequestOptions,
+): Promise<BlogPostsInSpace> {
   const config: SendRequestOptions<BlogPostsInSpace> = {
     url: `/wiki/api/v2/spaces/${parameters.id}/blogposts`,
     method: 'GET',
@@ -180,6 +219,7 @@ export async function getBlogPostsInSpace(client: Client, parameters: GetBlogPos
       limit: parameters.limit,
     },
     schema: BlogPostsInSpaceSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

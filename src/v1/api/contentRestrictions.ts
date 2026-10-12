@@ -16,23 +16,28 @@ import type { RemoveGroupFromContentRestriction } from '../parameters/removeGrou
 import type { GetContentRestrictionStatusForUser } from '../parameters/getContentRestrictionStatusForUser';
 import type { AddUserToContentRestriction } from '../parameters/addUserToContentRestriction';
 import type { RemoveUserFromContentRestriction } from '../parameters/removeUserFromContentRestriction';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the restrictions on a piece of content.
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content.
  */
-export async function getRestrictions(client: Client, parameters: GetRestrictions): Promise<ContentRestrictionArray> {
+export async function getRestrictions(
+  client: Client,
+  parameters: GetRestrictions,
+  options?: RequestOptions,
+): Promise<ContentRestrictionArray> {
   const config: SendRequestOptions<ContentRestrictionArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       start: parameters.start,
       limit: parameters.limit,
     },
     schema: ContentRestrictionArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -43,7 +48,11 @@ export async function getRestrictions(client: Client, parameters: GetRestriction
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
  */
-export async function addRestrictions(client: Client, parameters: AddRestrictions): Promise<ContentRestrictionArray> {
+export async function addRestrictions(
+  client: Client,
+  parameters: AddRestrictions,
+  options?: RequestOptions,
+): Promise<ContentRestrictionArray> {
   const config: SendRequestOptions<ContentRestrictionArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction`,
     method: 'POST',
@@ -51,10 +60,11 @@ export async function addRestrictions(client: Client, parameters: AddRestriction
       'X-Atlassian-Token': 'no-check',
     },
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     body: parameters.body,
     schema: ContentRestrictionArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -69,6 +79,7 @@ export async function addRestrictions(client: Client, parameters: AddRestriction
 export async function updateRestrictions(
   client: Client,
   parameters: UpdateRestrictions,
+  options?: RequestOptions,
 ): Promise<ContentRestrictionArray> {
   const config: SendRequestOptions<ContentRestrictionArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction`,
@@ -77,10 +88,11 @@ export async function updateRestrictions(
       'X-Atlassian-Token': 'no-check',
     },
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     body: parameters.body,
     schema: ContentRestrictionArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -94,6 +106,7 @@ export async function updateRestrictions(
 export async function deleteRestrictions(
   client: Client,
   parameters: DeleteRestrictions,
+  options?: RequestOptions,
 ): Promise<ContentRestrictionArray> {
   const config: SendRequestOptions<ContentRestrictionArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction`,
@@ -102,9 +115,10 @@ export async function deleteRestrictions(
       'X-Atlassian-Token': 'no-check',
     },
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: ContentRestrictionArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -120,14 +134,16 @@ export async function deleteRestrictions(
 export async function getRestrictionsByOperation(
   client: Client,
   parameters: GetRestrictionsByOperationParameters,
+  options?: RequestOptions,
 ): Promise<GetRestrictionsByOperation> {
   const config: SendRequestOptions<GetRestrictionsByOperation> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: GetRestrictionsByOperationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -141,16 +157,18 @@ export async function getRestrictionsByOperation(
 export async function getRestrictionsForOperation(
   client: Client,
   parameters: GetRestrictionsForOperation,
+  options?: RequestOptions,
 ): Promise<ContentRestriction> {
   const config: SendRequestOptions<ContentRestriction> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       start: parameters.start,
       limit: parameters.limit,
     },
     schema: ContentRestrictionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -171,10 +189,12 @@ export async function getRestrictionsForOperation(
 export async function getIndividualGroupRestrictionStatusByGroupId(
   client: Client,
   parameters: GetIndividualGroupRestrictionStatusByGroupId,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}/byGroupId/${parameters.groupId}`,
     method: 'GET',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -189,6 +209,7 @@ export async function getIndividualGroupRestrictionStatusByGroupId(
 export async function addGroupToContentRestrictionByGroupId(
   client: Client,
   parameters: AddGroupToContentRestrictionByGroupId,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}/byGroupId/${parameters.groupId}`,
@@ -196,6 +217,7 @@ export async function addGroupToContentRestrictionByGroupId(
     headers: {
       'X-Atlassian-Token': 'no-check',
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -210,6 +232,7 @@ export async function addGroupToContentRestrictionByGroupId(
 export async function removeGroupFromContentRestriction(
   client: Client,
   parameters: RemoveGroupFromContentRestriction,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}/byGroupId/${parameters.groupId}`,
@@ -217,6 +240,7 @@ export async function removeGroupFromContentRestriction(
     headers: {
       'X-Atlassian-Token': 'no-check',
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -238,6 +262,7 @@ export async function removeGroupFromContentRestriction(
 export async function getContentRestrictionStatusForUser(
   client: Client,
   parameters: GetContentRestrictionStatusForUser,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}/user`,
@@ -247,6 +272,7 @@ export async function getContentRestrictionStatusForUser(
       username: parameters.username,
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -260,6 +286,7 @@ export async function getContentRestrictionStatusForUser(
 export async function addUserToContentRestriction(
   client: Client,
   parameters: AddUserToContentRestriction,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}/user`,
@@ -272,6 +299,7 @@ export async function addUserToContentRestriction(
       username: parameters.username,
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -286,6 +314,7 @@ export async function addUserToContentRestriction(
 export async function removeUserFromContentRestriction(
   client: Client,
   parameters: RemoveUserFromContentRestriction,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/restriction/byOperation/${parameters.operationKey}/user`,
@@ -298,6 +327,7 @@ export async function removeUserFromContentRestriction(
       username: parameters.username,
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

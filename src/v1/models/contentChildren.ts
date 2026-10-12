@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { ContentArraySchema, type ContentArray } from './contentArray';
+import { ContentArraySchema, type ContentArray, type ContentArrayInput } from './contentArray';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
 export interface ContentChildren {
@@ -22,16 +22,54 @@ export interface ContentChildren {
     slide?: string;
   };
   _links?: GenericLinks;
+  [key: string]: unknown;
 }
 
-export const ContentChildrenSchema: z.ZodType<ContentChildren> = apiObject({
-  attachment: z.lazy(() => ContentArraySchema).optional(),
-  comment: z.lazy(() => ContentArraySchema).optional(),
-  page: z.lazy(() => ContentArraySchema).optional(),
-  whiteboard: z.lazy(() => ContentArraySchema).optional(),
-  database: z.lazy(() => ContentArraySchema).optional(),
-  embed: z.lazy(() => ContentArraySchema).optional(),
-  folder: z.lazy(() => ContentArraySchema).optional(),
+export type ContentChildrenInput = unknown;
+
+export const ContentChildrenSchema: z.ZodType<ContentChildren, ContentChildrenInput> = apiObject({
+  attachment: (
+    z.lazy((): z.ZodType<ContentArray, ContentArrayInput> => ContentArraySchema) as z.ZodType<
+      ContentArray,
+      ContentArrayInput
+    >
+  ).optional(),
+  comment: (
+    z.lazy((): z.ZodType<ContentArray, ContentArrayInput> => ContentArraySchema) as z.ZodType<
+      ContentArray,
+      ContentArrayInput
+    >
+  ).optional(),
+  page: (
+    z.lazy((): z.ZodType<ContentArray, ContentArrayInput> => ContentArraySchema) as z.ZodType<
+      ContentArray,
+      ContentArrayInput
+    >
+  ).optional(),
+  whiteboard: (
+    z.lazy((): z.ZodType<ContentArray, ContentArrayInput> => ContentArraySchema) as z.ZodType<
+      ContentArray,
+      ContentArrayInput
+    >
+  ).optional(),
+  database: (
+    z.lazy((): z.ZodType<ContentArray, ContentArrayInput> => ContentArraySchema) as z.ZodType<
+      ContentArray,
+      ContentArrayInput
+    >
+  ).optional(),
+  embed: (
+    z.lazy((): z.ZodType<ContentArray, ContentArrayInput> => ContentArraySchema) as z.ZodType<
+      ContentArray,
+      ContentArrayInput
+    >
+  ).optional(),
+  folder: (
+    z.lazy((): z.ZodType<ContentArray, ContentArrayInput> => ContentArraySchema) as z.ZodType<
+      ContentArray,
+      ContentArrayInput
+    >
+  ).optional(),
   _expandable: apiObject({
     attachment: z.string().optional(),
     comment: z.string().optional(),

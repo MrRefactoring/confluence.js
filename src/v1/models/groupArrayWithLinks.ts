@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { GroupSchema } from './group';
 import { GenericLinksSchema } from './genericLinks';
-/** Same as GroupArray but with `_links` property. */
 
+/** Same as GroupArray but with `_links` property. */
 export const GroupArrayWithLinksSchema = apiObject({
   results: z.array(GroupSchema),
   start: z.number(),

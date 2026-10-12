@@ -2,13 +2,22 @@ export { httpMethodSchema } from './httpMethod.js';
 
 export type { HttpMethod } from './httpMethod.js';
 
-export { authSchema, authOAuth2Schema } from './auth.js';
+export {
+  authSchema,
+  authBasicSchema,
+  authBasicPasswordSchema,
+  authBearerSchema,
+  authOAuth2Schema,
+  authOAuth2ServerSchema,
+} from './auth.js';
 
-export type { Auth, AuthBasic, AuthBearer, AuthOAuth2 } from './auth.js';
+export type { Auth, AuthBasic, AuthBasicPassword, AuthBearer, AuthOAuth2, AuthOAuth2Server } from './auth.js';
 
 export { clientConfigSchema } from './clientConfig.js';
 
-export type { ClientConfig } from './clientConfig.js';
+export type { ClientConfig, CommonClientConfig, ParsedClientConfig, FetchLike } from './clientConfig.js';
+
+export type { RequestOptions } from './requestOptions.js';
 
 export { sendRequestOptionsSchema } from './sendRequestOptions.js';
 

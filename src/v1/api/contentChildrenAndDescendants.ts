@@ -8,7 +8,7 @@ import type { GetContentDescendants } from '../parameters/getContentDescendants'
 import type { GetDescendantsOfType } from '../parameters/getDescendantsOfType';
 import type { CopyPageHierarchy } from '../parameters/copyPageHierarchy';
 import type { CopyPage } from '../parameters/copyPage';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Move a page to a new location relative to a target page:
@@ -21,7 +21,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * they do not show up in the page tree display. To avoid this, never use `before` or `after` positions when the
  * `targetId` is a top-level page.
  */
-export async function movePage(client: Client, parameters: MovePageParameters): Promise<MovePage> {
+export async function movePage(
+  client: Client,
+  parameters: MovePageParameters,
+  options?: RequestOptions,
+): Promise<MovePage> {
   const config: SendRequestOptions<MovePage> = {
     url: `/wiki/rest/api/content/${parameters.pageId}/move/${parameters.position}/${parameters.targetId}`,
     method: 'PUT',
@@ -29,6 +33,7 @@ export async function movePage(client: Client, parameters: MovePageParameters): 
       'X-Atlassian-Token': 'no-check',
     },
     schema: MovePageSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -59,14 +64,16 @@ export async function movePage(client: Client, parameters: MovePageParameters): 
 export async function getContentDescendants(
   client: Client,
   parameters: GetContentDescendants,
+  options?: RequestOptions,
 ): Promise<ContentChildren> {
   const config: SendRequestOptions<ContentChildren> = {
     url: `/wiki/rest/api/content/${parameters.id}/descendant`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: ContentChildrenSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -96,17 +103,22 @@ export async function getContentDescendants(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space, and
  * permission to view the content if it is a page.
  */
-export async function getDescendantsOfType(client: Client, parameters: GetDescendantsOfType): Promise<ContentArray> {
+export async function getDescendantsOfType(
+  client: Client,
+  parameters: GetDescendantsOfType,
+  options?: RequestOptions,
+): Promise<ContentArray> {
   const config: SendRequestOptions<ContentArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/descendant/${parameters.type}`,
     method: 'GET',
     searchParams: {
       depth: parameters.depth,
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       start: parameters.start,
       limit: parameters.limit,
     },
     schema: ContentArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -124,7 +136,11 @@ export async function getDescendantsOfType(client: Client, parameters: GetDescen
  *
  * Use the /longtask/<taskId> REST API to get the copy task status.
  */
-export async function copyPageHierarchy(client: Client, parameters: CopyPageHierarchy): Promise<LongTask> {
+export async function copyPageHierarchy(
+  client: Client,
+  parameters: CopyPageHierarchy,
+  options?: RequestOptions,
+): Promise<LongTask> {
   const config: SendRequestOptions<LongTask> = {
     url: `/wiki/rest/api/content/${parameters.id}/pagehierarchy/copy`,
     method: 'POST',
@@ -142,6 +158,7 @@ export async function copyPageHierarchy(client: Client, parameters: CopyPageHier
       titleOptions: parameters.titleOptions,
     },
     schema: LongTaskSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -162,7 +179,7 @@ export async function copyPageHierarchy(client: Client, parameters: CopyPageHier
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Add' permission for the space that the
  * content will be copied in and permission to update the content if copying to an `existing_page`.
  */
-export async function copyPage(client: Client, parameters: CopyPage): Promise<Content> {
+export async function copyPage(client: Client, parameters: CopyPage, options?: RequestOptions): Promise<Content> {
   const config: SendRequestOptions<Content> = {
     url: `/wiki/rest/api/content/${parameters.id}/copy`,
     method: 'POST',
@@ -170,7 +187,7 @@ export async function copyPage(client: Client, parameters: CopyPage): Promise<Co
       'X-Atlassian-Token': 'no-check',
     },
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     body: {
       copyAttachments: parameters.copyAttachments,
@@ -183,6 +200,7 @@ export async function copyPage(client: Client, parameters: CopyPage): Promise<Co
       body: parameters.body,
     },
     schema: ContentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

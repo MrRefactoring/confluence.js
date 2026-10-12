@@ -2,7 +2,7 @@ import { SmartLinkSchema, type SmartLink } from '../models/smartLink';
 import type { CreateSmartLink } from '../parameters/createSmartLink';
 import type { GetSmartLinkById } from '../parameters/getSmartLinkById';
 import type { DeleteSmartLink } from '../parameters/deleteSmartLink';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Creates a Smart Link in the content tree in the space.
@@ -10,12 +10,17 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the corresponding space.
  * Permission to create a Smart Link in the content tree in the space.
  */
-export async function createSmartLink(client: Client, parameters: CreateSmartLink): Promise<SmartLink> {
+export async function createSmartLink(
+  client: Client,
+  parameters: CreateSmartLink,
+  options?: RequestOptions,
+): Promise<SmartLink> {
   const config: SendRequestOptions<SmartLink> = {
     url: '/wiki/api/v2/embeds',
     method: 'POST',
     body: parameters.body,
     schema: SmartLinkSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -27,7 +32,11 @@ export async function createSmartLink(client: Client, parameters: CreateSmartLin
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the Smart Link in the
  * content tree and its corresponding space.
  */
-export async function getSmartLinkById(client: Client, parameters: GetSmartLinkById): Promise<SmartLink> {
+export async function getSmartLinkById(
+  client: Client,
+  parameters: GetSmartLinkById,
+  options?: RequestOptions,
+): Promise<SmartLink> {
   const config: SendRequestOptions<SmartLink> = {
     url: `/wiki/api/v2/embeds/${parameters.id}`,
     method: 'GET',
@@ -38,6 +47,7 @@ export async function getSmartLinkById(client: Client, parameters: GetSmartLinkB
       'include-properties': parameters.includeProperties,
     },
     schema: SmartLinkSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -51,10 +61,15 @@ export async function getSmartLinkById(client: Client, parameters: GetSmartLinkB
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the Smart Link in the
  * content tree and its corresponding space. Permission to delete Smart Links in the content tree in the space.
  */
-export async function deleteSmartLink(client: Client, parameters: DeleteSmartLink): Promise<void> {
+export async function deleteSmartLink(
+  client: Client,
+  parameters: DeleteSmartLink,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/embeds/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

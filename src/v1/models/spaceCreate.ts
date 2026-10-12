@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SpaceDescriptionCreateSchema } from './spaceDescriptionCreate';
 import { SpacePermissionCreateSchema } from './spacePermissionCreate';
-/** This is the request object used when creating a new space. */
 
+/** This is the request object used when creating a new space. */
 export const SpaceCreateSchema = apiObject({
   /** The name of the new space. */
   name: z.string().max(200, 'name must be at most 200 characters'),

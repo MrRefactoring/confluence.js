@@ -1,11 +1,15 @@
 /**
  * The handful of places where the shared core has to name its own product.
  *
- * This file is generated. Everything else under `core/` is identical across the libraries, and stays that way by
- * reading these values rather than hard-coding a product name.
+ * This file is generated. Nothing else under `core/` names a product: whatever has to differ is read from here, so a
+ * library can take a newer core without a rename. The libraries are not obliged to be on the same core generation, and
+ * in practice they are not.
  */
-interface ProductInfo {
+export interface ProductInfo {
   packageName: string;
+  productName: string;
+  onSchemaMismatch: 'warn' | 'throw';
+  preserveSchemaMismatchBody: boolean;
   gatewaySlug: string;
   scopeHint: string;
 }
@@ -14,6 +18,9 @@ interface ProductInfo {
 export const PRODUCT: ProductInfo = {
   /** The npm package name, e.g. `confluence.js`. */
   packageName: 'confluence.js',
+  productName: 'Confluence',
+  onSchemaMismatch: 'throw' as 'warn' | 'throw',
+  preserveSchemaMismatchBody: ('true' as string) === 'true',
 
   /**
    * The Atlassian gateway slug, as in `https://api.atlassian.com/ex/<slug>/{cloudId}`.

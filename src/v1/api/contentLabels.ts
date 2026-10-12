@@ -2,7 +2,7 @@ import { LabelArraySchema, type LabelArray } from '../models/labelArray';
 import type { AddLabelsToContent } from '../parameters/addLabelsToContent';
 import type { RemoveLabelFromContentUsingQueryParameter } from '../parameters/removeLabelFromContentUsingQueryParameter';
 import type { RemoveLabelFromContent } from '../parameters/removeLabelFromContent';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Adds labels to a piece of content. Does not modify the existing labels.
@@ -15,7 +15,11 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
  */
-export async function addLabelsToContent(client: Client, parameters: AddLabelsToContent): Promise<LabelArray> {
+export async function addLabelsToContent(
+  client: Client,
+  parameters: AddLabelsToContent,
+  options?: RequestOptions,
+): Promise<LabelArray> {
   const config: SendRequestOptions<LabelArray> = {
     url: `/wiki/rest/api/content/${parameters.id}/label`,
     method: 'POST',
@@ -24,6 +28,7 @@ export async function addLabelsToContent(client: Client, parameters: AddLabelsTo
     },
     body: parameters.body,
     schema: LabelArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -42,6 +47,7 @@ export async function addLabelsToContent(client: Client, parameters: AddLabelsTo
 export async function removeLabelFromContentUsingQueryParameter(
   client: Client,
   parameters: RemoveLabelFromContentUsingQueryParameter,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/label`,
@@ -52,6 +58,7 @@ export async function removeLabelFromContentUsingQueryParameter(
     searchParams: {
       name: parameters.name,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -68,13 +75,18 @@ export async function removeLabelFromContentUsingQueryParameter(
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
  */
-export async function removeLabelFromContent(client: Client, parameters: RemoveLabelFromContent): Promise<void> {
+export async function removeLabelFromContent(
+  client: Client,
+  parameters: RemoveLabelFromContent,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/content/${parameters.id}/label/${parameters.label}`,
     method: 'DELETE',
     headers: {
       'X-Atlassian-Token': 'no-check',
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

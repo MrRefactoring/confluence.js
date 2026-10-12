@@ -1,4 +1,4 @@
-import { type ClientConfig, type Client, createClient, type Buffer } from '#/core';
+import { type ClientConfig, type Client, type RequestOptions, createClient, type Buffer } from '#/core';
 import * as audit from './api/audit';
 import * as content from './api/content';
 import * as experimental from './api/experimental';
@@ -219,294 +219,378 @@ export function createV1Client(clientConfig: ClientConfig | Client) {
 
   return {
     audit: {
-      getAuditRecords: (parameters?: GetAuditRecords): Promise<AuditRecordArray> =>
-        audit.getAuditRecords(client, parameters),
-      createAuditRecord: (parameters: CreateAuditRecord): Promise<AuditRecord> =>
-        audit.createAuditRecord(client, parameters),
-      exportAuditRecords: (parameters?: ExportAuditRecords): Promise<unknown> =>
-        audit.exportAuditRecords(client, parameters),
-      getRetentionPeriod: (): Promise<RetentionPeriod> => audit.getRetentionPeriod(client),
-      setRetentionPeriod: (parameters: SetRetentionPeriod): Promise<RetentionPeriod> =>
-        audit.setRetentionPeriod(client, parameters),
-      getAuditRecordsForTimePeriod: (parameters?: GetAuditRecordsForTimePeriod): Promise<AuditRecordArray> =>
-        audit.getAuditRecordsForTimePeriod(client, parameters),
+      getAuditRecords: (parameters?: GetAuditRecords, options?: RequestOptions): Promise<AuditRecordArray> =>
+        audit.getAuditRecords(client, parameters, options),
+      createAuditRecord: (parameters: CreateAuditRecord, options?: RequestOptions): Promise<AuditRecord> =>
+        audit.createAuditRecord(client, parameters, options),
+      exportAuditRecords: (parameters?: ExportAuditRecords, options?: RequestOptions): Promise<Buffer> =>
+        audit.exportAuditRecords(client, parameters, options),
+      getRetentionPeriod: (options?: RequestOptions): Promise<RetentionPeriod> =>
+        audit.getRetentionPeriod(client, options),
+      setRetentionPeriod: (parameters: SetRetentionPeriod, options?: RequestOptions): Promise<RetentionPeriod> =>
+        audit.setRetentionPeriod(client, parameters, options),
+      getAuditRecordsForTimePeriod: (
+        parameters?: GetAuditRecordsForTimePeriod,
+        options?: RequestOptions,
+      ): Promise<AuditRecordArray> => audit.getAuditRecordsForTimePeriod(client, parameters, options),
     },
     content: {
-      archivePages: (parameters: ArchivePages): Promise<LongTask> => content.archivePages(client, parameters),
-      publishLegacyDraft: (parameters: PublishLegacyDraft): Promise<Content> =>
-        content.publishLegacyDraft(client, parameters),
-      publishSharedDraft: (parameters: PublishSharedDraft): Promise<Content> =>
-        content.publishSharedDraft(client, parameters),
-      searchContentByCQL: (parameters: SearchContentByCQL): Promise<ContentArray> =>
-        content.searchContentByCQL(client, parameters),
+      archivePages: (parameters: ArchivePages, options?: RequestOptions): Promise<LongTask> =>
+        content.archivePages(client, parameters, options),
+      publishLegacyDraft: (parameters: PublishLegacyDraft, options?: RequestOptions): Promise<Content> =>
+        content.publishLegacyDraft(client, parameters, options),
+      publishSharedDraft: (parameters: PublishSharedDraft, options?: RequestOptions): Promise<Content> =>
+        content.publishSharedDraft(client, parameters, options),
+      searchContentByCQL: (parameters: SearchContentByCQL, options?: RequestOptions): Promise<ContentArray> =>
+        content.searchContentByCQL(client, parameters, options),
     },
     experimental: {
-      deletePageTree: (parameters: DeletePageTree): Promise<LongTask> =>
-        experimental.deletePageTree(client, parameters),
-      getLabelsForSpace: (parameters: GetLabelsForSpace): Promise<LabelArray> =>
-        experimental.getLabelsForSpace(client, parameters),
-      addLabelsToSpace: (parameters: AddLabelsToSpace): Promise<LabelArray> =>
-        experimental.addLabelsToSpace(client, parameters),
-      deleteLabelFromSpace: (parameters: DeleteLabelFromSpace): Promise<void> =>
-        experimental.deleteLabelFromSpace(client, parameters),
+      deletePageTree: (parameters: DeletePageTree, options?: RequestOptions): Promise<LongTask> =>
+        experimental.deletePageTree(client, parameters, options),
+      getLabelsForSpace: (parameters: GetLabelsForSpace, options?: RequestOptions): Promise<LabelArray> =>
+        experimental.getLabelsForSpace(client, parameters, options),
+      addLabelsToSpace: (parameters: AddLabelsToSpace, options?: RequestOptions): Promise<LabelArray> =>
+        experimental.addLabelsToSpace(client, parameters, options),
+      deleteLabelFromSpace: (parameters: DeleteLabelFromSpace, options?: RequestOptions): Promise<void> =>
+        experimental.deleteLabelFromSpace(client, parameters, options),
     },
     contentChildrenAndDescendants: {
-      movePage: (parameters: MovePage): Promise<MovePageModel> =>
-        contentChildrenAndDescendants.movePage(client, parameters),
-      getContentDescendants: (parameters: GetContentDescendants): Promise<ContentChildren> =>
-        contentChildrenAndDescendants.getContentDescendants(client, parameters),
-      getDescendantsOfType: (parameters: GetDescendantsOfType): Promise<ContentArray> =>
-        contentChildrenAndDescendants.getDescendantsOfType(client, parameters),
-      copyPageHierarchy: (parameters: CopyPageHierarchy): Promise<LongTask> =>
-        contentChildrenAndDescendants.copyPageHierarchy(client, parameters),
-      copyPage: (parameters: CopyPage): Promise<Content> => contentChildrenAndDescendants.copyPage(client, parameters),
+      movePage: (parameters: MovePage, options?: RequestOptions): Promise<MovePageModel> =>
+        contentChildrenAndDescendants.movePage(client, parameters, options),
+      getContentDescendants: (parameters: GetContentDescendants, options?: RequestOptions): Promise<ContentChildren> =>
+        contentChildrenAndDescendants.getContentDescendants(client, parameters, options),
+      getDescendantsOfType: (parameters: GetDescendantsOfType, options?: RequestOptions): Promise<ContentArray> =>
+        contentChildrenAndDescendants.getDescendantsOfType(client, parameters, options),
+      copyPageHierarchy: (parameters: CopyPageHierarchy, options?: RequestOptions): Promise<LongTask> =>
+        contentChildrenAndDescendants.copyPageHierarchy(client, parameters, options),
+      copyPage: (parameters: CopyPage, options?: RequestOptions): Promise<Content> =>
+        contentChildrenAndDescendants.copyPage(client, parameters, options),
     },
     contentAttachments: {
-      createAttachment: (parameters: CreateAttachment): Promise<ContentArray> =>
-        contentAttachments.createAttachment(client, parameters),
-      createOrUpdateAttachments: (parameters: CreateOrUpdateAttachments): Promise<ContentArray> =>
-        contentAttachments.createOrUpdateAttachments(client, parameters),
-      updateAttachmentProperties: (parameters: UpdateAttachmentProperties): Promise<Content> =>
-        contentAttachments.updateAttachmentProperties(client, parameters),
-      updateAttachmentData: (parameters: UpdateAttachmentData): Promise<Content> =>
-        contentAttachments.updateAttachmentData(client, parameters),
-      downloadAttatchment: (parameters: DownloadAttatchment): Promise<Buffer> =>
-        contentAttachments.downloadAttatchment(client, parameters),
+      createAttachment: (parameters: CreateAttachment, options?: RequestOptions): Promise<ContentArray> =>
+        contentAttachments.createAttachment(client, parameters, options),
+      createOrUpdateAttachments: (
+        parameters: CreateOrUpdateAttachments,
+        options?: RequestOptions,
+      ): Promise<ContentArray> => contentAttachments.createOrUpdateAttachments(client, parameters, options),
+      updateAttachmentProperties: (
+        parameters: UpdateAttachmentProperties,
+        options?: RequestOptions,
+      ): Promise<Content> => contentAttachments.updateAttachmentProperties(client, parameters, options),
+      updateAttachmentData: (parameters: UpdateAttachmentData, options?: RequestOptions): Promise<Content> =>
+        contentAttachments.updateAttachmentData(client, parameters, options),
+      downloadAttatchment: (parameters: DownloadAttatchment, options?: RequestOptions): Promise<Buffer> =>
+        contentAttachments.downloadAttatchment(client, parameters, options),
     },
     contentMacroBody: {
-      getMacroBodyByMacroId: (parameters: GetMacroBodyByMacroId): Promise<MacroInstance> =>
-        contentMacroBody.getMacroBodyByMacroId(client, parameters),
-      getAndConvertMacroBodyByMacroId: (parameters: GetAndConvertMacroBodyByMacroId): Promise<ContentBody> =>
-        contentMacroBody.getAndConvertMacroBodyByMacroId(client, parameters),
-      getAndAsyncConvertMacroBodyByMacroId: (parameters: GetAndAsyncConvertMacroBodyByMacroId): Promise<AsyncId> =>
-        contentMacroBody.getAndAsyncConvertMacroBodyByMacroId(client, parameters),
+      getMacroBodyByMacroId: (parameters: GetMacroBodyByMacroId, options?: RequestOptions): Promise<MacroInstance> =>
+        contentMacroBody.getMacroBodyByMacroId(client, parameters, options),
+      getAndConvertMacroBodyByMacroId: (
+        parameters: GetAndConvertMacroBodyByMacroId,
+        options?: RequestOptions,
+      ): Promise<ContentBody> => contentMacroBody.getAndConvertMacroBodyByMacroId(client, parameters, options),
+      getAndAsyncConvertMacroBodyByMacroId: (
+        parameters: GetAndAsyncConvertMacroBodyByMacroId,
+        options?: RequestOptions,
+      ): Promise<AsyncId> => contentMacroBody.getAndAsyncConvertMacroBodyByMacroId(client, parameters, options),
     },
     contentLabels: {
-      addLabelsToContent: (parameters: AddLabelsToContent): Promise<LabelArray> =>
-        contentLabels.addLabelsToContent(client, parameters),
+      addLabelsToContent: (parameters: AddLabelsToContent, options?: RequestOptions): Promise<LabelArray> =>
+        contentLabels.addLabelsToContent(client, parameters, options),
       removeLabelFromContentUsingQueryParameter: (
         parameters: RemoveLabelFromContentUsingQueryParameter,
-      ): Promise<void> => contentLabels.removeLabelFromContentUsingQueryParameter(client, parameters),
-      removeLabelFromContent: (parameters: RemoveLabelFromContent): Promise<void> =>
-        contentLabels.removeLabelFromContent(client, parameters),
+        options?: RequestOptions,
+      ): Promise<void> => contentLabels.removeLabelFromContentUsingQueryParameter(client, parameters, options),
+      removeLabelFromContent: (parameters: RemoveLabelFromContent, options?: RequestOptions): Promise<void> =>
+        contentLabels.removeLabelFromContent(client, parameters, options),
     },
     contentWatches: {
-      getWatchesForPage: (parameters: GetWatchesForPage): Promise<WatchArray> =>
-        contentWatches.getWatchesForPage(client, parameters),
-      getWatchesForSpace: (parameters: GetWatchesForSpace): Promise<SpaceWatchArray> =>
-        contentWatches.getWatchesForSpace(client, parameters),
-      getWatchersForSpace: (parameters: GetWatchersForSpace): Promise<SpaceWatchArray> =>
-        contentWatches.getWatchersForSpace(client, parameters),
-      getContentWatchStatus: (parameters: GetContentWatchStatus): Promise<UserWatch> =>
-        contentWatches.getContentWatchStatus(client, parameters),
-      addContentWatcher: (parameters: AddContentWatcher): Promise<void> =>
-        contentWatches.addContentWatcher(client, parameters),
-      removeContentWatcher: (parameters: RemoveContentWatcher): Promise<void> =>
-        contentWatches.removeContentWatcher(client, parameters),
-      isWatchingLabel: (parameters: IsWatchingLabel): Promise<UserWatch> =>
-        contentWatches.isWatchingLabel(client, parameters),
-      addLabelWatcher: (parameters: AddLabelWatcher): Promise<void> =>
-        contentWatches.addLabelWatcher(client, parameters),
-      removeLabelWatcher: (parameters: RemoveLabelWatcher): Promise<void> =>
-        contentWatches.removeLabelWatcher(client, parameters),
-      isWatchingSpace: (parameters: IsWatchingSpace): Promise<UserWatch> =>
-        contentWatches.isWatchingSpace(client, parameters),
-      addSpaceWatcher: (parameters: AddSpaceWatcher): Promise<void> =>
-        contentWatches.addSpaceWatcher(client, parameters),
-      removeSpaceWatch: (parameters: RemoveSpaceWatch): Promise<void> =>
-        contentWatches.removeSpaceWatch(client, parameters),
+      getWatchesForPage: (parameters: GetWatchesForPage, options?: RequestOptions): Promise<WatchArray> =>
+        contentWatches.getWatchesForPage(client, parameters, options),
+      getWatchesForSpace: (parameters: GetWatchesForSpace, options?: RequestOptions): Promise<SpaceWatchArray> =>
+        contentWatches.getWatchesForSpace(client, parameters, options),
+      getWatchersForSpace: (parameters: GetWatchersForSpace, options?: RequestOptions): Promise<SpaceWatchArray> =>
+        contentWatches.getWatchersForSpace(client, parameters, options),
+      getContentWatchStatus: (parameters: GetContentWatchStatus, options?: RequestOptions): Promise<UserWatch> =>
+        contentWatches.getContentWatchStatus(client, parameters, options),
+      addContentWatcher: (parameters: AddContentWatcher, options?: RequestOptions): Promise<void> =>
+        contentWatches.addContentWatcher(client, parameters, options),
+      removeContentWatcher: (parameters: RemoveContentWatcher, options?: RequestOptions): Promise<void> =>
+        contentWatches.removeContentWatcher(client, parameters, options),
+      isWatchingLabel: (parameters: IsWatchingLabel, options?: RequestOptions): Promise<UserWatch> =>
+        contentWatches.isWatchingLabel(client, parameters, options),
+      addLabelWatcher: (parameters: AddLabelWatcher, options?: RequestOptions): Promise<void> =>
+        contentWatches.addLabelWatcher(client, parameters, options),
+      removeLabelWatcher: (parameters: RemoveLabelWatcher, options?: RequestOptions): Promise<void> =>
+        contentWatches.removeLabelWatcher(client, parameters, options),
+      isWatchingSpace: (parameters: IsWatchingSpace, options?: RequestOptions): Promise<UserWatch> =>
+        contentWatches.isWatchingSpace(client, parameters, options),
+      addSpaceWatcher: (parameters: AddSpaceWatcher, options?: RequestOptions): Promise<void> =>
+        contentWatches.addSpaceWatcher(client, parameters, options),
+      removeSpaceWatch: (parameters: RemoveSpaceWatch, options?: RequestOptions): Promise<void> =>
+        contentWatches.removeSpaceWatch(client, parameters, options),
     },
     contentPermissions: {
-      checkContentPermission: (parameters: CheckContentPermission): Promise<PermissionCheckResponse> =>
-        contentPermissions.checkContentPermission(client, parameters),
+      checkContentPermission: (
+        parameters: CheckContentPermission,
+        options?: RequestOptions,
+      ): Promise<PermissionCheckResponse> => contentPermissions.checkContentPermission(client, parameters, options),
     },
     contentRestrictions: {
-      getRestrictions: (parameters: GetRestrictions): Promise<ContentRestrictionArray> =>
-        contentRestrictions.getRestrictions(client, parameters),
-      addRestrictions: (parameters: AddRestrictions): Promise<ContentRestrictionArray> =>
-        contentRestrictions.addRestrictions(client, parameters),
-      updateRestrictions: (parameters: UpdateRestrictions): Promise<ContentRestrictionArray> =>
-        contentRestrictions.updateRestrictions(client, parameters),
-      deleteRestrictions: (parameters: DeleteRestrictions): Promise<ContentRestrictionArray> =>
-        contentRestrictions.deleteRestrictions(client, parameters),
-      getRestrictionsByOperation: (parameters: GetRestrictionsByOperation): Promise<GetRestrictionsByOperationModel> =>
-        contentRestrictions.getRestrictionsByOperation(client, parameters),
-      getRestrictionsForOperation: (parameters: GetRestrictionsForOperation): Promise<ContentRestriction> =>
-        contentRestrictions.getRestrictionsForOperation(client, parameters),
+      getRestrictions: (parameters: GetRestrictions, options?: RequestOptions): Promise<ContentRestrictionArray> =>
+        contentRestrictions.getRestrictions(client, parameters, options),
+      addRestrictions: (parameters: AddRestrictions, options?: RequestOptions): Promise<ContentRestrictionArray> =>
+        contentRestrictions.addRestrictions(client, parameters, options),
+      updateRestrictions: (
+        parameters: UpdateRestrictions,
+        options?: RequestOptions,
+      ): Promise<ContentRestrictionArray> => contentRestrictions.updateRestrictions(client, parameters, options),
+      deleteRestrictions: (
+        parameters: DeleteRestrictions,
+        options?: RequestOptions,
+      ): Promise<ContentRestrictionArray> => contentRestrictions.deleteRestrictions(client, parameters, options),
+      getRestrictionsByOperation: (
+        parameters: GetRestrictionsByOperation,
+        options?: RequestOptions,
+      ): Promise<GetRestrictionsByOperationModel> =>
+        contentRestrictions.getRestrictionsByOperation(client, parameters, options),
+      getRestrictionsForOperation: (
+        parameters: GetRestrictionsForOperation,
+        options?: RequestOptions,
+      ): Promise<ContentRestriction> => contentRestrictions.getRestrictionsForOperation(client, parameters, options),
       getIndividualGroupRestrictionStatusByGroupId: (
         parameters: GetIndividualGroupRestrictionStatusByGroupId,
-      ): Promise<void> => contentRestrictions.getIndividualGroupRestrictionStatusByGroupId(client, parameters),
-      addGroupToContentRestrictionByGroupId: (parameters: AddGroupToContentRestrictionByGroupId): Promise<void> =>
-        contentRestrictions.addGroupToContentRestrictionByGroupId(client, parameters),
-      removeGroupFromContentRestriction: (parameters: RemoveGroupFromContentRestriction): Promise<void> =>
-        contentRestrictions.removeGroupFromContentRestriction(client, parameters),
-      getContentRestrictionStatusForUser: (parameters: GetContentRestrictionStatusForUser): Promise<void> =>
-        contentRestrictions.getContentRestrictionStatusForUser(client, parameters),
-      addUserToContentRestriction: (parameters: AddUserToContentRestriction): Promise<void> =>
-        contentRestrictions.addUserToContentRestriction(client, parameters),
-      removeUserFromContentRestriction: (parameters: RemoveUserFromContentRestriction): Promise<void> =>
-        contentRestrictions.removeUserFromContentRestriction(client, parameters),
+        options?: RequestOptions,
+      ): Promise<void> => contentRestrictions.getIndividualGroupRestrictionStatusByGroupId(client, parameters, options),
+      addGroupToContentRestrictionByGroupId: (
+        parameters: AddGroupToContentRestrictionByGroupId,
+        options?: RequestOptions,
+      ): Promise<void> => contentRestrictions.addGroupToContentRestrictionByGroupId(client, parameters, options),
+      removeGroupFromContentRestriction: (
+        parameters: RemoveGroupFromContentRestriction,
+        options?: RequestOptions,
+      ): Promise<void> => contentRestrictions.removeGroupFromContentRestriction(client, parameters, options),
+      getContentRestrictionStatusForUser: (
+        parameters: GetContentRestrictionStatusForUser,
+        options?: RequestOptions,
+      ): Promise<void> => contentRestrictions.getContentRestrictionStatusForUser(client, parameters, options),
+      addUserToContentRestriction: (parameters: AddUserToContentRestriction, options?: RequestOptions): Promise<void> =>
+        contentRestrictions.addUserToContentRestriction(client, parameters, options),
+      removeUserFromContentRestriction: (
+        parameters: RemoveUserFromContentRestriction,
+        options?: RequestOptions,
+      ): Promise<void> => contentRestrictions.removeUserFromContentRestriction(client, parameters, options),
     },
     contentStates: {
-      getContentState: (parameters: GetContentState): Promise<ContentStateResponse> =>
-        contentStates.getContentState(client, parameters),
-      setContentState: (parameters: SetContentState): Promise<ContentStateResponse> =>
-        contentStates.setContentState(client, parameters),
-      removeContentState: (parameters: RemoveContentState): Promise<ContentStateResponse> =>
-        contentStates.removeContentState(client, parameters),
-      getAvailableContentStates: (parameters: GetAvailableContentStates): Promise<AvailableContentStates> =>
-        contentStates.getAvailableContentStates(client, parameters),
-      getCustomContentStates: (): Promise<ContentState[]> => contentStates.getCustomContentStates(client),
-      getSpaceContentStates: (parameters: GetSpaceContentStates): Promise<ContentState[]> =>
-        contentStates.getSpaceContentStates(client, parameters),
-      getContentStateSettings: (parameters: GetContentStateSettings): Promise<ContentStateSettings> =>
-        contentStates.getContentStateSettings(client, parameters),
-      getContentsWithState: (parameters: GetContentsWithState): Promise<ContentArray> =>
-        contentStates.getContentsWithState(client, parameters),
+      getContentState: (parameters: GetContentState, options?: RequestOptions): Promise<ContentStateResponse> =>
+        contentStates.getContentState(client, parameters, options),
+      setContentState: (parameters: SetContentState, options?: RequestOptions): Promise<ContentStateResponse> =>
+        contentStates.setContentState(client, parameters, options),
+      removeContentState: (parameters: RemoveContentState, options?: RequestOptions): Promise<ContentStateResponse> =>
+        contentStates.removeContentState(client, parameters, options),
+      getAvailableContentStates: (
+        parameters: GetAvailableContentStates,
+        options?: RequestOptions,
+      ): Promise<AvailableContentStates> => contentStates.getAvailableContentStates(client, parameters, options),
+      getCustomContentStates: (options?: RequestOptions): Promise<ContentState[]> =>
+        contentStates.getCustomContentStates(client, options),
+      getSpaceContentStates: (parameters: GetSpaceContentStates, options?: RequestOptions): Promise<ContentState[]> =>
+        contentStates.getSpaceContentStates(client, parameters, options),
+      getContentStateSettings: (
+        parameters: GetContentStateSettings,
+        options?: RequestOptions,
+      ): Promise<ContentStateSettings> => contentStates.getContentStateSettings(client, parameters, options),
+      getContentsWithState: (parameters: GetContentsWithState, options?: RequestOptions): Promise<ContentArray> =>
+        contentStates.getContentsWithState(client, parameters, options),
     },
     contentVersions: {
-      restoreContentVersion: (parameters: RestoreContentVersion): Promise<Version> =>
-        contentVersions.restoreContentVersion(client, parameters),
-      deleteContentVersion: (parameters: DeleteContentVersion): Promise<void> =>
-        contentVersions.deleteContentVersion(client, parameters),
+      restoreContentVersion: (parameters: RestoreContentVersion, options?: RequestOptions): Promise<Version> =>
+        contentVersions.restoreContentVersion(client, parameters, options),
+      deleteContentVersion: (parameters: DeleteContentVersion, options?: RequestOptions): Promise<void> =>
+        contentVersions.deleteContentVersion(client, parameters, options),
     },
     contentBody: {
-      asyncConvertContentBodyRequest: (parameters: AsyncConvertContentBodyRequest): Promise<AsyncId> =>
-        contentBody.asyncConvertContentBodyRequest(client, parameters),
-      asyncConvertContentBodyResponse: (parameters: AsyncConvertContentBodyResponse): Promise<AsyncContentBody> =>
-        contentBody.asyncConvertContentBodyResponse(client, parameters),
+      asyncConvertContentBodyRequest: (
+        parameters: AsyncConvertContentBodyRequest,
+        options?: RequestOptions,
+      ): Promise<AsyncId> => contentBody.asyncConvertContentBodyRequest(client, parameters, options),
+      asyncConvertContentBodyResponse: (
+        parameters: AsyncConvertContentBodyResponse,
+        options?: RequestOptions,
+      ): Promise<AsyncContentBody> => contentBody.asyncConvertContentBodyResponse(client, parameters, options),
       bulkAsyncConvertContentBodyResponse: (
         parameters: BulkAsyncConvertContentBodyResponse,
-      ): Promise<AsyncContentBodyArray> => contentBody.bulkAsyncConvertContentBodyResponse(client, parameters),
-      bulkAsyncConvertContentBodyRequest: (parameters: BulkAsyncConvertContentBodyRequest): Promise<AsyncIdArray> =>
-        contentBody.bulkAsyncConvertContentBodyRequest(client, parameters),
+        options?: RequestOptions,
+      ): Promise<AsyncContentBodyArray> => contentBody.bulkAsyncConvertContentBodyResponse(client, parameters, options),
+      bulkAsyncConvertContentBodyRequest: (
+        parameters: BulkAsyncConvertContentBodyRequest,
+        options?: RequestOptions,
+      ): Promise<AsyncIdArray> => contentBody.bulkAsyncConvertContentBodyRequest(client, parameters, options),
     },
     labelInfo: {
-      getAllLabelContent: (parameters: GetAllLabelContent): Promise<LabelDetails> =>
-        labelInfo.getAllLabelContent(client, parameters),
+      getAllLabelContent: (parameters: GetAllLabelContent, options?: RequestOptions): Promise<LabelDetails> =>
+        labelInfo.getAllLabelContent(client, parameters, options),
     },
     group: {
-      getGroups: (parameters?: GetGroups): Promise<GroupArrayWithLinks> => group.getGroups(client, parameters),
-      createGroup: (parameters: CreateGroup): Promise<Group> => group.createGroup(client, parameters),
-      getGroupByGroupId: (parameters: GetGroupByGroupId): Promise<Group> => group.getGroupByGroupId(client, parameters),
-      removeGroupById: (parameters: RemoveGroupById): Promise<void> => group.removeGroupById(client, parameters),
-      searchGroups: (parameters: SearchGroups): Promise<GroupArrayWithLinks> => group.searchGroups(client, parameters),
-      getGroupMembersByGroupId: (parameters: GetGroupMembersByGroupId): Promise<UserArray> =>
-        group.getGroupMembersByGroupId(client, parameters),
-      addUserToGroupByGroupId: (parameters: AddUserToGroupByGroupId): Promise<void> =>
-        group.addUserToGroupByGroupId(client, parameters),
-      removeMemberFromGroupByGroupId: (parameters: RemoveMemberFromGroupByGroupId): Promise<void> =>
-        group.removeMemberFromGroupByGroupId(client, parameters),
+      getGroups: (parameters?: GetGroups, options?: RequestOptions): Promise<GroupArrayWithLinks> =>
+        group.getGroups(client, parameters, options),
+      createGroup: (parameters: CreateGroup, options?: RequestOptions): Promise<Group> =>
+        group.createGroup(client, parameters, options),
+      getGroupByGroupId: (parameters: GetGroupByGroupId, options?: RequestOptions): Promise<Group> =>
+        group.getGroupByGroupId(client, parameters, options),
+      removeGroupById: (parameters: RemoveGroupById, options?: RequestOptions): Promise<void> =>
+        group.removeGroupById(client, parameters, options),
+      searchGroups: (parameters: SearchGroups, options?: RequestOptions): Promise<GroupArrayWithLinks> =>
+        group.searchGroups(client, parameters, options),
+      getGroupMembersByGroupId: (parameters: GetGroupMembersByGroupId, options?: RequestOptions): Promise<UserArray> =>
+        group.getGroupMembersByGroupId(client, parameters, options),
+      addUserToGroupByGroupId: (parameters: AddUserToGroupByGroupId, options?: RequestOptions): Promise<void> =>
+        group.addUserToGroupByGroupId(client, parameters, options),
+      removeMemberFromGroupByGroupId: (
+        parameters: RemoveMemberFromGroupByGroupId,
+        options?: RequestOptions,
+      ): Promise<void> => group.removeMemberFromGroupByGroupId(client, parameters, options),
     },
     longRunningTask: {
-      getTasks: (parameters?: GetTasks): Promise<LongTaskStatusArray> => longRunningTask.getTasks(client, parameters),
-      getTask: (parameters: GetTask): Promise<LongTaskStatusWithLinks> => longRunningTask.getTask(client, parameters),
+      getTasks: (parameters?: GetTasks, options?: RequestOptions): Promise<LongTaskStatusArray> =>
+        longRunningTask.getTasks(client, parameters, options),
+      getTask: (parameters: GetTask, options?: RequestOptions): Promise<LongTaskStatusWithLinks> =>
+        longRunningTask.getTask(client, parameters, options),
     },
     relation: {
-      findTargetFromSource: (parameters: FindTargetFromSource): Promise<RelationArray> =>
-        relation.findTargetFromSource(client, parameters),
-      getRelationship: (parameters: GetRelationship): Promise<Relation> => relation.getRelationship(client, parameters),
-      createRelationship: (parameters: CreateRelationship): Promise<Relation> =>
-        relation.createRelationship(client, parameters),
-      deleteRelationship: (parameters: DeleteRelationship): Promise<void> =>
-        relation.deleteRelationship(client, parameters),
-      findSourcesForTarget: (parameters: FindSourcesForTarget): Promise<RelationArray> =>
-        relation.findSourcesForTarget(client, parameters),
+      findTargetFromSource: (parameters: FindTargetFromSource, options?: RequestOptions): Promise<RelationArray> =>
+        relation.findTargetFromSource(client, parameters, options),
+      getRelationship: (parameters: GetRelationship, options?: RequestOptions): Promise<Relation> =>
+        relation.getRelationship(client, parameters, options),
+      createRelationship: (parameters: CreateRelationship, options?: RequestOptions): Promise<Relation> =>
+        relation.createRelationship(client, parameters, options),
+      deleteRelationship: (parameters: DeleteRelationship, options?: RequestOptions): Promise<void> =>
+        relation.deleteRelationship(client, parameters, options),
+      findSourcesForTarget: (parameters: FindSourcesForTarget, options?: RequestOptions): Promise<RelationArray> =>
+        relation.findSourcesForTarget(client, parameters, options),
     },
     search: {
-      searchByCQL: (parameters: SearchByCQL): Promise<SearchPageResponseSearchResult> =>
-        search.searchByCQL(client, parameters),
-      searchUser: (parameters: SearchUser): Promise<SearchPageResponseSearchResult> =>
-        search.searchUser(client, parameters),
+      searchByCQL: (parameters: SearchByCQL, options?: RequestOptions): Promise<SearchPageResponseSearchResult> =>
+        search.searchByCQL(client, parameters, options),
+      searchUser: (parameters: SearchUser, options?: RequestOptions): Promise<SearchPageResponseSearchResult> =>
+        search.searchUser(client, parameters, options),
     },
     settings: {
-      getLookAndFeelSettings: (parameters?: GetLookAndFeelSettings): Promise<LookAndFeelSettings> =>
-        settings.getLookAndFeelSettings(client, parameters),
-      updateLookAndFeel: (parameters: UpdateLookAndFeel): Promise<LookAndFeelSelection> =>
-        settings.updateLookAndFeel(client, parameters),
-      updateLookAndFeelSettings: (parameters: UpdateLookAndFeelSettings): Promise<LookAndFeelWithLinks> =>
-        settings.updateLookAndFeelSettings(client, parameters),
-      resetLookAndFeelSettings: (parameters: ResetLookAndFeelSettings): Promise<void> =>
-        settings.resetLookAndFeelSettings(client, parameters),
-      getSystemInfo: (): Promise<SystemInfoEntity> => settings.getSystemInfo(client),
+      getLookAndFeelSettings: (
+        parameters?: GetLookAndFeelSettings,
+        options?: RequestOptions,
+      ): Promise<LookAndFeelSettings> => settings.getLookAndFeelSettings(client, parameters, options),
+      updateLookAndFeel: (parameters: UpdateLookAndFeel, options?: RequestOptions): Promise<LookAndFeelSelection> =>
+        settings.updateLookAndFeel(client, parameters, options),
+      updateLookAndFeelSettings: (
+        parameters: UpdateLookAndFeelSettings,
+        options?: RequestOptions,
+      ): Promise<LookAndFeelWithLinks> => settings.updateLookAndFeelSettings(client, parameters, options),
+      resetLookAndFeelSettings: (parameters: ResetLookAndFeelSettings, options?: RequestOptions): Promise<void> =>
+        settings.resetLookAndFeelSettings(client, parameters, options),
+      getSystemInfo: (options?: RequestOptions): Promise<SystemInfoEntity> => settings.getSystemInfo(client, options),
     },
     themes: {
-      getThemes: (parameters?: GetThemes): Promise<ThemeArray> => themes.getThemes(client, parameters),
-      getGlobalTheme: (): Promise<Theme> => themes.getGlobalTheme(client),
-      getTheme: (parameters: GetTheme): Promise<Theme> => themes.getTheme(client, parameters),
-      getSpaceTheme: (parameters: GetSpaceTheme): Promise<Theme> => themes.getSpaceTheme(client, parameters),
-      setSpaceTheme: (parameters: SetSpaceTheme): Promise<Theme> => themes.setSpaceTheme(client, parameters),
-      resetSpaceTheme: (parameters: ResetSpaceTheme): Promise<void> => themes.resetSpaceTheme(client, parameters),
+      getThemes: (parameters?: GetThemes, options?: RequestOptions): Promise<ThemeArray> =>
+        themes.getThemes(client, parameters, options),
+      getGlobalTheme: (options?: RequestOptions): Promise<Theme> => themes.getGlobalTheme(client, options),
+      getTheme: (parameters: GetTheme, options?: RequestOptions): Promise<Theme> =>
+        themes.getTheme(client, parameters, options),
+      getSpaceTheme: (parameters: GetSpaceTheme, options?: RequestOptions): Promise<Theme> =>
+        themes.getSpaceTheme(client, parameters, options),
+      setSpaceTheme: (parameters: SetSpaceTheme, options?: RequestOptions): Promise<Theme> =>
+        themes.setSpaceTheme(client, parameters, options),
+      resetSpaceTheme: (parameters: ResetSpaceTheme, options?: RequestOptions): Promise<void> =>
+        themes.resetSpaceTheme(client, parameters, options),
     },
     space: {
-      createSpace: (parameters: CreateSpace): Promise<Space> => space.createSpace(client, parameters),
-      createPrivateSpace: (parameters: CreatePrivateSpace): Promise<Space> =>
-        space.createPrivateSpace(client, parameters),
-      updateSpace: (parameters: UpdateSpace): Promise<Space> => space.updateSpace(client, parameters),
-      deleteSpace: (parameters: DeleteSpace): Promise<LongTask> => space.deleteSpace(client, parameters),
+      createSpace: (parameters: CreateSpace, options?: RequestOptions): Promise<Space> =>
+        space.createSpace(client, parameters, options),
+      createPrivateSpace: (parameters: CreatePrivateSpace, options?: RequestOptions): Promise<Space> =>
+        space.createPrivateSpace(client, parameters, options),
+      updateSpace: (parameters: UpdateSpace, options?: RequestOptions): Promise<Space> =>
+        space.updateSpace(client, parameters, options),
+      deleteSpace: (parameters: DeleteSpace, options?: RequestOptions): Promise<LongTask> =>
+        space.deleteSpace(client, parameters, options),
     },
     spacePermissions: {
-      addPermissionToSpace: (parameters: AddPermissionToSpace): Promise<SpacePermissionV2> =>
-        spacePermissions.addPermissionToSpace(client, parameters),
-      addCustomContentPermissions: (parameters: AddCustomContentPermissions): Promise<void> =>
-        spacePermissions.addCustomContentPermissions(client, parameters),
-      removePermission: (parameters: RemovePermission): Promise<void> =>
-        spacePermissions.removePermission(client, parameters),
+      addPermissionToSpace: (parameters: AddPermissionToSpace, options?: RequestOptions): Promise<SpacePermissionV2> =>
+        spacePermissions.addPermissionToSpace(client, parameters, options),
+      addCustomContentPermissions: (parameters: AddCustomContentPermissions, options?: RequestOptions): Promise<void> =>
+        spacePermissions.addCustomContentPermissions(client, parameters, options),
+      removePermission: (parameters: RemovePermission, options?: RequestOptions): Promise<void> =>
+        spacePermissions.removePermission(client, parameters, options),
     },
     spaceSettings: {
-      getSpaceSettings: (parameters: GetSpaceSettings): Promise<SpaceSettings> =>
-        spaceSettings.getSpaceSettings(client, parameters),
-      updateSpaceSettings: (parameters: UpdateSpaceSettings): Promise<SpaceSettings> =>
-        spaceSettings.updateSpaceSettings(client, parameters),
+      getSpaceSettings: (parameters: GetSpaceSettings, options?: RequestOptions): Promise<SpaceSettings> =>
+        spaceSettings.getSpaceSettings(client, parameters, options),
+      updateSpaceSettings: (parameters: UpdateSpaceSettings, options?: RequestOptions): Promise<SpaceSettings> =>
+        spaceSettings.updateSpaceSettings(client, parameters, options),
     },
     template: {
-      createContentTemplate: (parameters: CreateContentTemplate): Promise<ContentTemplate> =>
-        template.createContentTemplate(client, parameters),
-      updateContentTemplate: (parameters: UpdateContentTemplate): Promise<ContentTemplate> =>
-        template.updateContentTemplate(client, parameters),
-      getBlueprintTemplates: (parameters?: GetBlueprintTemplates): Promise<BlueprintTemplateArray> =>
-        template.getBlueprintTemplates(client, parameters),
-      getContentTemplates: (parameters?: GetContentTemplates): Promise<ContentTemplateArray> =>
-        template.getContentTemplates(client, parameters),
-      getContentTemplate: (parameters: GetContentTemplate): Promise<ContentTemplate> =>
-        template.getContentTemplate(client, parameters),
-      removeTemplate: (parameters: RemoveTemplate): Promise<void> => template.removeTemplate(client, parameters),
+      createContentTemplate: (parameters: CreateContentTemplate, options?: RequestOptions): Promise<ContentTemplate> =>
+        template.createContentTemplate(client, parameters, options),
+      updateContentTemplate: (parameters: UpdateContentTemplate, options?: RequestOptions): Promise<ContentTemplate> =>
+        template.updateContentTemplate(client, parameters, options),
+      getBlueprintTemplates: (
+        parameters?: GetBlueprintTemplates,
+        options?: RequestOptions,
+      ): Promise<BlueprintTemplateArray> => template.getBlueprintTemplates(client, parameters, options),
+      getContentTemplates: (
+        parameters?: GetContentTemplates,
+        options?: RequestOptions,
+      ): Promise<ContentTemplateArray> => template.getContentTemplates(client, parameters, options),
+      getContentTemplate: (parameters: GetContentTemplate, options?: RequestOptions): Promise<ContentTemplate> =>
+        template.getContentTemplate(client, parameters, options),
+      removeTemplate: (parameters: RemoveTemplate, options?: RequestOptions): Promise<void> =>
+        template.removeTemplate(client, parameters, options),
     },
     users: {
-      getUser: (parameters: GetUser): Promise<User> => users.getUser(client, parameters),
-      getAnonymousUser: (parameters?: GetAnonymousUser): Promise<UserAnonymous> =>
-        users.getAnonymousUser(client, parameters),
-      getCurrentUser: (parameters?: GetCurrentUser): Promise<User> => users.getCurrentUser(client, parameters),
-      getGroupMembershipsForUser: (parameters: GetGroupMembershipsForUser): Promise<GroupArrayWithLinks> =>
-        users.getGroupMembershipsForUser(client, parameters),
-      getBulkUserLookup: (parameters: GetBulkUserLookup): Promise<BulkUserLookupArray> =>
-        users.getBulkUserLookup(client, parameters),
-      getPrivacyUnsafeUserEmail: (parameters: GetPrivacyUnsafeUserEmail): Promise<AccountIdEmailRecord> =>
-        users.getPrivacyUnsafeUserEmail(client, parameters),
-      getPrivacyUnsafeUserEmailBulk: (parameters: GetPrivacyUnsafeUserEmailBulk): Promise<AccountIdEmailRecordArray> =>
-        users.getPrivacyUnsafeUserEmailBulk(client, parameters),
+      getUser: (parameters: GetUser, options?: RequestOptions): Promise<User> =>
+        users.getUser(client, parameters, options),
+      getAnonymousUser: (parameters?: GetAnonymousUser, options?: RequestOptions): Promise<UserAnonymous> =>
+        users.getAnonymousUser(client, parameters, options),
+      getCurrentUser: (parameters?: GetCurrentUser, options?: RequestOptions): Promise<User> =>
+        users.getCurrentUser(client, parameters, options),
+      getGroupMembershipsForUser: (
+        parameters: GetGroupMembershipsForUser,
+        options?: RequestOptions,
+      ): Promise<GroupArrayWithLinks> => users.getGroupMembershipsForUser(client, parameters, options),
+      getBulkUserLookup: (parameters: GetBulkUserLookup, options?: RequestOptions): Promise<BulkUserLookupArray> =>
+        users.getBulkUserLookup(client, parameters, options),
+      getPrivacyUnsafeUserEmail: (
+        parameters: GetPrivacyUnsafeUserEmail,
+        options?: RequestOptions,
+      ): Promise<AccountIdEmailRecord> => users.getPrivacyUnsafeUserEmail(client, parameters, options),
+      getPrivacyUnsafeUserEmailBulk: (
+        parameters: GetPrivacyUnsafeUserEmailBulk,
+        options?: RequestOptions,
+      ): Promise<AccountIdEmailRecordArray> => users.getPrivacyUnsafeUserEmailBulk(client, parameters, options),
     },
     dynamicModules: {
-      getModules: (): Promise<unknown> => dynamicModules.getModules(client),
-      registerModules: (parameters: RegisterModules): Promise<void> =>
-        dynamicModules.registerModules(client, parameters),
-      removeModules: (parameters: RemoveModules): Promise<void> => dynamicModules.removeModules(client, parameters),
+      getModules: (options?: RequestOptions): Promise<unknown> => dynamicModules.getModules(client, options),
+      registerModules: (parameters: RegisterModules, options?: RequestOptions): Promise<void> =>
+        dynamicModules.registerModules(client, parameters, options),
+      removeModules: (parameters: RemoveModules, options?: RequestOptions): Promise<void> =>
+        dynamicModules.removeModules(client, parameters, options),
     },
     analytics: {
-      getViews: (parameters: GetViews): Promise<GetViewsModel> => analytics.getViews(client, parameters),
-      getViewers: (parameters: GetViewers): Promise<GetViewersModel> => analytics.getViewers(client, parameters),
+      getViews: (parameters: GetViews, options?: RequestOptions): Promise<GetViewsModel> =>
+        analytics.getViews(client, parameters, options),
+      getViewers: (parameters: GetViewers, options?: RequestOptions): Promise<GetViewersModel> =>
+        analytics.getViewers(client, parameters, options),
     },
     userProperties: {
-      getUserProperties: (parameters: GetUserProperties): Promise<UserPropertyKeyArray> =>
-        userProperties.getUserProperties(client, parameters),
-      getUserProperty: (parameters: GetUserProperty): Promise<UserProperty> =>
-        userProperties.getUserProperty(client, parameters),
-      createUserProperty: (parameters: CreateUserProperty): Promise<void> =>
-        userProperties.createUserProperty(client, parameters),
-      updateUserProperty: (parameters: UpdateUserProperty): Promise<void> =>
-        userProperties.updateUserProperty(client, parameters),
-      deleteUserProperty: (parameters: DeleteUserProperty): Promise<void> =>
-        userProperties.deleteUserProperty(client, parameters),
+      getUserProperties: (parameters: GetUserProperties, options?: RequestOptions): Promise<UserPropertyKeyArray> =>
+        userProperties.getUserProperties(client, parameters, options),
+      getUserProperty: (parameters: GetUserProperty, options?: RequestOptions): Promise<UserProperty> =>
+        userProperties.getUserProperty(client, parameters, options),
+      createUserProperty: (parameters: CreateUserProperty, options?: RequestOptions): Promise<void> =>
+        userProperties.createUserProperty(client, parameters, options),
+      updateUserProperty: (parameters: UpdateUserProperty, options?: RequestOptions): Promise<void> =>
+        userProperties.updateUserProperty(client, parameters, options),
+      deleteUserProperty: (parameters: DeleteUserProperty, options?: RequestOptions): Promise<void> =>
+        userProperties.deleteUserProperty(client, parameters, options),
     },
   };
 }

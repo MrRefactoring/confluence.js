@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { SpaceSettingsUpdateSchema } from '../models';
 
-export const UpdateSpaceSettingsSchema = z.object({}).extend(SpaceSettingsUpdateSchema.shape).extend({
+export const UpdateSpaceSettingsSchema = z.object(SpaceSettingsUpdateSchema.shape).extend({
   /** The key of the space whose settings will be updated. */
   spaceKey: z.string(),
 });

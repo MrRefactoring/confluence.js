@@ -8,7 +8,7 @@ export interface RetryOptions {
   /** Exponential backoff multiplier. Default: 2. */
   backoffFactor?: number;
   /**
-   * Also retry a 429, waiting out `Retry-After` when Confluence sent one. Off by default: a rate limit asks you to slow
+   * Also retry a 429, waiting out `Retry-After` when the API sent one. Off by default: a rate limit asks you to slow
    * the whole client down, and retrying one call in place papers over that.
    */
   retryRateLimit?: boolean;
@@ -33,7 +33,7 @@ export interface RetryOptions {
  *   );
  *   ```;
  *
- * @stable
+ * @public
  */
 export async function withRetry<T>(operation: () => Promise<T>, options: RetryOptions = {}): Promise<T> {
   const { maxAttempts = 3, initialDelayMs = 1000, backoffFactor = 2, retryRateLimit = false } = options;
@@ -56,7 +56,6 @@ export async function withRetry<T>(operation: () => Promise<T>, options: RetryOp
         throw err;
       }
 
-      // Atlassian's own advice beats the backoff curve whenever it gave any.
       const waitMs = (isRateLimitError(err) ? err.retryAfterMs : undefined) ?? delayMs;
 
       await new Promise<void>(resolve => setTimeout(resolve, waitMs));

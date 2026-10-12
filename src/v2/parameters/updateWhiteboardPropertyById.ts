@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { ContentPropertyUpdateSchema } from '../models';
 
-export const UpdateWhiteboardPropertyByIdSchema = z.object({}).extend(ContentPropertyUpdateSchema.shape).extend({
+export const UpdateWhiteboardPropertyByIdSchema = z.object(ContentPropertyUpdateSchema.shape).extend({
   /** The ID of the whiteboard the property belongs to. */
   whiteboardId: z.number(),
   /** The ID of the property to be updated. */

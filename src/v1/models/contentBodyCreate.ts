@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** This object is used when creating or updating content. */
 
+/** This object is used when creating or updating content. */
 export const ContentBodyCreateSchema = apiObject({
   /** The body of the content in the relevant format. */
   value: z.string(),

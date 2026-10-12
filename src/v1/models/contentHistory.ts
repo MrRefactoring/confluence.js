@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { UserSchema, type User } from './user';
-import { VersionSchema, type Version } from './version';
-import { UsersUserKeysSchema, type UsersUserKeys } from './usersUserKeys';
+import { UserSchema, type User, type UserInput } from './user';
+import { VersionSchema, type Version, type VersionInput } from './version';
+import { UsersUserKeysSchema, type UsersUserKeys, type UsersUserKeysInput } from './usersUserKeys';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
 export interface ContentHistory {
@@ -26,20 +26,34 @@ export interface ContentHistory {
     lastOwnedBy?: string;
   };
   _links?: GenericLinks;
+  [key: string]: unknown;
 }
 
-export const ContentHistorySchema: z.ZodType<ContentHistory> = apiObject({
+export type ContentHistoryInput = unknown;
+
+export const ContentHistorySchema: z.ZodType<ContentHistory, ContentHistoryInput> = apiObject({
   latest: z.boolean(),
-  createdBy: z.lazy(() => UserSchema).optional(),
-  ownedBy: z.lazy(() => UserSchema).optional(),
-  lastOwnedBy: z.lazy(() => UserSchema).optional(),
+  createdBy: (z.lazy((): z.ZodType<User, UserInput> => UserSchema) as z.ZodType<User, UserInput>).optional(),
+  ownedBy: (z.lazy((): z.ZodType<User, UserInput> => UserSchema) as z.ZodType<User, UserInput>).optional(),
+  lastOwnedBy: (z.lazy((): z.ZodType<User, UserInput> => UserSchema) as z.ZodType<User, UserInput>).optional(),
   createdDate: z.coerce.date().optional(),
-  lastUpdated: z.lazy(() => VersionSchema).optional(),
-  previousVersion: z.lazy(() => VersionSchema).optional(),
+  lastUpdated: (
+    z.lazy((): z.ZodType<Version, VersionInput> => VersionSchema) as z.ZodType<Version, VersionInput>
+  ).optional(),
+  previousVersion: (
+    z.lazy((): z.ZodType<Version, VersionInput> => VersionSchema) as z.ZodType<Version, VersionInput>
+  ).optional(),
   contributors: apiObject({
-    publishers: z.lazy(() => UsersUserKeysSchema).optional(),
+    publishers: (
+      z.lazy((): z.ZodType<UsersUserKeys, UsersUserKeysInput> => UsersUserKeysSchema) as z.ZodType<
+        UsersUserKeys,
+        UsersUserKeysInput
+      >
+    ).optional(),
   }).optional(),
-  nextVersion: z.lazy(() => VersionSchema).optional(),
+  nextVersion: (
+    z.lazy((): z.ZodType<Version, VersionInput> => VersionSchema) as z.ZodType<Version, VersionInput>
+  ).optional(),
   _expandable: apiObject({
     lastUpdated: z.string().optional(),
     previousVersion: z.string().optional(),

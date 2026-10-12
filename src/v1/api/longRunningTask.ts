@@ -2,7 +2,7 @@ import { LongTaskStatusArraySchema, type LongTaskStatusArray } from '../models/l
 import { LongTaskStatusWithLinksSchema, type LongTaskStatusWithLinks } from '../models/longTaskStatusWithLinks';
 import type { GetTasks } from '../parameters/getTasks';
 import type { GetTask } from '../parameters/getTask';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns information about all active long-running tasks (e.g. space export), such as how long each task has been
@@ -11,7 +11,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getTasks(client: Client, parameters?: GetTasks): Promise<LongTaskStatusArray> {
+export async function getTasks(
+  client: Client,
+  parameters?: GetTasks,
+  options?: RequestOptions,
+): Promise<LongTaskStatusArray> {
   const config: SendRequestOptions<LongTaskStatusArray> = {
     url: '/wiki/rest/api/longtask',
     method: 'GET',
@@ -21,6 +25,7 @@ export async function getTasks(client: Client, parameters?: GetTasks): Promise<L
       limit: parameters?.limit,
     },
     schema: LongTaskStatusArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -33,11 +38,16 @@ export async function getTasks(client: Client, parameters?: GetTasks): Promise<L
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getTask(client: Client, parameters: GetTask): Promise<LongTaskStatusWithLinks> {
+export async function getTask(
+  client: Client,
+  parameters: GetTask,
+  options?: RequestOptions,
+): Promise<LongTaskStatusWithLinks> {
   const config: SendRequestOptions<LongTaskStatusWithLinks> = {
     url: `/wiki/rest/api/longtask/${parameters.id}`,
     method: 'GET',
     schema: LongTaskStatusWithLinksSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

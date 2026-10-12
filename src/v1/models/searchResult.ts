@@ -1,15 +1,15 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { ContentSchema } from './content';
-import { UserSchema } from './user';
-import { SpaceSchema } from './space';
+import { ContentSchema, type Content, type ContentInput } from './content';
+import { UserSchema, type User, type UserInput } from './user';
+import { SpaceSchema, type Space, type SpaceInput } from './space';
 import { ContainerSummarySchema } from './containerSummary';
 import { BreadcrumbSchema } from './breadcrumb';
 
 export const SearchResultSchema = apiObject({
-  content: ContentSchema.optional(),
-  user: UserSchema.optional(),
-  space: SpaceSchema.optional(),
+  content: (ContentSchema as z.ZodType<Content, ContentInput>).optional(),
+  user: (UserSchema as z.ZodType<User, UserInput>).optional(),
+  space: (SpaceSchema as z.ZodType<Space, SpaceInput>).optional(),
   title: z.string(),
   excerpt: z.string(),
   url: z.string(),

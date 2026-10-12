@@ -22,7 +22,6 @@ import { isSchemaAuditEnabled } from './schemaAudit.js';
 export function openEnum<const T extends readonly string[]>(values: T) {
   const documented = values.map(value => `'${value}'`).join(' | ');
 
-  // `string & {}`, not `string`: a plain `string` in the union swallows the literals and takes the suggestions with them.
   const open = z.custom<T[number] | (string & {})>(value => typeof value === 'string', {
     message: `one of ${documented}, or another string`,
   });

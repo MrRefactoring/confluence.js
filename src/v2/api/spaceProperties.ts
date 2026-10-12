@@ -5,7 +5,7 @@ import type { CreateSpaceProperty } from '../parameters/createSpaceProperty';
 import type { GetSpacePropertyById } from '../parameters/getSpacePropertyById';
 import type { UpdateSpacePropertyById } from '../parameters/updateSpacePropertyById';
 import type { DeleteSpacePropertyById } from '../parameters/deleteSpacePropertyById';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all properties for the given space. Space properties are a key-value storage associated with a space. The
@@ -15,7 +15,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission) and 'View' permission for the space.
  */
-export async function getSpaceProperties(client: Client, parameters: GetSpaceProperties): Promise<SpaceProperties> {
+export async function getSpaceProperties(
+  client: Client,
+  parameters: GetSpaceProperties,
+  options?: RequestOptions,
+): Promise<SpaceProperties> {
   const config: SendRequestOptions<SpaceProperties> = {
     url: `/wiki/api/v2/spaces/${parameters.spaceId}/properties`,
     method: 'GET',
@@ -25,6 +29,7 @@ export async function getSpaceProperties(client: Client, parameters: GetSpacePro
       limit: parameters.limit,
     },
     schema: SpacePropertiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -36,7 +41,11 @@ export async function getSpaceProperties(client: Client, parameters: GetSpacePro
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission) and 'Admin' permission for the space.
  */
-export async function createSpaceProperty(client: Client, parameters: CreateSpaceProperty): Promise<SpaceProperty> {
+export async function createSpaceProperty(
+  client: Client,
+  parameters: CreateSpaceProperty,
+  options?: RequestOptions,
+): Promise<SpaceProperty> {
   const config: SendRequestOptions<SpaceProperty> = {
     url: `/wiki/api/v2/spaces/${parameters.spaceId}/properties`,
     method: 'POST',
@@ -45,6 +54,7 @@ export async function createSpaceProperty(client: Client, parameters: CreateSpac
       value: parameters.value,
     },
     schema: SpacePropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -56,11 +66,16 @@ export async function createSpaceProperty(client: Client, parameters: CreateSpac
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission) and 'View' permission for the space.
  */
-export async function getSpacePropertyById(client: Client, parameters: GetSpacePropertyById): Promise<SpaceProperty> {
+export async function getSpacePropertyById(
+  client: Client,
+  parameters: GetSpacePropertyById,
+  options?: RequestOptions,
+): Promise<SpaceProperty> {
   const config: SendRequestOptions<SpaceProperty> = {
     url: `/wiki/api/v2/spaces/${parameters.spaceId}/properties/${parameters.propertyId}`,
     method: 'GET',
     schema: SpacePropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -75,6 +90,7 @@ export async function getSpacePropertyById(client: Client, parameters: GetSpaceP
 export async function updateSpacePropertyById(
   client: Client,
   parameters: UpdateSpacePropertyById,
+  options?: RequestOptions,
 ): Promise<SpaceProperty> {
   const config: SendRequestOptions<SpaceProperty> = {
     url: `/wiki/api/v2/spaces/${parameters.spaceId}/properties/${parameters.propertyId}`,
@@ -85,6 +101,7 @@ export async function updateSpacePropertyById(
       version: parameters.version,
     },
     schema: SpacePropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -96,10 +113,15 @@ export async function updateSpacePropertyById(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission) and 'Admin' permission for the space.
  */
-export async function deleteSpacePropertyById(client: Client, parameters: DeleteSpacePropertyById): Promise<void> {
+export async function deleteSpacePropertyById(
+  client: Client,
+  parameters: DeleteSpacePropertyById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/spaces/${parameters.spaceId}/properties/${parameters.propertyId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

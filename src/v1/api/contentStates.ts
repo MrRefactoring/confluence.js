@@ -10,7 +10,7 @@ import type { GetAvailableContentStates } from '../parameters/getAvailableConten
 import type { GetSpaceContentStates } from '../parameters/getSpaceContentStates';
 import type { GetContentStateSettings } from '../parameters/getContentStateSettings';
 import type { GetContentsWithState } from '../parameters/getContentsWithState';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -18,7 +18,11 @@ import { z } from 'zod';
  * parameter status to draft, otherwise archived or current will get the relevant published state.
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content.
  */
-export async function getContentState(client: Client, parameters: GetContentState): Promise<ContentStateResponse> {
+export async function getContentState(
+  client: Client,
+  parameters: GetContentState,
+  options?: RequestOptions,
+): Promise<ContentStateResponse> {
   const config: SendRequestOptions<ContentStateResponse> = {
     url: `/wiki/rest/api/content/${parameters.id}/state`,
     method: 'GET',
@@ -26,6 +30,7 @@ export async function getContentState(client: Client, parameters: GetContentStat
       status: parameters.status,
     },
     schema: ContentStateResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -45,7 +50,11 @@ export async function getContentState(client: Client, parameters: GetContentStat
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the content.
  */
-export async function setContentState(client: Client, parameters: SetContentState): Promise<ContentStateResponse> {
+export async function setContentState(
+  client: Client,
+  parameters: SetContentState,
+  options?: RequestOptions,
+): Promise<ContentStateResponse> {
   const config: SendRequestOptions<ContentStateResponse> = {
     url: `/wiki/rest/api/content/${parameters.id}/state`,
     method: 'PUT',
@@ -57,6 +66,7 @@ export async function setContentState(client: Client, parameters: SetContentStat
     },
     body: parameters.body,
     schema: ContentStateResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -71,6 +81,7 @@ export async function setContentState(client: Client, parameters: SetContentStat
 export async function removeContentState(
   client: Client,
   parameters: RemoveContentState,
+  options?: RequestOptions,
 ): Promise<ContentStateResponse> {
   const config: SendRequestOptions<ContentStateResponse> = {
     url: `/wiki/rest/api/content/${parameters.id}/state`,
@@ -82,6 +93,7 @@ export async function removeContentState(
       status: parameters.status,
     },
     schema: ContentStateResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -97,11 +109,13 @@ export async function removeContentState(
 export async function getAvailableContentStates(
   client: Client,
   parameters: GetAvailableContentStates,
+  options?: RequestOptions,
 ): Promise<AvailableContentStates> {
   const config: SendRequestOptions<AvailableContentStates> = {
     url: `/wiki/rest/api/content/${parameters.id}/state/available`,
     method: 'GET',
     schema: AvailableContentStatesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -112,11 +126,12 @@ export async function getAvailableContentStates(
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required** Must have user authentication.
  */
-export async function getCustomContentStates(client: Client): Promise<ContentState[]> {
+export async function getCustomContentStates(client: Client, options?: RequestOptions): Promise<ContentState[]> {
   const config: SendRequestOptions<ContentState[]> = {
     url: '/wiki/rest/api/content-states',
     method: 'GET',
     schema: z.array(ContentStateSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -130,11 +145,13 @@ export async function getCustomContentStates(client: Client): Promise<ContentSta
 export async function getSpaceContentStates(
   client: Client,
   parameters: GetSpaceContentStates,
+  options?: RequestOptions,
 ): Promise<ContentState[]> {
   const config: SendRequestOptions<ContentState[]> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/state`,
     method: 'GET',
     schema: z.array(ContentStateSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -149,11 +166,13 @@ export async function getSpaceContentStates(
 export async function getContentStateSettings(
   client: Client,
   parameters: GetContentStateSettings,
+  options?: RequestOptions,
 ): Promise<ContentStateSettings> {
   const config: SendRequestOptions<ContentStateSettings> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/state/settings`,
     method: 'GET',
     schema: ContentStateSettingsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -167,17 +186,22 @@ export async function getContentStateSettings(
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'View' permission for the space.
  */
-export async function getContentsWithState(client: Client, parameters: GetContentsWithState): Promise<ContentArray> {
+export async function getContentsWithState(
+  client: Client,
+  parameters: GetContentsWithState,
+  options?: RequestOptions,
+): Promise<ContentArray> {
   const config: SendRequestOptions<ContentArray> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/state/content`,
     method: 'GET',
     searchParams: {
       'state-id': parameters['state-id'],
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       limit: parameters.limit,
       start: parameters.start,
     },
     schema: ContentArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

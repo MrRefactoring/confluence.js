@@ -65,7 +65,7 @@ import type { CreateCommentProperty } from '../parameters/createCommentProperty'
 import type { GetCommentContentPropertiesById } from '../parameters/getCommentContentPropertiesById';
 import type { UpdateCommentPropertyById } from '../parameters/updateCommentPropertyById';
 import type { DeleteCommentPropertyById } from '../parameters/deleteCommentPropertyById';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Retrieves Content Properties tied to a specified whiteboard.
@@ -75,6 +75,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getWhiteboardContentProperties(
   client: Client,
   parameters: GetWhiteboardContentProperties,
+  options?: RequestOptions,
 ): Promise<WhiteboardContentProperties> {
   const config: SendRequestOptions<WhiteboardContentProperties> = {
     url: `/wiki/api/v2/whiteboards/${parameters.id}/properties`,
@@ -86,6 +87,7 @@ export async function getWhiteboardContentProperties(
       limit: parameters.limit,
     },
     schema: WhiteboardContentPropertiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -99,6 +101,7 @@ export async function getWhiteboardContentProperties(
 export async function createWhiteboardProperty(
   client: Client,
   parameters: CreateWhiteboardProperty,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/whiteboards/${parameters.id}/properties`,
@@ -108,6 +111,7 @@ export async function createWhiteboardProperty(
       value: parameters.value,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -121,6 +125,7 @@ export async function createWhiteboardProperty(
 export async function getDatabaseContentProperties(
   client: Client,
   parameters: GetDatabaseContentProperties,
+  options?: RequestOptions,
 ): Promise<DatabaseContentProperties> {
   const config: SendRequestOptions<DatabaseContentProperties> = {
     url: `/wiki/api/v2/databases/${parameters.id}/properties`,
@@ -132,6 +137,7 @@ export async function getDatabaseContentProperties(
       limit: parameters.limit,
     },
     schema: DatabaseContentPropertiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -145,6 +151,7 @@ export async function getDatabaseContentProperties(
 export async function createDatabaseProperty(
   client: Client,
   parameters: CreateDatabaseProperty,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/databases/${parameters.id}/properties`,
@@ -154,6 +161,7 @@ export async function createDatabaseProperty(
       value: parameters.value,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -168,6 +176,7 @@ export async function createDatabaseProperty(
 export async function getSmartLinkContentProperties(
   client: Client,
   parameters: GetSmartLinkContentProperties,
+  options?: RequestOptions,
 ): Promise<SmartLinkContentProperties> {
   const config: SendRequestOptions<SmartLinkContentProperties> = {
     url: `/wiki/api/v2/embeds/${parameters.id}/properties`,
@@ -179,6 +188,7 @@ export async function getSmartLinkContentProperties(
       limit: parameters.limit,
     },
     schema: SmartLinkContentPropertiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -193,6 +203,7 @@ export async function getSmartLinkContentProperties(
 export async function createSmartLinkProperty(
   client: Client,
   parameters: CreateSmartLinkProperty,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/embeds/${parameters.id}/properties`,
@@ -202,6 +213,7 @@ export async function createSmartLinkProperty(
       value: parameters.value,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -215,6 +227,7 @@ export async function createSmartLinkProperty(
 export async function getFolderContentProperties(
   client: Client,
   parameters: GetFolderContentProperties,
+  options?: RequestOptions,
 ): Promise<FolderContentProperties> {
   const config: SendRequestOptions<FolderContentProperties> = {
     url: `/wiki/api/v2/folders/${parameters.id}/properties`,
@@ -226,6 +239,7 @@ export async function getFolderContentProperties(
       limit: parameters.limit,
     },
     schema: FolderContentPropertiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -236,7 +250,11 @@ export async function getFolderContentProperties(
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the folder.
  */
-export async function createFolderProperty(client: Client, parameters: CreateFolderProperty): Promise<ContentProperty> {
+export async function createFolderProperty(
+  client: Client,
+  parameters: CreateFolderProperty,
+  options?: RequestOptions,
+): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/folders/${parameters.id}/properties`,
     method: 'POST',
@@ -245,6 +263,7 @@ export async function createFolderProperty(client: Client, parameters: CreateFol
       value: parameters.value,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -258,6 +277,7 @@ export async function createFolderProperty(client: Client, parameters: CreateFol
 export async function getAttachmentContentProperties(
   client: Client,
   parameters: GetAttachmentContentProperties,
+  options?: RequestOptions,
 ): Promise<AttachmentContentProperties> {
   const config: SendRequestOptions<AttachmentContentProperties> = {
     url: `/wiki/api/v2/attachments/${parameters.attachmentId}/properties`,
@@ -269,6 +289,7 @@ export async function getAttachmentContentProperties(
       limit: parameters.limit,
     },
     schema: AttachmentContentPropertiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -282,6 +303,7 @@ export async function getAttachmentContentProperties(
 export async function createAttachmentProperty(
   client: Client,
   parameters: CreateAttachmentProperty,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/attachments/${parameters.attachmentId}/properties`,
@@ -291,6 +313,7 @@ export async function createAttachmentProperty(
       value: parameters.value,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -304,11 +327,13 @@ export async function createAttachmentProperty(
 export async function getAttachmentContentPropertiesById(
   client: Client,
   parameters: GetAttachmentContentPropertiesById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/attachments/${parameters.attachmentId}/properties/${parameters.propertyId}`,
     method: 'GET',
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -322,6 +347,7 @@ export async function getAttachmentContentPropertiesById(
 export async function updateAttachmentPropertyById(
   client: Client,
   parameters: UpdateAttachmentPropertyById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/attachments/${parameters.attachmentId}/properties/${parameters.propertyId}`,
@@ -332,6 +358,7 @@ export async function updateAttachmentPropertyById(
       version: parameters.version,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -345,10 +372,12 @@ export async function updateAttachmentPropertyById(
 export async function deleteAttachmentPropertyById(
   client: Client,
   parameters: DeleteAttachmentPropertyById,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/attachments/${parameters.attachmentId}/properties/${parameters.propertyId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -362,6 +391,7 @@ export async function deleteAttachmentPropertyById(
 export async function getBlogpostContentProperties(
   client: Client,
   parameters: GetBlogpostContentProperties,
+  options?: RequestOptions,
 ): Promise<BlogpostContentProperties> {
   const config: SendRequestOptions<BlogpostContentProperties> = {
     url: `/wiki/api/v2/blogposts/${parameters.blogpostId}/properties`,
@@ -373,6 +403,7 @@ export async function getBlogpostContentProperties(
       limit: parameters.limit,
     },
     schema: BlogpostContentPropertiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -386,6 +417,7 @@ export async function getBlogpostContentProperties(
 export async function createBlogpostProperty(
   client: Client,
   parameters: CreateBlogpostProperty,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/blogposts/${parameters.blogpostId}/properties`,
@@ -395,6 +427,7 @@ export async function createBlogpostProperty(
       value: parameters.value,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -408,11 +441,13 @@ export async function createBlogpostProperty(
 export async function getBlogpostContentPropertiesById(
   client: Client,
   parameters: GetBlogpostContentPropertiesById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/blogposts/${parameters.blogpostId}/properties/${parameters.propertyId}`,
     method: 'GET',
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -426,6 +461,7 @@ export async function getBlogpostContentPropertiesById(
 export async function updateBlogpostPropertyById(
   client: Client,
   parameters: UpdateBlogpostPropertyById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/blogposts/${parameters.blogpostId}/properties/${parameters.propertyId}`,
@@ -436,6 +472,7 @@ export async function updateBlogpostPropertyById(
       version: parameters.version,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -449,10 +486,12 @@ export async function updateBlogpostPropertyById(
 export async function deleteBlogpostPropertyById(
   client: Client,
   parameters: DeleteBlogpostPropertyById,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/blogposts/${parameters.blogpostId}/properties/${parameters.propertyId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -466,6 +505,7 @@ export async function deleteBlogpostPropertyById(
 export async function getCustomContentContentProperties(
   client: Client,
   parameters: GetCustomContentContentProperties,
+  options?: RequestOptions,
 ): Promise<CustomContentContentProperties> {
   const config: SendRequestOptions<CustomContentContentProperties> = {
     url: `/wiki/api/v2/custom-content/${parameters.customContentId}/properties`,
@@ -477,6 +517,7 @@ export async function getCustomContentContentProperties(
       limit: parameters.limit,
     },
     schema: CustomContentContentPropertiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -490,6 +531,7 @@ export async function getCustomContentContentProperties(
 export async function createCustomContentProperty(
   client: Client,
   parameters: CreateCustomContentProperty,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/custom-content/${parameters.customContentId}/properties`,
@@ -499,6 +541,7 @@ export async function createCustomContentProperty(
       value: parameters.value,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -512,11 +555,13 @@ export async function createCustomContentProperty(
 export async function getCustomContentContentPropertiesById(
   client: Client,
   parameters: GetCustomContentContentPropertiesById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/custom-content/${parameters.customContentId}/properties/${parameters.propertyId}`,
     method: 'GET',
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -530,6 +575,7 @@ export async function getCustomContentContentPropertiesById(
 export async function updateCustomContentPropertyById(
   client: Client,
   parameters: UpdateCustomContentPropertyById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/custom-content/${parameters.customContentId}/properties/${parameters.propertyId}`,
@@ -540,6 +586,7 @@ export async function updateCustomContentPropertyById(
       version: parameters.version,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -553,10 +600,12 @@ export async function updateCustomContentPropertyById(
 export async function deleteCustomContentPropertyById(
   client: Client,
   parameters: DeleteCustomContentPropertyById,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/custom-content/${parameters.customContentId}/properties/${parameters.propertyId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -570,6 +619,7 @@ export async function deleteCustomContentPropertyById(
 export async function getPageContentProperties(
   client: Client,
   parameters: GetPageContentProperties,
+  options?: RequestOptions,
 ): Promise<PageContentProperties> {
   const config: SendRequestOptions<PageContentProperties> = {
     url: `/wiki/api/v2/pages/${parameters.pageId}/properties`,
@@ -581,6 +631,7 @@ export async function getPageContentProperties(
       limit: parameters.limit,
     },
     schema: PageContentPropertiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -591,7 +642,11 @@ export async function getPageContentProperties(
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the page.
  */
-export async function createPageProperty(client: Client, parameters: CreatePageProperty): Promise<ContentProperty> {
+export async function createPageProperty(
+  client: Client,
+  parameters: CreatePageProperty,
+  options?: RequestOptions,
+): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/pages/${parameters.pageId}/properties`,
     method: 'POST',
@@ -600,6 +655,7 @@ export async function createPageProperty(client: Client, parameters: CreatePageP
       value: parameters.value,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -613,11 +669,13 @@ export async function createPageProperty(client: Client, parameters: CreatePageP
 export async function getPageContentPropertiesById(
   client: Client,
   parameters: GetPageContentPropertiesById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/pages/${parameters.pageId}/properties/${parameters.propertyId}`,
     method: 'GET',
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -631,6 +689,7 @@ export async function getPageContentPropertiesById(
 export async function updatePagePropertyById(
   client: Client,
   parameters: UpdatePagePropertyById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/pages/${parameters.pageId}/properties/${parameters.propertyId}`,
@@ -641,6 +700,7 @@ export async function updatePagePropertyById(
       version: parameters.version,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -651,10 +711,15 @@ export async function updatePagePropertyById(
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the page.
  */
-export async function deletePagePropertyById(client: Client, parameters: DeletePagePropertyById): Promise<void> {
+export async function deletePagePropertyById(
+  client: Client,
+  parameters: DeletePagePropertyById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/pages/${parameters.pageId}/properties/${parameters.propertyId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -668,11 +733,13 @@ export async function deletePagePropertyById(client: Client, parameters: DeleteP
 export async function getWhiteboardContentPropertiesById(
   client: Client,
   parameters: GetWhiteboardContentPropertiesById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/whiteboards/${parameters.whiteboardId}/properties/${parameters.propertyId}`,
     method: 'GET',
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -686,6 +753,7 @@ export async function getWhiteboardContentPropertiesById(
 export async function updateWhiteboardPropertyById(
   client: Client,
   parameters: UpdateWhiteboardPropertyById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/whiteboards/${parameters.whiteboardId}/properties/${parameters.propertyId}`,
@@ -696,6 +764,7 @@ export async function updateWhiteboardPropertyById(
       version: parameters.version,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -709,10 +778,12 @@ export async function updateWhiteboardPropertyById(
 export async function deleteWhiteboardPropertyById(
   client: Client,
   parameters: DeleteWhiteboardPropertyById,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/whiteboards/${parameters.whiteboardId}/properties/${parameters.propertyId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -726,11 +797,13 @@ export async function deleteWhiteboardPropertyById(
 export async function getDatabaseContentPropertiesById(
   client: Client,
   parameters: GetDatabaseContentPropertiesById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/databases/${parameters.databaseId}/properties/${parameters.propertyId}`,
     method: 'GET',
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -744,6 +817,7 @@ export async function getDatabaseContentPropertiesById(
 export async function updateDatabasePropertyById(
   client: Client,
   parameters: UpdateDatabasePropertyById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/databases/${parameters.databaseId}/properties/${parameters.propertyId}`,
@@ -754,6 +828,7 @@ export async function updateDatabasePropertyById(
       version: parameters.version,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -767,10 +842,12 @@ export async function updateDatabasePropertyById(
 export async function deleteDatabasePropertyById(
   client: Client,
   parameters: DeleteDatabasePropertyById,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/databases/${parameters.databaseId}/properties/${parameters.propertyId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -785,11 +862,13 @@ export async function deleteDatabasePropertyById(
 export async function getSmartLinkContentPropertiesById(
   client: Client,
   parameters: GetSmartLinkContentPropertiesById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/embeds/${parameters.embedId}/properties/${parameters.propertyId}`,
     method: 'GET',
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -804,6 +883,7 @@ export async function getSmartLinkContentPropertiesById(
 export async function updateSmartLinkPropertyById(
   client: Client,
   parameters: UpdateSmartLinkPropertyById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/embeds/${parameters.embedId}/properties/${parameters.propertyId}`,
@@ -814,6 +894,7 @@ export async function updateSmartLinkPropertyById(
       version: parameters.version,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -828,10 +909,12 @@ export async function updateSmartLinkPropertyById(
 export async function deleteSmartLinkPropertyById(
   client: Client,
   parameters: DeleteSmartLinkPropertyById,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/embeds/${parameters.embedId}/properties/${parameters.propertyId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -845,11 +928,13 @@ export async function deleteSmartLinkPropertyById(
 export async function getFolderContentPropertiesById(
   client: Client,
   parameters: GetFolderContentPropertiesById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/folders/${parameters.folderId}/properties/${parameters.propertyId}`,
     method: 'GET',
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -863,6 +948,7 @@ export async function getFolderContentPropertiesById(
 export async function updateFolderPropertyById(
   client: Client,
   parameters: UpdateFolderPropertyById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/folders/${parameters.folderId}/properties/${parameters.propertyId}`,
@@ -873,6 +959,7 @@ export async function updateFolderPropertyById(
       version: parameters.version,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -883,10 +970,15 @@ export async function updateFolderPropertyById(
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the folder.
  */
-export async function deleteFolderPropertyById(client: Client, parameters: DeleteFolderPropertyById): Promise<void> {
+export async function deleteFolderPropertyById(
+  client: Client,
+  parameters: DeleteFolderPropertyById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/folders/${parameters.folderId}/properties/${parameters.propertyId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -900,6 +992,7 @@ export async function deleteFolderPropertyById(client: Client, parameters: Delet
 export async function getCommentContentProperties(
   client: Client,
   parameters: GetCommentContentProperties,
+  options?: RequestOptions,
 ): Promise<CommentContentProperties> {
   const config: SendRequestOptions<CommentContentProperties> = {
     url: `/wiki/api/v2/comments/${parameters.commentId}/properties`,
@@ -911,6 +1004,7 @@ export async function getCommentContentProperties(
       limit: parameters.limit,
     },
     schema: CommentContentPropertiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -924,6 +1018,7 @@ export async function getCommentContentProperties(
 export async function createCommentProperty(
   client: Client,
   parameters: CreateCommentProperty,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/comments/${parameters.commentId}/properties`,
@@ -933,6 +1028,7 @@ export async function createCommentProperty(
       value: parameters.value,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -946,11 +1042,13 @@ export async function createCommentProperty(
 export async function getCommentContentPropertiesById(
   client: Client,
   parameters: GetCommentContentPropertiesById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/comments/${parameters.commentId}/properties/${parameters.propertyId}`,
     method: 'GET',
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -964,6 +1062,7 @@ export async function getCommentContentPropertiesById(
 export async function updateCommentPropertyById(
   client: Client,
   parameters: UpdateCommentPropertyById,
+  options?: RequestOptions,
 ): Promise<ContentProperty> {
   const config: SendRequestOptions<ContentProperty> = {
     url: `/wiki/api/v2/comments/${parameters.commentId}/properties/${parameters.propertyId}`,
@@ -974,6 +1073,7 @@ export async function updateCommentPropertyById(
       version: parameters.version,
     },
     schema: ContentPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -984,10 +1084,15 @@ export async function updateCommentPropertyById(
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to edit the comment.
  */
-export async function deleteCommentPropertyById(client: Client, parameters: DeleteCommentPropertyById): Promise<void> {
+export async function deleteCommentPropertyById(
+  client: Client,
+  parameters: DeleteCommentPropertyById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/api/v2/comments/${parameters.commentId}/properties/${parameters.propertyId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

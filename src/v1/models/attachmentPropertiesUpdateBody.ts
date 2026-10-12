@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ContainerSchema } from './container';
-import { VersionSchema } from './version';
+import { VersionSchema, type Version, type VersionInput } from './version';
 
 export const AttachmentPropertiesUpdateBodySchema = apiObject({
   id: z.string(),
@@ -14,7 +14,7 @@ export const AttachmentPropertiesUpdateBodySchema = apiObject({
     mediaType: z.string().optional(),
   }).optional(),
   extensions: z.record(z.string(), z.any()).optional(),
-  version: VersionSchema,
+  version: VersionSchema as z.ZodType<Version, VersionInput>,
 });
 
 export type AttachmentPropertiesUpdateBody = z.infer<typeof AttachmentPropertiesUpdateBodySchema>;

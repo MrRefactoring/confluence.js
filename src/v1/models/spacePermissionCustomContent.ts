@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { PermissionSubjectSchema } from './permissionSubject';
+
 /**
  * This object represents a list of space permissions for custom content type for an individual user. Permissions
- * consist of* a subjects object and a list with at least one operation object.
+ * consist of a subjects object and a list with at least one operation object.
  */
-
 export const SpacePermissionCustomContentSchema = apiObject({
   subject: PermissionSubjectSchema,
   operations: z.array(

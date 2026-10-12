@@ -5,7 +5,7 @@ import type { GetRelationship } from '../parameters/getRelationship';
 import type { CreateRelationship } from '../parameters/createRelationship';
 import type { DeleteRelationship } from '../parameters/deleteRelationship';
 import type { FindSourcesForTarget } from '../parameters/findSourcesForTarget';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all target entities that have a particular relationship to the source entity. Note, relationships are one
@@ -17,7 +17,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view both the target entity and
  * source entity.
  */
-export async function findTargetFromSource(client: Client, parameters: FindTargetFromSource): Promise<RelationArray> {
+export async function findTargetFromSource(
+  client: Client,
+  parameters: FindTargetFromSource,
+  options?: RequestOptions,
+): Promise<RelationArray> {
   const config: SendRequestOptions<RelationArray> = {
     url: `/wiki/rest/api/relation/${parameters.relationName}/from/${parameters.sourceType}/${parameters.sourceKey}/to/${parameters.targetType}`,
     method: 'GET',
@@ -26,11 +30,12 @@ export async function findTargetFromSource(client: Client, parameters: FindTarge
       targetStatus: parameters.targetStatus,
       sourceVersion: parameters.sourceVersion,
       targetVersion: parameters.targetVersion,
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       start: parameters.start,
       limit: parameters.limit,
     },
     schema: RelationArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -46,7 +51,11 @@ export async function findTargetFromSource(client: Client, parameters: FindTarge
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view both the target entity and
  * source entity.
  */
-export async function getRelationship(client: Client, parameters: GetRelationship): Promise<Relation> {
+export async function getRelationship(
+  client: Client,
+  parameters: GetRelationship,
+  options?: RequestOptions,
+): Promise<Relation> {
   const config: SendRequestOptions<Relation> = {
     url: `/wiki/rest/api/relation/${parameters.relationName}/from/${parameters.sourceType}/${parameters.sourceKey}/to/${parameters.targetType}/${parameters.targetKey}`,
     method: 'GET',
@@ -55,9 +64,10 @@ export async function getRelationship(client: Client, parameters: GetRelationshi
       targetStatus: parameters.targetStatus,
       sourceVersion: parameters.sourceVersion,
       targetVersion: parameters.targetVersion,
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: RelationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -73,7 +83,11 @@ export async function getRelationship(client: Client, parameters: GetRelationshi
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function createRelationship(client: Client, parameters: CreateRelationship): Promise<Relation> {
+export async function createRelationship(
+  client: Client,
+  parameters: CreateRelationship,
+  options?: RequestOptions,
+): Promise<Relation> {
   const config: SendRequestOptions<Relation> = {
     url: `/wiki/rest/api/relation/${parameters.relationName}/from/${parameters.sourceType}/${parameters.sourceKey}/to/${parameters.targetType}/${parameters.targetKey}`,
     method: 'PUT',
@@ -87,6 +101,7 @@ export async function createRelationship(client: Client, parameters: CreateRelat
       targetVersion: parameters.targetVersion,
     },
     schema: RelationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -99,7 +114,11 @@ export async function createRelationship(client: Client, parameters: CreateRelat
  * use' global permission). For favourite relationships, the current user can only delete their own favourite
  * relationships. A space administrator can delete favourite relationships for any user.
  */
-export async function deleteRelationship(client: Client, parameters: DeleteRelationship): Promise<void> {
+export async function deleteRelationship(
+  client: Client,
+  parameters: DeleteRelationship,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/relation/${parameters.relationName}/from/${parameters.sourceType}/${parameters.sourceKey}/to/${parameters.targetType}/${parameters.targetKey}`,
     method: 'DELETE',
@@ -112,6 +131,7 @@ export async function deleteRelationship(client: Client, parameters: DeleteRelat
       sourceVersion: parameters.sourceVersion,
       targetVersion: parameters.targetVersion,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -128,7 +148,11 @@ export async function deleteRelationship(client: Client, parameters: DeleteRelat
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view both the target entity and
  * source entity.
  */
-export async function findSourcesForTarget(client: Client, parameters: FindSourcesForTarget): Promise<RelationArray> {
+export async function findSourcesForTarget(
+  client: Client,
+  parameters: FindSourcesForTarget,
+  options?: RequestOptions,
+): Promise<RelationArray> {
   const config: SendRequestOptions<RelationArray> = {
     url: `/wiki/rest/api/relation/${parameters.relationName}/to/${parameters.targetType}/${parameters.targetKey}/from/${parameters.sourceType}`,
     method: 'GET',
@@ -137,11 +161,12 @@ export async function findSourcesForTarget(client: Client, parameters: FindSourc
       targetStatus: parameters.targetStatus,
       sourceVersion: parameters.sourceVersion,
       targetVersion: parameters.targetVersion,
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       start: parameters.start,
       limit: parameters.limit,
     },
     schema: RelationArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -5,7 +5,14 @@ import type { CreateOrUpdateAttachments } from '../parameters/createOrUpdateAtta
 import type { UpdateAttachmentProperties } from '../parameters/updateAttachmentProperties';
 import type { UpdateAttachmentData } from '../parameters/updateAttachmentData';
 import type { DownloadAttatchment } from '../parameters/downloadAttatchment';
-import { type Client, type SendRequestOptions, toFormDataFile, BufferSchema, type Buffer } from '#/core';
+import {
+  type Client,
+  type RequestOptions,
+  type SendRequestOptions,
+  toFormDataFile,
+  BufferSchema,
+  type Buffer,
+} from '#/core';
 
 /**
  * Adds an attachment to a piece of content. This method only adds a new attachment. If you want to update an existing
@@ -37,7 +44,11 @@ import { type Client, type SendRequestOptions, toFormDataFile, BufferSchema, typ
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
  */
-export async function createAttachment(client: Client, parameters: CreateAttachment): Promise<ContentArray> {
+export async function createAttachment(
+  client: Client,
+  parameters: CreateAttachment,
+  options?: RequestOptions,
+): Promise<ContentArray> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
 
@@ -56,6 +67,7 @@ export async function createAttachment(client: Client, parameters: CreateAttachm
     },
     body: formData,
     schema: ContentArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -94,6 +106,7 @@ export async function createAttachment(client: Client, parameters: CreateAttachm
 export async function createOrUpdateAttachments(
   client: Client,
   parameters: CreateOrUpdateAttachments,
+  options?: RequestOptions,
 ): Promise<ContentArray> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
@@ -113,6 +126,7 @@ export async function createOrUpdateAttachments(
     },
     body: formData,
     schema: ContentArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -127,6 +141,7 @@ export async function createOrUpdateAttachments(
 export async function updateAttachmentProperties(
   client: Client,
   parameters: UpdateAttachmentProperties,
+  options?: RequestOptions,
 ): Promise<Content> {
   const config: SendRequestOptions<Content> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}`,
@@ -136,6 +151,7 @@ export async function updateAttachmentProperties(
     },
     body: parameters.body,
     schema: ContentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -174,7 +190,11 @@ export async function updateAttachmentProperties(
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to update the content.
  */
-export async function updateAttachmentData(client: Client, parameters: UpdateAttachmentData): Promise<Content> {
+export async function updateAttachmentData(
+  client: Client,
+  parameters: UpdateAttachmentData,
+  options?: RequestOptions,
+): Promise<Content> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachment) ? parameters.attachment : [parameters.attachment];
 
@@ -190,13 +210,18 @@ export async function updateAttachmentData(client: Client, parameters: UpdateAtt
     },
     body: formData,
     schema: ContentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Redirects the client to a URL that serves an attachment's binary data. */
-export async function downloadAttatchment(client: Client, parameters: DownloadAttatchment): Promise<Buffer> {
+export async function downloadAttatchment(
+  client: Client,
+  parameters: DownloadAttatchment,
+  options?: RequestOptions,
+): Promise<Buffer> {
   const config: SendRequestOptions<Buffer> = {
     url: `/wiki/rest/api/content/${parameters.id}/child/attachment/${parameters.attachmentId}/download`,
     method: 'GET',
@@ -205,6 +230,7 @@ export async function downloadAttatchment(client: Client, parameters: DownloadAt
       status: parameters.status,
     },
     schema: BufferSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

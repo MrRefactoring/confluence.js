@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { VersionSchema } from './version';
+import { VersionSchema, type Version, type VersionInput } from './version';
 
 export const SpacePropertyUpdateSchema = apiObject({
   key: z.string().optional(),
   value: z.union([z.array(z.string()), z.boolean(), z.record(z.string(), z.any()), z.string()]),
-  version: VersionSchema,
+  version: VersionSchema as z.ZodType<Version, VersionInput>,
   space: apiObject({
     /** The key of the space */
     key: z.string().optional(),

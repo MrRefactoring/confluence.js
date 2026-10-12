@@ -12,7 +12,7 @@ import type { GetFolderDirectChildren } from '../parameters/getFolderDirectChild
 import type { GetChildPages } from '../parameters/getChildPages';
 import type { GetChildCustomContent } from '../parameters/getChildCustomContent';
 import type { GetPageDirectChildren } from '../parameters/getPageDirectChildren';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all children for given whiteboard id in the content tree. The number of results is limited by the `limit`
@@ -44,6 +44,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getWhiteboardDirectChildren(
   client: Client,
   parameters: GetWhiteboardDirectChildren,
+  options?: RequestOptions,
 ): Promise<WhiteboardDirectChildren> {
   const config: SendRequestOptions<WhiteboardDirectChildren> = {
     url: `/wiki/api/v2/whiteboards/${parameters.id}/direct-children`,
@@ -54,6 +55,7 @@ export async function getWhiteboardDirectChildren(
       sort: parameters.sort,
     },
     schema: WhiteboardDirectChildrenSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -89,6 +91,7 @@ export async function getWhiteboardDirectChildren(
 export async function getDatabaseDirectChildren(
   client: Client,
   parameters: GetDatabaseDirectChildren,
+  options?: RequestOptions,
 ): Promise<DatabaseDirectChildren> {
   const config: SendRequestOptions<DatabaseDirectChildren> = {
     url: `/wiki/api/v2/databases/${parameters.id}/direct-children`,
@@ -99,6 +102,7 @@ export async function getDatabaseDirectChildren(
       sort: parameters.sort,
     },
     schema: DatabaseDirectChildrenSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -134,6 +138,7 @@ export async function getDatabaseDirectChildren(
 export async function getSmartLinkDirectChildren(
   client: Client,
   parameters: GetSmartLinkDirectChildren,
+  options?: RequestOptions,
 ): Promise<SmartLinkDirectChildren> {
   const config: SendRequestOptions<SmartLinkDirectChildren> = {
     url: `/wiki/api/v2/embeds/${parameters.id}/direct-children`,
@@ -144,6 +149,7 @@ export async function getSmartLinkDirectChildren(
       sort: parameters.sort,
     },
     schema: SmartLinkDirectChildrenSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -179,6 +185,7 @@ export async function getSmartLinkDirectChildren(
 export async function getFolderDirectChildren(
   client: Client,
   parameters: GetFolderDirectChildren,
+  options?: RequestOptions,
 ): Promise<FolderDirectChildren> {
   const config: SendRequestOptions<FolderDirectChildren> = {
     url: `/wiki/api/v2/folders/${parameters.id}/direct-children`,
@@ -189,6 +196,7 @@ export async function getFolderDirectChildren(
       sort: parameters.sort,
     },
     schema: FolderDirectChildrenSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -201,7 +209,11 @@ export async function getFolderDirectChildren(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission). Only pages that the user has permission to view will be returned.
  */
-export async function getChildPages(client: Client, parameters: GetChildPages): Promise<ChildPages> {
+export async function getChildPages(
+  client: Client,
+  parameters: GetChildPages,
+  options?: RequestOptions,
+): Promise<ChildPages> {
   const config: SendRequestOptions<ChildPages> = {
     url: `/wiki/api/v2/pages/${parameters.id}/children`,
     method: 'GET',
@@ -211,6 +223,7 @@ export async function getChildPages(client: Client, parameters: GetChildPages): 
       sort: parameters.sort,
     },
     schema: ChildPagesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -227,6 +240,7 @@ export async function getChildPages(client: Client, parameters: GetChildPages): 
 export async function getChildCustomContent(
   client: Client,
   parameters: GetChildCustomContent,
+  options?: RequestOptions,
 ): Promise<ChildCustomContentGet> {
   const config: SendRequestOptions<ChildCustomContentGet> = {
     url: `/wiki/api/v2/custom-content/${parameters.id}/children`,
@@ -237,6 +251,7 @@ export async function getChildCustomContent(
       sort: parameters.sort,
     },
     schema: ChildCustomContentGetSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -272,6 +287,7 @@ export async function getChildCustomContent(
 export async function getPageDirectChildren(
   client: Client,
   parameters: GetPageDirectChildren,
+  options?: RequestOptions,
 ): Promise<PageDirectChildren> {
   const config: SendRequestOptions<PageDirectChildren> = {
     url: `/wiki/api/v2/pages/${parameters.id}/direct-children`,
@@ -282,6 +298,7 @@ export async function getPageDirectChildren(
       sort: parameters.sort,
     },
     schema: PageDirectChildrenSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

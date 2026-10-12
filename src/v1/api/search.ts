@@ -4,7 +4,7 @@ import {
 } from '../models/searchPageResponseSearchResult';
 import type { SearchByCQL } from '../parameters/searchByCQL';
 import type { SearchUser } from '../parameters/searchUser';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Searches for content using the [Confluence Query Language
@@ -54,7 +54,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the entities. Note, only
  * entities that the user has permission to view will be returned.
  */
-export async function searchByCQL(client: Client, parameters: SearchByCQL): Promise<SearchPageResponseSearchResult> {
+export async function searchByCQL(
+  client: Client,
+  parameters: SearchByCQL,
+  options?: RequestOptions,
+): Promise<SearchPageResponseSearchResult> {
   const config: SendRequestOptions<SearchPageResponseSearchResult> = {
     url: '/wiki/rest/api/search',
     method: 'GET',
@@ -71,9 +75,10 @@ export async function searchByCQL(client: Client, parameters: SearchByCQL): Prom
       excerpt: parameters.excerpt,
       sitePermissionTypeFilter: parameters.sitePermissionTypeFilter,
       _: parameters._,
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: SearchPageResponseSearchResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -89,7 +94,11 @@ export async function searchByCQL(client: Client, parameters: SearchByCQL): Prom
  * Note that some user fields may be set to null depending on the user's privacy settings. These are: email,
  * profilePicture, displayName, and timeZone.
  */
-export async function searchUser(client: Client, parameters: SearchUser): Promise<SearchPageResponseSearchResult> {
+export async function searchUser(
+  client: Client,
+  parameters: SearchUser,
+  options?: RequestOptions,
+): Promise<SearchPageResponseSearchResult> {
   const config: SendRequestOptions<SearchPageResponseSearchResult> = {
     url: '/wiki/rest/api/search/user',
     method: 'GET',
@@ -97,10 +106,11 @@ export async function searchUser(client: Client, parameters: SearchUser): Promis
       cql: parameters.cql,
       start: parameters.start,
       limit: parameters.limit,
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       sitePermissionTypeFilter: parameters.sitePermissionTypeFilter,
     },
     schema: SearchPageResponseSearchResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

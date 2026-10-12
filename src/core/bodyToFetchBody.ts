@@ -23,8 +23,6 @@ function isBinaryBody(body: unknown): boolean {
 
   if (typeof ArrayBuffer !== 'undefined' && body instanceof ArrayBuffer) return true;
 
-  // Covers Node's Buffer too, which is a Uint8Array — naming it here would drag
-  // @types/node into the declaration and break browser consumers.
   if (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView(body as ArrayBufferView)) return true;
 
   if (isAsyncIterable(body)) return true;
@@ -32,9 +30,43 @@ function isBinaryBody(body: unknown): boolean {
   return false;
 }
 
-export function bodyToFetchBody(body: unknown): BodyInit | AsyncIterable<unknown> {
+const FORM_URLENCODED = 'application/x-www-form-urlencoded';
+
+/**
+ * Encodes a plain object the way a form would, dropping what has nothing to send.
+ *
+ * An array becomes a repeated key rather than a comma-joined string, because that is what Jira's column setters read:
+ * `columns=summary&columns=status` sets two columns, `columns=summary,status` sets one with a comma in its name.
+ */
+function toFormBody(body: unknown): URLSearchParams {
+  const encoded = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(body as Record<string, unknown>)) {
+    if (value === undefined || value === null) continue;
+
+    if (Array.isArray(value)) {
+      for (const item of value) encoded.append(key, String(item));
+
+      continue;
+    }
+
+    encoded.append(key, String(value));
+  }
+
+  return encoded;
+}
+
+export function bodyToFetchBody(body: unknown, contentType?: string): BodyInit | AsyncIterable<unknown> {
   if (isBinaryBody(body)) {
     return body as BodyInit | AsyncIterable<unknown>;
+  }
+
+  if (contentType === FORM_URLENCODED && typeof body === 'object' && body !== null) {
+    return toFormBody(body);
+  }
+
+  if (contentType !== undefined && typeof body === 'string') {
+    return body;
   }
 
   return JSON.stringify(body);

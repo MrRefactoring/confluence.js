@@ -1,6 +1,6 @@
 import { ContentIdToContentTypeSchema, type ContentIdToContentType } from '../models/contentIdToContentType';
 import type { ConvertContentIdsToContentTypes } from '../parameters/convertContentIdsToContentTypes';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Converts a list of content ids into their associated content types. This is useful for users migrating from v1 to v2
@@ -14,12 +14,14 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function convertContentIdsToContentTypes(
   client: Client,
   parameters: ConvertContentIdsToContentTypes,
+  options?: RequestOptions,
 ): Promise<ContentIdToContentType> {
   const config: SendRequestOptions<ContentIdToContentType> = {
     url: '/wiki/api/v2/content/convert-ids-to-types',
     method: 'POST',
     body: parameters.body,
     schema: ContentIdToContentTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

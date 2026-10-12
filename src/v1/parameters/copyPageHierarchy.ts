@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { CopyPageHierarchyRequestSchema } from '../models';
 
-export const CopyPageHierarchySchema = z.object({}).extend(CopyPageHierarchyRequestSchema.shape).extend({
+export const CopyPageHierarchySchema = z.object(CopyPageHierarchyRequestSchema.shape).extend({
   id: z.string(),
 });
 

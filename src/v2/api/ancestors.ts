@@ -8,7 +8,7 @@ import type { GetDatabaseAncestors } from '../parameters/getDatabaseAncestors';
 import type { GetSmartLinkAncestors } from '../parameters/getSmartLinkAncestors';
 import type { GetFolderAncestors } from '../parameters/getFolderAncestors';
 import type { GetPageAncestors } from '../parameters/getPageAncestors';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all ancestors for a given whiteboard by ID in top-to-bottom order (that is, the highest ancestor is the first
@@ -25,6 +25,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getWhiteboardAncestors(
   client: Client,
   parameters: GetWhiteboardAncestors,
+  options?: RequestOptions,
 ): Promise<WhiteboardAncestors> {
   const config: SendRequestOptions<WhiteboardAncestors> = {
     url: `/wiki/api/v2/whiteboards/${parameters.id}/ancestors`,
@@ -33,6 +34,7 @@ export async function getWhiteboardAncestors(
       limit: parameters.limit,
     },
     schema: WhiteboardAncestorsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -53,6 +55,7 @@ export async function getWhiteboardAncestors(
 export async function getDatabaseAncestors(
   client: Client,
   parameters: GetDatabaseAncestors,
+  options?: RequestOptions,
 ): Promise<DatabaseAncestors> {
   const config: SendRequestOptions<DatabaseAncestors> = {
     url: `/wiki/api/v2/databases/${parameters.id}/ancestors`,
@@ -61,6 +64,7 @@ export async function getDatabaseAncestors(
       limit: parameters.limit,
     },
     schema: DatabaseAncestorsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -82,6 +86,7 @@ export async function getDatabaseAncestors(
 export async function getSmartLinkAncestors(
   client: Client,
   parameters: GetSmartLinkAncestors,
+  options?: RequestOptions,
 ): Promise<SmartLinkAncestors> {
   const config: SendRequestOptions<SmartLinkAncestors> = {
     url: `/wiki/api/v2/embeds/${parameters.id}/ancestors`,
@@ -90,6 +95,7 @@ export async function getSmartLinkAncestors(
       limit: parameters.limit,
     },
     schema: SmartLinkAncestorsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -107,7 +113,11 @@ export async function getSmartLinkAncestors(
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission). Permission to view the folder and its corresponding space
  */
-export async function getFolderAncestors(client: Client, parameters: GetFolderAncestors): Promise<FolderAncestors> {
+export async function getFolderAncestors(
+  client: Client,
+  parameters: GetFolderAncestors,
+  options?: RequestOptions,
+): Promise<FolderAncestors> {
   const config: SendRequestOptions<FolderAncestors> = {
     url: `/wiki/api/v2/folders/${parameters.id}/ancestors`,
     method: 'GET',
@@ -115,6 +125,7 @@ export async function getFolderAncestors(client: Client, parameters: GetFolderAn
       limit: parameters.limit,
     },
     schema: FolderAncestorsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -131,7 +142,11 @@ export async function getFolderAncestors(client: Client, parameters: GetFolderAn
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getPageAncestors(client: Client, parameters: GetPageAncestors): Promise<PageAncestors> {
+export async function getPageAncestors(
+  client: Client,
+  parameters: GetPageAncestors,
+  options?: RequestOptions,
+): Promise<PageAncestors> {
   const config: SendRequestOptions<PageAncestors> = {
     url: `/wiki/api/v2/pages/${parameters.id}/ancestors`,
     method: 'GET',
@@ -139,6 +154,7 @@ export async function getPageAncestors(client: Client, parameters: GetPageAncest
       limit: parameters.limit,
     },
     schema: PageAncestorsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

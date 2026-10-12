@@ -6,11 +6,11 @@ import { GenericAccountIdSchema } from './genericAccountId';
 import { IconSchema } from './icon';
 import { OperationCheckResultSchema } from './operationCheckResult';
 import { UserDetailsSchema } from './userDetails';
+
 /**
- * This essentially the same as the `User` object, but no `_links` property and* no `_expandable` property (therefore,
+ * This essentially the same as the `User` object, but no `_links` property and no `_expandable` property (therefore,
  * different required fields).
  */
-
 export const WatchUserSchema = apiObject({
   type: z.string(),
   username: GenericUserNameSchema.optional(),

@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { GenericLinksSchema } from './genericLinks';
+
 /**
- * Shows whether a piece of content has attachments, comments, or child pages/whiteboards.* Note, this doesn't actually
+ * Shows whether a piece of content has attachments, comments, or child pages/whiteboards. Note, this doesn't actually
  * contain the child objects.
  */
-
 export const ContentChildTypeSchema = apiObject({
   attachment: apiObject({
     value: z.boolean(),

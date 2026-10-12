@@ -1,7 +1,7 @@
 import type { z } from 'zod';
 import { openEnum } from '#/core';
-/** The formats a custom content body can be represented as. A subset of BodyRepresentation. */
 
+/** The formats a custom content body can be represented as. A subset of BodyRepresentation. */
 export const CustomContentBodyRepresentationSingleSchema = openEnum([
   'raw',
   'storage',

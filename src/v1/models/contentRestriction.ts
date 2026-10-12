@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { UserArraySchema, type UserArray } from './userArray';
+import { UserArraySchema, type UserArray, type UserArrayInput } from './userArray';
 import { GroupArraySchema, type GroupArray } from './groupArray';
-import { ContentSchema, type Content } from './content';
+import { ContentSchema, type Content, type ContentInput } from './content';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
 export interface ContentRestriction {
@@ -34,9 +34,12 @@ export interface ContentRestriction {
     content?: string;
   };
   _links: GenericLinks;
+  [key: string]: unknown;
 }
 
-export const ContentRestrictionSchema: z.ZodType<ContentRestriction> = apiObject({
+export type ContentRestrictionInput = unknown;
+
+export const ContentRestrictionSchema: z.ZodType<ContentRestriction, ContentRestrictionInput> = apiObject({
   operation: openEnum([
     'administer',
     'copy',
@@ -52,14 +55,18 @@ export const ContentRestrictionSchema: z.ZodType<ContentRestriction> = apiObject
     'use',
   ]),
   restrictions: apiObject({
-    user: z.lazy(() => UserArraySchema).optional(),
+    user: (
+      z.lazy((): z.ZodType<UserArray, UserArrayInput> => UserArraySchema) as z.ZodType<UserArray, UserArrayInput>
+    ).optional(),
     group: GroupArraySchema.optional(),
     _expandable: apiObject({
       user: z.string().optional(),
       group: z.string().optional(),
     }).optional(),
   }).optional(),
-  content: z.lazy(() => ContentSchema).optional(),
+  content: (
+    z.lazy((): z.ZodType<Content, ContentInput> => ContentSchema) as z.ZodType<Content, ContentInput>
+  ).optional(),
   _expandable: apiObject({
     restrictions: z.string().optional(),
     content: z.string().optional(),

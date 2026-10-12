@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Look and feel selection */
 
+/** Look and feel selection */
 export const LookAndFeelSelectionSchema = apiObject({
   /** The key of the space for which the look and feel settings will be set. */
   spaceKey: z.string(),

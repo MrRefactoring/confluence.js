@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { GenericLinksSchema } from './genericLinks';
+
 /**
- * Container for content. This can be either a space (containing a page or blogpost)* or a page/blog post (containing an
+ * Container for content. This can be either a space (containing a page or blogpost) or a page/blog post (containing an
  * attachment or comment)
  */
-
 export const ContainerSchema = apiObject({
   id: z.string().optional(),
   type: z.string().optional(),

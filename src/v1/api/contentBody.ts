@@ -6,7 +6,7 @@ import type { AsyncConvertContentBodyRequest } from '../parameters/asyncConvertC
 import type { AsyncConvertContentBodyResponse } from '../parameters/asyncConvertContentBodyResponse';
 import type { BulkAsyncConvertContentBodyResponse } from '../parameters/bulkAsyncConvertContentBodyResponse';
 import type { BulkAsyncConvertContentBodyRequest } from '../parameters/bulkAsyncConvertContentBodyRequest';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Converts a content body from one format to another format asynchronously. Returns the asyncId for the asynchronous
@@ -27,6 +27,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function asyncConvertContentBodyRequest(
   client: Client,
   parameters: AsyncConvertContentBodyRequest,
+  options?: RequestOptions,
 ): Promise<AsyncId> {
   const config: SendRequestOptions<AsyncId> = {
     url: `/wiki/rest/api/contentbody/convert/async/${parameters.to}`,
@@ -35,7 +36,7 @@ export async function asyncConvertContentBodyRequest(
       'X-Atlassian-Token': 'no-check',
     },
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       spaceKeyContext: parameters.spaceKeyContext,
       contentIdContext: parameters.contentIdContext,
       allowCache: parameters.allowCache,
@@ -46,6 +47,7 @@ export async function asyncConvertContentBodyRequest(
       representation: parameters.representation,
     },
     schema: AsyncIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -64,11 +66,13 @@ export async function asyncConvertContentBodyRequest(
 export async function asyncConvertContentBodyResponse(
   client: Client,
   parameters: AsyncConvertContentBodyResponse,
+  options?: RequestOptions,
 ): Promise<AsyncContentBody> {
   const config: SendRequestOptions<AsyncContentBody> = {
     url: `/wiki/rest/api/contentbody/convert/async/${parameters.id}`,
     method: 'GET',
     schema: AsyncContentBodySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -89,6 +93,7 @@ export async function asyncConvertContentBodyResponse(
 export async function bulkAsyncConvertContentBodyResponse(
   client: Client,
   parameters: BulkAsyncConvertContentBodyResponse,
+  options?: RequestOptions,
 ): Promise<AsyncContentBodyArray> {
   const config: SendRequestOptions<AsyncContentBodyArray> = {
     url: '/wiki/rest/api/contentbody/convert/async/bulk/tasks',
@@ -97,6 +102,7 @@ export async function bulkAsyncConvertContentBodyResponse(
       ids: parameters.ids,
     },
     schema: AsyncContentBodyArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -120,6 +126,7 @@ export async function bulkAsyncConvertContentBodyResponse(
 export async function bulkAsyncConvertContentBodyRequest(
   client: Client,
   parameters: BulkAsyncConvertContentBodyRequest,
+  options?: RequestOptions,
 ): Promise<AsyncIdArray> {
   const config: SendRequestOptions<AsyncIdArray> = {
     url: '/wiki/rest/api/contentbody/convert/async/bulk/tasks',
@@ -131,6 +138,7 @@ export async function bulkAsyncConvertContentBodyRequest(
       conversionInputs: parameters.conversionInputs,
     },
     schema: AsyncIdArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

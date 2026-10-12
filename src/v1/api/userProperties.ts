@@ -5,7 +5,7 @@ import type { GetUserProperty } from '../parameters/getUserProperty';
 import type { CreateUserProperty } from '../parameters/createUserProperty';
 import type { UpdateUserProperty } from '../parameters/updateUserProperty';
 import type { DeleteUserProperty } from '../parameters/deleteUserProperty';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the properties for a user as list of property keys. For more information about user properties, see
@@ -15,7 +15,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getUserProperties(client: Client, parameters: GetUserProperties): Promise<UserPropertyKeyArray> {
+export async function getUserProperties(
+  client: Client,
+  parameters: GetUserProperties,
+  options?: RequestOptions,
+): Promise<UserPropertyKeyArray> {
   const config: SendRequestOptions<UserPropertyKeyArray> = {
     url: `/wiki/rest/api/user/${parameters.userId}/property`,
     method: 'GET',
@@ -24,6 +28,7 @@ export async function getUserProperties(client: Client, parameters: GetUserPrope
       limit: parameters.limit,
     },
     schema: UserPropertyKeyArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -37,11 +42,16 @@ export async function getUserProperties(client: Client, parameters: GetUserPrope
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function getUserProperty(client: Client, parameters: GetUserProperty): Promise<UserProperty> {
+export async function getUserProperty(
+  client: Client,
+  parameters: GetUserProperty,
+  options?: RequestOptions,
+): Promise<UserProperty> {
   const config: SendRequestOptions<UserProperty> = {
     url: `/wiki/rest/api/user/${parameters.userId}/property/${parameters.key}`,
     method: 'GET',
     schema: UserPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -56,7 +66,11 @@ export async function getUserProperty(client: Client, parameters: GetUserPropert
  * fixed system limits. **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the
  * Confluence site ('Can use' global permission).
  */
-export async function createUserProperty(client: Client, parameters: CreateUserProperty): Promise<void> {
+export async function createUserProperty(
+  client: Client,
+  parameters: CreateUserProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/${parameters.userId}/property/${parameters.key}`,
     method: 'POST',
@@ -66,6 +80,7 @@ export async function createUserProperty(client: Client, parameters: CreateUserP
     body: {
       value: parameters.value,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -80,7 +95,11 @@ export async function createUserProperty(client: Client, parameters: CreateUserP
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function updateUserProperty(client: Client, parameters: UpdateUserProperty): Promise<void> {
+export async function updateUserProperty(
+  client: Client,
+  parameters: UpdateUserProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/${parameters.userId}/property/${parameters.key}`,
     method: 'PUT',
@@ -90,6 +109,7 @@ export async function updateUserProperty(client: Client, parameters: UpdateUserP
     body: {
       value: parameters.value,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -103,13 +123,18 @@ export async function updateUserProperty(client: Client, parameters: UpdateUserP
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to access the Confluence site ('Can
  * use' global permission).
  */
-export async function deleteUserProperty(client: Client, parameters: DeleteUserProperty): Promise<void> {
+export async function deleteUserProperty(
+  client: Client,
+  parameters: DeleteUserProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/user/${parameters.userId}/property/${parameters.key}`,
     method: 'DELETE',
     headers: {
       'X-Atlassian-Token': 'no-check',
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -2,7 +2,7 @@ import { SpacePermissionV2Schema, type SpacePermissionV2 } from '../models/space
 import type { AddPermissionToSpace } from '../parameters/addPermissionToSpace';
 import type { AddCustomContentPermissions } from '../parameters/addCustomContentPermissions';
 import type { RemovePermission } from '../parameters/removePermission';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Adds new permission to space.
@@ -16,6 +16,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function addPermissionToSpace(
   client: Client,
   parameters: AddPermissionToSpace,
+  options?: RequestOptions,
 ): Promise<SpacePermissionV2> {
   const config: SendRequestOptions<SpacePermissionV2> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/permission`,
@@ -29,6 +30,7 @@ export async function addPermissionToSpace(
       _links: parameters._links,
     },
     schema: SpacePermissionV2Schema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -46,6 +48,7 @@ export async function addPermissionToSpace(
 export async function addCustomContentPermissions(
   client: Client,
   parameters: AddCustomContentPermissions,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/permission/custom-content`,
@@ -57,6 +60,7 @@ export async function addCustomContentPermissions(
       subject: parameters.subject,
       operations: parameters.operations,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -70,13 +74,18 @@ export async function addCustomContentPermissions(
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
  */
-export async function removePermission(client: Client, parameters: RemovePermission): Promise<void> {
+export async function removePermission(
+  client: Client,
+  parameters: RemovePermission,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/permission/${parameters.id}`,
     method: 'DELETE',
     headers: {
       'X-Atlassian-Token': 'no-check',
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

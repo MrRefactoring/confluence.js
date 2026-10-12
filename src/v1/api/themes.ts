@@ -5,14 +5,14 @@ import type { GetTheme } from '../parameters/getTheme';
 import type { GetSpaceTheme } from '../parameters/getSpaceTheme';
 import type { SetSpaceTheme } from '../parameters/setSpaceTheme';
 import type { ResetSpaceTheme } from '../parameters/resetSpaceTheme';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all themes, not including the default theme.
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: None
  */
-export async function getThemes(client: Client, parameters?: GetThemes): Promise<ThemeArray> {
+export async function getThemes(client: Client, parameters?: GetThemes, options?: RequestOptions): Promise<ThemeArray> {
   const config: SendRequestOptions<ThemeArray> = {
     url: '/wiki/rest/api/settings/theme',
     method: 'GET',
@@ -21,6 +21,7 @@ export async function getThemes(client: Client, parameters?: GetThemes): Promise
       limit: parameters?.limit,
     },
     schema: ThemeArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -31,11 +32,12 @@ export async function getThemes(client: Client, parameters?: GetThemes): Promise
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: None
  */
-export async function getGlobalTheme(client: Client): Promise<Theme> {
+export async function getGlobalTheme(client: Client, options?: RequestOptions): Promise<Theme> {
   const config: SendRequestOptions<Theme> = {
     url: '/wiki/rest/api/settings/theme/selected',
     method: 'GET',
     schema: ThemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -46,11 +48,12 @@ export async function getGlobalTheme(client: Client): Promise<Theme> {
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: None
  */
-export async function getTheme(client: Client, parameters: GetTheme): Promise<Theme> {
+export async function getTheme(client: Client, parameters: GetTheme, options?: RequestOptions): Promise<Theme> {
   const config: SendRequestOptions<Theme> = {
     url: `/wiki/rest/api/settings/theme/${parameters.themeKey}`,
     method: 'GET',
     schema: ThemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -62,11 +65,16 @@ export async function getTheme(client: Client, parameters: GetTheme): Promise<Th
  *
  * **[Permissions required](https://confluence.atlassian.com/x/_AozKw)**: ‘View’ permission for the space.
  */
-export async function getSpaceTheme(client: Client, parameters: GetSpaceTheme): Promise<Theme> {
+export async function getSpaceTheme(
+  client: Client,
+  parameters: GetSpaceTheme,
+  options?: RequestOptions,
+): Promise<Theme> {
   const config: SendRequestOptions<Theme> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/theme`,
     method: 'GET',
     schema: ThemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -78,7 +86,11 @@ export async function getSpaceTheme(client: Client, parameters: GetSpaceTheme): 
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
  */
-export async function setSpaceTheme(client: Client, parameters: SetSpaceTheme): Promise<Theme> {
+export async function setSpaceTheme(
+  client: Client,
+  parameters: SetSpaceTheme,
+  options?: RequestOptions,
+): Promise<Theme> {
   const config: SendRequestOptions<Theme> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/theme`,
     method: 'PUT',
@@ -89,6 +101,7 @@ export async function setSpaceTheme(client: Client, parameters: SetSpaceTheme): 
       themeKey: parameters.themeKey,
     },
     schema: ThemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -99,13 +112,18 @@ export async function setSpaceTheme(client: Client, parameters: SetSpaceTheme): 
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Admin' permission for the space.
  */
-export async function resetSpaceTheme(client: Client, parameters: ResetSpaceTheme): Promise<void> {
+export async function resetSpaceTheme(
+  client: Client,
+  parameters: ResetSpaceTheme,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/wiki/rest/api/space/${parameters.spaceKey}/theme`,
     method: 'DELETE',
     headers: {
       'X-Atlassian-Token': 'no-check',
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

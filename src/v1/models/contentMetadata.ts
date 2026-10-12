@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { VersionSchema, type Version } from './version';
+import { VersionSchema, type Version, type VersionInput } from './version';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 import { LabelArraySchema, type LabelArray } from './labelArray';
 import { LabelSchema, type Label } from './label';
@@ -37,17 +37,22 @@ export interface ContentMetadata {
   labels?: LabelArray | Label[];
   mediaType?: string;
   _expandable?: Record<string, unknown>;
+  [key: string]: unknown;
 }
-/** Metadata object for page, blogpost, comment content */
 
-export const ContentMetadataSchema: z.ZodType<ContentMetadata> = apiObject({
+export type ContentMetadataInput = unknown;
+
+/** Metadata object for page, blogpost, comment content */
+export const ContentMetadataSchema: z.ZodType<ContentMetadata, ContentMetadataInput> = apiObject({
   currentuser: apiObject({
     favourited: apiObject({
       isFavourite: z.boolean().optional(),
       favouritedDate: z.coerce.date().optional(),
     }).optional(),
     lastmodified: apiObject({
-      version: z.lazy(() => VersionSchema).optional(),
+      version: (
+        z.lazy((): z.ZodType<Version, VersionInput> => VersionSchema) as z.ZodType<Version, VersionInput>
+      ).optional(),
       friendlyLastModified: z.string().optional(),
     }).optional(),
     lastcontributed: apiObject({

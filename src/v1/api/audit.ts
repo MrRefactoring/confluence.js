@@ -6,7 +6,7 @@ import type { CreateAuditRecord } from '../parameters/createAuditRecord';
 import type { ExportAuditRecords } from '../parameters/exportAuditRecords';
 import type { SetRetentionPeriod } from '../parameters/setRetentionPeriod';
 import type { GetAuditRecordsForTimePeriod } from '../parameters/getAuditRecordsForTimePeriod';
-import type { Client, SendRequestOptions } from '#/core';
+import { type Client, type RequestOptions, type SendRequestOptions, BufferSchema, type Buffer } from '#/core';
 
 /**
  * Returns all records in the audit log, optionally for a certain date range. This contains information about events
@@ -15,7 +15,11 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
  */
-export async function getAuditRecords(client: Client, parameters?: GetAuditRecords): Promise<AuditRecordArray> {
+export async function getAuditRecords(
+  client: Client,
+  parameters?: GetAuditRecords,
+  options?: RequestOptions,
+): Promise<AuditRecordArray> {
   const config: SendRequestOptions<AuditRecordArray> = {
     url: '/wiki/rest/api/audit',
     method: 'GET',
@@ -27,6 +31,7 @@ export async function getAuditRecords(client: Client, parameters?: GetAuditRecor
       limit: parameters?.limit,
     },
     schema: AuditRecordArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -37,7 +42,11 @@ export async function getAuditRecords(client: Client, parameters?: GetAuditRecor
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
  */
-export async function createAuditRecord(client: Client, parameters: CreateAuditRecord): Promise<AuditRecord> {
+export async function createAuditRecord(
+  client: Client,
+  parameters: CreateAuditRecord,
+  options?: RequestOptions,
+): Promise<AuditRecord> {
   const config: SendRequestOptions<AuditRecord> = {
     url: '/wiki/rest/api/audit',
     method: 'POST',
@@ -57,6 +66,7 @@ export async function createAuditRecord(client: Client, parameters: CreateAuditR
       associatedObjects: parameters.associatedObjects,
     },
     schema: AuditRecordSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -67,8 +77,12 @@ export async function createAuditRecord(client: Client, parameters: CreateAuditR
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
  */
-export async function exportAuditRecords(client: Client, parameters?: ExportAuditRecords): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+export async function exportAuditRecords(
+  client: Client,
+  parameters?: ExportAuditRecords,
+  options?: RequestOptions,
+): Promise<Buffer> {
+  const config: SendRequestOptions<Buffer> = {
     url: '/wiki/rest/api/audit/export',
     method: 'GET',
     searchParams: {
@@ -77,6 +91,8 @@ export async function exportAuditRecords(client: Client, parameters?: ExportAudi
       searchString: parameters?.searchString,
       format: parameters?.format,
     },
+    schema: BufferSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -88,11 +104,12 @@ export async function exportAuditRecords(client: Client, parameters?: ExportAudi
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
  */
-export async function getRetentionPeriod(client: Client): Promise<RetentionPeriod> {
+export async function getRetentionPeriod(client: Client, options?: RequestOptions): Promise<RetentionPeriod> {
   const config: SendRequestOptions<RetentionPeriod> = {
     url: '/wiki/rest/api/audit/retention',
     method: 'GET',
     schema: RetentionPeriodSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -103,7 +120,11 @@ export async function getRetentionPeriod(client: Client): Promise<RetentionPerio
  *
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: 'Confluence Administrator' global permission.
  */
-export async function setRetentionPeriod(client: Client, parameters: SetRetentionPeriod): Promise<RetentionPeriod> {
+export async function setRetentionPeriod(
+  client: Client,
+  parameters: SetRetentionPeriod,
+  options?: RequestOptions,
+): Promise<RetentionPeriod> {
   const config: SendRequestOptions<RetentionPeriod> = {
     url: '/wiki/rest/api/audit/retention',
     method: 'PUT',
@@ -115,6 +136,7 @@ export async function setRetentionPeriod(client: Client, parameters: SetRetentio
       units: parameters.units,
     },
     schema: RetentionPeriodSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -133,6 +155,7 @@ export async function setRetentionPeriod(client: Client, parameters: SetRetentio
 export async function getAuditRecordsForTimePeriod(
   client: Client,
   parameters?: GetAuditRecordsForTimePeriod,
+  options?: RequestOptions,
 ): Promise<AuditRecordArray> {
   const config: SendRequestOptions<AuditRecordArray> = {
     url: '/wiki/rest/api/audit/since',
@@ -145,6 +168,7 @@ export async function getAuditRecordsForTimePeriod(
       limit: parameters?.limit,
     },
     schema: AuditRecordArraySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

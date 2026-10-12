@@ -6,7 +6,7 @@ import { GenericAccountIdSchema, type GenericAccountId } from './genericAccountI
 import { IconSchema, type Icon } from './icon';
 import { OperationCheckResultSchema, type OperationCheckResult } from './operationCheckResult';
 import { UserDetailsSchema, type UserDetails } from './userDetails';
-import { SpaceSchema, type Space } from './space';
+import { SpaceSchema, type Space, type SpaceInput } from './space';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
 
 export interface User {
@@ -14,14 +14,25 @@ export interface User {
   username?: GenericUserName;
   userKey?: GenericUserKey;
   accountId?: GenericAccountId;
+  /**
+   * The account type of the user, may return empty string if unavailable. App is if the user is a bot user created on
+   * behalf of an Atlassian app.
+   */
   accountType?: 'atlassian' | 'app' | '' | (string & {});
+  /** The email address of the user. Depending on the user's privacy setting, this may return an empty string. */
   email?: string | null;
+  /** The public name or nickname of the user. Will always contain a value. */
   publicName?: string;
   profilePicture?: Icon;
+  /** The displays name of the user. Depending on the user's privacy setting, this may be the same as publicName. */
   displayName?: string | null;
+  /** This displays user time zone. Depending on the user's privacy setting, this may return null. */
   timeZone?: string | null;
+  /** This is deprecated. Use `isGuest` instead to find out whether the user is a guest user. */
   externalCollaborator?: boolean;
+  /** This is deprecated. Use `isGuest` instead to find out whether the user is a guest user. */
   isExternalCollaborator?: boolean;
+  /** Whether the user is a guest user */
   isGuest?: boolean;
   operations?: OperationCheckResult[] | null;
   details?: UserDetails;
@@ -34,9 +45,12 @@ export interface User {
   _links?: GenericLinks;
   accountStatus?: string;
   locale?: string;
+  [key: string]: unknown;
 }
 
-export const UserSchema: z.ZodType<User> = apiObject({
+export type UserInput = unknown;
+
+export const UserSchema: z.ZodType<User, UserInput> = apiObject({
   type: openEnum(['known', 'unknown', 'anonymous', 'user']),
   username: GenericUserNameSchema.optional(),
   userKey: GenericUserKeySchema.optional(),
@@ -63,7 +77,7 @@ export const UserSchema: z.ZodType<User> = apiObject({
   isGuest: z.boolean().optional(),
   operations: z.array(OperationCheckResultSchema).nullish(),
   details: UserDetailsSchema.optional(),
-  personalSpace: z.lazy(() => SpaceSchema).optional(),
+  personalSpace: (z.lazy((): z.ZodType<Space, SpaceInput> => SpaceSchema) as z.ZodType<Space, SpaceInput>).optional(),
   _expandable: apiObject({
     operations: z.string().optional(),
     details: z.string().optional(),

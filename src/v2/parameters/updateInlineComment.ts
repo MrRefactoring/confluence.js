@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { UpdateInlineCommentModelSchema } from '../models';
 
-export const UpdateInlineCommentSchema = z.object({}).extend(UpdateInlineCommentModelSchema.shape).extend({
+export const UpdateInlineCommentSchema = z.object(UpdateInlineCommentModelSchema.shape).extend({
   /** The ID of the comment to be retrieved. */
   commentId: z.number(),
 });

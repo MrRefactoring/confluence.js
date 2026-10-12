@@ -5,7 +5,7 @@ import {
 import { AvailableSpacePermissionsSchema, type AvailableSpacePermissions } from '../models/availableSpacePermissions';
 import type { GetSpacePermissionsAssignments } from '../parameters/getSpacePermissionsAssignments';
 import type { GetAvailableSpacePermissions } from '../parameters/getAvailableSpacePermissions';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns space permission assignments for a specific space.
@@ -15,6 +15,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getSpacePermissionsAssignments(
   client: Client,
   parameters: GetSpacePermissionsAssignments,
+  options?: RequestOptions,
 ): Promise<SpacePermissionsAssignments> {
   const config: SendRequestOptions<SpacePermissionsAssignments> = {
     url: `/wiki/api/v2/spaces/${parameters.id}/permissions`,
@@ -24,6 +25,7 @@ export async function getSpacePermissionsAssignments(
       limit: parameters.limit,
     },
     schema: SpacePermissionsAssignmentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -40,6 +42,7 @@ export async function getSpacePermissionsAssignments(
 export async function getAvailableSpacePermissions(
   client: Client,
   parameters?: GetAvailableSpacePermissions,
+  options?: RequestOptions,
 ): Promise<AvailableSpacePermissions> {
   const config: SendRequestOptions<AvailableSpacePermissions> = {
     url: '/wiki/api/v2/space-permissions',
@@ -49,6 +52,7 @@ export async function getAvailableSpacePermissions(
       limit: parameters?.limit,
     },
     schema: AvailableSpacePermissionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

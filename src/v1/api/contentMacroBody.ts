@@ -4,7 +4,7 @@ import { AsyncIdSchema, type AsyncId } from '../models/asyncId';
 import type { GetMacroBodyByMacroId } from '../parameters/getMacroBodyByMacroId';
 import type { GetAndConvertMacroBodyByMacroId } from '../parameters/getAndConvertMacroBodyByMacroId';
 import type { GetAndAsyncConvertMacroBodyByMacroId } from '../parameters/getAndAsyncConvertMacroBodyByMacroId';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the body of a macro in storage format, for the given macro ID. This includes information like the name of the
@@ -34,11 +34,16 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://confluence.atlassian.com/x/_AozKw) required**: Permission to view the content that the macro
  * is in.
  */
-export async function getMacroBodyByMacroId(client: Client, parameters: GetMacroBodyByMacroId): Promise<MacroInstance> {
+export async function getMacroBodyByMacroId(
+  client: Client,
+  parameters: GetMacroBodyByMacroId,
+  options?: RequestOptions,
+): Promise<MacroInstance> {
   const config: SendRequestOptions<MacroInstance> = {
     url: `/wiki/rest/api/content/${parameters.id}/history/${parameters.version}/macro/id/${parameters.macroId}`,
     method: 'GET',
     schema: MacroInstanceSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -75,16 +80,18 @@ export async function getMacroBodyByMacroId(client: Client, parameters: GetMacro
 export async function getAndConvertMacroBodyByMacroId(
   client: Client,
   parameters: GetAndConvertMacroBodyByMacroId,
+  options?: RequestOptions,
 ): Promise<ContentBody> {
   const config: SendRequestOptions<ContentBody> = {
     url: `/wiki/rest/api/content/${parameters.id}/history/${parameters.version}/macro/id/${parameters.macroId}/convert/${parameters.to}`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       spaceKeyContext: parameters.spaceKeyContext,
       embeddedContentRender: parameters.embeddedContentRender,
     },
     schema: ContentBodySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -121,17 +128,19 @@ export async function getAndConvertMacroBodyByMacroId(
 export async function getAndAsyncConvertMacroBodyByMacroId(
   client: Client,
   parameters: GetAndAsyncConvertMacroBodyByMacroId,
+  options?: RequestOptions,
 ): Promise<AsyncId> {
   const config: SendRequestOptions<AsyncId> = {
     url: `/wiki/rest/api/content/${parameters.id}/history/${parameters.version}/macro/id/${parameters.macroId}/convert/async/${parameters.to}`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       allowCache: parameters.allowCache,
       spaceKeyContext: parameters.spaceKeyContext,
       embeddedContentRender: parameters.embeddedContentRender,
     },
     schema: AsyncIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

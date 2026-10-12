@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** An operation and the target entity that it applies to, e.g. create page. */
 
+/** An operation and the target entity that it applies to, e.g. create page. */
 export const OperationCheckResultSchema = apiObject({
   /** The operation itself. */
   operation: z.string(),

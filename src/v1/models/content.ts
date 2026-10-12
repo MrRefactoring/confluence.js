@@ -1,19 +1,20 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { SpaceSchema, type Space } from './space';
-import { ContentHistorySchema, type ContentHistory } from './contentHistory';
-import { VersionSchema, type Version } from './version';
+import { SpaceSchema, type Space, type SpaceInput } from './space';
+import { ContentHistorySchema, type ContentHistory, type ContentHistoryInput } from './contentHistory';
+import { VersionSchema, type Version, type VersionInput } from './version';
 import { OperationCheckResultSchema, type OperationCheckResult } from './operationCheckResult';
-import { ContentChildrenSchema, type ContentChildren } from './contentChildren';
+import { ContentChildrenSchema, type ContentChildren, type ContentChildrenInput } from './contentChildren';
 import { ContentChildTypeSchema, type ContentChildType } from './contentChildType';
 import { ContainerSchema, type Container } from './container';
 import { ContentBodySchema, type ContentBody } from './contentBody';
-import { ContentRestrictionSchema, type ContentRestriction } from './contentRestriction';
+import { ContentRestrictionSchema, type ContentRestriction, type ContentRestrictionInput } from './contentRestriction';
 import { GenericLinksSchema, type GenericLinks } from './genericLinks';
-import { ContentMetadataSchema, type ContentMetadata } from './contentMetadata';
+import { ContentMetadataSchema, type ContentMetadata, type ContentMetadataInput } from './contentMetadata';
 
 export interface Content {
   id?: string;
+  /** Can be "page", "blogpost", "attachment" or "content" */
   type: string;
   status: string;
   title?: string;
@@ -86,23 +87,45 @@ export interface Content {
   _links?: GenericLinks;
   ari?: string;
   base64EncodedAri?: string;
+  [key: string]: unknown;
 }
-/** Base object for all content types. */
 
-export const ContentSchema: z.ZodType<Content> = apiObject({
+export type ContentInput = unknown;
+
+/** Base object for all content types. */
+export const ContentSchema: z.ZodType<Content, ContentInput> = apiObject({
   id: z.string().optional(),
   /** Can be "page", "blogpost", "attachment" or "content" */
   type: z.string(),
   status: z.string(),
   title: z.string().optional(),
-  space: z.lazy(() => SpaceSchema).optional(),
-  history: z.lazy(() => ContentHistorySchema).optional(),
-  version: z.lazy(() => VersionSchema).optional(),
-  ancestors: z.array(z.lazy(() => ContentSchema)).nullish(),
+  space: (z.lazy((): z.ZodType<Space, SpaceInput> => SpaceSchema) as z.ZodType<Space, SpaceInput>).optional(),
+  history: (
+    z.lazy((): z.ZodType<ContentHistory, ContentHistoryInput> => ContentHistorySchema) as z.ZodType<
+      ContentHistory,
+      ContentHistoryInput
+    >
+  ).optional(),
+  version: (
+    z.lazy((): z.ZodType<Version, VersionInput> => VersionSchema) as z.ZodType<Version, VersionInput>
+  ).optional(),
+  ancestors: z
+    .array(z.lazy((): z.ZodType<Content, ContentInput> => ContentSchema) as z.ZodType<Content, ContentInput>)
+    .nullish(),
   operations: z.array(OperationCheckResultSchema).optional(),
-  children: z.lazy(() => ContentChildrenSchema).optional(),
+  children: (
+    z.lazy((): z.ZodType<ContentChildren, ContentChildrenInput> => ContentChildrenSchema) as z.ZodType<
+      ContentChildren,
+      ContentChildrenInput
+    >
+  ).optional(),
   childTypes: ContentChildTypeSchema.optional(),
-  descendants: z.lazy(() => ContentChildrenSchema).optional(),
+  descendants: (
+    z.lazy((): z.ZodType<ContentChildren, ContentChildrenInput> => ContentChildrenSchema) as z.ZodType<
+      ContentChildren,
+      ContentChildrenInput
+    >
+  ).optional(),
   container: ContainerSchema.optional(),
   body: apiObject({
     view: ContentBodySchema.optional(),
@@ -131,15 +154,30 @@ export const ContentSchema: z.ZodType<Content> = apiObject({
     }).optional(),
   }).optional(),
   restrictions: apiObject({
-    read: z.lazy(() => ContentRestrictionSchema).optional(),
-    update: z.lazy(() => ContentRestrictionSchema).optional(),
+    read: (
+      z.lazy((): z.ZodType<ContentRestriction, ContentRestrictionInput> => ContentRestrictionSchema) as z.ZodType<
+        ContentRestriction,
+        ContentRestrictionInput
+      >
+    ).optional(),
+    update: (
+      z.lazy((): z.ZodType<ContentRestriction, ContentRestrictionInput> => ContentRestrictionSchema) as z.ZodType<
+        ContentRestriction,
+        ContentRestrictionInput
+      >
+    ).optional(),
     _expandable: apiObject({
       read: z.string().optional(),
       update: z.string().optional(),
     }).optional(),
     _links: GenericLinksSchema.optional(),
   }).optional(),
-  metadata: z.lazy(() => ContentMetadataSchema).optional(),
+  metadata: (
+    z.lazy((): z.ZodType<ContentMetadata, ContentMetadataInput> => ContentMetadataSchema) as z.ZodType<
+      ContentMetadata,
+      ContentMetadataInput
+    >
+  ).optional(),
   macroRenderedOutput: z.record(z.string(), z.any()).optional(),
   extensions: z.record(z.string(), z.any()).optional(),
   _expandable: apiObject({

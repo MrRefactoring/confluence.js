@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { UserSchema } from './user';
+import { UserSchema, type User, type UserInput } from './user';
 
 export const RelationDataSchema = apiObject({
-  createdBy: UserSchema.optional(),
+  createdBy: (UserSchema as z.ZodType<User, UserInput>).optional(),
   createdDate: z.coerce.date().optional(),
   friendlyCreatedDate: z.string().optional(),
 });
