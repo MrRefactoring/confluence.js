@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3.1
+
+### Patch Changes
+
+- 6036749: Describe the optional PDF export styling preference in v1 space settings and attachment comments in v1 content metadata returned by Confluence Cloud.
+
 ## 3.3.0
 
 ### Minor Changes
