@@ -84,6 +84,7 @@ describe('Confluence Cloud v1 — contentAttachments.createAttachment (live, mul
 
     expect(created.results).toHaveLength(3);
     expect(created.results.map(result => result.title)).toEqual(attachments.map(a => a.filename));
+    expect(created.results.map(result => result.metadata?.comment ?? '')).toEqual(['', comment, '']);
     await expectVersionMetadata(created.results[0].id!, '', false);
     await expectVersionMetadata(created.results[1].id!, comment, true);
     await expectVersionMetadata(created.results[2].id!, '', false);
@@ -123,6 +124,7 @@ describe('Confluence Cloud v1 — contentAttachments.createOrUpdateAttachments (
 
     expect(second.results[0].title).toBe(attachment.filename);
     expect(second.results[0].id).toBe(first.results[0].id);
+    expect(second.results[0].metadata?.comment).toBe('Upserted attachment');
     const version = await expectVersionMetadata(second.results[0].id!, 'Upserted attachment', true);
 
     expect(version.number).toBeGreaterThan(1);
@@ -143,6 +145,7 @@ describe('Confluence Cloud v1 — contentAttachments.updateAttachmentData (live,
 
     expect(updated.id).toBe(attachmentId);
     expect(updated.version?.number).toBeGreaterThan(1);
+    expect(updated.metadata?.comment).toBe('Replaced attachment data');
     const version = await expectVersionMetadata(attachmentId, 'Replaced attachment data', true);
 
     expect(version.number).toBe(updated.version?.number);
