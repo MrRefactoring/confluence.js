@@ -36,6 +36,7 @@ export interface ContentMetadata {
   frontend?: Record<string, unknown>;
   labels?: LabelArray | Label[];
   mediaType?: string;
+  comment?: string;
   _expandable?: Record<string, unknown>;
   [key: string]: unknown;
 }
@@ -76,5 +77,6 @@ export const ContentMetadataSchema: z.ZodType<ContentMetadata, ContentMetadataIn
   frontend: z.record(z.string(), z.any()).optional(),
   labels: z.union([LabelArraySchema, z.array(LabelSchema)]).optional(),
   mediaType: z.string().optional(),
+  comment: z.string().optional(),
   _expandable: z.record(z.string(), z.any()).optional(),
 });

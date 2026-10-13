@@ -122,6 +122,7 @@ describe('Confluence Cloud v1 — spaceSettings (live, scoped to a fixture space
     const settings = await client.spaceSettings.getSpaceSettings({ spaceKey });
 
     expect(typeof settings.routeOverrideEnabled).toBe('boolean');
+    expect(settings.isPdfExportNoCodeStylingOptedIn).toBeTypeOf('boolean');
   });
 
   it('round-trips an update — the read-back matches what was written', async () => {
@@ -133,6 +134,7 @@ describe('Confluence Cloud v1 — spaceSettings (live, scoped to a fixture space
     const after = await client.spaceSettings.getSpaceSettings({ spaceKey });
 
     expect(after.routeOverrideEnabled).toBe(flipped);
+    expect(after.isPdfExportNoCodeStylingOptedIn).toBe(before.isPdfExportNoCodeStylingOptedIn);
   });
 
   it('rejects an unknown space key with an ApiError', async () => {

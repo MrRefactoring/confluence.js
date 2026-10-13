@@ -23,6 +23,7 @@ export const SpaceSettingsSchema = apiObject({
   contentMode: openEnum(['standard', 'compact']).nullish(),
   spaceKey: z.string().optional(),
   _links: GenericLinksSchema,
+  isPdfExportNoCodeStylingOptedIn: z.boolean().optional(),
 });
 
 export type SpaceSettings = z.infer<typeof SpaceSettingsSchema>;
