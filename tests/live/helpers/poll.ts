@@ -6,18 +6,19 @@
  * finish. {@link waitFor} re-runs `fn` until `predicate` holds (or attempts run
  * out), so suites assert on settled state instead of racing the API.
  */
-export interface PollOptions {
+export interface PollOptions<T = unknown> {
   maxAttempts?: number;
   initialDelayMs?: number;
   factor?: number;
+  describeLastValue?: (value: T | undefined) => string;
 }
 
 export async function waitFor<T>(
   fn: () => Promise<T>,
   predicate: (value: T) => boolean,
-  options: PollOptions = {},
+  options: PollOptions<T> = {},
 ): Promise<T> {
-  const { maxAttempts = 6, initialDelayMs = 500, factor = 1.8 } = options;
+  const { maxAttempts = 6, initialDelayMs = 500, factor = 1.8, describeLastValue } = options;
   let delay = initialDelayMs;
   let last: T | undefined;
 
@@ -32,5 +33,7 @@ export async function waitFor<T>(
     }
   }
 
-  throw new Error(`waitFor: condition not satisfied after ${maxAttempts} attempts`);
+  const details = describeLastValue ? `; last value: ${describeLastValue(last)}` : '';
+
+  throw new Error(`waitFor: condition not satisfied after ${maxAttempts} attempts${details}`);
 }

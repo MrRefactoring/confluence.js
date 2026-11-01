@@ -86,7 +86,23 @@ describe('Confluence Cloud v1 — content.archivePages (live, async task)', () =
     await waitFor(
       () => client.longRunningTask.getTask({ id: started.id! }),
       value => value.finished === true || value.percentageComplete === 100,
-      { maxAttempts: 13, initialDelayMs: 1000, factor: 1.4 },
+      {
+        maxAttempts: 13,
+        initialDelayMs: 1000,
+        factor: 1.4,
+        describeLastValue: task =>
+          JSON.stringify({
+            pageId: page.id,
+            taskId: started.id,
+            elapsedTime: task?.elapsedTime,
+            finished: task?.finished,
+            percentageComplete: task?.percentageComplete,
+            successful: task?.successful,
+            status: task?.status,
+            messages: task?.messages,
+            errors: task?.errors,
+          }),
+      },
     );
 
     const archived = await waitFor(
