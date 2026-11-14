@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3.2
+
+### Patch Changes
+
+- e51b974: Update the Zod runtime dependency to version 4.6.7.
+
 ## 3.3.1
 
 ### Patch Changes
